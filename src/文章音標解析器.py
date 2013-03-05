@@ -1,5 +1,6 @@
 from 通用拼音音標 import 通用拼音音標
 from 臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
+from 華語台語雙語語料庫系統.何澤政教會羅馬字音標 import 何澤政教會羅馬字音標
 class 文章音標解析器:
 	音標工具 = None
 	標點符號 = None
@@ -82,6 +83,7 @@ if __name__ == '__main__':
 	print(解析器.解析語句('qin21 a24 dor43 i45ging12 ga23 tau55 cun22 cut76ki34 cia12 tang12a41qua22 gong44 '))
 	print(解析器.解析語句('mui45  ging12ge34  zit68ging12cu33'))
 	print(解析器.解析語句('nau2'))
-	解析器.標點符號={'「'}
-	print(解析器.解析語句('「'))
+	解析器 = 文章音標解析器(何澤政教會羅馬字音標)
+	解析器.標點符號={'「',' ','-'}
+	print(解析器.解析語句佮顯示毋著字元('Pang-liau5 hi5-kang2 「 Toa7-tiau5-hang7 」 siang7-khoah nng7-kong-chhioh'))
 
