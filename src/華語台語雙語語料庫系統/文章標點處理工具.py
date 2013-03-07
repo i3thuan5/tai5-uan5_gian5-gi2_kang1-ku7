@@ -1,6 +1,6 @@
 
 class 文章標點處理工具:
-	斷字符號 = {'-'}
+	斷字符號 = ['-']
 	標點符號 = None
 
 	def 切開語句(self, 語句):
@@ -19,7 +19,7 @@ class 文章標點處理工具:
 					break
 				elif 一段 in self.標點符號:
 					#字佮普通的標點符號中央愛有空白
-					if len(切開結果)>0 and 切開結果[-1]!='':
+					if len(切開結果)>0 and 切開結果[-1]!=' ':
 						切開結果.append('')
 						切開結果.append(' ')
 					切開結果.append(目前字串)
@@ -42,7 +42,7 @@ class 文章標點處理工具:
 		return len(語句)
 	
 	def 計算音標語句音標數量(self, 語句):
-		return len(語句.split(self.斷字符號[0]))+1
+		return len(語句.split(self.斷字符號[0]))
 
 if __name__ == '__main__':
 	標點處理工具 = 文章標點處理工具()
@@ -59,5 +59,6 @@ if __name__ == '__main__':
 	print(標點處理工具.切開語句('i5-bin5-su2 than2-sing5 tsa1-giam7-uan5 sit4-gian5 ，'))
 	print(標點處理工具.切開語句('i2-king1 tiau3-li7 hian7-tsit4 gian2-gi2 tshu2-hun1 。'))
 	print(標點處理工具.切開語句('Pang-liau5 hi5-kang2 「 Toa7-tiau5-hang7 」 siang7-khoah nng7-kong-chhioh'))
+	print(標點處理工具.計算音標語句音標數量('kau2-chap8-lak8-hoe3'))
 
 
