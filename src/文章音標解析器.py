@@ -86,4 +86,5 @@ if __name__ == '__main__':
 	解析器 = 文章音標解析器(何澤政教會羅馬字音標)
 	解析器.標點符號={'「',' ','-'}
 	print(解析器.解析語句佮顯示毋著字元('Pang-liau5 hi5-kang2 「 Toa7-tiau5-hang7 」 siang7-khoah nng7-kong-chhioh'))
+	print(解析器.解析語句佮顯示毋著字元('chu2-chhionn3'))
 
