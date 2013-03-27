@@ -1,3 +1,4 @@
+from 言語資料庫.公用資料 import 組字式符號
 
 class 文章標點處理工具:
 	斷字符號 = ['-']
@@ -39,11 +40,33 @@ class 文章標點處理工具:
 			切開結果.append(目前字串)
 		return 切開結果
 	
+	def 分離漢字(self, 語句):
+		漢字陣列=[]
+		一个漢字=''
+		長度=0
+		for 字 in 語句:
+			一个漢字+=字
+			if 字 in 組字式符號:
+				長度-=2
+			else:
+				長度+=1		
+			if 長度==1:
+				漢字陣列.append(一个漢字)
+				一个漢字=''
+				長度=0
+		return 漢字陣列
+	
 	def 計算漢字語句漢字數量(self, 語句):
+		長度=0
+		for 字 in 語句:
+			if 字 in 組字式符號:
+				長度-=2
+			else:
+				長度+=1
 		return len(語句)
 	
 	def 計算音標語句音標數量(self, 語句):
-		return len(語句.split(self.斷字符號[0]))
+		return len(語句.replace('--','-').split(self.斷字符號[0]))
 
 if __name__ == '__main__':
 	標點處理工具 = 文章標點處理工具()
