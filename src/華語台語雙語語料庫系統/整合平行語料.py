@@ -23,7 +23,7 @@ from 言語資料庫.公用資料 import 文字組合符號
 揣攏總資料 = 資料庫連線.prepare('SELECT "aid","year", ' +
 	'"title","title_translation","content","TaiLuo","JiaoLuo" ' +
 	'FROM "華語台語雙語語料庫系統"."article_frank" WHERE "整合遏袂"=false AND ("TaiLuo"!=\'\' OR "JiaoLuo"!=\'\') ' +
-	'ORDER BY "aid" DESC LIMIT 10')
+	'ORDER BY "aid" DESC')
 整合過矣 = lambda aid: 資料庫連線.prepare('UPDATE "華語台語雙語語料庫系統"."article_frank" ' +
 	'SET "整合遏袂"=true WHERE "aid"=$1')(aid)
 
