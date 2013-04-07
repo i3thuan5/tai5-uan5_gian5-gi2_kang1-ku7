@@ -3,6 +3,7 @@
 	<name>國閩翻譯</name>
 	<comment></comment>
 	<projects>
+		<project>音標系統</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
