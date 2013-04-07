@@ -114,10 +114,16 @@ def 產生閩南語組合(流水號, 來源, 種類, 腔口, 地區, 年代, 組
 			if 型體 != None:
 				資料庫紀錄.append('\'' + 切開的型體[i] + '\'')
 			if 音標 != None:
+				if i >= len(一个一个音標):
+					break
 				資料庫紀錄.append('\'' + 一个一个音標[i] + '\'')
 			if 調變 != None:
+				if i >= len(一个一个調變):
+					break
 				資料庫紀錄.append('\'' + 一个一个調變[i] + '\'')
 			if 音變 != None:
+				if i >= len(一个一个音變):
+					break
 				資料庫紀錄.append('\'' + 一个一个音變[i] + '\'')
 			流水號組合.append(插入文字(資料庫欄位, 資料庫紀錄))
 		return list(map(str, 流水號組合))
