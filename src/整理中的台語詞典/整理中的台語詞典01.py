@@ -7,7 +7,7 @@ Created on 2013/3/3
 from 文章音標解析器 import 文章音標解析器
 from 通用拼音音標 import 通用拼音音標
 from 言語資料庫.公用資料 import 資料庫連線
-from 言語資料庫.公用資料 import 加文字
+from 教育部臺灣閩南語常用詞辭典.資料庫連線 import 加文字
 
 揣攏總資料 = 資料庫連線.prepare('SELECT "識別碼","unz","imbiau" ' +
 	'FROM "整理中的台語詞典"."整理中的台語詞典01" ORDER BY "識別碼" ASC')
