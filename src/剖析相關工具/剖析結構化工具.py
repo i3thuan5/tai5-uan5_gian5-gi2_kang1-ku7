@@ -1,4 +1,9 @@
 from 剖析相關工具.剖析工具 import 剖析工具
+from 資料庫工具.型體翻譯 import 型體翻譯
+from 資料庫工具.型體翻譯 import 型體似義
+from 資料庫工具.型體翻譯 import 揣型體
+from 資料庫工具.型體翻譯 import 揣台華型體
+from 資料庫工具.型體翻譯 import 揣詞六型體
 
 class 剖析結構化工具:
 	def 結構化剖析結果(self, 剖析結果字串):
@@ -6,7 +11,7 @@ class 剖析結構化工具:
 		if 空白 != '':
 			print('有問題')
 		逝資料, 語句 = 語句資訊.split(' ', 1)
-		print(語句)
+# 		print(語句)
 		結構化結果 = [逝資料.split(':')[0]]
 		結構化結果.append(self.結構化語句(語句))
 
@@ -59,6 +64,48 @@ class 剖析結構化工具:
 # 		pass
 # 	def 結構化詞(self, 詞):
 # 		return
+	def 處理結構化結果(self,剖析結果,處理函式):
+		處理結果 = []
+		for 一段剖析 in 剖析結果:
+			if isinstance(一段剖析, list):
+				處理結果.append(self.處理結構化結果(一段剖析,處理函式))
+			elif isinstance(一段剖析, tuple):
+				處理結果.append(處理函式(一段剖析))
+			else:
+				處理結果.append(一段剖析)
+		return 處理結果
+
+
+
+def	國閩單位翻譯(型體佮詞性語意):
+# 		print(型體佮詞性語意)
+	翻譯=型體翻譯('漢語族官話方言北京官話臺灣腔', 型體佮詞性語意[0], '漢語族閩方言閩南語偏漳優勢音')
+	if 翻譯==[]:
+		翻譯=揣型體('漢語族閩方言閩南語偏漳優勢音', 型體佮詞性語意[0])
+	if 翻譯!=[]:
+		音=翻譯[0][8]
+		翻譯=翻譯[0][7]
+# 		print(翻譯)
+	if 翻譯==[]:
+		翻譯=揣台華型體('漢語族閩方言閩南語偏漳優勢音', 型體佮詞性語意[0])
+		if 翻譯!=[]:
+			音=翻譯[0][1]
+			翻譯=翻譯[0][0]
+# 		print(翻譯)
+	if 翻譯==[]:
+		翻譯=揣詞六型體('漢語族閩方言閩南語偏漳優勢音', 型體佮詞性語意[0])
+		if 翻譯!=[]:
+			音=翻譯[0][1]
+			翻譯=翻譯[0][0]
+	if 翻譯==[]:
+		翻譯=型體似義('漢語族官話方言北京官話臺灣腔', 型體佮詞性語意[0], '漢語族閩方言閩南語偏漳優勢音')
+		if 翻譯!=[]:
+			音=翻譯[0][8]
+			翻譯=翻譯[0][7]
+	if 翻譯==[]:
+		return 型體佮詞性語意
+#	print(翻譯)
+	return ('!'+翻譯+'@'+音+'!',)+tuple(型體佮詞性語意[1:])
 
 if __name__ == '__main__':
 	工具 = 剖析工具()
@@ -70,8 +117,16 @@ if __name__ == '__main__':
 			'#5:1.[0] S(C:假如|NP(Head:N:我)|ADV:也|PP(Head:P:用|NP(DM:這種|Head:N:方式))|Head:Vi:旅行)#。(PERIODCATEGORY)',
 			'#6:1.[0] VP(ADV:再|Head:Vt:想到|NP(S‧的(head:S(NP(Head:N:蝴蝶)|ADV:會|Head:Vt:生|NP(Head:N:滿屋))|Head:T:的)|Head:N:毛蟲))#。(PERIODCATEGORY)',
 			'#1:1.[0] VP(evaluation:Dbb:再|Head:VE2:想到|goal:NP(predication:S‧的(head:S(agent:NP(Head:Nab:蝴蝶)|epistemics:Dbaa:會|Head:VC31:生|theme:NP(Head:Na:滿屋))|Head:DE:的)|Head:Nab:毛蟲))#。(PERIODCATEGORY)']
-	print(剖析結果字串集)
+#  	print(剖析結果字串集)
 	結構化工具 = 剖析結構化工具()
+	印出=lambda 型體佮詞性語意:print(型體佮詞性語意[0], end=' ')
+# 	print(國閩單位翻譯(('吃',)))
 	for 剖析結果字串 in 剖析結果字串集:
 		結構化結果 = 結構化工具.結構化剖析結果(剖析結果字串)
-		print(結構化結果)
+# 		print(結構化結果)
+		結構化工具.處理結構化結果(結構化結果,印出)
+		print()
+		翻譯結果=結構化工具.處理結構化結果(結構化結果,國閩單位翻譯)
+# 		print(翻譯結果)
+		結構化工具.處理結構化結果(翻譯結果,印出)
+		print()
