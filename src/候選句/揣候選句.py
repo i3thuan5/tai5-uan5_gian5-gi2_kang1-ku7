@@ -90,17 +90,22 @@ class 揣候選句:
 						if len(一段剖析) >= 3 and len(候選句[候選句位置]) >= 3 and 一段剖析[2] == 候選句[候選句位置][2]:
 							攏總分數 += 100
 					else:
-						print(對照詞, end = '')
+						for 對照 in 對照詞[0]:#結果=(字,音）
+							if 對照[0] in 對應句:
+								print(對照,end=",")
+# 							else:
+# 								賰的.append(結果)
+# 						print(對照詞, end = '')
 						print(" ----> ", end = '')
-						賰的=[]
-# 						print(結果詞)
-						for 結果 in 結果詞[0]:#結果=(字,音）
-							if 結果[0] in 對應句:
-								print(結果,end=",")
-							else:
-								賰的.append(結果)
-						print('|',end='')
-						print(賰的)
+# 						賰的=[]
+						print(結果詞)
+# 						for 結果 in 結果詞[0]:#結果=(字,音）
+# 							if 結果[0] in 對應句:
+# 								print(結果,end=",")
+# 							else:
+# 								賰的.append(結果)
+# 						print('|',end='')
+# 						print(賰的)
 							
 					無相仝 = False
 				elif isinstance(一段剖析, str):
