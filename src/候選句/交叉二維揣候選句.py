@@ -14,16 +14,17 @@ class 交叉二維揣候選句:
 # 			'"丁"."流水號"="丙"."甲流水號" ' +
 # 			'ORDER BY "甲"."流水號" DESC ' +
 # 			'LIMIT 10000')()
-# 		self.揣剖析資料 = 資料庫連線.prepare('SELECT DISTINCT ' +
-# 			'"甲"."流水號","甲"."型體","甲"."音標","乙"."型體","丁"."型體","丁"."音標"' +
-# 			'FROM "言語"."文字" AS "甲","言語"."斷詞暫時表" AS "乙","言語"."關係" AS "丙",' +
-# 			'"言語"."文字" AS "丁" ' +
-# 			'WHERE "甲"."流水號"="乙"."斷詞目標流水號" AND' +
-# 			'"甲"."流水號"="丙"."乙流水號" AND "丙"."關係性質"=\'會當替換\' AND ' +
-# 			'"丁"."流水號"="丙"."甲流水號" ' +
-# 			'ORDER BY "甲"."流水號" DESC ' +
-# 			'LIMIT 100000')()
-		self.揣剖析資料 = [(1099398, '你這乳臭未乾的小子，自以為長大了就不肯聽話，我看你是皮癢的樣子。', None, '#3:1.[0] S(NP(Head:N:我)|Head:Vt:看|S(NP(Head:N:你)|Head:Vt:是|NP(V‧的(Vi:皮癢|Head:T:的)|Head:N:樣子)))#。(PERIODCATEGORY)', '囡仔疕爾爾就生毛閣發角，我看你是皮咧癢的款。', 'gin2-a2-phi2 nia7-nia7 to7 senn1-mng5 koh4 huat4-kak4, gua2 khuann3 li2 si7 phue5 teh4 tsiunn7 e5 khuan2. '), (988032, '我很討厭別人干預我的事。', None, '#1:1.[0] S(NP(Head:N:我)|ADV:很|Head:Vt:討厭|S(NP(Head:N:別人)|Head:Vt:干預|NP(N‧的(N:我|Head:T:的)|Head:N:事)))#。(PERIODCATEGORY)', '我真討厭別人干涉我的代誌。', 'gua2 tsin1 tho2-ia3 pat8-lang5 kan1-siap8 gua2 e5 tai7-tsi3. ')]
+##########
+		self.揣剖析資料 = 資料庫連線.prepare('SELECT DISTINCT ' +
+			'"甲"."流水號","甲"."型體","甲"."音標","乙"."型體","丁"."型體","丁"."音標"' +
+			'FROM "言語"."文字" AS "甲","言語"."斷詞暫時表" AS "乙","言語"."關係" AS "丙",' +
+			'"言語"."文字" AS "丁" ' +
+			'WHERE "甲"."流水號"="乙"."斷詞目標流水號" AND' +
+			'"甲"."流水號"="丙"."乙流水號" AND "丙"."關係性質"=\'會當替換\' AND ' +
+			'"丁"."流水號"="丙"."甲流水號" ' +
+			'ORDER BY "甲"."流水號" DESC ' +
+			'LIMIT 100000')()
+#		self.揣剖析資料 = [(1099398, '你這乳臭未乾的小子，自以為長大了就不肯聽話，我看你是皮癢的樣子。', None, '#3:1.[0] S(NP(Head:N:我)|Head:Vt:看|S(NP(Head:N:你)|Head:Vt:是|NP(V‧的(Vi:皮癢|Head:T:的)|Head:N:樣子)))#。(PERIODCATEGORY)', '囡仔疕爾爾就生毛閣發角，我看你是皮咧癢的款。', 'gin2-a2-phi2 nia7-nia7 to7 senn1-mng5 koh4 huat4-kak4, gua2 khuann3 li2 si7 phue5 teh4 tsiunn7 e5 khuan2. '), (988032, '我很討厭別人干預我的事。', None, '#1:1.[0] S(NP(Head:N:我)|ADV:很|Head:Vt:討厭|S(NP(Head:N:別人)|Head:Vt:干預|NP(N‧的(N:我|Head:T:的)|Head:N:事)))#。(PERIODCATEGORY)', '我真討厭別人干涉我的代誌。', 'gua2 tsin1 tho2-ia3 pat8-lang5 kan1-siap8 gua2 e5 tai7-tsi3. ')]
 		self.揣對應資料 = lambda 流水號: 資料庫連線.prepare('SELECT DISTINCT ' +
 			'"丁"."流水號","丁"."型體","丁"."音標" ' +
 			'FROM "言語"."關係" AS "丙",' +
