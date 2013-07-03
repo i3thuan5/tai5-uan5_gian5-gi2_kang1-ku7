@@ -16,8 +16,14 @@ if __name__ == '__main__':
 	揣候選句工具 = 交叉二維揣候選句()
 	翻譯句 = '#2:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vi:回家))#，(COMMACATEGORY)'
 	翻譯句 = '#1:1.[0] S(NP(Head:N:我)|Head:Vt:覺得|S(NP(Head:N:我)|Head:Vt:做|ASP:了|NP(DM:一個|V‧的(Vi:假|Head:T:的)|Head:N:作品)))#'
-	翻譯句 = 工具.剖析('我今天要去台北')[0]
-	翻譯句 = 工具.剖析('明天會下雨')[0]
+	## bug!!
+	翻譯句 = '#1:1.[0] S(experiencer:NP(Head:Nhaa:我們)|quantity:Dab:都|Head:VK1:喜歡|goal:NP(Head:Nab:蝴蝶))#'
+	翻譯句 = '#1:1.[0] S(theme:NP(Head:Nhaa:我)|Head:VA12:坐|location:Nab:火車|complement:VP(Head:VA11:來|location:Nca:台北))#'
+	翻譯句 = '#1:1.[0] S(agent:NP(Head:Nhaa:你)|time:Ndabe:晚上|deontics:Dbab:要|Head:VC31:吃|theme:Nep:什麼)#'
+	翻譯句 = '#1:1.[0] S(agent:NP(possessor:Nhaa:你|Head:Nab:晚餐)|deontics:Dbab:要|Head:VC31:吃|theme:Nep:什麼)#'
+	翻譯句 = '#1:1.[0] S(NP(Head:N:我)|Head:Vi:坐|N:火車|VP(Head:Vi:來|N:台北))#'
+#	翻譯句 = 工具.剖析('我今天要去台北')[0]
+#	翻譯句 = 工具.剖析('明天會下雨')[0]
 #	翻譯句 = 工具.剖析('山藥也是芳苑鄉重要農特產之一')[0]
 	print(翻譯句)
 	翻譯句結構化結果 = 結構化工具.結構化剖析結果(翻譯句)
@@ -48,6 +54,8 @@ if __name__ == '__main__':
 			print(對應句結構化)
 			print(對應句結構化[0])
 			print(對應句結構化[0].下跤)
+			if 對應句結構化[0].下跤==None:
+				continue
 			候選句佮對應句 = 結構化工具.處理結構化結果(結構化結果, 候選句佮對應句對照(對應句結構化[0]))
 			print(候選句佮對應句)
 			建立關係 = 建立候選句佮對應句關係()
@@ -74,7 +82,7 @@ if __name__ == '__main__':
 			for 位置 in 替換陣列:
 				print("替換結果[位置]")
 				print(替換結果[位置])
-				if 位置[0]<位置[1]:
+				if 位置[0]<位置[1] or True:
 					for 愛插入的詞 in 替換結果[位置]:
 						print("愛插入的詞[0]")
 						print(愛插入的詞[0])
