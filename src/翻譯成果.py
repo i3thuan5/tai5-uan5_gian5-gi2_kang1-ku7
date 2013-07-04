@@ -18,14 +18,14 @@ if __name__ == '__main__':
 	翻譯句 = '#1:1.[0] S(NP(Head:N:我)|Head:Vt:覺得|S(NP(Head:N:我)|Head:Vt:做|ASP:了|NP(DM:一個|V‧的(Vi:假|Head:T:的)|Head:N:作品)))#'
 	## bug!!
 	翻譯句 = '#1:1.[0] S(experiencer:NP(Head:Nhaa:我們)|quantity:Dab:都|Head:VK1:喜歡|goal:NP(Head:Nab:蝴蝶))#'
-	翻譯句 = '#1:1.[0] S(theme:NP(Head:Nhaa:我)|Head:VA12:坐|location:Nab:火車|complement:VP(Head:VA11:來|location:Nca:台北))#'
-	翻譯句 = '#1:1.[0] S(agent:NP(Head:Nhaa:你)|time:Ndabe:晚上|deontics:Dbab:要|Head:VC31:吃|theme:Nep:什麼)#'
-	翻譯句 = '#1:1.[0] S(agent:NP(possessor:Nhaa:你|Head:Nab:晚餐)|deontics:Dbab:要|Head:VC31:吃|theme:Nep:什麼)#'
-	翻譯句 = '#1:1.[0] S(NP(Head:N:我)|Head:Vi:坐|N:火車|VP(Head:Vi:來|N:台北))#'
+# 	翻譯句 = '#1:1.[0] S(theme:NP(Head:Nhaa:我)|Head:VA12:坐|location:Nab:火車|complement:VP(Head:VA11:來|location:Nca:台北))#'
+# 	翻譯句 = '#1:1.[0] S(agent:NP(Head:Nhaa:你)|time:Ndabe:晚上|deontics:Dbab:要|Head:VC31:吃|theme:Nep:什麼)#'
+# 	翻譯句 = '#1:1.[0] S(agent:NP(possessor:Nhaa:你|Head:Nab:晚餐)|deontics:Dbab:要|Head:VC31:吃|theme:Nep:什麼)#'
+# 	翻譯句 = '#1:1.[0] S(NP(Head:N:我)|Head:Vi:坐|N:火車|VP(Head:Vi:來|N:台北))#'
 #	翻譯句 = 工具.剖析('我今天要去台北')[0]
 #	翻譯句 = 工具.剖析('明天會下雨')[0]
 #	翻譯句 = 工具.剖析('山藥也是芳苑鄉重要農特產之一')[0]
-	翻譯句 = 工具.剖析('建仔要面對去年美聯霸主老虎')[0]
+#	翻譯句 = 工具.剖析('建仔要面對去年美聯霸主老虎')[0]
 	print(翻譯句)
 	翻譯句結構化結果 = 結構化工具.結構化剖析結果(翻譯句)
 	印出 = lambda 型體佮詞性語意:print(型體佮詞性語意[0], end = ' ')
@@ -66,6 +66,7 @@ if __name__ == '__main__':
 			print(關係所在)
 			調整物件 = 調整對照((len(剖析結果字串[4]), 關係所在))
 			調整後的對照關係 = 結構化工具.處理結構化結果(候選句佮對應句, 調整物件.調整)
+			print("調整後的對照關係",end=" ")
 			print(調整後的對照關係)
 			# 替換結果 = 建立關係.相似換新(翻譯句結構化結果[1], 調整後的對照關係[1], 對應句結構化[0], 分數[1], 分數[2])
 			對應句結構化 = 字音結構化([(剖析結果字串[4], 剖析結果字串[5])])
