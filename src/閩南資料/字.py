@@ -5,8 +5,6 @@ class 字:
 		self.型 = 型
 		self.音 = 音
 	def __repr__(self):
-		if  self.型==None:
-			return "@@"
 		return self.型 + " " + self.音
 	def __str__(self):
 		return self.型 + " " + self.音
