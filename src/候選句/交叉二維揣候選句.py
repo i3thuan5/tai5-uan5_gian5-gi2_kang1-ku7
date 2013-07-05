@@ -2,6 +2,7 @@ from 剖析相關工具.剖析結構化工具 import 剖析結構化工具
 from 剖析相關工具.剖析結構化工具 import 國閩單位翻譯
 from 剖析相關工具.剖析工具 import 剖析工具
 from 言語資料庫.公用資料 import 資料庫連線
+from 剖析相關工具.剖析結構化工具 import 印出
 
 class 交叉二維揣候選句:
 	def __init__(self):
@@ -172,7 +173,6 @@ if __name__ == '__main__':
 	翻譯句 = '#1:1.[0] S(NP(Head:N:我)|Head:Vt:覺得|S(NP(Head:N:我)|Head:Vt:做|ASP:了|NP(DM:一個|V‧的(Vi:假|Head:T:的)|Head:N:作品)))#'
 
 	翻譯句結構化結果 = 結構化工具.結構化剖析結果(翻譯句)
-	印出 = lambda 型體佮詞性語意:print(型體佮詞性語意[0], end = ' ')
 # 	print(國閩單位翻譯(('吃',)))
 
 	for 剖析結果字串 in 揣候選句工具.揣剖析資料:

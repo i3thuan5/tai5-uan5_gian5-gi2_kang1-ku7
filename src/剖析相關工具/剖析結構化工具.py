@@ -72,6 +72,8 @@ class 剖析結構化工具:
 			else:
 				處理結果.append(一段剖析)
 		return 處理結果
+	
+印出=lambda 型體佮詞性語意:print(型體佮詞性語意[0], end=' ')
 
 if __name__ == '__main__':
 	工具 = 剖析工具()
@@ -85,7 +87,6 @@ if __name__ == '__main__':
 			'#1:1.[0] VP(evaluation:Dbb:再|Head:VE2:想到|goal:NP(predication:S‧的(head:S(agent:NP(Head:Nab:蝴蝶)|epistemics:Dbaa:會|Head:VC31:生|theme:NP(Head:Na:滿屋))|Head:DE:的)|Head:Nab:毛蟲))#。(PERIODCATEGORY)']
 #  	print(剖析結果字串集)
 	結構化工具 = 剖析結構化工具()
-	印出=lambda 型體佮詞性語意:print(型體佮詞性語意[0], end=' ')
 # 	print(國閩單位翻譯(('吃',)))
 	for 剖析結果字串 in 剖析結果字串集:
 		結構化結果 = 結構化工具.結構化剖析結果(剖析結果字串)
