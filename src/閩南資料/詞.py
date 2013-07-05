@@ -6,6 +6,8 @@ class 詞(字):
 	字佇詞賰幾字=None
 	def __init__(self, 型, 音, 文章標點處理工具):
 # 		super(字, self).__init__(型, 音)
+		if 音==None:
+			音=''
 		super().__init__(型, 音)
 		self.標點處理工具 = 文章標點處理工具
 		if 文章標點處理工具!=None:
