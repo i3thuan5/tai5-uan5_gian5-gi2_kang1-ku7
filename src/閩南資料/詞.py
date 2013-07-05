@@ -8,7 +8,8 @@ class 詞(字):
 # 		super(字, self).__init__(型, 音)
 		super().__init__(型, 音)
 		self.標點處理工具 = 文章標點處理工具
-		self.結構化()
+		if 文章標點處理工具!=None:
+			self.結構化()
 	def 結構化(self):
 # 		漢字數量 = self.標點處理工具.計算漢字語句漢字數量(self.型)
 # 		音標數量 = self.標點處理工具.計算音標語句音標數量(self.音)
@@ -64,5 +65,15 @@ class 詞(字):
 # 	def __eq__(self,other):
 # 		print("hi")
 # 		return self.型==other.型 and self.音==other.音
-
+def 用字產生詞(字陣列):
+	型=''
+	音=''
+	for 字 in 字陣列:
+		型+=字.型
+		音+='-'+字.音
+	上尾詞=詞(型, 音[1:], None)
+	上尾詞.下跤=字陣列
+	return 上尾詞
+		
+	
 
