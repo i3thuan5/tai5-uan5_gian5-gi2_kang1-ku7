@@ -83,6 +83,7 @@ class 翻譯整合:
 							答案句.append(愛插入的詞[0][0])
 		# 					for 詞選擇 in 愛插入的詞[0]:
 		# 						print(詞選擇)
+				print("@@@@")
 				for 答案 in 答案句:
 					print(答案.型, end="")
 				print()
@@ -91,4 +92,4 @@ class 翻譯整合:
 				print()
 				print()
 				翻譯結果.append(答案句)
-			return 翻譯結果
+		return 翻譯結果
