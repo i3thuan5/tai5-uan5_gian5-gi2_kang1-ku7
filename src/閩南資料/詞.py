@@ -2,6 +2,8 @@ from 閩南資料.字 import 字
 
 class 詞(字):
 	下跤 = None
+	字佇詞排名=None
+	字佇詞賰幾字=None
 	def __init__(self, 型, 音, 文章標點處理工具):
 # 		super(字, self).__init__(型, 音)
 		super().__init__(型, 音)
@@ -14,14 +16,26 @@ class 詞(字):
 # 		if 漢字數量 != 音標數量:
 # 			return
 		漢字陣列 = self.標點處理工具.分離漢字(self.型)
-		遏袂整理音標陣列 = self.標點處理工具.切開語句(self.音.replace('-', ' '))
+		遏袂整理音標陣列 = self.標點處理工具.切開語句(self.音)
 		音標陣列 = []
+		self.字佇詞排名=[]
+		self.字佇詞賰幾字=[]
 		for 遏袂整理音標 in 遏袂整理音標陣列:
 			if 遏袂整理音標 != ' ' and 遏袂整理音標 != '':
-				音標陣列.append(遏袂整理音標)
+				單獨音標=遏袂整理音標.split('-')
+				排名=0
+				顛倒排名=len(單獨音標)
+				for 音標 in 單獨音標:
+					音標陣列.append(音標)
+					self.字佇詞排名.append(排名)
+					self.字佇詞賰幾字.append(顛倒排名)
+					排名+=1
+					顛倒排名-=1
 # 		print(音標陣列)
 # 		print(str(len(漢字陣列)) + " " + str(len(音標陣列)))
 		if len(漢字陣列) != len(音標陣列):
+			self.字佇詞排名=None
+			self.字佇詞賰幾字=None
 			return
 		self.下跤 = []
 		for i in range(len(漢字陣列)):
