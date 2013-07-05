@@ -41,7 +41,7 @@ class 詞(字):
 		self.下跤 = []
 		for i in range(len(漢字陣列)):
 			self.下跤.append(字(漢字陣列[i], 音標陣列[i]))
-	def 揣出上適合的詞(self, 欲揣的詞):
+	def 揣出上適合的詞(self, 欲揣的詞,已經使用):
 # 		print( 欲揣的詞 ,end=' ')
 		if 欲揣的詞.下跤==None:
 			return (0,0)
@@ -54,12 +54,13 @@ class 詞(字):
 				if not (self.下跤[i + j].型 == 欲揣的詞.下跤[j].型 and 
 					self.下跤[i + j].音 == 欲揣的詞.下跤[j].音):
 					仝款 = False
+				if 已經使用[i + j]:
+					仝款 = False
 				if not 仝款:
 					break
 			if 仝款:
-				空字 = 字(None, None)
 				for j in range(len(欲揣的詞.下跤)):
-					self.下跤[i + j] = 空字
+					已經使用[i + j] = True
 				return (i, i + len(欲揣的詞.下跤))
 		return (0, 0)
 # 	def __eq__(self,other):
