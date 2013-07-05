@@ -51,9 +51,11 @@ class 交叉二維揣候選句:
 					elif isinstance(待翻, tuple):
 						相關分數陣列.append(評分函式(待翻, 候選))
 					else:
+						print(待翻句)
+						print(候選句)
 						print(待翻, end = ' ')
 						print(候選, end = ' ')
-						print('有問題')
+						print(' 相似比較型態有問題')
 						相關分數陣列.append(無合分數)
 				elif isinstance(待翻, list):
 					相關分數陣列.append(無合分數 * len(待翻[1]))

@@ -15,6 +15,7 @@ class 翻譯整合:
 	def 國閩翻譯(self, 待翻句):
 		if isinstance(待翻句, list):
 			return [self.國閩翻譯(句) for 句 in 待翻句]
+		print(待翻句)
 		翻譯句結構化結果 = self.結構化工具.結構化剖析結果(待翻句)
 		印出 = lambda 型體佮詞性語意:print(型體佮詞性語意[0], end=' ')
 	
