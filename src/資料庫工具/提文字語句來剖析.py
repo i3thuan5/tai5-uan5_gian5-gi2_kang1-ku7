@@ -9,6 +9,7 @@ from 言語資料庫.公用資料 import 國語腔口
 from 剖析相關工具.剖析工具 import 剖析工具
 from 剖析相關工具.官方剖析工具 import 官方剖析工具
 from 剖析相關工具.自設剖析工具 import 自設剖析工具
+from symbol import except_clause
 
 揣國語語句資料 = 資料庫連線.prepare('SELECT ' +
 	'"流水號","來源","種類","腔口","地區","年代","組合","型體","音標","調變","音變"' +
@@ -34,9 +35,13 @@ if __name__ == '__main__':
 		if 揣剖析過遏袂(流水號,剖析版本)!=None:
 			continue
 		print(流水號)
-		剖析結果 = 工具.剖析(型體)
-		for 一个結果 in 剖析結果:
-			資料庫加文字佮組合(流水號, 剖析版本, '斷詞', 102, 一个結果)
-# 			print(型體)
-# 			print(一个結果)
+		try:
+			剖析結果 = 工具.剖析(型體)
+		except UnicodeEncodeError:
+			continue
+		else:
+			for 一个結果 in 剖析結果:
+				資料庫加文字佮組合(流水號, 剖析版本, '斷詞', 102, 一个結果)
+		# 			print(型體)
+		# 			print(一个結果)
 
