@@ -93,7 +93,7 @@ class 教會系羅馬音標(音標介面):
 				self.調 = 4
 			elif self.調 != 0 and self.調 != 4 and self.調 != 8 and self.調 != 10:
 				音標是著的 = False
-		if self.聲 == 'm' or self.聲 == 'n' or self.聲 == 'ng':
+		if self.聲 == 'm' or self.聲 == 'ng':
 			if self.韻!='ng' and ('n' in self.韻 or 'm' in self.韻):
 				音標是著的 = False
 		self.調 = str(self.調)
