@@ -1,5 +1,11 @@
 from 通用拼音音標 import 通用拼音音標
 
+# 語法錯誤表=[('niunn','niu'),('min','bin'),('ian','iam'),('ghian','giam'),('cian','tshiam'),
+# 	('gian','kian'),('hiat','hiak'),('zian','ziam'),('ming','bing'),('mong','bong'),
+# 	('puo','phoo'),('huo','hoo'),('s','si'),('z','tsi')]
+語法錯誤表=[('niunn','niu'),('min','bin'),('ian','iam'),('ghian','ghiam'),('cian','ciam'),
+	('gian','giam'),('hiat','hiah'),('zian','ziam'),('ming','bing'),('mong','bong'),
+	('puo','po'),('huo','ho'),('s','si'),('z','zi')]
 
 if __name__ == '__main__':
 # 	字音對照 = 通用拼音音標('bai5')
@@ -25,12 +31,6 @@ if __name__ == '__main__':
 # 			print(字音對照.轉換到臺灣閩南語羅馬字拼音())
 #			grep -v er xx| grep -v eu | grep -v y | grep -v ei | grep -v ou | grep -v ii | grep -v uo | grep -v ung | grep -v ch | grep -v zh | grep -v sh | grep -v oi | grep -v em | grep -v ep | grep -v r | grep -v uang
 			pass
-# 	語法錯誤表=[('niunn','niu'),('min','bin'),('ian','iam'),('ghian','giam'),('cian','tshiam'),
-# 		('gian','kian'),('hiat','hiak'),('zian','ziam'),('ming','bing'),('mong','bong'),
-# 		('puo','phoo'),('huo','hoo'),('s','si'),('z','tsi')]
-	語法錯誤表=[('niunn','niu'),('min','bin'),('ian','iam'),('ghian','ghiam'),('cian','ciam'),
-		('gian','giam'),('hiat','hiah'),('zian','ziam'),('ming','bing'),('mong','bong'),
-		('puo','po'),('huo','ho'),('s','si'),('z','zi')]
 	for 原本,修正 in 語法錯誤表:
 		print(原本,end=' ')
 		print(' '.join(對照表[修正]))
