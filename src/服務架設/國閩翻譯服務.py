@@ -22,7 +22,7 @@ class 國閩翻譯服務(連線控制器):
 
 if __name__ == '__main__':
 	try:
-		server = HTTPServer(('', 8000), 國閩翻譯服務)
+		server = HTTPServer(('localhost', 8000), 國閩翻譯服務)
 		print ('started httpserver...')
 		server.serve_forever()
 	except KeyboardInterrupt:
