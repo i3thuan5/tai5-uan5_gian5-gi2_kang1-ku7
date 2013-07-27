@@ -1,13 +1,13 @@
-
+對齊語料路徑='/home/Ihc/意傳計劃/語音合成/辨識合成實作/二、處理愛對齊的語料/'
 if __name__ == '__main__':
 	對照表=set()
-	lines = [line.strip() for line in open('/home/Ihc/處理愛對齊的語料/臺語通用拼音.dic')]
+	lines = [line.strip() for line in open(對齊語料路徑+'臺語通用拼音.dic')]
 	for line in lines:
 		if line=='':
 			continue
 		通用,*音素=line.split()
 		對照表.add(通用)
-	來源="/home/Ihc/處理愛對齊的語料/syl_list"
+	來源="/home/Ihc/tmpfs/mid_syl_list"
 	lines = [line.strip() for line in open(來源)]
 	for line in lines:
 		通用,*音素=line.split()

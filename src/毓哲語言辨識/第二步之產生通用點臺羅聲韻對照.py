@@ -1,6 +1,7 @@
 from 通用拼音音標 import 通用拼音音標
 from 臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 毓哲語言辨識.第一步之揣出臺語通用 import 語法錯誤表
+from 毓哲語言辨識.第一點一步之檢查通用臺音標對照表 import 對齊語料路徑
 
 def 臺羅聲韻轉辨識合成型(聲,韻):
 	if 聲=='m' or 聲=='n' or 聲=='ng':
@@ -21,7 +22,7 @@ if __name__ == '__main__':
 	for 原本,修正 in 語法錯誤表:
 		錯誤對照表[原本]=修正
 											
-	lines = [line.strip() for line in open('/home/Ihc/處理愛對齊的語料/臺語通用拼音.dic')]
+	lines = [line.strip() for line in open(對齊語料路徑+'臺語通用拼音.dic')]
 	for line in lines:
 		if line=='':
 			continue
