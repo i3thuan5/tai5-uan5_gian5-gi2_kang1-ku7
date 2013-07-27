@@ -10,20 +10,20 @@ if __name__ == '__main__':
 	輸出=open(目標,'w')
 	檔案表 = set()
 	os.chdir(懸來源)
-	for files in os.listdir("."):
-		if files.endswith(".lab"):
-			切割 = files.split('_')
+	for 檔名 in os.listdir("."):
+		if 檔名.endswith(".lab"):
+			切割 = 檔名.split('_')
 			if len(切割) == 2:
 				檔案表.add(切割[0])
 			else:
-				print(files)
+				print(檔名)
 	os.chdir(中來源)
-	for files in os.listdir("."):
-		if files.endswith(".lab"):
-			切割 = files.split('_')
+	for 檔名 in os.listdir("."):
+		if 檔名.endswith(".lab"):
+			切割 = 檔名.split('_')
 			if len(切割) == 2:
 				檔案表.add(切割[0])
 			else:
-				print(files)
+				print(檔名)
 	for 檔案 in 檔案表:
 		print(檔案,file=輸出)
