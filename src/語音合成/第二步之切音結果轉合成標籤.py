@@ -12,6 +12,9 @@ if __name__ == '__main__':
 	切音結果路徑 = 語料路徑 + 'mono.final.result.mlf'
 	合成聲韻標籤檔路徑=語料路徑+'label/high_score/mono/'
 	合成完整標籤檔路徑=語料路徑+'label/high_score/full/'
+	切音結果路徑 = 語料路徑 + 'mid_mono.final.result.mlf'
+	合成聲韻標籤檔路徑=語料路徑+'label/mid_score/mono/'
+	合成完整標籤檔路徑=語料路徑+'label/mid_score/full/'
 # 	os.chdir(語料路徑+'labe')
 	切音結果=open(切音結果路徑)
 	if 切音結果.readline().strip()=='#!MLF!#':
