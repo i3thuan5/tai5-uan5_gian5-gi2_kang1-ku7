@@ -1,3 +1,4 @@
+語料路徑='/home/Ihc/意傳計劃/語音合成/中研院/processed(teacher+student)/'
 
 if __name__ == '__main__':
 	import os
