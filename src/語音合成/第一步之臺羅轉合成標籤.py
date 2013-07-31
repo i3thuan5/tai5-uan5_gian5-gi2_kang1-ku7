@@ -56,6 +56,8 @@ if __name__ == '__main__':
 	合成標籤工具 = 臺羅轉合成標籤()
 	#[我 gua2, 愛 ai3, 蔡 tshua3, 文 bun5, 莉 ni7, , ,]
 	#[政 tsing3, 源 guan5, 足 tsiok4, 緣投 ian5-tau5, , ,]
-	標籤=合成標籤工具.臺羅轉合成標籤佮聲韻資料('lau3-pe7 bo7-si7-kan1')
+	標籤=合成標籤工具.臺羅轉合成標籤佮聲韻資料('gua1 ai2 tshua3-bun7-le7')
+# 	標籤=合成標籤工具.臺羅轉合成標籤佮聲韻資料('tsing2-guan7 tsiok8 ian7-tau5')
+# 	標籤=合成標籤工具.臺羅轉合成標籤佮聲韻資料('lau3-pe7 bo7-si7-kan1')
 	for 標籤 in 標籤[0]:
 		print(標籤)
