@@ -9,7 +9,7 @@ from html.parser import HTMLParser
 class 客話辭典網頁剖析工具(HTMLParser):
     剖析結果=[]
     字體內量=0
-    表格內=False
+    表格內=0
     def 剖析客話辭典檔案(self,檔名):
         檔案=open(檔名)
         資料=檔案.read()
@@ -21,26 +21,28 @@ class 客話辭典網頁剖析工具(HTMLParser):
         return self.目前剖析結果()
     def 初始化剖析結果(self):
         self.剖析結果=[]
+        self.字體內量=0
+        self.表格內=0
     def 目前剖析結果(self):
         return self.剖析結果
     def handle_starttag(self, tag, attrs):
-        if self.字體內量>0 and self.表格內:
+        if self.字體內量>0 and self.表格內>0:
             if tag=="td":
                 self.剖析結果.append('')
         if tag=="font":
             self.字體內量+=1
         elif tag=="table":
-            self.表格內=True
+            self.表格內+=1
     def handle_endtag(self, tag):
-#         if self.字體內量>0 and self.表格內:
+#         if self.字體內量>0 and self.表格內>0:
 #             if tag=="td":
 #                 print()
         if tag=="font":
             self.字體內量-=1
         elif tag=="table":
-            self.表格內=False
+            self.表格內-=1
     def handle_data(self, data):
-        if self.字體內量>0 and self.表格內:
+        if self.字體內量>0 and self.表格內>0:
             if len(self.剖析結果)>0:
                 self.剖析結果[-1]+=data.strip()
 #                 print('', data.strip(),'',end='',sep='')
