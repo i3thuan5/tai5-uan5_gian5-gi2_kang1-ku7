@@ -83,14 +83,11 @@ class 翻譯整合:
 				for 位置 in 替換陣列:
 					print("替換結果[位置]")
 					print(替換結果[位置])
-					if 位置[0] < 位置[1] or True:
-						for 愛插入的詞 in 替換結果[位置]:
-							print("愛插入的詞[0]")
-							print(愛插入的詞[0])
-							print(愛插入的詞[0][0])
-							答案句.append(愛插入的詞[0][0])
-		# 					for 詞選擇 in 愛插入的詞[0]:
-		# 						print(詞選擇)
+					for 詞佮詞性集 in 替換結果[位置]:
+						for 詞集 in 詞佮詞性集[0]:
+# 							for 詞 in 詞集:
+	# 							print(詞)
+							答案句.append(詞集[0])
 				print("@@@@")
 				for 答案 in 答案句:
 					print(答案.型, end="")
