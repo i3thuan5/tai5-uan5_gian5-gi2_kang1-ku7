@@ -1,8 +1,8 @@
-from 資料庫工具.揣音標 import 揣言語層的字詞
-from 資料庫工具.揣音標 import 揣腔口型體資料
 from 閩南資料.詞 import 詞
 from 華語台語雙語語料庫系統.文章標點處理工具 import 文章標點處理工具
 from 言語資料庫.公用資料 import 標點符號
+from 標音資料庫工具.揣音標 import 揣言語層的字詞
+from 標音資料庫工具.揣音標 import 揣腔口型體資料
 
 class 標音整合:
 	腔口 = '漢語族閩方言閩南語偏漳優勢音'
