@@ -27,8 +27,8 @@ class 翻譯整合:
 			挑出分數懸的.append((分數, (配對, 選到的細配對), 結構化結果, 剖析結果字串))
 		挑出分數懸的.sort(key=lambda 資料:資料[0], reverse=True)
 		翻譯結果 = []
-		for i in range(10):
-			if len(翻譯結果)==3:
+		for i in range(20):
+			if len(翻譯結果)==1:
 				break
 			if i < len(挑出分數懸的):
 				剖析結果字串 = 挑出分數懸的[i][3]
