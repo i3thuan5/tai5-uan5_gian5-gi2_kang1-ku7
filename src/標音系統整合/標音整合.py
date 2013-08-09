@@ -21,12 +21,13 @@ class 標音整合:
 # 		return self.產生標音結果(台語字, 語言層)
 		return [選擇[0] for 選擇 in self.產生標音結果(台語字, 語言層)]
 	def 產生標音結果(self, 台語字, 語言層):
+		字=self.標點處理工具.分離漢字(台語字)
 		標音結果 = []
 		i = 0
-		while i < len(台語字):
+		while i < len(字):
 			for j in range(20, 0, -1):
-				if i + j <= len(台語字):
-					腔口型體資料 = 揣腔口型體資料(self.腔口, 台語字[i:i + j])
+				if i + j <= len(字):
+					腔口型體資料 = 揣腔口型體資料(self.腔口, ''.join(台語字[i:i + j]))
 					流水號 = set()
 					[流水號.add(字詞[0]) for 字詞 in 腔口型體資料]
 					if len(流水號) > 0:
@@ -44,10 +45,10 @@ class 標音整合:
 						i += j
 						break
 			else:
-				if 台語字[i:i + j] in 標點符號:
-					標音結果.append([詞(台語字[i:i + j], 台語字[i:i + j], None)])
+				if 台語字[i] in 標點符號:
+					標音結果.append([詞(字[i], 字[i], None)])
 				else:
-					標音結果.append([詞(台語字[i:i + j], '', None)])
+					標音結果.append([詞(字[i], '', None)])
 				i += 1
 		return 標音結果
 
