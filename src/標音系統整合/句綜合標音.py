@@ -12,7 +12,7 @@ class 句綜合標音():
 			self.綜合標音佮詞組陣列.append([])
 			for 一組字音 in 規組字音: 
 				綜合標音陣列=[]
-				if isinstance(一組字音, 詞):
+				if isinstance(一組字音, 詞) and 一組字音.下跤!=None:#標點符號會當作是詞，但是下跤無物件
 					綜合標音陣列=[綜合標音(一个字)
 						for 一个字 in 一組字音.下跤]
 				else:
