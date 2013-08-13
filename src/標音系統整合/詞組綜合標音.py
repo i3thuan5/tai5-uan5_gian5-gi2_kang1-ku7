@@ -9,6 +9,8 @@ class 詞組綜合標音():
 		return ('{"綜合標音":[' +
 			','.join([標音.轉json格式() for 標音 in self.綜合標音 if 標音.標音完整無()]) +
 			'],"詞組":"' + self.詞組 + '"}')
+	def 標音完整無(self):
+		return all([標音.標音完整無() for 標音 in self.綜合標音])
 	def __repr__(self):
 		return self.轉json格式()
 	def __str__(self):
