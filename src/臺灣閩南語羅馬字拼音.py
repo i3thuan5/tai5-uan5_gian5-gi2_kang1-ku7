@@ -12,7 +12,8 @@ from 教會系羅馬音標 import 教會系羅馬音標
 		'ip', 'it', 'ik', 'iap', 'iat', 'iak', 'ut', 'uat',
 		'ioo', 'ir', 'ere', 'er', 'irinn', 'ee', 'uee', 'eeh', 'uinn', 'ionn', 'irm', 'irn', 'irng', 'eng', 'uang',
 		'aih', 'ainnh', 'aunnh', 'erh', 'ereh', 'uih', 'irp', 'irt', 'irk', } | {
-		'aunn', 'uenn','uaih', 'iunnh', 'iaunnh', 'uennh', 'uinnh', 'uainnh', 'iut', 'uak'} |{'onnh'}
+		'aunn', 'uenn','uaih', 'iunnh', 'iaunnh', 'uennh', 'uinnh', 'uainnh', 'iut', 'uak'} |{'onnh'}|{
+		'or','orh','ior','iorh',}
 臺灣閩南語羅馬字拼音聲調符號表 = dict(á = ('a', 2), à = ('a', 3), â = ('a', 5), ǎ = ('a', 6), ā = ('a', 7), a̍ = ('a', 8), a̋ = ('a', 9),
 é = ('e', 2), è = ('e', 3), ê = ('e', 5), ě = ('e', 6), ē = ('e', 7), e̍ = ('e', 8), e̋ = ('e', 9),
 í = ('i', 2), ì = ('i', 3), î = ('i', 5), ǐ = ('i', 6), ī = ('i', 7), i̍ = ('i', 8), i̋ = ('i', 9),

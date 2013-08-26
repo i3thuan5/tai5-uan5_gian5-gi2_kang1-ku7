@@ -13,6 +13,7 @@ from 臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 		'ir':'ㆨ', 'irp':'ㆨㆴ', 'irt':'ㆨㆵ', 'irk':'ㆨㆶ', 'irinn':'ㆨㆪ', 'irm':'ㆨㆬ', 'irn':'ㆨㄣ', 'irng':'ㆨㄥ',
 		'er':'ㄮ', 'ere':'ㄮㆤ', 'erh':'ㄮㆷ', 'ereh':'ㄮㆤㆷ',
 		'ee':'ㄝ', 'uee':'ㄨㄝ', 'eeh':'ㄝㆷ', 'eng':'ㄝㄥ',
+		'or':'ㄛ','orh':'ㄛㆷ','ior':'ㄧㄛ','iorh':'ㄧㄛㆷ',
 		'uinn':'ㄨㆪ', 'ionn':'ㄧㆧ', 'uang':'ㄨㄤ',
 		'aih':'ㄞㆷ', 'ainnh':'ㆮㆷ', 'aunnh':'ㆯㆷ', 'uih':'ㄨㄧㆷ',
 		'aunn':'ㆯ', 'uenn':'ㄨㆥ', 'uaih':'ㄨㄞㆷ', 'iunnh':'ㄧㆫㆷ', 'iaunnh':'ㄧㆯㆷ', 'uennh':'ㄨㆥㆷ', 'uinnh':'ㄨㆪㆷ', 'uainnh':'ㄨㆮㆷ',
