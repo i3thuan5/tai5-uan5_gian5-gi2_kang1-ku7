@@ -1,4 +1,5 @@
 from 教會系羅馬音標 import 教會系羅馬音標
+from 方音符號吳守禮改良式 import 方音符號吳守禮改良式
 
 臺灣閩南語羅馬字拼音聲母表 = {'p', 'ph', 'm', 'b', 't', 'th', 'n', 'l',
 		'k', 'kh', 'ng', 'g', 'h', 'ts', 'tsh', 's', 'j', ''}
@@ -70,6 +71,12 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 				break
 			
 		return self.聲+self.韻.replace(替代符號,self.數字調轉閏號調表[(替代符號,self.調)])
+	def 轉吳守禮方音(self):
+		return 方音符號吳守禮改良式(self.音標).音標
+	def 轉吳守禮方音組字式(self):
+		return 方音符號吳守禮改良式(self.音標).產生音標組字式()
+	def 轉通用拼音(self):
+		return '　'
 # 聲 介 韻 調，韻含元音跟韻尾
 
 if __name__ == '__main__':
