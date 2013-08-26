@@ -9,4 +9,4 @@ class 字:
 	def __str__(self):
 		return self.型 + " " + self.音
 	def __eq__(self, other):
-		return self.型 == other.型 and self.音 == other.音
+		return other != None and self.型 == other.型 and self.音 == other.音
