@@ -56,6 +56,11 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 	對通用調對照表 = 臺羅對通用調對照表
 	def __init__(self, 音標):
 		self.分析聲韻調(音標)
+		if self.聲 == 'm' or self.聲 == 'n' or self.聲 == 'ng':
+			if self.韻 == 'o':
+				self.韻 = 'oo'
+		if self.音標 != None:
+			self.音標 = self.聲 + self.韻 + self.調
 # 		if self.音標 != None:
 # 			print('聲母=' + self.聲 + ' 韻母=' + self.韻 + ' 調＝' + str(self.調))
 # 		else:
