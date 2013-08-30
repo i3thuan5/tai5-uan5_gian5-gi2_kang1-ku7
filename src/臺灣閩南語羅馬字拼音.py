@@ -45,7 +45,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 	聲 = None
 	韻 = None
 	調 = 1
-	輕 = False
+	輕 = ''
 	韻頭 = None
 	韻腹 = None
 	韻尾 = None
@@ -55,12 +55,15 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 	對通用聲韻對照表 = 臺羅對通用聲韻對照表
 	對通用調對照表 = 臺羅對通用調對照表
 	def __init__(self, 音標):
+		if 音標.startswith('0'):
+			self.輕='0'
+			音標=音標[1:]
 		self.分析聲韻調(音標)
 		if self.聲 == 'm' or self.聲 == 'n' or self.聲 == 'ng':
 			if self.韻 == 'o':
 				self.韻 = 'oo'
 		if self.音標 != None:
-			self.音標 = self.聲 + self.韻 + self.調
+			self.音標 = self.輕 + self.聲 + self.韻 + self.調
 # 		if self.音標 != None:
 # 			print('聲母=' + self.聲 + ' 韻母=' + self.韻 + ' 調＝' + str(self.調))
 # 		else:
