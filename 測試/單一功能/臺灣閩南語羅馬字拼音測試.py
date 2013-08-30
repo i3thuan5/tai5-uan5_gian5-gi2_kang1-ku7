@@ -86,8 +86,9 @@ class 臺灣閩南語羅馬字拼音測試(unittest.TestCase):
 		self.assertEqual(臺灣閩南語羅馬字拼音('@@').音標, None)
 		self.assertEqual(臺灣閩南語羅馬字拼音('pe̍m').音標, None)
 		self.assertEqual(臺灣閩南語羅馬字拼音('cat8').音標, None)
-		self.assertEqual(臺灣閩南語羅馬字拼音('xxtsé--á').音標, None)
+		self.assertEqual(臺灣閩南語羅馬字拼音('tsé--á').音標, None)
 		self.assertEqual(臺灣閩南語羅馬字拼音('óonn').音標, None)
+		self.assertEqual(臺灣閩南語羅馬字拼音('ot').音標, None)
 		
 	def test_轉閏號調(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('ainn7').轉閏號調(),'āinn')
