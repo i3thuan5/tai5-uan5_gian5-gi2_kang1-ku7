@@ -10,14 +10,14 @@ class 臺灣閩南語羅馬字拼音測試(unittest.TestCase):
 		self.assertEqual(臺灣閩南語羅馬字拼音('ainn7').音標, 'ainn7')
 		self.assertEqual(臺灣閩南語羅馬字拼音('ang3').音標, 'ang3')
 		self.assertEqual(臺灣閩南語羅馬字拼音('ang9').音標, 'ang9')
-		self.assertEqual(臺灣閩南語羅馬字拼音('e').音標, 'e')
+		self.assertEqual(臺灣閩南語羅馬字拼音('e').音標, 'e1')
 		self.assertEqual(臺灣閩南語羅馬字拼音('mng5').音標, 'mng5')
 		self.assertEqual(臺灣閩南語羅馬字拼音('Pih8').音標, 'pih8')
 		self.assertEqual(臺灣閩南語羅馬字拼音('Pih10').音標, 'pih10')
 		
 	def test_輕聲(self):		
 		self.assertEqual(臺灣閩南語羅馬字拼音('ta0').音標, 'ta0')
-		self.assertEqual(臺灣閩南語羅馬字拼音('Pih10').音標, 'pih0')
+		self.assertEqual(臺灣閩南語羅馬字拼音('pih0').音標, 'pih0')
 			
 	def test_輸入閏號音標(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('pI̋m').音標, 'pim9')
