@@ -79,6 +79,8 @@ class 臺灣閩南語羅馬字拼音測試(unittest.TestCase):
 		self.assertEqual(臺灣閩南語羅馬字拼音('tor').音標, 'tor1')
 		self.assertEqual(臺灣閩南語羅馬字拼音('kee5').音標, 'kee5')
 		self.assertEqual(臺灣閩南語羅馬字拼音('ter5').音標, 'ter5')
+		self.assertEqual(臺灣閩南語羅馬字拼音('tere5').音標, 'tere5')
+		self.assertEqual(臺灣閩南語羅馬字拼音('tir5').音標, 'tir5')
 		
 	def test_違法音標(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('@@').音標, None)
@@ -94,6 +96,10 @@ class 臺灣閩南語羅馬字拼音測試(unittest.TestCase):
 		self.assertEqual(臺灣閩南語羅馬字拼音('mng5').轉閏號調(),'mn̂g')
 		self.assertEqual(臺灣閩南語羅馬字拼音('gio2').轉閏號調(),'gió')
 		self.assertEqual(臺灣閩南語羅馬字拼音('hiunnh8').轉閏號調(),'hiu̍nnh')
+		self.assertEqual(臺灣閩南語羅馬字拼音('moo5').轉閏號調(), 'môo')
+		self.assertEqual(臺灣閩南語羅馬字拼音('tere5').轉閏號調(), 'terê')
+		self.assertEqual(臺灣閩南語羅馬字拼音('tir5').轉閏號調(), 'tîr')
+		
 	def test_轉通用拼音(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('gio2').轉通用拼音(),'ghior4')
 		self.assertEqual(臺灣閩南語羅馬字拼音('hiunnh8').轉通用拼音(),'hiunnh6')

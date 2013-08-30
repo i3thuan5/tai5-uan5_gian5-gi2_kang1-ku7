@@ -48,6 +48,9 @@ class 臺灣語言音標測試(unittest.TestCase):
 		self.assertEqual(臺灣語言音標('tor').音標, 'tor1')
 		self.assertEqual(臺灣語言音標('kee5').音標, 'kee5')
 		self.assertEqual(臺灣語言音標('ter5').音標, 'ter5')
+		self.assertEqual(臺灣語言音標('tere5').音標, 'tere5')
+		self.assertEqual(臺灣語言音標('tir5').音標, 'tir5')
+
 
 	def test_違法音標(self):
 		self.assertEqual(臺灣語言音標('@@').音標, None)
