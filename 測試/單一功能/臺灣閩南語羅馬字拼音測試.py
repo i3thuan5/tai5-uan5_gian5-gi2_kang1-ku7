@@ -6,6 +6,39 @@ class 臺灣閩南語羅馬字拼音測試(unittest.TestCase):
 		pass
 	def tearDown(self):
 		pass
+	
+	def test_零聲母聲韻調輕(self):
+		臺羅音標=臺灣閩南語羅馬字拼音('ainn7')
+		self.assertEqual(臺羅音標.音標, 'ainn7')
+		self.assertEqual(臺羅音標.聲, '')
+		self.assertEqual(臺羅音標.韻, 'ainn')
+		self.assertEqual(臺羅音標.調, '7')
+		self.assertEqual(臺羅音標.輕, '')
+		
+	def test_完整聲韻調輕(self):
+		臺羅音標=臺灣閩南語羅馬字拼音('sih')
+		self.assertEqual(臺羅音標.音標, 'sih4')
+		self.assertEqual(臺羅音標.聲, 's')
+		self.assertEqual(臺羅音標.韻, 'ih')
+		self.assertEqual(臺羅音標.調, '4')
+		self.assertEqual(臺羅音標.輕, '')
+		
+	def test_韻化輔音聲韻調輕(self):
+		臺羅音標=臺灣閩南語羅馬字拼音('ng5')
+		self.assertEqual(臺羅音標.音標, 'ng5')
+		self.assertEqual(臺羅音標.聲, '')
+		self.assertEqual(臺羅音標.韻, 'ng')
+		self.assertEqual(臺羅音標.調, '5')
+		self.assertEqual(臺羅音標.輕, '')
+		
+	def test_語法輕聲聲韻調輕(self):
+		臺羅音標=臺灣閩南語羅馬字拼音('0e5')
+		self.assertEqual(臺羅音標.音標, '0e5')
+		self.assertEqual(臺羅音標.聲, '')
+		self.assertEqual(臺羅音標.韻, 'e')
+		self.assertEqual(臺羅音標.調, '5')
+		self.assertEqual(臺羅音標.輕, '0')
+		
 	def test_定看音標(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('ainn7').音標, 'ainn7')
 		self.assertEqual(臺灣閩南語羅馬字拼音('ang3').音標, 'ang3')

@@ -55,19 +55,12 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 	對通用聲韻對照表 = 臺羅對通用聲韻對照表
 	對通用調對照表 = 臺羅對通用調對照表
 	def __init__(self, 音標):
-		if 音標.startswith('0'):
-			self.輕='0'
-			音標=音標[1:]
 		self.分析聲韻調(音標)
 		if self.聲 == 'm' or self.聲 == 'n' or self.聲 == 'ng':
 			if self.韻 == 'o':
 				self.韻 = 'oo'
-		if self.音標 != None:
-			self.音標 = self.輕 + self.聲 + self.韻 + self.調
-# 		if self.音標 != None:
-# 			print('聲母=' + self.聲 + ' 韻母=' + self.韻 + ' 調＝' + str(self.調))
-# 		else:
-# 			print('不合法 原音標＝' + 音標)
+				self.做音標()
+
 	def 轉換到臺灣閩南語羅馬字拼音(self):
 		return self.音標
 	def 轉閏號調(self):
@@ -95,41 +88,3 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 		if 聲韻 not in self.對通用聲韻對照表 or self.調 not in self.對通用調對照表:
 			return None
 		return self.對通用聲韻對照表[聲韻] + self.對通用調對照表[self.調]
-# 聲 介 韻 調，韻含元音跟韻尾
-
-if __name__ == '__main__':
-	print (len(臺灣閩南語羅馬字拼音韻母表))
-	print(臺灣閩南語羅馬字拼音('@@').音標)
-	print(臺灣閩南語羅馬字拼音('pI̋m').音標)
-	print(臺灣閩南語羅馬字拼音('pe̍m').音標)
-	print(臺灣閩南語羅馬字拼音('pi̍m').音標)
-	print(臺灣閩南語羅馬字拼音('pîm').音標)
-	print(臺灣閩南語羅馬字拼音('pǐN').音標)
-	print(臺灣閩南語羅馬字拼音('pih').音標)
-	print(臺灣閩南語羅馬字拼音('cat8').音標)
-	print(臺灣閩南語羅馬字拼音('Pih8').音標)
-
-	print(臺灣閩南語羅馬字拼音('nňg').音標)
-	print(臺灣閩南語羅馬字拼音('tor').音標)
-	print(臺灣閩南語羅馬字拼音('tsőo').音標)
-	print(臺灣閩南語羅馬字拼音('tsňg').音標)
-	print(臺灣閩南語羅馬字拼音('xxtsé--á').音標)
-	print(臺灣閩南語羅馬字拼音('pňg').音標)
-	print(臺灣閩南語羅馬字拼音('óonn').音標)
-
-	print(臺灣閩南語羅馬字拼音('ainn7').音標)
-	print(臺灣閩南語羅馬字拼音('ang3').音標)
-	print(臺灣閩南語羅馬字拼音('au3').音標)
-	print(臺灣閩南語羅馬字拼音('mng5').音標)
-	print(臺灣閩南語羅馬字拼音('ainn7').轉閏號調())
-	print(臺灣閩南語羅馬字拼音('ang3').轉閏號調())
-	print(臺灣閩南語羅馬字拼音('au3').轉閏號調())
-	print(臺灣閩南語羅馬字拼音('mng5').轉閏號調())
-	print(臺灣閩南語羅馬字拼音('gio2').轉閏號調())
-	print(臺灣閩南語羅馬字拼音('hiunnh8').轉閏號調())
-	print(臺灣閩南語羅馬字拼音('gio2').轉通用拼音())
-	print(臺灣閩南語羅馬字拼音('hiunnh8').轉通用拼音())
-	# for a,b in 臺灣閩南語羅馬字拼音聲調符號表.items():
-	# 	print(b,'=\"',a,'",',sep='')
-
-	# a=
