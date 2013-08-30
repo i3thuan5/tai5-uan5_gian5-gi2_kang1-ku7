@@ -6,39 +6,39 @@ class 方音符號吳守禮改良式測試(unittest.TestCase):
 		pass
 	def tearDown(self):
 		pass
-	
+
 	def test_零聲母聲韻調輕(self):
-		方音=方音符號吳守禮改良式('ainn7')
+		方音 = 方音符號吳守禮改良式('ainn7')
 		self.assertEqual(方音.音標, 'ㆮ˫')
 		self.assertEqual(方音.聲, '')
 		self.assertEqual(方音.韻, 'ㆮ')
 		self.assertEqual(方音.調, '˫')
 # 		self.assertEqual(方音.輕, '')
-		
+
 	def test_完整聲韻調輕(self):
-		方音=方音符號吳守禮改良式('sih')
+		方音 = 方音符號吳守禮改良式('sih')
 		self.assertEqual(方音.音標, 'ㄒㄧㆷ')
 		self.assertEqual(方音.聲, 'ㄒ')
 		self.assertEqual(方音.韻, 'ㄧㆷ')
 		self.assertEqual(方音.調, '')
 # 		self.assertEqual(方音.輕, '')
-		
+
 	def test_韻化輔音聲韻調輕(self):
-		方音=方音符號吳守禮改良式('ng5')
+		方音 = 方音符號吳守禮改良式('ng5')
 		self.assertEqual(方音.音標, 'ㆭˊ')
 		self.assertEqual(方音.聲, '')
 		self.assertEqual(方音.韻, 'ㆭ')
 		self.assertEqual(方音.調, 'ˊ')
 # 		self.assertEqual(方音.輕, '')
-		
+
 	def test_語法輕聲聲韻調輕(self):
-		方音=方音符號吳守禮改良式('0e5')
+		方音 = 方音符號吳守禮改良式('0e5')
 		self.assertEqual(方音.音標, '˙ㆤ')
 		self.assertEqual(方音.聲, '')
 		self.assertEqual(方音.韻, 'ㆤ')
 		self.assertEqual(方音.調, '˙')
 # 		self.assertEqual(方音.輕, '0')
-		
+
 	def test_定看音標(self):
 		self.assertEqual(方音符號吳守禮改良式('e').音標, 'ㆤ')
 		self.assertEqual(方音符號吳守禮改良式('e1').音標, 'ㆤ')
@@ -47,11 +47,19 @@ class 方音符號吳守禮改良式測試(unittest.TestCase):
 		self.assertEqual(方音符號吳守禮改良式('mng5').音標, 'ㄇㆭˊ')
 		self.assertEqual(方音符號吳守禮改良式('ainn7').音標, 'ㆮ˫')
 		self.assertEqual(方音符號吳守禮改良式('ang9').音標, 'ㄤ^')
-		
+
 	def test_入聲(self):
 		self.assertEqual(方音符號吳守禮改良式('Pih4').音標, 'ㄅㄧㆷ')
 		self.assertEqual(方音符號吳守禮改良式('Pih8').音標, 'ㄅㄧ㆐ㆷ')
 		self.assertEqual(方音符號吳守禮改良式('Pih10').音標, 'ㄅㄧㆷ㆐')
+
+	def test_ㆦㄜ變化(self):
+		self.assertEqual(方音符號吳守禮改良式('ho2').音標, 'ㄏㄜˋ')
+		self.assertEqual(方音符號吳守禮改良式('hoh').音標, 'ㄏㄜㆷ')
+		self.assertEqual(方音符號吳守禮改良式('hok').音標, 'ㄏㆦㆶ')
+		self.assertEqual(方音符號吳守禮改良式('hio2').音標, 'ㄏㄧㄜˋ')
+		self.assertEqual(方音符號吳守禮改良式('hioh').音標, 'ㄏㄧㄜㆷ')
+		self.assertEqual(方音符號吳守禮改良式('hiok8').音標, 'ㄏㄧㆦ㆐ㆶ')
 		
 	def test_舌尖顎化(self):
 		self.assertEqual(方音符號吳守禮改良式('tsa').音標, 'ㄗㄚ')
@@ -86,5 +94,9 @@ class 方音符號吳守禮改良式測試(unittest.TestCase):
 		self.assertEqual(方音符號吳守禮改良式('xxtsé--á').音標, None)
 		self.assertEqual(方音符號吳守禮改良式('óonn').音標, None)
 
+	def test_組字式(self):
+		self.assertEqual(方音符號吳守禮改良式('le7').產生音標組字式(), '⿳⿳ㄌㆤ˫')
+		self.assertEqual(方音符號吳守禮改良式('i').產生音標組字式(), '⿳ㄧ　')
+		
 if __name__ == '__main__':
 	unittest.main()

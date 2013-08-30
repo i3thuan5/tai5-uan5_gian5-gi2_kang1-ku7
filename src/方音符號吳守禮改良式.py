@@ -53,26 +53,6 @@ class 方音符號吳守禮改良式():
 		if self.音標 == None:
 			return None
 		elif len(self.音標) == 1:
-			return '⿳' + self.音標 + ' '
+			return '⿳' + self.音標 + '　'
 		else:
 			return '⿳' * (len(self.音標) - 1) + self.音標
-#
-if __name__ == '__main__':
-	print(方音符號吳守禮改良式('@@').音標)
-	print(方音符號吳守禮改良式('pI̋m').音標)
-	print(方音符號吳守禮改良式('pe̍m').音標)
-	print(方音符號吳守禮改良式('pi̍m').音標)
-	print(方音符號吳守禮改良式('pîm').音標)
-	print(方音符號吳守禮改良式('pǐN').音標)
-	print(方音符號吳守禮改良式('pih').音標)
-	print(方音符號吳守禮改良式('cat8').音標)
-	print(方音符號吳守禮改良式('Pih8').音標)
-
-	print(方音符號吳守禮改良式('nňg').音標)
-	print(方音符號吳守禮改良式('tor').音標)
-	print(方音符號吳守禮改良式('tsőo').音標)
-	print(方音符號吳守禮改良式('tsňg').音標)
-	print(方音符號吳守禮改良式('xxtsé--á').音標)
-	print(方音符號吳守禮改良式('pňg').音標)
-	print(方音符號吳守禮改良式('óonn').音標)
-#
