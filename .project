@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>自動標音</name>
+	<name>文本製作</name>
 	<comment></comment>
 	<projects>
-		<project>音標系統</project>
-		<project>國閩翻譯</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
