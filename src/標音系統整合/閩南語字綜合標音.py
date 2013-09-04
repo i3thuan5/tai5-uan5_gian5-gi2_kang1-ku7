@@ -1,33 +1,34 @@
 from 方音符號吳守禮改良式 import 方音符號吳守禮改良式
 from 言語資料庫.公用資料 import 標點符號
 from 臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
+from 標音系統整合.綜合標音公用變數 import 無音
 
-class 閩南語字詞綜合標音():
+class 閩南語字綜合標音():
 	型體 = None
 	臺羅詞組 = None
 	臺羅數字調 = None
 	臺羅閏號調 = None
 	通用數字調 = None
 	吳守禮方音 = None
-	def __init__(self, 字資料):
-		self.型體 = 字資料.型
+	def __init__(self, 型, 音):
+		self.型體 = 型
 # 		self.臺羅詞組=字資料.音
 # 		if isinstance(字資料, 字):
-		if 字資料.型 in 標點符號 or 字資料.型 == 字資料.音 or 字資料.音 == '':
-			# 無音的字，羅馬注音愛變空白，無排版會走去
-			self.臺羅數字調 = '　'
-			self.吳守禮方音 = ''
-			self.臺羅閏號調 = '　'
-			self.通用數字調 = '　'
+		if 音 == 無音:
+			self.臺羅數字調 = 無音
+			self.吳守禮方音 = 無音
+			self.臺羅閏號調 = 無音
+			self.通用數字調 = 無音
 		else:
-			臺羅=臺灣閩南語羅馬字拼音(字資料.音)
-			self.臺羅數字調 = 字資料.音
-			self.吳守禮方音 = 方音符號吳守禮改良式(字資料.音).產生音標組字式()
+			臺羅 = 臺灣閩南語羅馬字拼音(音)
+			self.臺羅數字調 = 臺羅.音標
+			self.吳守禮方音 = 方音符號吳守禮改良式(音).產生音標組字式()
 			self.臺羅閏號調 = 臺羅.轉閏號調()
 			self.通用數字調 = 臺羅.轉通用拼音()
 			if not self.標音完整無():
-				print(self.型體,self.臺羅數字調,self.吳守禮方音,
-					self.臺羅閏號調,self.通用數字調,'有問題')
+				print(self.型體, self.臺羅數字調, self.吳守禮方音,
+					self.臺羅閏號調, self.通用數字調, '有問題')
+				#raise
 	def 轉json格式(self):
 		return ('{"型體":"' + self.型體 +
 			'","臺羅數字調":"' + self.臺羅數字調 +
@@ -35,7 +36,7 @@ class 閩南語字詞綜合標音():
 			'","通用數字調":"' + self.通用數字調 +
 			'","吳守禮方音":"' + self.吳守禮方音 + '"}')
 	def 標音完整無(self):
-		return (self.型體 != None and self.臺羅數字調 != None 
+		return (self.型體 != None and self.臺羅數字調 != None
 			and self.吳守禮方音 != None and self.臺羅閏號調 != None and self.通用數字調 != None)
 	def __repr__(self):
 		return self.轉json格式()
