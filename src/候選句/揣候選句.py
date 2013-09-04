@@ -1,5 +1,5 @@
 from 剖析相關工具.剖析結構化工具 import 剖析結構化工具
-from 剖析相關工具.剖析結構化工具 import 國閩單位翻譯
+from 閩南資料.國閩字詞翻譯 import 國閩單位翻譯
 from 剖析相關工具.剖析工具 import 剖析工具
 from 言語資料庫.公用資料 import 資料庫連線
 
