@@ -12,7 +12,7 @@
 		'ir':'ㆨ', 'irp':'ㆨㆴ', 'irt':'ㆨㆵ', 'irk':'ㆨㆶ', 'irinn':'ㆨㆪ', 'irm':'ㆨㆬ', 'irn':'ㆨㄣ', 'irng':'ㆨㄥ',
 		'er':'ㄮ', 'ere':'ㄮㆤ', 'erh':'ㄮㆷ', 'ereh':'ㄮㆤㆷ',
 		'ee':'ㄝ', 'uee':'ㄨㄝ', 'eeh':'ㄝㆷ', 'eng':'ㄝㄥ',
-		'or':'ㄛ','orh':'ㄛㆷ','ior':'ㄧㄛ','iorh':'ㄧㄛㆷ',
+		'or':'ㄛ', 'orh':'ㄛㆷ', 'ior':'ㄧㄛ', 'iorh':'ㄧㄛㆷ',
 		'uinn':'ㄨㆪ', 'ionn':'ㄧㆧ', 'uang':'ㄨㄤ',
 		'aih':'ㄞㆷ', 'ainnh':'ㆮㆷ', 'aunnh':'ㆯㆷ', 'uih':'ㄨㄧㆷ',
 		'aunn':'ㆯ', 'uenn':'ㄨㆥ', 'uaih':'ㄨㄞㆷ', 'iunnh':'ㄧㆫㆷ', 'iaunnh':'ㄧㆯㆷ', 'uennh':'ㄨㆥㆷ', 'uinnh':'ㄨㆪㆷ', 'uainnh':'ㄨㆮㆷ',
@@ -31,6 +31,8 @@ class 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組():
 	調 = None
 	音標 = None
 	def __init__(self, 聲, 韻, 調, 輕):
+		if 聲 == None or 韻 == None or 調 == None or 輕 == None :
+			return
 		if 韻.startswith('i') and (聲 == 'ts' or 聲 == 'tsh' or 聲 == 's' or 聲 == 'j'):
 			聲 += 'i'
 		if 輕 == '0':

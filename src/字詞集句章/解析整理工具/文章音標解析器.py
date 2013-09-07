@@ -1,6 +1,4 @@
-from 通用拼音音標 import 通用拼音音標
-from 臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
-from 華語台語雙語語料庫系統.何澤政教會羅馬字音標 import 何澤政教會羅馬字音標
+
 class 文章音標解析器:
 	音標工具 = None
 	標點符號 = None
@@ -67,24 +65,24 @@ class 文章音標解析器:
 					處理位置 += 1
 		return (解析結果, 無問題諾)
 
-if __name__ == '__main__':
-	解析器 = 文章音標解析器(臺灣閩南語羅馬字拼音)
-	解析器.標點符號 = {' ', '-'}
-	print(解析器.解析語句('tshiǔnn	tshiūnn'))
-	print(解析器.解析語句('tsua̋n-ne tsua̋n'))
-	print(解析器.解析語句('--tsi̍t-kuá --tsit-kuá'))
-	print(解析器.解析語句('--tsi̍t-kuá -@-tsit-kuá'))
-	print(臺灣閩南語羅馬字拼音('nau2').音標)
-	解析器 = 文章音標解析器(通用拼音音標)
-	print(解析器.解析語句('hue2_zit6_e5_sit7_le4'))
-	print(解析器.解析語句('17,"一下子","一時仔","zit6-si5-a4","cit8-si5-a2"'))
-	print(解析器.解析語句('"一丁不識","[(it7)-(ding1)-(but7)-(sik7)]","文"'))
-	print(解析器.解析語句('m33gorh66 ho23 sua12 a44 liam53 mua45mua44 e52 ve45cia11 ziah77 giann53 vor53 qo23hun12zing11 , 	'))
-	print(解析器.解析語句('qin21 a24 dor43 i45ging12 ga23 tau55 cun22 cut76ki34 cia12 tang12a41qua22 gong44 '))
-	print(解析器.解析語句('mui45  ging12ge34  zit68ging12cu33'))
-	print(解析器.解析語句('nau2'))
-	解析器 = 文章音標解析器(何澤政教會羅馬字音標)
-	解析器.標點符號={'「',' ','-'}
-	print(解析器.解析語句佮顯示毋著字元('Pang-liau5 hi5-kang2 「 Toa7-tiau5-hang7 」 siang7-khoah nng7-kong-chhioh'))
-	print(解析器.解析語句佮顯示毋著字元('chu2-chhionn3'))
+# if __name__ == '__main__':
+# 	解析器 = 文章音標解析器(臺灣閩南語羅馬字拼音)
+# 	解析器.標點符號 = {' ', '-'}
+# 	print(解析器.解析語句('tshiǔnn	tshiūnn'))
+# 	print(解析器.解析語句('tsua̋n-ne tsua̋n'))
+# 	print(解析器.解析語句('--tsi̍t-kuá --tsit-kuá'))
+# 	print(解析器.解析語句('--tsi̍t-kuá -@-tsit-kuá'))
+# 	print(臺灣閩南語羅馬字拼音('nau2').音標)
+# 	解析器 = 文章音標解析器(通用拼音音標)
+# 	print(解析器.解析語句('hue2_zit6_e5_sit7_le4'))
+# 	print(解析器.解析語句('17,"一下子","一時仔","zit6-si5-a4","cit8-si5-a2"'))
+# 	print(解析器.解析語句('"一丁不識","[(it7)-(ding1)-(but7)-(sik7)]","文"'))
+# 	print(解析器.解析語句('m33gorh66 ho23 sua12 a44 liam53 mua45mua44 e52 ve45cia11 ziah77 giann53 vor53 qo23hun12zing11 , 	'))
+# 	print(解析器.解析語句('qin21 a24 dor43 i45ging12 ga23 tau55 cun22 cut76ki34 cia12 tang12a41qua22 gong44 '))
+# 	print(解析器.解析語句('mui45  ging12ge34  zit68ging12cu33'))
+# 	print(解析器.解析語句('nau2'))
+# 	解析器 = 文章音標解析器(何澤政教會羅馬字音標)
+# 	解析器.標點符號={'「',' ','-'}
+# 	print(解析器.解析語句佮顯示毋著字元('Pang-liau5 hi5-kang2 「 Toa7-tiau5-hang7 」 siang7-khoah nng7-kong-chhioh'))
+# 	print(解析器.解析語句佮顯示毋著字元('chu2-chhionn3'))
 
