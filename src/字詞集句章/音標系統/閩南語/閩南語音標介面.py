@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-class 音標介面(metaclass=ABCMeta):
+class 閩南語音標介面(metaclass=ABCMeta):
 	聲 = None
 	韻 = None
 	調 = 1

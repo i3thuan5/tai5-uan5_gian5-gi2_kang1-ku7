@@ -1,6 +1,5 @@
 from 閩南資料.詞 import 詞
-from 標音系統整合.詞組綜合標音 import 詞組綜合標音
-
+from 字詞集句章.綜合標音.詞組綜合標音 import 詞組綜合標音
 class 句綜合標音():
 	綜合標音佮詞組陣列=None
 	def __init__(self,標音,綜合標音):
