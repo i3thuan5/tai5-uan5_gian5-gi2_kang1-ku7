@@ -13,7 +13,7 @@ class 官方剖析工具:
 		程式所在, 資料夾 = 程式所在.rsplit('/', 1)
 		while 資料夾 != 'src' and 資料夾 != '測試':
 			程式所在, 資料夾 = 程式所在.rsplit('/', 1)
-		程序輸出 = Popen(['/bin/bash' , 程式所在 + '/CKIPClient/剖析.sh', 愛轉換的字串 ], stdout = PIPE)
+		程序輸出 = Popen(['/bin/bash' , 程式所在 + '/外部程式/CKIPClient/剖析.sh', 愛轉換的字串 ], stdout = PIPE)
 		剖析結果 = [ 一逝[:-1].decode("utf-8") for 一逝 in 程序輸出.stdout ]
 		程序輸出.stdout.close()
 		return 剖析結果

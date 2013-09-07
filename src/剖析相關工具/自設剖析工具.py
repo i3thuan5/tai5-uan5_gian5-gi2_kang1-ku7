@@ -10,8 +10,3 @@ class 自設剖析工具:
 		結果 = 連線.read_all().decode('big5')
 		連線.close()
 		return 結果.replace('\r', '').rstrip().split('\n')
-
-
-if __name__ == '__main__':
-	工具 = 自設剖析工具()
-	print(工具.剖析('我想吃飯。我想吃很多飯。'))

@@ -20,3 +20,6 @@ class 剖析工具測試(unittest.TestCase):
 			['#1:1.[0] S(agent:NP(Head:Nhaa:我)|Head:VE2:想|goal:VP(Head:VA4:吃飯))#。(PERIODCATEGORY)',
 			'#2:1.[0] S(agent:NP(Head:Nhaa:我)|Head:VE2:想|goal:VP(Head:VC31:吃|theme:NP(quantifier:Neqa:很多|Head:Nab:飯)))#。(PERIODCATEGORY)'
 			])
+
+if __name__ == '__main__':
+	unittest.main()
