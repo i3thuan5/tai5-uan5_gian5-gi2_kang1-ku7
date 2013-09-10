@@ -1,7 +1,7 @@
 class 字:
 	型 = None
 	音 = None
-	def __init__(self, 型, 音):
+	def __init__(self, 型, 音=None):
 		self.型 = 型
 		self.音 = 音
 	def __repr__(self):

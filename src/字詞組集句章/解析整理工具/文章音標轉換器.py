@@ -1,5 +1,5 @@
 
-class 文章音標解析器:
+class 文章音標轉換器:
 	音標工具 = None
 	標點符號 = None
 	def __init__(self, 音標工具):
