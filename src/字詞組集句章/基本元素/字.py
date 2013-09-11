@@ -9,7 +9,7 @@ class 字:
 			raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
 		if not isinstance(音, str):
 			raise 型態錯誤('傳入來的音毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
-		if 型== 無音:
+		if 型 == '':
 			raise 型態錯誤('傳入來的型是空的！')
 		self.型 = 型
 		self.音 = 音
