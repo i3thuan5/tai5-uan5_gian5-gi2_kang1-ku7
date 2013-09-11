@@ -1,7 +1,13 @@
 import unittest
 from 字詞組集句章.基本元素.字 import 字
 from 字詞組集句章.基本元素.詞 import 詞
+from 字詞組集句章.基本元素.組 import 組
+from 字詞組集句章.基本元素.集 import 集
+from 字詞組集句章.基本元素.句 import 句
+from 字詞組集句章.基本元素.章 import 章
 from 字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
+from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
+from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
 
 class 基本元素測試(unittest.TestCase):
 	def setUp(self):
@@ -10,7 +16,11 @@ class 基本元素測試(unittest.TestCase):
 	def tearDown(self):
 		pass
 
-	def test_對齊孤字(self):
+	def test_對齊詞無字(self):
+		詞 = self.分析器.產生對齊詞([], [])
+		self.assertEqual(len(詞.內底字), 0)
+
+	def test_對齊詞孤字(self):
 		型 = '媠'
 		音 = 'ㄙㄨㄧˋ'
 		詞 = self.分析器.產生對齊詞([型], [音])
@@ -20,7 +30,7 @@ class 基本元素測試(unittest.TestCase):
 		self.assertEqual(詞.內底字[-1].型, 型)
 		self.assertEqual(詞.內底字[-1].音, 音)
 
-	def test_對齊濟字(self):
+	def test_對齊詞濟字(self):
 		型一 = '媠'
 		型二 = '姑'
 		型三 = '娘'
@@ -35,15 +45,73 @@ class 基本元素測試(unittest.TestCase):
 		self.assertEqual(詞.內底字[1].音, 音二)
 		self.assertEqual(詞.內底字[2].型, 型三)
 		self.assertEqual(詞.內底字[2].音, 音三)
+	def test_對齊詞傳無仝濟字(self):
+		型一 = '媠'
+		型二 = '姑'
+		型三 = '娘'
+		音一 = 'ㄙㄨㄧˋ'
+		音二 = 'ㄍㆦ'
+		音三 = 'ㄋㄧㄨˊ'
+		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, [型一, 型二, 型三], [音一, 音二])
+		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, [型一, 型二], [音一, 音二, 音三])
+		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, [型一, 型二, 型三], [])
+		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, [], [音一, 音二, 音三])
+	def test_對齊詞傳有的無的(self):
+		型一 = '媠'
+		型二 = '姑'
+		型三 = '娘'
+		音一 = 'ㄙㄨㄧˋ'
+		音二 = 'ㄍㆦ'
+		音三 = 'ㄋㄧㄨˊ'
+		self.assertRaises(型態錯誤, self.分析器.產生對齊詞, None, None)
+		self.assertRaises(型態錯誤, self.分析器.產生對齊詞, [型一, 型二, 型三], 3)
+		self.assertRaises(型態錯誤, self.分析器.產生對齊詞, [型一, 型二, 型三], None)
+		self.assertRaises(型態錯誤, self.分析器.產生對齊詞, None, [音一, 音二, 音三])
+		self.assertRaises(型態錯誤, self.分析器.產生對齊詞, [型一, 型二, None], [音一, 音二, 音三])
+		self.assertRaises(型態錯誤, self.分析器.產生對齊詞, [型一, 型二, 型三], [音一, 音二, 3])
 
-	def test_對齊詞(self):
+	def test_對齊組無字(self):
+		型 = ''
+		音 = ''
+		組物件 = self.分析器.產生對齊組(型, 音)
+		self.assertEqual(len(組物件.內底詞), 0)
+
+	def test_對齊組孤字(self):
 		型 = '媠'
 		音 = 'ㄙㄨㄧˋ'
-		字物件 = 字(型, 音)
-		字陣列 = [字物件, 字物件]
-		詞物件 = 詞(字陣列)
-		另外字陣列 = [字(型, 音), 字(型, 音)]
-		self.assertEqual(詞物件.內底字, 另外字陣列)
+		組物件 = self.分析器.產生對齊組(型, 音)
+		詞物件 = self.分析器.產生對齊詞([型], [音])
+		self.assertEqual(len(組物件.內底詞), 1)
+		self.assertEqual(組物件.內底詞[0], 詞物件)
+
+	def test_對齊濟字(self):
+		型 = '我有一張椅仔！'
+		音 = 'gua2 u7 tsit8-tiunn1 i2-a2 !'
+		組物件 = self.分析器.產生對齊組(型, 音)
+		self.assertEqual(len(組物件.內底詞), 4)
+		self.assertEqual(組物件.內底詞, [
+			self.分析器.產生對齊詞('我', 'gua2'),
+			self.分析器.產生對齊詞('有', 'u7'),
+			self.分析器.產生對齊詞('一張', 'tsit8-tiunn1'),
+			self.分析器.產生對齊詞('椅仔', 'i2-a2'),
+			self.分析器.產生對齊詞('！', '!'),
+			])
+	def test_對齊傳無仝濟字(self):
+		pass
+	def test_對齊傳有的無的(self):
+		pass
+
+	def test_對齊無字(self):
+		pass
+	def test_對齊孤字(self):
+		pass
+	def test_對齊濟字(self):
+		pass
+	def test_對齊傳無仝濟字(self):
+		pass
+	def test_對齊傳有的無的(self):
+		pass
+
 
 	def tst_詞(self):
 		print(標點處理工具.切開語句('bin5-si7-sin1-bun5-po3-to7'))
