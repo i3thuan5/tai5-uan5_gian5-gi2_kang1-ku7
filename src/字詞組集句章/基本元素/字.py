@@ -9,11 +9,13 @@ class 字:
 			raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
 		if not isinstance(音, str):
 			raise 型態錯誤('傳入來的音毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
+		if 型== 無音:
+			raise 型態錯誤('傳入來的型是空的！')
 		self.型 = 型
 		self.音 = 音
-	def __repr__(self):
-		return self.型 + " " + self.音
+	def __eq__(self, 別个):
+		return 別个 != None and self.型 == 別个.型 and self.音 == 別个.音
 	def __str__(self):
-		return self.型 + " " + self.音
-	def __eq__(self, other):
-		return other != None and self.型 == other.型 and self.音 == other.音
+		return '字：{0} {1}'.format(self.型, self.音)
+	def __repr__(self):
+		return self.__str__()

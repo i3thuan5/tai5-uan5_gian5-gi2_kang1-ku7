@@ -15,6 +15,30 @@ class 拆文分析器:
 	分詞符號 = 分詞符號
 	標點符號 = None
 
+	def 產生對齊詞(self, 型, 音):
+		型陣列 = self.分離漢字(型)
+		音陣列 = 音.split(self.分字符號)
+		return self.拆好陣列產生對齊詞(型陣列, 音陣列)
+
+	def 拆好陣列產生對齊詞(self, 型陣列, 音陣列):
+		if not isinstance(型陣列, list):
+			raise 型態錯誤('傳入來的型毋是陣列：型陣列＝{}'.format(str(型陣列)))
+		if not isinstance(音陣列, list):
+			raise 型態錯誤('傳入來的音毋是陣列：音陣列＝{}'.format(str(音陣列)))
+		if len(型陣列) < len(音陣列):
+			raise 解析錯誤('詞內底的型「{0}」比音「{1}」少！'.format(str(型陣列), str(音陣列)))
+		if len(型陣列) > len(音陣列):
+			raise 解析錯誤('詞內底的型「{0}」比音「{1}」濟！'.format(str(型陣列), str(音陣列)))
+		長度 = len(型陣列)
+		字陣列 = []
+		for 位置 in range(長度):
+			if not isinstance(型陣列[位置], str):
+				raise 型態錯誤('型陣列[{1}]毋是字串：型陣列＝{0}'.format(str(型陣列), 型陣列[位置]))
+			if not isinstance(音陣列[位置], str):
+				raise 型態錯誤('音陣列[{1}]毋是字串：音陣列＝{0}'.format(str(音陣列), 音陣列[位置]))
+			字陣列.append(字(型陣列[位置], 音陣列[位置]))
+		return 詞(字陣列)
+
 	def 產生對齊組(self, 型, 音):
 		# 可能是漢羅，愛閣改
 		型陣列 = self.分離漢字(型)
@@ -23,28 +47,18 @@ class 拆文分析器:
 		for 詞音 in 音.split(self.分詞符號):
 			字音陣列 = 詞音.split(self.分字符號)
 			if 第幾字 + len(字音陣列) > len(型陣列):
-				raise 解析錯誤('詞組內底的型「{0}」佮音「{1}」的數量無仝！配對結果：'.format(
+				raise 解析錯誤('詞組內底的型「{0}」比音「{1}」少！配對結果：{2}'.format(
 					str(型), str(音), str(詞陣列)))
 			詞陣列.append(
 				self.產生對齊詞(型陣列[第幾字:第幾字 + len(字音陣列)], 字音陣列))
+			第幾字 += len(字音陣列)
+		if 第幾字 < len(型陣列):
+			raise 解析錯誤('詞組內底的型「{0}」比音「{1}」濟！配對結果：{2}'.format(
+				str(型), str(音), str(詞陣列)))
 		return 組(詞陣列)
 
-	def 產生對齊詞(self, 型陣列, 音陣列):
-		if not isinstance(型陣列, list):
-			raise 型態錯誤('傳入來的型毋是陣列：型陣列＝{}'.format(str(型陣列)))
-		if not isinstance(音陣列, list):
-			raise 型態錯誤('傳入來的音毋是陣列：音陣列＝{}'.format(str(音陣列)))
-		if len(型陣列) != len(音陣列):
-			raise 解析錯誤('詞內底的型「{0}」佮音「{1}」的數量無仝！'.format(str(型陣列), str(音陣列)))
-		長度 = len(型陣列)
-		字陣列 = []
-		for 位置 in range(長度):
-			if not isinstance(型陣列[位置], str):
-				raise 型態錯誤('型陣列[{1}]毋是字串：型陣列＝{0}'.format(str(型陣列),型陣列[位置]))
-			if not isinstance(音陣列[位置], str):
-				raise 型態錯誤('音陣列[{1}]毋是字串：音陣列＝{0}'.format(str(音陣列),音陣列[位置]))
-			字陣列.append(字(型陣列[位置], 音陣列[位置]))
-		return 詞(字陣列)
+
+
 
 	def 切開語句(self, 語句):
 		切開結果 = []
