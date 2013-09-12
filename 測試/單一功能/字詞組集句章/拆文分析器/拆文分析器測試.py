@@ -316,6 +316,9 @@ class 拆文分析器測試(unittest.TestCase):
 		型 = ''
 		音 = ''
 		章物件 = self.分析器.產生對齊章(型, 音)
+		self.assertEqual(型, '')
+		self.assertEqual(音, '')
+		self.assertEqual(章物件.內底句, [])
 		self.assertEqual(len(章物件.內底句), 0)
 
 	def test_對齊詞烏白傳(self):
@@ -351,17 +354,25 @@ class 拆文分析器測試(unittest.TestCase):
 	def test_拆句做字(self):
 		self.assertEqual(self.分析器.拆句做字('腹肚枵'), ['腹', '肚', '枵'])
 		self.assertRaises(型態錯誤, self.分析器.拆句做字, None)
+	def test_拆句做字(self):
+		self.assertEqual(self.分析器.拆句做字('腹肚枵'), ['腹', '肚', '枵'])
+		self.assertRaises(型態錯誤, self.分析器.拆句做字, '腹肚枵⿰')
+
+	def test_拆句做字無愛空白(self):
+		self.assertEqual(self.分析器.拆句做字('腹 肚枵矣'), ['腹', '肚', '枵', '矣'])
+		self.assertEqual(self.分析器.拆句做字('  腹 肚枵矣  '), ['腹', '肚', '枵', '矣'])
 
 	def test_拆句做字摻組字式(self):
-		self.assertEqual(self.分析器.拆句做字('⿰因腹肚枵'), ['⿰因','腹', '肚', '枵'])
-		self.assertEqual(self.分析器.拆句做字('你同⿰厓去睡目。'),['你','同','⿰厓','去','睡','目。'])
+		self.assertEqual(self.分析器.拆句做字('⿰因腹肚枵'), ['⿰因', '腹', '肚', '枵'])
+		self.assertEqual(self.分析器.拆句做字('你同⿰厓去睡目。'), ['你', '同', '⿰厓', '去', '睡', '目', '。'])
+		self.assertEqual(self.分析器.拆句做字('⿰22腹肚枵'), ['⿰2', '2', '腹', '肚', '枵'])
 
 	def test_拆句做字摻漢羅佮數字(self):
 		self.assertEqual(self.分析器.拆句做字('腹肚枵ah'), ['腹', '肚', '枵', 'ah'])
 		self.assertEqual(self.分析器.拆句做字('我e腹肚枵ah'), ['我', 'e', '腹', '肚', '枵', 'ah'])
-		self.assertEqual(self.分析器.拆句做字('我有100箍'), ['我', '有', '100', '箍',])
-		self.assertEqual(self.分析器.拆句做字('這馬時間12:20，'),['這', '馬', '時', '間', '12:20'])
-		self.assertEqual(self.分析器.拆句做字('物件tsin1 ho2食。'),['物', '件', 'tsin1', 'ho2', '食', '。'])
+		self.assertEqual(self.分析器.拆句做字('我有100箍'), ['我', '有', '100', '箍', ])
+		self.assertEqual(self.分析器.拆句做字('這馬時間12:20，'), ['這', '馬', '時', '間', '12', ':', '20', '，'])
+		self.assertEqual(self.分析器.拆句做字('物件tsin1 ho2食。'), ['物', '件', 'tsin1', 'ho2', '食', '。'])
 
 	def test_拆章做句(self):
 		self.assertEqual(self.分析器.拆章做句('我腹肚枵，欲來去食飯。'), ['我腹肚枵，', '欲來去食飯。'])
@@ -370,6 +381,10 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(self.分析器.拆章做句('這馬分數1:2，誠緊張。'), ['這馬分數1:2，', '誠緊張。'])
 		self.assertEqual(self.分析器.拆章做句('今日8/30。'), ['今日8/30。'])
 		self.assertEqual(self.分析器.拆章做句('啥物！！？你轉去矣？'), ['啥物！！？', '你轉去矣？'])
+		self.assertEqual(self.分析器.拆章做句('！！？你轉去？矣'), ['！！？', '你轉去？', '矣'])
+		self.assertEqual(self.分析器.拆章做句('你！！？轉去？矣'), ['你！！？', '轉去？', '矣'])
+		self.assertEqual(self.分析器.拆章做句('！你！？轉去？矣'), ['！', '你！？', '轉去？', '矣'])
+		self.assertEqual(self.分析器.拆章做句('！你！？轉去？矣？？'), ['！', '你！？', '轉去？', '矣？？'])
 
 if __name__ == '__main__':
 	unittest.main()
