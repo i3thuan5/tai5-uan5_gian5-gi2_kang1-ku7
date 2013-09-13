@@ -144,6 +144,18 @@ class 拆文分析器測試(unittest.TestCase):
 			self.分析器.產生對齊詞('。', '.'),
 			])
 
+	def test_對齊組濟字漢羅(self):
+		型 = 'gua有tsit8-tiunn1椅仔！'
+		音 = 'gua2 u7 tsit8-tiunn1 i2-a2 !'
+		組物件 = self.分析器.產生對齊組(型, 音)
+		self.assertEqual(len(組物件.內底詞), 5)
+		self.assertEqual(組物件.內底詞, [
+			self.分析器.產生對齊詞('gua', 'gua2'),
+			self.分析器.產生對齊詞('有', 'u7'),
+			self.分析器.產生對齊詞('tsit8-tiunn1', 'tsit8-tiunn1'),
+			self.分析器.產生對齊詞('椅仔', 'i2-a2'),
+			self.分析器.產生對齊詞('！', '!'),
+			])
 	def test_對齊集濟字(self):
 		型 = '我有一張椅仔！'
 		音 = 'gua2 u7 tsit8-tiunn1 i2-a2 !'
@@ -308,9 +320,7 @@ class 拆文分析器測試(unittest.TestCase):
 	def test_對齊章無字(self):
 		型 = ''
 		音 = ''
-		print(self.分析器.產生對齊章('c', 'a'))
 		章物件 = self.分析器.產生對齊章(型, 音)
-		print(self.分析器.產生對齊章('c', 'a'))
 		self.assertEqual(型, '')
 		self.assertEqual(音, '')
 		self.assertEqual(章物件.內底句, [])
