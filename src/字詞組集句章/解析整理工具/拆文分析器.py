@@ -121,10 +121,10 @@ class 拆文分析器:
 		if len(型陣列) < len(音陣列):
 			raise 解析錯誤('詞內底的型「{0}」比音「{1}」濟！'.format(
 				str(型), str(音)))
-		章物件 = 章()
+		句陣列=[]
 		for 型物件, 音物件 in zip(型陣列, 音陣列):
-			章物件.內底句.append(self.產生對齊句(型物件, 音物件))
-		return 章物件
+			句陣列.append(self.產生對齊句(型物件, 音物件))
+		return 章(句陣列)
 
 	def 符號邊仔加空白(self, 語句):
 		for 符號 in 標點符號:
@@ -150,8 +150,8 @@ class 拆文分析器:
 		長度 = 0
 		for 字 in 語句:
 			字種類 = unicodedata.category(字)
-			print(字, 狀態, 字陣列, 一个字)
-			print(字種類)
+# 			print(字, 狀態, 字陣列, 一个字)
+# 			print(字種類)
 			if 狀態 == '組字':
 				一个字 += 字
 				if 字 in 組字式符號:
@@ -177,10 +177,8 @@ class 拆文分析器:
 					字陣列.append(字)
 				# Ll　小寫， Lu　大寫， Md　數字，Lo　其他, So 組字式符號…
 				elif 字種類 == 'Ll' or 字種類 == 'Lu' or 字種類 == 'Nd':
-					print('en')
 					一个字 += 字
 				else:
-					print('ch')
 					if 一个字 != '':
 						字陣列.append(一个字)
 						一个字 = ''
@@ -221,8 +219,6 @@ class 拆文分析器:
 		句陣列.append(語句[頭前:])
 		return 句陣列
 
-
-
 # 	def 計算漢字語句漢字數量(self, 語句):
 # 		長度 = 0
 # 		for 字 in 語句:
@@ -234,8 +230,3 @@ class 拆文分析器:
 #
 # 	def 計算音標語句音標數量(self, 語句):
 # 		return len(語句.replace('--', '-').split(self.斷字符號[0]))
-
-分析器 = 拆文分析器()
-# print(分析器.拆句做字('⿰因腹肚枵'))
-# print(unicodedata.category('2'))
-# print(分析器.產生對齊章('', '').內底句)
