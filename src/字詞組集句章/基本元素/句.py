@@ -6,10 +6,11 @@ class 句:
 	def __init__(self, 集陣列 = []):
 		if not isinstance(集陣列, list):
 			raise 型態錯誤('傳入來的集陣列毋是陣列：{0}'.format(str(集陣列)))
+		self.內底集 = []
 		for 集物件 in 集陣列:
 			if not isinstance(集物件, 集):
-				raise 型態錯誤('集陣列內底有毋是集的：集陣列＝{0}，集物件＝{1}'.format(str(集陣列),str(集物件)))
-		self.內底集 = 集陣列
+				raise 型態錯誤('集陣列內底有毋是集的：集陣列＝{0}，集物件＝{1}'.format(str(集陣列), str(集物件)))
+			self.內底集.append(集物件)
 	def __eq__(self, 別个):
 		return 別个 != None and self.內底集 == 別个.內底集
 	def __str__(self):

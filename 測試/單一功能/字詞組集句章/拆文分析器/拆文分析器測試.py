@@ -131,8 +131,8 @@ class 拆文分析器測試(unittest.TestCase):
 	def test_對齊組濟字佮符號(self):
 		詞型 = '枋寮漁港「大條巷」上闊兩公尺。'
 		詞音 = 'Pang-liau5 hi5-kang2 「 Tua7-tiau5-hang7 」 siang7-khoah nng7-kong-tshioh.'
-		組物件 = self.分析器.產生對齊組(型, 音)
-		self.assertEqual(len(組物件.內底集), 8)
+		組物件 = self.分析器.產生對齊組(詞型, 詞音)
+		self.assertEqual(len(組物件.內底詞), 8)
 		self.assertEqual(組物件.內底詞, [
 			self.分析器.產生對齊詞('枋寮', 'Pang-liau5'),
 			self.分析器.產生對齊詞('漁港', 'hi5-kang2'),
@@ -168,7 +168,7 @@ class 拆文分析器測試(unittest.TestCase):
 		集物件 = self.分析器.產生對齊集(詞型, 詞音)
 		self.assertEqual(len(集物件.內底組), 1)
 		self.assertEqual(集物件.內底組, [
-			self.分析器.產生對齊組(型, 音),
+			self.分析器.產生對齊組(詞型, 詞音),
 			])
 
 	def test_對齊句濟字(self):
@@ -208,7 +208,7 @@ class 拆文分析器測試(unittest.TestCase):
 			self.分析器.產生對齊句('叫阿爸，', 'kio3 a1-pah4,'),
 			self.分析器.產生對齊句('買豬跤，', 'be2 ti1-kha1,'),
 			self.分析器.產生對齊句('豬跤箍仔焄爛爛，', 'ti1-kha1 khoo1-a2 kun5 nua7-nua7,'),
-			self.分析器.產生對齊句('枵鬼囡仔流水爛。', 'iau1-kui2 gin2-a2 lau5 tsui2-nua7.'),
+			self.分析器.產生對齊句('枵鬼囡仔流水瀾。', 'iau1-kui2 gin2-a2 lau5 tsui2-nua7.'),
 			])
 
 	def test_對齊章濟符號(self):
@@ -216,15 +216,8 @@ class 拆文分析器測試(unittest.TestCase):
 		詞音 = '!!..,.li2 ho2?'
 		章物件 = self.分析器.產生對齊章(詞型, 詞音)
 		self.assertEqual(章物件.內底句, [
-			self.分析器.產生對齊句('！', '!'),
-			self.分析器.產生對齊句('！', '!'),
-			self.分析器.產生對齊句('。', '.'),
-			self.分析器.產生對齊句('。', '.'),
-			self.分析器.產生對齊句('，', ','),
-			self.分析器.產生對齊句('。', '/'),
-			self.分析器.產生對齊句('你好？', 'liam5-tioh8 kha1,'),
-			self.分析器.產生對齊句('', 'kio3 a1-pah4,'),
-			self.分析器.產生對齊句('買豬跤，', 'li2 ho2?'),
+			self.分析器.產生對齊句('！！。。，。', '!!..,.'),
+			self.分析器.產生對齊句('你好？', 'li2 ho2?'),
 			])
 
 	def test_對齊詞傳無仝濟字(self):
@@ -315,7 +308,9 @@ class 拆文分析器測試(unittest.TestCase):
 	def test_對齊章無字(self):
 		型 = ''
 		音 = ''
+		print(self.分析器.產生對齊章('c', 'a'))
 		章物件 = self.分析器.產生對齊章(型, 音)
+		print(self.分析器.產生對齊章('c', 'a'))
 		self.assertEqual(型, '')
 		self.assertEqual(音, '')
 		self.assertEqual(章物件.內底句, [])
@@ -351,12 +346,32 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertRaises(型態錯誤, self.分析器.產生對齊章, '', None)
 		self.assertRaises(型態錯誤, self.分析器.產生對齊章, None, '')
 
+	def test_符號邊仔加空白(self):
+		self.assertEqual(self.分析器.符號邊仔加空白('腹肚枵'), '腹肚枵')
+		self.assertEqual(self.分析器.符號邊仔加空白('腹肚枵,'), '腹肚枵 ,')
+		self.assertEqual(self.分析器.符號邊仔加空白(':sui2,koo1,niu5...'), ': sui2 , koo1 , niu5 . . .')
+		self.assertEqual(self.分析器.符號邊仔加空白(' :sui2,   koo1 ,niu5 .  .  .  '), ': sui2 , koo1 , niu5 . . .')
+		self.assertEqual(self.分析器.符號邊仔加空白(':sui2,koo1,niu5...'), ': sui2 , koo1 , niu5 . . .')
+		self.assertEqual(self.分析器.符號邊仔加空白(':sui2,koo1,niu5..a.'), ': sui2 , koo1 , niu5 . . a .')
+		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1-niu5'), 'sui2 koo1-niu5')
+		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1  -  niu5'), 'sui2 koo1 - niu5')
+		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1--niu5'), 'sui2 koo1--niu5')
+		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1- -niu5'), 'sui2 koo1- -niu5')
+		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1 --niu5'), 'sui2 koo1 --niu5')
+		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1  --niu5'), 'sui2 koo1 --niu5')
+		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1-- niu5'), 'sui2 koo1-- niu5')
+		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1--   niu5'), 'sui2 koo1-- niu5')
+		self.assertEqual(self.分析器.符號邊仔加空白('我有100箍'), '我有100箍')
+		self.assertEqual(self.分析器.符號邊仔加空白('這馬時間12:20，'), '這馬時間12 : 20 ，')
+
 	def test_拆句做字(self):
 		self.assertEqual(self.分析器.拆句做字('腹肚枵'), ['腹', '肚', '枵'])
 		self.assertRaises(型態錯誤, self.分析器.拆句做字, None)
-	def test_拆句做字(self):
-		self.assertEqual(self.分析器.拆句做字('腹肚枵'), ['腹', '肚', '枵'])
-		self.assertRaises(型態錯誤, self.分析器.拆句做字, '腹肚枵⿰')
+
+	def test_拆句做字標點符號(self):
+		self.assertEqual(self.分析器.拆句做字('腹肚枵。'), ['腹', '肚', '枵', '。'])
+		self.assertEqual(self.分析器.拆句做字('！！。。，。'), ['！', '！', '。', '。', '，', '。'])
+		self.assertEqual(self.分析器.拆句做字('!!..,.'), ['!', '!', '.', '.', ',', '.'])
 
 	def test_拆句做字無愛空白(self):
 		self.assertEqual(self.分析器.拆句做字('腹 肚枵矣'), ['腹', '肚', '枵', '矣'])
@@ -366,10 +381,18 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(self.分析器.拆句做字('⿰因腹肚枵'), ['⿰因', '腹', '肚', '枵'])
 		self.assertEqual(self.分析器.拆句做字('你同⿰厓去睡目。'), ['你', '同', '⿰厓', '去', '睡', '目', '。'])
 		self.assertEqual(self.分析器.拆句做字('⿰22腹肚枵'), ['⿰2', '2', '腹', '肚', '枵'])
+		self.assertRaises(解析錯誤, self.分析器.拆句做字, '腹肚枵⿰')
+		self.assertRaises(解析錯誤, self.分析器.拆句做字, '腹肚枵⿰⿰')
+		self.assertEqual(self.分析器.拆句做字('腹肚枵⿰⿰因'), ['腹', '肚', '枵', '⿰⿰因'])
 
 	def test_拆句做字摻漢羅佮數字(self):
 		self.assertEqual(self.分析器.拆句做字('腹肚枵ah'), ['腹', '肚', '枵', 'ah'])
 		self.assertEqual(self.分析器.拆句做字('我e腹肚枵ah'), ['我', 'e', '腹', '肚', '枵', 'ah'])
+		self.assertEqual(self.分析器.拆句做字('我ê腹肚枵ah'), ['我', 'ê', '腹', '肚', '枵', 'ah'])
+		self.assertEqual(self.分析器.拆句做字('我ê pak tóo枵ah'), ['我', 'ê', 'pak', 'tóo', '枵', 'ah'])
+		self.assertEqual(self.分析器.拆句做字('我ê pak-tóo枵ah'), ['我', 'ê', 'pak', 'tóo', '枵', 'ah'])
+		self.assertEqual(self.分析器.拆句做字('我ê pak-tóo枵ah.'), ['我', 'ê', 'pak', 'tóo', '枵', 'ah', '.'])
+		self.assertEqual(self.分析器.拆句做字('我ê pak-tóo枵ah,.'), ['我', 'ê', 'pak', 'tóo', '枵', 'ah', ',', '.'])
 		self.assertEqual(self.分析器.拆句做字('我有100箍'), ['我', '有', '100', '箍', ])
 		self.assertEqual(self.分析器.拆句做字('這馬時間12:20，'), ['這', '馬', '時', '間', '12', ':', '20', '，'])
 		self.assertEqual(self.分析器.拆句做字('物件tsin1 ho2食。'), ['物', '件', 'tsin1', 'ho2', '食', '。'])
@@ -385,6 +408,9 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(self.分析器.拆章做句('你！！？轉去？矣'), ['你！！？', '轉去？', '矣'])
 		self.assertEqual(self.分析器.拆章做句('！你！？轉去？矣'), ['！', '你！？', '轉去？', '矣'])
 		self.assertEqual(self.分析器.拆章做句('！你！？轉去？矣？？'), ['！', '你！？', '轉去？', '矣？？'])
+		self.assertEqual(self.分析器.拆章做句('！！。。，。你好？'), ['！！。。，。', '你好？'])
+		self.assertEqual(self.分析器.拆章做句('!!..,.li2 ho2?'), ['!!..,.', 'li2 ho2?'])
+		self.assertEqual(self.分析器.拆章做句('!!..,.li2-ho2?'), ['!!..,.', 'li2-ho2?'])
 
 if __name__ == '__main__':
 	unittest.main()
