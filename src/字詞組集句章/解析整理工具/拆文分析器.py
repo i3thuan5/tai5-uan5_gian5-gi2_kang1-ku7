@@ -15,6 +15,18 @@ from 字詞組集句章.基本元素.公用變數 import 標點符號
 import unicodedata
 
 class 拆文分析器:
+	#接受漢羅，但是注音會當作一字一字，除非用組字式
+	def 建立組物件(self,語句):
+		if not isinstance(語句, str):
+			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
+		if 語句=='':
+			return 組()
+		拆好的詞 = self.拆句做詞(語句)
+		詞陣列=[]
+		for 孤詞 in 拆好的詞:
+			詞陣列.append(self.建立詞物件(孤詞))
+		return 組(詞陣列)
+	
 	def 產生對齊字(self, 型, 音):
 		if not isinstance(型, str):
 			raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))

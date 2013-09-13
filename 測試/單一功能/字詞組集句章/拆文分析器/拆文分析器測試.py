@@ -25,9 +25,10 @@ class 拆文分析器測試(unittest.TestCase):
 		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
 		self.assertEqual(len(組物件.內底詞), 詞陣列)
 
+	# 為著通用佮一致性，這愛家己建立詞來鬥。大部份攏是無細字揤著，親像平行語料庫才另外閣包一層
 	def test_建立組濟字配空白(self):
 		原來語句 = '我 有 一張 椅仔！'
-		切好語句 = ['我', '有', '一張', '椅仔', '！']
+		切好語句 = ['我', '有', '一', '張', '椅', '仔', '！']
 		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
 		self.assertEqual(len(組物件.內底詞), 詞陣列)
 
@@ -45,7 +46,12 @@ class 拆文分析器測試(unittest.TestCase):
 
 	def test_建立組濟字注音(self):
 		原來語句 = 'ㄙㄨㄧˋ ㄍㆦ ㄋㄧㄨˊ'
-		切好語句 = ['ㄙㄨㄧˋ', 'ㄍㆦ', 'ㄋㄧㄨˊ']
+		切好語句 = ['ㄙ', 'ㄨ', 'ㄧ', 'ˋ', 'ㄍ', 'ㆦ', 'ㄋ', 'ㄧ', 'ㄨ', 'ˊ']
+		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
+		self.assertEqual(len(組物件.內底詞), 詞陣列)
+	def test_建立組的組字式注音(self):
+		原來語句 = '⿳⿳⿳ㄙㄨㄧˋ⿳ㄍㆦ⿳⿳⿳ㄋㄧㄨˊ'
+		切好語句 = ['⿳⿳⿳ㄙㄨㄧˋ', '⿳ㄍㆦ', '⿳⿳⿳ㄋㄧㄨˊ']
 		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
 		self.assertEqual(len(組物件.內底詞), 詞陣列)
 
@@ -227,7 +233,7 @@ class 拆文分析器測試(unittest.TestCase):
 			self.分析器.產生對齊詞('。', '.'),
 			])
 
-	def test_對齊組濟字漢羅(self):
+	def test_對齊組連字號漢羅(self):
 		型 = 'gua有tsit8-tiunn1椅仔！'
 		音 = 'gua2 u7 tsit8-tiunn1 i2-a2 !'
 		組物件 = self.分析器.產生對齊組(型, 音)
@@ -236,6 +242,19 @@ class 拆文分析器測試(unittest.TestCase):
 			self.分析器.產生對齊詞('gua', 'gua2'),
 			self.分析器.產生對齊詞('有', 'u7'),
 			self.分析器.產生對齊詞('tsit8-tiunn1', 'tsit8-tiunn1'),
+			self.分析器.產生對齊詞('椅仔', 'i2-a2'),
+			self.分析器.產生對齊詞('！', '!'),
+			])
+
+	def test_對齊組空白漢羅(self):
+		型 = 'gua有tsit tiunn椅仔！'
+		音 = 'gua2 u7 tsit8-tiunn1 i2-a2 !'
+		組物件 = self.分析器.產生對齊組(型, 音)
+		self.assertEqual(len(組物件.內底詞), 5)
+		self.assertEqual(組物件.內底詞, [
+			self.分析器.產生對齊詞('gua', 'gua2'),
+			self.分析器.產生對齊詞('有', 'u7'),
+			self.分析器.產生對齊詞('tsit tiunn', 'tsit8-tiunn1'),
 			self.分析器.產生對齊詞('椅仔', 'i2-a2'),
 			self.分析器.產生對齊詞('！', '!'),
 			])
