@@ -10,7 +10,7 @@ from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
 from 字詞組集句章.解析整理工具.文章初胚工具 import 文章初胚工具
 from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 
-class 拆文分析器測試(unittest.TestCase):
+class 拆文初胚工具測試(unittest.TestCase):
 	def setUp(self):
 		self.初胚工具 = 文章初胚工具(臺灣閩南語羅馬字拼音)
 	def tearDown(self):
@@ -102,8 +102,38 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(self.初胚工具.建立物件語句前處理減號('sui2 koo1 --niu5'), 'sui2 koo1 -0niu5')
 		self.assertEqual(self.初胚工具.建立物件語句前處理減號('sui2 koo1  --niu5'), 'sui2 koo1 -0niu5')
 
+	def test_符號邊仔加空白(self):
+		self.assertEqual(self.初胚工具.符號邊仔加空白('腹肚枵'), '腹肚枵')
+		self.assertEqual(self.初胚工具.符號邊仔加空白('腹肚枵,'), '腹肚枵 ,')
+		self.assertEqual(self.初胚工具.符號邊仔加空白(':sui2,koo1,niu5...'), ': sui2 , koo1 , niu5 . . .')
+		self.assertEqual(self.初胚工具.符號邊仔加空白(' :sui2,   koo1 ,niu5 .  .  .  '), ': sui2 , koo1 , niu5 . . .')
+		self.assertEqual(self.初胚工具.符號邊仔加空白(':sui2,koo1,niu5...'), ': sui2 , koo1 , niu5 . . .')
+		self.assertEqual(self.初胚工具.符號邊仔加空白(':sui2,koo1,niu5..a.'), ': sui2 , koo1 , niu5 . . a .')
+		self.assertEqual(self.初胚工具.符號邊仔加空白('我有100箍'), '我有100箍')
+		self.assertEqual(self.初胚工具.符號邊仔加空白('這馬時間12:20，'), '這馬時間12 : 20 ，')
+
+	def test_符號邊仔加空白分字符號問題(self):
+		self.assertEqual(self.初胚工具.符號邊仔加空白('sui2 koo1-niu5'), 'sui2 koo1-niu5')
+		self.assertEqual(self.初胚工具.符號邊仔加空白('sui2 koo1  -  niu5'), 'sui2 koo1 - niu5')
+		self.assertEqual(self.初胚工具.符號邊仔加空白('sui2 koo1-0niu5'), 'sui2 koo1-0niu5')
+		self.assertEqual(self.初胚工具.符號邊仔加空白('sui2 koo1-0niu5'), 'sui2 koo1-0niu5')
+		self.assertEqual(self.初胚工具.符號邊仔加空白('這馬分數12 - 20，'), '這馬分數12 - 20 ，')
+		self.assertEqual(self.初胚工具.符號邊仔加空白('因為12  - 20= - 8，'), '因為12 - 20 = - 8 ，')
+		
+	def test_符號邊仔加空白分字符號無應該處理著的(self):
+		self.assertRaises(解析錯誤,self.初胚工具.符號邊仔加空白,'sui2 koo1- niu5')
+		self.assertRaises(解析錯誤,self.初胚工具.符號邊仔加空白,'sui2 koo1 -niu5')
+		self.assertRaises(解析錯誤,self.初胚工具.符號邊仔加空白,'sui2 koo1-- niu5')
+		self.assertRaises(解析錯誤,self.初胚工具.符號邊仔加空白,'sui2 koo1--   niu5')
+		self.assertRaises(解析錯誤,self.初胚工具.符號邊仔加空白,'sui2 koo1--niu5')
+		self.assertRaises(解析錯誤,self.初胚工具.符號邊仔加空白,'sui2 koo1- -niu5')
+		self.assertRaises(解析錯誤,self.初胚工具.符號邊仔加空白,'sui2 koo1 --niu5')
+		self.assertRaises(解析錯誤,self.初胚工具.符號邊仔加空白,'sui2 koo1  --niu5')
+		self.assertRaises(解析錯誤,self.初胚工具.符號邊仔加空白,'--niu5')
+		self.assertRaises(解析錯誤,self.初胚工具.符號邊仔加空白,'sui2--')
+
 
 if __name__ == '__main__':
 	unittest.main()
 # 	初胚工具 = 文章初胚工具(臺灣閩南語羅馬字拼音)
-# 	print(初胚工具.建立物件語句前處理減號('---- 媠 ----'))
+# 	print(初胚工具.符號邊仔加空白('sui2 koo1--niu5'))

@@ -108,7 +108,7 @@ class 拆文分析器:
 		
 		詞陣列 = []
 		第幾字 = 0
-		for 詞音 in self.符號邊仔加空白(音).split(分詞符號):
+		for 詞音 in 音.split(分詞符號):
 			字音陣列 = 詞音.split(分字符號)
 			if 第幾字 + len(字音陣列) > len(型陣列):
 				raise 解析錯誤('詞組內底的型「{0}」比音「{1}」少！配對結果：{2}'.format(
@@ -159,19 +159,6 @@ class 拆文分析器:
 		for 型物件, 音物件 in zip(型陣列, 音陣列):
 			句陣列.append(self.產生對齊句(型物件, 音物件))
 		return 章(句陣列)
-
-	def 符號邊仔加空白(self, 語句):
-		for 符號 in 標點符號:
-			if 符號 != 分字符號 and 符號 != 分詞符號:
-				語句 = 語句.replace(符號, ' ' + 符號 + ' ')
-		語句 = 語句.strip()
-		無仝 = True
-		while 無仝:
-			新語句 = 語句.replace('  ', ' ')
-			if 新語句 == 語句:
-				無仝 = False
-			語句 = 新語句
-		return 語句
 
 	def 拆句做字(self, 語句):
 		if not isinstance(語句, str):

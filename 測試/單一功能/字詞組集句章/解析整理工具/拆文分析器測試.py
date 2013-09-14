@@ -12,6 +12,7 @@ from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
 class 拆文分析器測試(unittest.TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
+		self.初胚工具 = 文章初胚工具(臺灣閩南語羅馬字拼音)
 	def tearDown(self):
 		pass
 
@@ -479,35 +480,6 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertRaises(型態錯誤, self.分析器.產生對齊章, None, None)
 		self.assertRaises(型態錯誤, self.分析器.產生對齊章, '', None)
 		self.assertRaises(型態錯誤, self.分析器.產生對齊章, None, '')
-
-	def test_符號邊仔加空白(self):
-		self.assertEqual(self.分析器.符號邊仔加空白('腹肚枵'), '腹肚枵')
-		self.assertEqual(self.分析器.符號邊仔加空白('腹肚枵,'), '腹肚枵 ,')
-		self.assertEqual(self.分析器.符號邊仔加空白(':sui2,koo1,niu5...'), ': sui2 , koo1 , niu5 . . .')
-		self.assertEqual(self.分析器.符號邊仔加空白(' :sui2,   koo1 ,niu5 .  .  .  '), ': sui2 , koo1 , niu5 . . .')
-		self.assertEqual(self.分析器.符號邊仔加空白(':sui2,koo1,niu5...'), ': sui2 , koo1 , niu5 . . .')
-		self.assertEqual(self.分析器.符號邊仔加空白(':sui2,koo1,niu5..a.'), ': sui2 , koo1 , niu5 . . a .')
-		self.assertEqual(self.分析器.符號邊仔加空白('我有100箍'), '我有100箍')
-		self.assertEqual(self.分析器.符號邊仔加空白('這馬時間12:20，'), '這馬時間12 : 20 ，')
-
-	def test_符號邊仔加空白分字符號問題(self):
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1-niu5'), 'sui2 koo1-niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1  -  niu5'), 'sui2 koo1 - niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1-0niu5'), 'sui2 koo1-0niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1-0niu5'), 'sui2 koo1-0niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('這馬分數12-20，'), '這馬分數12 - 20 ，')
-		self.assertEqual(self.分析器.符號邊仔加空白('因為12-20=-8，'), '因為12 - 20 = - 8 ，')
-		
-	def test_符號邊仔加空白分字符號無應該處理著的(self):
-		#railse
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1- niu5'), 'sui2 koo1 -niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1 -niu5'), 'sui2 koo1 -niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1-- niu5'), 'sui2 koo1-- niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1--   niu5'), 'sui2 koo1-- niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1--niu5'), 'sui2 koo1--niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1- -niu5'), 'sui2 koo1- -niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1 --niu5'), 'sui2 koo1 --niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1  --niu5'), 'sui2 koo1 --niu5')
 
 	def test_拆句做字(self):
 		self.assertEqual(self.分析器.拆句做字('腹肚枵'), ['腹', '肚', '枵'])
