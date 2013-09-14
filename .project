@@ -3,7 +3,7 @@
 	<name>語音處理</name>
 	<comment></comment>
 	<projects>
-		<project>音標系統</project>
+		<project>文本製作</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
