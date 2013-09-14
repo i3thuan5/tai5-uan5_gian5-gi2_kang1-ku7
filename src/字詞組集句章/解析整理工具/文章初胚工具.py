@@ -53,6 +53,13 @@ class 文章初胚工具:
 	def 符號邊仔加空白(self, 語句):
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
+		self.減號有照規則無(語句)
+		for 符號 in 標點符號:
+			if 符號 != 分字符號 and 符號 != 分詞符號:
+				語句 = 語句.replace(符號, '{0}{1}{0}'.format(分詞符號, 符號))
+		return self.除掉重覆的空白(語句)
+	
+	def 減號有照規則無(self, 語句):
 		分字符號合法=True
 		for 位置 in range(1,len(語句)-1):
 			if 語句[位置]==分字符號:
@@ -66,10 +73,6 @@ class 文章初胚工具:
 			分字符號合法=False
 		if not 分字符號合法:
 			raise 解析錯誤('語句內底減號，兩邊袂使干焦一邊是空白：{0}'.format(str(語句)))
-		for 符號 in 標點符號:
-			if 符號 != 分字符號 and 符號 != 分詞符號:
-				語句 = 語句.replace(符號, '{0}{1}{0}'.format(分詞符號, 符號))
-		return self.除掉重覆的空白(語句).strip()
 
 	def 頭前有音標無(self, 語句):
 		for 長度 in range(1, min(len(語句), self.音標工具.音標上長長度) + 1):

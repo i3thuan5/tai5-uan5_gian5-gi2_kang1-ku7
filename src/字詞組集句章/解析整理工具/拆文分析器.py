@@ -13,15 +13,22 @@ from 字詞組集句章.基本元素.公用變數 import 組字式符號
 from 字詞組集句章.基本元素.公用變數 import 斷句標點符號
 from 字詞組集句章.基本元素.公用變數 import 標點符號
 import unicodedata
+from 字詞組集句章.解析整理工具.文章初胚工具 import 文章初胚工具
 
 class 拆文分析器:
+	符號邊仔加空白 = None
+	減號有照規則無 = None
+	def __init__(self):
+		初胚工具 = 文章初胚工具(None)
+		self.符號邊仔加空白 = 初胚工具.符號邊仔加空白
+		self.減號有照規則無 = 初胚工具.減號有照規則無
 	def 建立字物件(self, 語句):
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
 		if 語句 == '':
 			raise 型態錯誤('傳入來的語句是空的！')
 		return 字(語句)
-	
+
 	def 建立詞物件(self, 語句):
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
@@ -102,10 +109,10 @@ class 拆文分析器:
 			raise 型態錯誤('傳入來的音毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
 		if 型 == '' and 音 == 無音:
 			return 組()
-		##
+		# #
 # 		型陣列 = self.拆句做字(self.符號邊仔加空白(型))
 		型陣列 = self.拆句做字(型)
-		
+
 		詞陣列 = []
 		第幾字 = 0
 		for 詞音 in 音.split(分詞符號):
@@ -163,6 +170,7 @@ class 拆文分析器:
 	def 拆句做字(self, 語句):
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
+		self.減號有照規則無(語句)
 		字陣列 = []
 		# 一般　組字
 		狀態 = '一般'
