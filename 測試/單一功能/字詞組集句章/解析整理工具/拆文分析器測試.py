@@ -23,74 +23,95 @@ class 拆文分析器測試(unittest.TestCase):
 		原來語句 = '我有一張椅仔！'
 		切好語句 = ['我', '有', '一', '張', '椅', '仔', '！']
 		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-		self.assertEqual(len(組物件.內底詞), 詞陣列)
+		self.assertEqual(組物件.內底詞, 詞陣列)
 
 	# 為著通用佮一致性，這愛家己建立詞來鬥。大部份攏是無細字揤著，親像平行語料庫才另外閣包一層
 	def test_建立組濟字配空白(self):
 		原來語句 = '我 有 一張 椅仔！'
 		切好語句 = ['我', '有', '一', '張', '椅', '仔', '！']
 		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-		self.assertEqual(len(組物件.內底詞), 詞陣列)
+		self.assertEqual(組物件.內底詞, 詞陣列)
 
 	def test_建立組濟音標(self):
 		原來語句 = 'gua2 u7 tsit8-tiunn1 i2-a2'
 		切好語句 = ['gua2', 'u7', 'tsit8-tiunn1', 'i2-a2']
 		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-		self.assertEqual(len(組物件.內底詞), 詞陣列)
+		self.assertEqual(組物件.內底詞, 詞陣列)
 
 	def test_建立組濟字輕聲(self):
 		原來語句 = 'mi2-kiann7 boo5-0ki3 ah!'
 		切好語句 = ['mi2-kiann7', 'boo5-0ki3', 'ah', '!']
 		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-		self.assertEqual(len(組物件.內底詞), 詞陣列)
+		self.assertEqual(組物件.內底詞, 詞陣列)
 
 	def test_建立組濟字注音(self):
 		原來語句 = 'ㄙㄨㄧˋ ㄍㆦ ㄋㄧㄨˊ'
 		切好語句 = ['ㄙ', 'ㄨ', 'ㄧ', 'ˋ', 'ㄍ', 'ㆦ', 'ㄋ', 'ㄧ', 'ㄨ', 'ˊ']
 		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-		self.assertEqual(len(組物件.內底詞), 詞陣列)
+		self.assertEqual(組物件.內底詞, 詞陣列)
+
 	def test_建立組的組字式注音(self):
 		原來語句 = '⿳⿳⿳ㄙㄨㄧˋ⿳ㄍㆦ⿳⿳⿳ㄋㄧㄨˊ'
 		切好語句 = ['⿳⿳⿳ㄙㄨㄧˋ', '⿳ㄍㆦ', '⿳⿳⿳ㄋㄧㄨˊ']
 		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-		self.assertEqual(len(組物件.內底詞), 詞陣列)
+		self.assertEqual(組物件.內底詞, 詞陣列)
 
 	def test_建立組濟字佮符號(self):
 		原來語句 = '枋寮漁港「大條巷」上闊兩公尺。'
+		切好語句 = ['枋', '寮', '漁', '港', '「', '大', '條', '巷', '」', '上', '闊', '兩', '公', '尺', '。']
+		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
+		self.assertEqual(組物件.內底詞, 詞陣列)
+		
+	def test_建立組濟連字佮符號(self):
+		原來語句 = '枋-寮漁-港「大-條-巷」上-闊兩-公-尺。'
 		切好語句 = ['枋寮', '漁港', '「', '大條巷', '」', '上闊', '兩公尺', '。']
 		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-		self.assertEqual(len(組物件.內底詞), 詞陣列)
+		self.assertEqual(組物件.內底詞, 詞陣列)
+		
+	def test_建立組濟連紲連字(self):
+		原來語句 = '欲看-一-个-無？'
+		切好語句 = ['欲', '看一个無', '？']
+		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
+		self.assertEqual(組物件.內底詞, 詞陣列)
 
 	def test_建立組音標佮符號(self):
 		原來語句 = 'Pang-liau5 hi5-kang2 「 Tua7-tiau5-hang7 」 siang7-khoah nng7-kong-tshioh.'
 		切好語句 = ['Pang-liau5', 'hi5-kang2', '「', 'Tua7-tiau5-hang7', '」',
-			'siang7-khoah', '兩公尺nng7-kong-tshioh', '.']
+			'siang7-khoah', 'nng7-kong-tshioh', '.']
 		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-		self.assertEqual(len(組物件.內底詞), 詞陣列)
+		self.assertEqual(組物件.內底詞, 詞陣列)
 
 	def test_建立組濟字漢羅連字(self):
 		原來語句 = 'gua有tsit8-tiunn1椅仔！'
 		切好語句 = ['gua', '有', 'tsit8-tiunn1', '椅', '仔', '！']
 		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-		self.assertEqual(len(組物件.內底詞), 詞陣列)
+		self.assertEqual(組物件.內底詞, 詞陣列)
 
 	def test_建立組濟字漢羅空白(self):
 		原來語句 = 'gua u一張椅仔！'
 		切好語句 = ['gua', 'u', '一', '張', '椅', '仔', '！']
 		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-		self.assertEqual(len(組物件.內底詞), 詞陣列)
+		self.assertEqual(組物件.內底詞, 詞陣列)
 
 	def test_建立組濟字算式(self):
-		原來語句 = '所以是5-3=2!!'
+		原來語句 = '所以是5 -3=2!!'
 		切好語句 = ['所', '以', '是', '5', '-', '3', '=', '2', '!', '!']
 		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-		self.assertEqual(len(組物件.內底詞), 詞陣列)
+		self.assertEqual(組物件.內底詞, 詞陣列)
 
 	def test_建立組濟字其他符號(self):
 		原來語句 = '伊18:30會來'
 		切好語句 = ['伊', '18', ':', '30', '會', '來']
 		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-		self.assertEqual(len(組物件.內底詞), 詞陣列)
+		self.assertEqual(組物件.內底詞, 詞陣列)
+
+	def test_建立組濟字算式佮連字號(self):
+		原來語句 = '食-0tsit8-kua5才來，阮hak8-hau7佇大學路1001 -1號，儂莫走boo5-0ki3。'
+		切好語句 = ['食-0tsit8-kua5', '才', '來', '，',
+			'阮', 'hak8-hau7', '佇', '大', '學', '路', '1001', '-', '1', '號', '，',
+			'儂', '莫', '走', 'boo5-0ki3', '。']
+		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
+		self.assertEqual(組物件.內底詞, 詞陣列)
 
 	def test_對齊字孤字(self):
 		型 = '媠'
@@ -472,18 +493,21 @@ class 拆文分析器測試(unittest.TestCase):
 	def test_符號邊仔加空白分字符號問題(self):
 		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1-niu5'), 'sui2 koo1-niu5')
 		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1  -  niu5'), 'sui2 koo1 - niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1- niu5'), 'sui2 koo1 - niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1 -niu5'), 'sui2 koo1 - niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1--niu5'), 'sui2 koo1 - - niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1- -niu5'), 'sui2 koo1 - - niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1 --niu5'), 'sui2 koo1 - - niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1  --niu5'), 'sui2 koo1 - - niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1-- niu5'), 'sui2 koo1 - - niu5')
-		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1--   niu5'), 'sui2 koo1 - - niu5')
 		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1-0niu5'), 'sui2 koo1-0niu5')
 		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1-0niu5'), 'sui2 koo1-0niu5')
 		self.assertEqual(self.分析器.符號邊仔加空白('這馬分數12-20，'), '這馬分數12 - 20 ，')
 		self.assertEqual(self.分析器.符號邊仔加空白('因為12-20=-8，'), '因為12 - 20 = - 8 ，')
+		
+	def test_符號邊仔加空白分字符號無應該處理著的(self):
+		#railse
+		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1- niu5'), 'sui2 koo1 -niu5')
+		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1 -niu5'), 'sui2 koo1 -niu5')
+		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1-- niu5'), 'sui2 koo1-- niu5')
+		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1--   niu5'), 'sui2 koo1-- niu5')
+		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1--niu5'), 'sui2 koo1--niu5')
+		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1- -niu5'), 'sui2 koo1- -niu5')
+		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1 --niu5'), 'sui2 koo1 --niu5')
+		self.assertEqual(self.分析器.符號邊仔加空白('sui2 koo1  --niu5'), 'sui2 koo1 --niu5')
 
 	def test_拆句做字(self):
 		self.assertEqual(self.分析器.拆句做字('腹肚枵'), ['腹', '肚', '枵'])
@@ -532,6 +556,6 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(self.分析器.拆章做句('！！。。，。你好？'), ['！！。。，。', '你好？'])
 		self.assertEqual(self.分析器.拆章做句('!!..,.li2 ho2?'), ['!!..,.', 'li2 ho2?'])
 		self.assertEqual(self.分析器.拆章做句('!!..,.li2-ho2?'), ['!!..,.', 'li2-ho2?'])
-
+		
 if __name__ == '__main__':
 	unittest.main()

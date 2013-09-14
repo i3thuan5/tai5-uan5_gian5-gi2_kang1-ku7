@@ -15,18 +15,38 @@ from 字詞組集句章.基本元素.公用變數 import 標點符號
 import unicodedata
 
 class 拆文分析器:
-	#接受漢羅，但是注音會當作一字一字，除非用組字式
-	def 建立組物件(self,語句):
+	def 建立字物件(self, 語句):
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
-		if 語句=='':
+		if 語句 == '':
+			raise 型態錯誤('傳入來的語句是空的！')
+		return 字(語句)
+	
+	def 建立詞物件(self, 語句):
+		if not isinstance(語句, str):
+			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
+		if 語句 == '':
+			return 詞()
+		拆好的字 = self.拆句做字(語句)
+		字陣列 = []
+		for 孤詞 in 拆好的字:
+			字陣列.append(self.建立字物件(孤詞))
+		return 詞(字陣列)
+
+	# 接受漢羅，但是注音會當作一字一字，除非用組字式。
+	# 連字符的兩爿攏無使有空白，若減號愛留的，頭前上好有空白無就是佇句首。
+	# 若無法度處理，閣愛保留連字符，用對齊來做。
+	def 建立組物件(self, 語句):
+		if not isinstance(語句, str):
+			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
+		if 語句 == '':
 			return 組()
 		拆好的詞 = self.拆句做詞(語句)
-		詞陣列=[]
+		詞陣列 = []
 		for 孤詞 in 拆好的詞:
 			詞陣列.append(self.建立詞物件(孤詞))
 		return 組(詞陣列)
-	
+
 	def 產生對齊字(self, 型, 音):
 		if not isinstance(型, str):
 			raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
@@ -74,6 +94,7 @@ class 拆文分析器:
 			字陣列.append(字(型陣列[位置], 音陣列[位置]))
 		return 詞(字陣列)
 
+	# 斷詞會照音來斷，型的連字符攏無算
 	def 產生對齊組(self, 型, 音):
 		if not isinstance(型, str):
 			raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
@@ -81,7 +102,10 @@ class 拆文分析器:
 			raise 型態錯誤('傳入來的音毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
 		if 型 == '' and 音 == 無音:
 			return 組()
-		型陣列 = self.拆句做字(self.符號邊仔加空白(型))
+		##
+# 		型陣列 = self.拆句做字(self.符號邊仔加空白(型))
+		型陣列 = self.拆句做字(型)
+		
 		詞陣列 = []
 		第幾字 = 0
 		for 詞音 in self.符號邊仔加空白(音).split(分詞符號):
@@ -131,7 +155,7 @@ class 拆文分析器:
 		if len(型陣列) < len(音陣列):
 			raise 解析錯誤('詞內底的型「{0}」比音「{1}」濟！'.format(
 				str(型), str(音)))
-		句陣列=[]
+		句陣列 = []
 		for 型物件, 音物件 in zip(型陣列, 音陣列):
 			句陣列.append(self.產生對齊句(型物件, 音物件))
 		return 章(句陣列)
