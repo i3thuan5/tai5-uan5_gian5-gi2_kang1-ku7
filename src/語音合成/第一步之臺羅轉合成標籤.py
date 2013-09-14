@@ -5,7 +5,7 @@ from 臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 # 前音-此音+後音/調：調類/詞：第幾字!上尾第幾字@攏總字/句：第幾字^上尾第幾字_攏總字
 class 臺羅轉合成標籤:
 	安靜符號 = 'sil'
-	安靜標籤 = 'x-sil+x/tiau7:x/su5:x!x@x/ku3:x^x_x'
+	安靜標籤 = 'x-sil+x/tiau3:x/su5:x!x@x/ku3:x^x_x'
 	def 臺羅轉合成標籤佮聲韻資料(self, 臺羅音標):
 		聲韻標籤 = [self.安靜符號]
 		for 詞 in 臺羅音標.split(' '):
