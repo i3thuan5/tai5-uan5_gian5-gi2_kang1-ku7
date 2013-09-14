@@ -124,6 +124,13 @@ class 拆文初胚工具測試(unittest.TestCase):
 		self.assertEqual(self.初胚工具.建立物件語句前處理減號(原來語句), 處理好語句)
 		self.assertEqual(self.初胚工具.符號邊仔加空白(處理好語句), 加空白後語句)
 
+	def test_建立物件語句前處理減號組字式(self):
+		原來語句 = '⿰---⿰---⿱--,⿰-,⿱⿰-,---⿱--'
+		處理好語句 = '⿰-- - ⿰-- - ⿱--,⿰-,⿱⿰-,- - - ⿱--'
+		加空白後語句 = '⿰-- - ⿰-- - ⿱-- , ⿰-,⿱⿰-,- - - ⿱--'
+		self.assertEqual(self.初胚工具.建立物件語句前處理減號(原來語句), 處理好語句)
+		self.assertEqual(self.初胚工具.符號邊仔加空白(處理好語句), 加空白後語句)
+
 	def test_建立物件語句前處理奇怪組合(self):
 		self.assertEqual(self.初胚工具.建立物件語句前處理減號('sui2 koo1- niu5'), 'sui2 koo1 - niu5')
 		self.assertEqual(self.初胚工具.建立物件語句前處理減號('sui2 koo1 -niu5'), 'sui2 koo1 - niu5')

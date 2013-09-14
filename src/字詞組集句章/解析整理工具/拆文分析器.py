@@ -115,7 +115,7 @@ class 拆文分析器:
 
 		詞陣列 = []
 		第幾字 = 0
-		for 詞音 in 音.split(分詞符號):
+		for 詞音 in self.符號邊仔加空白(音).strip().split(分詞符號):
 			字音陣列 = 詞音.split(分字符號)
 			if 第幾字 + len(字音陣列) > len(型陣列):
 				raise 解析錯誤('詞組內底的型「{0}」比音「{1}」少！配對結果：{2}'.format(
@@ -168,6 +168,8 @@ class 拆文分析器:
 		return 章(句陣列)
 
 	def 拆句做字(self, 語句):
+		pass
+	def 拆句做詞(self, 語句):
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
 		self.減號有照規則無(語句)
@@ -177,7 +179,9 @@ class 拆文分析器:
 		# 下組字式抑是數羅
 		一个字 = ''
 		長度 = 0
-		for 字 in 語句:
+#		for 字 in 語句:
+		for 位置 in range(len(語句)):
+			字=語句[位置]
 			字種類 = unicodedata.category(字)
 # 			print(字, 狀態, 字陣列, 一个字)
 # 			print(字種類)
@@ -238,6 +242,7 @@ class 拆文分析器:
 		# =>無，下佇仝詞組，予斷詞處理
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
+		語句=語句.strip()
 		句陣列 = []
 		頭前 = 0
 		for 第幾字 in range(1, len(語句)):
