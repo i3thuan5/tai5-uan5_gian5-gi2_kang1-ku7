@@ -14,6 +14,7 @@ from 字詞組集句章.基本元素.公用變數 import 斷句標點符號
 from 字詞組集句章.基本元素.公用變數 import 標點符號
 import unicodedata
 from 字詞組集句章.解析整理工具.文章初胚工具 import 文章初胚工具
+from 字詞組集句章.基本元素.公用變數 import 統一碼音標類
 
 class 拆文分析器:
 	符號邊仔加空白 = None
@@ -248,8 +249,7 @@ class 拆文分析器:
 						一个字 = ''
 					字陣列.append(字)
 					佮後一个字是佇仝一个詞.append(False)
-				# Ll　小寫， Lu　大寫， Md　數字，Lo　其他, So 組字式符號…
-				elif 字種類 == 'Ll' or 字種類 == 'Lu' or 字種類 == 'Nd':
+				elif 字種類 in 統一碼音標類:
 					一个字 += 字
 				else:
 					if 一个字 != '':

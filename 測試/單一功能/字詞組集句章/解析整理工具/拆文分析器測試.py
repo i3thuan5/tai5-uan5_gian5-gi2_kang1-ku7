@@ -396,7 +396,7 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(句物件.內底集, [
 			self.分析器.產生對齊集(詞型, 處理好詞音),
 			])
-		self.assertEqual(句物件,self.分析器.產生對齊句(詞型, 加空白後詞音))
+		self.assertEqual(句物件, self.分析器.產生對齊句(詞型, 加空白後詞音))
 
 	def test_對齊章濟字(self):
 		詞型 = '點仔膠，黏著跤，叫阿爸，買豬跤，豬跤箍仔焄爛爛，枵鬼囡仔流水瀾。'
@@ -576,16 +576,6 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(self.分析器.拆句做字('腹肚枵⿰⿰因'), ['腹', '肚', '枵', '⿰⿰因'])
 
 	def test_拆句做字摻漢羅佮數字(self):
-		
-# 
-# 		原來詞音 = 'Pang-liau5 hi5-kang2 「 Tua7-tiau5-hang7 」 siang7-khoah nng7-kong-tshioh.'
-# 		處理好詞音 = 'mi2-kiann7 boo5-0ki3 ah!'
-# 		加空白後詞音 = 'mi2-kiann7 boo5-0ki3 ah ! '
-# 		self.assertEqual(self.初胚工具.建立物件語句前處理減號(原來詞音), 處理好詞音)
-# 		self.assertEqual(self.初胚工具.符號邊仔加空白(處理好詞音), 加空白後詞音)
-# 		組物件 = self.分析器.產生對齊組(詞型, 加空白後詞音)
-# 		
-# 		
 		self.assertEqual(self.分析器.拆句做字('腹肚枵ah'), ['腹', '肚', '枵', 'ah'])
 		self.assertEqual(self.分析器.拆句做字('我e腹肚枵ah'), ['我', 'e', '腹', '肚', '枵', 'ah'])
 		self.assertEqual(self.分析器.拆句做字('我ê腹肚枵ah'), ['我', 'ê', '腹', '肚', '枵', 'ah'])
@@ -598,6 +588,18 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(self.分析器.拆句做字('這馬時間12:20，'), ['這', '馬', '時', '間', '12', ':', '20', '，'])
 		self.assertEqual(self.分析器.拆句做字('物件tsin1 ho2食。'), ['物', '件', 'tsin1', 'ho2', '食', '。'])
 
+	def test_拆句做巢狀詞摻漢羅佮數字(self):
+		self.assertEqual(self.分析器.拆句做巢狀詞('腹肚枵ah'), [['腹'], ['肚'], ['枵'], ['ah']])
+		self.assertEqual(self.分析器.拆句做巢狀詞('我ê腹肚枵ah'), [['我'], ['ê'], ['腹'], ['肚'], ['枵'], ['ah']])
+		self.assertEqual(self.分析器.拆句做巢狀詞('我ê pak tóo枵ah'), [['我'], ['ê'], ['pak'], ['tóo'], ['枵'], ['ah']])
+		self.assertEqual(self.分析器.拆句做巢狀詞('我ê pak-tóo枵ah'), [['我'], ['ê'], ['pak', 'tóo'], ['枵'], ['ah']])
+		self.assertEqual(self.分析器.拆句做巢狀詞('我ê pak - tóo枵ah'), [['我'], ['ê'], ['pak'], ['-'], ['tóo'], ['枵'], ['ah']])
+		
+	def test_拆句做巢狀詞摻組字式(self):
+		原本語句 = '⿰---⿰-- - ⿱--,⿰-,⿱⿰-,--⿱--'
+		斷詞後巢狀陣列 = [['⿰--', '⿰--'], ['-'], ['⿱--'], [','], ['⿰-,'], ['⿱⿰-,-', '⿱--']]
+		self.assertEqual(self.分析器.拆句做巢狀詞(原本語句), 斷詞後巢狀陣列)
+		
 	def test_拆章做句(self):
 		self.assertEqual(self.分析器.拆章做句('我腹肚枵，欲來去食飯。'), ['我腹肚枵，', '欲來去食飯。'])
 		self.assertEqual(self.分析器.拆章做句('伊講：我腹肚枵，欲來去食飯。'), ['伊講：我腹肚枵，', '欲來去食飯。'])

@@ -5,6 +5,7 @@ from 字詞組集句章.基本元素.公用變數 import 分詞符號
 from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
 from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 from 字詞組集句章.基本元素.公用變數 import 組字式符號
+from 字詞組集句章.基本元素.公用變數 import 統一碼漢字佮組字式類
 
 class 文章初胚工具:
 	音標工具 = None
@@ -15,13 +16,14 @@ class 文章初胚工具:
 		self.音標工具 = 音標工具
 
 	# 輕聲連字符會擲掉，但是會留一个連字符做斷詞
+	# 若減號兩邊毋是漢字、組字號，就是合法的音標，伊就當作連字符來斷詞
 	def 建立物件語句前處理減號(self, 語句):
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
 		if 語句.startswith(分字符號 + 分字符號):
 			if self.後壁有音標無(語句[2:]):
 				語句 = '0' + 語句[2:]
-			elif(2 < len(語句) and unicodedata.category(語句[2]) == 'Lo'):
+			elif(2 < len(語句) and unicodedata.category(語句[2]) in 統一碼漢字佮組字式類):
 				語句 = 語句[2:]
 		位置 = 0
 		狀態 = '一般'
@@ -38,10 +40,10 @@ class 文章初胚工具:
 					if self.頭前有音標無(語句[位置 + 2:]):
 						語句 = 語句[:位置] + '-0' + 語句[位置 + 2:]
 					elif self.後壁有音標無(語句[:位置]) and (
-						位置 + 2 < len(語句) and unicodedata.category(語句[位置 + 2]) == 'Lo'):
+						位置 + 2 < len(語句) and unicodedata.category(語句[位置 + 2]) in 統一碼漢字佮組字式類):
 						語句 = 語句[:位置] + 分字符號 + 語句[位置 + 2:]
-					elif (位置 - 1 >= 0 and unicodedata.category(語句[位置 - 1]) == 'Lo') and (
-						位置 + 2 < len(語句) and unicodedata.category(語句[位置 + 2]) == 'Lo'):
+					elif (位置 - 1 >= 0 and unicodedata.category(語句[位置 - 1]) in 統一碼漢字佮組字式類) or (
+						位置 + 2 < len(語句) and unicodedata.category(語句[位置 + 2]) in 統一碼漢字佮組字式類):
 						語句 = 語句[:位置] + 分字符號 + 語句[位置 + 2:]
 					else:
 						語句 = 語句[:位置] + self.兩分字符號代表字 + 語句[位置 + 2:]
@@ -50,8 +52,9 @@ class 文章初胚工具:
 				elif 語句[位置] == 分字符號:
 					頭節 = self.後壁有音標無(語句[:位置])
 					後節 = self.頭前有音標無(語句[位置 + 1:])
-					if (頭節 and 後節) or (頭節 and 位置 + 1 < len(語句) and unicodedata.category(語句[位置 + 1]) == 'Lo'
-						) or (後節 and 位置 - 1 >= 0 and unicodedata.category(語句[位置 - 1]) == 'Lo'):
+					頭前漢字抑是組字式=(位置 - 1 >= 0 and unicodedata.category(語句[位置 - 1]) in 統一碼漢字佮組字式類)
+					後壁漢字抑是組字式=(位置 + 1 < len(語句) and unicodedata.category(語句[位置 + 1]) in 統一碼漢字佮組字式類)
+					if (頭節 or 頭前漢字抑是組字式) and (後節 or 後壁漢字抑是組字式):
 						pass
 					else:
 						語句 = 語句[:位置] + self.分字符號代表字 + 語句[位置 + 1:]
@@ -105,12 +108,12 @@ class 文章初胚工具:
 					if 位置 + 1 < len(語句) and 語句[位置 + 1] == 分字符號:
 						raise 解析錯誤('語句內底袂使有連紲兩个減號，愛用空白隔開：{0}'.format(str(語句)))
 					if 分字符號合法:
-						上尾會使位置=位置
+						上尾會使位置 = 位置
 					if 位置 == 0:
-						if len(語句)>1:
+						if len(語句) > 1:
 							分字符號合法 = False
 					elif 位置 == len(語句) - 1:
-						if len(語句)>1:
+						if len(語句) > 1:
 							分字符號合法 = False
 					elif 語句[位置 - 1] != 分詞符號 and 語句[位置 + 1] == 分詞符號:
 						分字符號合法 = False
@@ -121,7 +124,7 @@ class 文章初胚工具:
 				狀態 = '一般'
 				組字式長度 = 0
 		if not 分字符號合法:
-			raise 解析錯誤('語句內底減號，兩邊袂使干焦一邊是空白：位置＝{1}，語句＝{0}'.format(str(語句),上尾會使位置))
+			raise 解析錯誤('語句內底減號，兩邊袂使干焦一邊是空白：位置＝{1}，語句＝{0}'.format(str(語句), 上尾會使位置))
 
 	def 頭前有音標無(self, 語句):
 		for 長度 in range(1, min(len(語句), self.音標工具.音標上長長度) + 1):
