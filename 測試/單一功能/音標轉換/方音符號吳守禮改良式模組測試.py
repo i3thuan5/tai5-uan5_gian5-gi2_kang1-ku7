@@ -1,5 +1,5 @@
 import unittest
-from 字詞集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
+from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 
 class 臺灣閩南語羅馬字拼音模組測試(unittest.TestCase):
 	def setUp(self):

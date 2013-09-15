@@ -1,5 +1,5 @@
 import unittest
-from 字詞集句章.音標系統.閩南語.臺灣語言音標 import 臺灣語言音標
+from 字詞組集句章.音標系統.閩南語.臺灣語言音標 import 臺灣語言音標
 
 class 臺灣語言音標測試(unittest.TestCase):
 	def setUp(self):
