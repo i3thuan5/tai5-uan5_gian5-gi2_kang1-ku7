@@ -23,11 +23,12 @@ class 拆文分析器:
 		初胚工具 = 文章初胚工具(None)
 		self.符號邊仔加空白 = 初胚工具.符號邊仔加空白
 		self.減號有照規則無 = 初胚工具.減號有照規則無
+		
 	def 建立字物件(self, 語句):
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
 		if 語句 == '':
-			raise 型態錯誤('傳入來的語句是空的！')
+			raise 解析錯誤('傳入來的語句是空的！')
 		return 字(語句)
 
 	def 建立詞物件(self, 語句):
@@ -57,6 +58,31 @@ class 拆文分析器:
 				字陣列.append(self.建立字物件(孤字))
 			詞陣列.append(詞(字陣列))
 		return 組(詞陣列)
+	
+	def 建立集物件(self, 語句):
+		if not isinstance(語句, str):
+			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
+		if 語句 == '':
+			return 集()
+		return 集([self.建立組物件(語句)])
+	
+	def 建立句物件(self, 語句):
+		if not isinstance(語句, str):
+			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
+		if 語句 == '':
+			return 句()
+		return 句([self.建立集物件(語句)])
+	
+	def 建立章物件(self, 語句):
+		if not isinstance(語句, str):
+			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
+		if 語句 == '':
+			return 章()
+		語句陣列 = self.拆章做句(語句)
+		句陣列 = []
+		for 一句 in 語句陣列:
+			句陣列.append(self.建立句物件(一句))
+		return 章(句陣列)
 
 	def 產生對齊字(self, 型, 音):
 		if not isinstance(型, str):
@@ -64,7 +90,7 @@ class 拆文分析器:
 		if not isinstance(音, str):
 			raise 型態錯誤('傳入來的音毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
 		if 型 == '':
-			raise 型態錯誤('傳入來的型是空的！')
+			raise 解析錯誤('傳入來的型是空的！')
 		return 字(型, 音)
 
 	def 產生對齊詞(self, 型, 音):

@@ -10,6 +10,7 @@ from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
 from 字詞組集句章.解析整理工具.文章初胚工具 import 文章初胚工具
 from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
+from 字詞組集句章.基本元素.公用變數 import 無音
 
 class 拆文分析器測試(unittest.TestCase):
 	def setUp(self):
@@ -17,6 +18,59 @@ class 拆文分析器測試(unittest.TestCase):
 		self.初胚工具 = 文章初胚工具(臺灣閩南語羅馬字拼音)
 	def tearDown(self):
 		pass
+	def test_建立字孤字(self):
+		型 = '媠'
+		字物件 = self.分析器.建立字物件(型)
+		self.assertEqual(字物件.型, 型)
+
+	def test_建立字無字(self):
+		型 = ''
+		self.assertRaises(解析錯誤, self.分析器.建立字物件, 型)
+
+	def test_建立詞孤字(self):
+		型 = '媠'
+		詞物件 = self.分析器.建立詞物件(型)
+		self.assertEqual(len(詞物件.內底字), 1)
+		self.assertEqual(詞物件.內底字[0].型, 型)
+		self.assertEqual(詞物件.內底字[0].音, 無音)
+		self.assertEqual(詞物件.內底字[0], self.分析器.建立字物件(型))
+
+	def test_建立詞無字(self):
+		型 = ''
+		詞物件 = self.分析器.建立詞物件(型)
+		self.assertEqual(len(詞物件.內底字), 0)
+		self.assertEqual(詞物件.內底字, [])
+
+	def test_建立詞濟字漢字(self):
+		語句 = '椅仔！'
+		self.assertEqual(self.分析器.建立詞物件(語句).內底字,
+			[self.分析器.建立字物件('椅'), self.分析器.建立字物件('仔'), self.分析器.建立字物件('！')])
+
+	def test_建立詞濟字音標(self):
+		語句 = 'tsit8-tiunn1 !'
+		self.assertEqual(self.分析器.建立詞物件(語句).內底字,
+			[self.分析器.建立字物件('tsit8'), self.分析器.建立字物件('tiunn1'), self.分析器.建立字物件('!')])
+
+	def test_建立詞濟字漢羅(self):
+		語句 = 'tsit8-張!'
+		self.assertEqual(self.分析器.建立詞物件(語句).內底字,
+			[self.分析器.建立字物件('tsit8'), self.分析器.建立字物件('張'), self.分析器.建立字物件('!')])
+
+	def test_建立組孤字(self):
+		型 = '媠'
+		組物件 = self.分析器.建立組物件(型)
+		self.assertEqual(len(組物件.內底詞), 1)
+		self.assertEqual(組物件.內底詞[0], self.分析器.建立詞物件(型))
+		self.assertEqual(len(組物件.內底詞[0].內底字), 1)
+		self.assertEqual(組物件.內底詞[0].內底字[0].型, 型)
+		self.assertEqual(組物件.內底詞[0].內底字[0].音, 無音)
+		self.assertEqual(組物件.內底詞[0].內底字[0], self.分析器.建立字物件(型))
+
+	def test_建立組無字(self):
+		型 = ''
+		組物件 = self.分析器.建立組物件(型)
+		self.assertEqual(len(組物件.內底詞), 0)
+		self.assertEqual(組物件.內底詞, [])
 
 	def 建立組檢查(self, 原來語句, 切好語句):
 		return (self.分析器.建立組物件(原來語句),
@@ -139,6 +193,95 @@ class 拆文分析器測試(unittest.TestCase):
 			'儂', '莫', '走', 'boo5-0ki3', '。']
 		組物件, 詞陣列 = self.建立組檢查(處理好語句, 切好語句)
 		self.assertEqual(組物件.內底詞, 詞陣列)
+
+	def test_建立集孤字(self):
+		型 = '媠'
+		集物件 = self.分析器.建立集物件(型)
+		self.assertEqual(len(集物件.內底組), 1)
+		self.assertEqual(集物件.內底組[0], self.分析器.建立組物件(型))
+		組物件 = 集物件.內底組[0]
+		self.assertEqual(len(組物件.內底詞), 1)
+		self.assertEqual(組物件.內底詞[0], self.分析器.建立詞物件(型))
+		self.assertEqual(len(組物件.內底詞[0].內底字), 1)
+		self.assertEqual(組物件.內底詞[0].內底字[0].型, 型)
+		self.assertEqual(組物件.內底詞[0].內底字[0].音, 無音)
+		self.assertEqual(組物件.內底詞[0].內底字[0], self.分析器.建立字物件(型))
+
+	def test_建立集無字(self):
+		型 = ''
+		集物件 = self.分析器.建立集物件(型)
+		self.assertEqual(len(集物件.內底組), 0)
+		self.assertEqual(集物件.內底組, [])
+
+	def test_建立集濟字(self):
+		語句 = '欲看-一-个-無？'
+		集物件 = self.分析器.建立集物件(語句)
+		self.assertEqual(集物件.內底組, [self.分析器.建立組物件(語句)])
+
+	def test_建立句孤字(self):
+		型 = '媠'
+		句物件 = self.分析器.建立句物件(型)
+		self.assertEqual(len(句物件.內底集), 1)
+		self.assertEqual(句物件.內底集[0], self.分析器.建立集物件(型))
+		集物件 = 句物件.內底集[0]
+		self.assertEqual(len(集物件.內底組), 1)
+		self.assertEqual(集物件.內底組[0], self.分析器.建立組物件(型))
+		組物件 = 集物件.內底組[0]
+		self.assertEqual(len(組物件.內底詞), 1)
+		self.assertEqual(組物件.內底詞[0], self.分析器.建立詞物件(型))
+		self.assertEqual(len(組物件.內底詞[0].內底字), 1)
+		self.assertEqual(組物件.內底詞[0].內底字[0].型, 型)
+		self.assertEqual(組物件.內底詞[0].內底字[0].音, 無音)
+		self.assertEqual(組物件.內底詞[0].內底字[0], self.分析器.建立字物件(型))
+
+	def test_建立句無字(self):
+		型 = ''
+		句物件 = self.分析器.建立句物件(型)
+		self.assertEqual(len(句物件.內底集), 0)
+		self.assertEqual(句物件.內底集, [])
+
+	def test_建立句濟字(self):
+		語句 = '欲看-一-个-無？'
+		句物件 = self.分析器.建立句物件(語句)
+		self.assertEqual(句物件.內底集, [self.分析器.建立集物件(語句)])
+		
+	def test_建立章孤字(self):
+		型 = '媠'
+		章物件 = self.分析器.建立章物件(型)
+		self.assertEqual(len(章物件.內底句), 1)
+		self.assertEqual(章物件.內底句[0], self.分析器.建立句物件(型))
+		句物件 = 章物件.內底句[0]
+		self.assertEqual(len(句物件.內底集), 1)
+		self.assertEqual(句物件.內底集[0], self.分析器.建立集物件(型))
+		集物件 = 句物件.內底集[0]
+		self.assertEqual(len(集物件.內底組), 1)
+		self.assertEqual(集物件.內底組[0], self.分析器.建立組物件(型))
+		組物件 = 集物件.內底組[0]
+		self.assertEqual(len(組物件.內底詞), 1)
+		self.assertEqual(組物件.內底詞[0], self.分析器.建立詞物件(型))
+		self.assertEqual(len(組物件.內底詞[0].內底字), 1)
+		self.assertEqual(組物件.內底詞[0].內底字[0].型, 型)
+		self.assertEqual(組物件.內底詞[0].內底字[0].音, 無音)
+		self.assertEqual(組物件.內底詞[0].內底字[0], self.分析器.建立字物件(型))
+
+	def test_建立章無字(self):
+		型 = ''
+		章物件 = self.分析器.建立章物件(型)
+		self.assertEqual(len(章物件.內底句), 0)
+		self.assertEqual(章物件.內底句, [])
+
+	def test_建立章濟字(self):
+		語句 = '欲看-一-个-無？點仔膠，黏著跤，叫阿爸，買豬跤，豬跤箍仔焄爛爛，枵鬼囡仔流水瀾。'
+		章物件 = self.分析器.建立章物件(語句)
+		self.assertEqual(章物件.內底句, [
+			self.分析器.建立句物件('欲看-一-个-無？'),
+			self.分析器.建立句物件('點仔膠，'),
+			self.分析器.建立句物件('黏著跤，'),
+			self.分析器.建立句物件('叫阿爸，'),
+			self.分析器.建立句物件('買豬跤，'),
+			self.分析器.建立句物件('豬跤箍仔焄爛爛，'),
+			self.分析器.建立句物件('枵鬼囡仔流水瀾。'),
+			])
 
 	def test_對齊字孤字(self):
 		型 = '媠'
@@ -485,7 +628,7 @@ class 拆文分析器測試(unittest.TestCase):
 	def test_對齊字無字(self):
 		型 = ''
 		音 = ''
-		self.assertRaises(型態錯誤, self.分析器.產生對齊字, 型, 音)
+		self.assertRaises(解析錯誤, self.分析器.產生對齊字, 型, 音)
 
 	def test_對齊詞無字(self):
 		型 = ''
@@ -594,12 +737,12 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(self.分析器.拆句做巢狀詞('我ê pak tóo枵ah'), [['我'], ['ê'], ['pak'], ['tóo'], ['枵'], ['ah']])
 		self.assertEqual(self.分析器.拆句做巢狀詞('我ê pak-tóo枵ah'), [['我'], ['ê'], ['pak', 'tóo'], ['枵'], ['ah']])
 		self.assertEqual(self.分析器.拆句做巢狀詞('我ê pak - tóo枵ah'), [['我'], ['ê'], ['pak'], ['-'], ['tóo'], ['枵'], ['ah']])
-		
+
 	def test_拆句做巢狀詞摻組字式(self):
 		原本語句 = '⿰---⿰-- - ⿱--,⿰-,⿱⿰-,--⿱--'
 		斷詞後巢狀陣列 = [['⿰--', '⿰--'], ['-'], ['⿱--'], [','], ['⿰-,'], ['⿱⿰-,-', '⿱--']]
 		self.assertEqual(self.分析器.拆句做巢狀詞(原本語句), 斷詞後巢狀陣列)
-		
+
 	def test_拆章做句(self):
 		self.assertEqual(self.分析器.拆章做句('我腹肚枵，欲來去食飯。'), ['我腹肚枵，', '欲來去食飯。'])
 		self.assertEqual(self.分析器.拆章做句('伊講：我腹肚枵，欲來去食飯。'), ['伊講：我腹肚枵，', '欲來去食飯。'])
