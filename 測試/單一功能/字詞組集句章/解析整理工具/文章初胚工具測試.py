@@ -81,21 +81,21 @@ class 拆文初胚工具測試(unittest.TestCase):
 		self.assertEqual(self.初胚工具.符號邊仔加空白(處理好語句), 加空白後語句)
 
 
-	def test_建立物件語句前處理減號輕聲開頭(self):
+	def test_建立物件語句前處理減號連字號音標輕聲開頭(self):
 		原來語句 = '--ah'
 		處理好語句 = '0ah'
 		加空白後語句 = '0ah'
 		self.assertEqual(self.初胚工具.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
 		self.assertEqual(self.初胚工具.符號邊仔加空白(處理好語句), 加空白後語句)
 
-	def test_建立物件語句前處理減號輕聲開頭(self):
+	def test_建立物件語句前處理減號聲調輕聲開頭(self):
 		原來語句 = '0ah'
 		處理好語句 = '0ah'
 		加空白後語句 = '0ah'
 		self.assertEqual(self.初胚工具.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
 		self.assertEqual(self.初胚工具.符號邊仔加空白(處理好語句), 加空白後語句)
 
-	def test_建立物件語句前處理減號輕聲開頭(self):
+	def test_建立物件語句前處理減號連字號漢字輕聲開頭(self):
 		原來語句 = '--矣'
 		處理好語句 = '矣'
 		加空白後語句 = '矣'
