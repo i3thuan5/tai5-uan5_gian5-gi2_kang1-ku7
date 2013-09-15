@@ -1,18 +1,14 @@
-from 閩南資料.詞 import 詞
-from 字詞集句章.綜合標音.詞組綜合標音 import 詞組綜合標音
+from 字詞組集句章.綜合標音.集綜合標音 import 集綜合標音
+from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
+from 字詞組集句章.基本元素.句 import 句
+from 字詞組集句章.綜合標音.字綜合標音 import 字綜合標音
+
 class 句綜合標音():
-	綜合標音佮詞組陣列=None
-	def __init__(self,標音,綜合標音):
-		self.綜合標音佮詞組陣列=[]
-		for 規組字音 in 標音:
-			self.綜合標音佮詞組陣列.append([])
-			for 一組字音 in 規組字音: 
-				綜合標音陣列=[]
-				if isinstance(一組字音, 詞) and 一組字音.下跤!=None:#標點符號會當作是詞，但是下跤無物件
-					綜合標音陣列=[綜合標音(一个字)
-						for 一个字 in 一組字音.下跤]
-				else:
-					綜合標音陣列.append(綜合標音(一組字音))
-				結果=詞組綜合標音(綜合標音陣列,一組字音.音)
-				if 結果.標音完整無():
-					self.綜合標音佮詞組陣列[-1].append(結果)
+	綜合集 = []
+	def __init__(self, 字綜合標音型態, 句物件):
+		if not isinstance(字綜合標音型態, 字綜合標音):
+			raise 型態錯誤('傳入來的毋是字綜合標音型態！{0}，{1}'.format(type(字綜合標音型態), str(字綜合標音型態)))
+		if not isinstance(句物件, 句):
+			raise 型態錯誤('傳入來的毋是句物件！{0}，{1}'.format(type(句物件), str(句物件)))
+		for 集物件 in 句物件.內底集:
+			self.綜合集.append(集綜合標音(字綜合標音型態, 集物件))

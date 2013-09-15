@@ -1,5 +1,6 @@
 from 字詞組集句章.基本元素.公用變數 import 無音
 from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
+from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 
 class 字:
 	型 = None
@@ -10,7 +11,7 @@ class 字:
 		if not isinstance(音, str):
 			raise 型態錯誤('傳入來的音毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
 		if 型 == '':
-			raise 型態錯誤('傳入來的型是空的！')
+			raise 解析錯誤('傳入來的型是空的！')
 		self.型 = 型
 		self.音 = 音
 	def __eq__(self, 別个):

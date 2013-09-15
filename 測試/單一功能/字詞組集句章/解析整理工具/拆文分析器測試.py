@@ -281,7 +281,7 @@ class 拆文分析器測試(unittest.TestCase):
 		型 = '媠'
 		音 = 'ㄙㄨㄧˋ'
 		字物件 = self.分析器.產生對齊字(型, 音)
-		self.assertEqual(字物件.型, 音)
+		self.assertEqual(字物件.型, 型)
 		self.assertEqual(字物件.音, 音)
 
 	def test_對齊詞孤字(self):
