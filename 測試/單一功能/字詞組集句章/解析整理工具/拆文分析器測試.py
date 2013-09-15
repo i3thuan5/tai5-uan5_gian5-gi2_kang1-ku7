@@ -1,10 +1,4 @@
 import unittest
-from 字詞組集句章.基本元素.字 import 字
-from 字詞組集句章.基本元素.詞 import 詞
-from 字詞組集句章.基本元素.組 import 組
-from 字詞組集句章.基本元素.集 import 集
-from 字詞組集句章.基本元素.句 import 句
-from 字詞組集句章.基本元素.章 import 章
 from 字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
 from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
@@ -287,7 +281,8 @@ class 拆文分析器測試(unittest.TestCase):
 		型 = '媠'
 		音 = 'ㄙㄨㄧˋ'
 		字物件 = self.分析器.產生對齊字(型, 音)
-		self.assertEqual(字物件, 字(型, 音))
+		self.assertEqual(字物件.型, 音)
+		self.assertEqual(字物件.音, 音)
 
 	def test_對齊詞孤字(self):
 		型 = '媠'
