@@ -98,14 +98,14 @@ class 詞組綜合標音測試(unittest.TestCase):
 		標音詞組 = 詞組綜合標音(閩南語字綜合標音, 詞物件)
 		self.assertEqual(len(標音詞組.綜合字), 3)
 		self.assertEqual(標音詞組.綜合字[0], 閩南語字綜合標音(字('大', 'tua7')))
-		self.assertEqual(標音詞組.綜合字[0], 閩南語字綜合標音(字('美', 'sui2')))
-		self.assertEqual(標音詞組.綜合字[0], 閩南語字綜合標音(字('女', 'boo2')))
+		self.assertEqual(標音詞組.綜合字[1], 閩南語字綜合標音(字('美', 'sui2')))
+		self.assertEqual(標音詞組.綜合字[2], 閩南語字綜合標音(字('女', 'boo2')))
 		self.assertEqual(標音詞組.連字音, 'tua7-sui2-boo2')
 
 	def test_空詞檢查(self):
 		詞物件 = self.分析器.建立詞物件('')
 		標音詞組 = 詞組綜合標音(閩南語字綜合標音, 詞物件)
-		self.assertEqual(len(標音詞組.綜合字), 0)
+		self.assertEqual(標音詞組.綜合字, [])
 		self.assertEqual(標音詞組.連字音, '')
 
 if __name__ == '__main__':
