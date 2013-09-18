@@ -12,7 +12,7 @@ class 詞:
 				raise 型態錯誤('字陣列內底有毋是字的：字陣列＝{0}，字物件＝{1}'.format(str(字陣列), str(字物件)))
 			self.內底字.append(字(字物件.型, 字物件.音))
 	def __eq__(self, 別个):
-		return 別个 != None and self.內底字 == 別个.內底字
+		return isinstance(別个, 詞) and self.內底字 == 別个.內底字
 	def __str__(self):
 		return '詞：{0}'.format(self.內底字)
 	def __repr__(self):

@@ -4,6 +4,7 @@ from 字詞組集句章.基本元素.字 import 字
 from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
 from 字詞組集句章.綜合標音.字綜合標音 import 字綜合標音
+from 字詞組集句章.基本元素.公用變數 import 標點符號
 
 class 閩南語字綜合標音(字綜合標音):
 	型體 = None
@@ -21,6 +22,11 @@ class 閩南語字綜合標音(字綜合標音):
 			self.吳守禮方音 = 無音
 			self.臺羅閏號調 = 無音
 			self.通用數字調 = 無音
+		elif 字物件.音 in 標點符號:
+			self.臺羅數字調 = 字物件.音
+			self.吳守禮方音 = 字物件.音
+			self.臺羅閏號調 = 字物件.音
+			self.通用數字調 = 字物件.音
 		else:
 			臺羅 = 臺灣閩南語羅馬字拼音(字物件.音)
 			self.臺羅數字調 = 臺羅.音標
@@ -45,6 +51,6 @@ class 閩南語字綜合標音(字綜合標音):
 	def __str__(self):
 		return self.轉json格式()
 	def __eq__(self, 別个):
-		return 別个 != None and self.型體 == 別个.型體 and self.臺羅詞組 == 別个.臺羅詞組 and \
+		return isinstance(別个, 閩南語字綜合標音) and self.型體 == 別个.型體 and self.臺羅詞組 == 別个.臺羅詞組 and \
 			self.臺羅數字調 == 別个.臺羅數字調 and self.臺羅閏號調 == 別个.臺羅閏號調 and \
 			self.通用數字調 == 別个.通用數字調 and self.吳守禮方音 == 別个.吳守禮方音

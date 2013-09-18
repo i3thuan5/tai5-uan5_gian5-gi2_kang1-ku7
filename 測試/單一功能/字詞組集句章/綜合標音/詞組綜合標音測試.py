@@ -19,8 +19,8 @@ class 詞組綜合標音測試(unittest.TestCase):
 		標音詞組 = 詞組綜合標音(閩南語字綜合標音, 組物件)
 		self.assertEqual(len(標音詞組.綜合字), 3)
 		self.assertEqual(標音詞組.綜合字[0], 閩南語字綜合標音(字('大', 'tua7')))
-		self.assertEqual(標音詞組.綜合字[0], 閩南語字綜合標音(字('美', 'sui2')))
-		self.assertEqual(標音詞組.綜合字[0], 閩南語字綜合標音(字('女', 'boo2')))
+		self.assertEqual(標音詞組.綜合字[1], 閩南語字綜合標音(字('美', 'sui2')))
+		self.assertEqual(標音詞組.綜合字[2], 閩南語字綜合標音(字('女', 'boo2')))
 		self.assertEqual(標音詞組.連字音, 'tua7 sui2-boo2')
 
 	def test_連字音檢查(self):
@@ -52,7 +52,8 @@ class 詞組綜合標音測試(unittest.TestCase):
 	def test_有無音字(self):
 		組物件 = 組([self.分析器.產生對齊詞('點仔膠', 'tiam2-a2-ka1'),
 				self.分析器.建立詞物件('，'),
-				self.分析器.產生對齊詞('黏著跤', 'liam5-tioh8 kha1'),
+				self.分析器.產生對齊詞('黏著', 'liam5-tioh8'),
+				self.分析器.產生對齊詞('跤', 'kha1'),
 				self.分析器.建立詞物件('，'),
 				])
 		標音詞組 = 詞組綜合標音(閩南語字綜合標音, 組物件)
@@ -80,14 +81,14 @@ class 詞組綜合標音測試(unittest.TestCase):
 		標音詞組 = 詞組綜合標音(閩南語字綜合標音, 組物件)
 		self.assertEqual(len(標音詞組.綜合字), 8)
 		self.assertEqual(標音詞組.綜合字[0], 閩南語字綜合標音(字('點', 'tiam2')))
-		self.assertEqual(標音詞組.綜合字[1], 閩南語字綜合標音(字('仔', 'a2')))
+		self.assertEqual(標音詞組.綜合字[1], 閩南語字綜合標音(字('仔')))
 		self.assertEqual(標音詞組.綜合字[2], 閩南語字綜合標音(字('膠', 'ka1')))
 		self.assertEqual(標音詞組.綜合字[3], 閩南語字綜合標音(字('，', 無音)))
 		self.assertEqual(標音詞組.綜合字[4], 閩南語字綜合標音(字('黏', 'liam5')))
 		self.assertEqual(標音詞組.綜合字[5], 閩南語字綜合標音(字('著', 'tioh8')))
 		self.assertEqual(標音詞組.綜合字[6], 閩南語字綜合標音(字('跤', 'kha1')))
 		self.assertEqual(標音詞組.綜合字[7], 閩南語字綜合標音(字('，', 無音)))
-		self.assertEqual(標音詞組.連字音, 'tiam2-a2-ka1 liam5-tioh8 kha1')
+		self.assertEqual(標音詞組.連字音, 'tiam2-ka1 liam5-tioh8 kha1')
 
 	def test_空組(self):
 		組物件 = 組()

@@ -9,10 +9,10 @@ class 詞組綜合標音():
 	綜合字 = []
 	連字音 = ''
 	def __init__(self, 字綜合標音型態, 詞或組物件):
-#		self.綜合字 = []
-#		self.連字音 = ''
+		self.綜合字 = []
+		self.連字音 = ''
 		if len(self.綜合字)!=0:
-			self.綜合字.insert(0, '@@')
+#			self.綜合字.insert(0, '@@')
 			raise RuntimeError('!!!!!! 綜合字＝{0}，{1}'.format(self.綜合字,self.連字音))
 		if isinstance(詞或組物件, 詞):
 			詞物件=詞或組物件
@@ -44,7 +44,7 @@ class 詞組綜合標音():
 	def __str__(self):
 		return self.轉json格式()
 	def __eq__(self, 別个):
-		return 別个 != None and self.綜合字 == 別个.綜合字 and self.連字音 == 別个.連字音
+		return isinstance(別个, 詞組綜合標音) and self.綜合字 == 別个.綜合字 and self.連字音 == 別个.連字音
 	def 提著詞的連字音(self,詞物件):
 		if not isinstance(詞物件, 詞):
 			raise 型態錯誤('傳入來的毋是詞物件！{0}，{1}'.format(type(詞物件), str(詞物件)))

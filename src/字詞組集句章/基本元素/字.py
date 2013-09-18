@@ -15,7 +15,7 @@ class 字:
 		self.型 = 型
 		self.音 = 音
 	def __eq__(self, 別个):
-		return 別个 != None and self.型 == 別个.型 and self.音 == 別个.音
+		return isinstance(別个, 字) and self.型 == 別个.型 and self.音 == 別个.音
 	def __str__(self):
 		return '字：{0} {1}'.format(self.型, self.音)
 	def __repr__(self):

@@ -26,9 +26,9 @@ class 句綜合標音測試(unittest.TestCase):
 		self.assertEqual(len(標音句.綜合集[1].綜合詞組), 1)
 		self.assertEqual(len(標音句.綜合集[2].綜合詞組), 2)
 		self.assertEqual(len(標音句.綜合集), 3)
-		self.assertEqual(標音句.綜合集[0], [集綜合標音(我)])
-		self.assertEqual(標音句.綜合集[1], [集綜合標音(愛)])
-		self.assertEqual(標音句.綜合集[2], [集綜合標音(莉)])
+		self.assertEqual(標音句.綜合集[0], 集綜合標音(閩南語字綜合標音,我))
+		self.assertEqual(標音句.綜合集[1], 集綜合標音(閩南語字綜合標音,愛))
+		self.assertEqual(標音句.綜合集[2], 集綜合標音(閩南語字綜合標音,莉))
 
 if __name__ == '__main__':
 	unittest.main()
