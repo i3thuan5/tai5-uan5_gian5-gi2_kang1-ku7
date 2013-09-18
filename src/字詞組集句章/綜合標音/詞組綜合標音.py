@@ -9,10 +9,11 @@ class 詞組綜合標音():
 	綜合字 = []
 	連字音 = ''
 	def __init__(self, 字綜合標音型態, 詞或組物件):
-# 		self.綜合字 = []
-# 		self.連字音 = ''
+#		self.綜合字 = []
+#		self.連字音 = ''
 		if len(self.綜合字)!=0:
-			raise RuntimeError('!!!!!!')
+			self.綜合字.insert(0, '@@')
+			raise RuntimeError('!!!!!! 綜合字＝{0}，{1}'.format(self.綜合字,self.連字音))
 		if isinstance(詞或組物件, 詞):
 			詞物件=詞或組物件
 			self.連字音=self.提著詞的連字音(詞物件)
