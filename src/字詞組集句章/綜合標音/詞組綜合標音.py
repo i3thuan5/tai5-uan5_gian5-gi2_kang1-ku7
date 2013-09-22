@@ -45,23 +45,23 @@ class 詞組綜合標音():
 		return self.轉json格式()
 	def __eq__(self, 別个):
 		return isinstance(別个, 詞組綜合標音) and self.綜合字 == 別个.綜合字 and self.連字音 == 別个.連字音
-	def 提著詞的連字音(self, 詞物件):
-		if not isinstance(詞物件, 詞):
-			raise 型態錯誤('傳入來的毋是詞物件！{0}，{1}'.format(type(詞物件), str(詞物件)))
-		音陣列 = []
-		for 一字 in 詞物件.內底字:
-			if 一字.音 != 無音:
-				音陣列.append(一字.音)
-		return '-'.join(音陣列)
-
-	def 提著組的連字音(self, 組物件):
-		if not isinstance(組物件, 組):
-			raise 型態錯誤('傳入來的毋是組物件！{0}，{1}'.format(type(組物件), str(組物件)))
-		音陣列 = []
-		for 詞物件 in 組物件.內底詞:
-			音 = self.提著詞的連字音(詞物件)
-			if 音 != 無音:
-				音陣列.append(音)
-		return ' '.join(音陣列)
+#	def 提著詞的連字音(self, 詞物件):
+#		if not isinstance(詞物件, 詞):
+#			raise 型態錯誤('傳入來的毋是詞物件！{0}，{1}'.format(type(詞物件), str(詞物件)))
+#		音陣列 = []
+#		for 一字 in 詞物件.內底字:
+#			if 一字.音 != 無音:
+#				音陣列.append(一字.音)
+#		return '-'.join(音陣列)
+#
+#	def 提著組的連字音(self, 組物件):
+#		if not isinstance(組物件, 組):
+#			raise 型態錯誤('傳入來的毋是組物件！{0}，{1}'.format(type(組物件), str(組物件)))
+#		音陣列 = []
+#		for 詞物件 in 組物件.內底詞:
+#			音 = self.提著詞的連字音(詞物件)
+#			if 音 != 無音:
+#				音陣列.append(音)
+#		return ' '.join(音陣列)
 
 
