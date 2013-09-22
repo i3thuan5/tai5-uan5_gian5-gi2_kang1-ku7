@@ -73,16 +73,17 @@ class 轉物件音家私():
 		return 新章物件
 
 	def 轉做標準音標(self, 音標工具, 物件):
-		if  isinstance(物件, 字):
+		if isinstance(物件, 字):
 			return self.字轉做標準音標(音標工具, 物件)
-		if  isinstance(物件, 詞):
+		if isinstance(物件, 詞):
 			return self.詞轉做標準音標(音標工具, 物件)
-		if  isinstance(物件, 組):
+		if isinstance(物件, 組):
 			return self.組轉做標準音標(音標工具, 物件)
 		if isinstance(物件, 集):
 			return self.集轉做標準音標(音標工具, 物件)
-		if  isinstance(物件, 句):
+		if isinstance(物件, 句):
 			return self.句轉做標準音標(音標工具, 物件)
-		if  isinstance(物件, 章):
+		if isinstance(物件, 章):
 			return self.章轉做標準音標(音標工具, 物件)
-		raise 型態錯誤('傳入來的毋是字詞組集句章其中一種物件：{0}，{1}'.format(type(物件), str(物件)))
+		raise 型態錯誤('傳入來的毋是字詞組集句章其中一種物件：{0}，{1}'
+			.format(type(物件), str(物件)))
