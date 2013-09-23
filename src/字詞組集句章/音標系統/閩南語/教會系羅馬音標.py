@@ -57,7 +57,7 @@ class 教會系羅馬音標(閩南語音標介面):
 			if 前一音調 == '1' and 字元 == '0':
 				self.調 = 10
 				愛結束矣 = True
-			elif 字元.isnumeric():
+			elif 字元.isdigit():
 				if self.調 == 1:
 					self.調 = int(字元)
 				else:

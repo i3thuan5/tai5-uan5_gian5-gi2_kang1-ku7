@@ -13,8 +13,9 @@ from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
 		'ah', 'eh', 'ih', 'oh', 'uh', 'auh', 'iah', 'ioh', 'iuh', 'iauh', 'uah', 'ueh', 'ooh',
 		'annh', 'ennh', 'innh', 'mh', 'iannh', 'ngh', 'ap', 'at', 'ak', 'op', 'ok', 'iok',
 		'ip', 'it', 'ik', 'iap', 'iat', 'iak', 'ut', 'uat',
-		'ioo', 'ir', 'ere', 'er', 'irinn', 'ee', 'uee', 'eeh', 'uinn', 'ionn', 'irm', 'irn', 'irng', 'eng', 'uang',
-		'aih', 'ainnh', 'aunnh', 'erh', 'ereh', 'uih', 'irp', 'irt', 'irk', } | {
+		'ioo', 'er', 'ere', 'erh', 'ereh', 'erm', 'ir', 'irinn', 'ee', 'uee', 'eeh', 
+		'uinn', 'ionn', 'irm', 'irn', 'irng', 'eng', 'uang',
+		'aih', 'ainnh', 'aunnh', 'uih', 'irp', 'irt', 'irk', } | {
 		'aunn', 'uenn', 'uaih', 'iunnh', 'iaunnh', 'uennh', 'uinnh', 'uainnh', 'iut', 'uak'} | {'onnh'} | {
 		'or', 'orh', 'ior', 'iorh', }
 臺灣閩南語羅馬字拼音聲調符號表 = dict(
