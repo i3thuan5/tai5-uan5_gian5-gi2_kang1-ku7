@@ -47,7 +47,7 @@ class 整合到文字():
 		# {'--tsi̍t-kuá'}
 		# 13602因
 		音空 = {''}
-		for 主編號, 屬性, 文字, 音標, 方言差 in 揣主條目(1114):
+		for 主編號, 屬性, 文字, 音標, 方言差 in 揣主條目(2573):
 			print(主編號)
 			if 屬性 == 25:
 				種類 = '語句'
@@ -120,6 +120,14 @@ class 整合到文字():
 						if 音=="niàu-ka-tsiah hit- ki":
 							#love you~
 							音="niàu-ka-tsiah hit-ki"
+						if 音=="sai-kong-á (面稱)":
+							音="sai-kong-á"
+						if 音=="sai-sun-á (背稱)":
+							音="sai-sun-á"
+						if 資料字型體=="司孫 ( 背稱 )":
+							資料字型體="司孫"
+						if 音=="khioh-gín-á(產婆語)":
+								音="khioh-gín-á"
 						print(組字式型, 音)
 # 						if 組字式型 in 腔口集[偏漳優勢音腔口]:
 # 							print(音 in 腔口集[偏漳優勢音腔口][組字式型])
