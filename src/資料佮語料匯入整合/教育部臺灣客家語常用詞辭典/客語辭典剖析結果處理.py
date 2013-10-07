@@ -3,11 +3,12 @@ Created on 2013/7/31
 
 @author: chhsueh
 '''
-from 教育部臺灣客家語常用詞辭典.客話辭典網頁剖析工具 import 客話辭典網頁剖析工具
 import os
 from curses.ascii import isalpha, isdigit
-from 言語資料庫.公用資料 import 資料庫連線
-
+from 資料庫.資料庫連線 import 資料庫連線
+from 資料佮語料匯入整合.教育部臺灣客家語常用詞辭典.客話辭典網頁剖析工具 import 客話辭典網頁剖析工具
+#guai31 ngiam55 e31
+#圖片問題
 class 客語辭典剖析結果處理():
     剖析結果 = []
     字體內量 = 0
