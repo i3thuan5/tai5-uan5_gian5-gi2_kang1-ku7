@@ -13,9 +13,11 @@ from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
 		'ah', 'eh', 'ih', 'oh', 'uh', 'auh', 'iah', 'ioh', 'iuh', 'iauh', 'uah', 'ueh', 'ooh',
 		'annh', 'ennh', 'innh', 'mh', 'iannh', 'ngh', 'ap', 'at', 'ak', 'op', 'ok', 'iok',
 		'ip', 'it', 'ik', 'iap', 'iat', 'iak', 'ut', 'uat',
-		'ioo', 'er', 'ere', 'erh', 'ereh', 'erm', 'ee', 'uee', 'eeh',
+		'er', 'ere', 'erh', 'ereh', 'erm', 'ee', 'uee', 'eeh',
 		'ir', 'irinn', 'irm', 'irn', 'irng',
 		'uinn', 'ionn', 'eng', 'uang', 'irh', 'irp', 'irt', 'irk',
+		'ioo','iooh', # 諾 0hioo 0hiooh
+		'ie', #	鹿港偏泉腔
 		'aih', 'ainnh', 'aunnh', 'uih', } | {
 		'aunn', 'uenn', 'uaih', 'iunnh', 'iaunnh', 'uennh', 'uinnh', 'uainnh', 'iut', 'uak'} | {'onnh'} | {
 		'or', 'orh', 'ior', 'iorh', }
