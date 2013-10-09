@@ -29,6 +29,9 @@ class 客話辭典網頁剖析工具(HTMLParser):
         if self.字體內量>0 and self.表格內>0:
             if tag=="td":
                 self.剖析結果.append('')
+            elif tag=='img':
+#                 self.剖析結果[-1]+=data.strip()
+                print(attrs)
         if tag=="font":
             self.字體內量+=1
         elif tag=="table":
