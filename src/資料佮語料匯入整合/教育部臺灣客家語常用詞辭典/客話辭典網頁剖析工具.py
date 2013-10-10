@@ -78,6 +78,7 @@ from html.parser import HTMLParser
 'F463':'⿰口尃',
 'F488':'⿰歷',
 'F545':'⿰皮卜',
+'F4BC':'㑁',
 'F457':'⿰⿰⿰Ｆ４５７',
 }
 class 客話辭典網頁剖析工具(HTMLParser):
