@@ -9,7 +9,7 @@ class 第一步共外語處理掉:
 		頂一逝是標籤=True
 		有外語=False
 		for 句 in 句集:
-			if 'language' in 句:
+			if 'language' in 句 or '[//]' in 句 or '_' in 句:
 				if not 頂一逝是標籤:
 					資料=資料[:-1]
 				有外語=True
