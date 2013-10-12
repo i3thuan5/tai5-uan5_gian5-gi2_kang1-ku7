@@ -1,5 +1,9 @@
 import unittest
 from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
+from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音聲母表
+from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音韻母表
+from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組 import 臺灣閩南語羅馬字拼音對照吳守禮方音聲母表
+from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組 import 臺灣閩南語羅馬字拼音對照吳守禮方音韻母表
 
 class 臺灣閩南語羅馬字拼音模組測試(unittest.TestCase):
 	def setUp(self):
@@ -98,6 +102,12 @@ class 臺灣閩南語羅馬字拼音模組測試(unittest.TestCase):
 	def test_組字式(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('le7').產生吳守禮方音物件().產生音標組字式(), '⿳⿳ㄌㆤ˫')
 		self.assertEqual(臺灣閩南語羅馬字拼音('i').產生吳守禮方音物件().產生音標組字式(), '⿳ㄧ　')
+		
+	def test_全部攏會使產生方音物件(self):
+		for 母 in 臺灣閩南語羅馬字拼音聲母表:
+			self.assertIn(母,臺灣閩南語羅馬字拼音對照吳守禮方音聲母表)
+		for 母 in 臺灣閩南語羅馬字拼音韻母表:
+			self.assertIn(母,臺灣閩南語羅馬字拼音對照吳守禮方音韻母表)
 		
 if __name__ == '__main__':
 	unittest.main()
