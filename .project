@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>語音處理</name>
+	<name>文本製作</name>
 	<comment></comment>
 	<projects>
-		<project>文本製作</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

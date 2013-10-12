@@ -1,0 +1,7 @@
+#1:1.[0] NP(Head:N:Ihc)#,(COMMACATEGORY)
+#2:1.[0] NP(Head:N:Ihc)#,(COMMACATEGORY)
+#3:1.[0] NP(N:ihc-GA-A|DM:????|Head:N:M-D??H)#,(COMMACATEGORY)
+#4:1.[0] NP(DM:?????E??|Head:DM:???E????????????)#:(COLONCATEGORY)
+#5:1.[0] DM(Head:DM:????)#,(COMMACATEGORY)
+#6:1.[0] NP(Head:N:file)#:(COLONCATEGORY)
+#7:1.[0] NP(Head:N:///home/ihc/.config/libreoffice/??)#;(SEMICOLONCATEGORY)
