@@ -1,6 +1,4 @@
 from 字詞組集句章.音標系統.閩南語.教會系羅馬音標 import 教會系羅馬音標
-from 字詞組集句章.音標系統.閩南語.通用拼音佮臺灣語言音標調類對照表 import 臺羅對通用聲韻對照表
-from 字詞組集句章.音標系統.閩南語.通用拼音佮臺灣語言音標調類對照表 import 臺羅對通用調對照表
 from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組 import 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組
 
 臺灣閩南語羅馬字拼音聲母表 = {'p', 'ph', 'm', 'b', 't', 'th', 'n', 'l',
@@ -45,6 +43,91 @@ from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
 	('ui', '2'):"uí", ('ui', '3'):"uì", ('ui', '5'):"uî", ('ui', '6'):"uǐ", ('ui', '7'):"uī", ('ui', '8'):"ui̍", ('ui', '9'):"ui̋",
 	('iu', '2'):"iú", ('iu', '3'):"iù", ('iu', '5'):"iû", ('iu', '6'):"iǔ", ('iu', '7'):"iū", ('iu', '8'):"iu̍", ('iu', '9'):"iű", }
 
+臺羅對通用聲對照表={
+	'p':'b','ph':'p','m':'m','b':'bh',
+	't':'d','th':'t','n':'n','l':'l',
+	'k':'g','kh':'k','ng':'ng','g':'gh',
+	'ts':'z','tsh':'c','s':'s','j':'r',
+	'h':'h','':'',}
+臺羅對通用韻對照表={
+		
+'a':'a',
+'ah':'ah',
+'ai':'ai',
+'ainn':'ainn',
+'ak':'ak',
+'am':'am',
+'an':'an',
+'ang':'ang',
+'ann':'ann',
+'ap':'ap',
+'at':'at',
+'au':'au',
+'aunn':'aunn',
+'e':'e',
+'eh':'eh',
+'enn':'enn',
+'iah':'iah',
+'ia':'ia',
+'iak':'iak',
+'iam':'iam',
+'ian':'en',
+'iang':'iang',
+'iannh':'iannh',
+'iann':'iann',
+'iap':'iap',
+'iat':'et',
+'iau':'iau',
+'iaunn':'iaunn',
+'ih':'ih',
+'i':'i',
+'ik':'ik',
+'im':'im',
+'ing':'ing',
+'in':'in',
+'innh':'innh',
+'inn':'inn',
+'ioh':'iorh',
+'io':'io',
+'io':'ior',
+'iok':'iok',
+'iong':'iong',
+'ionn':'ionn',
+'ip':'ip',
+'it':'it',
+'iu':'iu',
+'iunn':'iunn',
+'m':'m',
+'ng':'ng',
+'o':'er',
+'oh':'erh',
+'oh':'orh',
+'ok':'ok',
+'om':'om',
+'ong':'ong',
+'onn':'onn',
+'ooh':'oh',
+'oo':'o',
+'o':'or',
+'uah':'uah',
+'uainnh':'uainnh',
+'uainn':'uainn',
+'uai':'uai',
+'uann':'uann',
+'uan':'uan',
+'uat':'uat',
+'ua':'ua',
+'ueh':'ueh',
+'ue':'ue',
+'uh':'uh',
+'uih':'uih',
+'uinn':'uinn',
+'ui':'ui',
+'un':'un',
+'ut':'ut',
+'u':'u',
+		}
+臺羅對通用調對照表={'1':'1', '7':'2', '3':'3', '2':'4', '5':'5', '8':'6', '4':'7', '10':'8', '9':'9',}
 class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 	聲母表 = 臺灣閩南語羅馬字拼音聲母表
 	韻母表 = 臺灣閩南語羅馬字拼音韻母表
@@ -59,7 +142,9 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 	音標 = None
 
 	數字調轉閏號調表 = 臺灣閩南語羅馬字拼音數字調轉閏號調表
-	對通用聲韻對照表 = 臺羅對通用聲韻對照表
+	
+	對通用聲對照表 = 臺羅對通用聲對照表
+	對通用韻對照表 = 臺羅對通用韻對照表
 	對通用調對照表 = 臺羅對通用調對照表
 	def __init__(self, 音標):
 		self.分析聲韻調(音標)
@@ -90,9 +175,8 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 	def 轉通用拼音(self):
 		if self.音標 == None:
 			return None
-		聲韻 = self.聲 + self.韻
-		if 聲韻 not in self.對通用聲韻對照表 or self.調 not in self.對通用調對照表:
-			return None
-		return self.對通用聲韻對照表[聲韻] + self.對通用調對照表[self.調]
+		if self.聲 not in self.對通用聲對照表 or self.韻 not in self.對通用韻對照表 or self.調 not in self.對通用調對照表:
+			raise RuntimeError('轉通用拼音時對照表有問題！！')
+		return self.對通用聲對照表[self.聲] +self.對通用韻對照表[self.韻] + self.對通用調對照表[self.調]
 	def 產生吳守禮方音物件(self):
 		return 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組(self.聲, self.韻, self.調, self.輕)
