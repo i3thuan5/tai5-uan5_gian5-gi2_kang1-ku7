@@ -1,19 +1,34 @@
 import unittest
 from 字詞組集句章.音標系統.閩南語.通用拼音音標 import 通用拼音音標
+from 字詞組集句章.音標系統.閩南語.通用拼音音標 import 通用拼音佮臺灣羅馬聲母對照表
+from 字詞組集句章.音標系統.閩南語.通用拼音音標 import 通用拼音佮臺灣羅馬韻母對照表
+from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音聲母表
+from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音韻母表
 
 class 通用拼音音標測試(unittest.TestCase):
 	def setUp(self):
 		pass
 	def tearDown(self):
 		pass
-	def atest_定看音標(self):
-		self.assertEqual(通用拼音音標('ang3').音標, 'ang3')
-		self.assertEqual(通用拼音音標('ang9').音標, 'ang9')
-		self.assertEqual(通用拼音音標('e').音標, 'e1')
-		self.assertEqual(通用拼音音標('mng5').音標, 'mng5')
-		self.assertEqual(通用拼音音標('Pih8').音標, 'pih8')
-		self.assertEqual(通用拼音音標('Pih10').音標, 'pih10')
+	def test_定看音標(self):
+		表 = [('bai5', 'pai5'), ('ang3', 'ang3'),
+			('zin4', 'tsin2'), ('gior2', 'kio7'), ('gier1', 'kio1'),
+			('tang3', 'thang3'), 	('kong9', 'khong9'), ('mng5', 'mng5')]
+		for 通, 臺 in 表:
+			字音對照 = 通用拼音音標(通)
+			self.assertEqual(字音對照.音標, 通)
+			self.assertEqual(字音對照.轉換到臺灣閩南語羅馬字拼音(), 臺)
 
+	def test_入聲(self):
+		表 = [('zit4', None, None),
+			('pih8', 'pih8', 'phih10'),
+			('bah2', 'bah7', 'pah4',),
+			('zierk1', None, None), 
+			('ziok1', 'ziok6', 'tsiok8'), ]
+		for 原, 通, 臺 in 表:
+			字音對照 = 通用拼音音標(原)
+			self.assertEqual(字音對照.音標, 通)
+			self.assertEqual(字音對照.轉換到臺灣閩南語羅馬字拼音(), 臺)
 	def atest_輕聲(self):
 		self.assertEqual(通用拼音音標('ta0').音標, 'ta0')
 		self.assertEqual(通用拼音音標('pih0').音標, 'pih0')
@@ -65,11 +80,11 @@ class 通用拼音音標測試(unittest.TestCase):
 		self.assertEqual(通用拼音音標('tsang3').轉換到臺灣閩南語羅馬字拼音(), None)
 
 	def test_全部攏會使產生方音物件(self):
-		for 通,臺 in 通用轉臺羅聲母表:
-			self.assertIn(臺,臺灣閩南語羅馬字拼音聲母表)
-		for 通,臺 in 通用轉臺羅韻母表:
-			self.assertIn(臺,臺灣閩南語羅馬字拼音韻母表)
-		
+		for 通, 臺 in 通用拼音佮臺灣羅馬聲母對照表.items():
+			self.assertIn(臺, 臺灣閩南語羅馬字拼音聲母表)
+		for 通, 臺 in 通用拼音佮臺灣羅馬韻母對照表.items():
+			self.assertIn(臺, 臺灣閩南語羅馬字拼音韻母表)
+
 
 if __name__ == '__main__':
 	unittest.main()
