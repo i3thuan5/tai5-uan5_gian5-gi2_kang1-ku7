@@ -84,6 +84,7 @@ class 通用拼音音標測試(unittest.TestCase):
 			self.assertIn(臺, 臺灣閩南語羅馬字拼音聲母表)
 		for 通, 臺 in 通用拼音佮臺灣羅馬韻母對照表.items():
 			self.assertIn(臺, 臺灣閩南語羅馬字拼音韻母表)
+		通=通
 
 
 if __name__ == '__main__':
