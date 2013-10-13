@@ -1,32 +1,50 @@
 from 字詞組集句章.音標系統.閩南語.教會系羅馬音標 import 教會系羅馬音標
 from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組 import 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組
 
-臺灣閩南語羅馬字拼音聲母表 = {'p', 'ph', 'm', 'b', 't', 'th', 'n', 'l',
-		'k', 'kh', 'ng', 'g', 'h', 'ts', 'tsh', 's', 'j', ''}
+臺灣閩南語羅馬字拼音聲母表 = {
+	'p', 'ph', 'm', 'b',
+	't', 'th', 'n', 'l',
+	'k', 'kh', 'ng', 'g',
+	'ts', 'tsh', 's', 'j',
+	'h', '', }
 # 臺灣閩南語羅馬字拼音方案使用手冊 + 臺灣語語音入門 + 教育部辭典的字
-臺灣閩南語羅馬字拼音韻母表 = {'a', 'e', 'i', 'oo', 'o', 'u',
-		'ai', 'au', 'ia', 'io', 'iu', 'ua', 'ue', 'ui', 'iau', 'uai',
-		'ann', 'enn', 'inn', 'onn', 'm', 'ng', 'ainn', 'iann', 'iaunn', 'iunn', 'uann', 'uainn',
-		'am', 'an', 'ang', 'im', 'in', 'ing', 'om', 'ong', 'iam', 'ian', 'iang', 'iong', 'un', 'uan',
-		'ah', 'eh', 'ih', 'oh', 'uh', 'auh', 'iah', 'ioh', 'iuh', 'iauh', 'uah', 'ueh', 'ooh',
-		'annh', 'ennh', 'innh', 'mh', 'iannh', 'ngh', 'ap', 'at', 'ak', 'op', 'ok', 'iok',
-		'ip', 'it', 'ik', 'iap', 'iat', 'iak', 'ut', 'uat',
-		'er', 'ere', 'erh', 'ereh', 'erm', 'ee', 'uee', 'eeh',
-		'ir', 'irinn', 'irm', 'irn', 'irng',
-		'uinn', 'ionn', 'eng', 'uang', 'irh', 'irp', 'irt', 'irk',
-		'ioo','iooh', # 諾 0hioo 0hiooh
-		'ie', #	鹿港偏泉腔
-		'aih', 'ainnh', 'aunnh', 'uih', } | {
-		'aunn', 'uenn', 'uaih', 'iunnh', 'iaunnh', 'uennh', 'uinnh', 'uainnh', 'iut', 'uak'} | {'onnh'} | {
-		'or', 'orh', 'ior', 'iorh', }
+臺灣閩南語羅馬字拼音韻母表 = {
+	'a', 'ah', 'ap', 'at', 'ak', 'ann', 'annh',
+	'am', 'an', 'ang',
+	'e', 'eh', 'enn', 'ennh',
+	'i', 'ih', 'ip', 'it', 'ik', 'inn', 'innh',
+	'im', 'in', 'ing',
+	'o', 'oh',
+	'oo', 'ooh', 'op', 'ok', 'om', 'ong', 'onn', 'onnh',
+	'u', 'uh', 'ut', 'un',
+	'ai', 'aih', 'ainn', 'ainnh',
+	'au', 'auh', 'aunn', 'aunnh',
+	'ia', 'iah', 'iap', 'iat', 'iak', 'iam', 'ian', 'iang', 'iann', 'iannh',
+	'io', 'ioh',
+	'iok', 'iong', 'ionn',
+	'iu', 'iuh', 'iut', 'iunn', 'iunnh',
+	'ua', 'uah', 'uat', 'uak', 'uan', 'uann',
+	'ue', 'ueh', 'uenn', 'uennh',
+	'ui', 'uih', 'uinn', 'uinnh',
+	'iau', 'iauh', 'iaunn', 'iaunnh',
+	'uai', 'uaih', 'uainn', 'uainnh',
+	'm', 'mh', 'ng', 'ngh',
+	'er', 'erh', 'erm', 'ere', 'ereh',  # 泉　鍋
+	'ee', 'eeh', 'eng', 'uee',  # 漳　家
+	'ir', 'irh', 'irp', 'irt', 'irk', 'irm', 'irn', 'irng', 'irinn',
+	'ioo', 'iooh',  # 諾 0hioo 0hiooh
+	'ie',  # 鹿港偏泉腔
+	'uang',
+	'or', 'orh', 'ior', 'iorh',  # 蚵
+	}
 臺灣閩南語羅馬字拼音聲調符號表 = dict(
-	á=('a', 2), à=('a', 3), â=('a', 5), ǎ=('a', 6), ā=('a', 7), a̍=('a', 8), a̋=('a', 9),
-	é=('e', 2), è=('e', 3), ê=('e', 5), ě=('e', 6), ē=('e', 7), e̍=('e', 8), e̋=('e', 9),
-	í=('i', 2), ì=('i', 3), î=('i', 5), ǐ=('i', 6), ī=('i', 7), i̍=('i', 8), i̋=('i', 9),
-	ó=('o', 2), ò=('o', 3), ô=('o', 5), ǒ=('o', 6), ō=('o', 7), o̍=('o', 8), ő=('o', 9),
-	ú=('u', 2), ù=('u', 3), û=('u', 5), ǔ=('u', 6), ū=('u', 7), u̍=('u', 8), ű=('u', 9),
-	ḿ=('m', 2), m̀=('m', 3), m̂=('m', 5), m̌=('m', 6), m̄=('m', 7), m̍=('m', 8), m̋=('m', 9),
-	ń=('n', 2), ǹ=('n', 3), n̂=('n', 5), ň=('n', 6), n̄=('n', 7), n̍=('n', 8), n̋=('n', 9),)
+	á = ('a', 2), à = ('a', 3), â = ('a', 5), ǎ = ('a', 6), ā = ('a', 7), a̍ = ('a', 8), a̋ = ('a', 9),
+	é = ('e', 2), è = ('e', 3), ê = ('e', 5), ě = ('e', 6), ē = ('e', 7), e̍ = ('e', 8), e̋ = ('e', 9),
+	í = ('i', 2), ì = ('i', 3), î = ('i', 5), ǐ = ('i', 6), ī = ('i', 7), i̍ = ('i', 8), i̋ = ('i', 9),
+	ó = ('o', 2), ò = ('o', 3), ô = ('o', 5), ǒ = ('o', 6), ō = ('o', 7), o̍ = ('o', 8), ő = ('o', 9),
+	ú = ('u', 2), ù = ('u', 3), û = ('u', 5), ǔ = ('u', 6), ū = ('u', 7), u̍ = ('u', 8), ű = ('u', 9),
+	ḿ = ('m', 2), m̀ = ('m', 3), m̂ = ('m', 5), m̌ = ('m', 6), m̄ = ('m', 7), m̍ = ('m', 8), m̋ = ('m', 9),
+	ń = ('n', 2), ǹ = ('n', 3), n̂ = ('n', 5), ň = ('n', 6), n̄ = ('n', 7), n̍ = ('n', 8), n̋ = ('n', 9),)
 
 臺灣閩南語羅馬字拼音數字調轉閏號調表 = {
 	('a', '2'):"á", ('a', '3'):"à", ('a', '5'):"â", ('a', '6'):"ǎ", ('a', '7'):"ā", ('a', '8'):"a̍", ('a', '9'):"a̋",
@@ -43,91 +61,49 @@ from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
 	('ui', '2'):"uí", ('ui', '3'):"uì", ('ui', '5'):"uî", ('ui', '6'):"uǐ", ('ui', '7'):"uī", ('ui', '8'):"ui̍", ('ui', '9'):"ui̋",
 	('iu', '2'):"iú", ('iu', '3'):"iù", ('iu', '5'):"iû", ('iu', '6'):"iǔ", ('iu', '7'):"iū", ('iu', '8'):"iu̍", ('iu', '9'):"iű", }
 
-臺羅對通用聲對照表={
-	'p':'b','ph':'p','m':'m','b':'bh',
-	't':'d','th':'t','n':'n','l':'l',
-	'k':'g','kh':'k','ng':'ng','g':'gh',
-	'ts':'z','tsh':'c','s':'s','j':'r',
-	'h':'h','':'',}
-臺羅對通用韻對照表={
-		
-'a':'a',
-'ah':'ah',
-'ai':'ai',
-'ainn':'ainn',
-'ak':'ak',
-'am':'am',
-'an':'an',
-'ang':'ang',
-'ann':'ann',
-'ap':'ap',
-'at':'at',
-'au':'au',
-'aunn':'aunn',
-'e':'e',
-'eh':'eh',
-'enn':'enn',
-'iah':'iah',
-'ia':'ia',
-'iak':'iak',
-'iam':'iam',
-'ian':'en',
-'iang':'iang',
-'iannh':'iannh',
-'iann':'iann',
-'iap':'iap',
-'iat':'et',
-'iau':'iau',
-'iaunn':'iaunn',
-'ih':'ih',
-'i':'i',
-'ik':'ik',
-'im':'im',
-'ing':'ing',
-'in':'in',
-'innh':'innh',
-'inn':'inn',
-'ioh':'iorh',
-'io':'io',
-'io':'ior',
-'iok':'iok',
-'iong':'iong',
-'ionn':'ionn',
-'ip':'ip',
-'it':'it',
-'iu':'iu',
-'iunn':'iunn',
-'m':'m',
-'ng':'ng',
-'o':'er',
-'oh':'erh',
-'oh':'orh',
-'ok':'ok',
-'om':'om',
-'ong':'ong',
-'onn':'onn',
-'ooh':'oh',
-'oo':'o',
-'o':'or',
-'uah':'uah',
-'uainnh':'uainnh',
-'uainn':'uainn',
-'uai':'uai',
-'uann':'uann',
-'uan':'uan',
-'uat':'uat',
-'ua':'ua',
-'ueh':'ueh',
-'ue':'ue',
-'uh':'uh',
-'uih':'uih',
-'uinn':'uinn',
-'ui':'ui',
-'un':'un',
-'ut':'ut',
-'u':'u',
-		}
-臺羅對通用調對照表={'1':'1', '7':'2', '3':'3', '2':'4', '5':'5', '8':'6', '4':'7', '10':'8', '9':'9',}
+臺羅對通用聲對照表 = {
+	'p':'b', 'ph':'p', 'm':'m', 'b':'bh',
+	't':'d', 'th':'t', 'n':'n', 'l':'l',
+	'k':'g', 'kh':'k', 'ng':'ng', 'g':'gh',
+	'ts':'z', 'tsh':'c', 's':'s', 'j':'r',
+	'h':'h', '':'', }
+臺羅對通用韻對照表 = {
+	'a':'a', 'am':'am', 'an':'an', 'ang':'ang',
+	'ah':'ah', 'ap':'ap', 'at':'at', 'ak':'ak',
+	'ann':'ann', 'annh':'annh',
+	'ai':'ai', 'aih':'aih', 'ainn':'ainn', 'ainnh':'ainnh',
+	'au':'au', 'auh':'auh', 'aunn':'aunn', 'aunnh':'aunnh',
+	'e':'e', 'eh':'eh', 'enn':'enn', 'ennh':'ennh',
+	'ia':'ia', 'iah':'iah', 'iap':'iap', 'iat':'et', 'iak':'iak',
+	'iam':'iam', 'ian':'en', 'iang':'iang',
+	'iann':'iann', 'iannh':'iannh',
+	'iau':'iau', 'iauh':'iauh', 'iaunn':'iaunn', 'iaunnh':'iaunnh',
+	'i':'i', 'ih':'ih', 'ip':'ip', 'it':'it', 'ik':'ik',
+	'im':'im', 'in':'in', 'ing':'ing',
+	'inn':'inn', 'innh':'innh',
+	'io':'ior', 'ioh':'iorh',
+	'ioo':'io', 'iooh':'ioh', 'ionn':'ionn', 'iok':'iok', 'iong':'iong',
+	'iu':'iu', 'iuh':'iuh', 'iut':'iut', 'iunn':'iunn', 'iunnh':'iunnh',
+	'm':'m', 'mh':'mh', 'ng':'ng', 'ngh':'ngh',
+	'o':'or', 'oh':'orh', 'op':'op',
+	'om':'om', 'ong':'ong',
+	'oo':'o', 'ooh':'oh', 'ok':'ok', 'onn':'onn', 'onnh':'onnh',
+	'ua':'ua', 'uah':'uah', 'uat':'uat', 'uak':'uak',
+	'uann':'uann', 'uan':'uan',
+	'uai':'uai', 'uaih':'uaih', 'uainn':'uainn', 'uainnh':'uainnh',
+	'ue':'ue', 'ueh':'ueh', 'uenn':'uenn', 'uennh':'uennh',
+	'ui':'ui', 'uih':'uih', 'uinn':'uinn', 'uinnh':'uinnh',
+	'u':'u', 'uh':'uh', 'ut':'ut',
+	'un':'un',
+	# 下跤是方音
+	'or':'or', 'orh':'orh', 'ior':'ior', 'iorh':'iorh',
+	'ee':'e', 'eeh':'eh', 'eng':'ing', 'uee':'ue',
+	'ir':'i', 'irh':'ih', 'irp':'ip', 'irt':'it', 'irk':'ik',
+	'irm':'im', 'irn':'in', 'irng':'ing', 'irinn':'inn',  # 無確定
+	'er':'or', 'erh':'orh', 'erm':'orm', 'erm':'orm', 'ere':'er', 'ereh':'erh',
+	'ie':'ie', 'uang':'uang',
+}
+臺羅對通用調對照表 = {'1':'1', '7':'2', '3':'3', '2':'4', '5':'5', '8':'6', '4':'7', '10':'8', '9':'9', }
 class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 	聲母表 = 臺灣閩南語羅馬字拼音聲母表
 	韻母表 = 臺灣閩南語羅馬字拼音韻母表
@@ -142,7 +118,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 	音標 = None
 
 	數字調轉閏號調表 = 臺灣閩南語羅馬字拼音數字調轉閏號調表
-	
+
 	對通用聲對照表 = 臺羅對通用聲對照表
 	對通用韻對照表 = 臺羅對通用韻對照表
 	對通用調對照表 = 臺羅對通用調對照表
@@ -177,6 +153,6 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 			return None
 		if self.聲 not in self.對通用聲對照表 or self.韻 not in self.對通用韻對照表 or self.調 not in self.對通用調對照表:
 			raise RuntimeError('轉通用拼音時對照表有問題！！')
-		return self.對通用聲對照表[self.聲] +self.對通用韻對照表[self.韻] + self.對通用調對照表[self.調]
+		return self.對通用聲對照表[self.聲] + self.對通用韻對照表[self.韻] + self.對通用調對照表[self.調]
 	def 產生吳守禮方音物件(self):
 		return 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組(self.聲, self.韻, self.調, self.輕)
