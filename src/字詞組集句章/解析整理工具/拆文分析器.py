@@ -23,7 +23,7 @@ class 拆文分析器:
 		初胚工具 = 文章初胚工具()
 		self.符號邊仔加空白 = 初胚工具.符號邊仔加空白
 		self.減號有照規則無 = 初胚工具.減號有照規則無
-		
+
 	def 建立字物件(self, 語句):
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
@@ -53,26 +53,26 @@ class 拆文分析器:
 		巢狀詞陣列 = self.拆句做巢狀詞(語句)
 		詞陣列 = []
 		for 孤詞 in 巢狀詞陣列:
-			字陣列=[]
+			字陣列 = []
 			for 孤字 in 孤詞:
 				字陣列.append(self.建立字物件(孤字))
 			詞陣列.append(詞(字陣列))
 		return 組(詞陣列)
-	
+
 	def 建立集物件(self, 語句):
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
 		if 語句 == '':
 			return 集()
 		return 集([self.建立組物件(語句)])
-	
+
 	def 建立句物件(self, 語句):
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
 		if 語句 == '':
 			return 句()
 		return 句([self.建立集物件(語句)])
-	
+
 	def 建立章物件(self, 語句):
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
@@ -101,7 +101,7 @@ class 拆文分析器:
 		if 型 == '' and 音 == 無音:
 			return 詞()
 		型陣列 = self.拆句做字(型)
-		音陣列 = 音.split(分字符號)
+		音陣列 = 音.replace(分詞符號, 分字符號).split(分字符號)
 		if len(型陣列) > len(音陣列):
 			raise 解析錯誤('詞內底的型「{0}」比音「{1}」少！'.format(
 				str(型), str(音)))
@@ -199,20 +199,20 @@ class 拆文分析器:
 
 	def 拆句做字(self, 語句):
 		return self.句解析(語句)[0]
-	
+
 	def 拆句做巢狀詞(self, 語句):
-		字陣列,佮後一个字是佇仝一个詞=self.句解析(語句)
-		巢狀詞陣列=[]
-		位置=0
-		while 位置<len(字陣列):
-			範圍=位置
-			while 範圍<len(佮後一个字是佇仝一个詞) and 佮後一个字是佇仝一个詞[範圍]:
-				範圍+=1
-			範圍+=1
+		字陣列, 佮後一个字是佇仝一个詞 = self.句解析(語句)
+		巢狀詞陣列 = []
+		位置 = 0
+		while 位置 < len(字陣列):
+			範圍 = 位置
+			while 範圍 < len(佮後一个字是佇仝一个詞) and 佮後一个字是佇仝一个詞[範圍]:
+				範圍 += 1
+			範圍 += 1
 			巢狀詞陣列.append(字陣列[位置:範圍])
-			位置=範圍
+			位置 = 範圍
 		return 巢狀詞陣列
-	
+
 	def 句解析(self, 語句):
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
@@ -255,13 +255,13 @@ class 拆文分析器:
 						字陣列.append(分字符號)
 						佮後一个字是佇仝一个詞.append(False)
 					else:
-						if len(佮後一个字是佇仝一个詞)==0:
-							if len(語句)>1:
+						if len(佮後一个字是佇仝一个詞) == 0:
+							if len(語句) > 1:
 								raise 解析錯誤('一開始的減號是代表啥物？請用「文章初胚工具.建立物件語句前處理減號」：語句{0}'.format(str(語句)))
 							else:
 								字陣列.append(字)
 								佮後一个字是佇仝一个詞.append(False)
-						else:		
+						else:
 							佮後一个字是佇仝一个詞[-1] = True
 				elif 字 in 分詞符號:
 					if 一个字 != '':
@@ -308,7 +308,7 @@ class 拆文分析器:
 				raise RuntimeError('程式發生內部錯誤，語句＝{0}'.format(str(語句)))
 		if [] in 字陣列:
 			raise RuntimeError('程式發生內部錯誤，語句＝{0}'.format(str(語句)))
-		return (字陣列,佮後一个字是佇仝一个詞)
+		return (字陣列, 佮後一个字是佇仝一个詞)
 
 	def 拆章做句(self, 語句):
 		# 敢有需要做
