@@ -1,6 +1,8 @@
 from abc import ABCMeta, abstractmethod
 
 class 閩南語音標介面(metaclass=ABCMeta):
+	#消警告用
+	頂層=ABCMeta
 	聲 = None
 	韻 = None
 	調 = 1
