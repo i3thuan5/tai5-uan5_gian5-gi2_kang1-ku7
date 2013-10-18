@@ -11,11 +11,12 @@ class 型音辭典(文字辭典):
 		return
 	
 	def 查詞(self, 詞物件):
-		self.加詞佇點(詞物件, 0, self.表)
+		return self.查詞佇點(詞物件, 0, self.表)
 
 	def 加詞佇點(self, 詞物件, 第幾字, 點):
 		if 第幾字 == len(詞物件.內底字):
 			點.條.append(詞物件)
+			return
 		字物件 = 詞物件.內底字[第幾字]
 		if 字物件.型 not in 點.表:
 			點.表[字物件.型] = 型音點()
@@ -26,12 +27,24 @@ class 型音辭典(文字辭典):
 		return
 
 	def 查詞佇點(self, 詞物件, 第幾字, 點):
+		這馬答案 = []
+		for 所在 in range(第幾字):
+			這馬答案.append([])
+		這馬答案.append(點.條)
 		if 第幾字 == len(詞物件.內底字):
-			return 點.條
-		答案 = []
+			return 這馬答案
+		答案 = [這馬答案]
 		字物件 = 詞物件.內底字[第幾字]
 		if 字物件.型 in 點.表:
 			答案.append(self.查詞佇點(詞物件, 第幾字 + 1, 點.表[字物件.型]))
 		if 字物件.音 != 無音 and 字物件.音 in 點.表:
 			答案.append(self.查詞佇點(詞物件, 第幾字 + 1, 點.表[字物件.型]))
-		return 答案
+		if len(答案)==0:
+			return []
+		上尾答案=答案[0]
+		for 小答案 in 答案[1:]:
+			for 所在 in range(len(上尾答案),len(小答案)):
+				上尾答案.append([])
+			for 所在 in range(len(小答案)):
+				上尾答案[所在].extend(小答案[所在])
+		return 上尾答案
