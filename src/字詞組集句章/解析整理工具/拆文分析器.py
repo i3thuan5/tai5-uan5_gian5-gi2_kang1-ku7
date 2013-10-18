@@ -101,13 +101,13 @@ class 拆文分析器:
 		if 型 == '' and 音 == 無音:
 			return 詞()
 		型陣列 = self.拆句做字(型)
-		音陣列 = 音.replace(分詞符號, 分字符號).split(分字符號)
-		if len(型陣列) > len(音陣列):
-			raise 解析錯誤('詞內底的型「{0}」比音「{1}」少！'.format(
-				str(型), str(音)))
+		音陣列 = 音.split(分字符號)
 		if len(型陣列) < len(音陣列):
-			raise 解析錯誤('詞內底的型「{0}」比音「{1}」濟！'.format(
-				str(型), str(音)))
+			raise 解析錯誤('詞內底的型「{0}」比音「{1}」少！{2}：{3}'.format(
+				str(型), str(音), len(型陣列), len(音陣列)))
+		if len(型陣列) > len(音陣列):
+			raise 解析錯誤('詞內底的型「{0}」比音「{1}」濟！{2}：{3}'.format(
+				str(型), str(音), len(型陣列), len(音陣列)))
 		return self.拆好陣列產生對齊詞(型陣列, 音陣列)
 
 	def 拆好陣列產生對齊詞(self, 型陣列, 音陣列):
@@ -116,9 +116,11 @@ class 拆文分析器:
 		if not isinstance(音陣列, list):
 			raise 型態錯誤('傳入來的音毋是陣列：音陣列＝{}'.format(str(音陣列)))
 		if len(型陣列) < len(音陣列):
-			raise 解析錯誤('詞內底的型「{0}」比音「{1}」少！'.format(str(型陣列), str(音陣列)))
+			raise 解析錯誤('詞內底的型「{0}」比音「{1}」少！{2}：{3}'.format(
+				str(型陣列), str(音陣列), len(型陣列), len(音陣列)))
 		if len(型陣列) > len(音陣列):
-			raise 解析錯誤('詞內底的型「{0}」比音「{1}」濟！'.format(str(型陣列), str(音陣列)))
+			raise 解析錯誤('詞內底的型「{0}」比音「{1}」濟！{2}：{3}'.format(
+				str(型陣列), str(音陣列), len(型陣列), len(音陣列)))
 		if 型陣列 == [] and 音陣列 == []:
 			return 詞()
 		長度 = len(型陣列)

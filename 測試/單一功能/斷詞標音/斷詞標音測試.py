@@ -9,8 +9,8 @@ class 斷詞標音測試(TestCase):
 		self.初胚工具 = 文章初胚工具()
 		self.分析器 = 拆文分析器()
 		self.詞物件 = self.分析器.建立詞物件('你好無？')
-		self.詞音標 = self.分析器.建立詞物件('li2-hoo2 bo5?')
-		self.對齊詞 = self.分析器.產生對齊詞('你好無？', 'li2-hoo2 bo5?')
+		self.詞音標 = self.分析器.建立詞物件('li2-hoo2-bo5-?')
+		self.對齊詞 = self.分析器.產生對齊詞('你好無？', 'li2-hoo2-bo5-?')
 	def tearDown(self):
 		pass
 	def test_漢字加詞成功無(self):

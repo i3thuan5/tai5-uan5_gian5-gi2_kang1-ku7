@@ -340,6 +340,31 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(詞.內底字[0], self.分析器.產生對齊字(型一, 音一))
 		self.assertEqual(詞.內底字[1], self.分析器.產生對齊字(型二, 音二))
 		self.assertEqual(詞.內底字[2], self.分析器.產生對齊字(型三, 音三))
+		
+	def test_對齊詞濟字有符號(self):
+		詞型 = '媠姑娘？'
+		詞音 = 'sui2-koo1-niu5-?'
+		詞 = self.分析器.產生對齊詞(詞型, 詞音)
+		self.assertEqual(len(詞.內底字), 4)
+		型一 = '媠'
+		型二 = '姑'
+		型三 = '娘'
+		型四 = '？'
+		音一 = 'sui2'
+		音二 = 'koo1'
+		音三 = 'niu5'
+		音四 = '?'
+		self.assertEqual(詞.內底字[0], self.分析器.產生對齊字(型一, 音一))
+		self.assertEqual(詞.內底字[1], self.分析器.產生對齊字(型二, 音二))
+		self.assertEqual(詞.內底字[2], self.分析器.產生對齊字(型三, 音三))
+		self.assertEqual(詞.內底字[3], self.分析器.產生對齊字(型四, 音四))
+		
+	def test_對齊詞濟字有空白(self):
+		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, '媠姑娘', 'sui2-koo1 niu5')
+		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, '媠姑娘', 'sui2 koo1 niu5')
+		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, '媠姑娘', 'sui2 koo1-niu5')
+		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, '媠姑娘？', 'sui2-koo1 niu5?')
+		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, '媠姑娘？', 'sui2-koo1-niu5?')
 
 	def test_拆好陣列產生對齊詞濟字(self):
 		詞型 = '媠姑娘'
