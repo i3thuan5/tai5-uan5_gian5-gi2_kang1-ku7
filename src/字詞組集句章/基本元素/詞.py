@@ -13,6 +13,8 @@ class 詞:
 			self.內底字.append(字(字物件.型, 字物件.音))
 	def __eq__(self, 別个):
 		return isinstance(別个, 詞) and self.內底字 == 別个.內底字
+	def __hash__(self):
+		return hash(tuple(self.內底字))
 	def __str__(self):
 		return '詞：{0}'.format(self.內底字)
 	def __repr__(self):
