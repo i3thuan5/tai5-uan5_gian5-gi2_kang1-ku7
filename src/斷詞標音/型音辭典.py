@@ -2,16 +2,25 @@ from 斷詞標音.文字辭典 import 文字辭典
 from 字詞組集句章.基本元素.公用變數 import 無音
 from 斷詞標音.型音點 import 型音點
 from 字詞組集句章.基本元素.詞 import 詞
+from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
 
 class 型音辭典(文字辭典):
+	大細 = None
 	表 = None
-	def __init__(self):
+	def __init__(self, 大細):
+		self.大細 = 大細
 		self.表 = 型音點()
+		
 	def 加詞(self, 詞物件):
-		self.加詞佇點(詞物件, 0, self.表)
+		if not isinstance(詞物件, 詞):
+			raise 型態錯誤('傳入來的毋是詞物件：{0}'.format(str(詞物件)))
+		if len(詞物件.內底字)<=self.大細:
+			self.加詞佇點(詞物件, 0, self.表)
 		return
 
 	def 查詞(self, 詞物件):
+		if not isinstance(詞物件, 詞):
+			raise 型態錯誤('傳入來的毋是詞物件：{0}'.format(str(詞物件)))
 		結果 = self.查詞佇點(詞物件, 0, self.表)
 		for 幾个 in range(len(結果), len(詞物件.內底字)):
 			結果.append(set())
