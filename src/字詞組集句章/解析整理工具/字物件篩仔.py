@@ -28,7 +28,7 @@ class 字物件篩仔:
 		if not isinstance(集物件, 集):
 			raise 型態錯誤('傳入來的毋是集物件：{0}'.format(str(集物件)))
 		if len(集物件.內底組) == 0:
-			return 句()
+			return []
 		if len(集物件.內底組) > 1:
 			raise 解析錯誤('內底組毋焦一个！！{0}'.format(str(集物件)))
 		return self.篩組(集物件.內底組[0])
