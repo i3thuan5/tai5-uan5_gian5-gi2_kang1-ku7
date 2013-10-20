@@ -38,9 +38,9 @@ class 動態規劃斷詞標音測試(TestCase):
 		self.驚對齊集 = 集([self.驚對齊組])
 
 		self.句物件 = 句([self.我對齊集, self.有對齊集, self.一張對齊集,
-			self.椅仔對齊集, self.驚對齊集])
+			self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
 		self.文我句物件 = 句([self.文我對齊集, self.有對齊集, self.一張對齊集,
-			self.椅仔對齊集, self.驚對齊集])
+			self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
 
 		self.對齊句 = self.分析器.產生對齊句(
 			'我有一張椅仔！！', 'gua2 u7 tsit8-tiunn1 i2-a2!!')
@@ -56,15 +56,20 @@ class 動態規劃斷詞標音測試(TestCase):
 		self.字典.加詞(self.一張對齊詞)
 		self.字典.加詞(self.椅仔對齊詞)
 		self.字典.加詞(self.驚對齊詞)
-		self.assertEqual(self.斷詞標音.斷詞標音(self.對齊句),
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.對齊句),
 			self.句物件)
-		self.assertEqual(self.斷詞標音.斷詞標音(self.型句),
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.型句),
 			self.句物件)
-		self.assertEqual(self.斷詞標音.斷詞標音(self.音句),
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.音句),
 			self.句物件)
-		self.assertEqual(self.斷詞標音.斷詞標音(self.有詞漢羅),
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.有詞漢羅),
 			self.句物件)
-		self.assertEqual(self.斷詞標音.斷詞標音(self.無詞漢羅),
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.無詞漢羅),
 			self.句物件)
 	def test_多詞斷詞標音(self):
 		self.字典.加詞(self.我對齊詞)
@@ -73,15 +78,20 @@ class 動態規劃斷詞標音測試(TestCase):
 		self.字典.加詞(self.一張對齊詞)
 		self.字典.加詞(self.椅仔對齊詞)
 		self.字典.加詞(self.驚對齊詞)
-		self.assertEqual(self.斷詞標音.斷詞標音(self.對齊句),
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.對齊句),
 			self.句物件)
-		self.assertEqual(self.斷詞標音.斷詞標音(self.型句),
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.型句),
 			self.文我句物件)
-		self.assertEqual(self.斷詞標音.斷詞標音(self.音句),
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.音句),
 			self.句物件)
-		self.assertEqual(self.斷詞標音.斷詞標音(self.有詞漢羅),
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.有詞漢羅),
 			self.文我句物件)
-		self.assertEqual(self.斷詞標音.斷詞標音(self.無詞漢羅),
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.無詞漢羅),
 			self.句物件)
 	def test_集無使有多組(self):
 		self.字典.加詞(self.我對齊詞)
@@ -90,7 +100,7 @@ class 動態規劃斷詞標音測試(TestCase):
 		self.字典.加詞(self.椅仔對齊詞)
 		self.字典.加詞(self.驚對齊詞)
 		self.assertRaises(解析錯誤,
-			self.斷詞標音.斷詞標音, self.文我句物件)
+			self.斷詞標音.斷詞標音, self.字典, self.文我句物件)
 	def test_章斷詞標音(self):
 		self.字典.加詞(self.我對齊詞)
 		self.字典.加詞(self.文我對齊詞)
@@ -100,5 +110,29 @@ class 動態規劃斷詞標音測試(TestCase):
 		self.字典.加詞(self.驚對齊詞)
 		章物件 = 章([self.對齊句, self.句物件])
 		結果章 = 章([self.句物件, self.句物件])
-		self.assertEqual(章物件, 結果章)
-
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, 章物件), 結果章)
+	def test_空白斷詞標音(self):
+		self.字典.加詞(self.我對齊詞)
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.分析器.建立句物件('')),
+			句())
+	def test_辭典無夠斷詞標音(self):
+		self.字典.加詞(self.我對齊詞)
+		self.字典.加詞(self.一張對齊詞)
+		self.字典.加詞(self.驚對齊詞)
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.對齊句),
+			self.句物件)
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.型句),
+			self.句物件)
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.音句),
+			self.句物件)
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.有詞漢羅),
+			self.句物件)
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.無詞漢羅),
+			self.句物件)
