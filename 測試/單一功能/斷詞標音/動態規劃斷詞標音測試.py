@@ -136,3 +136,5 @@ class 動態規劃斷詞標音測試(TestCase):
 		self.assertEqual(
 			self.斷詞標音.斷詞標音(self.字典, self.無詞漢羅),
 			self.句物件)
+	def test_兩三切比四一切閣較好(self):
+		self.assertEqual(1, 0)
