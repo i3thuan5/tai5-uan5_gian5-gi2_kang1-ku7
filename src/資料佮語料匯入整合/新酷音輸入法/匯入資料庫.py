@@ -1,6 +1,7 @@
-from 新酷音輸入法.詞庫整理 import 整理詞庫
-from 新酷音輸入法.字表整理 import 整理字表
-from 言語資料庫.公用資料 import 資料庫連線
+from 資料佮語料匯入整合.新酷音輸入法.字表整理 import 整理字表
+from 資料佮語料匯入整合.新酷音輸入法.詞庫整理 import 整理詞庫
+from 資料庫.資料庫連線 import 資料庫連線
+
 
 資料庫指令 = 資料庫連線.prepare('INSERT INTO "新酷音輸入法"."字詞" ' + 
     '("字","音") ' + 'VALUES ($1,$2) ')
