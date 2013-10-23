@@ -23,6 +23,7 @@ class 教會系羅馬音標(閩南語音標介面):
 	韻 = None
 	調 = 1
 	輕 = ''
+	日本話 = ''
 	音標 = None
 	def 分析聲韻調(self, 音標):
 		self.聲調符號表 = 教會系羅馬音標聲調符號表
@@ -30,6 +31,9 @@ class 教會系羅馬音標(閩南語音標介面):
 		音標 = unicodedata.normalize('NFKC', 音標)
 		if 音標.startswith('0'):
 			self.輕 = '0'
+			音標 = 音標[1:]
+		elif 音標.startswith('1'):
+			self.日本話 = '1'
 			音標 = 音標[1:]
 		一開始 = True
 		for 字元 in 音標:
@@ -107,6 +111,6 @@ class 教會系羅馬音標(閩南語音標介面):
 			self.音標 = None
 		return self.音標
 	def 做音標(self):
-		self.音標 = self.輕 + self.聲 + self.韻 + self.調
+		self.音標 = self.輕 + self.日本話 + self.聲 + self.韻 + self.調
 # 聲 介 韻 調，韻含元音跟韻尾
 

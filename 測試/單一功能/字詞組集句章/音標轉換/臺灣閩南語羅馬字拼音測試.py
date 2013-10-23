@@ -66,6 +66,22 @@ class 臺灣閩南語羅馬字拼音測試(unittest.TestCase):
 		self.assertEqual(臺灣閩南語羅馬字拼音('0hannh').音標, '0hannh4')
 		self.assertEqual(臺灣閩南語羅馬字拼音('0tsi̍t').音標, '0tsit8')
 
+	def test_臺灣日本話(self):
+		self.assertEqual(臺灣閩南語羅馬字拼音('1a').音標, '1a1')
+		self.assertEqual(臺灣閩南語羅馬字拼音('1e5').音標, '1e5')
+		self.assertEqual(臺灣閩南語羅馬字拼音('1ê').音標, '1e5')
+		self.assertEqual(臺灣閩南語羅馬字拼音('1bai2').音標, '1bai2')
+		self.assertEqual(臺灣閩南語羅馬字拼音('1hannh').音標, '1hannh4')
+		self.assertEqual(臺灣閩南語羅馬字拼音('1tsi̍t').音標, '1tsit8')
+
+	def test_輕聲佮日本話無使做伙出現(self):
+		self.assertEqual(臺灣閩南語羅馬字拼音('01a').音標, None)
+		self.assertEqual(臺灣閩南語羅馬字拼音('10e5').音標, None)
+		self.assertEqual(臺灣閩南語羅馬字拼音('01ê').音標, None)
+		self.assertEqual(臺灣閩南語羅馬字拼音('10bai2').音標, None)
+		self.assertEqual(臺灣閩南語羅馬字拼音('01hannh').音標, None)
+		self.assertEqual(臺灣閩南語羅馬字拼音('10tsi̍t').音標, None)
+
 	def test_輸入閏號音標(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('pI̋m').音標, 'pim9')
 		self.assertEqual(臺灣閩南語羅馬字拼音('pi̍m').音標, 'pim8')
@@ -120,7 +136,7 @@ class 臺灣閩南語羅馬字拼音測試(unittest.TestCase):
 			self.assertIn(通, 通用拼音佮臺灣羅馬聲母對照表)
 		for 臺, 通 in 臺羅對通用韻對照表.items():
 			self.assertIn(通, 通用拼音佮臺灣羅馬韻母對照表)
-		臺=臺
+		臺 = 臺
 
 if __name__ == '__main__':
 	unittest.main()
