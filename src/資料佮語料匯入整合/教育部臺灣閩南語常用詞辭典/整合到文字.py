@@ -4,8 +4,6 @@ Created on 2013/2/21
 @author: Ihc
 """
 from 資料庫.整合.教育部閩南語常用詞辭典 import 揣主條目
-from 資料庫.整合.教育部閩南語常用詞辭典 import 偏漳優勢音腔口
-from 資料庫.整合.教育部閩南語常用詞辭典 import 偏泉優勢音腔口
 from 資料庫.整合.教育部閩南語常用詞辭典 import 揣義倒詞的詞音
 from 資料庫.整合.教育部閩南語常用詞辭典 import 揣義近詞的詞音
 from 資料庫.整合.教育部閩南語常用詞辭典 import 揣詞別音
@@ -36,7 +34,9 @@ from 資料庫.整合.整合入言語 import 加關係
 from 資料庫.欄位資訊 import 義近
 from 資料庫.欄位資訊 import 會當替換
 from 字詞組集句章.解析整理工具.物件譀鏡 import 物件譀鏡
-from 資料庫.整合.教育部閩南語常用詞辭典 import 混合優勢音腔口
+from 資料庫.欄位資訊 import 偏漳優勢音腔口
+from 資料庫.欄位資訊 import 偏泉優勢音腔口
+from 資料庫.欄位資訊 import 混合優勢音腔口
 
 class 整合到文字():
 	def __init__(self):
