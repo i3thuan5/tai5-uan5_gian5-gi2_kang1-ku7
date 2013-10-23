@@ -150,22 +150,22 @@ class 整合到文字():
 					俗音流水號集 = []
 					合音流水號集 = []
 					組字式型 = 共造字換做統一碼表示法(字)
-					組字式型 = 初胚工具.符號邊仔加空白(組字式型).strip()
+					#組字式型 = 初胚工具.符號邊仔加空白(組字式型).strip()
 					for 音 in 音集:
 						是俗音 = False
 						是合音 = False
 						資料字型體 = 組字式型
-						if 音 == "sai-kong-á (面稱)":
+						if 音 == "sai-kong-á(面稱)":
 							音 = "sai-kong-á"
-						elif 音 == "sai-sun-á (背稱)":
+						elif 音 == "sai-sun-á(背稱)":
 							音 = "sai-sun-á"
 						elif 音 == "khioh-gín-á(產婆語)":
 							音 = "khioh-gín-á"
-						elif 音 == "tshâ-se ( 大 )":
+						elif 音 == "tshâ-se(大)":
 							音 = "tshâ-se"
-						elif 音 == "luai̍h-á ( 小 )":
-							音 = 	"luai̍h-á"
-						elif 音 == "hông-hun ( 書 )":
+						elif 音 == "luai̍h-á(小)":
+							音 = "luai̍h-á"
+						elif 音 == "hông-hun(書)":
 							音 = "hông-hun"
 						elif 音 == 'tsînn(中間有孔)':
 							音 = 'tsînn'  # 鐳　lui (無空的)
@@ -173,7 +173,7 @@ class 整合到文字():
 							音 = 'tshâ-se'
 						elif 音 == 'luai̍h-á(小)':
 							音 = 'luai̍h-á'
-						if 資料字型體 == "司孫 ( 背稱 )":
+						if 資料字型體 == "司孫(背稱)":
 							資料字型體 = "司孫"
 
 						if 資料字型體 == "竹圍" and 主編號 == 36014:
@@ -203,7 +203,7 @@ class 整合到文字():
 						if 音 == "niàu-ka-tsiah hit- ki":
 							# love you~
 							音 = "niàu-ka-tsiah hit-ki"
-						型替換 = {'收瀾收予焦 ， 予你生一个有':'收瀾收予焦，予你生一个有𡳞脬。'
+						型替換 = {'收瀾收予焦，予你生一个有':'收瀾收予焦，予你生一个有𡳞脬。'
 							}
 
 						if 組字式型 in 型替換:
