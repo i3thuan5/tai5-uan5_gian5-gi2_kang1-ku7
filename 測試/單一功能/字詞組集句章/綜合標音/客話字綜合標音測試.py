@@ -1,48 +1,40 @@
 import unittest
 from 字詞組集句章.基本元素.字 import 字
-from 字詞組集句章.綜合標音.閩南語字綜合標音 import 閩南語字綜合標音
+from 字詞組集句章.綜合標音.客話字綜合標音 import 客話字綜合標音
 from 字詞組集句章.基本元素.公用變數 import 無音
-from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
-import json
+from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 
 class 客話字綜合標音測試(unittest.TestCase):
 	def setUp(self):
-		pass
+		self.我型 = '⿰厓'
+		self.我音 = 'ngaiˇ'
+		self.你型 = '你'
+		self.你音 = 'niˇ'
 	def tearDown(self):
 		pass
 	def test_合法(self):
-		self.assertEqual(1, 2)
-		綜合標音 = 閩南語字綜合標音(字('我', 'gua2'))
+		綜合標音 = 客話字綜合標音(字(self.我型, self.我音))
 		self.assertEqual(綜合標音.標音完整無(), True)
 	def test_兩个字合法(self):
-		self.assertEqual(1, 2)
-		我綜合標音 = 閩南語字綜合標音(字('我', 'gua2'))
-		你綜合標音 = 閩南語字綜合標音(字('你', 'li2'))
-		self.assertEqual(我綜合標音.型體, '我')
-		self.assertEqual(你綜合標音.型體, '你')
+		我綜合標音 = 客話字綜合標音(字(self.我型, self.我音))
+		你綜合標音 = 客話字綜合標音(字(self.你型, self.你音))
+		self.assertEqual(我綜合標音.型體, self.我型)
+		self.assertEqual(你綜合標音.型體, self.你型)
 	def test_轉json格式(self):
-		self.assertEqual(1, 2)
-		綜合標音 = 閩南語字綜合標音(字('我', 'gua2'))
-		self.assertEqual(綜合標音.轉json格式(), json.loads(
-			'{"型體":"我","臺羅數字調":"gua2","臺羅閏號調":"guá","通用數字調":"ghua4","吳守禮方音":"⿳⿳⿳ㆣㄨㄚˋ"}'))
+		綜合標音 = 客話字綜合標音(字(self.我型, self.我音))
 		self.assertEqual(綜合標音.轉json格式(),
-			{"型體":"我","臺羅數字調":"gua2","臺羅閏號調":"guá","通用數字調":"ghua4",
-			"吳守禮方音":"⿳⿳⿳ㆣㄨㄚˋ"})
+			{"型體":self.我型, "臺灣客話":self.我音})
 	def test_標點合法(self):
-		self.assertEqual(1, 2)
-		標點 = 閩南語字綜合標音(字('，', 無音))
+		標點 = 客話字綜合標音(字('，', 無音))
 		self.assertEqual(標點.標音完整無(), True)
 	def test_標點轉json格式(self):
-		self.assertEqual(1, 2)
-		標點 = 閩南語字綜合標音(字('，', 無音))
-		self.assertEqual(標點.轉json格式(), {"型體":"，","臺羅數字調":"","臺羅閏號調":"","通用數字調":"","吳守禮方音":""})
+		標點 = 客話字綜合標音(字('，', 無音))
+		self.assertEqual(標點.轉json格式(), {"型體":"，", "臺灣客話":""})
 	def test_標點音無合法(self):
-		self.assertEqual(1, 2)
-		self.assertRaises(解析錯誤, 閩南語字綜合標音, 字('我', 'uo3'))
+		self.assertRaises(解析錯誤, 客話字綜合標音, 字('我', 'nggai'))
 	def test_烏白傳(self):
-		self.assertEqual(1, 2)
-		self.assertRaises(型態錯誤, 閩南語字綜合標音, '我')
+		self.assertRaises(型態錯誤, 客話字綜合標音, '我')
 
 if __name__ == '__main__':
 	unittest.main()
