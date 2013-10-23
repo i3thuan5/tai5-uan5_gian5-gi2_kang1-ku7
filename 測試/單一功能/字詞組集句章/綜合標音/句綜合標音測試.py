@@ -7,6 +7,8 @@ from 字詞組集句章.基本元素.章 import 章
 from 字詞組集句章.綜合標音.句綜合標音 import 句綜合標音
 from 字詞組集句章.綜合標音.閩南語字綜合標音 import 閩南語字綜合標音
 from 字詞組集句章.綜合標音.集綜合標音 import 集綜合標音
+from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
+from 字詞組集句章.綜合標音.詞組綜合標音 import 詞組綜合標音
 
 class 句綜合標音測試(unittest.TestCase):
 	def setUp(self):
@@ -185,7 +187,7 @@ class 句綜合標音測試(unittest.TestCase):
 		self.assertEqual(標音句.綜合集[3], 集綜合標音(閩南語字綜合標音, 我))
 		self.assertEqual(標音句.綜合集[4], 集綜合標音(閩南語字綜合標音, 愛))
 		self.assertEqual(標音句.綜合集[5], 集綜合標音(閩南語字綜合標音, 莉))
-		self.assertEqual(標音句.轉json格式(),[
+		self.assertEqual(標音句.轉json格式(), [
 			[{'詞組綜合標音': [
 				{"型體":"我", "臺羅數字調":"gua2", "臺羅閏號調":"guá", "通用數字調":"ghua4", "吳守禮方音":"⿳⿳⿳ㆣㄨㄚˋ"}],
 			"連字音":"gua2"}],
@@ -199,7 +201,7 @@ class 句綜合標音測試(unittest.TestCase):
 			{"詞組綜合標音":[
 				{"型體":"美", "臺羅數字調":"mi2", "臺羅閏號調":"mí", "通用數字調":"mi4", "吳守禮方音":"⿳⿳ㄇㄧˋ"},
 				{"型體":"女", "臺羅數字調":"lu2", "臺羅閏號調":"lú", "通用數字調":"lu4", "吳守禮方音":"⿳⿳ㄌㄨˋ"}],
-			"連字音":"mi2-lu2"}],[{'詞組綜合標音': [
+			"連字音":"mi2-lu2"}], [{'詞組綜合標音': [
 				{"型體":"我", "臺羅數字調":"gua2", "臺羅閏號調":"guá", "通用數字調":"ghua4", "吳守禮方音":"⿳⿳⿳ㆣㄨㄚˋ"}],
 			"連字音":"gua2"}],
 			[{"詞組綜合標音":[
@@ -214,6 +216,13 @@ class 句綜合標音測試(unittest.TestCase):
 				{"型體":"女", "臺羅數字調":"lu2", "臺羅閏號調":"lú", "通用數字調":"lu4", "吳守禮方音":"⿳⿳ㄌㄨˋ"}],
 			"連字音":"mi2-lu2"}],
 			])
+
+	def test_烏白傳(self):
+		self.assertRaises(型態錯誤, 句綜合標音, 閩南語字綜合標音, ' ')
+		章物件 = self.分析器.產生對齊章('點仔膠，黏著跤，', 'tiam2-a2-ka1, liam5-tioh8 kha1,')
+		self.assertRaises(型態錯誤, 句綜合標音, ' ', 章物件)
+		self.assertRaises(型態錯誤, 句綜合標音, 詞組綜合標音, 章物件)
+		self.assertRaises(型態錯誤, 句綜合標音, None, None)
 
 if __name__ == '__main__':
 	unittest.main()

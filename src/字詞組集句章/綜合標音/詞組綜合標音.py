@@ -3,7 +3,6 @@ from 字詞組集句章.基本元素.詞 import 詞
 from 字詞組集句章.基本元素.組 import 組
 from 字詞組集句章.綜合標音.字綜合標音 import 字綜合標音
 from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
-from 字詞組集句章.基本元素.公用變數 import 無音
 from 字詞組集句章.解析整理工具.物件譀鏡 import 物件譀鏡
 
 class 詞組綜合標音():
@@ -13,9 +12,9 @@ class 詞組綜合標音():
 	def __init__(self, 字綜合標音型態, 詞或組物件):
 		self.綜合字 = []
 		self.連字音 = ''
-		if len(self.綜合字) != 0:
-# 			self.綜合字.insert(0, '@@')
-			raise RuntimeError('!!!!!! 綜合字＝{0}，{1}'.format(self.綜合字, self.連字音))
+		if not isinstance(字綜合標音型態, type) or \
+			not issubclass(字綜合標音型態, 字綜合標音):
+			raise 型態錯誤('傳入來的字綜合標音有問題！{0}，{1}'.format(type(字綜合標音型態), str(字綜合標音型態)))
 		if isinstance(詞或組物件, 詞):
 			詞物件 = 詞或組物件
 			for 一字 in 詞物件.內底字:
@@ -46,4 +45,5 @@ class 詞組綜合標音():
 	def __str__(self):
 		return self.轉json格式()
 	def __eq__(self, 別个):
-		return isinstance(別个, 詞組綜合標音) and self.綜合字 == 別个.綜合字 and self.連字音 == 別个.連字音
+		return isinstance(別个, 詞組綜合標音) and \
+			self.綜合字 == 別个.綜合字 and self.連字音 == 別个.連字音
