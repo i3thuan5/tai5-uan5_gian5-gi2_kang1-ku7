@@ -8,7 +8,6 @@ from 字詞組集句章.基本元素.公用變數 import 標點符號
 
 class 閩南語字綜合標音(字綜合標音):
 	型體 = None
-	臺羅詞組 = None
 	臺羅數字調 = None
 	臺羅閏號調 = None
 	通用數字調 = None
@@ -49,6 +48,6 @@ class 閩南語字綜合標音(字綜合標音):
 	def __str__(self):
 		return self.轉json格式()
 	def __eq__(self, 別个):
-		return isinstance(別个, 閩南語字綜合標音) and self.型體 == 別个.型體 and self.臺羅詞組 == 別个.臺羅詞組 and \
+		return isinstance(別个, 閩南語字綜合標音) and self.型體 == 別个.型體 and \
 			self.臺羅數字調 == 別个.臺羅數字調 and self.臺羅閏號調 == 別个.臺羅閏號調 and \
 			self.通用數字調 == 別个.通用數字調 and self.吳守禮方音 == 別个.吳守禮方音
