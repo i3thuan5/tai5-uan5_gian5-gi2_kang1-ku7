@@ -47,6 +47,7 @@ from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 im
 	'om':'om', 'ong':'ong',
 	'onn':'onn', 'onnh':'onnh',
 	'or':'o', 'orh':'oh', 'orm':'om', 'ornn':'onn',
+	'oi':'oi', 'oih':'oih',
 	'ua':'ua', 'uah':'uah', 'uat':'uat', 'uak':'uak', 'uainn':'uainn', 'uainnh':'uainnh',
 	'uan':'uan', 'uann':'uann', 'uannh':'uannh',
 	'uai':'uai', 'uaih':'uaih',
