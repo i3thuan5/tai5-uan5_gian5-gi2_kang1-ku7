@@ -23,8 +23,6 @@ class 臺羅變調暫時處理:
 					尾本調.append(False)
 			else:
 				尾本調.append(True)
-		print(字陣列)
-		print(尾本調)
 		for 所在 in range(len(字陣列)):
 			if not 尾本調[所在]:
 				if 字陣列[所在].音!='':
@@ -33,7 +31,6 @@ class 臺羅變調暫時處理:
 		return 字陣列
 
 	def 轉臺羅韻調(self,臺羅):
-		print(臺羅)
 		if 臺羅.韻.endswith('h'):
 			if 臺羅.調=='4':
 				臺羅.調='2'
@@ -54,7 +51,6 @@ class 臺羅變調暫時處理:
 				臺羅.調=self.變調規則[臺羅.調]
 			else:
 				raise 解析錯誤('非入調錯誤！！')
-		print(臺羅)
 		臺羅.做音標()
 		return 臺羅
 			
