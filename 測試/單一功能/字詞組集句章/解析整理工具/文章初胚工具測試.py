@@ -170,6 +170,20 @@ class 拆文初胚工具測試(unittest.TestCase):
 		self.assertRaises(解析錯誤, self.初胚工具.符號邊仔加空白, 'sui2 koo1  --niu5')
 		self.assertRaises(解析錯誤, self.初胚工具.符號邊仔加空白, '--niu5')
 		self.assertRaises(解析錯誤, self.初胚工具.符號邊仔加空白, 'sui2--')
+		
+	def test_建立物件語句前減號當作標點符號(self):
+		原來語句 = '阮hak8-hau7佇大學路'
+		處理好語句 = '阮hak8 - hau7佇大學路'
+		加空白後語句 = '阮hak8 - hau7佇大學路'
+		self.assertEqual(self.初胚工具.建立物件語句前減號變標點符號(原來語句), 處理好語句)
+		self.assertEqual(self.初胚工具.符號邊仔加空白(處理好語句), 加空白後語句)
+		
+	def test_建立物件語句前前減號負數當作標點符號(self):
+		原來語句 = '-20+5=-15'
+		處理好語句 = ' - 20+5= - 15'
+		加空白後語句 = ' - 20 + 5 = - 15'
+		self.assertEqual(self.初胚工具.建立物件語句前減號變標點符號(原來語句), 處理好語句)
+		self.assertEqual(self.初胚工具.符號邊仔加空白(處理好語句), 加空白後語句)
 
 
 if __name__ == '__main__':
