@@ -3,18 +3,6 @@ from 臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 毓哲語言辨識.第一步之揣出臺語通用 import 語法錯誤表
 from 毓哲語言辨識.第一點一步之檢查通用臺音標對照表 import 對齊語料路徑
 
-def 臺羅聲韻轉辨識合成型(聲,韻):
-	if 聲=='m' or 聲=='n' or 聲=='ng':
-		if 'm' not in 韻 and 'n' not in 韻:
-			if 韻.endswith('h') or 韻.endswith('p') or 韻.endswith('t') or 韻.endswith('k'):
-				韻=韻[:-1]+'nn'+韻[-1]
-			else:
-				韻+='nn'
-			if 韻=='oonnh':
-				韻='onnh'
-	return (聲,韻)
-	
-
 if __name__ == '__main__':
 # 	字音對照 = 通用拼音音標('bai5')
 # 	print(字音對照.音標)
