@@ -6,71 +6,39 @@ from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
 
 class 現掀辭典(文字辭典):
 	大細 = None
-	表 = None
 	def __init__(self, 大細):
 		self.大細 = 大細
-		self.表 = 型音點()
-		
+		self.條目 = []
 	def 加詞(self, 詞物件):
 		if not isinstance(詞物件, 詞):
 			raise 型態錯誤('傳入來的毋是詞物件：{0}'.format(str(詞物件)))
-		if len(詞物件.內底字)<=self.大細:
-			self.加詞佇點(詞物件, 0, self.表)
+		if len(詞物件.內底字) <= self.大細:
+			self.條目.append(詞物件)
 		return
 
 	def 查詞(self, 詞物件):
 		if not isinstance(詞物件, 詞):
 			raise 型態錯誤('傳入來的毋是詞物件：{0}'.format(str(詞物件)))
-		結果 = self.查詞佇點(詞物件, 0, self.表)
-		for 幾个 in range(len(結果), len(詞物件.內底字)):
+		結果=[]
+		for 所在 in range(len(詞物件.內底字)):
 			結果.append(set())
-			幾个 = 幾个
+		for 辭典條 in self.條目:
+			if self.查詞有仝無(詞物件, 辭典條):
+				結果[len(辭典條.內底字)-1].add(辭典條)
 		return 結果
 
-	def 加詞佇點(self, 詞物件, 第幾字, 點):
-		if 第幾字 == len(詞物件.內底字):
-			點.條.add(詞物件)
-			return
-		字物件 = 詞物件.內底字[第幾字]
-		if 字物件.型 not in 點.表:
-			點.表[字物件.型] = 型音點()
-		self.加詞佇點(詞物件, 第幾字 + 1, 點.表[字物件.型])
-		if 字物件.音 != 無音:
-			if 字物件.音 not in 點.表:
-				點.表[字物件.音] = 型音點()
-			self.加詞佇點(詞物件, 第幾字 + 1, 點.表[字物件.音])
-			if 字物件 not in 點.表:
-				點.表[字物件] = 型音點()
-			self.加詞佇點(詞物件, 第幾字 + 1, 點.表[字物件])
-		return
-
-	def 查詞佇點(self, 詞物件, 第幾字, 點):
-		這馬答案 = []
-# 		for 所在 in range(第幾字):
-# 			這馬答案.append(set())
-		if 第幾字 != 0:
-			這馬答案.append(點.條)
-# 		print(第幾字, '開始', 這馬答案)
-		if 第幾字 == len(詞物件.內底字):
-			return 這馬答案
-# 		答案 = [這馬答案]
-		字物件 = 詞物件.內底字[第幾字]
-		if 字物件.音 != 無音:
-			if 字物件 in 點.表:
-				這馬答案.extend(self.查詞佇點(詞物件, 第幾字 + 1, 點.表[字物件]))
-		elif 字物件.型 in 點.表:
-			這馬答案.extend(self.查詞佇點(詞物件, 第幾字 + 1, 點.表[字物件.型]))
-
-# 		print(第幾字, '結束', 這馬答案)
-		return 這馬答案
-# 		if 字物件.音 != 無音 and 字物件.音 in 點.表:
-# 			答案.append(self.查詞佇點(詞物件, 第幾字 + 1, 點.表[字物件.型]))
-# 		if len(答案)==0:
-# 			return []
-# 		上尾答案=答案[0]
-# 		for 小答案 in 答案[1:]:
-# 			for 所在 in range(len(上尾答案),len(小答案)):
-# 				上尾答案.append(set())
-# 			for 所在 in range(len(小答案)):
-# 				上尾答案[所在].union(小答案[所在])
-# 		return 上尾答案
+	def 查詞有仝無(self, 詞物件, 辭典條):
+		if len(詞物件.內底字) < len(辭典條.內底字):
+			return False
+		for 第幾字 in range(len(辭典條.內底字)):
+			字物件 = 詞物件.內底字[第幾字]
+			辭典條字物件 = 辭典條.內底字[第幾字]
+			有著=False
+			if 字物件.音 != 無音:
+				if 字物件 == 辭典條字物件:
+					有著 = True
+			elif 字物件.型 == 辭典條字物件.型 or 字物件.型 == 辭典條字物件.音:
+				有著 = True
+			if not 有著:
+				return False
+		return True

@@ -8,6 +8,12 @@ class 現掀辭典測試(TestCase):
 		self.字典 = 現掀辭典(4)
 		self.初胚工具 = 文章初胚工具()
 		self.分析器 = 拆文分析器()
+		self.孤詞物 = self.分析器.建立詞物件('你')
+		self.孤詞音 = self.分析器.建立詞物件('li2')
+		self.二詞物 = self.分析器.建立詞物件('好')
+		self.二詞音 = self.分析器.建立詞物件('hoo2')
+		self.短詞物 = self.分析器.建立詞物件('你好')
+		self.短詞音 = self.分析器.建立詞物件('li2-hoo2')
 		self.詞物件 = self.分析器.建立詞物件('你好無？')
 		self.詞音標 = self.分析器.建立詞物件('li2-hoo2-bo5-?')
 		self.對齊詞 = self.分析器.產生對齊詞('你好無？', 'li2-hoo2-bo5-?')
@@ -48,3 +54,16 @@ class 現掀辭典測試(TestCase):
 		self.assertEqual(self.字典.查詞(self.對齊詞), [set(), set(), set(), {self.對齊詞}])
 		self.assertEqual(self.字典.查詞(self.傷長詞), [set(), set(), set(), set(), set()])
 		
+	def test_長短詞攏愛揣出來(self):
+		self.字典.加詞(self.孤詞物)
+		self.字典.加詞(self.二詞物)
+		self.字典.加詞(self.短詞物)
+		self.字典.加詞(self.詞物件)
+		self.字典.加詞(self.孤詞音)
+		self.字典.加詞(self.二詞音)
+		self.字典.加詞(self.短詞音)
+		self.字典.加詞(self.詞音標)
+		self.assertEqual(self.字典.查詞(self.詞物件),
+			[{self.孤詞物}, {self.短詞物}, set(), {self.詞物件}])
+		self.assertEqual(self.字典.查詞(self.詞音標),
+			[{self.孤詞音}, {self.短詞音}, set(), {self.詞音標}])
