@@ -38,15 +38,15 @@ class 調號處理:
 		('g5', 'gˋ'), ('g24', 'gˊ'),
 		]
 	def 數字轉調號(self, 音, 腔):
-		if 腔 == '四縣腔':
+		if '四縣腔' in 腔:
 			表 = self.四縣表
-		elif 腔 == '海陸腔':
+		elif '海陸腔' in 腔:
 			表 = self.海陸表
-		elif 腔 == '大埔腔':
+		elif '大埔腔' in 腔:
 			表 = self.大埔表
-		elif 腔 == '饒平腔':
+		elif '饒平腔' in 腔:
 			表 = self.饒平表
-		elif 腔 == '詔安腔':
+		elif '詔安腔' in 腔:
 			表 = self.詔安表
 		else:
 			raise RuntimeError('腔口毋著：{0}'.format(腔))
