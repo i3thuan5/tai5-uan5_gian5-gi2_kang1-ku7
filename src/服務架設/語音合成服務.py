@@ -6,13 +6,15 @@ from 斷詞標音.自動標音 import 自動標音
 from 語音合成.合音檔.句物件轉合成標籤 import 句物件轉合成標籤
 from 字詞組集句章.基本元素.集 import 集
 from 字詞組集句章.基本元素.句 import 句
+from 語音合成.合音檔.標仔轉音標 import 標仔轉音檔
 
 class 語音合成服務(連線控制器):
 	標音工具 = 自動標音()
 	合成標籤工具 = 句物件轉合成標籤()
+	轉音檔 = 標仔轉音檔()
 	def do_GET(self):
 		try:
-			self.送出連線成功資訊()
+			self.送出連線成功資訊('audio/x-wav')
 			# 共上頭前的「/」提掉
 			查詢字串 = self.連線路徑()[1:]
 			切開資料 = 查詢字串.split('/', 1)
@@ -45,7 +47,10 @@ class 語音合成服務(連線控制器):
 					else:
 						組陣列=集物件.內底組[:1]
 					集陣列.append(集(組陣列))
-			self.輸出(self.合成標籤工具.句物件轉標籤(句(集陣列)))
+			標仔=self.合成標籤工具.句物件轉標籤(句(集陣列))
+			音檔 = self.轉音檔.合成('HTSLSPanAll.htsvoice',
+				標仔)
+			self.送出位元資料(音檔)
 			return
 		except IOError:
 			self.send_error(404, 'File Not Found: %s' % self.path)
