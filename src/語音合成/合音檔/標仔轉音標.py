@@ -13,9 +13,6 @@ class 標仔轉音檔:
 		聲音檔.close()
 		程式所在 = self.程式工具.專案目錄()
 		os.system(
-			'echo {0}/外部程式/HTSEngine/程式/hts_engine -m {0}/外部程式/HTSEngine/模型/{1} -ow {3} {2}'
-			.format(程式所在, 模型, 標仔檔.name, 聲音檔.name))
-		os.system(
 			'{0}/外部程式/HTSEngine/程式/hts_engine -m {0}/外部程式/HTSEngine/模型/{1} -ow {3} {2}'
 			.format(程式所在, 模型, 標仔檔.name, 聲音檔.name))
 		os.unlink(標仔檔.name)
