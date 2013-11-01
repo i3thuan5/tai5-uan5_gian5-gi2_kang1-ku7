@@ -54,10 +54,10 @@ class 語音合成服務(連線控制器):
 						組陣列 = 集物件.內底組[:1]
 					集陣列.append(集(組陣列))
 			標仔 = self.合成標籤工具.句物件轉標籤(句(集陣列))
-			模型='HTSLSPanAll.htsvoice'
-			if 模型!=偏漳優勢音腔口:
-				模型='HTSLSPtsauAll.htsvoice'
-			音檔 = self.轉音檔.合成(模型,標仔)
+			模型 = 'HTSLSPanAll.htsvoice'
+			if 查詢腔口 != 偏漳優勢音腔口:
+				模型 = 'HTSLSPtsauAll.htsvoice'
+			音檔 = self.轉音檔.合成(模型, 標仔)
 			self.送出連線成功資訊('audio/x-wav')
 			self.送出位元資料(音檔)
 			return
