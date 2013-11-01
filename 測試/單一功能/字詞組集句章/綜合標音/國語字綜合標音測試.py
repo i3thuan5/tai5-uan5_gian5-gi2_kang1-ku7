@@ -9,7 +9,7 @@ class 國語字綜合標音測試(unittest.TestCase):
 	def setUp(self):
 		self.我型 = '我'
 		self.我音 = 'ㄨㄛˇ'
-		self.我標音 = '⿰⿰ㄨㄛˇ'
+		self.我標音 = '⿳⿳ㄨㄛˇ'
 		self.你型 = '你'
 		self.你音 = 'ㄋㄧˇ'
 	def tearDown(self):
@@ -33,7 +33,7 @@ class 國語字綜合標音測試(unittest.TestCase):
 		標點 = 國語字綜合標音(字('，', 無音))
 		self.assertEqual(標點.轉json格式(), {"型體":"，", "注音符號":""})
 	def test_標點音無合法(self):
-		self.assertRaises(解析錯誤, 國語字綜合標音, 字('我', 'nggai'))
+		self.assertRaises(解析錯誤, 國語字綜合標音, 字('我', 'ㄆㄨㄧˋ'))
 	def test_烏白傳(self):
 		self.assertRaises(型態錯誤, 國語字綜合標音, '我')
 
