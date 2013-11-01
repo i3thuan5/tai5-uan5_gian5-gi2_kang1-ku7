@@ -189,3 +189,33 @@ class 動態規劃斷詞標音測試(TestCase):
 		self.assertEqual(
 			self.斷詞標音.斷詞標音(self.字典, self.無詞漢羅),
 			新句物件)
+	def test_詞屬性愛留咧(self):
+		self.字典.加詞(self.我對齊詞)
+		self.字典.加詞(self.有對齊詞)
+		self.字典.加詞(self.一張對齊詞)
+		self.字典.加詞(self.椅仔對齊詞)
+		self.驚對齊詞.屬性='袂使無去'
+		self.字典.加詞(self.驚對齊詞)
+		句物件=self.斷詞標音.斷詞標音(self.字典, self.對齊句)
+		上尾第二詞=句物件.內底集[-2].內底組[0].內底詞[0]
+		上尾詞=句物件.內底集[-1].內底組[0].內底詞[0]
+		self.assertEqual(上尾第二詞,self.驚對齊詞)
+		self.assertEqual(上尾詞,self.驚對齊詞)
+		self.assertEqual(上尾第二詞.屬性,self.驚對齊詞.屬性)
+		self.assertEqual(上尾詞.屬性,self.驚對齊詞.屬性)
+	def test_章斷詞詞屬性愛留咧(self):
+		self.字典.加詞(self.我對齊詞)
+		self.字典.加詞(self.文我對齊詞)
+		self.字典.加詞(self.有對齊詞)
+		self.字典.加詞(self.一張對齊詞)
+		self.字典.加詞(self.椅仔對齊詞)
+		self.驚對齊詞.屬性='袂使無去'
+		self.字典.加詞(self.驚對齊詞)
+		章物件 = self.分析器.產生對齊章(
+			'我有一張椅仔！！', 'gua2 u7 tsit8-tiunn1 i2-a2!!')
+		上尾第二詞=章物件.內底句[-1].內底集[-1].內底組[0].內底詞[-1]
+		上尾詞=章物件.內底句[-1].內底集[-1].內底組[0].內底詞[-2]
+		self.assertEqual(上尾第二詞,self.驚對齊詞)
+		self.assertEqual(上尾詞,self.驚對齊詞)
+		self.assertEqual(上尾第二詞.屬性,self.驚對齊詞.屬性)
+		self.assertEqual(上尾詞.屬性,self.驚對齊詞.屬性)
