@@ -29,9 +29,10 @@ class 動態規劃斷詞標音測試(TestCase):
 		self.一張對齊組 = 組([self.一張對齊詞])
 		self.椅仔對齊組 = 組([self.椅仔對齊詞])
 		self.驚對齊組 = 組([self.驚對齊詞])
-
+		
+		我詞順序 = list({self.我對齊詞, self.文我對齊詞})
 		self.我對齊集 = 集([self.我對齊組])
-		self.文我對齊集 = 集([self.我對齊組, self.文我對齊組])
+		self.文我對齊集 = 集([組([我詞順序[0]]), 組([我詞順序[1]])])
 		self.有對齊集 = 集([self.有對齊組])
 		self.一張對齊集 = 集([self.一張對齊組])
 		self.椅仔對齊集 = 集([self.椅仔對齊組])
@@ -194,29 +195,29 @@ class 動態規劃斷詞標音測試(TestCase):
 		self.字典.加詞(self.有對齊詞)
 		self.字典.加詞(self.一張對齊詞)
 		self.字典.加詞(self.椅仔對齊詞)
-		self.驚對齊詞.屬性='袂使無去'
+		self.驚對齊詞.屬性 = '袂使無去'
 		self.字典.加詞(self.驚對齊詞)
-		句物件=self.斷詞標音.斷詞標音(self.字典, self.對齊句)
-		上尾第二詞=句物件.內底集[-2].內底組[0].內底詞[0]
-		上尾詞=句物件.內底集[-1].內底組[0].內底詞[0]
-		self.assertEqual(上尾第二詞,self.驚對齊詞)
-		self.assertEqual(上尾詞,self.驚對齊詞)
-		self.assertEqual(上尾第二詞.屬性,self.驚對齊詞.屬性)
-		self.assertEqual(上尾詞.屬性,self.驚對齊詞.屬性)
+		句物件 = self.斷詞標音.斷詞標音(self.字典, self.對齊句)
+		上尾第二詞 = 句物件.內底集[-2].內底組[0].內底詞[0]
+		上尾詞 = 句物件.內底集[-1].內底組[0].內底詞[0]
+		self.assertEqual(上尾第二詞, self.驚對齊詞)
+		self.assertEqual(上尾詞, self.驚對齊詞)
+		self.assertEqual(上尾第二詞.屬性, self.驚對齊詞.屬性)
+		self.assertEqual(上尾詞.屬性, self.驚對齊詞.屬性)
 	def test_章斷詞詞屬性愛留咧(self):
 		self.字典.加詞(self.我對齊詞)
 		self.字典.加詞(self.文我對齊詞)
 		self.字典.加詞(self.有對齊詞)
 		self.字典.加詞(self.一張對齊詞)
 		self.字典.加詞(self.椅仔對齊詞)
-		self.驚對齊詞.屬性='袂使無去'
+		self.驚對齊詞.屬性 = '袂使無去'
 		self.字典.加詞(self.驚對齊詞)
 		章物件 = self.分析器.產生對齊章(
 			'我有一張椅仔！！', 'gua2 u7 tsit8-tiunn1 i2-a2!!')
-		斷好句物件=self.斷詞標音.斷詞標音(self.字典, 章物件)
-		上尾第二詞=斷好句物件.內底句[-1].內底集[-2].內底組[0].內底詞[-1]
-		上尾詞=斷好句物件.內底句[-1].內底集[-1].內底組[0].內底詞[-1]
-		self.assertEqual(上尾第二詞,self.驚對齊詞)
-		self.assertEqual(上尾詞,self.驚對齊詞)
-		self.assertEqual(上尾第二詞.屬性,self.驚對齊詞.屬性)
-		self.assertEqual(上尾詞.屬性,self.驚對齊詞.屬性)
+		斷好句物件 = self.斷詞標音.斷詞標音(self.字典, 章物件)
+		上尾第二詞 = 斷好句物件.內底句[-1].內底集[-2].內底組[0].內底詞[-1]
+		上尾詞 = 斷好句物件.內底句[-1].內底集[-1].內底組[0].內底詞[-1]
+		self.assertEqual(上尾第二詞, self.驚對齊詞)
+		self.assertEqual(上尾詞, self.驚對齊詞)
+		self.assertEqual(上尾第二詞.屬性, self.驚對齊詞.屬性)
+		self.assertEqual(上尾詞.屬性, self.驚對齊詞.屬性)
