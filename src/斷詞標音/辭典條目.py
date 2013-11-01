@@ -1,6 +1,9 @@
 from 資料庫.資料庫連線 import 資料庫連線
 
 class 辭典條目:
+	文讀層 = '文讀層'
+	白話層 = '白話層'
+	
 	揣言語層的字詞 = lambda self, 腔口, 語言層:資料庫連線.prepare('SELECT ' + 
 		'DISTINCT "乙流水號" FROM "言語"."關係" ' + 
 		'WHERE "乙對甲的關係類型"=$1 AND "關係性質"=$2 '

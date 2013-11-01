@@ -9,33 +9,34 @@ from 斷詞標音.辭典條目 import 辭典條目
 
 class 客話標音整合:
 	腔口 = '漢語族客家方言四縣腔'
-	文讀層 = '文讀層'
-	白話層 = '白話層'
-	全部 = '全部'
 	條目 = 辭典條目()
+	文讀層 = None
+	白話層 = None
 	初胚工具 = 文章初胚工具()
 	分析器 = 拆文分析器()
 	辭典 = None
 	斷詞標音 = 動態規劃斷詞標音()
 	def __init__(self, 腔口, 辭典):
+		self.文讀層=self.條目.文讀層
+		self.白話層=self.條目.白話層
 		self.腔口 = 腔口
 		self.文讀字 = set()
-		[self.文讀字.add(字詞[0]) for 字詞 in self.條目.揣言語層的字詞(self.腔口, '文讀層')]
+		[self.文讀字.add(字詞[0]) for 字詞 in self.條目.揣言語層的字詞(self.腔口, self.文讀層)]
 		self.白話字 = set()
-		[self.白話字.add(字詞[0]) for 字詞 in self.條目.揣言語層的字詞(self.腔口, '白話層')]
+		[self.白話字.add(字詞[0]) for 字詞 in self.條目.揣言語層的字詞(self.腔口, self.白話層)]
 		self.辭典 = 辭典(4)
 
 		for 流水號, 型體, 音標 in self.條目.揣腔口字詞資料(腔口):
 			處理過的音標 = 音標.replace(分詞符號, 分字符號)
 			詞物件 = self.分析器.產生對齊詞(型體, 處理過的音標)
-			詞物件.屬性 = {}
+			詞物件.屬性 = {self.文讀層:0, self.白話層:0}
 			if 流水號 in self.文讀字:
-				if self.文讀層 not in 詞物件.屬性:
-					詞物件.屬性[self.文讀層] = 0
+# 				if self.文讀層 not in 詞物件.屬性:
+# 					詞物件.屬性[self.文讀層] = 0
 				詞物件.屬性[self.文讀層] += 1
 			elif 流水號 in self.白話字:
-				if self.白話層 not in 詞物件.屬性:
-					詞物件.屬性[self.白話層] = 0
+# 				if self.白話層 not in 詞物件.屬性:
+# 					詞物件.屬性[self.白話層] = 0
 				詞物件.屬性[self.白話層] += 1
 			self.辭典.加詞(詞物件)
 
