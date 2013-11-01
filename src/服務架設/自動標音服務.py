@@ -3,11 +3,9 @@ from http.server import HTTPServer
 from 服務架設.連線控制器 import 連線控制器
 from 資料庫.欄位資訊 import 偏漳優勢音腔口
 from 斷詞標音.自動標音 import 自動標音
-from 語音合成.合音檔.標仔轉音標 import 標仔轉音檔
 
 class 自動標音服務(連線控制器):
 	標音工具 = 自動標音()
-	轉音檔 = 標仔轉音檔()
 	def do_GET(self):
 		try:
 			self.送出連線成功資訊()
@@ -21,9 +19,7 @@ class 自動標音服務(連線控制器):
 			if 查詢腔口 not in self.標音工具.支援腔口:
 				查詢腔口 = 偏漳優勢音腔口
 				查詢語句 = 查詢字串
-			標仔=self.標音工具.標音(查詢腔口, 查詢語句)
-			音檔 = self.轉音檔.合成('HTSLSPanAll.htsvoice',標仔)
-			self.輸出(音檔)
+			self.輸出(self.標音工具.標音(查詢腔口, 查詢語句))
 			return
 		except IOError:
 			self.send_error(404, 'File Not Found: %s' % self.path)
