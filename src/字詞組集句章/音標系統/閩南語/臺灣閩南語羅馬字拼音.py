@@ -154,7 +154,9 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 		if self.音標 == None:
 			return None
 		if self.聲 not in self.對通用聲對照表 or self.韻 not in self.對通用韻對照表 or self.調 not in self.對通用調對照表:
-			raise RuntimeError('轉通用拼音時對照表有問題！！')
+			raise RuntimeError(
+				'轉通用拼音時對照表有問題！！{0}、{1}、{2}'
+				.format(self.聲,self.韻,self.調))
 		return self.對通用聲對照表[self.聲] + self.對通用韻對照表[self.韻] + self.對通用調對照表[self.調]
 	def 產生吳守禮方音物件(self):
 		return 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組(self.聲, self.韻, self.調, self.輕)

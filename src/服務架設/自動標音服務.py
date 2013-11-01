@@ -21,10 +21,11 @@ class 自動標音服務(連線控制器):
 			標音結果 = self.標音工具.標音(查詢腔口, 查詢語句)
 			self.送出連線成功資訊()
 			self.輸出(標音結果)
-		except Pyro4.errors.NamingError:
+		except Pyro4.errors.NamingError as 錯誤:
 			self.送出連線錯誤資訊(503)
 			self.輸出('暫時停止服務！！')
 			print('內部自動標音關去矣！！')
+			raise 錯誤
 		except TypeError:
 			self.送出連線錯誤資訊(503)
 			self.輸出('暫時停止服務！！')
@@ -37,6 +38,7 @@ class 自動標音服務(連線控制器):
 		return
 
 if __name__ == '__main__':
+	Pyro4.config.SERIALIZER = 'pickle'
 	try:
 		server = HTTPServer(('localhost', 8001), 自動標音服務)
 		print ('服務啟動！！')
