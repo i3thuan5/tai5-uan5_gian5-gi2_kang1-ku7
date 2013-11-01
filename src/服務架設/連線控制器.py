@@ -13,6 +13,9 @@ class 連線控制器(BaseHTTPRequestHandler):
 		self.send_response(200)
 		self.send_header('Content-type', 資料型態)
 		self.end_headers()
+	def 送出連線錯誤資訊(self, 狀態編號):
+		self.send_response(狀態編號)
+		self.end_headers()
 
 if __name__ == '__main__':
 	try:

@@ -52,6 +52,9 @@ class 自動標音():
 				self.腔口綜合標音[腔] = 字綜合標音
 		return
 	
+	def 有支援無(self,腔):
+		return 腔 in self.支援腔口
+		
 	def 標音(self, 查詢腔口, 查詢語句):
 		if 查詢腔口 not in self.腔口標音工具:
 			raise(解析錯誤, '腔口毋著：{0}'.format(查詢腔口))
