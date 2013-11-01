@@ -75,6 +75,7 @@ class 語音合成服務(連線控制器):
 		return
 
 if __name__ == '__main__':
+	Pyro4.config.SERIALIZER = 'pickle'
 	try:
 		server = HTTPServer(('localhost', 8003), 語音合成服務)
 		print ('服務啟動！！')
