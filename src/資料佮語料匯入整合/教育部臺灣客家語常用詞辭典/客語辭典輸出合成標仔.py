@@ -13,6 +13,7 @@ from 資料庫.欄位資訊 import 海陸腔
 from 資料庫.欄位資訊 import 大埔腔
 from 資料庫.欄位資訊 import 饒平腔
 from 資料庫.欄位資訊 import 詔安腔
+from 字詞組集句章.基本元素.公用變數 import 標點符號
 
 
 教育部客家語辭典名 = '教育部臺灣客家語常用詞辭典'
@@ -119,6 +120,9 @@ class 整合客話辭典():
 						音 = 音.replace('3', '')
 						音 = 音.replace('4', '')
 						音 = 音.replace('5', '')
+						音 = 音.replace('9', '')
+						for 符 in 標點符號:
+							音 = 音.replace(符, 'sil')
 						輸出.write('\n'.join(音.split()))
 						輸出.write('\n')
 # 						print(編號,譀鏡.看型(新句物件), 譀鏡.看音(句物件))
@@ -127,6 +131,11 @@ class 整合客話辭典():
 # 						加文字佮版本(教育部客家語辭典名, 字詞, 腔, 教育部客家語辭典地區,
 #  									教育部客家語辭典年代, 譀鏡.看型(新句物件), 譀鏡.看音(新句物件), 版本正常)
 		print(算)
+# [chhsueh@nol labels]$ sed -i 's/，/sil/g' *
+# [chhsueh@nol labels]$ sed -i 's/；/sil/g' *
+# [chhsueh@nol labels]$ sed -i 's/－/sil/g' *
+# [chhsueh@nol labels]$ sed -i 's/。/sil/g' *
+# [chhsueh@nol labels]$ sed -i -e 's/、/sil/g' -e 's/,/sil/g' *
 
 
 if __name__ == '__main__':

@@ -1,34 +1,35 @@
 臺灣客家話拼音聲母對照表 = {
-		'b','p','m','f','v','d','t','n','l','g',
-		'k','ng','h','j','q','x','z','c','s',
-		'zi','ci','si','zh','ch','sh','rh',''
+		'b', 'p', 'm', 'f', 'v', 'd', 't', 'n', 'l', 'g',
+		'k', 'ng', 'h', 'j', 'q', 'x', 'z', 'c', 's',
+		'zh', 'ch', 'sh', 'rh', '', 'bb'
+		 #'ngi','zi', 'ci', 'si',
 }
 臺灣客家話拼音韻母對照表 = {
-		'ii','i','e','a','o','u','ie','eu','ieu','ia',
-		'ua','ai','uai','au','iau','io','oi','ioi','iu',
-		'ui','iui','ue','iim','im','em','iem','am','iam',
-		'iin','in','en','ien','uen','an','uan','on','ion',
-		'un','iun','ang','iang','uang','ong','iong','ung',
-		'iung','iib','ib','eb','ieb','ab','iab','iid','id',
-		'ed','ied','ued','ad','uad','od','iod','ud','iud',
-		'ag','iag','uag','og','iog','ug','iug','er','m','n',
+		'ii', 'i', 'e', 'a', 'o', 'u', 'ie', 'eu', 'ieu', 'ia',
+		'ua', 'ai', 'uai', 'au', 'iau', 'io', 'oi', 'ioi', 'iu',
+		'ui', 'iui', 'ue', 'iim', 'im', 'em', 'iem', 'am', 'iam',
+		'iin', 'in', 'en', 'ien', 'uen', 'an', 'uan', 'on', 'ion',
+		'un', 'iun', 'ang', 'iang', 'uang', 'ong', 'iong', 'ung',
+		'iung', 'iib', 'ib', 'eb', 'ieb', 'ab', 'iab', 'iid', 'id',
+		'ed', 'ied', 'ued', 'ad', 'uad', 'od', 'iod', 'ud', 'iud',
+		'ag', 'iag', 'uag', 'og', 'iog', 'ug', 'iug', 'er', 'm', 'n',
 		'ng',
-		'oo','ee','eeb','eed','eem','een','eeu',
-		'ainn','ann','iann','inn','onn','uainn',
+		'oo', 'ee', 'eeb', 'eed', 'eem', 'een', 'eeu',
+		'ainn', 'ann', 'iann', 'inn', 'onn', 'uainn',
 		}
 臺灣客家話拼音調類對照表 = {
-		'','ˊ','ˋ','ˇ','+','^'
+		'', 'ˊ', 'ˋ', 'ˇ', '+', '^'
 }
 
 #########################################
-#  2013/11/1 
+#  2013/11/1
 #  意傳的客家話辨識用拼音
 #########################################
-class 臺灣客家話拼音: 
-	
+class 臺灣客家話拼音:
+
 	#-------成員函式--------#
 	def __init__(self, 音標):
-		#self.腔
+		# self.腔
 		self.音標 = None
 		if 音標[-1:] in self.調類對照表:
 			for 所在 in range(len(音標) - 1):
@@ -36,18 +37,18 @@ class 臺灣客家話拼音:
 					self.聲 = 音標[:所在]
 					self.韻 = 音標[所在:-1]
 					self.調 = 音標[-1:]
-					#檢查入聲字的調是否正確（只允許1和4聲）
+					# 檢查入聲字的調是否正確（只允許1和4聲）
 					if (self.韻.endswith('g')  and not self.韻.endswith('ng')) or\
 						self.韻.endswith('d') or\
 						self.韻.endswith('k') :
-						#if(wrong)continue;
-						if(self.調 == 'ˊ' or self.調 =='+'):
+						# if(wrong)continue;
+						if(self.調 == 'ˊ' or self.調 == '+'):
 							continue
-						
+
 					self.聲韻 = 音標[:-1]
 					self.音標 = 音標
-					#special case	
-		else: #:調是1聲
+					# special case
+		else:  # :調是1聲
 			for 所在 in range(len(音標)):
 				if 音標[:所在] in self.聲母對照表 and 音標[所在:] in self.韻母對照表:
 					self.聲 = 音標[:所在]
@@ -55,7 +56,7 @@ class 臺灣客家話拼音:
 					self.調 = ''
 					self.聲韻 = 音標
 					self.音標 = 音標
-					#special case				
+					# special case
 	#-------成員變數--------#
 	音標上長長度 = 100
 	聲 = None
@@ -63,9 +64,8 @@ class 臺灣客家話拼音:
 	聲韻 = None
 	調 = None
 	音標 = None
-	聲母對照表 = 臺灣客家話拼音聲母對照表 
-	韻母對照表 = 臺灣客家話拼音韻母對照表 
+	聲母對照表 = 臺灣客家話拼音聲母對照表
+	韻母對照表 = 臺灣客家話拼音韻母對照表
 	調類對照表 = 臺灣客家話拼音調類對照表
-	
-	
-	
+
+
