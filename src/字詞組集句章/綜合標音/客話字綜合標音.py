@@ -4,6 +4,7 @@ from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
 from 字詞組集句章.綜合標音.字綜合標音 import 字綜合標音
 from 字詞組集句章.基本元素.公用變數 import 標點符號
+from 字詞組集句章.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
 
 class 客話字綜合標音(字綜合標音):
 	型體 = None
@@ -17,11 +18,11 @@ class 客話字綜合標音(字綜合標音):
 		elif 字物件.音 in 標點符號:
 			self.臺灣客話 = 字物件.音
 		else:
-			self.臺灣客話 = 字物件.音
+			客音 = 臺灣客家話拼音(字物件.音)
+			self.臺灣客話 = 客音.音標
 			if not self.標音完整無():
-				raise 解析錯誤('音標無合法：{0}，{1}，{2}，{3}，{4}，{5}'.
-					format(字物件, self.型體, self.臺羅數字調, self.吳守禮方音,
-					self.臺羅閏號調, self.通用數字調,))
+				raise 解析錯誤('音標無合法：{0}，{1}，{2}'.
+					format(字物件, self.型體, self.臺灣客話))
 	def 轉json格式(self):
 		return {"型體":self.型體, "臺灣客話":self.臺灣客話}
 	def 標音完整無(self):

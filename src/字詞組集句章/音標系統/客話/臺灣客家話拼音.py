@@ -13,6 +13,8 @@
 		'ed','ied','ued','ad','uad','od','iod','ud','iud',
 		'ag','iag','uag','og','iog','ug','iug','er','m','n',
 		'ng',
+		'oo','ee','eeb','eed','eem','een','eeu',
+		'ainn','ann','iann','inn','onn','uainn',
 		}
 臺灣客家話拼音調類對照表 = {
 		'','ˊ','ˋ','ˇ','+','^'
