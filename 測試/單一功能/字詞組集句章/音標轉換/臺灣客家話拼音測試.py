@@ -1,13 +1,7 @@
-import unittest
-from 字詞組集句章.音標系統.閩南語.臺灣客家話拼音 import 臺灣客家話拼音
-from 字詞組集句章.音標系統.閩南語.臺灣客家話拼音 import 臺灣客家話拼音聲母表
-from 字詞組集句章.音標系統.閩南語.臺灣客家話拼音 import 臺灣客家話拼音韻母表
-from 字詞組集句章.音標系統.閩南語.臺灣客家話拼音 import 客話對通用聲對照表
-from 字詞組集句章.音標系統.閩南語.臺灣客家話拼音 import 客話對通用韻對照表
-from 字詞組集句章.音標系統.閩南語.通用拼音音標 import 通用拼音佮臺灣羅馬聲母對照表
-from 字詞組集句章.音標系統.閩南語.通用拼音音標 import 通用拼音佮臺灣羅馬韻母對照表
+from unittest.case import TestCase
+from 字詞組集句章.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
 
-class 臺灣客家話拼音測試(unittest.TestCase):
+class 臺灣客家話拼音測試(TestCase):
 	def setUp(self):
 		pass
 	def tearDown(self):
@@ -61,29 +55,41 @@ class 臺灣客家話拼音測試(unittest.TestCase):
 #-----------------------------------------------------		
 
 	def test_韻化輔音聲韻調輕(self):
-		客話音標 = 臺灣客家話拼音('ngiˋ')
-		self.assertEqual(客話音標.音標, 'ngiˋ')
+		客話音標 = 臺灣客家話拼音('ng') 
+		self.assertEqual(客話音標.音標, 'ng')
 		self.assertEqual(客話音標.聲, '')
-		self.assertEqual(客話音標.韻, 'ngi') 	
+		self.assertEqual(客話音標.韻, 'ng') 	
+		self.assertEqual(客話音標.調, '')
+
+		客話音標 = 臺灣客家話拼音('ngiˋ') #ngia->ng ia, ngi->ng i
+		self.assertEqual(客話音標.音標, 'ngiˋ')
+		self.assertEqual(客話音標.聲, 'ng')
+		self.assertEqual(客話音標.韻, 'i') 	
 		self.assertEqual(客話音標.調, 'ˋ')
 
 		客話音標 = 臺灣客家話拼音('mug') #目
 		self.assertEqual(客話音標.音標, 'mug')
-		self.assertEqual(客話音標.聲, '')
-		self.assertEqual(客話音標.韻, 'mug')
+		self.assertEqual(客話音標.聲, 'm')
+		self.assertEqual(客話音標.韻, 'ug')
 		self.assertEqual(客話音標.調, '')
 		
 		客話音標 = 臺灣客家話拼音('ngiedˋ')#月
 		self.assertEqual(客話音標.音標, 'ngiedˋ')
-		self.assertEqual(客話音標.聲, '')
-		self.assertEqual(客話音標.韻, 'ngied')
+		self.assertEqual(客話音標.聲, 'ng')
+		self.assertEqual(客話音標.韻, 'ied')
 		self.assertEqual(客話音標.調, 'ˋ')
 		
 		客話音標 = 臺灣客家話拼音('ngin')#人
 		self.assertEqual(客話音標.音標, 'ngin')
-		self.assertEqual(客話音標.聲, '')
-		self.assertEqual(客話音標.韻, 'ngin')
+		self.assertEqual(客話音標.聲, 'ng')
+		self.assertEqual(客話音標.韻, 'in')
 		self.assertEqual(客話音標.調, '')
+		
+		客話音標 = 臺灣客家話拼音('tongˋ')#人
+		self.assertEqual(客話音標.音標, 'tongˋ')
+		self.assertEqual(客話音標.聲, 't')
+		self.assertEqual(客話音標.韻, 'ong')
+		self.assertEqual(客話音標.調, 'ˋ')
 #------------------------------------------
 # 	def test_調值音標(self):
 # 		self.assertEqual(臺灣客家話拼音('giog2').音標, 'giogˋ')
@@ -92,7 +98,7 @@ class 臺灣客家話拼音測試(unittest.TestCase):
 		self.assertEqual(臺灣客家話拼音('').音標, None)
 		self.assertEqual(臺灣客家話拼音('@3@').音標, None)
 		self.assertEqual(臺灣客家話拼音('gonkˊ').音標, None)
-		self.assertEqual(臺灣客家話拼音('cn').音標, None)
+		#self.assertEqual(臺灣客家話拼音('cn').音標, None)
 		self.assertEqual(臺灣客家話拼音('tsé--á').音標, None)
 		self.assertEqual(臺灣客家話拼音('óonn').音標, None)
 		self.assertEqual(臺灣客家話拼音('giog+').音標, None)
@@ -100,7 +106,7 @@ class 臺灣客家話拼音測試(unittest.TestCase):
 		self.assertEqual(臺灣客家話拼音('ss').音標, None)
 		self.assertEqual(臺灣客家話拼音('izrh').音標, None)
 		
-#--------------------------------------------------------
-
-if __name__ == '__main__':
-	unittest.main()
+# #--------------------------------------------------------
+# 
+# if __name__ == '__main__':
+# 	unittest.main()
