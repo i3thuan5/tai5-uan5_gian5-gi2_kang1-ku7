@@ -340,7 +340,7 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(詞.內底字[0], self.分析器.產生對齊字(型一, 音一))
 		self.assertEqual(詞.內底字[1], self.分析器.產生對齊字(型二, 音二))
 		self.assertEqual(詞.內底字[2], self.分析器.產生對齊字(型三, 音三))
-		
+
 	def test_對齊詞濟字有符號(self):
 		詞型 = '媠姑娘？'
 		詞音 = 'sui2-koo1-niu5-?'
@@ -358,7 +358,7 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(詞.內底字[1], self.分析器.產生對齊字(型二, 音二))
 		self.assertEqual(詞.內底字[2], self.分析器.產生對齊字(型三, 音三))
 		self.assertEqual(詞.內底字[3], self.分析器.產生對齊字(型四, 音四))
-		
+
 	def test_對齊詞濟字有空白(self):
 		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, '媠姑娘', 'sui2-koo1 niu5')
 		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, '媠姑娘', 'sui2 koo1 niu5')
@@ -431,6 +431,46 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(組物件.內底詞[0], self.分析器.產生對齊詞(型一, 音一))
 		self.assertEqual(組物件.內底詞[1], self.分析器.產生對齊詞(型二, 音二))
 		self.assertEqual(組物件.內底詞[2], self.分析器.產生對齊詞(型三, 音三))
+
+	def test_對齊詞客話音標(self):
+		詞型 = '天頂落水'
+		詞音 = 'tienˊ-dangˋ-log-suiˋ'
+		詞物件 = self.分析器.產生對齊詞(詞型, 詞音)
+		型一 = '天'
+		型二 = '頂'
+		型三 = '落'
+		型四 = '水'
+		音一 = 'tienˊ'
+		音二 = 'dangˋ'
+		音三 = 'log'
+		音四 = 'suiˋ'
+		self.assertEqual(len(詞物件.內底字), 4)
+		self.assertEqual(詞物件.內底字[0], self.分析器.產生對齊字(型一, 音一))
+		self.assertEqual(詞物件.內底字[1], self.分析器.產生對齊字(型二, 音二))
+		self.assertEqual(詞物件.內底字[2], self.分析器.產生對齊字(型三, 音三))
+		self.assertEqual(詞物件.內底字[3], self.分析器.產生對齊字(型四, 音四))
+
+	def test_對齊組客話音標(self):
+		詞型 = '天頂落水'
+		詞音 = 'tienˊ-dangˋ log-suiˋ'
+		組物件 = self.分析器.產生對齊組(詞型, 詞音)
+		型一 = '天頂'
+		型二 = '落水'
+		音一 = 'tienˊ-dangˋ'
+		音二 = 'log-suiˋ'
+		self.assertEqual(len(組物件.內底詞), 2)
+		self.assertEqual(組物件.內底詞[0], self.分析器.產生對齊詞(型一, 音一))
+		self.assertEqual(組物件.內底詞[1], self.分析器.產生對齊詞(型二, 音二))
+
+
+	def test_客話音標對齊組(self):
+		詞音 = 'tienˊ-dangˋ log-suiˋ'
+		組物件 = self.分析器.產生對齊組(詞音, 詞音)
+		音一 = 'tienˊ-dangˋ'
+		音二 = 'log-suiˋ'
+		self.assertEqual(len(組物件.內底詞), 2)
+		self.assertEqual(組物件.內底詞[0], self.分析器.產生對齊詞(音一, 音一))
+		self.assertEqual(組物件.內底詞[1], self.分析器.產生對齊詞(音二, 音二))
 
 	def test_對齊組濟字佮符號(self):
 		詞型 = '枋寮漁港「大條巷」上闊兩公尺。'
