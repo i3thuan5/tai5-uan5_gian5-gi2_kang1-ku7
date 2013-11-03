@@ -17,6 +17,7 @@ from 字詞組集句章.基本元素.公用變數 import 標點符號
 from 語音合成.合音檔.句物件轉合成標籤 import 句物件轉合成標籤
 from 字詞組集句章.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
 import os
+import Pyro4
 
 
 教育部客家語辭典名 = '教育部臺灣客家語常用詞辭典'
@@ -30,15 +31,17 @@ import os
 class 客語辭典輸出合成標仔():
 	def __init__(self):
 		# '無愛聲調' '愛聲調'　'全文'
-		模式 = '全文'
+		模式 = '愛聲調'
 		目標 = '/home/Ihc/research/labels' + 模式
-		os.makedirs(目標,exist_ok=True)
+		os.makedirs(目標, exist_ok = True)
 		辭典正規化 = 客話辭典正規化()
 		分析器 = 拆文分析器()
 		全部資料 = 揣全部資料()
 		譀鏡 = 物件譀鏡()
 		轉音家私 = 轉物件音家私()
 		調號 = 調號處理()
+		Pyro4.config.SERIALIZER = 'pickle'
+		標音工具 = Pyro4.Proxy("PYRONAME:內部自動標音")
 		合成標籤工具 = 句物件轉合成標籤()
 		def 初使音標(self, 音):
 			self.音 = 音
@@ -136,7 +139,10 @@ class 客語辭典輸出合成標仔():
 							音 = 譀鏡.看音(新句物件)
 							輸出.write('\n'.join(音.split()))
 						elif 模式 == '全文':
-							print(腔)
+# 							print(腔)
+# 							章物件 = 標音工具.斷詞標音物件(腔, 新句物件)
+# 							標仔 = 合成標籤工具.句物件轉標籤(
+# 								臺灣客家話拼音, 章物件)
 							標仔 = 合成標籤工具.句物件轉標籤(
 								臺灣客家話拼音, 新句物件)
 							輸出.write('\n'.join(標仔))
