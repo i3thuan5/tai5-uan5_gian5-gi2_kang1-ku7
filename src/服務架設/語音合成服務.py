@@ -2,15 +2,16 @@
 from http.server import HTTPServer
 from 服務架設.連線控制器 import 連線控制器
 from 資料庫.欄位資訊 import 偏漳優勢音腔口
-from 語音合成.合音檔.句物件轉合成標籤 import 句物件轉合成標籤
 from 字詞組集句章.基本元素.集 import 集
 from 字詞組集句章.基本元素.句 import 句
 from 語音合成.合音檔.標仔轉音標 import 標仔轉音檔
 import Pyro4
+from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
+from 語音合成.合音檔.舊閩南語句物件轉合成標籤 import 舊閩南語句物件轉合成標籤
 
 class 語音合成服務(連線控制器):
 	標音工具 = Pyro4.Proxy("PYRONAME:內部自動標音")
-	合成標籤工具 = 句物件轉合成標籤()
+	合成標籤工具 = 舊閩南語句物件轉合成標籤()
 	轉音檔 = 標仔轉音檔()
 	def do_GET(self):
 		try:
