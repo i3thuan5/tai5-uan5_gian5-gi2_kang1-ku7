@@ -30,7 +30,8 @@ if __name__ == '__main__':
 	for 音 in 音表[:]:
 		問題 = 'QS "Si7_Bue2_' + 音+ '" {*+' + 音 + '/*}'
 		print(問題)
-
+	
+	問題版='QS "Si7_Bue2_{0}" {*+{1}/*}'	
 	for 長度 in range(1,len(臺灣客家話拼音調類對照表)+1):
 		for 組合 in itertools.combinations(臺灣客家話拼音調類對照表,長度):
 			print(組合)
