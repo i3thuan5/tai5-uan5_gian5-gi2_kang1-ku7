@@ -42,7 +42,7 @@ class 臺灣客家話拼音:
 						self.韻.endswith('d') or\
 						self.韻.endswith('k') :
 						# if(wrong)continue;
-						if(self.調 == 'ˊ' or self.調 == '+'):
+						if(self.調 == '^' or self.調 == '+'):
 							continue
 
 					self.聲韻 = 音標[:-1]
