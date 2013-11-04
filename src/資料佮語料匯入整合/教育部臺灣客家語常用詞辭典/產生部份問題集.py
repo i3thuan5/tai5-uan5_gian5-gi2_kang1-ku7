@@ -35,3 +35,4 @@ if __name__ == '__main__':
 			for 組合 in itertools.combinations(臺灣客家話拼音調類對照表, 長度):
 				名=str(組合).replace(' ','')
 				print(主問題.format(名,','.join(map(小問題.format,組合))))
+		print(主問題.format('x',小問題.format('x')))
