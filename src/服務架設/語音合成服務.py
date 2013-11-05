@@ -8,11 +8,26 @@ from 語音合成.合音檔.標仔轉音標 import 標仔轉音檔
 import Pyro4
 from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 語音合成.合音檔.舊閩南語句物件轉合成標籤 import 舊閩南語句物件轉合成標籤
+from 資料庫.欄位資訊 import 偏泉優勢音腔口
+from 資料庫.欄位資訊 import 混合優勢音腔口
+from 資料庫.欄位資訊 import 大埔腔
+from 資料庫.欄位資訊 import 海陸腔
+from 資料庫.欄位資訊 import 四縣腔
+from 資料庫.欄位資訊 import 饒平腔
+from 資料庫.欄位資訊 import 詔安腔
+from 語音合成.合音檔.句物件轉合成標籤 import 句物件轉合成標籤
+from 資料庫.欄位資訊 import 閩南語
+from 字詞組集句章.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
 
 class 語音合成服務(連線控制器):
 	標音工具 = Pyro4.Proxy("PYRONAME:內部自動標音")
-	合成標籤工具 = 舊閩南語句物件轉合成標籤()
+	舊閩南語合成標籤工具 = 舊閩南語句物件轉合成標籤()
+	合成標籤工具 = 句物件轉合成標籤()
 	轉音檔 = 標仔轉音檔()
+	腔模型 = {偏漳優勢音腔口:'HTSLSPanAll.htsvoice', 偏泉優勢音腔口:'HTSLSPtsauAll.htsvoice',
+		混合優勢音腔口:'HTSLSPtsauAll.htsvoice',
+		四縣腔:'HakkaSi3.htsvoice', 海陸腔:'HakkaHai2.htsvoice', 大埔腔:'HakkaTua7.htsvoice',
+		饒平腔:'HakkaPhing5.htsvoice', 詔安腔:'HakkaAn1.htsvoice', }
 	def do_GET(self):
 		try:
 			# 共上頭前的「/」提掉
@@ -54,10 +69,12 @@ class 語音合成服務(連線控制器):
 					else:
 						組陣列 = 集物件.內底組[:1]
 					集陣列.append(集(組陣列))
-			標仔 = self.合成標籤工具.句物件轉標籤(句(集陣列))
-			模型 = 'HTSLSPanAll.htsvoice'
-			if 查詢腔口 != 偏漳優勢音腔口:
-				模型 = 'HTSLSPtsauAll.htsvoice'
+			if 查詢腔口.startswith(閩南語):
+				標仔 = self.舊閩南語合成標籤工具.句物件轉標籤(句(集陣列))
+			else:
+				標仔 = self.合成標籤工具.句物件轉標籤(臺灣客家話拼音, 句(集陣列))
+			print(標仔)
+			模型 = self.腔模型[查詢腔口]
 			音檔 = self.轉音檔.合成(模型, 標仔)
 			self.送出連線成功資訊('audio/x-wav')
 			self.送出位元資料(音檔)
