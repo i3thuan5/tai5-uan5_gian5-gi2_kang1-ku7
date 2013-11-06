@@ -79,10 +79,11 @@ class 語音合成服務(連線控制器):
 			self.送出連線成功資訊('audio/x-wav')
 			self.送出位元資料(音檔)
 			return
-		except Pyro4.errors.NamingError:
+		except Pyro4.errors.NamingError as 錯誤:
 			self.送出連線錯誤資訊(503)
 			self.輸出('暫時停止服務！！')
 			print('內部自動標音關去矣！！')
+			raise 錯誤
 		except TypeError:
 			self.送出連線錯誤資訊(503)
 			self.輸出('暫時停止服務！！')
