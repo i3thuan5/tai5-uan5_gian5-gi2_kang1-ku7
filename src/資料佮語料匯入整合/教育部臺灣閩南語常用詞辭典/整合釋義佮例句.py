@@ -74,6 +74,15 @@ class 整合釋義佮例句:
 				組字式型 = self.初胚工具.符號邊仔加空白(例句).strip()
 				標音 = self.初胚工具.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 標音)
 				標音 = self.初胚工具.符號邊仔加空白(標音).strip()
+				
+				換音表={'Sing-lí-lâng tshe-jī tsa̍p-la̍k lóng ū pài Thóo-tī-kong .':
+					'Sing-lí-lâng tshe-jī 、 tsa̍p-la̍k lóng ū pài Thóo-tī-kong .',
+					'Tiūnn-ḿ tō sī guán bóo ê lāu-bú .':
+					'「 Tiūnn-ḿ 」 tō sī guán bóo ê lāu-bú .',
+					}
+				if 標音 in 換音表:
+					標音=換音表[標音]
+					
 				原音句物件 = self.分析器.產生對齊句(組字式型, 標音)
 				標準句物件 = self.轉音家私.轉做標準音標(臺灣閩南語羅馬字拼音, 原音句物件)
 				
@@ -104,6 +113,7 @@ class 整合釋義佮例句:
 								例句內底音標 = 文字資料[7]
 		
 				if 例句內底漢字 == None or 例句內底音標 == None:
+					print('警告！！符號變動才揣看覓有對著無')
 					改標準例句 = 標準例句.replace(分字符號, 分詞符號)
 					改標準標音 = 標準標音.replace(分字符號, 分詞符號)
 					for 臺語流水號 in 臺語流水號集:
