@@ -185,6 +185,10 @@ class 拆文初胚工具測試(unittest.TestCase):
 		self.assertEqual(self.初胚工具.建立物件語句前減號變標點符號(原來語句), 處理好語句)
 		self.assertEqual(self.初胚工具.符號邊仔加空白(處理好語句), 加空白後語句)
 
+	def test_數字調英文中央加分字符號(self):
+		原語句 = 'mi2-kiann7 boo5-0ki3 ah4ah!'
+		結果語句 = 'mi2-kiann7 boo5-0ki3 ah4-ah!'
+		self.assertEqual(self.初胚工具.數字調英文中央加分字符號(原語句), 結果語句)
 
 if __name__ == '__main__':
 	unittest.main()
