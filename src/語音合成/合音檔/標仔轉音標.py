@@ -8,14 +8,24 @@ class 標仔轉音檔:
 		標仔檔 = NamedTemporaryFile(delete=False)
 		標仔檔.write('\n'.join(標仔).encode(
 			encoding='utf_8', errors='strict'))
-		標仔檔.close()
+		編碼過標仔檔 = NamedTemporaryFile(delete=False)
 		聲音檔 = NamedTemporaryFile(delete=False)
+		標仔檔.close()
+		編碼過標仔檔.close()
 		聲音檔.close()
 		程式所在 = self.程式工具.專案目錄()
+		
+# 		os.system(
+# 			'env LC_ALL=C {0}/外部程式/HTSEngine/程式/hts_engine -m {0}/外部程式/HTSEngine/模型/{1} -ow {3} -ot /home/Ihc/trace.ttt {2}'
+# 			.format(程式所在, 模型, 標仔檔.name, 聲音檔.name))
 		os.system(
-			'{0}/外部程式/HTSEngine/程式/hts_engine -m {0}/外部程式/HTSEngine/模型/{1} -ow {3} {2}'
-			.format(程式所在, 模型, 標仔檔.name, 聲音檔.name))
+			'/home/Ihc/workspace-cpp/HTS-2.3/Debug/HTS-2.3 < {1} > {2}'
+			.format(程式所在, 標仔檔.name, 編碼過標仔檔.name))
 		os.unlink(標仔檔.name)
+		os.system(
+			'{0}/外部程式/HTSEngine/程式/hts_engine -m {0}/外部程式/HTSEngine/模型/{1} -ow {3} -ot /home/Ihc/trace.ttt {2}'
+			.format(程式所在, 模型, 編碼過標仔檔.name, 聲音檔.name))
+		os.unlink(編碼過標仔檔.name)
 		音標資料 = open(聲音檔.name, 'rb').read()
 		os.unlink(聲音檔.name)
 		return 音標資料
