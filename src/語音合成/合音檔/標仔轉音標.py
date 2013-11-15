@@ -1,34 +1,44 @@
 import os
 from tempfile import NamedTemporaryFile
 from 系統整合.外部程式工具 import 外部程式工具
+import curses.ascii
 
 class 標仔轉音檔:
 	程式工具 = 外部程式工具()
 	def 合成(self, 模型, 速度, 標仔):
 		標仔檔 = NamedTemporaryFile(delete = False)
-		標仔檔.write('\n'.join(標仔).encode(
+		標仔檔.write('\n'.join(self.跳脫標仔(標仔)).encode(
 			encoding = 'utf_8', errors = 'strict'))
-		編碼過標仔檔 = NamedTemporaryFile(delete = False)
 		聲音檔 = NamedTemporaryFile(delete = False)
 		標仔檔.close()
-		編碼過標仔檔.close()
 		聲音檔.close()
 		程式所在 = self.程式工具.專案目錄()
-
-# 		os.system(
-# 			'env LC_ALL=C {0}/外部程式/HTSEngine/程式/hts_engine -m {0}/外部程式/HTSEngine/模型/{1} -ow {3} -ot /home/Ihc/trace.ttt {2}'
-# 			.format(程式所在, 模型, 標仔檔.name, 聲音檔.name))
-		os.system(
-			'/home/Ihc/workspace-cpp/HTS-2.3/Debug/HTS-2.3 < {1} > {2}'
-			.format(程式所在, 標仔檔.name, 編碼過標仔檔.name))
-		os.unlink(標仔檔.name)
 		os.system(
 			'{0}/外部程式/HTSEngine/程式/hts_engine -m {0}/外部程式/HTSEngine/模型/{1} -ow {3} -ot /home/Ihc/trace.ttt -r {4} {2}'
-			.format(程式所在, 模型, 編碼過標仔檔.name, 聲音檔.name, 速度))
-		os.unlink(編碼過標仔檔.name)
+			.format(程式所在, 模型, 標仔檔.name, 聲音檔.name, 速度))
 		音標資料 = open(聲音檔.name, 'rb').read()
 		os.unlink(聲音檔.name)
 		return 音標資料
+	
+	def 跳脫標仔(self, 標仔):
+		新標仔=[]
+		for 語句 in 標仔:
+			新標仔.append(self.跳脫字元(語句))
+		return 新標仔
+	
+	def 跳脫字元(self, 語句):
+		處理了 = []
+		for 字元編碼 in 語句.encode(encoding = 'utf_8', errors = 'strict'):
+			字元 = chr(字元編碼)
+			if curses.ascii.isprint(字元):
+				處理了.append(字元)
+			else:
+				處理了.append('\\')
+				數值 = 字元編碼
+				for 編碼 in [(數值 // 64) % 8, (數值 // 8) % 8, 數值 % 8]:
+					處理了.append(chr(ord('0') + 編碼))
+		return ''.join(處理了)
+
 
 if __name__ == '__main__':
 	轉音檔 = 標仔轉音檔()
