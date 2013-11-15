@@ -25,8 +25,18 @@ class 標仔轉音檔:
 		for 語句 in 標仔:
 			新標仔.append(self.跳脫字元(語句))
 		return 新標仔
-	
+
 	def 跳脫字元(self, 語句):
+		"""
+		佇HTK內底的HShell.c
+		ReWriteString((char*)s.c_str(), NULL, ESCAPE_CHAR)
+		....
+		else if (isprint(*p) || noNumEscapes) fputc(*p,f);
+      	else {
+         n=*p;
+         fputc(ESCAPE_CHAR,f);
+         fputc(((n/64)%8)+'0',f);fputc(((n/8)%8)+'0',f);fputc((n%8)+'0',f);
+         """
 		處理了 = []
 		for 字元編碼 in 語句.encode(encoding = 'utf_8', errors = 'strict'):
 			字元 = chr(字元編碼)
