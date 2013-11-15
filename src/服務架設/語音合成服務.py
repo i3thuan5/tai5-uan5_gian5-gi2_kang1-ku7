@@ -28,6 +28,10 @@ class 語音合成服務(連線控制器):
 		混合優勢音腔口:'HTSLSPtsauAll.htsvoice',
 		四縣腔:'HakkaSi3.htsvoice', 海陸腔:'HakkaHai2.htsvoice', 大埔腔:'HakkaTua7.htsvoice',
 		饒平腔:'HakkaPhing5.htsvoice', 詔安腔:'HakkaAn1.htsvoice', }
+	腔放送進度 = {偏漳優勢音腔口:1.0, 偏泉優勢音腔口:1.0,
+		混合優勢音腔口:1.0,
+		四縣腔:1.0, 海陸腔:1.05, 大埔腔:1.6,
+		饒平腔:1.02, 詔安腔:1.02, }
 	def do_GET(self):
 		try:
 			# 共上頭前的「/」提掉
@@ -80,12 +84,13 @@ class 語音合成服務(連線控制器):
 					標仔 = self.舊閩南語合成標籤工具.句物件轉標籤(句物件)
 				else:
 					標仔 = self.合成標籤工具.句物件轉標籤(臺灣客家話拼音, 句物件)
-				if len(全部標仔)>0:
-					全部標仔=全部標仔[:-1]
+				if len(全部標仔) > 0:
+					全部標仔 = 全部標仔[:-1]
 				全部標仔.extend(標仔)
-			print('全部標仔',全部標仔)
+			print('全部標仔', 全部標仔)
 			模型 = self.腔模型[查詢腔口]
-			音檔 = self.轉音檔.合成(模型, 全部標仔)
+			速度 = self.腔放送進度[查詢腔口]
+			音檔 = self.轉音檔.合成(模型, 速度, 全部標仔)
 			self.送出連線成功資訊('audio/x-wav')
 			self.送出位元資料(音檔)
 			return
