@@ -37,7 +37,7 @@ class 臺羅變調暫時處理:
 			elif 臺羅.調=='8':
 				臺羅.調='3'
 			else:
-				raise 解析錯誤('喉塞尾調錯誤！！')
+				raise 解析錯誤('喉塞尾調錯誤！！{0}'.format(臺羅.音標))
 			臺羅.韻=臺羅.韻[:-1]
 		elif 臺羅.韻.endswith('p') or 臺羅.韻.endswith('t') or 臺羅.韻.endswith('k'):
 			if 臺羅.調=='4':
@@ -45,12 +45,12 @@ class 臺羅變調暫時處理:
 			elif 臺羅.調=='8':
 				臺羅.調='10'
 			else:
-				raise 解析錯誤('入尾調錯誤！！')
+				raise 解析錯誤('入尾調錯誤！！{0}'.format(臺羅.音標))
 		else:
 			if 臺羅.調 in self.變調規則:
 				臺羅.調=self.變調規則[臺羅.調]
 			else:
-				raise 解析錯誤('非入調錯誤！！')
+				raise 解析錯誤('非入調錯誤！！{0}'.format(臺羅.音標))
 		臺羅.做音標()
 		return 臺羅
 			
