@@ -1,6 +1,5 @@
 from 資料庫.資料庫連線 import 資料庫連線
 from 字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
-import postgresql
 from 字詞組集句章.解析整理工具.轉物件音家私 import 轉物件音家私
 from 字詞組集句章.音標系統.閩南語.教會羅馬字音標 import 教會羅馬字音標
 
@@ -8,7 +7,7 @@ class 查資料庫:
 	分析器=拆文分析器()
 	家私=轉物件音家私()
 	
-	資料庫連線 = postgresql.open(host = "localhost", port = 5433, user = "Ihc", password = "983781", database = "言語系統")
+# 	資料庫連線 = postgresql.open(host = "localhost", port = 5433, user = "Ihc", password = "983781", database = "言語系統")
 	查型體翻譯著=資料庫連線.prepare('SELECT DISTINCT' +
 			'"寅"."型體","寅"."音標" ' +
 			'FROM "言語"."文字" AS "子", "言語"."關係" AS "丑", "言語"."文字" AS "寅" ' +
@@ -37,16 +36,17 @@ class 查資料庫:
 # 			'"丑"."甲流水號"="子"."流水號" AND "丑"."乙流水號"="寅"."流水號" AND "丑"."乙對甲的關係類型"=\'義近\' AND ' +
 # 			'"寅"."腔口"=$3 '
 # 			'ORDER BY "寅"."流水號"')(原來腔口, 型態, 欲揣腔口)
-		print(型態)
+# 		print(型態)
 		組陣列=[]
 		結果=self.查型體翻譯著(原來腔口, 型態, 欲揣腔口)
 		for 型體,音標 in 結果:
-			print(型體,音標)
+# 			print(型體,音標)
 			組陣列.append(self.分析器.產生對齊組(型體,音標))
+			#以後愛提掉
 		結果=self.揣台華型體('%;'+型態+';%')
 		for 型體,音標 in 結果:
 			if 音標.strip()!='':
-				print(型體,音標)
+# 				print(型體,音標)
 				原來組=self.分析器.產生對齊組(型體,音標)
 				標準組=self.家私.組轉做標準音標(教會羅馬字音標, 原來組)
 				組陣列.append(標準組)
