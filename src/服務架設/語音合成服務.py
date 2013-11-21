@@ -25,7 +25,7 @@ class 語音合成服務(連線控制器):
 	合成標籤工具 = 句物件轉合成標籤()
 	轉音檔 = 標仔轉音檔()
 	腔模型 = {偏漳優勢音腔口:'HTSLSPanAll.htsvoice', 偏泉優勢音腔口:'HTSLSPtsauAll.htsvoice',
-		混合優勢音腔口:'HTSLSPtsauAll.htsvoice',
+		混合優勢音腔口:'HTSLSPtsauAll.htsvoice2',
 		四縣腔:'HakkaSi3.htsvoice', 海陸腔:'HakkaHai2.htsvoice', 大埔腔:'HakkaTua7.htsvoice',
 		饒平腔:'HakkaPhing5.htsvoice', 詔安腔:'HakkaAn1.htsvoice', }
 	腔放送進度 = {偏漳優勢音腔口:1.0, 偏泉優勢音腔口:1.0,
