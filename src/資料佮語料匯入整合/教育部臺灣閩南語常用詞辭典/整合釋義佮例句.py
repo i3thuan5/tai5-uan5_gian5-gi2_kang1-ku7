@@ -76,6 +76,7 @@ class 整合釋義佮例句:
 				標音 = self.初胚工具.符號邊仔加空白(標音).strip()
 				
 				換字表 = {'且慢一下':'且慢一下。',
+					
 					}
 				if 組字式型 in 換字表:
 					組字式型 = 換字表[組字式型]
@@ -86,9 +87,30 @@ class 整合釋義佮例句:
 					'「 Tiūnn-ḿ 」 tō sī guán bóo ê lāu-bú .',
 					'Nā siūnn-tio̍h tsit tsân tāi-tsì guá tō hué-tuā .':
 					'Nā siūnn-tio̍h tsit tsân tāi-tsì ， guá tō hué-tuā .',
-
+					'Kóo-tsá sî-tāi , Gio̍k-tsénn kiò-tsò Ta-pa-nî .':
+					'Kóo-tsá sî-tāi , 「 Gio̍k-tsénn 」 kiò-tsò 「 Ta-pa-nî 」 .',
+					'Tsit tè tinn-kué tshiám tsi̍t-ē suah nah-0lo̍h-khì .':
+					'Tsit tè tinn-kué tshiám tsi̍t-ē ， suah nah-0lo̍h-khì .',
+					'Lí kah m̄ tah-ìng , gáun tsí-hó tshuē pa̍t-lâng .':
+					'Lí kah m̄ tah-ìng , guán tsí-hó tshuē pa̍t-lâng .',
+					'Kah hiah sue , ē khì tú-tio̍h tsit kháun tāi-tsì ?':
+					'Kah hiah sue , ē khì tú-tio̍h tsit khuán tāi-tsì ?',
+					'hô sū ?':'hô sū',
+					'Guá khuànn-kuè tsiânn tsē āu-bú khóo-to̍k tsîng-lâng-kiánn ê tāi-tsì .':
+				'Guá khuànn-kuè tsiânn tsē 「 āu-bú khóo-to̍k tsîng-lâng-kiánn 」 ê tāi-tsì .',
+				'Tshuan-san-kah sio̍k-miâ kiò-tsò lâ-lí .':
+				'Tshuan-san-kah sio̍k-miâ kiò-tsò 「 lâ-lí 」 .',
+				'」 Sio̍k-gí-uē kóng : " Tsi̍t hó kah tsi̍t bái , bô nn̄g hó sio pâi . "':
+				'Sio̍k-gí-uē kóng : 「 Tsi̍t hó kah tsi̍t bái , bô nn̄g hó sio pâi . 」',
+				'tsio pó-hiám .':'tsio pó-hiám',
+				'Kìnn-tio̍h lâng ài sio-tsioh-mn̄g tsiah ū lé-māu .':
+				'Kìnn-tio̍h lâng ài sio-tsioh-mn̄g ， tsiah ū lé-māu .',
+				'Tsoh-sit-lâng lóng ài khò thinn-kong-peh-0á tsiah ū tsia̍h-tshīng .':
+				'Tsoh-sit-lâng lóng ài khò thinn-kong-peh-0á ， tsiah ū tsia̍h-tshīng .',
+				'Tsit tè bah pōo bē nuā':
+				'Tsit tè bah pōo bē nuā .',
 					}
-
+				print(標音)
 				if 標音 in 換音表:
 					標音 = 換音表[標音]
 					
@@ -162,13 +184,20 @@ class 整合釋義佮例句:
 									print(錯誤, 標準例句, 標準標音,
 										漢字頭前, 音標頭前, 漢字後壁, 音標後壁)
 								else:
-									例句內底漢字 = 標準例句[len(漢字頭前):-len(漢字後壁)]
-									例句內底音標 = 標準標音[len(音標頭前):-len(音標後壁)]
+									if len(漢字後壁)==0 and len(音標後壁)==0:
+										例句內底漢字 = 標準例句[len(漢字頭前):]
+										例句內底音標 = 標準標音[len(音標頭前):]
+									else:
+										例句內底漢字 = 標準例句[len(漢字頭前):-len(漢字後壁)]
+										例句內底音標 = 標準標音[len(音標頭前):-len(音標後壁)]
+									print('@@', 標準例句, 標準標音,
+										漢字頭前, 音標頭前, 漢字後壁, 音標後壁,len(音標頭前),-len(音標後壁))
 		
 				if 例句內底漢字 == None or 例句內底音標 == None:
 					raise 解析錯誤('揣無元素：{0}，{1}。資料是：{2}'
 						.format(標準例句, 標準標音, 查著資料))
-		
+				print('@@揣無元素：{0}，{1}。資料是：{2}'
+						.format(標準例句, 標準標音, 查著資料),例句內底音標,例句內底漢字)
 				for 臺語流水號 in 臺語流水號集:
 					文字資料 = 用流水號揣文字(臺語流水號)
 					if not 文字資料[2].startswith(閩南語):
