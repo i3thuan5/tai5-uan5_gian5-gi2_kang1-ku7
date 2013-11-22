@@ -17,6 +17,7 @@ class 國語標音整合:
 	分析器 = 拆文分析器()
 	辭典 = None
 	斷詞標音 = 動態規劃斷詞標音()
+	辭條上大長度 = 4
 	def __init__(self, 腔口, 辭典):
 		self.文讀層 = self.條目.文讀層
 		self.白話層 = self.條目.白話層
@@ -25,16 +26,17 @@ class 國語標音整合:
 		[self.文讀字.add(字詞[0]) for 字詞 in self.條目.揣言語層的字詞(self.腔口, self.文讀層)]
 		self.白話字 = set()
 		[self.白話字.add(字詞[0]) for 字詞 in self.條目.揣言語層的字詞(self.腔口, self.白話層)]
-		self.辭典 = 辭典(4)
+		self.辭典 = 辭典(self.辭條上大長度)
 
 		for 流水號, 型體, 音標 in self.條目.揣腔口字詞資料(腔口):
-			if 型體 == None or 音標 == None:
+			# 目前為著臺語佮客話會當斷詞，予國語無音標的入來
+			if 型體 == None or len(型體) > self.辭條上大長度:  # or 音標 == None:
 				continue
 			if 音標 != None:
 				處理過的音標 = 音標.replace(分詞符號, 分字符號)
 				詞物件 = self.分析器.產生對齊詞(型體, 處理過的音標)
-# 			else:
-# 				詞物件 = self.分析器.建立詞物件(型體)
+			else:
+				詞物件 = self.分析器.建立詞物件(型體)
 			詞物件.屬性 = {'流水號':流水號}
 			if 流水號 in self.文讀字:
 				詞物件.屬性[self.文讀層] = 1
