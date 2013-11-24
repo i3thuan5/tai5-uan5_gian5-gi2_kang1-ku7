@@ -3,8 +3,8 @@
 
 <pydev_project>
 <pydev_pathproperty name="org.python.pydev.PROJECT_SOURCE_PATH">
-<path>/文本製作/src</path>
-<path>/文本製作/測試</path>
+<path>/臺灣言語工具/src</path>
+<path>/臺灣言語工具/測試</path>
 </pydev_pathproperty>
 <pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python 3.0</pydev_property>
 <pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">Default</pydev_property>
