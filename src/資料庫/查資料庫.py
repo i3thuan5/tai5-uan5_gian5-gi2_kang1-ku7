@@ -27,7 +27,6 @@ class 查資料庫:
 	分析器=拆文分析器()
 	家私=轉物件音家私()
 	
-# 	資料庫連線 = postgresql.open(host = "localhost", port = 5433, user = "Ihc", password = "983781", database = "言語系統")
 	查型體翻譯著=資料庫連線.prepare('SELECT DISTINCT' +
 			'"寅"."型體","寅"."音標" ' +
 			'FROM "言語"."文字" AS "子", "言語"."關係" AS "丑", "言語"."文字" AS "寅" ' +
