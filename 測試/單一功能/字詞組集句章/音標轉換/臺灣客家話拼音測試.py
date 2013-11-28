@@ -119,7 +119,7 @@ class 臺灣客家話拼音測試(TestCase):
 		self.assertEqual(臺灣客家話拼音('tsé--á').音標, None)
 		self.assertEqual(臺灣客家話拼音('óonn').音標, None)
 		self.assertEqual(臺灣客家話拼音('giog+').音標, None)
-		self.assertEqual(臺灣客家話拼音('giogˊ').音標, None)
+		self.assertEqual(臺灣客家話拼音('giog^').音標, None)
 		self.assertEqual(臺灣客家話拼音('ss').音標, None)
 		self.assertEqual(臺灣客家話拼音('izrh').音標, None)
 		

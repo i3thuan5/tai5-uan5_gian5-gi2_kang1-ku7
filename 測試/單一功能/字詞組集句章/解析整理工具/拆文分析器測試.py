@@ -479,6 +479,17 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(組物件.內底詞[0], self.分析器.產生對齊詞(型一, 音一))
 		self.assertEqual(組物件.內底詞[1], self.分析器.產生對齊詞(型二, 音二))
 
+	def test_對齊組客話加號調(self):
+		詞型 = '樹仔'
+		詞音 = 'shu+ er'
+		組物件 = self.分析器.產生對齊組(詞型, 詞音)
+		型一 = '樹'
+		型二 = '仔'
+		音一 = 'shu+'
+		音二 = 'er'
+		self.assertEqual(len(組物件.內底詞), 2)
+		self.assertEqual(組物件.內底詞[0], self.分析器.產生對齊詞(型一, 音一))
+		self.assertEqual(組物件.內底詞[1], self.分析器.產生對齊詞(型二, 音二))
 
 	def test_客話音標對齊組(self):
 		詞音 = 'tienˊ-dangˋ log-suiˋ'
