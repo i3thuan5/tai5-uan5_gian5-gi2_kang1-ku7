@@ -382,6 +382,18 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, '媠姑娘', 'sui2 koo1-niu5')
 		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, '媠姑娘？', 'sui2-koo1 niu5?')
 		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, '媠姑娘？', 'sui2-koo1-niu5?')
+		
+	def test_對齊詞客話懸降調(self):
+		詞型 = '耳子'
+		詞音 = 'ngi^-zu^'
+		詞物件 = self.分析器.產生對齊詞(詞型, 詞音)
+		型一 = '耳'
+		型二 = '子'
+		音一 = 'ngi^'
+		音二 = 'zu^'
+		self.assertEqual(len(詞物件.內底字), 2)
+		self.assertEqual(詞物件.內底字[0], self.分析器.產生對齊字(型一, 音一))
+		self.assertEqual(詞物件.內底字[1], self.分析器.產生對齊字(型二, 音二))
 
 	def test_拆好陣列產生對齊詞濟字(self):
 		詞型 = '媠姑娘'
@@ -490,7 +502,19 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(len(組物件.內底詞), 2)
 		self.assertEqual(組物件.內底詞[0], self.分析器.產生對齊詞(型一, 音一))
 		self.assertEqual(組物件.內底詞[1], self.分析器.產生對齊詞(型二, 音二))
-
+		
+	def test_對齊組客話懸降調(self):
+		詞型 = '耳子'
+		詞音 = 'ngi^ zu^'
+		組物件 = self.分析器.產生對齊組(詞型, 詞音)
+		型一 = '耳'
+		型二 = '子'
+		音一 = 'ngi^'
+		音二 = 'zu^'
+		self.assertEqual(len(組物件.內底詞), 2)
+		self.assertEqual(組物件.內底詞[0], self.分析器.產生對齊詞(型一, 音一))
+		self.assertEqual(組物件.內底詞[1], self.分析器.產生對齊詞(型二, 音二))
+ 
 	def test_客話音標對齊組(self):
 		詞音 = 'tienˊ-dangˋ log-suiˋ'
 		組物件 = self.分析器.產生對齊組(詞音, 詞音)
