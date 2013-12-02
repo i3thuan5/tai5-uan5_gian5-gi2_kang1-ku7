@@ -19,6 +19,8 @@ from unittest.case import TestCase
 from 字詞組集句章.解析整理工具.文章初胚工具 import 文章初胚工具
 from 字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
 from 斷詞標音.型音辭典 import 型音辭典
+from 字詞組集句章.基本元素.詞 import 詞
+from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 
 class 型音辭典測試(TestCase):
 	def setUp(self):
@@ -84,4 +86,6 @@ class 型音辭典測試(TestCase):
 			[{self.孤詞物}, {self.短詞物}, set(), {self.詞物件}])
 		self.assertEqual(self.字典.查詞(self.詞音標),
 			[{self.孤詞音}, {self.短詞音}, set(), {self.詞音標}])
-		
+
+	def test_長度零的詞愛錯誤(self):
+		self.assertRaises(解析錯誤, self.字典.加詞, 詞())
