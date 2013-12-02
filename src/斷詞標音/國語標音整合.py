@@ -46,7 +46,7 @@ class 國語標音整合:
 
 		for 流水號, 型體, 音標 in self.條目.揣腔口字詞資料(腔口):
 			# 目前為著臺語佮客話會當斷詞，予國語無音標的入來
-			if 型體 == None or len(型體) > self.辭條上大長度:  # or 音標 == None:
+			if 型體 == None or len(型體) > self.辭條上大長度 or len(型體) == 0:  # or 音標 == None:
 				continue
 			if 音標 != None:
 				處理過的音標 = 音標.replace(分詞符號, 分字符號)
