@@ -44,7 +44,6 @@ class 現掀辭典(文字辭典):
 			結果.append(set())
 		for 辭典條 in self.條目:
 			if self.查詞有仝無(詞物件, 辭典條):
-				print('加',辭典條,詞物件)
 				結果[len(辭典條.內底字)-1].add(辭典條)
 		return 結果
 
