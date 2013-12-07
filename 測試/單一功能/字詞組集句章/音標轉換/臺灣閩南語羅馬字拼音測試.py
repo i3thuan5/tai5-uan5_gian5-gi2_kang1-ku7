@@ -121,6 +121,17 @@ class 臺灣閩南語羅馬字拼音測試(unittest.TestCase):
 		self.assertEqual(臺灣閩南語羅馬字拼音('tere5').音標, 'tere5')
 		self.assertEqual(臺灣閩南語羅馬字拼音('tir5').音標, 'tir5')
 
+	def test_教羅型音標(self):
+		self.assertEqual(臺灣閩南語羅馬字拼音('hiuⁿ').音標, 'hiunn1')
+		self.assertEqual(臺灣閩南語羅馬字拼音('tsēⁿ').音標, 'tsenn7')
+		self.assertEqual(臺灣閩南語羅馬字拼音('siⁿh').音標, 'sinnh4')
+		self.assertEqual(臺灣閩南語羅馬字拼音('pháiⁿ').音標, 'phainn2')
+		self.assertEqual(臺灣閩南語羅馬字拼音('ko͘').音標, 'koo1')
+		self.assertEqual(臺灣閩南語羅馬字拼音('o͘h').音標, 'ooh4')
+		self.assertEqual(臺灣閩南語羅馬字拼音('ô͘').音標, 'oo5')
+		self.assertEqual(臺灣閩南語羅馬字拼音('hō͘').音標, 'hoo7')
+		self.assertEqual(臺灣閩南語羅馬字拼音('hó͘ⁿ').音標, None)
+
 	def test_違法音標(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('@@').音標, None)
 		self.assertEqual(臺灣閩南語羅馬字拼音('pe̍m').音標, None)
