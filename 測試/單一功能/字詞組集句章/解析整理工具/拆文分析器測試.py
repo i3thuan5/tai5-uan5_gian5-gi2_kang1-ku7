@@ -358,6 +358,30 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(詞.內底字[1], self.分析器.產生對齊字(型二, 音二))
 		self.assertEqual(詞.內底字[2], self.分析器.產生對齊字(型三, 音三))
 
+	def test_對齊詞濟字頭配教羅型(self):
+		詞型 = 'tsa̍p-目'
+		詞音 = 'tsa̍p-ba̍k'
+		詞 = self.分析器.產生對齊詞(詞型, 詞音)
+		self.assertEqual(len(詞.內底字), 2)
+		型一 = 'tsa̍p'
+		型二 = '目'
+		音一 = 'tsa̍p'
+		音二 = 'ba̍k'
+		self.assertEqual(詞.內底字[0], self.分析器.產生對齊字(型一, 音一))
+		self.assertEqual(詞.內底字[1], self.分析器.產生對齊字(型二, 音二))
+
+	def test_對齊詞濟字尾配教羅型(self):
+		詞型 = '雜-tso̍h'
+		詞音 = 'tsa̍p-tso̍h'
+		詞 = self.分析器.產生對齊詞(詞型, 詞音)
+		self.assertEqual(len(詞.內底字), 2)
+		型一 = '雜'
+		型二 = 'tso̍h'
+		音一 = 'tsa̍p'
+		音二 = 'tso̍h'
+		self.assertEqual(詞.內底字[0], self.分析器.產生對齊字(型一, 音一))
+		self.assertEqual(詞.內底字[1], self.分析器.產生對齊字(型二, 音二))
+
 	def test_對齊詞濟字有符號(self):
 		詞型 = '媠姑娘？'
 		詞音 = 'sui2-koo1-niu5-?'
