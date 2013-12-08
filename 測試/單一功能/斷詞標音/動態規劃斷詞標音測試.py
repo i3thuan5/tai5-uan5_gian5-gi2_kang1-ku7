@@ -68,6 +68,14 @@ class 動態規劃斷詞標音測試(TestCase):
 		self.無詞漢羅 = self.分析器.建立句物件('gua2 u7 一張 i2-a2!!')
 	def tearDown(self):
 		pass
+	def test_斷詞標音結果型態(self):
+		self.assertIsInstance(self.斷詞標音.斷詞標音(self.字典, self.分析器.產生對齊字('我', 'gua2')),句)
+		self.assertIsInstance(self.斷詞標音.斷詞標音(self.字典, self.我對齊詞),句)
+		self.assertIsInstance(self.斷詞標音.斷詞標音(self.字典, self.我對齊組),句)
+		self.assertIsInstance(self.斷詞標音.斷詞標音(self.字典, self.我對齊集),句)
+		self.assertIsInstance(self.斷詞標音.斷詞標音(self.字典, self.句物件),句)
+		self.assertIsInstance(self.斷詞標音.斷詞標音(self.字典, 章()),章)
+	
 	def test_基本斷詞標音(self):
 		self.字典.加詞(self.我對齊詞)
 		self.字典.加詞(self.有對齊詞)
