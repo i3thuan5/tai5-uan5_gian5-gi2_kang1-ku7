@@ -143,26 +143,42 @@ class 動態規劃斷詞標音測試(TestCase):
 		self.assertEqual(
 			self.斷詞標音.斷詞標音(self.字典, self.對齊句),
 			self.句物件)
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.無詞漢羅).內底集[1].內底組[0].內底詞[0].屬性,
+			{'無佇辭典':True})
 		新句物件 = self.句物件
 		新句物件.內底集[1] = self.分析器.建立集物件('有')
 		self.assertEqual(
 			self.斷詞標音.斷詞標音(self.字典, self.型句),
 			新句物件)
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.無詞漢羅).內底集[1].內底組[0].內底詞[0].屬性,
+			{'無佇辭典':True})
 		新句物件 = self.句物件
 		新句物件.內底集[1].內底組[0] = self.分析器.建立組物件('u7')
 		self.assertEqual(
 			self.斷詞標音.斷詞標音(self.字典, self.音句),
 			新句物件)
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.無詞漢羅).內底集[1].內底組[0].內底詞[0].屬性,
+			{'無佇辭典':True})
 		新句物件 = self.句物件
 		新句物件.內底集[1].內底組[0] = self.分析器.建立組物件('u7')
 		self.assertEqual(
 			self.斷詞標音.斷詞標音(self.字典, self.有詞漢羅),
 			新句物件)
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.無詞漢羅).內底集[1].內底組[0].內底詞[0].屬性,
+			{'無佇辭典':True})
 		新句物件 = self.句物件
 		新句物件.內底集[1].內底組[0] = self.分析器.建立組物件('u7')
 		self.assertEqual(
 			self.斷詞標音.斷詞標音(self.字典, self.無詞漢羅),
 			新句物件)
+		self.assertEqual(
+			self.斷詞標音.斷詞標音(self.字典, self.無詞漢羅).內底集[1].內底組[0].內底詞[0].屬性,
+			{'無佇辭典':True})
+		
 	def test_兩三切比四一切閣較好(self):
 		self.test_基本斷詞標音()
 
