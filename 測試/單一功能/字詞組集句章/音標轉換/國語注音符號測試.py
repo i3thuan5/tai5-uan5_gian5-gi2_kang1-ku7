@@ -51,12 +51,12 @@ class 國語注音符號測試(TestCase):
         self.assertEqual(注音.聲韻, 'ㄒㄩㄝ')
         
     def test_零聲母(self):
-        注音 = 國語注音符號('Ⅹㄛˇ')
-        self.assertEqual(注音.音標, 'Ⅹㄛˇ')
+        注音 = 國語注音符號('ㄨㄛˇ')
+        self.assertEqual(注音.音標, 'ㄨㄛˇ')
         self.assertEqual(注音.聲, '')
-        self.assertEqual(注音.韻, 'Ⅹㄛ')
+        self.assertEqual(注音.韻, 'ㄨㄛ')
         self.assertEqual(注音.調, 'ˇ')
-        self.assertEqual(注音.聲韻, 'Ⅹㄛ')
+        self.assertEqual(注音.聲韻, 'ㄨㄛ')
         
     def test_輕聲(self):
         注音 = 國語注音符號('ㄉㄜ˙')
