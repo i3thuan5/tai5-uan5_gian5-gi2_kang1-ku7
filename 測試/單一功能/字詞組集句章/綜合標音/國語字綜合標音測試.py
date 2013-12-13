@@ -53,6 +53,12 @@ class 國語字綜合標音測試(unittest.TestCase):
 		self.assertRaises(解析錯誤, 國語字綜合標音, 字('我', 'ㄆㄨㄧˋ'))
 	def test_烏白傳(self):
 		self.assertRaises(型態錯誤, 國語字綜合標音, '我')
+	def test_輕聲轉json格式(self):
+		型='的'
+		音='ㄉㄜ˙'
+		綜合標音 = 國語字綜合標音(字(型, 音))
+		self.assertEqual(綜合標音.轉json格式(),
+			{"型體":型, "注音符號":'⿳⿳˙ㄉㄜ'})
 
 if __name__ == '__main__':
 	unittest.main()

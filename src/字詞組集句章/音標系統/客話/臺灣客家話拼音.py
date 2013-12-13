@@ -75,7 +75,8 @@ class 臺灣客家話拼音:
 					self.音標 = 音標
 					# special case
 	#-------成員變數--------#
-	音標上長長度 = 100
+	#ng uainn ˊ
+	音標上長長度 = 8
 	聲 = None
 	韻 = None
 	聲韻 = None
