@@ -110,8 +110,8 @@ class 教會羅馬字音標測試(unittest.TestCase):
 		self.assertEqual(教會羅馬字音標('ngo5').音標, None)
 		self.assertEqual(教會羅馬字音標('moo5').音標, 'moo5')
 		self.assertEqual(教會羅馬字音標('ngoo5').音標, 'ngoo5')
-		self.assertEqual(教會羅馬字音標('mou5').音標, 'mou5')
-		self.assertEqual(教會羅馬字音標('ngou5').音標, 'ngou5')
+		self.assertEqual(教會羅馬字音標('mou5').音標, 'moo5')
+		self.assertEqual(教會羅馬字音標('ngou5').音標, 'ngoo5')
 
 	def test_教羅型音標(self):
 		self.assertEqual(教會羅馬字音標('hiuⁿ').音標, 'hiunn1')
@@ -133,8 +133,10 @@ class 教會羅馬字音標測試(unittest.TestCase):
 		self.assertEqual(教會羅馬字音標('ot').音標, None)
 		
 	def test_專用韻(self):
-		self.assertEqual(教會羅馬字音標('chhou1').音標, 'chhou1')
+		self.assertEqual(教會羅馬字音標('chhou1').音標, 'chhoo1')
 		self.assertEqual(教會羅馬字音標('chhou1').轉換到臺灣閩南語羅馬字拼音(), 'tshoo1')
+		self.assertEqual(教會羅馬字音標('houN3').音標, 'honn3')
+		self.assertEqual(教會羅馬字音標('houN3').轉換到臺灣閩南語羅馬字拼音(), 'honn3')
 		self.assertEqual(教會羅馬字音標('poah4').音標, 'poah4')
 		self.assertEqual(教會羅馬字音標('poah4').轉換到臺灣閩南語羅馬字拼音(), 'puah4')
 		self.assertEqual(教會羅馬字音標('koe1').音標, 'koe1')
