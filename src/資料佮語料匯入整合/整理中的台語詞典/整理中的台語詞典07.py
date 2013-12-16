@@ -15,29 +15,52 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
+from 資料庫.資料庫連線 import 資料庫連線
+from 字詞組集句章.解析整理工具.文章初胚工具 import 文章初胚工具
+from 字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
+from 字詞組集句章.解析整理工具.轉物件音家私 import 轉物件音家私
+from 字詞組集句章.解析整理工具.物件譀鏡 import 物件譀鏡
+from 字詞組集句章.音標系統.閩南語.臺灣語言音標 import 臺灣語言音標
+from 資料庫.欄位資訊 import 字詞
+from 資料庫.欄位資訊 import 臺員
+from 資料庫.整合.整合入言語 import 加文字佮版本
+from 資料庫.欄位資訊 import 義近
+from 資料庫.欄位資訊 import 會當替換
+from 資料庫.整合.整合入言語 import 加關係
 '''
 Created on 2013/3/3
 
 @author: Ihc
 '''
 
-from 教育部臺灣閩南語常用詞辭典.資料庫連線 import 資料庫連線
-from 文章音標解析器 import 文章音標解析器
-from 通用拼音音標 import 通用拼音音標
-from 臺灣語言音標 import 臺灣語言音標
+class 整理中的台語詞典07:
+	揣攏總資料 = 資料庫連線.prepare('SELECT "識別碼","CHINESE","TAIWANESE","ForPA","TLPA" ' +
+		'FROM "整理中的台語詞典"."整理中的台語詞典07" ORDER BY "識別碼" ASC')
+	辭典名 = '整理中的台語詞典07'
+	訓練 = False
 
-揣攏總資料 = 資料庫連線.prepare('SELECT "識別碼","CHINESE","TAIWANESE","ForPA","TLPA" ' +
-	'FROM "整理中的台語詞典"."整理中的台語詞典07" ORDER BY "識別碼" ASC')
+	初胚工具 = 文章初胚工具()
+	分析器 = 拆文分析器()
+	轉音家私 = 轉物件音家私()
+	譀鏡 = 物件譀鏡()
+	def __init__(self):
+		for 識別碼, CHINESE, TAIWANESE, ForPA , TLPA in self.揣攏總資料():
+			try:
+	# 			print(識別碼)
+				漢羅 = self.初胚工具.數字調英文中央加分字符號(TAIWANESE)
+				詞物件 = self.分析器.產生對齊詞(漢羅, TLPA)
+				標準物件 = self.轉音家私.轉做標準音標(臺灣語言音標, 詞物件)
+	# 			print(self.譀鏡.看型(標準物件), self.譀鏡.看音(標準物件),)
+			except Exception as 錯誤:
+				print(識別碼, CHINESE, TAIWANESE, ForPA , TLPA, 錯誤)
+			else:
+				if self.訓練:
+					閩流 = 加文字佮版本(self.辭典名, 字詞, '漢語族閩方言閩南語', 臺員, 89,
+						self.譀鏡.看型(標準物件), self.譀鏡.看音(標準物件), '正常')
+					國流 = 加文字佮版本(self.辭典名, 字詞, '漢語族官話方言北京官話臺灣腔', 臺員, 89,
+						CHINESE, '', '正常')
+					加關係(閩流, 國流, 義近, 會當替換)
+					加關係(國流, 閩流, 義近, 會當替換)
 
-通用解析器 = 文章音標解析器(通用拼音音標)
-通用解析器.標點符號 = {'-'}
-TLPA解析器 = 文章音標解析器(臺灣語言音標)
-TLPA解析器.標點符號 = {'-'}
-for 識別碼, CHINESE, TAIWANESE, ForPA , TLPA in 揣攏總資料():
-#	print(識別碼)
-	通用解析結果, 通用合法無 = 通用解析器.解析語句佮顯示毋著字元(ForPA)
-	TLPA解析結果, TLPA合法無 = TLPA解析器.解析語句佮顯示毋著字元(TLPA)
-	if 通用合法無 == False or TLPA合法無 == False or 通用解析結果 != TLPA解析結果:
-		print(ForPA + ' != ' + TLPA)
-		print('通用解析結果= ' + 通用解析結果)
-		print('TLPA解析結果= ' + TLPA解析結果)
+if __name__ == '__main__':
+	整理中的台語詞典07()
