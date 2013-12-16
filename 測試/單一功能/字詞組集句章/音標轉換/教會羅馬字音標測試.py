@@ -68,6 +68,10 @@ class 教會羅馬字音標測試(unittest.TestCase):
 	def test_輕聲(self):
 		self.assertEqual(教會羅馬字音標('ta0').音標, 'ta0')
 		self.assertEqual(教會羅馬字音標('pih0').音標, 'pih0')
+		
+	def test_大寫開頭(self):
+		self.assertEqual(教會羅馬字音標('Na5').音標, 'na5')
+		self.assertEqual(教會羅馬字音標('Phoo2').音標, 'phoo2')
 
 	def test_語法輕聲(self):
 		self.assertEqual(教會羅馬字音標('0a').音標, '0a1')

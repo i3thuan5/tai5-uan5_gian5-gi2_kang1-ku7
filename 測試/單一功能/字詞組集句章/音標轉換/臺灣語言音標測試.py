@@ -31,6 +31,10 @@ class 臺灣語言音標測試(unittest.TestCase):
 		self.assertEqual(臺灣語言音標('mng5').音標, 'mng5')
 		self.assertEqual(臺灣語言音標('Pih8').音標, 'pih8')
 		self.assertEqual(臺灣語言音標('Pih10').音標, 'pih10')
+		
+	def test_大寫開頭(self):
+		self.assertEqual(臺灣語言音標('Na5').音標, 'na5')
+		self.assertEqual(臺灣語言音標('Phoo2').音標, 'phoo2')
 
 	def test_輕聲(self):
 		self.assertEqual(臺灣語言音標('ta0').音標, 'ta0')

@@ -70,6 +70,10 @@ class 臺灣閩南語羅馬字拼音測試(unittest.TestCase):
 		self.assertEqual(臺灣閩南語羅馬字拼音('mng5').音標, 'mng5')
 		self.assertEqual(臺灣閩南語羅馬字拼音('Pih8').音標, 'pih8')
 		self.assertEqual(臺灣閩南語羅馬字拼音('Pih10').音標, 'pih10')
+		
+	def test_大寫開頭(self):
+		self.assertEqual(臺灣閩南語羅馬字拼音('Na5').音標, 'na5')
+		self.assertEqual(臺灣閩南語羅馬字拼音('Phoo2').音標, 'phoo2')
 
 	def test_輕聲(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('ta0').音標, 'ta0')
