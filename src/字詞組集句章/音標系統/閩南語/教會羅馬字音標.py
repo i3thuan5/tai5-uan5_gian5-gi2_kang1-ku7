@@ -19,12 +19,33 @@ from 字詞組集句章.音標系統.閩南語.教會系羅馬音標 import 教�
 
 教會羅馬字音標聲母表 = {'p', 'ph', 'm', 'b', 't', 'th', 'n', 'l',
 		'k', 'kh', 'ng', 'g', 'h', 'ch', 'chh', 's', 'j', ''}
-教會羅馬字音標韻母表 = {'a', 'e', 'i', 'oo', 'o', 'u', 'ai', 'au', 'ia', 'io', 'iu', 'oa', 'oe', 'ui', 'iau', 'oai',
-		'ann', 'enn', 'inn', 'onn', 'm', 'ng', 'ainn', 'iann', 'iaunn', 'iunn', 'oann', 'oainn',
-		'am', 'an', 'ang', 'im', 'in', 'eng', 'om', 'ong', 'iam', 'ian', 'iang', 'iong', 'un', 'oan',
-		'ah', 'eh', 'ih', 'oh', 'uh', 'auh', 'iah', 'ioh', 'iuh', 'iauh', 'oah', 'oeh', 'ooh',
-		'annh', 'ennh', 'innh', 'mh', 'iannh', 'ngh', 'ap', 'at', 'ak', 'op', 'ok', 'iok',
-		'ip', 'it', 'ek', 'iap', 'iat', 'iak', 'ut', 'oat', 'ou', 'iou' }
+教會羅馬字音標韻母表 = {
+			
+	'a', 'ah', 'ap', 'at', 'ak', 'ann', 'annh',
+	'am', 'an', 'ang',
+	'e', 'eh', 'enn', 'ennh',
+	'i', 'ih', 'ip', 'it', 'ek', 'inn', 'innh',
+	'im', 'in', 'eng',
+	'o', 'oh',
+	'oo', 'ooh', 'op', 'ok', 'om', 'ong', 'onn', 'onnh',
+	'ou', 'ouh',
+	'oi', 'oih',  # 硩⿰落去
+	'u', 'uh', 'ut', 'un',
+	'ai', 'aih', 'ainn', 'ainnh',
+	'au', 'auh', 'aunn', 'aunnh',
+	'ia', 'iah', 'iap', 'iat', 'iak', 'iam', 'ian', 'iang', 'iann', 'iannh',
+	'io', 'ioh',
+	'iok', 'iong', 'ionn',
+	'iu', 'iuh', 'iut', 'iunn', 'iunnh',
+	'oa', 'oah', 'oat', 'oak', 'oan', 'oann', 'oannh',
+	'oe', 'oeh', 'oenn', 'oennh',
+	'ui', 'uih', 'uinn', 'uinnh',
+	'iau', 'iauh', 'iaunn', 'iaunnh',
+	'oai', 'oaih', 'oainn', 'oainnh',
+	'm', 'mh', 'ng', 'ngh',
+	'ioo', 'iooh',
+	'iou', 'iouh',
+	}
 教會羅馬字音標聲調符號表 = dict(
 	á = ('a', 2), à = ('a', 3), â = ('a', 5), ǎ = ('a', 6), ā = ('a', 7), a̍ = ('a', 8), a̋ = ('a', 9),
 	é = ('e', 2), è = ('e', 3), ê = ('e', 5), ě = ('e', 6), ē = ('e', 7), e̍ = ('e', 8), e̋ = ('e', 9),
@@ -46,6 +67,9 @@ class 教會羅馬字音標(教會系羅馬音標):
 	音標 = None
 	def __init__(self, 音標):
 		self.分析聲韻調(音標)
+		if self.聲 == 'm' or self.聲 == 'n' or self.聲 == 'ng':
+			if self.韻 == 'o':
+				self.音標 = None
 
 	def 轉換到臺灣閩南語羅馬字拼音(self):
 		if self.音標 == None:

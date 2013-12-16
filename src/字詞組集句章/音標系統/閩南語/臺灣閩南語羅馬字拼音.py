@@ -48,13 +48,13 @@ from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
 	'iau', 'iauh', 'iaunn', 'iaunnh',
 	'uai', 'uaih', 'uainn', 'uainnh',
 	'm', 'mh', 'ng', 'ngh',
+	'ioo', 'iooh',  # 諾 0hioo 0hiooh
 	'er', 'erh', 'erm', 'ere', 'ereh',  # 泉　鍋
 	'ee', 'eeh', 'eng', 'uee',  # 漳　家
 	'ir', 'irh', 'irp', 'irt', 'irk', 'irm', 'irn', 'irng', 'irinn',
-	'ioo', 'iooh',  # 諾 0hioo 0hiooh
 	'ie',  # 鹿港偏泉腔
-	'uang',
 	'or', 'orh', 'ior', 'iorh',  # 蚵
+	'uang',
 	}
 臺灣閩南語羅馬字拼音聲調符號表 = dict(
 	á = ('a', 2), à = ('a', 3), â = ('a', 5), ǎ = ('a', 6), ā = ('a', 7), a̍ = ('a', 8), a̋ = ('a', 9),
