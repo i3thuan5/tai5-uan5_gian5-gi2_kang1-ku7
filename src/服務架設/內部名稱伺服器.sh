@@ -17,4 +17,4 @@
 #-------------------------------------------------------------------------------
 #!/bin/bash
 export PYRO_SERIALIZERS_ACCEPTED=serpent,json,marshal,pickle
-/usr/bin/python3.2 -Wignore -m Pyro4.naming
+/usr/bin/python3 -Wignore -m Pyro4.naming
