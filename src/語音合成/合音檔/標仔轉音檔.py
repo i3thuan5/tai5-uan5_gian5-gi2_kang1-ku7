@@ -31,7 +31,7 @@ class 標仔轉音檔:
 		聲音檔.close()
 		程式所在 = self.程式工具.專案目錄()
 		os.system(
-			'{0}/外部程式/HTSEngine/程式/hts_engine -m {0}/外部程式/HTSEngine/模型/{1} -ow {3} -ot /home/Ihc/trace.ttt -r {4} {2}'
+			'{0}/外部程式/HTSEngine/程式/hts_engine -m {0}/外部程式/HTSEngine/模型/{1} -ow {3} -r {4} {2}'
 			.format(程式所在, 模型, 標仔檔.name, 聲音檔.name, 速度))
 		音標資料 = open(聲音檔.name, 'rb').read()
 		os.unlink(聲音檔.name)
