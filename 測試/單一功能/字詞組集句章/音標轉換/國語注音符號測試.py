@@ -66,6 +66,14 @@ class 國語注音符號測試(TestCase):
         self.assertEqual(注音.調, '˙')
         self.assertEqual(注音.聲韻, 'ㄉㄜ')
         
+    def test_空韻(self):
+        注音 = 國語注音符號('ㄗ')
+        self.assertEqual(注音.音標, 'ㄗ')
+        self.assertEqual(注音.聲, 'ㄗ')
+        self.assertEqual(注音.韻, '')
+        self.assertEqual(注音.調, '')
+        self.assertEqual(注音.聲韻, 'ㄗ')
+        
     def test_無合法(self):
         self.assertEqual(國語注音符號('˙ㄉㄜ').音標, None)
         self.assertEqual(國語注音符號('ㄉㄜ˙').音標, 'ㄉㄜ˙')
@@ -73,4 +81,6 @@ class 國語注音符號測試(TestCase):
         self.assertEqual(國語注音符號('ㄆㄢ').音標, 'ㄆㄢ')
         self.assertEqual(國語注音符號('ㄆㄢ+').音標, None)
         self.assertEqual(國語注音符號('ㄗㄧㄨ').音標, None)
+        self.assertEqual(國語注音符號('ㄐ').音標, None)
+        self.assertEqual(國語注音符號('').音標, None)
         self.assertEqual(國語注音符號('Ⅹㄛˇ').音標, None)#怪怪的「ㄨ」

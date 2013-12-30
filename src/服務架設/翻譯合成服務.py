@@ -35,8 +35,9 @@ from 字詞組集句章.基本元素.章 import 章
 from 語音合成.合音檔.句物件轉合成標籤 import 句物件轉合成標籤
 from 資料庫.欄位資訊 import 閩南語
 from 字詞組集句章.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
-from 語音合成.合音檔.標仔轉音標 import 標仔轉音檔
+from 語音合成.合音檔.標仔轉音檔 import 標仔轉音檔
 from 翻譯.翻譯者 import 翻譯者
+from 資料庫.欄位資訊 import 客語
 
 class 翻譯合成服務(連線控制器):
 	標音工具 = Pyro4.Proxy("PYRONAME:內部自動標音")
@@ -45,8 +46,8 @@ class 翻譯合成服務(連線控制器):
 	舊閩南語合成標籤工具 = 舊閩南語句物件轉合成標籤()
 	合成標籤工具 = 句物件轉合成標籤()
 	轉音檔 = 標仔轉音檔()
-	腔模型 = {偏漳優勢音腔口:'HTSLSPanAll.htsvoice', 偏泉優勢音腔口:'HTSLSPtsauAll.htsvoice',
-		混合優勢音腔口:'HTSLSPtsauAll.htsvoice2',
+	腔模型 = {偏漳優勢音腔口:'HTSLSPanAll.htsvoice', 偏泉優勢音腔口:'HTSLSPanAll.htsvoice',
+		混合優勢音腔口:'HTSLSPanAll.htsvoice',
 		四縣腔:'HakkaSi3.htsvoice', 海陸腔:'HakkaHai2.htsvoice', 大埔腔:'HakkaTua7.htsvoice',
 		饒平腔:'HakkaPhing5.htsvoice', 詔安腔:'HakkaAn1.htsvoice', }
 	腔放送進度 = {偏漳優勢音腔口:1.0, 偏泉優勢音腔口:1.0,
@@ -113,6 +114,12 @@ class 翻譯合成服務(連線控制器):
 			模型 = self.腔模型[查詢腔口]
 			速度 = self.腔放送進度[查詢腔口]
 			音檔 = self.轉音檔.合成(模型, 速度, 全部標仔)
+			if 查詢腔口.startswith(閩南語):
+				調好音=self.音盒.篩雜訊(音檔)
+			elif 查詢腔口.startswith(客語):
+				調好音=self.音盒.篩懸音(音檔, 6000)
+			else:
+				調好音=音檔
 			self.送出連線成功資訊('audio/x-wav')
 			self.送出位元資料(音檔)
 			return
