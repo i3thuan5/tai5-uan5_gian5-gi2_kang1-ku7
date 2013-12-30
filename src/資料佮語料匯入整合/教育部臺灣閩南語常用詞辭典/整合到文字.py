@@ -139,9 +139,7 @@ class 整合到文字():
 					if 混合優勢音 != None:
 						腔口集[混合優勢音腔口][文字].append(混合優勢音)
 
-			if 方言差==None:#TODO
-				pass
-			elif len(方言差) == 6 and 主編號 != 6089:
+			if len(方言差) == 6 and 主編號 != 6089:
 				# "主編號"=12239
 				字方言差 = list(揣字方言差(方言差)[0])[3:]
 				for i in range(len(字方言差欄位)):
