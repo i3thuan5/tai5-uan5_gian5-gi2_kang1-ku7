@@ -38,6 +38,7 @@ from 字詞組集句章.音標系統.客話.臺灣客家話拼音 import 臺灣�
 from 語音合成.合音檔.標仔轉音檔 import 標仔轉音檔
 from 翻譯.翻譯者 import 翻譯者
 from 資料庫.欄位資訊 import 客語
+from 語音合成.合音檔.調音盒 import 調音盒
 
 class 翻譯合成服務(連線控制器):
 	標音工具 = Pyro4.Proxy("PYRONAME:內部自動標音")
@@ -46,6 +47,7 @@ class 翻譯合成服務(連線控制器):
 	舊閩南語合成標籤工具 = 舊閩南語句物件轉合成標籤()
 	合成標籤工具 = 句物件轉合成標籤()
 	轉音檔 = 標仔轉音檔()
+	音盒=調音盒()
 	腔模型 = {偏漳優勢音腔口:'HTSLSPanAll.htsvoice', 偏泉優勢音腔口:'HTSLSPanAll.htsvoice',
 		混合優勢音腔口:'HTSLSPanAll.htsvoice',
 		四縣腔:'HakkaSi3.htsvoice', 海陸腔:'HakkaHai2.htsvoice', 大埔腔:'HakkaTua7.htsvoice',
