@@ -83,8 +83,8 @@ class 整合到文字():
 				主音 |= 俗音
 				主音 |= 合音
 				主音 -= 音空
-				if 主音 == {'Si̍k-tsí(Si̍p-tsí)'}:
-					主音 = {'Si̍k-tsí', 'Si̍p-tsí'}
+# 				if 主音 == {'Si̍k-tsí(Si̍p-tsí)'}:
+# 					主音 = {'Si̍k-tsí', 'Si̍p-tsí'}
 				for 音 in 主音:
 					if 文字 not in 腔口集[偏漳優勢音腔口]:
 						腔口集[偏漳優勢音腔口][文字] = []
@@ -92,16 +92,16 @@ class 整合到文字():
 						腔口集[偏泉優勢音腔口][文字] = []
 					if 文字 not in 腔口集[混合優勢音腔口]:
 						腔口集[混合優勢音腔口][文字] = []
-					if 音 == 'tsánn-tiū-á-bué/bé':
-						音 = 'tsánn-tiū-á-bué/tsánn-tiū-á-bé'
+# 					if 音 == 'tsánn-tiū-á-bué/bé':
+# 						音 = 'tsánn-tiū-á-bué/tsánn-tiū-á-bé'
 					雙優勢音 = 音.split('/')
-					if 音 == 'ke/kue-tshíng' and 主編號 == 12744 and len(主音) > 1:
-						continue
-					if 音 == 'Jû/Lû/Jî':
-						腔口集[偏漳優勢音腔口][文字].append(雙優勢音[2])
-						腔口集[偏泉優勢音腔口][文字].append(雙優勢音[0])
-						腔口集[偏泉優勢音腔口][文字].append(雙優勢音[1])
-						continue
+# 					if 音 == 'ke/kue-tshíng' and 主編號 == 12744 and len(主音) > 1:
+# 						continue
+# 					if 音 == 'Jû/Lû/Jî':
+# 						腔口集[偏漳優勢音腔口][文字].append(雙優勢音[2])
+# 						腔口集[偏泉優勢音腔口][文字].append(雙優勢音[0])
+# 						腔口集[偏泉優勢音腔口][文字].append(雙優勢音[1])
+# 						continue
 					if len(雙優勢音) == 1:
 						雙優勢音.append(雙優勢音[0])
 					偏漳優勢音, 偏泉優勢音 = [優勢音.strip(教育部閩南語辭典空白符號) \
@@ -140,15 +140,15 @@ class 整合到文字():
 						if 混合優勢音 != None:
 							腔口集[混合優勢音腔口][文字].append(混合優勢音)
 	
-				if len(方言差) == 6 and 主編號 != 6089:
+				if len(方言差) == 6:
 					# "主編號"=12239
 					字方言差 = list(揣字方言差(方言差)[0])[3:]
 					for i in range(len(字方言差欄位)):
 						字方言差[i] = 字方言差[i].strip()
 						if 字方言差[i] != 'x' and 字方言差[i] != '暫無資料':
 	# 						print(字方言差[i])
-							if 字方言差[i] == 'tshiòr/tshiònn':
-								字方言差[i] = 'tshiòr;tshiònn'
+# 							if 字方言差[i] == 'tshiòr/tshiònn':
+# 								字方言差[i] = 'tshiòr;tshiònn'
 							腔口集[字方言差欄位[i]] = {}
 							腔口集[字方言差欄位[i]][文字] = [ 方言.strip(教育部閩南語辭典空白符號) for 方言 in 字方言差[i].split(';')]
 				elif len(方言差) == 8:
@@ -158,12 +158,12 @@ class 整合到文字():
 						詞方言差[i] = 詞方言差[i].strip()
 						if 詞方言差[i] != 'x' and 詞方言差[i] != '暫無資料':
 	# 						print(詞方言差[i])
-							if 詞方言差[i] == '菅芒　kuann-bang, kuann-bâng':
-								詞方言差[i] = '菅芒　kuann-bang; kuann-bâng'
-							elif 主編號 == 2876:
-								詞方言差[i] = 詞方言差[i].replace('tuē', 'tuē; tueh')
-							elif 詞方言差[i] == '秤砣　tshìn-thô(tô)':
-								詞方言差[i] = '秤砣　tshìn-thô;tshìn-tô'
+# 							if 詞方言差[i] == '菅芒　kuann-bang, kuann-bâng':
+# 								詞方言差[i] = '菅芒　kuann-bang; kuann-bâng'
+# 							elif 主編號 == 2876:
+# 								詞方言差[i] = 詞方言差[i].replace('tuē', 'tuē; tueh')
+# 							elif 詞方言差[i] == '秤砣　tshìn-thô(tô)':
+# 								詞方言差[i] = '秤砣　tshìn-thô;tshìn-tô'
 	
 							字音集 = [一組字音.split(教育部閩南語辭典隔開符號, 1) for 一組字音 in 詞方言差[i].split(',')]
 							字音對照 = {}
@@ -182,9 +182,9 @@ class 整合到文字():
 						for 音 in 音集:
 							是俗音 = False
 							是合音 = False
-							if 組字式型 == '熟' and 音 == 'tînn-kha-puānn-tshiú':
-								continue
-							elif 音 == 'iang35-ua55-ua55':
+# 							if 組字式型 == '熟' and 音 == 'tînn-kha-puānn-tshiú':
+# 								continue
+							if 音 == 'iang35-ua55-ua55':
 								continue
 							資料字型體 = 組字式型
 							if 音 == "sai-kong-á (面稱)":
@@ -216,6 +216,10 @@ class 整合到文字():
 								資料字型體 = "拔仔林"
 							elif 資料字型體 == "蓮蕉花" and 音 == 'lân-tsiau' and 主編號 == 11353:
 								資料字型體 = "蓮蕉"
+							elif 資料字型體 == "圓山" and 主編號 == 36026:
+								資料字型體 = "圓山仔"
+							elif 資料字型體 == "三重" and 主編號 == 36124:
+								資料字型體 = "三重埔"
 	# 						elif 資料字型體 == "瘦田" and 主編號 == 60344:
 	# 							資料字型體 = "瘦田𠢕欶水。"
 	# 						elif 資料字型體 == "䆀猴" and 主編號 == 60373:
