@@ -30,7 +30,7 @@ from 資料庫.整合.整合入言語 import 加關係
 from 資料佮語料匯入整合.整理中的台語詞典.整理中的台語詞典07 import 整理中的台語詞典07
 from 資料佮語料匯入整合.咱講.轉做咱講工具 import 轉做咱講工具
 
-class 整理中的台語詞典07轉做咱講:
+class 整理中的台語詞典07轉做咱講(整理中的台語詞典07):
 	揣攏總資料 = 資料庫連線.prepare('SELECT "識別碼","CHINESE","TAIWANESE","ForPA","TLPA" ' +
 		'FROM "整理中的台語詞典"."整理中的台語詞典07" ORDER BY "識別碼" ASC')
 	辭典名 = '整理中的台語詞典07'
@@ -51,6 +51,7 @@ class 整理中的台語詞典07轉做咱講:
 					TAIWANESE=TAIWANESE.replace(音,字)
 				漢羅 = self.初胚工具.數字調英文中央加分字符號(TAIWANESE)
 				詞物件 = self.分析器.產生對齊詞(漢羅, TLPA)
+				self.共通用換做ＴＬＰＡ(詞物件)
 				標準物件 = self.轉音家私.轉做標準音標(臺灣語言音標, 詞物件)
 				臺語資料=(self.譀鏡.看型(標準物件), self.譀鏡.看音(標準物件),)
 			except Exception as 錯誤:
