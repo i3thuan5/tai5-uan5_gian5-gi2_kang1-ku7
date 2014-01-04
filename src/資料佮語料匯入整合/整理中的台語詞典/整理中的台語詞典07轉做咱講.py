@@ -47,15 +47,17 @@ class 整理中的台語詞典07轉做咱講:
 		for 識別碼, CHINESE, TAIWANESE, ForPA , TLPA in self.揣攏總資料():
 			try:
 	# 			print(識別碼)
+				for 音,字 in self.音轉字.items():
+					TAIWANESE=TAIWANESE.replace(音,字)
 				漢羅 = self.初胚工具.數字調英文中央加分字符號(TAIWANESE)
 				詞物件 = self.分析器.產生對齊詞(漢羅, TLPA)
 				標準物件 = self.轉音家私.轉做標準音標(臺灣語言音標, 詞物件)
- 				臺語資料=(self.譀鏡.看型(標準物件), self.譀鏡.看音(標準物件),)
+				臺語資料=(self.譀鏡.看型(標準物件), self.譀鏡.看音(標準物件),)
 			except Exception as 錯誤:
 # 				print(識別碼, CHINESE, TAIWANESE, ForPA , TLPA, 錯誤)
 				pass
 			else:
-				條目頭=self.轉做咱講.條目頭(臺語資料[0])
+				條目頭=self.轉做咱講.條目頭(臺語資料)
 				print(條目頭)
 				國語資料=[]
 				for 國語字 in CHINESE.strip().split(',-'):
@@ -76,4 +78,4 @@ class 整理中的台語詞典07轉做咱講:
 		print(self.轉做咱講.檔尾())
 
 if __name__ == '__main__':
-	整理中的台語詞典07()
+	整理中的台語詞典07轉做咱講()

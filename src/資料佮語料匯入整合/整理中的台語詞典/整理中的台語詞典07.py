@@ -27,6 +27,8 @@ from 資料庫.整合.整合入言語 import 加文字佮版本
 from 資料庫.欄位資訊 import 義近
 from 資料庫.欄位資訊 import 會當替換
 from 資料庫.整合.整合入言語 import 加關係
+from 字詞組集句章.基本元素.公用變數 import 統一碼音標類
+import unicodedata
 '''
 Created on 2013/3/3
 
@@ -37,30 +39,51 @@ class 整理中的台語詞典07:
 	揣攏總資料 = 資料庫連線.prepare('SELECT "識別碼","CHINESE","TAIWANESE","ForPA","TLPA" ' +
 		'FROM "整理中的台語詞典"."整理中的台語詞典07" ORDER BY "識別碼" ASC')
 	辭典名 = '整理中的台語詞典07'
-	訓練 = False
+	加到資料庫 = False
 
 	初胚工具 = 文章初胚工具()
 	分析器 = 拆文分析器()
 	轉音家私 = 轉物件音家私()
 	譀鏡 = 物件譀鏡()
+
+	音轉字 = {'khiap4':'㾀','thai5':'刣', 'sui2':'媠', 'bai2':'䆀',
+		'e5':'的',}
 	def __init__(self):
 		for 識別碼, CHINESE, TAIWANESE, ForPA , TLPA in self.揣攏總資料():
 			try:
 	# 			print(識別碼)
 				漢羅 = self.初胚工具.數字調英文中央加分字符號(TAIWANESE)
 				詞物件 = self.分析器.產生對齊詞(漢羅, TLPA)
+				self.共通用換做ＴＬＰＡ(詞物件)
 				標準物件 = self.轉音家私.轉做標準音標(臺灣語言音標, 詞物件)
 	# 			print(self.譀鏡.看型(標準物件), self.譀鏡.看音(標準物件),)
 			except Exception as 錯誤:
-				print(識別碼, CHINESE, TAIWANESE, ForPA , TLPA, 錯誤)
+# 				print(識別碼, CHINESE, TAIWANESE, ForPA , TLPA, 錯誤)
+				pass
 			else:
-				if self.訓練:
+				有英文數字 = False
+				for 字 in self.譀鏡.看型(標準物件):
+					if unicodedata.category(字) in 統一碼音標類:
+						有英文數字 = True
+				if 有英文數字:
+					print(self.譀鏡.看型(標準物件), self.譀鏡.看音(標準物件), CHINESE)
+				if self.加到資料庫:
 					閩流 = 加文字佮版本(self.辭典名, 字詞, '漢語族閩方言閩南語', 臺員, 89,
 						self.譀鏡.看型(標準物件), self.譀鏡.看音(標準物件), '正常')
 					國流 = 加文字佮版本(self.辭典名, 字詞, '漢語族官話方言北京官話臺灣腔', 臺員, 89,
 						CHINESE, '', '正常')
 					加關係(閩流, 國流, 義近, 會當替換)
 					加關係(國流, 閩流, 義近, 會當替換)
-
+	def 共通用換做ＴＬＰＡ(self,詞物件):
+		for 字物件 in 詞物件.內底字:
+			有英文數字 = False
+			for 字 in 字物件.型:
+				if unicodedata.category(字) in 統一碼音標類:
+					有英文數字 = True
+			if 有英文數字:
+				字物件.型=字物件.音
+				if 字物件.音 in self.音轉字:
+					字物件.型=self.音轉字[字物件.音]
+		return
 if __name__ == '__main__':
 	整理中的台語詞典07()
