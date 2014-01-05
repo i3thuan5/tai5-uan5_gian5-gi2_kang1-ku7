@@ -73,4 +73,5 @@ if __name__ == '__main__':
 # 	剖析工具測試
 
 	阿拉伯數字試驗
+
 	unittest.main()
