@@ -83,3 +83,40 @@ class 阿拉伯數字():
 		if 結果.startswith('一十'):
 			return 結果[1:]
 		return 結果
+	
+	def 轉閩南語數量無(self,數量):
+		return self.轉閩南語數量(數量)!=數量
+	
+	def 轉閩南語數量(self,數量):
+		if len(數量)==4 and \
+			數量.startswith(self.一二三[0]) and 數量[-1] in self.細位:
+			return 數量[1:-1]
+		if len(數量)>=4 and \
+			 (數量[-3] in self.細位 or 數量[-3] in self.大位) and \
+			 數量[-1] in self.細位:
+			return 數量[:-1].replace('一十','十')
+		return 數量.replace('一十','十')
+	
+	def 轉客家話數量無(self,數量):
+		return self.轉客家話數量(數量)!=數量
+	
+	def 轉客家話數量(self,數量):
+		if len(數量)==4 and \
+			數量.startswith(self.一二三[0]) and 數量[-1] in self.細位:
+			return 數量[1:-1]
+		if len(數量)>=4 and \
+			 (數量[-3] in self.細位 or 數量[-3] in self.大位) and \
+			 數量[-1] in self.細位:
+			return 數量[:-1]
+		return 數量
+	
+	def 轉國語數量無(self,數量):
+		return self.轉國語數量(數量)!=數量
+	
+	def 轉國語數量(self,數量):
+		if len(數量)>=4 and \
+			 (數量[-3] in self.細位 or 數量[-3] in self.大位) and \
+			 數量[-1] in self.細位:
+			return 數量[:-1]
+		return 數量
+			
