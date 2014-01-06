@@ -124,6 +124,9 @@ class 臺灣客家話拼音測試(TestCase):
 		self.assertEqual(臺灣客家話拼音('ss').音標, None)
 		self.assertEqual(臺灣客家話拼音('izrh').音標, None)
 		
+	def test_大寫音標(self):
+		self.assertEqual(臺灣客家話拼音('JIANGˊ').音標, 'jiangˊ')
+		self.assertEqual(臺灣客家話拼音('Jiangˊ').音標, 'jiangˊ')
 # #--------------------------------------------------------
 # 
 # if __name__ == '__main__':

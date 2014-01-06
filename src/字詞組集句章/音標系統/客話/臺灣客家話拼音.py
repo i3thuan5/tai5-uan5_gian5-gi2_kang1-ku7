@@ -48,6 +48,7 @@ class 臺灣客家話拼音:
 	def __init__(self, 音標):
 		# self.腔
 		self.音標 = None
+		音標=音標.lower()
 		if 音標[-1:] in self.調類對照表:
 			for 所在 in range(len(音標) - 1):
 				if 音標[:所在] in self.聲母對照表 and 音標[所在:-1] in self.韻母對照表:
@@ -74,6 +75,8 @@ class 臺灣客家話拼音:
 					self.聲韻 = 音標
 					self.音標 = 音標
 					# special case
+	def 標準音標(self):
+		return self.音標
 	#-------成員變數--------#
 	#ng uainn ˊ
 	音標上長長度 = 8

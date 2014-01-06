@@ -72,6 +72,8 @@ class 國語注音符號:
 				self.音標 = 音標
 		if self.韻=='' and self.聲 not in self.空韻聲:
 			self.音標 = None
+	def 標準音標(self):
+		return self.音標
 	#-------成員變數--------#
 	音標上長長度 = 5
 	聲 = None
