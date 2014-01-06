@@ -23,7 +23,6 @@ from 資料庫.欄位資訊 import 版本正常
 from 資料庫.欄位資訊 import 字詞
 from 資料庫.整合.整合入言語 import 加文字佮版本
 from 資料佮語料匯入整合.教育部臺灣客家語常用詞辭典.調號處理 import 調號處理
-from 資料庫.欄位資訊 import 客語
 from 字詞組集句章.解析整理工具.轉物件音家私 import 轉物件音家私
 from 資料庫.欄位資訊 import 四縣腔
 from 資料庫.欄位資訊 import 海陸腔
