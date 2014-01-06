@@ -23,14 +23,14 @@
 }
 臺灣客家話拼音韻母對照表 = {
 		'ii', 'i', 'e', 'a', 'o', 'u', 'ie', 'eu', 'ieu', 'ia',
-		'ua', 'ai', 'uai', 'au', 'iau', 'io', 'oi', 'ioi', 'iu',
+		'ua', 'ai', 'iai', 'uai', 'au', 'iau', 'io', 'oi', 'ioi', 'iu',
 		'ui', 'iui', 'ue', 'iim', 'im', 'em', 'iem', 'am', 'iam',
-		'iin', 'in', 'en', 'ien', 'uen', 'an', 'uan', 'on', 'ion',
+		'iin', 'in', 'en', 'ien', 'uen', 'an', 'ian', 'uan', 'on', 'ion',
 		'un', 'iun', 'ang', 'iang', 'uang', 'ong', 'iong', 'ung',
 		'iung', 'iib', 'ib', 'eb', 'ieb', 'ab', 'iab', 'iid', 'id',
-		'ed', 'ied', 'ued', 'ad', 'uad', 'od', 'iod', 'ud', 'iud',
-		'ag', 'iag', 'uag', 'og', 'iog', 'ug', 'iug', 'er', 'm', 'n',
-		'ng',
+		'ed', 'ied', 'ued', 'ad', 'iad', 'uad', 'od', 'iod', 'ud', 'iud',
+		'ag', 'iag', 'uag', 'og', 'iog', 'ug', 'iug', 'er',
+		'm', 'n', 'ng',
 		'oo', 'ee', 'eeb', 'eed', 'eem', 'een', 'eeu',
 		'ainn', 'ann', 'iann', 'inn', 'onn', 'uainn',
 		}
