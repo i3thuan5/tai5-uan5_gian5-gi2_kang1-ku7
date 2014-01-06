@@ -35,6 +35,7 @@ from 資料庫.整合.整合入言語 import 加關係
 from 資料庫.欄位資訊 import 義近
 from 資料庫.欄位資訊 import 會當替換
 from 字詞組集句章.基本元素.公用變數 import 標點符號
+from 字詞組集句章.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
 
 
 教育部客家語辭典名 = '教育部臺灣客家語常用詞辭典'
@@ -60,26 +61,26 @@ class 整合客話辭典():
 		算 = 0
 		for 編號, 詞目, 詞性, 四縣音, 海陸音, 大埔音, 饒平音, 詔安音, 釋義, 近義詞, 反義詞, \
 				文白讀, 又音, 多音字, 對應華語 in 全部資料:
-			if 詞性.strip()=='諺':
+			if 詞性.strip() == '諺':
 				種類 = '語句'
 			else:
 				種類 = '字詞'
-			對應華語=對應華語.strip()
-			流水號集=[]
-			if 對應華語=='' or '〔見' in 對應華語:
-				國語詞=詞目
-				流水號=加文字佮版本(教育部客家語辭典名, 種類, 國語臺員腔, 教育部客家語辭典地區,
+			對應華語 = 對應華語.strip()
+			流水號集 = []
+			if 對應華語 == '' or '〔見' in 對應華語:
+				國語詞 = 詞目
+				流水號 = 加文字佮版本(教育部客家語辭典名, 種類, 國語臺員腔, 教育部客家語辭典地區,
 					教育部客家語辭典年代, 國語詞, '', 版本正常)
 				流水號集.append(流水號)
 			else:
-				國語詞=對應華語
+				國語詞 = 對應華語
 				for 標點 in 標點符號:
-					國語詞=國語詞.replace(標點,' ')
+					國語詞 = 國語詞.replace(標點, ' ')
 				for 數字 in range(10):
-					國語詞=國語詞.replace(str(數字),' ')
+					國語詞 = 國語詞.replace(str(數字), ' ')
 				for 詞 in 國語詞.split():
 					print(詞)
-					流水號=加文字佮版本(教育部客家語辭典名, 種類, 國語臺員腔, 教育部客家語辭典地區,
+					流水號 = 加文字佮版本(教育部客家語辭典名, 種類, 國語臺員腔, 教育部客家語辭典地區,
 						教育部客家語辭典年代, 詞, '', 版本正常)
 					流水號集.append(流水號)
 # 			print(教育部客家語辭典名, 種類, 國語臺員腔, 教育部客家語辭典地區,
@@ -89,29 +90,29 @@ class 整合客話辭典():
 				新音 = 辭典正規化.處理音標(音標)
 				if 新音 != '':
 					try:
-						換音 = {'han113 fa53 rhid21 tai53 doi33 zhin53 gin33 mo113 rhid21 pied54':
-						'han113 fa53 rhid21 tai53 doi33, zhin53 gin33 mo113 rhid21 pied54',
-						'mang11 shid5 ng53 ngied5 zied2 zung53 o53 po55 m55 ho53 ngib5 vung53':
-						'mang11 shid5 ng53 ngied5 zied2 zung53, o53 po55 m55 ho53 ngib5 vung53',
-						'cai55 ga11 cien11 ngid24 hoo31 chid24 mun53 ban31 zhio11 nan53':
-						'cai55 ga11 cien11 ngid24 hoo31, chid24 mun53 ban31 zhio11 nan53',
-						'teu55 na55 cab2 vo55 chan53 liau55 diau11':
-						'teu55 na55 cab2 vo55 chan53 －－ liau55 diau11',
-						'uai33 zhoi53 choi33 lab54 ba31，rhid21 ton113 sia113 ki53':
-						'uai33 zhoi53 choi33 lab54 ba31 －－ rhid21 ton113 sia113 ki53',
-						'gung33 bud21 li113 po113 chin53 bud21 li113 to113':
-						'gung33 bud21 li113 po113, chin53 bud21 li113 to113',
-						'ho53 ma11 m55 shid5 shid5 fui55 teu55 co53':
-						'ho53 ma11 m55 shid5 fui55 teu55 co53',
-						'han113 fa53 rhid21 tai53 doi33 zhin53 gin33 mo113 rhid21 pied54':
-						'han113 fa53 rhid21 tai53 doi33, zhin53 gin33 mo113 rhid21 pied54',
-						}
-						if 新音 in 換音:
-# 							print('{0}\n{1}\n{2}\n音標改正：{3}'.
-# 								format(編號, 詞目, 新音, 換音[新音]))
-							新音 = 換音[新音]
-							新詞目 = 詞目
-						elif 詞目 == '時錶仔' and 新音 == 'shi55 biau24':
+# 						換音 = {'han113 fa53 rhid21 tai53 doi33 zhin53 gin33 mo113 rhid21 pied54':
+# 						'han113 fa53 rhid21 tai53 doi33, zhin53 gin33 mo113 rhid21 pied54',
+# 						'mang11 shid5 ng53 ngied5 zied2 zung53 o53 po55 m55 ho53 ngib5 vung53':
+# 						'mang11 shid5 ng53 ngied5 zied2 zung53, o53 po55 m55 ho53 ngib5 vung53',
+# 						'cai55 ga11 cien11 ngid24 hoo31 chid24 mun53 ban31 zhio11 nan53':
+# 						'cai55 ga11 cien11 ngid24 hoo31, chid24 mun53 ban31 zhio11 nan53',
+# 						'teu55 na55 cab2 vo55 chan53 liau55 diau11':
+# 						'teu55 na55 cab2 vo55 chan53 －－ liau55 diau11',
+# 						'uai33 zhoi53 choi33 lab54 ba31，rhid21 ton113 sia113 ki53':
+# 						'uai33 zhoi53 choi33 lab54 ba31 －－ rhid21 ton113 sia113 ki53',
+# 						'gung33 bud21 li113 po113 chin53 bud21 li113 to113':
+# 						'gung33 bud21 li113 po113, chin53 bud21 li113 to113',
+# 						'ho53 ma11 m55 shid5 shid5 fui55 teu55 co53':
+# 						'ho53 ma11 m55 shid5 fui55 teu55 co53',
+# 						'han113 fa53 rhid21 tai53 doi33 zhin53 gin33 mo113 rhid21 pied54':
+# 						'han113 fa53 rhid21 tai53 doi33, zhin53 gin33 mo113 rhid21 pied54',
+# 						}
+# 						if 新音 in 換音:
+# # 							print('{0}\n{1}\n{2}\n音標改正：{3}'.
+# # 								format(編號, 詞目, 新音, 換音[新音]))
+# 							新音 = 換音[新音]
+# 							新詞目 = 詞目
+						if 詞目 == '時錶仔' and 新音 == 'shi55 biau24':
 							新詞目 = '時錶'
 						elif 詞目 == '磨刀仔' and 新音 == 'no55 do53':
 							新詞目 = '磨刀'
@@ -146,7 +147,8 @@ class 整合客話辭典():
 						新音 = 新音.replace('9', '31')
 						句物件 = 分析器.產生對齊句(新詞目, 新音)
 						腔型 = type('腔', (object,), {'__init__' : 初使音標, '腔':腔, '標準音標' :標準音標})
-						新句物件 = 轉音家私.轉做標準音標(腔型, 句物件)
+						調號句物件 = 轉音家私.轉做標準音標(腔型, 句物件)
+						新句物件 = 轉音家私.轉做標準音標(臺灣客家話拼音, 調號句物件)
 					except Exception as 錯誤:
 						print('錯誤！！ {0}，{1}，{2}，{5}，原音標：{3}，{4}'.
 							format(編號, 詞目, type(錯誤), 新音, 音標, 錯誤))
@@ -155,7 +157,7 @@ class 整合客話辭典():
 					else:
 # 						print(教育部客家語辭典名, 字詞, 腔, 教育部客家語辭典地區,
 # 									教育部客家語辭典年代, 譀鏡.看型(新句物件), 譀鏡.看音(新句物件), 版本正常)
-						流水號=加文字佮版本(教育部客家語辭典名, 字詞, 腔, 教育部客家語辭典地區,
+						流水號 = 加文字佮版本(教育部客家語辭典名, 字詞, 腔, 教育部客家語辭典地區,
  									教育部客家語辭典年代, 譀鏡.看型(新句物件), 譀鏡.看音(新句物件), 版本正常)
 						for 進前流水號 in 流水號集:
 							加關係(進前流水號, 流水號, 義近, 會當替換)
