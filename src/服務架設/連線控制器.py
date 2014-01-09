@@ -17,8 +17,27 @@
 """
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import urllib
+import Pyro4
 
 class 連線控制器(BaseHTTPRequestHandler):
+	def do_GET(self):
+		try:
+			self.服務()
+		except Pyro4.errors.NamingError as 錯誤:
+			self.送出連線錯誤資訊(503)
+			self.輸出('暫時停止服務！！')
+			print('內部自動標音關去矣！！')
+			raise 錯誤
+		except TypeError:
+			self.送出連線錯誤資訊(503)
+			self.輸出('暫時停止服務！！')
+			print("Pyro traceback:")
+			print("".join(Pyro4.util.getPyroTraceback()))
+		except Exception as 錯誤:
+			self.送出連線錯誤資訊(503)
+			self.輸出('暫時停止服務！！')
+			raise 錯誤
+		return
 	def 輸出(self, 資料):
 		self.wfile.write(str(資料).encode(encoding='utf_8', errors='strict'))
 	def 送出位元資料(self, 位元組):
