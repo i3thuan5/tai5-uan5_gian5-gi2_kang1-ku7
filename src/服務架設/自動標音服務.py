@@ -16,22 +16,19 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 from http.server import HTTPServer
-from 服務架設.連線控制器 import 連線控制器
-from 資料庫.欄位資訊 import 偏漳優勢音腔口
 import Pyro4
+from 服務架設.翻譯合成服務 import 翻譯合成服務
 
-class 自動標音服務(連線控制器):
-	標音工具 = Pyro4.Proxy("PYRONAME:內部自動標音")
+class 自動標音服務(翻譯合成服務):
 	def 服務(self):
-		# 共上頭前的「/」提掉
-		查詢字串 = self.連線路徑()[1:]
+		查詢字串 = self.連線路徑()
 		切開資料 = 查詢字串.split('/', 1)
 		查詢腔口 = None
 		查詢語句 = None
 		if len(切開資料) == 2:
 			查詢腔口, 查詢語句 = 切開資料
-		if not self.標音工具.有支援無(查詢腔口):
-			查詢腔口 = 偏漳優勢音腔口
+		if not self.腔口有支援無(查詢腔口):
+			查詢腔口 = self.袂前遺的腔口
 			查詢語句 = 查詢字串
 		標音結果 = self.標音工具.語句標音(查詢腔口, 查詢語句)
 		self.送出連線成功資訊()

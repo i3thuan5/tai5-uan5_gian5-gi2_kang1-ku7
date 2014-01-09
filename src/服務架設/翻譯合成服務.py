@@ -19,7 +19,6 @@ from http.server import HTTPServer
 from 服務架設.連線控制器 import 連線控制器
 import Pyro4
 from 資料庫.欄位資訊 import 偏漳優勢音腔口
-from 字詞組集句章.解析整理工具.物件譀鏡 import 物件譀鏡
 from 資料庫.欄位資訊 import 國語臺員腔
 from 語音合成.合音檔.舊閩南語句物件轉合成標籤 import 舊閩南語句物件轉合成標籤
 from 資料庫.欄位資訊 import 偏泉優勢音腔口
@@ -29,9 +28,6 @@ from 資料庫.欄位資訊 import 海陸腔
 from 資料庫.欄位資訊 import 四縣腔
 from 資料庫.欄位資訊 import 饒平腔
 from 資料庫.欄位資訊 import 詔安腔
-from 字詞組集句章.基本元素.集 import 集
-from 字詞組集句章.基本元素.句 import 句
-from 字詞組集句章.基本元素.章 import 章
 from 語音合成.合音檔.句物件轉合成標籤 import 句物件轉合成標籤
 from 資料庫.欄位資訊 import 閩南語
 from 字詞組集句章.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
@@ -43,12 +39,14 @@ from 服務架設.合成揀字 import 合成揀字
 
 class 翻譯合成服務(連線控制器):
 	標音工具 = Pyro4.Proxy("PYRONAME:內部自動標音")
-	翻譯=翻譯者()
-	揀字=合成揀字()
+	翻譯 = 翻譯者()
+	揀字 = 合成揀字()
 	舊閩南語合成標籤工具 = 舊閩南語句物件轉合成標籤()
 	合成標籤工具 = 句物件轉合成標籤()
 	轉音檔 = 標仔轉音檔()
-	音盒=調音盒()
+	音盒 = 調音盒()
+	袂前遺的腔口=偏漳優勢音腔口 # bue7 tsian5 i1 e5 khiunn1 khau2
+	
 	腔模型 = {偏漳優勢音腔口:'HTSLSPanAll.htsvoice', 偏泉優勢音腔口:'HTSLSPanAll.htsvoice',
 		混合優勢音腔口:'HTSLSPanAll.htsvoice',
 		四縣腔:'HakkaSi3.htsvoice', 海陸腔:'HakkaHai2.htsvoice', 大埔腔:'HakkaTua7.htsvoice',
@@ -58,27 +56,42 @@ class 翻譯合成服務(連線控制器):
 		四縣腔:1.0, 海陸腔:1.05, 大埔腔:1.6,
 		饒平腔:1.02, 詔安腔:1.02, }
 	def 服務(self):
-		# 共上頭前的「/」提掉
-		查詢字串 = self.連線路徑()[1:]
+		查詢字串 = self.連線路徑()
 		if 查詢字串.endswith('.wav'):
 			查詢字串 = 查詢字串[:-4]
 		切開資料 = 查詢字串.split('/', 2)
+		原來腔口=國語臺員腔
 		查詢腔口 = None
 		查詢語句 = None
 		集選擇 = []
 		if len(切開資料) == 3:
 			查詢腔口, 集選擇字串, 查詢語句 = 切開資料
-			for 選擇 in 集選擇字串.split(','):
-				if 選擇.isdigit():
-					集選擇.append(int(選擇))
-		if not self.標音工具.有支援無(查詢腔口):
-			查詢腔口 = 偏漳優勢音腔口
+			集選擇 = self.看集選擇(集選擇字串)
+		if not self.腔口有支援無(查詢腔口):
+			查詢腔口 = self.袂前遺的腔口
 			查詢語句 = 查詢字串
-		章物件 = self.標音工具.語句斷詞標音(國語臺員腔, 查詢語句)
-		翻譯了章物件=self.翻譯.翻譯章物件(國語臺員腔, 查詢腔口, 章物件)
-		揀好章物件=self.揀字.揀(翻譯了章物件, 集選擇)
+		章物件 = self.標音工具.語句斷詞標音(原來腔口, 查詢語句)
+		翻譯了章物件 = self.翻譯.翻譯章物件(原來腔口, 查詢腔口, 章物件)
+		揀好章物件 = self.揀字.揀(翻譯了章物件, 集選擇)
+		全部標仔 = self.章物件轉標仔(查詢腔口, 揀好章物件)
+		音檔 = self.標仔合音檔(查詢腔口, 全部標仔)
+		調好音 = self.音標調音(查詢腔口, 音檔)
+		self.送出連線成功資訊('audio/x-wav')
+		self.送出位元資料(調好音)
+		return
+	def 看集選擇(self, 集選擇字串):
+		集選擇 = []
+		for 選擇 in 集選擇字串.split(','):
+			if 選擇.isdigit():
+				集選擇.append(int(選擇))
+		return 集選擇
+	def 腔口有支援無(self, 查詢腔口):
+		return self.標音工具.有支援無(查詢腔口)
+
+	# 等新閩南語做好，才做伙整合到語音合成
+	def 章物件轉標仔(self, 查詢腔口, 章物件):
 		全部標仔 = []
-		for 句物件 in 揀好章物件.內底句:
+		for 句物件 in 章物件.內底句:
 			if 查詢腔口.startswith(閩南語):
 				標仔 = self.舊閩南語合成標籤工具.句物件轉標籤(句物件)
 			else:
@@ -86,19 +99,20 @@ class 翻譯合成服務(連線控制器):
 			if len(全部標仔) > 0:
 				全部標仔 = 全部標仔[:-1]
 			全部標仔.extend(標仔)
-		print('全部標仔', 全部標仔)
+		return 全部標仔
+	def 標仔合音檔(self, 查詢腔口, 標仔):
 		模型 = self.腔模型[查詢腔口]
 		速度 = self.腔放送進度[查詢腔口]
-		音檔 = self.轉音檔.合成(模型, 速度, 全部標仔)
+		音檔 = self.轉音檔.合成(模型, 速度, 標仔)
+		return 音檔
+	def 音標調音(self, 查詢腔口, 音檔):
 		if 查詢腔口.startswith(閩南語):
-			調好音=self.音盒.篩雜訊(音檔)
+			調好音 = self.音盒.篩雜訊(音檔)
 		elif 查詢腔口.startswith(客語):
-			調好音=self.音盒.篩懸音(音檔, 6000)
+			調好音 = self.音盒.篩懸音(音檔, 6000)
 		else:
-			調好音=音檔
-		self.送出連線成功資訊('audio/x-wav')
-		self.送出位元資料(調好音)
-		return
+			調好音 = 音檔
+		return 調好音
 
 if __name__ == '__main__':
 	Pyro4.config.SERIALIZER = 'pickle'

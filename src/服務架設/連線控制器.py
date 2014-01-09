@@ -43,7 +43,8 @@ class 連線控制器(BaseHTTPRequestHandler):
 	def 送出位元資料(self, 位元組):
 		self.wfile.write(位元組)
 	def 連線路徑(self):
-		return urllib.parse.unquote(self.path)
+		# 共上頭前的「/」提掉
+		return urllib.parse.unquote(self.path)[1:]
 	def 送出連線成功資訊(self, 資料型態='text/html'):
 		self.send_response(200)
 		self.send_header('Content-type', 資料型態)
