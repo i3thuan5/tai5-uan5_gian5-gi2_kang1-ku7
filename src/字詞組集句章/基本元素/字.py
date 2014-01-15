@@ -18,6 +18,7 @@
 from 字詞組集句章.基本元素.公用變數 import 無音
 from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
 from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
+from 字詞組集句章.基本元素.公用變數 import 標點符號
 
 class 字:
 	型 = None
@@ -31,6 +32,8 @@ class 字:
 			raise 解析錯誤('傳入來的型是空的！')
 		self.型 = 型
 		self.音 = 音
+	def 有音(self):
+		return self.音!=無音 and self.音 not in 標點符號
 	def __eq__(self, 別个):
 		return isinstance(別个, 字) and self.型 == 別个.型 and self.音 == 別个.音
 	def __hash__(self):
