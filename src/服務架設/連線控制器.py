@@ -18,40 +18,52 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import urllib
 import Pyro4
+from 資料庫.資料庫連線 import 資料庫連線
 
 class 連線控制器(BaseHTTPRequestHandler):
+# 	記錄資訊=print
+	記錄資訊 = 資料庫連線.prepare('INSERT INTO "言語服務"."連線狀況" '
+		'("種類","內容","狀況")'
+		'VALUES ($1,$2,$3)')
 	def do_GET(self):
 		try:
 			self.服務()
 		except Pyro4.errors.NamingError as 錯誤:
 			self.送出連線錯誤資訊(503)
-			self.輸出('暫時停止服務！！')
-			print('內部自動標音關去矣！！')
-			raise 錯誤
+			self.輸出('維護中，請稍後再試！！')
+			錯誤資訊 = '內部自動標音關去矣！！'
+			self.記錄錯誤資訊(錯誤資訊)
 		except TypeError:
 			self.送出連線錯誤資訊(503)
-			self.輸出('暫時停止服務！！')
-			print("Pyro traceback:")
-			print("".join(Pyro4.util.getPyroTraceback()))
+			self.輸出('維護中，請稍後再試！！')
+			錯誤資訊 = "\n".join(Pyro4.util.getPyroTraceback())
+			self.記錄錯誤資訊(錯誤資訊)
 		except Exception as 錯誤:
 			self.送出連線錯誤資訊(503)
-			self.輸出('暫時停止服務！！')
-			raise 錯誤
+			self.輸出('維護中，請稍後再試！！')
+			錯誤資訊 = type(錯誤).__name__ + '\n' + str(錯誤)
+			self.記錄錯誤資訊(錯誤資訊)
+		else:
+			self.記錄正常連線()
 		return
 	def 輸出(self, 資料):
-		self.wfile.write(str(資料).encode(encoding='utf_8', errors='strict'))
+		self.wfile.write(str(資料).encode(encoding = 'utf_8', errors = 'strict'))
 	def 送出位元資料(self, 位元組):
 		self.wfile.write(位元組)
 	def 連線路徑(self):
 		# 共上頭前的「/」提掉
 		return urllib.parse.unquote(self.path)[1:]
-	def 送出連線成功資訊(self, 資料型態='text/html'):
+	def 送出連線成功資訊(self, 資料型態 = 'text/html'):
 		self.send_response(200)
 		self.send_header('Content-type', 資料型態)
 		self.end_headers()
 	def 送出連線錯誤資訊(self, 狀態編號):
 		self.send_response(狀態編號)
 		self.end_headers()
+	def 記錄正常連線(self):
+		self.記錄資訊(type(self).__name__, self.連線路徑(), '正常')
+	def 記錄錯誤資訊(self, 錯誤資訊):
+		self.記錄資訊(type(self).__name__, self.連線路徑(), 錯誤資訊)
 
 if __name__ == '__main__':
 	try:
