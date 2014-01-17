@@ -87,8 +87,8 @@ class 數位典藏文本段落轉逝:
 					if '<BR>' in 漢羅文 or '<BR>' in 全羅文 or '<br>' in 漢羅文 or '<br>' in 全羅文:
 						漢羅文=漢羅文.replace('\n','\n\n').replace('<BR>','\n').replace('<br>','\n')
 						全羅文=全羅文.replace('\n','\n\n').replace('<BR>','\n').replace('<br>','\n')
-					漢羅文=漢羅文.split('\n')
-					全羅文=全羅文.split('\n')
+					漢羅文=漢羅文.strip().split('\n')
+					全羅文=全羅文.strip().split('\n')
 					for 所在 in range(len(漢羅文)):
 						漢羅文[所在]=漢羅文[所在].strip()
 					for 所在 in range(len(全羅文)):
