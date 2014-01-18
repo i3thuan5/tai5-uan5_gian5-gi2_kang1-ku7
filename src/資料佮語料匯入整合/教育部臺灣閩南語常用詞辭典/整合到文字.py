@@ -38,7 +38,6 @@ from 資料庫.欄位資訊 import 版本正常
 from 資料庫.整合.教育部閩南語常用詞辭典 import 教育部閩南語辭典地區
 from 資料庫.整合.教育部閩南語常用詞辭典 import 教育部閩南語辭典年代
 from 資料庫.整合.教育部閩南語常用詞辭典 import 教育部閩南語辭典名
-from 資料庫.整合.整合入言語 import 揣文字上大流水號
 from 資料庫.整合.教育部閩南語常用詞辭典 import 設定來源
 from 資料庫.整合.整合入言語 import 加演化
 from 資料庫.整合.整合入言語 import 加關係
@@ -207,6 +206,10 @@ class 整合到文字():
 								音 = 'tshâ-se'
 							elif 音 == 'luai̍h-á(小)':
 								音 = 'luai̍h-á'
+							elif 音 == 'guán(男)':
+								音 = 'guán'
+							elif 音 == 'gún(女)':
+								音 = 'gún'
 							if 資料字型體 == "司孫(背稱)":
 								資料字型體 = "司孫"
 	
@@ -222,15 +225,17 @@ class 整合到文字():
 								資料字型體 = "圓山仔"
 							elif 資料字型體 == "三重" and 主編號 == 36124:
 								資料字型體 = "三重埔"
+							elif 音 == 'Hè-sen-ná':#講毋是漢語，無愛變ian
+								音 = 'Hè-sian-ná'
+							elif 組字式型 == 'xx姊仔' and 音 == 'xxtsé--á':#xx是會當換做名詞
+								資料字型體 = '姊仔'
+								音 = 'tsé--á'
 	# 						elif 資料字型體 == "瘦田" and 主編號 == 60344:
 	# 							資料字型體 = "瘦田𠢕欶水。"
 	# 						elif 資料字型體 == "䆀猴" and 主編號 == 60373:
 	# 							資料字型體 = "䆀猴𠢕欠數。"
 	
 							# m7 tioh8
-							if 組字式型 == 'xx姊仔' and 音 == 'xxtsé--á':
-								資料字型體 = '姊仔'
-								音 = 'tsé--á'
 	# 						if 音 == "niàu-ka-tsiah hit- ki":
 	# 							# love you~
 	# 							音 = "niàu-ka-tsiah hit-ki"
@@ -245,7 +250,6 @@ class 整合到文字():
 								'Tuā ba̍k sin-niû, bô khuànn-kìnn tsàu.':'Tuā ba̍k sin-niû bô khuànn-kìnn tsàu.',
 								'Tshiú-khiau, khut-ji̍p, bô khut-tshut.':'Tshiú-khiau, khut-ji̍p bô khut-tshut.',
 								'Tsīn jîn-sū sūn thinn-ì.':'Tsīn jîn-sū , sūn thinn-ì.',
-								'Hè-sen-ná':'Hè-sian-ná',
 								'jua̍h-- tio̍h':'jua̍h--tio̍h', 'lua̍h-- tio̍h':'lua̍h--tio̍h',
 								'sh-á':'ah-á', 'óonn-káu':'ónn-káu',
 								}
