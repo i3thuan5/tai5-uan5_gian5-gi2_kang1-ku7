@@ -406,7 +406,7 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, '媠姑娘', 'sui2 koo1-niu5')
 		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, '媠姑娘？', 'sui2-koo1 niu5?')
 		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, '媠姑娘？', 'sui2-koo1-niu5?')
-		
+
 	def test_對齊詞客話懸降調(self):
 		詞型 = '耳子'
 		詞音 = 'ngi^-zu^'
@@ -526,7 +526,7 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(len(組物件.內底詞), 2)
 		self.assertEqual(組物件.內底詞[0], self.分析器.產生對齊詞(型一, 音一))
 		self.assertEqual(組物件.內底詞[1], self.分析器.產生對齊詞(型二, 音二))
-		
+
 	def test_對齊組客話懸降調(self):
 		詞型 = '耳子'
 		詞音 = 'ngi^ zu^'
@@ -538,7 +538,7 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(len(組物件.內底詞), 2)
 		self.assertEqual(組物件.內底詞[0], self.分析器.產生對齊詞(型一, 音一))
 		self.assertEqual(組物件.內底詞[1], self.分析器.產生對齊詞(型二, 音二))
- 
+
 	def test_客話音標對齊組(self):
 		詞音 = 'tienˊ-dangˋ log-suiˋ'
 		組物件 = self.分析器.產生對齊組(詞音, 詞音)
@@ -567,6 +567,15 @@ class 拆文分析器測試(unittest.TestCase):
 			self.分析器.產生對齊詞('兩公尺', 'nng7-kong-tshioh'),
 			self.分析器.產生對齊詞('。', '.'),
 			])
+
+	def test_對齊組濟字標點錯(self):
+		詞型 = '枋寮漁港「大條巷」上闊兩。公尺'
+		原來詞音 = 'Pang-liau5 hi5-kang2 「 Tua7-tiau5-hang7 」 siang7-khoah nng7-kong-tshioh.'
+		處理好詞音 = 'Pang-liau5 hi5-kang2 「 Tua7-tiau5-hang7 」 siang7-khoah nng7-kong-tshioh.'
+		加空白後詞音 = 'Pang-liau5 hi5-kang2 「 Tua7-tiau5-hang7 」 siang7-khoah nng7-kong-tshioh . '
+		self.assertEqual(self.初胚工具.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來詞音), 處理好詞音)
+		self.assertEqual(self.初胚工具.符號邊仔加空白(處理好詞音), 加空白後詞音)
+		self.assertRaises(解析錯誤, self.分析器.產生對齊組, 詞型, 加空白後詞音)
 
 	def test_對齊組連字號漢羅(self):
 		型 = 'gua有tsit8-tiunn1椅仔！'
