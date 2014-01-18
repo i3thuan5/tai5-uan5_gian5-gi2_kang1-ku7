@@ -90,6 +90,8 @@ class 阿拉伯數字():
 	def 轉閩南語數量(self,數量):
 		if len(數量)==4 and \
 			數量.startswith(self.一二三[0]) and 數量[-1] in self.細位:
+			if 數量[-2]==self.兩:
+				return 數量[1]+ self.一二三[1]
 			return 數量[1:-1]
 		if len(數量)>=4 and \
 			 (數量[-3] in self.細位 or 數量[-3] in self.大位) and \
@@ -103,6 +105,8 @@ class 阿拉伯數字():
 	def 轉客家話數量(self,數量):
 		if len(數量)==4 and \
 			數量.startswith(self.一二三[0]) and 數量[-1] in self.細位:
+			if 數量[-2]==self.兩:
+				return 數量[1]+ self.一二三[1]
 			return 數量[1:-1]
 		if len(數量)>=4 and \
 			 (數量[-3] in self.細位 or 數量[-3] in self.大位) and \
@@ -117,6 +121,8 @@ class 阿拉伯數字():
 		if len(數量)>=4 and \
 			 (數量[-3] in self.細位 or 數量[-3] in self.大位) and \
 			 數量[-1] in self.細位:
+			if 數量[-2]==self.兩:
+				return 數量[:-2]+ self.一二三[1]
 			return 數量[:-1]
 		return 數量
 			
