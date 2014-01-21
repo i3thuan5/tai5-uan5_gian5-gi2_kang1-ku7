@@ -66,10 +66,10 @@ class 阿拉伯數字():
 					漢字.append(空一二三[0])
 					頭前有空號無=False
 				if 數值==2:
-					if 數細位==1 or (所在!=0 and 數細位==0):#二十佮二萬
+					if 數細位==1 or (所在!=0 and 數細位==0):#二十佮兩億零二萬
 						漢字.append(空一二三[2])
-					elif 數細位==0 and 數大位==0:#二
-						漢字.append(空一二三[2])
+# 					elif 數細位==0 and 數大位==0:#二
+# 						漢字.append(空一二三[2])
 					else:
 						漢字.append(self.兩)
 				else:
