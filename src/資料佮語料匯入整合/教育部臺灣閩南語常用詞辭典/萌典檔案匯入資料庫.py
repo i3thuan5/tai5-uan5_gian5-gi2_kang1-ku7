@@ -30,7 +30,7 @@ class 萌典檔案匯入資料庫:
 			print(加資料)
 			資料庫連線.execute(加資料)
 	def 匯異用字表(self):
-		表格名 = '華語對照表'
+		表格名 = '異用字表'
 		清資料庫 = self.清資料庫指令.format(self.資料庫名, 表格名)
 		print(清資料庫)
 		資料庫連線.execute(清資料庫)
