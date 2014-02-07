@@ -3,7 +3,8 @@ from simpleodspy.sodsspreadsheet import SodsSpreadSheet
 from simpleodspy.sodscsv import SodsCsv
 from simpleodspy.sodsxml import SodsXml
 from simpleodspy.sodshtml import SodsHtml
-from simpleodspy.sodsxlsx import SodsXlsx
+from simpleodspy.sodsxls import SodsXls
+import io
 
 class 產生字音字形檔案:
 	標 = ['號', '題目', '答案']
@@ -14,17 +15,25 @@ class 產生字音字形檔案:
 			這頁.append(','.join(這逝))
 		return '\n'.join(這頁)
 	def 產生csv(self, 配對, 欄 = 2, 換頁逝 = 15):
-		表=self.產生sods(配對, 欄, 換頁逝)
+		表 = self.產生sods(配對, 欄, 換頁逝)
 		檔 = SodsCsv(表)
 		return 檔.exportCsv()
 	def 產生xml(self, 配對, 欄 = 2, 換頁逝 = 15):
-		表=self.產生sods(配對, 欄, 換頁逝)
+		表 = self.產生sods(配對, 欄, 換頁逝)
 		檔 = SodsXml(表)
 		return 檔.exportXml()
 	def 產生html(self, 配對, 欄 = 2, 換頁逝 = 15):
-		表=self.產生sods(配對, 欄, 換頁逝)
+		表 = self.產生sods(配對, 欄, 換頁逝)
 		檔 = SodsHtml(表)
 		return 檔.exportHtml()
+	def 產生xls(self, 配對, 欄 = 2, 換頁逝 = 15):
+		表 = self.產生sods(配對, 欄, 換頁逝)
+		檔 = SodsXls(表)
+		資 = io.BytesIO()
+		檔.save(資)
+		資料 = 資.getvalue()
+		資.close()
+		return 資料
 	def 產生sods(self, 配對, 欄 = 2, 換頁逝 = 15):
 		資料 = self.產生資料(配對, 欄, 換頁逝)
 		表 = SodsSpreadSheet(len(資料) + 1, len(self.標) * 欄 + 1)
@@ -67,13 +76,14 @@ if __name__ == '__main__':
 	配對 = []
 	for 編號 in range(47):
 		配對.append(('我' + str(編號), 'gua2 ' + str(編號)))
-		
+
 	open('/home/ihc/aa-bo5.csv', 'w').write(字音字形檔案.產生無引號csv(配對))
 	open('/home/ihc/aa.csv', 'w').write(字音字形檔案.產生csv(配對))
 	open('/home/ihc/aa.xml', 'w').write(字音字形檔案.產生xml(配對))
 	open('/home/ihc/aa.html', 'w').write(字音字形檔案.產生html(配對))
-#	表=字音字形檔案.產生sods(配對)
-#	檔 = SodsXlsx(表)
-#	檔.save('/home/ihc/aa.xlsx')
-#	open('/home/ihc/aa.xlsx', 'w').write(字音字形檔案.產生xlsx(配對))
+	open('/home/ihc/aa.xls', 'wb').write(字音字形檔案.產生xls(配對))
+# 	表=字音字形檔案.產生sods(配對)
+# 	檔 = SodsXls(表)
+# 	檔.save('/home/ihc/aa.xls')
+# 	open('/home/ihc/aa.xlsx', 'w').write(字音字形檔案.產生xlsx(配對))
 
