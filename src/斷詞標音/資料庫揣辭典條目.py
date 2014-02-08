@@ -29,7 +29,6 @@ class 資料庫揣辭典條目(辭典條目):
 		'FROM "言語"."文字" AS "子" ' + 
 		# ' WHERE "子"."腔口" LIKE $1 ' + 
 		' WHERE "子"."腔口"=$1 ' + 
-		' AND "子"."種類"=\'字詞\' ' + 
 		'ORDER BY "子"."流水號"')(腔口)
 		
 	揣腔口字詞資料 = lambda self, 腔口:資料庫連線.prepare('SELECT ' + 
@@ -37,6 +36,7 @@ class 資料庫揣辭典條目(辭典條目):
 		'FROM "言語"."文字" AS "子" ' + 
 		# ' WHERE "子"."腔口" LIKE $1 ' + 
 		' WHERE "子"."腔口"=$1 ' + 
+		' AND "子"."種類"=\'字詞\' ' + 
 		'ORDER BY "子"."流水號"')(腔口)
 	
 # 	揣腔口型體資料 = lambda self,腔口, 型態:資料庫連線.prepare('SELECT ' +
