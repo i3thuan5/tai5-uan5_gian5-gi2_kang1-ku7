@@ -25,7 +25,7 @@ from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
 	'ts', 'tsh', 's', 'j',
 	'h', '', }
 # 臺灣閩南語羅馬字拼音方案使用手冊 + 臺灣語語音入門 + 教育部辭典的字
-#歌仔戲：枝頭 ki1 thiou5， 土 thou。目前教羅共ou轉oo（因為台華辭典按呢處理）
+# 歌仔戲：枝頭 ki1 thiou5， 土 thou。目前教羅共ou轉oo（因為台華辭典按呢處理）
 臺灣閩南語羅馬字拼音韻母表 = {
 	'a', 'ah', 'ap', 'at', 'ak', 'ann', 'annh',
 	'am', 'an', 'ang',
@@ -54,7 +54,7 @@ from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
 	'ir', 'irh', 'irp', 'irt', 'irk', 'irm', 'irn', 'irng', 'irinn',
 	'ie',  # 鹿港偏泉腔
 	'or', 'orh', 'ior', 'iorh',  # 蚵
-	'uang', # 金門偏泉腔　　風　huang1
+	'uang',  # 金門偏泉腔　　風　huang1
 	}
 臺灣閩南語羅馬字拼音聲調符號表 = dict(
 	á = ('a', 2), à = ('a', 3), â = ('a', 5), ǎ = ('a', 6), ā = ('a', 7), a̍ = ('a', 8), a̋ = ('a', 9),
@@ -162,8 +162,13 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 			if 符號 in self.音標:
 				替代符號 = 符號
 				break
-
-		return self.聲 + self.韻.replace(替代符號, self.數字調轉閏號調表[(替代符號, self.調)])
+		if self.輕 != '':
+			頭 = '--'
+		elif self.日本話 != '':
+			頭 = '*'
+		else:
+			頭 = ''
+		return 頭 + self.聲 + self.韻.replace(替代符號, self.數字調轉閏號調表[(替代符號, self.調)])
 # 	def 轉吳守禮方音(self):
 # 		return 方音符號吳守禮改良式(self.音標).音標
 # 	def 轉吳守禮方音組字式(self):
