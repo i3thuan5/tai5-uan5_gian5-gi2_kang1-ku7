@@ -27,7 +27,7 @@ from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
 from 字詞組集句章.解析整理工具.文章初胚工具 import 文章初胚工具
 from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 
-class 拆文初胚工具測試(unittest.TestCase):
+class 文章初胚工具測試(unittest.TestCase):
 	def setUp(self):
 		self.初胚工具 = 文章初胚工具()
 	def tearDown(self):
