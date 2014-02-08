@@ -16,7 +16,7 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 from unittest.case import TestCase
-from 字詞組集句章.解析整理工具.文章初胚工具 import 文章初胚工具
+from 字詞組集句章.解析整理工具.文章粗胚工具 import 文章粗胚工具
 from 字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
 from 斷詞標音.現掀辭典 import 現掀辭典
 from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
@@ -25,7 +25,7 @@ from 字詞組集句章.基本元素.詞 import 詞
 class 現掀辭典測試(TestCase):
 	def setUp(self):
 		self.字典 = 現掀辭典(4)
-		self.初胚工具 = 文章初胚工具()
+		self.粗胚工具 = 文章粗胚工具()
 		self.分析器 = 拆文分析器()
 		self.孤詞物 = self.分析器.建立詞物件('你')
 		self.孤詞音 = self.分析器.建立詞物件('li2')

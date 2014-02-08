@@ -16,7 +16,7 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 from unittest.case import TestCase
-from 字詞組集句章.解析整理工具.文章初胚工具 import 文章初胚工具
+from 字詞組集句章.解析整理工具.文章粗胚工具 import 文章粗胚工具
 from 字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
 from 斷詞標音.型音辭典 import 型音辭典
 from 斷詞標音.動態規劃斷詞標音 import 動態規劃斷詞標音
@@ -29,7 +29,7 @@ from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 class 動態規劃斷詞標音測試(TestCase):
 	def setUp(self):
 		self.字典 = 型音辭典(4)
-		self.初胚工具 = 文章初胚工具()
+		self.粗胚工具 = 文章粗胚工具()
 		self.分析器 = 拆文分析器()
 		self.斷詞標音 = 動態規劃斷詞標音()
 

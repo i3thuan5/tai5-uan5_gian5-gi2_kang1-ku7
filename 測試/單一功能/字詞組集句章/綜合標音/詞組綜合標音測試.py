@@ -17,7 +17,7 @@
 """
 import unittest
 from 字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
-from 字詞組集句章.解析整理工具.文章初胚工具 import 文章初胚工具
+from 字詞組集句章.解析整理工具.文章粗胚工具 import 文章粗胚工具
 from 字詞組集句章.基本元素.字 import 字
 from 字詞組集句章.基本元素.詞 import 詞
 from 字詞組集句章.基本元素.組 import 組
@@ -28,7 +28,7 @@ from 字詞組集句章.基本元素.公用變數 import 無音
 class 詞組綜合標音測試(unittest.TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
-		self.初胚工具 = 文章初胚工具()
+		self.粗胚工具 = 文章粗胚工具()
 	def tearDown(self):
 		pass
 	def test_基本測試(self):
