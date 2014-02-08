@@ -94,6 +94,15 @@ class 臺灣閩南語羅馬字拼音測試(unittest.TestCase):
 		self.assertEqual(臺灣閩南語羅馬字拼音('1bai2').音標, '1bai2')
 		self.assertEqual(臺灣閩南語羅馬字拼音('1hannh').音標, '1hannh4')
 		self.assertEqual(臺灣閩南語羅馬字拼音('1tsi̍t').音標, '1tsit8')
+		
+	def test_綜合話(self):
+		self.assertEqual(臺灣閩南語羅馬字拼音('sui2').音標, 'sui2')
+		self.assertEqual(臺灣閩南語羅馬字拼音('1sui2').音標, '1sui2')
+		self.assertEqual(臺灣閩南語羅馬字拼音('sui2').音標, 'sui2')
+		self.assertEqual(臺灣閩南語羅馬字拼音('0sui2').音標, '0sui2')
+		self.assertEqual(臺灣閩南語羅馬字拼音('sui2').音標, 'sui2')
+		self.assertEqual(臺灣閩南語羅馬字拼音('0sui2').音標, '0sui2')
+		self.assertEqual(臺灣閩南語羅馬字拼音('1sui2').音標, '1sui2')
 
 	def test_輕聲佮日本話無使做伙出現(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('01a').音標, None)
@@ -154,6 +163,9 @@ class 臺灣閩南語羅馬字拼音測試(unittest.TestCase):
 		self.assertEqual(臺灣閩南語羅馬字拼音('moo5').轉閏號調(), 'môo')
 		self.assertEqual(臺灣閩南語羅馬字拼音('tere5').轉閏號調(), 'terê')
 		self.assertEqual(臺灣閩南語羅馬字拼音('tir5').轉閏號調(), 'tîr')
+		#符號予別的工具處理
+		self.assertEqual(臺灣閩南語羅馬字拼音('0tir5').轉閏號調(), '0tîr')
+		self.assertEqual(臺灣閩南語羅馬字拼音('1tir5').轉閏號調(), '1tîr')
 
 	def test_轉通用拼音(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('gio2').轉通用拼音(), 'ghior4')
