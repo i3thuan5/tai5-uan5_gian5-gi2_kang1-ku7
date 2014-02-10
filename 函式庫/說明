@@ -1,8 +1,15 @@
-若會使，請用pip install來安裝
+若會使，請用pip3.3 install來安裝
+	http://www.pip-installer.org/en/latest/installing.html
+	pip3.3 install py-postgresql
+	pip3.3 install pyro4
+	pip3.3 install simpleodspy
+	pip3.3 install xlwt-future
+	pip3.3 install xlrd
+
 無法度就解壓縮閣python setup.py install
 
 連資料庫
-	python-postgres
+	py-postgresql
 
 架幾仔个服務，公家標音模組
 	Pyro4
