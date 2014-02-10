@@ -1,0 +1,24 @@
+若會使，請用pip install來安裝
+無法度就解壓縮閣python setup.py install
+
+連資料庫
+	python-postgres
+
+架幾仔个服務，公家標音模組
+	Pyro4
+		連線函式
+	serpent
+		物件封裝
+
+匯入資料庫
+	xlrd
+		讀xls
+
+字音字型表格
+	simpleodspy
+		輸出csv、xml、html佮xls
+	xlwt-future
+		支援xls的檔案，愛python3.3以上
+	future
+		支援xlwt-future
+	
