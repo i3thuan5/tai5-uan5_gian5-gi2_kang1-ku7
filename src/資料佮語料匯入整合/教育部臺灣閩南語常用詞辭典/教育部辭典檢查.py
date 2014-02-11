@@ -97,7 +97,7 @@ class 教育部辭典檢查:
 					if not 字物件.音.startswith('0') and \
 						字物件.型[0] not in 組字式符號 and \
 						字物件.型 not in 標點符號:
-						print(別的資訊, 標準組物件, 字物件)
+						print(別的資訊, 標準組物件, 型體, 音標, 字物件,sep='!')
 		except:
 			pass
 
