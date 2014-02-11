@@ -86,10 +86,26 @@ class 物件譀鏡測試(unittest.TestCase):
 
 	def test_看章換符合(self):
 		型 = '恁老母ti3佗位！恁老母ti3佗位！'
-		音 = 'lin1 lau3 bu2 ti3 to1 ui7 ! lin1 lau3 bu2 ti3 to1 ui7 !'
+		音 = 'lin1 lau3 bu2 ti3 to1 ui7 ! lin1 lau3-bu2 ti3 to1-ui7 !'
 		章物件 = self.分析器.產生對齊組(型, 音)
 		self.assertEqual(self.譀鏡.看型(章物件), 型)
 		self.assertEqual(self.譀鏡.看音(章物件), 音)
+
+	def test_看章加連字符(self):
+		型 = '恁老母ti3佗位！恁老母ti3佗位！'
+		音 = 'lin1 lau3-bu2 ti3 to1 ui7 ! lin1 lau3 bu2 ti3 to1-ui7 !'
+		章物件 = self.分析器.產生對齊章(型, 音)
+		self.assertEqual(self.譀鏡.看型(章物件), 型)
+		self.assertEqual(self.譀鏡.看音(章物件), 音)
+
+	def test_看章換連字符(self):
+		型 = '恁老母ti3佗位！恁老母ti3佗位！'
+		音 = 'lin1 lau3-bu2 ti3 to1 ui7 ! lin1 lau3-bu2-ti3 to1-ui7 !'
+		答型 = '恁|老_母|ti3|佗|位|！|恁|老_母_ti3|佗_位|！'
+		答音 = 'lin1|lau3_bu2|ti3|to1|ui7|!|lin1|lau3_bu2_ti3|to1_ui7|!'
+		章物件 = self.分析器.產生對齊章(型, 音)
+		self.assertEqual(self.譀鏡.看型(章物件, '_', '|'), 答型)
+		self.assertEqual(self.譀鏡.看音(章物件, '_', '|'), 答音)
 
 
 if __name__ == '__main__':
