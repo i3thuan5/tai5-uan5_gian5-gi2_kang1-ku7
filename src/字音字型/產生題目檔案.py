@@ -42,6 +42,10 @@ class 產生字音字形檔案:
 		表 = self.產生sods(孤表, 欄, 換頁逝)
 		檔 = SodsHtml(表)
 		return 檔.exportHtml()
+	def 產生html原始檔(self, 孤表, 欄 = 2, 換頁逝 = 15):
+		表 = self.產生sods(孤表, 欄, 換頁逝)
+		檔 = SodsHtml(表)
+		return 檔.exportTableHtmlAndCss()
 	def 產生xls(self, 孤表, 欄 = 2, 換頁逝 = 15):
 		表 = self.產生sods(孤表, 欄, 換頁逝)
 		檔 = SodsXls(表)
@@ -105,6 +109,7 @@ if __name__ == '__main__':
 	open('/home/ihc/aa.csv', 'w').write(字音字形檔案.產生csv(答表))
 	open('/home/ihc/aa.xml', 'w').write(字音字形檔案.產生xml(問表))
 	open('/home/ihc/aa.html', 'w').write(字音字形檔案.產生html(問表))
+	print(字音字形檔案.產生html原始檔(問表))
 	open('/home/ihc/aa.xls', 'wb').write(字音字形檔案.產生xls(問表))
 # 	表=字音字形檔案.產生sods(配對)
 # 	檔 = SodsXls(表)
