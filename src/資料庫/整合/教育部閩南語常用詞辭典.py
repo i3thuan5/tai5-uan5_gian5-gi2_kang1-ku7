@@ -95,6 +95,8 @@ def 設定來源(流水號, 主編號):
 	'FROM "教育部臺灣閩南語常用詞辭典"."例句" WHERE "釋義編號"=$1 ORDER BY "流水號" ASC ')
 用流水號揣腔口 = lambda 流水號:資料庫連線.prepare('SELECT "腔口" ' +
 	'FROM "言語"."文字" WHERE "流水號"=$1').first(流水號)
+用流水號揣地區 = lambda 流水號:資料庫連線.prepare('SELECT "地區" ' +
+	'FROM "言語"."文字" WHERE "流水號"=$1').first(流水號)
 揣例句 = 資料庫連線.prepare('SELECT "釋義編號","例句","標音" ' +
 	'FROM "教育部臺灣閩南語常用詞辭典"."例句" ORDER BY "流水號" ASC ')
 
