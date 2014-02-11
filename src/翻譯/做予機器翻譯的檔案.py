@@ -40,9 +40,9 @@ class 做予機器翻譯的檔案:
 		+ 'AND "辭典來源"."主編號"="對照表"."主編號"'
 		+ 'ORDER BY "對照表"."流水號" ASC ')(主編號)
 	def 產生標音(self):
-		臺語字 = open('/dev/shm/臺語字.txt', 'w')
-		臺語音 = open('/dev/shm/臺語音.txt', 'w')
-		國語字 = open('/dev/shm/國語字.txt', 'w')
+		臺語字 = open('/dev/shm/翻.臺語字.txt', 'w')
+		臺語音 = open('/dev/shm/翻.臺語音.txt', 'w')
+		國語字 = open('/dev/shm/翻.國語字.txt', 'w')
 		辭典工具 = 教育部閩南語辭典工具()
 		粗胚工具 = 文章粗胚工具()
 		分析器 = 拆文分析器()
@@ -77,8 +77,8 @@ class 做予機器翻譯的檔案:
 		臺語音.close()
 		國語字.close()
 	def 斷國語字(self):
-		國語字 = open('/dev/shm/國語字.txt')
-		國語字斷詞 = open('/dev/shm/國語字斷詞.txt', 'w')
+		國語字 = open('/dev/shm/翻.國語字.txt')
+		國語字斷詞 = open('/dev/shm/翻.國語字斷詞.txt', 'w')
 		剖析工具 = 自設剖析工具()
 		結構化工具 = 剖析結構化工具()
 		印到斷詞 = lambda 詞:結構化工具.印出(詞, 國語字斷詞)
@@ -88,7 +88,7 @@ class 做予機器翻譯的檔案:
 				for 一句 in 剖析了:
 					結構化結果 = 結構化工具.結構化剖析結果(一句)
 					結構化工具.處理結構化結果(結構化結果, 印到斷詞)
-					print(file = 國語字斷詞)
+				print(file = 國語字斷詞)
 			except Exception as 錯誤:
 				print(''.join(一逝), file = 國語字斷詞)
 				print(錯誤, 一逝.strip())
