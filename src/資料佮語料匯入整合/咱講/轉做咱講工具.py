@@ -21,8 +21,8 @@ class 轉做咱講工具:
 	檔頭表=(
 """<?xml version="1.0" encoding="utf-8"?>
 <lift
-    version="0.13"
-    producer="Palaso.DictionaryServices.LiftWriter 2.1.27.0">""")
+	version="0.13"
+	producer="Palaso.DictionaryServices.LiftWriter 2.1.27.0">""")
 	檔尾表="</lift>" 
 	條目頭表=(	
 """	<entry
