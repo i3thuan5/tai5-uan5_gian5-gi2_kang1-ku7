@@ -2,6 +2,7 @@
 from 資料庫.資料庫連線 import 資料庫連線
 import urllib.request
 import json
+from 資料庫.整合.教育部閩南語常用詞辭典 import 教育部閩南語辭典隔開符號
 
 class 萌典檔案匯入資料庫:
 	資料庫名 = '教育部臺灣閩南語常用詞辭典'
@@ -24,7 +25,7 @@ class 萌典檔案匯入資料庫:
 			if 一逝 == '':
 				continue
 			華語, 詞條編號, 詞條名稱 = 一逝.split(',')
-			華語 = "'{0}'".format(華語)
+			華語 = "'{0}'".format(華語.strip(教育部閩南語辭典隔開符號))
 			加資料 = self.加資料指令.format(
 				self.資料庫名, 表格名, ','.join(欄位), ','.join([詞條編號, 華語]))
 			print(加資料)
