@@ -30,24 +30,24 @@ class 連線控制器(BaseHTTPRequestHandler):
 			self.服務()
 		except Pyro4.errors.NamingError as 錯誤:
 			self.送出連線錯誤資訊(503)
-			self.輸出('維護中，請稍後再試！！')
+			self.送出字串資料('維護中，請稍後再試！！')
 			錯誤資訊 = '內部自動標音關去矣！！'
 			self.記錄錯誤資訊(錯誤資訊)
 		except TypeError:
 			self.送出連線錯誤資訊(503)
-			self.輸出('維護中，請稍後再試！！')
+			self.送出字串資料('維護中，請稍後再試！！')
 			錯誤資訊 = "\n".join(Pyro4.util.getPyroTraceback())
 			self.記錄錯誤資訊(錯誤資訊)
 		except Exception as 錯誤:
 			self.送出連線錯誤資訊(503)
-			self.輸出('維護中，請稍後再試！！')
+			self.送出字串資料('維護中，請稍後再試！！')
 			錯誤資訊 = type(錯誤).__name__ + '\n' + str(錯誤)
 			self.記錄錯誤資訊(錯誤資訊)
 		else:
 			self.記錄正常連線()
 		return
-	def 輸出(self, 資料):
-		self.wfile.write(str(資料).encode(encoding = 'utf_8', errors = 'strict'))
+	def 送出字串資料(self, 資料):
+		self.送出位元資料(str(資料).encode(encoding = 'utf_8', errors = 'strict'))
 	def 送出位元資料(self, 位元組):
 		self.wfile.write(位元組)
 	def 連線路徑(self):
