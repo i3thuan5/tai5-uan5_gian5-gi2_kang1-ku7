@@ -34,6 +34,8 @@ class 物件譀鏡測試(unittest.TestCase):
 		字物件 = self.分析器.產生對齊字(型, 音)
 		self.assertEqual(self.譀鏡.看型(字物件), 型)
 		self.assertEqual(self.譀鏡.看音(字物件), 音)
+		斷詞 = 型 + '｜' + 音
+		self.assertEqual(self.譀鏡.看斷詞(字物件, '｜'), 斷詞)
 
 	def test_看詞(self):
 		型 = '姑娘'
@@ -41,6 +43,8 @@ class 物件譀鏡測試(unittest.TestCase):
 		詞物件 = self.分析器.產生對齊詞(型, 音)
 		self.assertEqual(self.譀鏡.看型(詞物件), 型)
 		self.assertEqual(self.譀鏡.看音(詞物件), 音)
+		斷詞 = 型 + '｜' + 音
+		self.assertEqual(self.譀鏡.看斷詞(詞物件, '｜'), 斷詞)
 
 	def test_看組孤字(self):
 		型 = '恁老母ti3佗位！'
@@ -48,6 +52,8 @@ class 物件譀鏡測試(unittest.TestCase):
 		組物件 = self.分析器.產生對齊組(型, 音)
 		self.assertEqual(self.譀鏡.看型(組物件), 型)
 		self.assertEqual(self.譀鏡.看音(組物件), 音)
+		斷詞 = '恁｜lin1 老｜lau3 母｜bu2 ti3｜ti3　佗｜to1　位｜ui7 ！｜!'
+		self.assertEqual(self.譀鏡.看斷詞(組物件, '｜'), 斷詞)
 
 	def test_看組連字(self):
 		型 = '恁老母ti3佗位！'
@@ -55,6 +61,8 @@ class 物件譀鏡測試(unittest.TestCase):
 		組物件 = self.分析器.產生對齊組(型, 音)
 		self.assertEqual(self.譀鏡.看型(組物件), 型)
 		self.assertEqual(self.譀鏡.看音(組物件), 音)
+		斷詞 = '恁｜lin1 老｜lau3 母｜bu2 ti3｜ti3 佗位｜to1-ui7 ！｜!'
+		self.assertEqual(self.譀鏡.看斷詞(組物件, '｜'), 斷詞)
 
 	def test_看集(self):
 		型 = '恁老母ti3佗位'
@@ -62,6 +70,8 @@ class 物件譀鏡測試(unittest.TestCase):
 		集物件 = self.分析器.產生對齊集(型, 音)
 		self.assertEqual(self.譀鏡.看型(集物件), 型)
 		self.assertEqual(self.譀鏡.看音(集物件), 音)
+		斷詞 = '恁｜lin1 老｜lau3 母｜bu2 ti3｜ti3　佗｜to1　位｜ui7 ！｜!'
+		self.assertEqual(self.譀鏡.看斷詞(集物件, '｜'), 斷詞)
 
 	def test_看集內底有兩組以上(self):
 		型 = '恁老母ti3佗位'
@@ -69,6 +79,8 @@ class 物件譀鏡測試(unittest.TestCase):
 		集物件 = 集([self.分析器.產生對齊組(型, 音), self.分析器.產生對齊組(型, 音)])
 		self.assertRaises(解析錯誤, self.譀鏡.看型, 集物件)
 		self.assertRaises(解析錯誤, self.譀鏡.看音, 集物件)
+		斷詞 = '恁｜lin1 老｜lau3 母｜bu2 ti3｜ti3　佗｜to1　位｜ui7 ！｜!'
+		self.assertRaises(解析錯誤, self.譀鏡.看音, 集物件, '｜')
 
 	def test_看句(self):
 		型 = '恁老母ti3佗位'
@@ -76,6 +88,8 @@ class 物件譀鏡測試(unittest.TestCase):
 		句物件 = self.分析器.產生對齊句(型, 音)
 		self.assertEqual(self.譀鏡.看型(句物件), 型)
 		self.assertEqual(self.譀鏡.看音(句物件), 音)
+		斷詞 = '恁｜lin1 老｜lau3 母｜bu2 ti3｜ti3　佗｜to1　位｜ui7 ！｜!'
+		self.assertEqual(self.譀鏡.看斷詞(句物件, '｜'), 斷詞)
 
 	def test_看章(self):
 		型 = '恁老母ti3佗位！恁老母ti3佗位！'
@@ -83,13 +97,10 @@ class 物件譀鏡測試(unittest.TestCase):
 		章物件 = self.分析器.產生對齊章(型, 音)
 		self.assertEqual(self.譀鏡.看型(章物件), 型)
 		self.assertEqual(self.譀鏡.看音(章物件), 音)
-
-	def test_看章換符合(self):
-		型 = '恁老母ti3佗位！恁老母ti3佗位！'
-		音 = 'lin1 lau3 bu2 ti3 to1 ui7 ! lin1 lau3-bu2 ti3 to1-ui7 !'
-		章物件 = self.分析器.產生對齊組(型, 音)
-		self.assertEqual(self.譀鏡.看型(章物件), 型)
-		self.assertEqual(self.譀鏡.看音(章物件), 音)
+		斷詞 = '恁｜lin1 老｜lau3 母｜bu2 ti3｜ti3　佗｜to1　位｜ui7 ！｜! 恁｜lin1 老｜lau3 母｜bu2 ti3｜ti3 佗｜to1 位｜ui7 ！｜!'
+		self.assertEqual(self.譀鏡.看斷詞(章物件, '｜'), 斷詞)
+		斷詞加 = '恁+lin1 老+lau3 母+bu2 ti3+ti3　佗+to1　位+ui7 ！+! 恁+lin1 老+lau3 母+bu2 ti3+ti3 佗+to1 位+ui7 ！+!'
+		self.assertEqual(self.譀鏡.看斷詞(章物件, '+'), 斷詞加)
 
 	def test_看章加連字符(self):
 		型 = '恁老母ti3佗位！恁老母ti3佗位！'
@@ -97,6 +108,9 @@ class 物件譀鏡測試(unittest.TestCase):
 		章物件 = self.分析器.產生對齊章(型, 音)
 		self.assertEqual(self.譀鏡.看型(章物件), 型)
 		self.assertEqual(self.譀鏡.看音(章物件), 音)
+		斷詞 = '恁｜lin1 老母｜lau3-bu2 ti3｜ti3　佗｜to1　位｜ui7 ！｜! 恁｜lin1 老母ti3｜lau3-bu2-ti3 佗位｜to1-ui7 ！｜!'
+		self.assertEqual(self.譀鏡.看斷詞(章物件, '｜'), 斷詞)
+		self.assertEqual(self.譀鏡.看斷詞(章物件, 分字音符號 = '｜'), 斷詞)
 
 	def test_看章換連字符(self):
 		型 = '恁老母ti3佗位！恁老母ti3佗位！'
@@ -106,6 +120,11 @@ class 物件譀鏡測試(unittest.TestCase):
 		章物件 = self.分析器.產生對齊章(型, 音)
 		self.assertEqual(self.譀鏡.看型(章物件, '_', '|'), 答型)
 		self.assertEqual(self.譀鏡.看音(章物件, '_', '|'), 答音)
+		self.assertEqual(self.譀鏡.看型(章物件, 物件分字符號 = '_', 物件分詞符號 = '|'), 答型)
+		self.assertEqual(self.譀鏡.看音(章物件, 物件分字符號 = '_', 物件分詞符號 = '|'), 答音)
+		斷詞 = '恁｜lin1 老母｜lau3-bu2 ti3｜ti3　佗｜to1　位｜ui7 ！｜! 恁｜lin1 老母ti3｜lau3-bu2-ti3 佗位｜to1-ui7 ！｜!'
+		self.assertEqual(self.譀鏡.看斷詞(章物件, '｜', '_', '|'), 斷詞)
+		self.assertEqual(self.譀鏡.看斷詞(章物件, 分字音符號 = '｜', 物件分字符號 = '_', 物件分詞符號 = '|'), 斷詞)
 
 
 if __name__ == '__main__':
