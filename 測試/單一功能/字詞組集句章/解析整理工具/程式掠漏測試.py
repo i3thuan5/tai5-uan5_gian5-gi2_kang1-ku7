@@ -41,3 +41,6 @@ class 程式掠漏測試(unittest.TestCase):
 		self.assertRaises(型態錯誤, self.掠漏.毋是集物件就毋著, '我')
 		self.assertRaises(型態錯誤, self.掠漏.毋是句物件就毋著, self.分析器.建立章物件('語句'))
 		self.assertRaises(型態錯誤, self.掠漏.毋是章物件就毋著, self.分析器.建立句物件('語句'))
+		# 大部份工具攏會家己共無仝的物件分掉，所以賰的一定毋是物件，直接錯誤就好
+		self.assertRaises(型態錯誤, self.掠漏.毋是字詞組集句章的毋著, '語句')
+		self.assertRaises(型態錯誤, self.掠漏.毋是字詞組集句章的毋著, self.分析器.建立句物件('語句'))

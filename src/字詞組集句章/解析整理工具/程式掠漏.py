@@ -57,3 +57,6 @@ class 程式掠漏:
 		if not isinstance(章物件, 章):
 			raise 型態錯誤('傳入來的毋是章物件：{0},{1}'
 				.format(type(章物件), str(章物件)))
+	def 毋是字詞組集句章的毋著(self, 物件):
+		raise 型態錯誤('傳入來的毋是字詞組集句章其中一種物件：{0}，{1}'
+			.format(type(物件), str(物件)))
