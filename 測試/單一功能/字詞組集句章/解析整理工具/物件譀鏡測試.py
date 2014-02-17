@@ -79,7 +79,6 @@ class 物件譀鏡測試(unittest.TestCase):
 		集物件 = 集([self.分析器.產生對齊組(型, 音), self.分析器.產生對齊組(型, 音)])
 		self.assertRaises(解析錯誤, self.譀鏡.看型, 集物件)
 		self.assertRaises(解析錯誤, self.譀鏡.看音, 集物件)
-		斷詞 = '恁｜lin1 老｜lau3 母｜bu2 ti3｜ti3　佗｜to1　位｜ui7 ！｜!'
 		self.assertRaises(解析錯誤, self.譀鏡.看音, 集物件, '｜')
 
 	def test_看句(self):
@@ -125,7 +124,3 @@ class 物件譀鏡測試(unittest.TestCase):
 		斷詞 = '恁｜lin1 老母｜lau3-bu2 ti3｜ti3　佗｜to1　位｜ui7 ！｜! 恁｜lin1 老母ti3｜lau3-bu2-ti3 佗位｜to1-ui7 ！｜!'
 		self.assertEqual(self.譀鏡.看斷詞(章物件, '｜', '_', '|'), 斷詞)
 		self.assertEqual(self.譀鏡.看斷詞(章物件, 分字音符號 = '｜', 物件分字符號 = '_', 物件分詞符號 = '|'), 斷詞)
-
-
-if __name__ == '__main__':
-	unittest.main()
