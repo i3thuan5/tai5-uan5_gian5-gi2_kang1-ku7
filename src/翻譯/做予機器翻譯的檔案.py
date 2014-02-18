@@ -30,7 +30,7 @@ from 剖析相關工具.自設剖析工具 import 自設剖析工具
 from 剖析相關工具.剖析結構化工具 import 剖析結構化工具
 
 class 做予機器翻譯的檔案:
-	揣例句 = lambda self :資料庫連線.prepare('SELECT "釋義編號","例句","標音","例句翻譯" ' +
+	揣例句 = lambda self :資料庫連線.prepare('SELECT "釋義編號","例句","標音","例句翻譯" ' + 
 		'FROM "教育部臺灣閩南語常用詞辭典"."例句" ORDER BY "流水號" ASC ')()
 	條目 = 資料庫揣辭典條目()
 	揣華語對應 = lambda self, 主編號 :資料庫連線.prepare('SELECT "對照表"."華語" '
@@ -42,6 +42,7 @@ class 做予機器翻譯的檔案:
 	def 產生標音(self):
 		臺語字 = open('/dev/shm/翻.臺語字.txt', 'w')
 		臺語音 = open('/dev/shm/翻.臺語音.txt', 'w')
+		臺語斷詞 = open('/dev/shm/翻.臺語斷詞.txt', 'w')
 		國語字 = open('/dev/shm/翻.國語字.txt', 'w')
 		辭典工具 = 教育部閩南語辭典工具()
 		粗胚工具 = 文章粗胚工具()
@@ -61,18 +62,24 @@ class 做予機器翻譯的檔案:
 						例句翻譯 = 例句
 # 						print(釋義編號, 例句, 標音, '無翻譯')
 	# 				 print(例句,標音,例句翻譯)
-					print(譀鏡.看型(標準句物件, 物件分詞符號 = ' '), file = 臺語字)
-					print(譀鏡.看音(標準句物件), file = 臺語音)
-					print(例句翻譯, file = 國語字)
+					print(譀鏡.看型(標準句物件, 物件分詞符號=' '), file=臺語字)
+					print(譀鏡.看音(標準句物件), file=臺語音)
+					print(譀鏡.看斷詞(標準句物件, '｜'), file=臺語斷詞)
+					print(例句翻譯, file=國語字)
 			except:
 				pass
 		腔口 = 偏漳優勢音腔口
 		for 流水號, 型體, 音標 in self.條目.揣腔口字詞資料(腔口):
 			for 華語 in self.揣華語對應(流水號):
 # 				print(型體, 音標, 華語[0].strip(教育部閩南語辭典空白符號))
-				print(型體, file = 臺語字)
-				print(音標, file = 臺語音)
-				print(華語[0].strip(教育部閩南語辭典空白符號), file = 國語字)
+#  				print(型體, file = 臺語字)
+#  				print(音標, file = 臺語音)
+				句物件 = 分析器.產生對齊句(型體, 音標)
+				標準句物件 = 家私.轉做標準音標(臺灣閩南語羅馬字拼音, 句物件)
+				print(譀鏡.看型(標準句物件, 物件分詞符號=' '), file=臺語字)
+				print(譀鏡.看音(標準句物件), file=臺語音)
+				print(譀鏡.看斷詞(標準句物件, '｜'), file=臺語斷詞)
+				print(華語[0].strip(教育部閩南語辭典空白符號), file=國語字)
 		臺語字.close()
 		臺語音.close()
 		國語字.close()
@@ -88,9 +95,9 @@ class 做予機器翻譯的檔案:
 				for 一句 in 剖析了:
 					結構化結果 = 結構化工具.結構化剖析結果(一句.strip())
 					結構化工具.處理結構化結果(結構化結果, 印到斷詞)
-				print(file = 國語字斷詞)
+				print(file=國語字斷詞)
 			except Exception as 錯誤:
-				print(' '.join(一逝), file = 國語字斷詞)
+				print(' '.join(一逝), file=國語字斷詞)
 				print(錯誤, 一逝.strip())
 		國語字斷詞.close()
 
