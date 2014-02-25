@@ -1,1 +1,2 @@
 include 臺灣言語工具 *.py
+recursive-include 臺灣言語工具/翻譯/ __init__.py
