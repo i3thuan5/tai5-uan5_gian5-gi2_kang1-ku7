@@ -16,14 +16,29 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import unittest
+from 剖析相關工具.官方斷詞工具 import 官方斷詞工具
 from 剖析相關工具.官方剖析工具 import 官方剖析工具
 from 剖析相關工具.自設剖析工具 import 自設剖析工具
 
-class 剖析工具測試(unittest.TestCase):
+class 中研院工具測試(unittest.TestCase):
 	def setUp(self):
 		pass
 	def tearDown(self):
 		pass
+
+	def test_官方斷詞工具(self):
+		工具 = 官方斷詞工具()
+		self.assertEqual(工具.斷詞('我想吃飯。我想吃很多飯。'),[
+			[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
+			[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
+			])
+		self.assertEqual(工具.斷詞('> >'),[
+			[('&gt;', 'PARENTHESISCATEGORY'), ('&gt;', 'PARENTHESISCATEGORY')],
+			])
+		self.assertEqual(工具.斷詞('我想) :>'),[
+			[('我', 'N'), ('想', 'Vt'), (')', 'PARENTHESISCATEGORY'), (':', 'COLONCATEGORY'), ('&gt;', 'PARENTHESISCATEGORY')],
+			])
+		self.assertRaises(RuntimeError,工具.斷詞,'我想) :<')
 
 	def test_官方剖析工具(self):
 		工具 = 官方剖析工具()
@@ -31,6 +46,7 @@ class 剖析工具測試(unittest.TestCase):
 			['#1:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vi:吃飯))#。(PERIODCATEGORY)',
 			'#2:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vt:吃|NP(DET:很多|Head:N:飯)))#。(PERIODCATEGORY)'
 			])
+
 	def test_自設剖析工具(self):
 		工具 = 自設剖析工具()
 		self.assertEqual(工具.剖析('我想吃飯。我想吃很多飯。'),
