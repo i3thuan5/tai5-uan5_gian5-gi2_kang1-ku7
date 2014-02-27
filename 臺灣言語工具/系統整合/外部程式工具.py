@@ -24,6 +24,6 @@ class 外部程式工具:
 			程式所在 = 一逝[:-1].decode("utf-8")
 		找位置.stdout.close()
 		程式所在, 資料夾 = 程式所在.rsplit('/', 1)
-		while 資料夾 != 'src' and 資料夾 != '測試':
+		while 資料夾 != '臺灣言語工具':
 			程式所在, 資料夾 = 程式所在.rsplit('/', 1)
 		return 程式所在
