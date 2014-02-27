@@ -1,5 +1,5 @@
 import os
-from 字詞組集句章.音標系統.國語.國語注音符號 import 國語注音符號
+from 臺灣言語工具.字詞組集句章.音標系統.國語.國語注音符號 import 國語注音符號
 
 class 工研院標音變注音:
 	所在='/home/Ihc/意傳計劃/機構資料/工研院合成語音/SyllableNumber.utf8'

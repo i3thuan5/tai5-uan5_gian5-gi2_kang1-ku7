@@ -15,24 +15,24 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-from 資料庫.資料庫連線 import 資料庫連線
-from 資料佮語料匯入整合.教育部臺灣客家語常用詞辭典.客話辭典正規化 import 客話辭典正規化
-from 字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
-from 字詞組集句章.解析整理工具.物件譀鏡 import 物件譀鏡
-from 資料庫.欄位資訊 import 版本正常
-from 資料庫.欄位資訊 import 字詞
-from 資料庫.整合.整合入言語 import 加文字佮版本
-from 資料佮語料匯入整合.教育部臺灣客家語常用詞辭典.調號處理 import 調號處理
-from 資料庫.欄位資訊 import 客語
-from 字詞組集句章.解析整理工具.轉物件音家私 import 轉物件音家私
-from 資料庫.欄位資訊 import 四縣腔
-from 資料庫.欄位資訊 import 海陸腔
-from 資料庫.欄位資訊 import 大埔腔
-from 資料庫.欄位資訊 import 饒平腔
-from 資料庫.欄位資訊 import 詔安腔
-from 字詞組集句章.基本元素.公用變數 import 標點符號
-from 語音合成.合音檔.句物件轉合成標籤 import 句物件轉合成標籤
-from 字詞組集句章.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
+from 臺灣言語工具.資料庫.資料庫連線 import 資料庫連線
+from 臺灣言語工具.資料佮語料匯入整合.教育部臺灣客家語常用詞辭典.客話辭典正規化 import 客話辭典正規化
+from 臺灣言語工具.字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
+from 臺灣言語工具.字詞組集句章.解析整理工具.物件譀鏡 import 物件譀鏡
+from 臺灣言語工具.資料庫.欄位資訊 import 版本正常
+from 臺灣言語工具.資料庫.欄位資訊 import 字詞
+from 臺灣言語工具.資料庫.整合.整合入言語 import 加文字佮版本
+from 臺灣言語工具.資料佮語料匯入整合.教育部臺灣客家語常用詞辭典.調號處理 import 調號處理
+from 臺灣言語工具.資料庫.欄位資訊 import 客語
+from 臺灣言語工具.字詞組集句章.解析整理工具.轉物件音家私 import 轉物件音家私
+from 臺灣言語工具.資料庫.欄位資訊 import 四縣腔
+from 臺灣言語工具.資料庫.欄位資訊 import 海陸腔
+from 臺灣言語工具.資料庫.欄位資訊 import 大埔腔
+from 臺灣言語工具.資料庫.欄位資訊 import 饒平腔
+from 臺灣言語工具.資料庫.欄位資訊 import 詔安腔
+from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 標點符號
+from 臺灣言語工具.語音合成.合音檔.句物件轉合成標籤 import 句物件轉合成標籤
+from 臺灣言語工具.字詞組集句章.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
 import os
 import Pyro4
 

@@ -17,7 +17,7 @@
 """
 import os
 from tempfile import NamedTemporaryFile
-from 系統整合.外部程式工具 import 外部程式工具
+from 臺灣言語工具.系統整合.外部程式工具 import 外部程式工具
 import curses.ascii
 
 class 標仔轉音檔:

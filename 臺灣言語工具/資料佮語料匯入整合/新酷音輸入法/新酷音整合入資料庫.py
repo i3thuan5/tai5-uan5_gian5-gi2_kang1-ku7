@@ -15,14 +15,14 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-from 資料庫.資料庫連線 import 資料庫連線
-from 字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
-from 資料庫.欄位資訊 import 字詞
-from 資料庫.欄位資訊 import 臺員
-from 資料庫.欄位資訊 import 版本正常
-from 字詞組集句章.解析整理工具.物件譀鏡 import 物件譀鏡
-from 資料庫.欄位資訊 import 國語臺員腔
-from 資料庫.整合.整合入言語 import 加文字佮版本
+from 臺灣言語工具.資料庫.資料庫連線 import 資料庫連線
+from 臺灣言語工具.字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
+from 臺灣言語工具.資料庫.欄位資訊 import 字詞
+from 臺灣言語工具.資料庫.欄位資訊 import 臺員
+from 臺灣言語工具.資料庫.欄位資訊 import 版本正常
+from 臺灣言語工具.字詞組集句章.解析整理工具.物件譀鏡 import 物件譀鏡
+from 臺灣言語工具.資料庫.欄位資訊 import 國語臺員腔
+from 臺灣言語工具.資料庫.整合.整合入言語 import 加文字佮版本
 
 class 新酷音整合入資料庫():
 	def __init__(self):

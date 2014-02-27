@@ -15,8 +15,8 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-from 資料庫.資料庫連線 import 資料庫連線
-from 斷詞標音.辭典條目 import 辭典條目
+from 臺灣言語工具.資料庫.資料庫連線 import 資料庫連線
+from 臺灣言語工具.斷詞標音.辭典條目 import 辭典條目
 
 class 資料庫揣辭典條目(辭典條目):	
 	揣言語層的字詞 = lambda self, 腔口, 語言層:資料庫連線.prepare('SELECT ' + 

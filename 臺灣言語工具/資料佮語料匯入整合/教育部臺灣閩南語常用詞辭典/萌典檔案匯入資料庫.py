@@ -1,8 +1,8 @@
 
-from 資料庫.資料庫連線 import 資料庫連線
+from 臺灣言語工具.資料庫.資料庫連線 import 資料庫連線
 import urllib.request
 import json
-from 資料庫.整合.教育部閩南語常用詞辭典 import 教育部閩南語辭典隔開符號
+from 臺灣言語工具.資料庫.整合.教育部閩南語常用詞辭典 import 教育部閩南語辭典隔開符號
 
 class 萌典檔案匯入資料庫:
 	資料庫名 = '教育部臺灣閩南語常用詞辭典'

@@ -15,14 +15,14 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-from 字詞組集句章.基本元素.字 import 字
-from 字詞組集句章.基本元素.詞 import 詞
-from 字詞組集句章.基本元素.組 import 組
-from 字詞組集句章.基本元素.集 import 集
-from 字詞組集句章.基本元素.句 import 句
-from 字詞組集句章.基本元素.章 import 章
-from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
-from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
+from 臺灣言語工具.字詞組集句章.基本元素.字 import 字
+from 臺灣言語工具.字詞組集句章.基本元素.詞 import 詞
+from 臺灣言語工具.字詞組集句章.基本元素.組 import 組
+from 臺灣言語工具.字詞組集句章.基本元素.集 import 集
+from 臺灣言語工具.字詞組集句章.基本元素.句 import 句
+from 臺灣言語工具.字詞組集句章.基本元素.章 import 章
+from 臺灣言語工具.字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
+from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 
 class 字物件篩仔:
 	def 篩字(self, 字物件):

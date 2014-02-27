@@ -16,11 +16,11 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 from unittest.case import TestCase
-from 字詞組集句章.解析整理工具.文章粗胚工具 import 文章粗胚工具
-from 字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
-from 斷詞標音.現掀辭典 import 現掀辭典
-from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
-from 字詞組集句章.基本元素.詞 import 詞
+from 臺灣言語工具.字詞組集句章.解析整理工具.文章粗胚工具 import 文章粗胚工具
+from 臺灣言語工具.字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
+from 臺灣言語工具.斷詞標音.現掀辭典 import 現掀辭典
+from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
+from 臺灣言語工具.字詞組集句章.基本元素.詞 import 詞
 
 class 現掀辭典測試(TestCase):
 	def setUp(self):

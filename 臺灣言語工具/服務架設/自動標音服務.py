@@ -17,7 +17,7 @@
 """
 from http.server import HTTPServer
 import Pyro4
-from 服務架設.翻譯合成服務 import 翻譯合成服務
+from 臺灣言語工具.服務架設.翻譯合成服務 import 翻譯合成服務
 
 class 自動標音服務(翻譯合成服務):
 	def 服務(self):

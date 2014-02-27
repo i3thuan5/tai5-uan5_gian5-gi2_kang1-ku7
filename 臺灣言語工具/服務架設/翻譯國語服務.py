@@ -17,11 +17,11 @@
 """
 from http.server import HTTPServer
 import Pyro4
-from 字詞組集句章.解析整理工具.物件譀鏡 import 物件譀鏡
-from 資料庫.欄位資訊 import 國語臺員腔
-from 資料庫.查資料庫 import 查資料庫
-from 翻譯.翻譯者 import 翻譯者
-from 服務架設.翻譯合成服務 import 翻譯合成服務
+from 臺灣言語工具.字詞組集句章.解析整理工具.物件譀鏡 import 物件譀鏡
+from 臺灣言語工具.資料庫.欄位資訊 import 國語臺員腔
+from 臺灣言語工具.資料庫.查資料庫 import 查資料庫
+from 臺灣言語工具.翻譯.翻譯者 import 翻譯者
+from 臺灣言語工具.服務架設.翻譯合成服務 import 翻譯合成服務
 
 class 翻譯國語服務(翻譯合成服務):
 	def 服務(self):

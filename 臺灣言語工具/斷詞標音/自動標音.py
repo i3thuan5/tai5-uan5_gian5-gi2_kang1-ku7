@@ -15,26 +15,26 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-from 資料庫.欄位資訊 import 偏漳優勢音腔口
-from 資料庫.欄位資訊 import 偏泉優勢音腔口
-from 資料庫.欄位資訊 import 混合優勢音腔口
-from 斷詞標音.閩南語標音整合 import 閩南語標音整合
-from 字詞組集句章.綜合標音.句綜合標音 import 句綜合標音
-from 字詞組集句章.綜合標音.閩南語字綜合標音 import 閩南語字綜合標音
-from 斷詞標音.客話標音整合 import 客話標音整合
-from 資料庫.欄位資訊 import 四縣腔
-from 資料庫.欄位資訊 import 海陸腔
-from 資料庫.欄位資訊 import 大埔腔
-from 資料庫.欄位資訊 import 饒平腔
-from 資料庫.欄位資訊 import 詔安腔
-from 字詞組集句章.綜合標音.客話字綜合標音 import 客話字綜合標音
-from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
-from 斷詞標音.型音辭典 import 型音辭典
-from 斷詞標音.國語標音整合 import 國語標音整合
-from 斷詞標音.現掀辭典 import 現掀辭典
-from 資料庫.欄位資訊 import 國語臺員腔
-from 字詞組集句章.綜合標音.國語字綜合標音 import 國語字綜合標音
-from 斷詞標音.排標音結果 import 排標音結果
+from 臺灣言語工具.資料庫.欄位資訊 import 偏漳優勢音腔口
+from 臺灣言語工具.資料庫.欄位資訊 import 偏泉優勢音腔口
+from 臺灣言語工具.資料庫.欄位資訊 import 混合優勢音腔口
+from 臺灣言語工具.斷詞標音.閩南語標音整合 import 閩南語標音整合
+from 臺灣言語工具.字詞組集句章.綜合標音.句綜合標音 import 句綜合標音
+from 臺灣言語工具.字詞組集句章.綜合標音.閩南語字綜合標音 import 閩南語字綜合標音
+from 臺灣言語工具.斷詞標音.客話標音整合 import 客話標音整合
+from 臺灣言語工具.資料庫.欄位資訊 import 四縣腔
+from 臺灣言語工具.資料庫.欄位資訊 import 海陸腔
+from 臺灣言語工具.資料庫.欄位資訊 import 大埔腔
+from 臺灣言語工具.資料庫.欄位資訊 import 饒平腔
+from 臺灣言語工具.資料庫.欄位資訊 import 詔安腔
+from 臺灣言語工具.字詞組集句章.綜合標音.客話字綜合標音 import 客話字綜合標音
+from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
+from 臺灣言語工具.斷詞標音.型音辭典 import 型音辭典
+from 臺灣言語工具.斷詞標音.國語標音整合 import 國語標音整合
+from 臺灣言語工具.斷詞標音.現掀辭典 import 現掀辭典
+from 臺灣言語工具.資料庫.欄位資訊 import 國語臺員腔
+from 臺灣言語工具.字詞組集句章.綜合標音.國語字綜合標音 import 國語字綜合標音
+from 臺灣言語工具.斷詞標音.排標音結果 import 排標音結果
 
 class 自動標音():
 	標音模組 = {

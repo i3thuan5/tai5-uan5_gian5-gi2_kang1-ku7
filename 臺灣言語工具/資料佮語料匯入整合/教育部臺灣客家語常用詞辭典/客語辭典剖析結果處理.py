@@ -22,8 +22,8 @@ Created on 2013/7/31
 '''
 import os
 from curses.ascii import isalpha, isdigit
-from 資料庫.資料庫連線 import 資料庫連線
-from 資料佮語料匯入整合.教育部臺灣客家語常用詞辭典.客話辭典網頁剖析工具 import 客話辭典網頁剖析工具
+from 臺灣言語工具.資料庫.資料庫連線 import 資料庫連線
+from 臺灣言語工具.資料佮語料匯入整合.教育部臺灣客家語常用詞辭典.客話辭典網頁剖析工具 import 客話辭典網頁剖析工具
 #guai31 ngiam55 e31
 #圖片問題
 class 客語辭典剖析結果處理():

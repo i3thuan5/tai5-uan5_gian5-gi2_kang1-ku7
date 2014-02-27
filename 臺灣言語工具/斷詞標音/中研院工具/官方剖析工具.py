@@ -21,7 +21,7 @@ Created on 2013/3/1
 @author: Ihc
 '''
 from subprocess import Popen, PIPE
-from 系統整合.外部程式工具 import 外部程式工具
+from 臺灣言語工具.系統整合.外部程式工具 import 外部程式工具
 class 官方剖析工具:
 	程式工具=外部程式工具()
 	def 剖析(self, 愛轉換的字串):

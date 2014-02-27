@@ -16,16 +16,16 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import unittest
-from 字詞組集句章.基本元素.字 import 字
-from 字詞組集句章.基本元素.詞 import 詞
-from 字詞組集句章.基本元素.組 import 組
-from 字詞組集句章.基本元素.集 import 集
-from 字詞組集句章.基本元素.句 import 句
-from 字詞組集句章.基本元素.章 import 章
-from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
-from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
-from 字詞組集句章.解析整理工具.文章粗胚工具 import 文章粗胚工具
-from 字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
+from 臺灣言語工具.字詞組集句章.基本元素.字 import 字
+from 臺灣言語工具.字詞組集句章.基本元素.詞 import 詞
+from 臺灣言語工具.字詞組集句章.基本元素.組 import 組
+from 臺灣言語工具.字詞組集句章.基本元素.集 import 集
+from 臺灣言語工具.字詞組集句章.基本元素.句 import 句
+from 臺灣言語工具.字詞組集句章.基本元素.章 import 章
+from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
+from 臺灣言語工具.字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
+from 臺灣言語工具.字詞組集句章.解析整理工具.文章粗胚工具 import 文章粗胚工具
+from 臺灣言語工具.字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 
 class 文章粗胚工具測試(unittest.TestCase):
 	def setUp(self):

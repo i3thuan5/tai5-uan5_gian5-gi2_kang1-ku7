@@ -1,6 +1,6 @@
 import os
 import xlrd
-from 資料庫.資料庫連線 import 資料庫連線
+from 臺灣言語工具.資料庫.資料庫連線 import 資料庫連線
 
 class 表格檔案匯入資料庫:
 	def __init__(self):

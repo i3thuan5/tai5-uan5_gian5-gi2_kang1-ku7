@@ -15,23 +15,23 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-from 字詞組集句章.解析整理工具.程式掠漏 import 程式掠漏
+from 臺灣言語工具.字詞組集句章.解析整理工具.程式掠漏 import 程式掠漏
 '''
 Created on 2013/9/22
 
 @author: Ihc
 '''
-from 字詞組集句章.基本元素.字 import 字
-from 字詞組集句章.基本元素.詞 import 詞
-from 字詞組集句章.基本元素.組 import 組
-from 字詞組集句章.基本元素.集 import 集
-from 字詞組集句章.基本元素.句 import 句
-from 字詞組集句章.基本元素.章 import 章
-from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
-from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
-from 字詞組集句章.基本元素.公用變數 import 分字符號
-from 字詞組集句章.基本元素.公用變數 import 分詞符號
-from 字詞組集句章.基本元素.公用變數 import 無音
+from 臺灣言語工具.字詞組集句章.基本元素.字 import 字
+from 臺灣言語工具.字詞組集句章.基本元素.詞 import 詞
+from 臺灣言語工具.字詞組集句章.基本元素.組 import 組
+from 臺灣言語工具.字詞組集句章.基本元素.集 import 集
+from 臺灣言語工具.字詞組集句章.基本元素.句 import 句
+from 臺灣言語工具.字詞組集句章.基本元素.章 import 章
+from 臺灣言語工具.字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
+from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
+from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 分字符號
+from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 分詞符號
+from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 無音
 
 class 物件譀鏡:
 	__掠漏 = 程式掠漏()

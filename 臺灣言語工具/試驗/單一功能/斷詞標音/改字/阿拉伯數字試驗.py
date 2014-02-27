@@ -16,7 +16,7 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 from unittest.case import TestCase
-from 斷詞標音.改字.阿拉伯數字 import 阿拉伯數字
+from 臺灣言語工具.斷詞標音.改字.阿拉伯數字 import 阿拉伯數字
 
 class 阿拉伯數字試驗(TestCase):
 	def setUp(self):

@@ -16,26 +16,26 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 from http.server import HTTPServer
-from 服務架設.連線控制器 import 連線控制器
+from 臺灣言語工具.服務架設.連線控制器 import 連線控制器
 import Pyro4
-from 資料庫.欄位資訊 import 偏漳優勢音腔口
-from 資料庫.欄位資訊 import 國語臺員腔
-from 語音合成.合音檔.舊閩南語句物件轉合成標籤 import 舊閩南語句物件轉合成標籤
-from 資料庫.欄位資訊 import 偏泉優勢音腔口
-from 資料庫.欄位資訊 import 混合優勢音腔口
-from 資料庫.欄位資訊 import 大埔腔
-from 資料庫.欄位資訊 import 海陸腔
-from 資料庫.欄位資訊 import 四縣腔
-from 資料庫.欄位資訊 import 饒平腔
-from 資料庫.欄位資訊 import 詔安腔
-from 語音合成.合音檔.句物件轉合成標籤 import 句物件轉合成標籤
-from 資料庫.欄位資訊 import 閩南語
-from 字詞組集句章.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
-from 語音合成.合音檔.標仔轉音檔 import 標仔轉音檔
-from 翻譯.翻譯者 import 翻譯者
-from 資料庫.欄位資訊 import 客語
-from 語音合成.合音檔.調音盒 import 調音盒
-from 服務架設.合成揀字 import 合成揀字
+from 臺灣言語工具.資料庫.欄位資訊 import 偏漳優勢音腔口
+from 臺灣言語工具.資料庫.欄位資訊 import 國語臺員腔
+from 臺灣言語工具.語音合成.合音檔.舊閩南語句物件轉合成標籤 import 舊閩南語句物件轉合成標籤
+from 臺灣言語工具.資料庫.欄位資訊 import 偏泉優勢音腔口
+from 臺灣言語工具.資料庫.欄位資訊 import 混合優勢音腔口
+from 臺灣言語工具.資料庫.欄位資訊 import 大埔腔
+from 臺灣言語工具.資料庫.欄位資訊 import 海陸腔
+from 臺灣言語工具.資料庫.欄位資訊 import 四縣腔
+from 臺灣言語工具.資料庫.欄位資訊 import 饒平腔
+from 臺灣言語工具.資料庫.欄位資訊 import 詔安腔
+from 臺灣言語工具.語音合成.合音檔.句物件轉合成標籤 import 句物件轉合成標籤
+from 臺灣言語工具.資料庫.欄位資訊 import 閩南語
+from 臺灣言語工具.字詞組集句章.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
+from 臺灣言語工具.語音合成.合音檔.標仔轉音檔 import 標仔轉音檔
+from 臺灣言語工具.翻譯.翻譯者 import 翻譯者
+from 臺灣言語工具.資料庫.欄位資訊 import 客語
+from 臺灣言語工具.語音合成.合音檔.調音盒 import 調音盒
+from 臺灣言語工具.服務架設.合成揀字 import 合成揀字
 
 class 翻譯合成服務(連線控制器):
 	標音工具 = Pyro4.Proxy("PYRONAME:內部自動標音")

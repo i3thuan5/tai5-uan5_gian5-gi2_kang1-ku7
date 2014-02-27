@@ -16,7 +16,7 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 from unittest.case import TestCase
-from 字詞組集句章.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
+from 臺灣言語工具.字詞組集句章.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
 
 class 臺灣客家話拼音測試(TestCase):
 	def setUp(self):

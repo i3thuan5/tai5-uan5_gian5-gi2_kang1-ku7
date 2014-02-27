@@ -16,11 +16,11 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import unittest
-from 字詞組集句章.基本元素.字 import 字
-from 字詞組集句章.綜合標音.國語字綜合標音 import 國語字綜合標音
-from 字詞組集句章.基本元素.公用變數 import 無音
-from 字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
-from 字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
+from 臺灣言語工具.字詞組集句章.基本元素.字 import 字
+from 臺灣言語工具.字詞組集句章.綜合標音.國語字綜合標音 import 國語字綜合標音
+from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 無音
+from 臺灣言語工具.字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
+from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 
 class 國語字綜合標音測試(unittest.TestCase):
 	def setUp(self):

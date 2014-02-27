@@ -1,6 +1,6 @@
 from tempfile import NamedTemporaryFile
 import os
-from 系統整合.外部程式工具 import 外部程式工具
+from 臺灣言語工具.系統整合.外部程式工具 import 外部程式工具
 
 class 調音盒:
 	指令 = '/usr/bin/sox '

@@ -18,7 +18,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import urllib
 import Pyro4
-from 資料庫.資料庫連線 import 資料庫連線
+from 臺灣言語工具.資料庫.資料庫連線 import 資料庫連線
 
 class 連線控制器(BaseHTTPRequestHandler):
 # 	記錄資訊=print
