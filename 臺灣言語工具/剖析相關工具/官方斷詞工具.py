@@ -21,22 +21,19 @@ from socket import SOCK_STREAM
 import re
 
 class 官方斷詞工具:
-	檢查結果=re.compile('<result>(.*)</result>')
-	分句=re.compile('<sentence>(.*?)</sentence>')
-	分詞性=re.compile('(.*)\((.*)\)')
-	回傳狀況=re.compile('<processstatus code="\d">(.*?)</processstatus>')
+	檢查結果 = re.compile('<result>(.*)</result>')
+	分句 = re.compile('<sentence>(.*?)</sentence>')
+	分詞性 = re.compile('(.*)\((.*)\)')
+	回傳狀況 = re.compile('<processstatus code="\d">(.*?)</processstatus>')
 	def 斷詞(self, 語句, 主機='140.109.19.104', 連接埠=1501, 帳號='ihcaoe', 密碼='aip1614'):
 		連線 = socket(
 			AF_INET, SOCK_STREAM)
 		連線.connect((主機, 連接埠))
 		
-		資料 = self.傳去格式頭前.format(帳號, 密碼).replace('\n', '').encode('UTF-8')\
+		資料 = self.傳去格式頭前.format('UTF-8', 帳號, 密碼).replace('\n', '').encode('UTF-8')\
 			+ 語句.encode('UTF-8')\
 			+ self.傳去格式後壁.encode('UTF-8')
-# 		資料 = self.傳去格式頭前.format(帳號, 密碼).replace('\n', '').encode('UTF-16')\
-# 			+ 語句.encode('UTF-8')\
-# 			+ self.傳去格式後壁.encode('UTF-8')
-# 		資料 = self.傳去格式.format(帳號, 密碼,語句).replace('\n', '').encode('UTF-8')
+# 		資料 = self.傳去格式.format('UTF-8',帳號, 密碼,語句).replace('\n', '').encode('UTF-8')
 
 		已經送出去 = 0
 		while 已經送出去 < len(資料):
@@ -54,24 +51,24 @@ class 官方斷詞工具:
 			全部收著資料 = 全部收著資料 + 這擺收著資料
 # 			print(re.search(b'</wordsegmentation>' ,全部收著資料))
 			if b'</wordsegmentation>' in 全部收著資料:
-				走=False
+				走 = False
 		連線.close()
-		全部收著字串=全部收著資料.decode('UTF-8')
-		收著結果=self.檢查結果.search(全部收著字串)
-		結果=[]
-		if 收著結果!=None:
-			逐逝=self.分句.split(收著結果.group(1))[1::2]
+		全部收著字串 = 全部收著資料.decode('UTF-8')
+		收著結果 = self.檢查結果.search(全部收著字串)
+		結果 = []
+		if 收著結果 != None:
+			逐逝 = self.分句.split(收著結果.group(1))[1::2]
 			for 一逝 in 逐逝:
-				逝結果=[]
+				逝結果 = []
 				for 詞 in 一逝.split('　'):
-					if 詞=='':
+					if 詞 == '':
 						continue
-					字,性=self.分詞性.split(詞)[1:3]
-					逝結果.append((字,性))
+					字, 性 = self.分詞性.split(詞)[1:3]
+					逝結果.append((字, 性))
 				結果.append(逝結果)
 			return 結果
-		狀況=self.回傳狀況.split(全部收著字串)
-		if 狀況!=None:
+		狀況 = self.回傳狀況.split(全部收著字串)
+		if 狀況 != None:
 # 			<processstatus code="1">Service internal error</processstatus>
 # 			<processstatus code="2">XML format error</processstatus>
 # 			<processstatus code="3">Authentication failed</processstatus> 
@@ -79,19 +76,19 @@ class 官方斷詞工具:
 		raise RuntimeError('回傳的資料有問題！！')
 	傳去格式頭前 = '''
 <?xml version="1.0" ?>
-<wordsegmentation version="0.1" charsetcode='UTF-8' >
+<wordsegmentation version="0.1" charsetcode='{}' >
 <option showcategory="1" />
-<authentication username="{0}" password="{1}" />
+<authentication username="{}" password="{}" />
 <text>'''
 	傳去格式後壁 = '''</text>
 </wordsegmentation>
 '''
 	傳去格式 = '''
 <?xml version="1.0" ?>
-<wordsegmentation version="0.1" charsetcode='UTF-8' >
+<wordsegmentation version="0.1" charsetcode='{}' >
 <option showcategory="1" />
-<authentication username="{0}" password="{1}" />
-<text>{2}</text>
+<authentication username="{}" password="{}" />
+<text>{}</text>
 </wordsegmentation>
 '''
 
