@@ -705,17 +705,33 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(章物件, self.分析器.產生對齊章(詞型, 處理好詞音))
 		self.assertEqual(章物件, self.分析器.產生對齊章(詞型, 加空白後詞音))
 
+	def test_對齊章頭尾分詞(self):
+		答案=self.分析器.產生對齊句('點仔膠，', 'tiam2-a2-ka1,')
+		self.assertEqual(
+			self.分析器.產生對齊句(' 點仔膠，', 'tiam2-a2-ka1,'),答案)
+		self.assertEqual(
+			self.分析器.產生對齊句(' 點仔膠， ', 'tiam2-a2-ka1, '),答案)
+		self.assertEqual(
+			self.分析器.產生對齊句(' 點 仔膠， ', ' tiam2-a2-ka1  ,'),答案)
+		
 	def test_對齊章濟符號(self):
 		詞型 = '！！。。，。你好？'
 		原來詞音 = '!!..,.li2 ho2?'
 		處理好詞音 = '!!..,.li2 ho2?'
-		加空白後詞音 = ' ! ! . . , . li2 ho2 ? '
 		self.assertEqual(self.粗胚工具.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來詞音), 處理好詞音)
-		self.assertEqual(self.粗胚工具.符號邊仔加空白(處理好詞音), 加空白後詞音)
 		章物件 = self.分析器.產生對齊章(詞型, 處理好詞音)
 		self.assertEqual(章物件.內底句, [
 			self.分析器.產生對齊句('！！。。，。', '!!..,.'),
 			self.分析器.產生對齊句('你好？', 'li2 ho2?'),
+			])
+		加空白後詞型 = ' ！ ！ 。 。 ， 。 你好 ？ '
+		加空白後詞音 = ' ! ! . . , . li2 ho2 ? '
+		self.assertEqual(self.粗胚工具.符號邊仔加空白(詞型), 加空白後詞型)
+		self.assertEqual(self.粗胚工具.符號邊仔加空白(處理好詞音), 加空白後詞音)
+		章物件 = self.分析器.產生對齊章(加空白後詞型, 加空白後詞音)
+		self.assertEqual(章物件.內底句, [
+			self.分析器.產生對齊句('！！。。，。', ' ! ! . . , .'),
+			self.分析器.產生對齊句(' 你好？', ' li2 ho2?'),
 			])
 
 	def test_對齊詞傳無仝濟字(self):
@@ -726,6 +742,28 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, 型, '')
 		self.assertRaises(解析錯誤, self.分析器.產生對齊詞, 型, 'sui2-koo1-miu5')
 
+	def test_對齊章換逝(self):
+		型 = '恁老母ti3佗位！\n恁老母ti3佗位！'
+		加空白後型 = '恁老母ti3佗位 ！ \n 恁老母ti3佗位 ！ '
+		音 = 'lin1 lau3 bu2 ti3 to1 ui7 ! \n lin1 lau3 bu2 ti3 to1 ui7 !'
+		加空白後音 = 'lin1 lau3 bu2 ti3 to1 ui7 ! \n lin1 lau3 bu2 ti3 to1 ui7 ! '
+		self.assertEqual(self.粗胚工具.符號邊仔加空白(型), 加空白後型)
+		self.assertEqual(self.粗胚工具.符號邊仔加空白(音), 加空白後音)
+		章物件 = self.分析器.產生對齊章(加空白後型, 加空白後音)
+# 		print('@@',章物件.內底句[0])
+# 		print('@@', [
+# 			self.分析器.產生對齊句('恁老母ti3佗位 ！ \n', 'lin1 lau3 bu2 ti3 to1 ui7 ! \n'),
+# 			self.分析器.產生對齊句(' 恁老母ti3佗位 ！', ' lin1 lau3 bu2 ti3 to1 ui7 !'),
+# 			][0])
+# 		self.assertEqual(章物件.內底句[0], [
+# 			self.分析器.產生對齊句('恁老母ti3佗位 ！ \n', 'lin1 lau3 bu2 ti3 to1 ui7 ! \n'),
+# 			self.分析器.產生對齊句(' 恁老母ti3佗位 ！', ' lin1 lau3 bu2 ti3 to1 ui7 !'),
+# 			][0])
+		self.assertEqual(章物件.內底句, [
+			self.分析器.產生對齊句('恁老母ti3佗位 ！ \n', 'lin1 lau3 bu2 ti3 to1 ui7 ! \n'),
+			self.分析器.產生對齊句(' 恁老母ti3佗位 ！', ' lin1 lau3 bu2 ti3 to1 ui7 !'),
+			])
+		
 	def test_拆好陣列產生對齊詞傳無仝濟字(self):
 		型一 = '媠'
 		型二 = '姑'
@@ -901,7 +939,16 @@ class 拆文分析器測試(unittest.TestCase):
 		self.assertEqual(self.分析器.拆章做句('！你！？轉去？矣？？'), ['！', '你！？', '轉去？', '矣？？'])
 		self.assertEqual(self.分析器.拆章做句('！！。。，。你好？'), ['！！。。，。', '你好？'])
 		self.assertEqual(self.分析器.拆章做句('!!..,.li2 ho2?'), ['!!..,.', 'li2 ho2?'])
-		self.assertEqual(self.分析器.拆章做句('!!..,.li2-ho2?'), ['!!..,.', 'li2-ho2?'])
+		self.assertEqual(self.分析器.拆章做句('!!..,. li2 ho2?'), ['!!..,.', 'li2 ho2?'])
+		
+	def test_拆章做句配分詞符號(self):
+		原來 = '!!..,.li2-ho2?'
+		加空白 = ' ! ! . . , . li2-ho2 ? '
+		答案 = ['!!..,.', 'li2-ho2?']
+		空白答案 = ['! ! . . , .', 'li2-ho2 ?']
+		self.assertEqual(self.粗胚工具.符號邊仔加空白(原來), 加空白)
+		self.assertEqual(self.分析器.拆章做句(原來), 答案)
+		self.assertEqual(self.分析器.拆章做句(加空白), 空白答案)
 
 if __name__ == '__main__':
 	unittest.main()

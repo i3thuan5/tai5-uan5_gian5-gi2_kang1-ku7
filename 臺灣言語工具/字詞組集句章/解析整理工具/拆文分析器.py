@@ -167,7 +167,7 @@ class 拆文分析器:
 
 		詞陣列 = []
 		第幾字 = 0
-		for 詞音 in self.符號邊仔加空白(音).strip().split(分詞符號):
+		for 詞音 in self.符號邊仔加空白(音).strip(分詞符號).split(分詞符號):
 			字音陣列 = 詞音.split(分字符號)
 			if 第幾字 + len(字音陣列) > len(型陣列):
 				raise 解析錯誤('詞組內底的型「{0}」比音「{1}」少！配對結果：{2}'.format(
@@ -338,25 +338,23 @@ class 拆文分析器:
 		# =>無，下佇仝詞組，予斷詞處理
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
-		語句 = 語句.strip()
+		語句 = 語句.strip(分詞符號)
+		有一般字無 = False
+		愛換的所在 = []
+		for 第幾字 in range(len(語句))[::-1]:
+			if 語句[第幾字] in 斷句標點符號 and 有一般字無:
+				愛換的所在.append(True)
+				有一般字無 = False
+			else:
+				愛換的所在.append(False)
+				if 語句[第幾字] not in 斷句標點符號 and 語句[第幾字] != 分詞符號:
+					有一般字無 = True
+		愛換的所在 = 愛換的所在[::-1]
 		句陣列 = []
 		頭前 = 0
-		for 第幾字 in range(1, len(語句)):
-			if 語句[第幾字] not in 斷句標點符號:
-				if 語句[第幾字 - 1] in 斷句標點符號:
-					句陣列.append(語句[頭前:第幾字])
-					頭前 = 第幾字
-		句陣列.append(語句[頭前:])
+		for 第幾字 in range(len(語句)):
+			if 愛換的所在[第幾字]:
+				句陣列.append(語句[頭前:第幾字 + 1].strip(分詞符號))
+				頭前 = 第幾字 + 1
+		句陣列.append(語句[頭前:].strip(分詞符號))
 		return 句陣列
-
-# 	def 計算漢字語句漢字數量(self, 語句):
-# 		長度 = 0
-# 		for 字 in 語句:
-# 			if 字 in 組字式符號:
-# 				長度 -= 1
-# 			else:
-# 				長度 += 1
-# 		return len(語句)
-#
-# 	def 計算音標語句音標數量(self, 語句):
-# 		return len(語句.replace('--', '-').split(self.斷字符號[0]))
