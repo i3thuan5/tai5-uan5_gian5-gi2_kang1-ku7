@@ -55,7 +55,7 @@ class 官方斷詞工具:
 		連線.close()
 		全部收著字串 = 全部收著資料.decode('UTF-8')
 		收著結果 = self.檢查結果.search(全部收著字串)
-		結果 = []
+		結果 = [[]]
 		if 收著結果 != None:
 			逐逝 = self.分句.split(收著結果.group(1))[1::2]
 			for 一逝 in 逐逝:
@@ -65,7 +65,10 @@ class 官方斷詞工具:
 						continue
 					字, 性 = self.分詞性.split(詞)[1:3]
 					逝結果.append((字, 性))
-				結果.append(逝結果)
+				if 逝結果==[]:
+					結果.append([])
+				else:
+					結果[-1].append(逝結果)
 			return 結果
 		狀況 = self.回傳狀況.split(全部收著字串)
 		if 狀況 != None:
