@@ -21,7 +21,6 @@ from 臺灣言語工具.字詞組集句章.解析整理工具.拆文分析器 im
 from 臺灣言語工具.字詞組集句章.解析整理工具.轉物件音家私 import 轉物件音家私
 from 臺灣言語工具.字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 臺灣言語工具.字詞組集句章.音標系統.閩南語.通用拼音音標 import 通用拼音音標
-from 臺灣言語工具.資料佮語料匯入整合.華語台語雙語語料庫系統.何澤政教會羅馬字音標 import 何澤政教會羅馬字音標
 
 class 轉物件音家私測試(unittest.TestCase):
 	def setUp(self):
@@ -110,15 +109,6 @@ class 轉物件音家私測試(unittest.TestCase):
 		結果拼音 = 臺灣閩南語羅馬字拼音
 		原音語句 = 'di2-mng2-kau4-ga1-ge4-bia2-dan2-tai4-tai4-leh6-kai2-gang4'
 		標準結果 = 'ti7-mng7-khau2-ka1-ke2-pia7-tan7-thai2-thai2-leh8-khai7-kang2'
-		原音章物件 = self.處理語句(原音拼音, 原音語句)
-		後來章物件 = self.處理語句(結果拼音, 標準結果)
-		self.assertEqual(原音章物件, 後來章物件)
-
-	def test_何澤政教會羅馬字音標(self):
-		原音拼音 = 何澤政教會羅馬字音標
-		結果拼音 = 臺灣閩南語羅馬字拼音
-		原音語句 = 'Pang-liau5 hi5-kang2 「 Toa7-tiau5-hang7 」 siang7-khoah nng7-kong-chhioh'
-		標準結果 = 'Pang-liau5 hi5-kang2 「 Tua7-tiau5-hang7 」 siang7-khuah nng7-kong-tshioh'
 		原音章物件 = self.處理語句(原音拼音, 原音語句)
 		後來章物件 = self.處理語句(結果拼音, 標準結果)
 		self.assertEqual(原音章物件, 後來章物件)
