@@ -96,8 +96,13 @@ class 阿拉伯數字():
 		if len(數量)>=4 and \
 			 (數量[-3] in self.細位 or 數量[-3] in self.大位) and \
 			 數量[-1] in self.細位:
-			return 數量[:-1].replace('一十','十')
-		return 數量.replace('一十','十')
+			if 數量[:-1].endswith(self.兩):
+				結果=數量[:-2]+self.一二三[1]
+			else:
+				結果=數量[:-1]
+		else:
+			結果=數量
+		return 結果.replace('一十','十')
 	
 	def 轉客家話數量無(self,數量):
 		return self.轉客家話數量(數量)!=數量

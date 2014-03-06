@@ -112,6 +112,7 @@ class 阿拉伯數字試驗(TestCase):
 			('1200000', '一百二十萬'),
 			('12000000', '一千兩百萬'),
 			('32000000', '三千兩百萬'),
+			('200000000', '兩億'),
 			('820000000', '八億兩千萬'),
 			]
 		self.檢查數量(問答)
@@ -148,6 +149,9 @@ class 阿拉伯數字試驗(TestCase):
 			('一百二十萬', '百二萬'),
 			('一千兩百萬', '千二萬'),
 			('三千兩百萬', None),
+			('兩億', None),
+			('一千兩百萬', '千二億'),
+			('三千兩百億', None),
 			]
 		self.檢查閩南語數量(問答)
 	def test_轉客家話數量省單位(self):
@@ -204,40 +208,41 @@ class 阿拉伯數字試驗(TestCase):
 			('一百二十萬', None),
 			('一千兩百萬', None),
 			('三千兩百萬', None),
+			('兩億', None),
 			]
 		self.檢查國語數量(問答)
 		
 	def 檢查數量(self, 問答):
 		for 問, 答 in 問答:
 			if 答 == None:
-				self.assertEqual(self.數字.是數量無(問), False)
+				self.assertEqual(self.數字.是數量無(問), False, 問)
 				self.assertEqual(self.數字.轉數量('空', 問), 問)
 			else:
 				self.assertEqual(self.數字.是數量無(問), True)
-				self.assertEqual(self.數字.轉數量('空', 問), 答)
+				self.assertEqual(self.數字.轉數量('空', 問), 答, 問)
 				self.assertEqual(self.數字.轉數量('零', 問),
-						答.replace('空', '零'))
+						答.replace('空', '零'), 問)
 	def 檢查閩南語數量(self, 問答):
 		for 問, 答 in 問答:
 			if 答 == None:
-				self.assertEqual(self.數字.轉閩南語數量無(問), False)
+				self.assertEqual(self.數字.轉閩南語數量無(問), False, 問)
 				self.assertEqual(self.數字.轉閩南語數量(問), 問)
 			else:
-				self.assertEqual(self.數字.轉閩南語數量無(問), True)
-				self.assertEqual(self.數字.轉閩南語數量(問), 答)
+				self.assertEqual(self.數字.轉閩南語數量無(問), True, 問)
+				self.assertEqual(self.數字.轉閩南語數量(問), 答, 問)
 	def 檢查客家話數量(self, 問答):
 		for 問, 答 in 問答:
 			if 答 == None:
-				self.assertEqual(self.數字.轉客家話數量無(問), False)
+				self.assertEqual(self.數字.轉客家話數量無(問), False, 問)
 				self.assertEqual(self.數字.轉客家話數量(問), 問)
 			else:
-				self.assertEqual(self.數字.轉客家話數量無(問), True)
-				self.assertEqual(self.數字.轉客家話數量(問), 答)
+				self.assertEqual(self.數字.轉客家話數量無(問), True, 問)
+				self.assertEqual(self.數字.轉客家話數量(問), 答, 問)
 	def 檢查國語數量(self, 問答):
 		for 問, 答 in 問答:
 			if 答 == None:
-				self.assertEqual(self.數字.轉國語數量無(問), False)
+				self.assertEqual(self.數字.轉國語數量無(問), False, 問)
 				self.assertEqual(self.數字.轉國語數量(問), 問)
 			else:
-				self.assertEqual(self.數字.轉國語數量無(問), True)
-				self.assertEqual(self.數字.轉國語數量(問), 答)
+				self.assertEqual(self.數字.轉國語數量無(問), True, 問)
+				self.assertEqual(self.數字.轉國語數量(問), 答, 問)
