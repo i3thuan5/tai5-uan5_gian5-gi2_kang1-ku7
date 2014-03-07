@@ -29,70 +29,51 @@ from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 impor
 class 動態規劃標音試驗(TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
-		self.斷詞 = 動態規劃斷詞()
-
-		self.我對齊詞 = self.分析器.產生對齊詞('我', 'gua2')
-		self.文我對齊詞 = self.分析器.產生對齊詞('我', 'ngoo2')
-		self.有對齊詞 = self.分析器.產生對齊詞('有', 'u7')
-		self.一張對齊詞 = self.分析器.產生對齊詞('一張', 'tsit8-tiunn1')
-		self.椅仔對齊詞 = self.分析器.產生對齊詞('椅仔', 'i2-a2')
-		self.驚對齊詞 = self.分析器.產生對齊詞('！', '!')
-
-		self.我對齊組 = 組([self.我對齊詞])
-		self.文我對齊組 = 組([self.文我對齊詞])
-		self.有對齊組 = 組([self.有對齊詞])
-		self.一張對齊組 = 組([self.一張對齊詞])
-		self.椅仔對齊組 = 組([self.椅仔對齊詞])
-		self.驚對齊組 = 組([self.驚對齊詞])
-		
-		我詞順序 = list({self.我對齊詞, self.文我對齊詞})
-		self.我對齊集 = 集([self.我對齊組])
-		self.文我對齊集 = 集([組([我詞順序[0]]), 組([我詞順序[1]])])
-		self.有對齊集 = 集([self.有對齊組])
-		self.一張對齊集 = 集([self.一張對齊組])
-		self.椅仔對齊集 = 集([self.椅仔對齊組])
-		self.驚對齊集 = 集([self.驚對齊組])
-
-		self.句物件 = 句([self.我對齊集, self.有對齊集, self.一張對齊集,
-			self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
-		self.文我句物件 = 句([self.文我對齊集, self.有對齊集, self.一張對齊集,
-			self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
-
-		self.對齊句 = self.分析器.產生對齊句(
-			'我有一張椅仔！！', 'gua2 u7 tsit8-tiunn1 i2-a2!!')
-		self.型句 = self.分析器.建立句物件('我有一張椅仔！！')
-		self.音句 = self.分析器.建立句物件('gua2 u7 tsit8-tiunn1 i2-a2!!')
-		self.有詞漢羅 = self.分析器.建立句物件('我 u7 一張 i2-a2!!')
-		self.無詞漢羅 = self.分析器.建立句物件('gua2 u7 一張 i2-a2!!')
+		self.連詞 = 語句連詞(3)
+		self.標音 = 動態規劃標音()
 	def tearDown(self):
 		pass
-		
-	def test_看機率選詞(self):
-		self.assertEqual(機率(我請你物件.內底詞),)
-		self.assertGreater(感覺(我請你物件), 感覺(我請你物件))
-		self.兩句語句連詞 = 語句連詞(3)
-		123135416541020.13216546541
-		self.語句連詞 = 語句連詞(3)
-		self.對齊詞 = self.分析器.產生對齊句('我穿布鞋。', 'li2 hoo2-bo5 ?')
-		self.對齊詞 = self.分析器.產生對齊句('我鞋仔歹去矣。', 'li2 hoo2-bo5 ?')
-		'我鞋鞋仔'
-		self.對齊詞 = self.分析器.產生對齊句('我的冊佇你遐。', 'li2 hoo2-bo5 ?')
-		'我鞋鞋仔'
-		self.對齊詞 = self.分析器.產生對齊句('我的故鄉佇花蓮。', 'li2 hoo2-bo5 ?')
-		'我的鞋仔'
-		self.assertEqual()
 
-	def test_頭尾比較(self):
-		self.assertEqual(機率(我請你物件.內底詞),)
-		self.assertGreater(感覺(我請你物件), 感覺(我請你物件))
-		self.兩句語句連詞 = 語句連詞(3)
-		
-		self.語句連詞 = 語句連詞(3)
-		self.對齊詞 = self.分析器.產生對齊句('我穿布鞋。', 'li2 hoo2-bo5 ?')
-		self.對齊詞 = self.分析器.產生對齊句('我鞋仔歹去矣。', 'li2 hoo2-bo5 ?')
-		'我鞋鞋仔'
-		self.對齊詞 = self.分析器.產生對齊句('我的冊佇你遐。', 'li2 hoo2-bo5 ?')
-		'我鞋鞋仔'
-		self.對齊詞 = self.分析器.產生對齊句('我的故鄉佇花蓮。', 'li2 hoo2-bo5 ?')
-		'我的鞋仔'
-		self.assertEqual()
+	def test_看機率選詞(self):
+		我 = self.分析器.產生對齊集('我', 'gua2')
+		的 = self.分析器.產生對齊組('的', 'e5')
+		鞋 = self.分析器.產生對齊組('鞋', 'e5')
+		仔 = self.分析器.產生對齊集('仔', 'ia2')
+		e5_鞋的 = 集([鞋, 的, ])
+		我_e5_e5_仔_鞋的 = 句([我, e5_鞋的, e5_鞋的, 仔])
+		e5_的鞋 = 集([的, 鞋, ])
+		我_e5_e5_仔_的鞋 = 句([我, e5_的鞋, e5_的鞋, 仔])
+		self.連詞.看(self.分析器.產生對齊句('我穿布鞋。', 'li2 hoo2-bo5 ?'))
+		self.連詞.看(self.分析器.產生對齊句('我鞋仔歹去矣。', 'li2 hoo2-bo5 ?'))
+		鞋的結果, 鞋的分數 = self.標音.self.標音(self.連詞, 我_e5_e5_仔_鞋的)
+		的鞋結果, 的鞋分數 = self.標音.self.標音(self.連詞, 我_e5_e5_仔_的鞋)
+		self.assertEqual(鞋的結果, '我鞋鞋仔')
+		self.assertEqual(的鞋結果, 鞋的結果)
+		self.assertLess(鞋的分數, 0.0)
+		self.assertEqual(鞋的分數, 的鞋分數)
+		self.連詞.看(self.分析器.產生對齊句('我的冊佇你遐。', 'li2 hoo2-bo5 ?'))
+		self.assertEqual(鞋的結果, '我鞋鞋仔')
+		self.assertEqual(的鞋結果, 鞋的結果)
+		self.assertLess(鞋的分數, 0.0)
+		self.assertEqual(鞋的分數, 的鞋分數)
+		self.連詞.看(self.分析器.產生對齊句('我的故鄉佇花蓮。', 'li2 hoo2-bo5 ?'))
+		self.assertEqual(鞋的結果, '我的鞋仔')
+		self.assertEqual(的鞋結果, 鞋的結果)
+		self.assertLess(鞋的分數, 0.0)
+		self.assertEqual(鞋的分數, 的鞋分數)
+
+	def test_頭中尾詞比較(self):
+		我有一張椅仔 = self.分析器.產生對齊句(
+			'我有一張椅仔！！', 'gua2 u7 tsit8-tiunn1 i2-a2!!')
+		桌仔垃圾 = self.分析器.產生對齊句(
+			'桌仔垃圾！！', 'toh4-a2 lap4-sap4!!')
+		椅仔 = self.分析器.產生對齊句(
+			'椅仔。', 'i2-a2.')
+		桌仔 = self.分析器.產生對齊句(
+			'桌仔。', 'toh4-a2.')
+		柴 = self.分析器.產生對齊句(
+			'柴！', 'tsha5!')
+		self.連詞.看(我有一張椅仔)
+		self.連詞.看(桌仔垃圾)
+		self.assertGreater(self.標音.評分(self.連詞, 椅仔), self.標音.評分(self.連詞, 桌仔))
+		self.assertEqual(self.標音.評分(self.連詞, 柴), self.標音.評分(self.連詞, 桌仔))
