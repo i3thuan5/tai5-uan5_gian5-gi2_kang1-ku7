@@ -75,5 +75,6 @@ class 動態規劃標音試驗(TestCase):
 			'柴！', 'tsha5!')
 		self.連詞.看(我有一張椅仔)
 		self.連詞.看(桌仔垃圾)
-		self.assertGreater(self.標音.評分(self.連詞, 椅仔), self.標音.評分(self.連詞, 桌仔))
+		self.assertLess(self.標音.評分(self.連詞, 桌仔), 0.0)
+		self.assertLess(self.標音.評分(self.連詞, 椅仔), self.標音.評分(self.連詞, 桌仔))
 		self.assertEqual(self.標音.評分(self.連詞, 柴), self.標音.評分(self.連詞, 桌仔))
