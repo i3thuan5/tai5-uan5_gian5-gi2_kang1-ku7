@@ -25,6 +25,8 @@ from 臺灣言語工具.字詞組集句章.基本元素.集 import 集
 from 臺灣言語工具.字詞組集句章.基本元素.句 import 句
 from 臺灣言語工具.字詞組集句章.基本元素.章 import 章
 from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
+from 臺灣言語工具.標音.語句連詞 import 語句連詞
+from 臺灣言語工具.標音.動態規劃標音 import 動態規劃標音
 
 class 動態規劃標音試驗(TestCase):
 	def setUp(self):

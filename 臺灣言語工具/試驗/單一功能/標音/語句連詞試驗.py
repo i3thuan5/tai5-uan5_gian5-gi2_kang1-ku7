@@ -22,6 +22,7 @@ from 臺灣言語工具.斷詞.型音辭典 import 型音辭典
 from 臺灣言語工具.字詞組集句章.基本元素.詞 import 詞
 from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 from math import log10
+from 臺灣言語工具.標音.語句連詞 import 語句連詞
 
 class 語句連詞試驗(TestCase):
 	def setUp(self):
