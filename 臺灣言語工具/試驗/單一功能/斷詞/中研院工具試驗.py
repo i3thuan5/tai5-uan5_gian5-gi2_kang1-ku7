@@ -50,6 +50,7 @@ class 中研院工具試驗(unittest.TestCase):
 			])
 
 	def test_官方剖析工具(self):
+		raise NotImplementedError
 		工具 = 官方剖析工具()
 		self.assertEqual(工具.剖析('我想吃飯。我想吃很多飯。'),
  			['#1:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vi:吃飯))#。(PERIODCATEGORY)',
