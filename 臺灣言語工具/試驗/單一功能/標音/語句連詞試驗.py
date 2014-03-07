@@ -76,7 +76,7 @@ class 語句連詞試驗(TestCase):
 		
 	def test_長句(self):
 		連詞 = 語句連詞(3)
-		連詞.看(self.分析器.產生對齊句('你好無？', 'li2 hoo2 bo5 ?'))
+		連詞.看(self.分析器.產生對齊句('你好無？', 'li2 ho2 0bo5 ?'))
 		self.assertEqual(連詞.總數(), [6, 5, 4])
 		連詞.看(self.分析器.產生對齊句('你好出去矣！', 'li2 ho2 tshut4-0khi3 0ah4 !'))
 		self.assertEqual(連詞.總數(), [13, 11, 9])
