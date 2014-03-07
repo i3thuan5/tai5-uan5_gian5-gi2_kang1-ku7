@@ -16,7 +16,7 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import Pyro4
-from 臺灣言語工具.斷詞標音.自動標音 import 自動標音
+from 臺灣言語工具.斷詞.自動標音 import 自動標音
 
 class 內部自動標音():
 	def __init__(self):

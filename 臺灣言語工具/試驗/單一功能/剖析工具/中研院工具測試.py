@@ -16,9 +16,9 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import unittest
-from 臺灣言語工具.斷詞標音.中研院工具.官方斷詞工具 import 官方斷詞工具
-from 臺灣言語工具.斷詞標音.中研院工具.官方剖析工具 import 官方剖析工具
-from 臺灣言語工具.斷詞標音.中研院工具.自設剖析工具 import 自設剖析工具
+from 臺灣言語工具.斷詞.中研院工具.官方斷詞工具 import 官方斷詞工具
+from 臺灣言語工具.斷詞.中研院工具.官方剖析工具 import 官方剖析工具
+from 臺灣言語工具.斷詞.中研院工具.自設剖析工具 import 自設剖析工具
 
 class 中研院工具測試(unittest.TestCase):
 	def setUp(self):

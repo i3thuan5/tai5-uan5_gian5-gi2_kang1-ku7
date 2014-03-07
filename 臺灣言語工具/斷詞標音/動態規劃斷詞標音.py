@@ -22,14 +22,14 @@ from 臺灣言語工具.字詞組集句章.基本元素.句 import 句
 from 臺灣言語工具.字詞組集句章.基本元素.章 import 章
 from 臺灣言語工具.字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
 from 臺灣言語工具.字詞組集句章.解析整理工具.字物件篩仔 import 字物件篩仔
-from 臺灣言語工具.斷詞標音.改字.阿拉伯數字 import 阿拉伯數字
+from 臺灣言語工具.斷詞.改字.阿拉伯數字 import 阿拉伯數字
 from 臺灣言語工具.字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
 
-class 動態規劃斷詞標音:
+class 動態規劃斷詞:
 	篩仔 = 字物件篩仔()
 	分析器 = 拆文分析器()
 	數字 = 阿拉伯數字()
-	def 字陣列斷詞標音(self, 辭典, 字陣列):
+	def 字陣列斷詞(self, 辭典, 字陣列):
 		if hasattr(辭典, '空'):
 			字陣列 = self.字陣列改數字(辭典, 字陣列)
 		斷詞結果 = []
@@ -72,22 +72,22 @@ class 動態規劃斷詞標音:
 				組陣列.append(組物件)
 			集陣列.append(集物件)
 		return 句物件
-	def 章斷詞標音(self, 辭典, 章物件):
+	def 章斷詞(self, 辭典, 章物件):
 		if not isinstance(章物件, 章):
 			raise 型態錯誤('傳入來的毋是章物件：{0}'.format(str(章物件)))
 		標好章 = 章()
 		用好句 = 標好章.內底句
 		for 一句 in 章物件.內底句:
-			用好句.append(self.斷詞標音(辭典, 一句))
+			用好句.append(self.斷詞(辭典, 一句))
 		return 標好章
 
 	# 字詞組集句=>句
 	# 章=>章
-	def 斷詞標音(self, 辭典, 物件):
+	def 斷詞(self, 辭典, 物件):
 		if isinstance(物件, 章):
-			return self.章斷詞標音(辭典, 物件)
+			return self.章斷詞(辭典, 物件)
 		字陣列 = self.篩仔.篩出字物件(物件)
-		return self.字陣列斷詞標音(辭典, 字陣列)
+		return self.字陣列斷詞(辭典, 字陣列)
 
 	def 字陣列改數字(self, 辭典, 字陣列):
 		改字了字陣列 = []
