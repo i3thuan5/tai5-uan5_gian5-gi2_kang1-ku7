@@ -117,34 +117,3 @@ class 語句連詞試驗(TestCase):
 		self.assertEqual(孤句連詞.總數(), 兩句連詞.總數())
 		self.assertEqual(孤句連詞.機率(self.我請你物件.內底詞),
 			兩句連詞.機率(self.我請你物件.內底詞))
-		
-# 	def test_看機率選詞(self):
-# 		self.assertEqual(機率(我請你物件.內底詞),)
-# 		self.assertGreater(感覺(我請你物件), 感覺(我請你物件))
-# 		self.兩句語句連詞 = 語句連詞(3)
-# 		
-# 		self.語句連詞 = 語句連詞(3)
-# 		self.對齊詞 = self.分析器.產生對齊句('我穿布鞋。', 'li2 hoo2-bo5 ?')
-# 		self.對齊詞 = self.分析器.產生對齊句('我鞋仔歹去矣。', 'li2 hoo2-bo5 ?')
-# 		'我鞋鞋仔'
-# 		self.對齊詞 = self.分析器.產生對齊句('我的冊佇你遐。', 'li2 hoo2-bo5 ?')
-# 		'我鞋鞋仔'
-# 		self.對齊詞 = self.分析器.產生對齊句('我的故鄉佇花蓮。', 'li2 hoo2-bo5 ?')
-# 		'我的鞋仔'
-# 		self.assertEqual()
-# 
-# 		
-# 	def test_頭尾比較(self):
-# 		self.assertEqual(機率(我請你物件.內底詞),)
-# 		self.assertGreater(感覺(我請你物件), 感覺(我請你物件))
-# 		self.兩句語句連詞 = 語句連詞(3)
-# 		
-# 		self.語句連詞 = 語句連詞(3)
-# 		self.對齊詞 = self.分析器.產生對齊句('我穿布鞋。', 'li2 hoo2-bo5 ?')
-# 		self.對齊詞 = self.分析器.產生對齊句('我鞋仔歹去矣。', 'li2 hoo2-bo5 ?')
-# 		'我鞋鞋仔'
-# 		self.對齊詞 = self.分析器.產生對齊句('我的冊佇你遐。', 'li2 hoo2-bo5 ?')
-# 		'我鞋鞋仔'
-# 		self.對齊詞 = self.分析器.產生對齊句('我的故鄉佇花蓮。', 'li2 hoo2-bo5 ?')
-# 		'我的鞋仔'
-# 		self.assertEqual()
