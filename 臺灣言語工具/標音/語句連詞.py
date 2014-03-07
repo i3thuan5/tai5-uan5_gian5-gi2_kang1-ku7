@@ -39,7 +39,6 @@ class 語句連詞(TestCase):
 		數量表 = []
 		for 長度 in range(min(self.上濟詞數, len(連詞))):
 			組合 = tuple(連詞[-1 - 長度:])
-			print(長度, 組合)
 			if 組合 in self.連詞表:
 				數量表.append(self.連詞表[組合])
 			else:
@@ -63,7 +62,6 @@ class 語句連詞(TestCase):
 			for 所在 in range(len(詞陣列) - 長度 + 1):
 				self.總數表[長度 - 1] += 1
 				組合 = tuple(詞陣列[所在:所在 + 長度])
-				print(長度, 組合)
 				if 組合 not in self.連詞表:
 					self.連詞表[組合] = 1
 				else:
