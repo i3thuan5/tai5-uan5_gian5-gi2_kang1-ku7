@@ -39,7 +39,7 @@ class 語句連詞試驗(TestCase):
 		self.我請你物件 = self.分析器.產生對齊組(self.我請你型, self.我請你音)
 		self.出去型 = '出去'
 		self.出去音 = 'tshut4-0khi3'
-		self.出去物件 = self.分析器.產生對齊組(self.出去型, self.出去音)
+		self.出去物件 = self.分析器.產生對齊詞(self.出去型, self.出去音)
 		
 	def tearDown(self):
 		pass
@@ -48,9 +48,9 @@ class 語句連詞試驗(TestCase):
 		連詞 = 語句連詞(3)
 		連詞.看(self.你物件)
 		self.assertEqual(連詞.總數(), [3, 2, 1])
-		self.assertEqual(連詞.數量([self.你詞]), [1])
-		self.assertEqual(連詞.數量([None, self.你詞, None]), [1, 1, 1])
-		self.assertEqual(連詞.機率([None, self.你詞, None]),
+		self.assertEqual(連詞.數量([self.你物件]), [1])
+		self.assertEqual(連詞.數量([None, self.你物件, None]), [1, 1, 1])
+		self.assertEqual(連詞.機率([None, self.你物件, None]),
 			[log10(1 / 3), log10(1 / 2), log10(1)])
 		self.assertEqual(連詞.數量([None, self.今仔日物件, None]), [1, 0, 0])
 		self.assertEqual(連詞.機率([None, self.今仔日物件, None]),
@@ -106,10 +106,10 @@ class 語句連詞試驗(TestCase):
 		音二 = 'tshiann2 li2 lai5 tau3-sann1-kang7 hoo2-bo5 ?'
 		兩句連詞.看(self.分析器.產生對齊章(型一, 音一))
 		self.assertEqual(兩句連詞.總數(), [9, 8, 7])
-		self.assertEqual(兩句連詞.數量([self.你詞]), [1])
+		self.assertEqual(兩句連詞.數量([self.你物件]), [1])
 		兩句連詞.看(self.分析器.產生對齊章(型二, 音二))
 		self.assertEqual(兩句連詞.總數(), [17, 15, 13])
-		self.assertEqual(兩句連詞.數量([self.你詞]), [2])
+		self.assertEqual(兩句連詞.數量([self.你物件]), [2])
 		self.assertEqual(兩句連詞.數量(self.我請你物件.內底詞), [2,2,1])
 		self.assertEqual(兩句連詞.機率(self.我請你物件.內底詞),
 			[log10(2 / 17), log10(2 / 15), log10(1 / 13), ])

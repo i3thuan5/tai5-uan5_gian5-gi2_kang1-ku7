@@ -21,8 +21,9 @@ from 臺灣言語工具.字詞組集句章.解析整理工具.拆文分析器 im
 from 臺灣言語工具.斷詞.型音辭典 import 型音辭典
 from 臺灣言語工具.字詞組集句章.基本元素.詞 import 詞
 from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
-from math import log10
 from 臺灣言語工具.字詞組集句章.解析整理工具.詞物件網仔 import 詞物件網仔
+from 臺灣言語工具.字詞組集句章.基本元素.章 import 章
+from math import log10
 
 class 語句連詞(TestCase):
 	# 無看過的詞的出現機率，佮srilm仝款當做負的無限
@@ -36,8 +37,9 @@ class 語句連詞(TestCase):
 		return self.總數表
 	def 數量(self, 連詞):
 		數量表 = []
-		for 長度 in range(self.上濟詞數):
-			組合 = tuple(連詞[-長度:])
+		for 長度 in range(min(self.上濟詞數, len(連詞))):
+			組合 = tuple(連詞[-1 - 長度:])
+			print(長度, 組合)
 			if 組合 in self.連詞表:
 				數量表.append(self.連詞表[組合])
 			else:
@@ -53,15 +55,22 @@ class 語句連詞(TestCase):
 				機率表.append(log10(數 / 總))
 		return 機率表
 	def 看(self, 物件):
-		詞陣列 = [None] + self.__網仔.網出詞物件(物件)
-		for 長度 in range(self.上濟詞數):
-			if 長度 == 1:
-				詞陣列.append(None)
+		if isinstance(物件, 章):
+			self.看章物件(物件)
+			return
+		詞陣列 = [None] + self.__網仔.網出詞物件(物件) + [None]
+		for 長度 in range(1, self.上濟詞數 + 1):
 			for 所在 in range(len(詞陣列) - 長度 + 1):
 				self.總數表[長度 - 1] += 1
 				組合 = tuple(詞陣列[所在:所在 + 長度])
-				if 組合 not in self.數量表:
-					self.數量表[組合] = 1
+				print(長度, 組合)
+				if 組合 not in self.連詞表:
+					self.連詞表[組合] = 1
 				else:
-					self.數量表[組合] += 1
+					self.連詞表[組合] += 1
+		self.連詞表[(None,)] -= 1
+		return
+	def 看章物件(self, 章物件):
+		for 句物件 in 章物件.內底句:
+			self.看(句物件)
 		return
