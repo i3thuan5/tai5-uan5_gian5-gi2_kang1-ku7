@@ -23,16 +23,16 @@ from 臺灣言語工具.字詞組集句章.解析整理工具.型態錯誤 impor
 from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 
 class 現掀辭典(文字辭典):
-	大細 = None
-	def __init__(self, 大細):
-		self.大細 = 大細
+	上濟字數 = None
+	def __init__(self, 上濟字數):
+		self.上濟字數 = 上濟字數
 		self.條目 = []
 	def 加詞(self, 詞物件):
 		if not isinstance(詞物件, 詞):
 			raise 型態錯誤('傳入來的毋是詞物件：{0}'.format(str(詞物件)))
 		if len(詞物件.內底字) == 0:
 			raise 解析錯誤('傳入來的詞物件是空的：{0}'.format(str(詞物件)))
-		if len(詞物件.內底字) <= self.大細:
+		if len(詞物件.內底字) <= self.上濟字數:
 			self.條目.append(詞物件)
 		return
 

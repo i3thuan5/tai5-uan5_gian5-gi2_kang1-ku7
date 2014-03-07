@@ -35,7 +35,7 @@ class 動態規劃斷詞:
 		斷詞結果 = []
 		# from multiprocessing import Pool
 		for 所在 in range(len(字陣列)):
-			斷詞結果.append(辭典.查詞(詞(字陣列[所在:所在 + 辭典.大細])))
+			斷詞結果.append(辭典.查詞(詞(字陣列[所在:所在 + 辭典.上濟字數])))
 		# 分數 頂一个位置 有啥物詞通用
 		分數表 = [(0, None, None)] * (len(字陣列) + 1)
 		for 所在 in range(len(字陣列)):
