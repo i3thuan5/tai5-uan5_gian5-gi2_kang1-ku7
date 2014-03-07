@@ -22,7 +22,7 @@ class 自設剖析工具:
 	連接埠 = 23222
 	def 剖析(self, 愛轉換的字串):
 		大五碼字串 = 愛轉換的字串.encode('big5')
-		連線 = telnetlib.Telnet(self.主機, self.連接埠)
+		連線 = telnetlib.Telnet(self.主機, self.連接埠, 0.5)
 		連線.write(大五碼字串)
 		結果 = 連線.read_all().decode('big5')
 		連線.close()
