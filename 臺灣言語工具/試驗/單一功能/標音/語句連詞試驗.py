@@ -110,7 +110,7 @@ class 語句連詞試驗(TestCase):
 		self.assertEqual(兩句連詞.總數(), [17, 15, 13])
 		self.assertEqual(兩句連詞.數量([self.你詞]), [2])
 		self.assertEqual(兩句連詞.數量(self.我請你物件.內底詞), [2,2,1])
-		self.assertEqual(兩句連詞.機率(self.我請你物件.內底詞), [2,2,1])
+		self.assertEqual(兩句連詞.機率(self.我請你物件.內底詞),
 			[log10(2 / 17), log10(2 / 15), log10(1 / 13), ])
 		孤句連詞 = 語句連詞(3)
 		孤句連詞.看(self.分析器.產生對齊章(型一 + 型二, 音一 + 音二))
