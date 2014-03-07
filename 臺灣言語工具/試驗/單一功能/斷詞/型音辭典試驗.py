@@ -22,7 +22,7 @@ from 臺灣言語工具.斷詞.型音辭典 import 型音辭典
 from 臺灣言語工具.字詞組集句章.基本元素.詞 import 詞
 from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 
-class 型音辭典測試(TestCase):
+class 型音辭典試驗(TestCase):
 	def setUp(self):
 		self.字典 = 型音辭典(4)
 		self.粗胚工具 = 文章粗胚工具()

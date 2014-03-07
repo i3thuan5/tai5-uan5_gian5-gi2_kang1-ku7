@@ -18,7 +18,7 @@
 from unittest.case import TestCase
 from 臺灣言語工具.字詞組集句章.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
 
-class 臺灣客家話拼音測試(TestCase):
+class 臺灣客家話拼音試驗(TestCase):
 	def setUp(self):
 		pass
 	def tearDown(self):

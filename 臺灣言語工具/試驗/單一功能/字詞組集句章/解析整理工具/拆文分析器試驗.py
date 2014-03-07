@@ -23,7 +23,7 @@ from 臺灣言語工具.字詞組集句章.解析整理工具.文章粗胚工具
 from 臺灣言語工具.字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 無音
 
-class 拆文分析器測試(unittest.TestCase):
+class 拆文分析器試驗(unittest.TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
 		self.粗胚工具 = 文章粗胚工具()

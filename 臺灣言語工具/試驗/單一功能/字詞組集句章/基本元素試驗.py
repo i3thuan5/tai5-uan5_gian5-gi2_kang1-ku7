@@ -25,7 +25,7 @@ from 臺灣言語工具.字詞組集句章.基本元素.章 import 章
 from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 無音
 from 臺灣言語工具.字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
 
-class 基本元素測試(unittest.TestCase):
+class 基本元素試驗(unittest.TestCase):
 	def setUp(self):
 		self.型 = '媠'
 		self.音 = 'ㄙㄨㄧˋ'

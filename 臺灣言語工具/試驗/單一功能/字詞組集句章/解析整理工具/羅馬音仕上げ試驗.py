@@ -22,7 +22,7 @@ from 臺灣言語工具.字詞組集句章.解析整理工具.羅馬音仕上げ
 #しあげ
 #ㄒㄧ˫ ㄚ ㆣㆤㆷ
 #1si7_1a1_1geh4
-class 羅馬音仕上げ測試(unittest.TestCase):
+class 羅馬音仕上げ試驗(unittest.TestCase):
 	def setUp(self):
 		pass
 	def tearDown(self):

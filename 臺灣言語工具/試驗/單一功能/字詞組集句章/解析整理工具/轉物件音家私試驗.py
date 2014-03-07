@@ -22,7 +22,7 @@ from 臺灣言語工具.字詞組集句章.解析整理工具.轉物件音家私
 from 臺灣言語工具.字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 臺灣言語工具.字詞組集句章.音標系統.閩南語.通用拼音音標 import 通用拼音音標
 
-class 轉物件音家私測試(unittest.TestCase):
+class 轉物件音家私試驗(unittest.TestCase):
 	def setUp(self):
 		self.粗胚工具 = 文章粗胚工具()
 		self.分析器 = 拆文分析器()

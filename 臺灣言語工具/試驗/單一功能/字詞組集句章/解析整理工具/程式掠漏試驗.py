@@ -21,7 +21,7 @@ from 臺灣言語工具.字詞組集句章.解析整理工具.型態錯誤 impor
 from 臺灣言語工具.字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
 from 臺灣言語工具.字詞組集句章.解析整理工具.程式掠漏 import 程式掠漏
 
-class 程式掠漏測試(unittest.TestCase):
+class 程式掠漏試驗(unittest.TestCase):
 	def setUp(self):
 		self.掠漏 = 程式掠漏()
 		self.分析器 = 拆文分析器()

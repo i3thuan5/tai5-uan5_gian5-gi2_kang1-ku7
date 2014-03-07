@@ -15,10 +15,10 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-from 臺灣言語工具.試驗.單一功能.斷詞.型音辭典測試 import 型音辭典測試
+from 臺灣言語工具.試驗.單一功能.斷詞.型音辭典試驗 import 型音辭典試驗
 from 臺灣言語工具.斷詞.現掀辭典 import 現掀辭典
 
-class 現掀辭典測試(型音辭典測試):
+class 現掀辭典試驗(型音辭典試驗):
 	def setUp(self):
-		super(現掀辭典測試, self).setUp()
+		super(現掀辭典試驗, self).setUp()
 		self.字典 = 現掀辭典(4)

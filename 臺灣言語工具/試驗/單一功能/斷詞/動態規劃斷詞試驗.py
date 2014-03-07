@@ -26,7 +26,7 @@ from 臺灣言語工具.字詞組集句章.基本元素.句 import 句
 from 臺灣言語工具.字詞組集句章.基本元素.章 import 章
 from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 
-class 動態規劃斷詞測試(TestCase):
+class 動態規劃斷詞試驗(TestCase):
 	def setUp(self):
 		self.字典 = 型音辭典(4)
 		self.粗胚工具 = 文章粗胚工具()

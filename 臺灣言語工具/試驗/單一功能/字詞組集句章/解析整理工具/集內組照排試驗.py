@@ -24,7 +24,7 @@ from 臺灣言語工具.字詞組集句章.解析整理工具.集內組照排 im
 from 臺灣言語工具.字詞組集句章.解析整理工具.物件譀鏡 import 物件譀鏡
 from timeit import itertools
 
-class 集內組照排測試(TestCase):
+class 集內組照排試驗(TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
 		self.組照排 = 集內組照排()
@@ -79,7 +79,7 @@ class 集內組照排測試(TestCase):
 		self.assertEqual(self.組照排.排好(排法, 章物件).內底句[1].內底集[2].內底組[0].屬性, 空.屬性)
 		self.assertEqual(self.組照排.排好(排法, 章物件).內底句[1].內底集[2].內底組[1].內底詞[0].屬性, 一.內底詞[0].屬性)
 		
-	def test_排序測試(self):
+	def test_排序試驗(self):
 		毋著四 = self.分析器.產生對齊組('我有一張椅仔', 'ngoo2 iu2 it4 tiong1 i2 a2')
 		毋著三 = self.分析器.產生對齊組('我有一張椅仔', 'ngoo2 u7 it4 tiong1 i2 a2')
 		毋著二 = self.分析器.產生對齊組('我有一張椅仔', 'ngoo2 u7 tsit8 tiong1 i2 a2')

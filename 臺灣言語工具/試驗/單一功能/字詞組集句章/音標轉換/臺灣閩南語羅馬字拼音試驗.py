@@ -24,7 +24,7 @@ from 臺灣言語工具.字詞組集句章.音標系統.閩南語.臺灣閩南�
 from 臺灣言語工具.字詞組集句章.音標系統.閩南語.通用拼音音標 import 通用拼音佮臺灣羅馬聲母對照表
 from 臺灣言語工具.字詞組集句章.音標系統.閩南語.通用拼音音標 import 通用拼音佮臺灣羅馬韻母對照表
 
-class 臺灣閩南語羅馬字拼音測試(unittest.TestCase):
+class 臺灣閩南語羅馬字拼音試驗(unittest.TestCase):
 	def setUp(self):
 		pass
 	def tearDown(self):

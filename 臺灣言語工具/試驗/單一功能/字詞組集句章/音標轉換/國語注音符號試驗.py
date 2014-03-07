@@ -18,7 +18,7 @@
 from unittest.case import TestCase
 from 臺灣言語工具.字詞組集句章.音標系統.國語.國語注音符號 import 國語注音符號
 
-class 國語注音符號測試(TestCase):
+class 國語注音符號試驗(TestCase):
 	def setUp(self):
 		pass
 	def tearDown(self):

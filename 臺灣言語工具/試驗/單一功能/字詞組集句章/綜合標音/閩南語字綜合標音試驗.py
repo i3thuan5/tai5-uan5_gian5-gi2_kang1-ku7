@@ -23,7 +23,7 @@ from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 impor
 from 臺灣言語工具.字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
 import json
 
-class 閩南語字綜合標音測試(unittest.TestCase):
+class 閩南語字綜合標音試驗(unittest.TestCase):
 	def setUp(self):
 		pass
 	def tearDown(self):

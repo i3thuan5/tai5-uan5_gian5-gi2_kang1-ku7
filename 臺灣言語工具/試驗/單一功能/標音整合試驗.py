@@ -18,7 +18,7 @@
 import unittest
 from 標音系統整合.標音整合 import 標音整合
 
-class 標音整合測試(unittest.TestCase):
+class 標音整合試驗(unittest.TestCase):
 	def setUp(self):
 		self.標音 = 標音整合('漢語族閩方言閩南語偏漳優勢音')
 	def tearDown(self):

@@ -22,7 +22,7 @@ from 臺灣言語工具.字詞組集句章.音標系統.閩南語.通用拼音�
 from 臺灣言語工具.字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音聲母表
 from 臺灣言語工具.字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音韻母表
 
-class 通用拼音音標測試(unittest.TestCase):
+class 通用拼音音標試驗(unittest.TestCase):
 	def setUp(self):
 		pass
 	def tearDown(self):

@@ -23,7 +23,7 @@ from 臺灣言語工具.字詞組集句章.解析整理工具.物件譀鏡 impor
 from 臺灣言語工具.字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
 from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 分字符號
 
-class 物件譀鏡測試(unittest.TestCase):
+class 物件譀鏡試驗(unittest.TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
 		self.譀鏡 = 物件譀鏡()

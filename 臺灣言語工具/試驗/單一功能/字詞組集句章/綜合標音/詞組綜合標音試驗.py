@@ -25,13 +25,13 @@ from 臺灣言語工具.字詞組集句章.綜合標音.閩南語字綜合標音
 from 臺灣言語工具.字詞組集句章.綜合標音.詞組綜合標音 import 詞組綜合標音
 from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 無音
 
-class 詞組綜合標音測試(unittest.TestCase):
+class 詞組綜合標音試驗(unittest.TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
 		self.粗胚工具 = 文章粗胚工具()
 	def tearDown(self):
 		pass
-	def test_基本測試(self):
+	def test_基本試驗(self):
 		組物件 = self.分析器.產生對齊組('大美女', 'tua7 sui2-boo2')
 		標音詞組 = 詞組綜合標音(閩南語字綜合標音, 組物件)
 		self.assertEqual(len(標音詞組.綜合字), 3)
