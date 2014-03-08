@@ -50,6 +50,28 @@ class 動態規劃標音試驗(TestCase):
 	def tearDown(self):
 		pass
 
+	def test_頭中尾詞比較(self):
+		self.連詞.看(self.我有一張桌仔)
+		self.連詞.看(self.桌仔垃圾)
+		self.assertLess(self.標音.評分(self.連詞, self.桌仔), 0.0)
+		self.assertLess(self.標音.評分(self.連詞, self.椅仔), self.標音.評分(self.連詞, self.桌仔))
+		self.assertEqual(self.標音.評分(self.連詞, self.柴), self.標音.評分(self.連詞, self.桌仔))
+
+	def test_長的好句袂使輸短的爛句(self):
+		self.連詞.看(self.我有一張椅仔)
+		self.連詞.看(self.桌仔垃圾)
+		self.assertLess(self.標音.評分(self.連詞, self.椅仔), self.標音.評分(self.連詞, self.桌仔垃圾))
+		self.assertLess(self.標音.評分(self.連詞, self.柴), self.標音.評分(self.連詞, self.桌仔垃圾))
+
+	def test_標音的分數愛佮評分仝款(self):
+		self.連詞.看(self.我有一張桌仔)
+		標好, 分數 = self.標音.標音(self.連詞, self.我有一張桌仔)
+		self.assertEqual(標好, self.我有一張桌仔)
+		self.assertEqual(分數, self.標音.評分(self.連詞, self.我有一張桌仔))
+		標好, 分數 = self.標音.標音(self.連詞, self.桌仔)
+		self.assertEqual(標好, self.桌仔)
+		self.assertEqual(分數, self.標音.評分(self.連詞, self.桌仔))
+
 	def test_看機率選詞(self):
 		我 = self.分析器.產生對齊集('我', 'gua2')
 		的 = self.分析器.產生對齊組('的', 'e5')
@@ -59,34 +81,33 @@ class 動態規劃標音試驗(TestCase):
 		我_e5_e5_仔_鞋的 = 句([我, e5_鞋的, e5_鞋的, 仔])
 		e5_的鞋 = 集([的, 鞋, ])
 		我_e5_e5_仔_的鞋 = 句([我, e5_的鞋, e5_的鞋, 仔])
+		我鞋鞋仔 = 句([我, 集([鞋, ]), 集([鞋, ]), 仔])
+		我的鞋仔 = 句([我, 集([的, ]), 集([鞋, ]), 仔])
 		self.連詞.看(self.分析器.產生對齊句('我穿布鞋。', 'gua2 tshng1 poo3 e5.'))
 		self.連詞.看(self.分析器.產生對齊句('我鞋仔歹去矣。', 'gua2 e5-a2 phainn2-0khi3 0ah4.'))
 		鞋的結果, 鞋的分數 = self.標音.標音(self.連詞, 我_e5_e5_仔_鞋的)
 		的鞋結果, 的鞋分數 = self.標音.標音(self.連詞, 我_e5_e5_仔_的鞋)
-		self.assertEqual(鞋的結果, '我鞋鞋仔')
+		self.assertEqual(鞋的結果, 我鞋鞋仔)
 		self.assertEqual(的鞋結果, 鞋的結果)
 		self.assertLess(鞋的分數, 0.0)
 		self.assertEqual(鞋的分數, 的鞋分數)
 		self.連詞.看(self.分析器.產生對齊句('我的冊佇你遐。', 'gua2	 e5 tsheh4 ti7 li2 hia1.'))
-		self.assertEqual(鞋的結果, '我鞋鞋仔')
+		鞋的結果, 鞋的分數 = self.標音.標音(self.連詞, 我_e5_e5_仔_鞋的)
+		的鞋結果, 的鞋分數 = self.標音.標音(self.連詞, 我_e5_e5_仔_的鞋)
+		self.assertEqual(鞋的結果, 我鞋鞋仔)
 		self.assertEqual(的鞋結果, 鞋的結果)
 		self.assertLess(鞋的分數, 0.0)
 		self.assertEqual(鞋的分數, 的鞋分數)
-		self.連詞.看(self.分析器.產生對齊句('我的故鄉佇花蓮。', 'li2 hoo2-bo5 ?'))
-		self.assertEqual(鞋的結果, '我的鞋仔')
+		self.連詞.看(self.分析器.產生對齊句('我的故鄉佇花蓮。', 'gua2 e5 koo3-hiong1 ti7 hua1-lian1.'))
+		鞋的結果, 鞋的分數 = self.標音.標音(self.連詞, 我_e5_e5_仔_鞋的)
+		的鞋結果, 的鞋分數 = self.標音.標音(self.連詞, 我_e5_e5_仔_的鞋)
+		self.assertEqual(鞋的結果, 我的鞋仔)
 		self.assertEqual(的鞋結果, 鞋的結果)
 		self.assertLess(鞋的分數, 0.0)
 		self.assertEqual(鞋的分數, 的鞋分數)
 
-	def test_頭中尾詞比較(self):
-		self.連詞.看(self.我有一張桌仔)
-		self.連詞.看(self.桌仔垃圾)
-		self.assertLess(self.標音.評分(self.連詞, self.桌仔), 0.0)
-		self.assertLess(self.標音.評分(self.連詞, self.椅仔), self.標音.評分(self.連詞, self.桌仔))
-		self.assertEqual(self.標音.評分(self.連詞, self.柴), self.標音.評分(self.連詞, self.桌仔))
-		
-	def test_長的好句袂使輸短的爛句(self):
-		self.連詞.看(self.我有一張椅仔)
-		self.連詞.看(self.桌仔垃圾)
-		self.assertLess(self.標音.評分(self.連詞, self.椅仔), self.標音.評分(self.連詞, self.桌仔垃圾))
-		self.assertLess(self.標音.評分(self.連詞, self.柴), self.標音.評分(self.連詞, self.桌仔垃圾))
+	def test_標了的型態愛佮原本仝款(self):
+		self.assertEqual(標了的型態愛佮原本仝款)
+	def test_標空的物件(self):
+		self.assertEqual(標了的型態愛佮原本仝款)
+

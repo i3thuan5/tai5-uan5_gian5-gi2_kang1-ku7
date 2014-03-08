@@ -40,10 +40,7 @@ class 詞物件網仔:
 		return [詞物件]
 	def 網組(self, 組物件):
 		self.__掠漏.毋是組物件就毋著(組物件)
-		詞陣列 = []
-		for 詞物件 in 組物件.內底詞:
-			詞陣列.extend(self.網詞(詞物件))
-		return 詞陣列
+		return 組物件.內底詞
 	def 網集(self, 集物件):
 		self.__掠漏.毋是集物件就毋著(集物件)
 		if len(集物件.內底組) == 0:

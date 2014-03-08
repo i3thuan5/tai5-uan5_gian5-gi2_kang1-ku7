@@ -30,6 +30,8 @@ class 組:
 			self.內底詞.append(詞(詞物件.內底字))
 	def __eq__(self, 別个):
 		return isinstance(別个, 組) and self.內底詞 == 別个.內底詞
+	def __hash__(self):
+		return hash(tuple(self.內底詞))
 	def __str__(self):
 		return '組：{0}'.format(self.內底詞)
 	def __repr__(self):
