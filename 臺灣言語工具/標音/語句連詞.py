@@ -24,12 +24,15 @@ from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 impor
 from 臺灣言語工具.字詞組集句章.解析整理工具.詞物件網仔 import 詞物件網仔
 from 臺灣言語工具.字詞組集句章.基本元素.章 import 章
 from math import log10
+from 臺灣言語工具.字詞組集句章.解析整理工具.參數錯誤 import 參數錯誤
 
 class 語句連詞(TestCase):
 	# 無看過的詞的出現機率，佮srilm仝款當做負的無限
 	無看過 = -99
 	__網仔 = 詞物件網仔()
 	def __init__(self, 上濟詞數):
+		if 上濟詞數 <= 0:
+			raise 參數錯誤('詞數愛是正整數，傳入來的是{0}'.format(上濟詞數))
 		self.上濟詞數 = 上濟詞數
 		self.總數表 = [0] * self.上濟詞數
 		self.連詞表 = {}
@@ -58,8 +61,8 @@ class 語句連詞(TestCase):
 		數量表 = self.數量(連詞)
 		前數量表 = self.數量(連詞[:-1])
 		條件表 = []
-		print('數量表',數量表)
-		print('前數量表',前數量表,self.總數表[:1],)
+		print('數量表', 數量表)
+		print('前數量表', 前數量表, self.總數表[:1],)
 		for 數, 前 in zip(數量表, self.總數表[:1] + 前數量表):
 # 			if 數 == self.無看過:
 			if 數 == 0:

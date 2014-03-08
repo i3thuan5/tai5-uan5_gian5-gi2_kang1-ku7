@@ -26,6 +26,8 @@ class 型音辭典(文字辭典):
 	上濟字數 = None
 	表 = None
 	def __init__(self, 上濟字數):
+		if 上濟字數 <= 0:
+			raise 參數錯誤('字數愛是正整數，傳入來的是{0}'.format(上濟字數))
 		self.上濟字數 = 上濟字數
 		self.表 = 型音點()
 		
