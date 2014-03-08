@@ -153,13 +153,15 @@ class 動態規劃標音試驗(TestCase):
 		self.assertEqual(詞數, 7)
 		self.連詞.看(靚細妹)
 		self.連詞.看(靚細妹)
-		print('開始')
+		self.連詞.看(靚細妹)
 		結果, 分數, 詞數 = self.標音.標音(self.連詞, 問題句物件)
-		self.assertEqual(結果, 靚細妹句物件)
-		self.assertEqual(詞數, 6)
+		#因為詞組干焦一个詞，所以會靚細妹輸媠姑娘
+		self.assertEqual(結果, 媠姑娘句物件)
+		self.assertEqual(詞數, 7)
+		#詞組較長，所以應該愛搶網別人
 		self.連詞.看(大美女)
-		self.連詞.看(大美女)
-		self.連詞.看(大美女)
+# 		self.連詞.看(大美女)
+# 		self.連詞.看(大美女)
 		結果, 分數, 詞數 = self.標音.標音(self.連詞, 問題句物件)
 		self.assertEqual(結果, 大美女句物件)
 		self.assertEqual(詞數, 9)
@@ -177,7 +179,6 @@ class 動態規劃標音試驗(TestCase):
 		for 物件, 詞數答案 in zip([詞物件, 組物件, 句物件, 章物件], [3, 2, 2, 0]):
 			結果, 分數, 詞數 = self.標音.標音(self.連詞, 物件)
 			self.assertEqual(結果, 物件)
-			print(type(物件), 詞數, 分數)
 			self.assertEqual(詞數, 詞數答案)
 			if 詞數 not in 全部分數:
 				全部分數[詞數] = 分數

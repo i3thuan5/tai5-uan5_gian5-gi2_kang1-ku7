@@ -43,7 +43,6 @@ class 語句連詞(TestCase):
 		數量表 = []
 		for 長度 in range(min(self.上濟詞數, len(連詞))):
 			組合 = tuple(連詞[-1 - 長度:])
-			print('組合',組合)
 			if 組合 in self.連詞表:
 				數量表.append(self.連詞表[組合])
 			else:
@@ -86,8 +85,6 @@ class 語句連詞(TestCase):
 				else:
 					self.連詞表[組合] += 1
 		self.連詞表[(None,)] -= 1
-		print ('self.連詞表',self.連詞表)
-		print ('看　物件',物件)
 		return
 	def 看章物件(self, 章物件):
 		for 句物件 in 章物件.內底句:
