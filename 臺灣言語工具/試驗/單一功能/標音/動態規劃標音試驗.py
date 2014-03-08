@@ -153,6 +153,7 @@ class 動態規劃標音試驗(TestCase):
 		self.assertEqual(詞數, 7)
 		self.連詞.看(靚細妹)
 		self.連詞.看(靚細妹)
+		print('開始')
 		結果, 分數, 詞數 = self.標音.標音(self.連詞, 問題句物件)
 		self.assertEqual(結果, 靚細妹句物件)
 		self.assertEqual(詞數, 6)
