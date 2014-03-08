@@ -16,8 +16,7 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import unittest
-from 臺灣言語工具.斷詞.中研院工具.官方斷詞工具 import 官方斷詞工具
-from 臺灣言語工具.斷詞.中研院工具.官方剖析工具 import 官方剖析工具
+from 臺灣言語工具.斷詞.中研院工具.官方斷詞剖析工具 import 官方斷詞剖析工具
 from 臺灣言語工具.斷詞.中研院工具.自設剖析工具 import 自設剖析工具
 
 class 中研院工具試驗(unittest.TestCase):
@@ -27,7 +26,7 @@ class 中研院工具試驗(unittest.TestCase):
 		pass
 
 	def test_官方斷詞工具(self):
-		工具 = 官方斷詞工具()
+		工具 = 官方斷詞剖析工具()
 		self.assertEqual(工具.斷詞('我想吃飯。我想吃很多飯。'),[[
 			[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
 			[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
@@ -50,8 +49,7 @@ class 中研院工具試驗(unittest.TestCase):
 			])
 
 	def test_官方剖析工具(self):
-		raise NotImplementedError
-		工具 = 官方剖析工具()
+		工具 = 官方斷詞剖析工具()
 		self.assertEqual(工具.剖析('我想吃飯。我想吃很多飯。'),
  			['#1:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vi:吃飯))#。(PERIODCATEGORY)',
  			'#2:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vt:吃|NP(DET:很多|Head:N:飯)))#。(PERIODCATEGORY)'

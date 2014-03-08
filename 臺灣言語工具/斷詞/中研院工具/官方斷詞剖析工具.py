@@ -20,28 +20,36 @@ from socket import AF_INET
 from socket import SOCK_STREAM
 import re
 
-class 官方斷詞工具:
+class 官方斷詞剖析工具:
 	檢查結果 = re.compile('<result>(.*)</result>')
 	分句 = re.compile('<sentence>(.*?)</sentence>')
 	分詞性 = re.compile('(.*)\((.*)\)')
 	回傳狀況 = re.compile('<processstatus code="\d">(.*?)</processstatus>')
-	def 斷詞(self, 語句, 主機='140.109.19.104', 連接埠=1501, 帳號='ihcaoe', 密碼='aip1614'):
+	def 斷詞(self, 語句, 編碼 = 'UTF-8', 等待 = 1, 主機 = '140.109.19.104', 連接埠 = 1501, 帳號 = 'ihcaoe', 密碼 = 'aip1614'):
+		return self.連線(語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
+	
+	def 剖析(self, 語句, 編碼 = 'Big5', 等待 = 3, 主機 = '140.109.19.112', 連接埠 = 8000, 帳號 = 'ihcaoe', 密碼 = 'aip1614'):
+		return self.連線(語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
+	
+	def 連線(self, 語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼):
 		連線 = socket(
 			AF_INET, SOCK_STREAM)
-		連線.connect((主機, 連接埠))
-		
-		資料 = self.傳去格式頭前.format('UTF-8', 帳號, 密碼).replace('\n', '').encode('UTF-8')\
-			+ 語句.encode('UTF-8')\
-			+ self.傳去格式後壁.encode('UTF-8')
-# 		資料 = self.傳去格式.format('UTF-8',帳號, 密碼,語句).replace('\n', '').encode('UTF-8')
-
+		連線.settimeout(等待)
+		try:
+			連線.connect((主機, 連接埠))
+		except:
+			raise RuntimeError("連線逾時")
+		資料 = self.傳去格式頭前.format(編碼, 帳號, 密碼).replace('\n', '').encode(編碼)\
+			+ 語句.encode(編碼)\
+			+ self.傳去格式後壁.encode(編碼)
+# 		資料 = self.傳去格式.format(編碼,帳號, 密碼,語句).replace('\n', '').encode(編碼)
+		print('送出', 資料)
 		已經送出去 = 0
 		while 已經送出去 < len(資料):
 			這擺送出去 = 連線.send(資料[已經送出去:])
 			if 這擺送出去 == 0:
 				raise RuntimeError("連線出問題")
 			已經送出去 += 這擺送出去
-
 		全部收著資料 = b''
 		走 = True
 		while 走:
@@ -53,7 +61,8 @@ class 官方斷詞工具:
 			if b'</wordsegmentation>' in 全部收著資料:
 				走 = False
 		連線.close()
-		全部收著字串 = 全部收著資料.decode('UTF-8')
+		全部收著字串 = 全部收著資料.decode(編碼)
+		print('收著', 全部收著字串)
 		收著結果 = self.檢查結果.search(全部收著字串)
 		結果 = [[]]
 		if 收著結果 != None:
@@ -74,7 +83,7 @@ class 官方斷詞工具:
 		if 狀況 != None:
 # 			<processstatus code="1">Service internal error</processstatus>
 # 			<processstatus code="2">XML format error</processstatus>
-# 			<processstatus code="3">Authentication failed</processstatus> 
+# 			<processstatus code="3">Authentication failed</processstatus>
 			raise RuntimeError(狀況[1])
 		raise RuntimeError('回傳的資料有問題！！')
 	傳去格式頭前 = '''
@@ -96,7 +105,8 @@ class 官方斷詞工具:
 '''
 
 if __name__ == '__main__':
-	斷詞工具 = 官方斷詞工具()
-	print(斷詞工具.斷詞('我想吃飯。我想吃很多飯。'))
-	print(斷詞工具.斷詞('我想吃飯。我想吃很多飯>。'))
-	print(斷詞工具.斷詞('我想) :>'))
+	斷詞剖析工具 = 官方斷詞剖析工具()
+	print(斷詞剖析工具.斷詞('我想吃飯。我想吃很多飯。'))
+	print(斷詞剖析工具.剖析('我想吃飯。我想吃很多飯。'))
+# 	print(斷詞剖析工具.斷詞('我想吃飯。我想吃很多飯>。'))
+# 	print(斷詞剖析工具.斷詞('我想) :>'))
