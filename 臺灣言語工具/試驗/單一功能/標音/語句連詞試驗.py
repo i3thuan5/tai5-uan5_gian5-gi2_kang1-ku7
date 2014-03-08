@@ -38,7 +38,7 @@ class 語句連詞試驗(TestCase):
 		self.我請你音 = 'gua2 tshiann2 li2'
 		self.我請你物件 = self.分析器.產生對齊組(self.我請你型, self.我請你音)
 		self.你請我型 = '你請我'
-		self.你請我音 = 'gua2 tshiann2 li2'
+		self.你請我音 = 'li2 tshiann2 gua2'
 		self.你請我物件 = self.分析器.產生對齊組(self.你請我型, self.你請我音)
 		self.出去型 = '出去'
 		self.出去音 = 'tshut4-0khi3'
@@ -93,11 +93,16 @@ class 語句連詞試驗(TestCase):
 		self.assertEqual(連詞.數量([None]), [4])
 		連詞.看(self.你請我物件)
 		self.assertEqual(連詞.總數(), [21, 16, 11])
-		self.assertEqual(連詞.數量([None] + self.我請你物件.內底詞 + [None]), [4, 3, 2])
+		self.assertEqual(連詞.數量(self.我請你物件.內底詞), [4, 2, 2])
+		self.assertEqual(連詞.機率(self.我請你物件.內底詞),
+			[log10(4 / 21), log10(2 / 16), log10(2 / 11)])
+		self.assertEqual(連詞.條件(self.我請你物件.內底詞),
+			[log10(4 / 21), log10(2 / 3), log10(2 / 2)])
+		self.assertEqual(連詞.數量([None] + self.我請你物件.內底詞 + [None]), [5, 3, 2])
 		self.assertEqual(連詞.機率([None] + self.我請你物件.內底詞 + [None]),
-			[log10(4 / 21), log10(3 / 16), log10(2 / 11)])
+			[log10(5 / 21), log10(3 / 16), log10(2 / 11)])
 		self.assertEqual(連詞.條件([None] + self.我請你物件.內底詞 + [None]),
-			[log10(4 / 21), log10(3 / 4), log10(2 / 2)])
+			[log10(5 / 21), log10(3 / 4), log10(2 / 2)])
 		self.assertEqual(連詞.數量([None]), [5])
 		
 	def test_長句(self):
@@ -132,11 +137,11 @@ class 語句連詞試驗(TestCase):
 			[log10(2 / 27)])
 		
 		連詞.看(self.我請你物件)
-		self.assertEqual(連詞.數量([None, self.你物件]), [4, 4])
+		self.assertEqual(連詞.數量([None, self.你物件]), [5, 4])
 		self.assertEqual(連詞.機率([None, self.你物件]),
-			[log10(4 / 32), log10(4 / 27), ])
+			[log10(5 / 32), log10(4 / 27), ])
 		self.assertEqual(連詞.條件([None, self.你物件]),
-			[log10(4 / 32), log10(4 / 5), ])
+			[log10(5 / 32), log10(4 / 5), ])
 		
 	def test_看物件時愛先斷句(self):
 		兩句連詞 = 語句連詞(3)
@@ -161,4 +166,4 @@ class 語句連詞試驗(TestCase):
 		self.assertEqual(孤句連詞.機率(self.我請你物件.內底詞),
 			兩句連詞.機率(self.我請你物件.內底詞))
 		self.assertEqual(孤句連詞.條件(self.我請你物件.內底詞),
-			兩句連詞.機率(self.我請你物件.內底詞))
+			兩句連詞.條件(self.我請你物件.內底詞))

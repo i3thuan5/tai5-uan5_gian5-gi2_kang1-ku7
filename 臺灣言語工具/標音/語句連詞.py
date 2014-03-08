@@ -53,6 +53,20 @@ class 語句連詞(TestCase):
 			else:
 				機率表.append(log10(數 / 總))
 		return 機率表
+	def 條件(self, 連詞):
+		'''條件機率'''
+		數量表 = self.數量(連詞)
+		前數量表 = self.數量(連詞[:-1])
+		條件表 = []
+		print('數量表',數量表)
+		print('前數量表',前數量表,self.總數表[:1],)
+		for 數, 前 in zip(數量表, self.總數表[:1] + 前數量表):
+# 			if 數 == self.無看過:
+			if 數 == 0:
+				條件表.append(self.無看過)
+			else:
+				條件表.append(log10(數 / 前))
+		return 條件表
 	def 看(self, 物件):
 		if isinstance(物件, 章):
 			self.看章物件(物件)
