@@ -29,6 +29,7 @@ from 臺灣言語工具.標音.語句連詞 import 語句連詞
 from 臺灣言語工具.標音.動態規劃標音 import 動態規劃標音
 
 class 動態規劃標音試驗(TestCase):
+	忍受 = 1e-10
 	def setUp(self):
 		self.分析器 = 拆文分析器()
 		self.連詞 = 語句連詞(3)
@@ -69,19 +70,19 @@ class 動態規劃標音試驗(TestCase):
 		self.連詞.看(self.我有一張桌仔)
 		標好, 分數 = self.標音.標音(self.連詞, self.我)
 		self.assertEqual(標好, self.我)
-		self.assertEqual(分數, self.標音.評分(self.連詞, self.我))
+		self.assertAlmostEqual(分數, self.標音.評分(self.連詞, self.我), delta = self.忍受)
 		標好, 分數 = self.標音.標音(self.連詞, self.桌仔)
 		self.assertEqual(標好, self.桌仔)
-		self.assertEqual(分數, self.標音.評分(self.連詞, self.桌仔))
+		self.assertAlmostEqual(分數, self.標音.評分(self.連詞, self.桌仔), delta = self.忍受)
 		標好, 分數 = self.標音.標音(self.連詞, self.我有一張桌仔)
 		self.assertEqual(標好, self.我有一張桌仔)
-		self.assertEqual(分數, self.標音.評分(self.連詞, self.我有一張桌仔))
+		self.assertAlmostEqual(分數, self.標音.評分(self.連詞, self.我有一張桌仔), delta = self.忍受)
 
 	def test_看機率選詞(self):
 		我 = self.分析器.產生對齊集('我', 'gua2')
 		的 = self.分析器.產生對齊組('的', 'e5')
 		鞋 = self.分析器.產生對齊組('鞋', 'e5')
-		仔 = self.分析器.產生對齊集('仔', 'ia2')
+		仔 = self.分析器.產生對齊集('仔', 'a2')
 		e5_鞋的 = 集([鞋, 的, ])
 		我_e5_e5_仔_鞋的 = 句([我, e5_鞋的, e5_鞋的, 仔])
 		e5_的鞋 = 集([的, 鞋, ])
@@ -89,14 +90,18 @@ class 動態規劃標音試驗(TestCase):
 		我鞋鞋仔 = 句([我, 集([鞋, ]), 集([鞋, ]), 仔])
 		我的鞋仔 = 句([我, 集([的, ]), 集([鞋, ]), 仔])
 		self.連詞.看(self.分析器.產生對齊句('我穿布鞋。', 'gua2 tshng1 poo3 e5.'))
-		self.連詞.看(self.分析器.產生對齊句('我鞋仔歹去矣。', 'gua2 e5-a2 phainn2-0khi3 0ah4.'))
+		self.連詞.看(self.分析器.產生對齊句('我鞋仔歹去矣。', 'gua2 e5 a2 phainn2-0khi3 0ah4.'))
+		我的 = [self.分析器.產生對齊詞('我', 'gua2'), self.分析器.產生對齊詞('的', 'e5')]
+		self.assertEqual(self.連詞.數量(我的), [0, 0])
+		我鞋 = [self.分析器.產生對齊詞('我', 'gua2'), self.分析器.產生對齊詞('鞋', 'e5')]
+		self.assertEqual(self.連詞.數量(我鞋), [2, 1])
 		鞋的結果, 鞋的分數 = self.標音.標音(self.連詞, 我_e5_e5_仔_鞋的)
 		的鞋結果, 的鞋分數 = self.標音.標音(self.連詞, 我_e5_e5_仔_的鞋)
 		self.assertEqual(鞋的結果, 我鞋鞋仔)
 		self.assertEqual(的鞋結果, 鞋的結果)
 		self.assertLess(鞋的分數, 0.0)
 		self.assertEqual(鞋的分數, 的鞋分數)
-		self.連詞.看(self.分析器.產生對齊句('我的冊佇你遐。', 'gua2	 e5 tsheh4 ti7 li2 hia1.'))
+		self.連詞.看(self.分析器.產生對齊句('我的冊佇你遐。', 'gua2 e5 tsheh4 ti7 li2 hia1.'))
 		鞋的結果, 鞋的分數 = self.標音.標音(self.連詞, 我_e5_e5_仔_鞋的)
 		的鞋結果, 的鞋分數 = self.標音.標音(self.連詞, 我_e5_e5_仔_的鞋)
 		self.assertEqual(鞋的結果, 我鞋鞋仔)

@@ -23,8 +23,9 @@ from 臺灣言語工具.字詞組集句章.基本元素.詞 import 詞
 from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 from 臺灣言語工具.字詞組集句章.解析整理工具.詞物件網仔 import 詞物件網仔
 from 臺灣言語工具.字詞組集句章.基本元素.章 import 章
-from math import log10
 from 臺灣言語工具.字詞組集句章.解析整理工具.參數錯誤 import 參數錯誤
+from math import log10
+from math import pow
 
 class 語句連詞(TestCase):
 	# 無看過的詞的出現機率，佮srilm仝款當做負的無限
@@ -42,6 +43,7 @@ class 語句連詞(TestCase):
 		數量表 = []
 		for 長度 in range(min(self.上濟詞數, len(連詞))):
 			組合 = tuple(連詞[-1 - 長度:])
+			print('組合',組合)
 			if 組合 in self.連詞表:
 				數量表.append(self.連詞表[組合])
 			else:
@@ -54,7 +56,7 @@ class 語句連詞(TestCase):
 			if 數 == 0:
 				機率表.append(self.無看過)
 			else:
-				機率表.append(log10(數 / 總))
+				機率表.append(self.對數(數 / 總))
 		return 機率表
 	def 條件(self, 連詞):
 		'''條件機率'''
@@ -67,7 +69,7 @@ class 語句連詞(TestCase):
 			if 數 == 0:
 				條件表.append(self.無看過)
 			else:
-				條件表.append(log10(數 / 前))
+				條件表.append(self.對數(數 / 前))
 # 		print('條件表',條件表)
 		return 條件表
 	def 看(self, 物件):
@@ -84,8 +86,14 @@ class 語句連詞(TestCase):
 				else:
 					self.連詞表[組合] += 1
 		self.連詞表[(None,)] -= 1
+		print ('self.連詞表',self.連詞表)
+		print ('看　物件',物件)
 		return
 	def 看章物件(self, 章物件):
 		for 句物件 in 章物件.內底句:
 			self.看(句物件)
 		return
+	def 對數(self, 數字):
+		return log10(數字)
+	def 指數(self, 數字):
+		return pow(10.0, 數字)
