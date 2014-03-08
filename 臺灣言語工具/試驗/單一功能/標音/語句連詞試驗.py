@@ -23,6 +23,7 @@ from 臺灣言語工具.字詞組集句章.基本元素.詞 import 詞
 from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
 from math import log10
 from 臺灣言語工具.標音.語句連詞 import 語句連詞
+from 臺灣言語工具.字詞組集句章.解析整理工具.參數錯誤 import 參數錯誤
 
 class 語句連詞試驗(TestCase):
 	def setUp(self):
@@ -167,3 +168,14 @@ class 語句連詞試驗(TestCase):
 			兩句連詞.機率(self.我請你物件.內底詞))
 		self.assertEqual(孤句連詞.條件(self.我請你物件.內底詞),
 			兩句連詞.條件(self.我請你物件.內底詞))
+
+	def test_零連詞(self):
+		self.assertRaises(參數錯誤, 語句連詞, 0)
+		self.assertRaises(參數錯誤, 語句連詞, -5)
+
+	def test_看零連詞(self):
+		連詞 = 語句連詞(5)
+		self.assertEqual(連詞.總數(), [0,0,0,0,0])
+		self.assertEqual(連詞.數量([]), [])
+		self.assertEqual(連詞.機率([]),[])
+		self.assertEqual(連詞.條件([]),[])

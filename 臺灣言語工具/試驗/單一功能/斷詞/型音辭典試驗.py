@@ -21,10 +21,12 @@ from 臺灣言語工具.字詞組集句章.解析整理工具.拆文分析器 im
 from 臺灣言語工具.斷詞.型音辭典 import 型音辭典
 from 臺灣言語工具.字詞組集句章.基本元素.詞 import 詞
 from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
+from 臺灣言語工具.字詞組集句章.解析整理工具.參數錯誤 import 參數錯誤
 
 class 型音辭典試驗(TestCase):
+	辭典型態=型音辭典
 	def setUp(self):
-		self.字典 = 型音辭典(4)
+		self.字典 = self.辭典型態(4)
 		self.粗胚工具 = 文章粗胚工具()
 		self.分析器 = 拆文分析器()
 		self.孤詞物 = self.分析器.建立詞物件('你')
@@ -89,3 +91,7 @@ class 型音辭典試驗(TestCase):
 
 	def test_長度零的詞愛錯誤(self):
 		self.assertRaises(解析錯誤, self.字典.加詞, 詞())
+		
+	def test_零連詞(self):
+		self.assertRaises(參數錯誤, self.辭典型態, 0)
+		self.assertRaises(參數錯誤, self.辭典型態, -10)

@@ -1,5 +1,5 @@
 """
-著作權所有 (C) 民國102年 意傳文化科技
+著作權所有 (C) 民國103年 意傳文化科技
 開發者：薛丞宏
 網址：http://意傳.台灣
 語料來源：請看各資料庫內說明
@@ -15,8 +15,8 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-from 臺灣言語工具.試驗.單一功能.斷詞.型音辭典試驗 import 型音辭典試驗
-from 臺灣言語工具.斷詞.現掀辭典 import 現掀辭典
-
-class 現掀辭典試驗(型音辭典試驗):
-	辭典型態=現掀辭典
+class 參數錯誤(TypeError):
+	def __init__(self, value):
+		self.value = value
+	def __str__(self):
+		return repr(self.value)
