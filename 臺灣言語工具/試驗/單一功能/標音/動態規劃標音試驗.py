@@ -171,16 +171,18 @@ class 動態規劃標音試驗(TestCase):
 		集物件 = self.分析器.建立集物件('')
 		句物件 = self.分析器.建立句物件('')
 		章物件 = self.分析器.建立章物件('')
-		全部分數 = []
-		for 物件 in [詞物件, 組物件, 句物件, 章物件]:
+		結果, 分數, 詞數 = self.標音.標音(self.連詞, 詞物件)
+		全部分數 = {}
+		for 物件, 詞數答案 in zip([詞物件, 組物件, 句物件, 章物件], [3, 2, 2, 0]):
 			結果, 分數, 詞數 = self.標音.標音(self.連詞, 物件)
-			全部分數.append(分數)
 			self.assertEqual(結果, 物件)
-			self.assertEqual(全部分數[0], 分數)
-			self.assertEqual(詞數, 0)
+			print(type(物件), 詞數, 分數)
+			self.assertEqual(詞數, 詞數答案)
+			if 詞數 not in 全部分數:
+				全部分數[詞數] = 分數
+			self.assertEqual(分數, 全部分數[詞數])
 		self.assertRaises(解析錯誤, self.標音.標音, self.連詞, 集物件,)
 
 	def test_標有空的集合(self):
 		我_你 = 句([self.分析器.建立集物件('我'), self.分析器.建立集物件(''), self.分析器.建立集物件('你')])
 		self.assertRaises(解析錯誤, self.標音.標音, self.連詞, 我_你)
-

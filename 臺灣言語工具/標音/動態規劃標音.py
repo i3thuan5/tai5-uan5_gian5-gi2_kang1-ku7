@@ -50,8 +50,8 @@ class 動態規劃標音(TestCase):
 		if isinstance(物件, 集):
 			句物件 = 句()
 			句物件.內底集.append(物件)
-			標好句物件, 上好分數 = self.標句物件音(連詞, 句物件)
-			return (標好句物件.內底集[0], 上好分數)
+			標好句物件, 上好分數 , 詞數 = self.標句物件音(連詞, 句物件)
+			return (標好句物件.內底集[0], 上好分數, 詞數)
 		if isinstance(物件, 句):
 			return self.標句物件音(連詞, 物件)
 		if isinstance(物件, 章):
@@ -60,7 +60,7 @@ class 動態規劃標音(TestCase):
 
 	def 標字詞組物件音(self, 連詞, 物件):
 # 		return (物件, self.評分(連詞, 物件),)
-		return (物件, self.評分(連詞, 物件), len(self.__網仔.網出詞物件(物件) + 2))
+		return (物件, self.評分(連詞, 物件), len(self.__網仔.網出詞物件(物件)) + 2)
 
 	def 標章物件音(self, 連詞, 章物件):
 		標好章物件 = 章()
