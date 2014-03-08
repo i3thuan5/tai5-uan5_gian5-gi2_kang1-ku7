@@ -40,12 +40,21 @@ class 動態規劃標音(TestCase):
 			分數 += self.感覺(連詞, 詞陣列[max(0, 所在 - 連詞.上濟詞數):所在])
 		return 分數 - log10(len(詞陣列) + 2)
 
-	def 標音(self, 連詞, 語句):
-		pass
-
 	def 感覺(self, 連詞, 語句):
-		機率 = 連詞.機率(語句)
+		條件 = 連詞.條件(語句)
 		分數 = self.基本
-		for 分, 權 in zip(機率, self.權重):
+		for 分, 權 in zip(條件, self.權重):
 			分數 += pow(10.0, 分) * 權
 		return log10(分數)
+
+	def 標音(self, 連詞, 物件):
+		if isinstance(物件, 章):
+			self.標章物件音(物件)
+			return
+		pass
+
+	def 標章物件音(self, 章物件):
+		標好章物件 = 章()
+		for 句物件 in 章物件.內底句:
+			標好章物件.內底句.append(self.標音(句物件))
+		return 標好章物件

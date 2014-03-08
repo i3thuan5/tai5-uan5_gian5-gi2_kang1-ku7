@@ -34,10 +34,12 @@ class 動態規劃標音試驗(TestCase):
 		self.連詞 = 語句連詞(3)
 		self.標音 = 動態規劃標音()
 
-		self.我有一張椅仔 = self.分析器.產生對齊句(
-			'我有一張椅仔！！', 'gua2 u7 tsit8-tiunn1 i2-a2!!')
+		self.我有一張桌仔 = self.分析器.產生對齊句(
+			'我有一張桌仔！', 'gua2 u7 tsit8-tiunn1 toh4-a2!')
 		self.桌仔垃圾 = self.分析器.產生對齊句(
 			'桌仔垃圾！？', 'toh4-a2 lap4-sap4!?')
+		self.我有一張椅仔 = self.分析器.產生對齊句(
+			'我有一張椅仔！', 'gua2 u7 tsit8-tiunn1 i2-a2!')
 		self.椅仔 = self.分析器.產生對齊句(
 			'椅仔。', 'i2-a2.')
 		self.桌仔 = self.分析器.產生對齊句(
@@ -77,7 +79,7 @@ class 動態規劃標音試驗(TestCase):
 		self.assertEqual(鞋的分數, 的鞋分數)
 
 	def test_頭中尾詞比較(self):
-		self.連詞.看(self.我有一張椅仔)
+		self.連詞.看(self.我有一張桌仔)
 		self.連詞.看(self.桌仔垃圾)
 		self.assertLess(self.標音.評分(self.連詞, self.桌仔), 0.0)
 		self.assertLess(self.標音.評分(self.連詞, self.椅仔), self.標音.評分(self.連詞, self.桌仔))
