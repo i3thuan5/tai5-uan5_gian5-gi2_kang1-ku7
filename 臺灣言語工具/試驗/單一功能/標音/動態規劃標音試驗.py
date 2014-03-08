@@ -46,6 +46,8 @@ class 動態規劃標音試驗(TestCase):
 			'桌仔。', 'toh4-a2.')
 		self.柴 = self.分析器.產生對齊句(
 			'柴！', 'tsha5!')
+		self.我 = self.分析器.產生對齊句(
+			'我', 'gua2')
 
 	def tearDown(self):
 		pass
@@ -65,12 +67,15 @@ class 動態規劃標音試驗(TestCase):
 
 	def test_標音的分數愛佮評分仝款(self):
 		self.連詞.看(self.我有一張桌仔)
-		標好, 分數 = self.標音.標音(self.連詞, self.我有一張桌仔)
-		self.assertEqual(標好, self.我有一張桌仔)
-		self.assertEqual(分數, self.標音.評分(self.連詞, self.我有一張桌仔))
+		標好, 分數 = self.標音.標音(self.連詞, self.我)
+		self.assertEqual(標好, self.我)
+		self.assertEqual(分數, self.標音.評分(self.連詞, self.我))
 		標好, 分數 = self.標音.標音(self.連詞, self.桌仔)
 		self.assertEqual(標好, self.桌仔)
 		self.assertEqual(分數, self.標音.評分(self.連詞, self.桌仔))
+		標好, 分數 = self.標音.標音(self.連詞, self.我有一張桌仔)
+		self.assertEqual(標好, self.我有一張桌仔)
+		self.assertEqual(分數, self.標音.評分(self.連詞, self.我有一張桌仔))
 
 	def test_看機率選詞(self):
 		我 = self.分析器.產生對齊集('我', 'gua2')
