@@ -25,11 +25,27 @@ from 臺灣言語工具.字詞組集句章.基本元素.集 import 集
 from 臺灣言語工具.字詞組集句章.基本元素.句 import 句
 from 臺灣言語工具.字詞組集句章.基本元素.章 import 章
 from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
+from 臺灣言語工具.字詞組集句章.解析整理工具.詞物件網仔 import 詞物件網仔
+from math import log10
+from math import pow
 
 class 動態規劃標音(TestCase):
+	__網仔 = 詞物件網仔()
+	基本 = 0.02
+	權重 = [0.08, 0.20, 0.70]
 	def 評分(self, 連詞, 語句):
-		pass
+		詞陣列 = [None] + self.__網仔.網出詞物件(語句) + [None]
+		分數 = 0
+		for 所在 in range(1, len(詞陣列) + 1):
+			分數 += self.感覺(連詞, 詞陣列[max(0, 所在 - 連詞.上濟詞數):所在])
+		return 分數 - log10(len(詞陣列) + 2)
 
 	def 標音(self, 連詞, 語句):
 		pass
 
+	def 感覺(self, 連詞, 語句):
+		機率 = 連詞.機率(語句)
+		分數 = self.基本
+		for 分, 權 in zip(機率, self.權重):
+			分數 += pow(10.0, 分) * 權
+		return log10(分數)

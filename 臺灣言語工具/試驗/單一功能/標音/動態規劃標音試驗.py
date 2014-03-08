@@ -37,7 +37,7 @@ class 動態規劃標音試驗(TestCase):
 		self.我有一張椅仔 = self.分析器.產生對齊句(
 			'我有一張椅仔！！', 'gua2 u7 tsit8-tiunn1 i2-a2!!')
 		self.桌仔垃圾 = self.分析器.產生對齊句(
-			'桌仔垃圾！！', 'toh4-a2 lap4-sap4!!')
+			'桌仔垃圾！？', 'toh4-a2 lap4-sap4!?')
 		self.椅仔 = self.分析器.產生對齊句(
 			'椅仔。', 'i2-a2.')
 		self.桌仔 = self.分析器.產生對齊句(
@@ -59,8 +59,8 @@ class 動態規劃標音試驗(TestCase):
 		我_e5_e5_仔_的鞋 = 句([我, e5_的鞋, e5_的鞋, 仔])
 		self.連詞.看(self.分析器.產生對齊句('我穿布鞋。', 'gua2 tshng1 poo3 e5.'))
 		self.連詞.看(self.分析器.產生對齊句('我鞋仔歹去矣。', 'gua2 e5-a2 phainn2-0khi3 0ah4.'))
-		鞋的結果, 鞋的分數 = self.標音.self.標音(self.連詞, 我_e5_e5_仔_鞋的)
-		的鞋結果, 的鞋分數 = self.標音.self.標音(self.連詞, 我_e5_e5_仔_的鞋)
+		鞋的結果, 鞋的分數 = self.標音.標音(self.連詞, 我_e5_e5_仔_鞋的)
+		的鞋結果, 的鞋分數 = self.標音.標音(self.連詞, 我_e5_e5_仔_的鞋)
 		self.assertEqual(鞋的結果, '我鞋鞋仔')
 		self.assertEqual(的鞋結果, 鞋的結果)
 		self.assertLess(鞋的分數, 0.0)
