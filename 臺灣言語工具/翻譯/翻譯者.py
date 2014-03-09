@@ -19,7 +19,7 @@ from 臺灣言語工具.資料庫.查資料庫 import 查資料庫
 from 臺灣言語工具.字詞組集句章.基本元素.集 import 集
 from 臺灣言語工具.字詞組集句章.基本元素.句 import 句
 from 臺灣言語工具.字詞組集句章.基本元素.章 import 章
-from 臺灣言語工具.字詞組集句章.解析整理工具.物件譀鏡 import 物件譀鏡
+from 臺灣言語工具.字詞組集句章.解析整理.物件譀鏡 import 物件譀鏡
 import Pyro4
 
 class 翻譯者():

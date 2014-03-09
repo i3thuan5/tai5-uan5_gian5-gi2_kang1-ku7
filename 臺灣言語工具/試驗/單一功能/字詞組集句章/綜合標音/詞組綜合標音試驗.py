@@ -16,8 +16,8 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import unittest
-from 臺灣言語工具.字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
-from 臺灣言語工具.字詞組集句章.解析整理工具.文章粗胚工具 import 文章粗胚工具
+from 臺灣言語工具.字詞組集句章.解析整理.拆文分析器 import 拆文分析器
+from 臺灣言語工具.字詞組集句章.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.字詞組集句章.基本元素.字 import 字
 from 臺灣言語工具.字詞組集句章.基本元素.詞 import 詞
 from 臺灣言語工具.字詞組集句章.基本元素.組 import 組
@@ -28,7 +28,7 @@ from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 無�
 class 詞組綜合標音試驗(unittest.TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
-		self.粗胚工具 = 文章粗胚工具()
+		self.粗胚 = 文章粗胚()
 	def tearDown(self):
 		pass
 	def test_基本試驗(self):

@@ -16,18 +16,18 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import unittest
-from 臺灣言語工具.字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
+from 臺灣言語工具.字詞組集句章.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.字詞組集句章.基本元素.集 import 集
-from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
-from 臺灣言語工具.字詞組集句章.解析整理工具.型態錯誤 import 型態錯誤
-from 臺灣言語工具.字詞組集句章.解析整理工具.文章粗胚工具 import 文章粗胚工具
+from 臺灣言語工具.字詞組集句章.解析整理.解析錯誤 import 解析錯誤
+from 臺灣言語工具.字詞組集句章.解析整理.型態錯誤 import 型態錯誤
+from 臺灣言語工具.字詞組集句章.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.字詞組集句章.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
-from 臺灣言語工具.字詞組集句章.解析整理工具.詞物件網仔 import 詞物件網仔
+from 臺灣言語工具.字詞組集句章.解析整理.詞物件網仔 import 詞物件網仔
 
 class 詞物件網仔試驗(unittest.TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
-		self.粗胚工具 = 文章粗胚工具()
+		self.粗胚 = 文章粗胚()
 		self.網仔 = 詞物件網仔()
 	def tearDown(self):
 		pass
@@ -101,8 +101,8 @@ class 詞物件網仔試驗(unittest.TestCase):
 # 		原來語句 = 'gua2 u7 tsit8-tiunn1 i2-a2'
 # 		處理好語句 = 'gua2 u7 tsit8-tiunn1 i2-a2'
 # 		加空白後語句 = 'gua2 u7 tsit8-tiunn1 i2-a2'
-# 		self.assertEqual(self.粗胚工具.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
-# 		self.assertEqual(self.粗胚工具.符號邊仔加空白(處理好語句), 加空白後語句)
+# 		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
+# 		self.assertEqual(self.粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
 # 		切好語句 = ['gua2', 'u7', 'tsit8-tiunn1', 'i2-a2']
 # 		組物件, 詞陣列 = self.建立組檢查(處理好語句, 切好語句)
 # 		self.assertEqual(self.網仔.網出字物件(組物件), 詞陣列)
@@ -111,8 +111,8 @@ class 詞物件網仔試驗(unittest.TestCase):
 # 		原來語句 = 'mi2-kiann7 boo5-0ki3 ah!'
 # 		處理好語句 = 'mi2-kiann7 boo5-0ki3 ah!'
 # 		加空白後語句 = 'mi2-kiann7 boo5-0ki3 ah ! '
-# 		self.assertEqual(self.粗胚工具.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
-# 		self.assertEqual(self.粗胚工具.符號邊仔加空白(處理好語句), 加空白後語句)
+# 		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
+# 		self.assertEqual(self.粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
 # 		切好語句 = ['mi2-kiann7', 'boo5-0ki3', 'ah', '!']
 # 		組物件, 詞陣列 = self.建立組檢查(處理好語句, 切好語句)
 # 		self.assertEqual(self.網仔.網出字物件(組物件), 詞陣列)

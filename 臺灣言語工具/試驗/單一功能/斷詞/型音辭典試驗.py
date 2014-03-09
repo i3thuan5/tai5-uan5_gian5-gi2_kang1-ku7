@@ -16,18 +16,18 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 from unittest.case import TestCase
-from 臺灣言語工具.字詞組集句章.解析整理工具.文章粗胚工具 import 文章粗胚工具
-from 臺灣言語工具.字詞組集句章.解析整理工具.拆文分析器 import 拆文分析器
+from 臺灣言語工具.字詞組集句章.解析整理.文章粗胚 import 文章粗胚
+from 臺灣言語工具.字詞組集句章.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.斷詞.型音辭典 import 型音辭典
 from 臺灣言語工具.字詞組集句章.基本元素.詞 import 詞
-from 臺灣言語工具.字詞組集句章.解析整理工具.解析錯誤 import 解析錯誤
-from 臺灣言語工具.字詞組集句章.解析整理工具.參數錯誤 import 參數錯誤
+from 臺灣言語工具.字詞組集句章.解析整理.解析錯誤 import 解析錯誤
+from 臺灣言語工具.字詞組集句章.解析整理.參數錯誤 import 參數錯誤
 
 class 型音辭典試驗(TestCase):
 	辭典型態=型音辭典
 	def setUp(self):
 		self.字典 = self.辭典型態(4)
-		self.粗胚工具 = 文章粗胚工具()
+		self.粗胚 = 文章粗胚()
 		self.分析器 = 拆文分析器()
 		self.孤詞物 = self.分析器.建立詞物件('你')
 		self.孤詞音 = self.分析器.建立詞物件('li2')

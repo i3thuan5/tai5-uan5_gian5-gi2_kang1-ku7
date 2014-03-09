@@ -17,7 +17,7 @@
 """
 from http.server import HTTPServer
 import Pyro4
-from 臺灣言語工具.字詞組集句章.解析整理工具.物件譀鏡 import 物件譀鏡
+from 臺灣言語工具.字詞組集句章.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.資料庫.欄位資訊 import 國語臺員腔
 from 臺灣言語工具.資料庫.查資料庫 import 查資料庫
 from 臺灣言語工具.翻譯.翻譯者 import 翻譯者
