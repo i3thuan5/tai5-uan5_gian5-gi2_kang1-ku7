@@ -16,5 +16,5 @@
 # 感謝您的使用與推廣～～勞力！承蒙！
 #-------------------------------------------------------------------------------
 #!/bin/bash
-export PYRO_SERIALIZERS_ACCEPTED=serpent,json,marshal,pickle
-/usr/bin/python3 -Wignore -m Pyro4.naming
+#export PYRO_SERIALIZERS_ACCEPTED=serpent,json,marshal,pickle
+PYRO_SERIALIZERS_ACCEPTED=serpent,json,marshal,pickle /usr/bin/python3 -Wignore -m Pyro4.naming
