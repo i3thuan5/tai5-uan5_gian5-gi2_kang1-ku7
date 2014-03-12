@@ -615,6 +615,16 @@ class 拆文分析器試驗(unittest.TestCase):
 			self.分析器.產生對齊詞('！', '!'),
 			])
 		self.assertEqual(組物件, self.分析器.產生對齊組(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 型), 處理好詞音))
+		
+	def test_對齊組分字符號(self):
+		型 = '-'
+		原來音 = '-'
+		處理好音 = ' - '
+		加空白後音 = ' - '
+		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來音), 處理好音)
+		self.assertEqual(self.粗胚.符號邊仔加空白(處理好音), 加空白後音)
+		組物件 = self.分析器.產生對齊組(型, 加空白後音)
+		self.assertEqual(組物件.內底詞, [self.分析器.產生對齊詞(型, 加空白後音)])
 
 	def test_對齊集濟字(self):
 		型 = '我有一張椅仔！'
