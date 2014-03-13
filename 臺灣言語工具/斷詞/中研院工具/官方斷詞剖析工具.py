@@ -26,10 +26,31 @@ class 官方斷詞剖析工具:
 	分詞性 = re.compile('(.*)\((.*)\)')
 	回傳狀況 = re.compile('<processstatus code="\d">(.*?)</processstatus>')
 	def 斷詞(self, 語句, 編碼 = 'UTF-8', 等待 = 1, 主機 = '140.109.19.104', 連接埠 = 1501, 帳號 = 'ihcaoe', 密碼 = 'aip1614'):
-		return self.連線(語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
+		逐逝=self.連線(語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
+		結果 = [[]]
+		for 一逝 in 逐逝:
+			逝結果 = []
+			for 詞 in 一逝.split('　'):
+				if 詞 == '':
+					continue
+				字, 性 = self.分詞性.split(詞)[1:3]
+				逝結果.append((字, 性))
+			if 逝結果==[]:
+				結果.append([])
+			else:
+				結果[-1].append(逝結果)
+		return 結果
 	
 	def 剖析(self, 語句, 編碼 = 'Big5', 等待 = 3, 主機 = '140.109.19.112', 連接埠 = 8000, 帳號 = 'ihcaoe', 密碼 = 'aip1614'):
-		return self.連線(語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
+		#官方功能無記錄原本換逝資訊，所以愛一逐一擺
+		結果 = []
+		for 一逝 in 語句.split('\n'):
+			愛剖逝=一逝.strip()
+			if 愛剖逝=='':
+				continue
+			剖的結果=self.連線(愛剖逝, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
+			結果.append(剖的結果)
+		return 結果 
 	
 	def 連線(self, 語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼):
 		連線 = socket(
@@ -57,28 +78,15 @@ class 官方斷詞剖析工具:
 			if 這擺收著資料 == b'':
 				raise RuntimeError("連線出問題")
 			全部收著資料 = 全部收著資料 + 這擺收著資料
-# 			print(re.search(b'</wordsegmentation>' ,全部收著資料))
 			if b'</wordsegmentation>' in 全部收著資料:
 				走 = False
 		連線.close()
 		全部收著字串 = 全部收著資料.decode(編碼)
 		print('收著', 全部收著字串)
 		收著結果 = self.檢查結果.search(全部收著字串)
-		結果 = [[]]
 		if 收著結果 != None:
 			逐逝 = self.分句.split(收著結果.group(1))[1::2]
-			for 一逝 in 逐逝:
-				逝結果 = []
-				for 詞 in 一逝.split('　'):
-					if 詞 == '':
-						continue
-					字, 性 = self.分詞性.split(詞)[1:3]
-					逝結果.append((字, 性))
-				if 逝結果==[]:
-					結果.append([])
-				else:
-					結果[-1].append(逝結果)
-			return 結果
+			return 逐逝
 		狀況 = self.回傳狀況.split(全部收著字串)
 		if 狀況 != None:
 # 			<processstatus code="1">Service internal error</processstatus>
