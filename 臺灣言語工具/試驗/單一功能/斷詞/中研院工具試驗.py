@@ -18,7 +18,6 @@
 import unittest
 from 臺灣言語工具.斷詞.中研院工具.官方斷詞剖析工具 import 官方斷詞剖析工具
 from 臺灣言語工具.斷詞.中研院工具.自設剖析工具 import 自設剖析工具
-from 臺灣言語工具.斷詞.中研院工具.官方剖析工具 import 官方剖析工具
 
 class 中研院工具試驗(unittest.TestCase):
 	def setUp(self):
