@@ -6,7 +6,7 @@ def 讀(檔名):
 
 setup(
     # 臺灣言語工具 tai5_uan5_gian5_gi2_kang1_ku7
-    name='臺灣言語工具',
+    name='tai5_uan5_gian5_gi2_kang1_ku7',
     packages=['臺灣言語工具'],
     version='0.1.0',
     description='臺灣語言資訊系統（Toolkit for Languages in Taiwan）',
