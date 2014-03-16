@@ -615,6 +615,34 @@ class 拆文分析器試驗(unittest.TestCase):
 			self.分析器.產生對齊詞('！', '!'),
 			])
 		self.assertEqual(組物件, self.分析器.產生對齊組(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 型), 處理好詞音))
+		
+	def test_對齊組一般符號(self):
+		型 = '。'
+		原來音 = '.'
+		處理好音 = '.'
+		加空白後音 = ' . '
+		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來音), 處理好音)
+		self.assertEqual(self.粗胚.符號邊仔加空白(處理好音), 加空白後音)
+		組物件 = self.分析器.產生對齊組(型, 加空白後音)
+		self.assertEqual(組物件.內底詞, [self.分析器.產生對齊詞(型, 原來音)])
+		self.assertEqual(self.分析器.產生對齊組(型, 原來音), 組物件)
+		
+	def test_對齊組分字符號(self):
+		型 = '-'
+		空白型 = ' - '
+		原來音 = '-'
+		處理好音 = ' - '
+		加空白後音 = ' - '
+		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來音), 處理好音)
+		self.assertEqual(self.粗胚.符號邊仔加空白(處理好音), 加空白後音)
+		組物件 = self.分析器.產生對齊組(空白型, 加空白後音)
+		self.assertEqual(組物件.內底詞, [self.分析器.產生對齊詞(型, 原來音)])
+		組物件 = self.分析器.產生對齊組(型, 加空白後音)
+		self.assertEqual(組物件.內底詞, [self.分析器.產生對齊詞(型, 原來音)])
+		組物件 = self.分析器.產生對齊組(型, 原來音)
+		self.assertEqual(組物件.內底詞, [self.分析器.產生對齊詞(型, 原來音)])
+		組物件 = self.分析器.產生對齊組(空白型, 原來音)
+		self.assertEqual(組物件.內底詞, [self.分析器.產生對齊詞(型, 原來音)])
 
 	def test_對齊集濟字(self):
 		型 = '我有一張椅仔！'
@@ -706,13 +734,13 @@ class 拆文分析器試驗(unittest.TestCase):
 		self.assertEqual(章物件, self.分析器.產生對齊章(詞型, 加空白後詞音))
 
 	def test_對齊章頭尾分詞(self):
-		答案=self.分析器.產生對齊句('點仔膠，', 'tiam2-a2-ka1,')
+		答案 = self.分析器.產生對齊句('點仔膠，', 'tiam2-a2-ka1,')
 		self.assertEqual(
-			self.分析器.產生對齊句(' 點仔膠，', 'tiam2-a2-ka1,'),答案)
+			self.分析器.產生對齊句(' 點仔膠，', 'tiam2-a2-ka1,'), 答案)
 		self.assertEqual(
-			self.分析器.產生對齊句(' 點仔膠， ', 'tiam2-a2-ka1, '),答案)
+			self.分析器.產生對齊句(' 點仔膠， ', 'tiam2-a2-ka1, '), 答案)
 		self.assertEqual(
-			self.分析器.產生對齊句(' 點 仔膠， ', ' tiam2-a2-ka1  ,'),答案)
+			self.分析器.產生對齊句(' 點 仔膠， ', ' tiam2-a2-ka1  ,'), 答案)
 		
 	def test_對齊章濟符號(self):
 		詞型 = '！！。。，。你好？'

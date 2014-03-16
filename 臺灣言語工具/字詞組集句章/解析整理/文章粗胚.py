@@ -39,6 +39,8 @@ class 文章粗胚:
 	def 建立物件語句前處理減號(self, 音標工具, 語句):
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
+		if 語句==分字符號:
+			return self.分字符號代表字
 		if 語句.startswith(分字符號 + 分字符號):
 			if self.後壁有音標無(音標工具, 語句[2:]):
 				語句 = '0' + 語句[2:]
