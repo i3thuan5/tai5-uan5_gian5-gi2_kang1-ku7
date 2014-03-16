@@ -8,7 +8,7 @@ setup(
     # 臺灣言語工具 tai5_uan5_gian5_gi2_kang1_ku7
     name='tai5_uan5_gian5_gi2_kang1_ku7',
     packages=['臺灣言語工具'],
-    version='0.1.0',
+    version='0.2.0',
     description='臺灣語言資訊系統（Toolkit for Languages in Taiwan）',
     long_description=讀('README'),
     author='薛丞宏',
@@ -16,10 +16,11 @@ setup(
     url='http://意傳.台灣/',
     download_url='https://github.com/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7',  # I'll explain this in a second
     keywords=[
-        '語料庫', '語言合成', '機器翻譯',
-        'Taiwan', 'Natural Language', 'Corpus',
-        'Text to Speech','TTS',
+        '臺灣', '語料庫', '語言合成', '機器翻譯', '斷詞',
+        'Taiwan', 'Taiwanese', 'Natural Language', 'Corpus',
+        'Text to Speech', 'TTS',
         'Machine Translateion',
+        'Word Segmentation',
         ],
     classifiers=[
         'Development Status :: 3 - Alpha',
