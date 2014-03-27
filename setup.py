@@ -1,5 +1,10 @@
-from distutils.core import setup
+'''
+tar無法度下傷長的檔案名，所以愛用zip
+python3 setup.py sdist --format=zip upload
+'''
 import os
+from distutils.core import setup
+from setuptools import find_packages
 
 def 讀(檔名):
 	return open(os.path.join(os.path.dirname(__file__), 檔名)).read()
@@ -7,8 +12,8 @@ def 讀(檔名):
 setup(
 	# 臺灣言語工具 tai5_uan5_gian5_gi2_kang1_ku7
 	name='tai5_uan5_gian5_gi2_kang1_ku7',
-	packages=['臺灣言語工具'],
-	version='0.2.0',
+	packages=find_packages(),
+	version='0.2.2',
 	description='臺灣語言資訊系統（Toolkit for Languages in Taiwan）',
 	long_description=讀('README'),
 	author='薛丞宏',
