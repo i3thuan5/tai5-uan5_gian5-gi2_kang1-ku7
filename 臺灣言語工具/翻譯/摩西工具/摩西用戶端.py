@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 import xmlrpc.client
 from 臺灣言語工具.翻譯.摩西工具.語句編碼器 import 語句編碼器

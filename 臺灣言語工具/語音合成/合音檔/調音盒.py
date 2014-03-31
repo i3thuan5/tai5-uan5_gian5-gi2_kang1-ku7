@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from tempfile import NamedTemporaryFile
 import os
 from 臺灣言語工具.系統整合.外部程式工具 import 外部程式工具

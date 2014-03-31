@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 tar無法度下傷長的檔案名，所以愛用zip
 python3 setup.py sdist --format=zip upload
