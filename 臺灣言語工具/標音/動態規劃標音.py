@@ -142,4 +142,8 @@ class 動態規劃標音(TestCase):
 		分數 = 0
 		for 所在 in range(開始的所在, len(詞陣列)):
 			分數 += self.感覺(連詞, 詞陣列[max(0, 所在 + 1 - 連詞.上濟詞數):所在 + 1])
+		try:
+			分數 += 詞陣列[-1].屬性['機率']
+		except:
+			pass
 		return 分數 / (len(詞陣列) - 開始的所在)
