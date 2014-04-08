@@ -59,7 +59,7 @@ class 動態規劃標音試驗(TestCase):
 		self.連詞.看(self.桌仔垃圾)
 		self.assertLess(self.標音.評分(self.連詞, self.桌仔), 0.0)
 		self.assertLess(self.標音.評分(self.連詞, self.椅仔), self.標音.評分(self.連詞, self.桌仔))
-		self.assertEqual(self.標音.評分(self.連詞, self.柴), self.標音.評分(self.連詞, self.桌仔))
+		self.assertAlmostEqual(self.標音.評分(self.連詞, self.柴), self.標音.評分(self.連詞, self.桌仔), delta = self.忍受)
 
 	def test_長的好句袂使輸短的爛句(self):
 		self.連詞.看(self.我有一張椅仔)
