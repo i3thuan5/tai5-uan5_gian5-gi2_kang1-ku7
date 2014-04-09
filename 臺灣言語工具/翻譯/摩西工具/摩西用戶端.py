@@ -8,13 +8,15 @@ class 摩西用戶端():
 	def __init__(self, 位址, 埠, 路徑='RPC2'):
 		網址 = self.網址格式.format(位址, 埠, 路徑)
 		self.主機 = xmlrpc.client.ServerProxy(網址)
-	def 翻譯(self, 語句, 編碼器=None):
+	def 翻譯(self, 語句, 編碼器=None, 另外參數={}):
 		if 編碼器 == None:
 			來源 = 語句
 		else:
 			來源 = 編碼器.編碼(語句)
 		參數 = {"text":來源, "align":"true", "report-all-factors":"true",
 			'nbest':0}
+		for 項目, 內容 in 另外參數.items():
+			參數[項目] = 內容
 # 218     si = params.find("sg");
 # 220     si = params.find("topt");
 # 224     si = params.find("nbest");
@@ -56,9 +58,10 @@ class 摩西用戶端():
 
 if __name__ == '__main__':
 	編碼器 = 語句編碼器()
-	用戶端 = 摩西用戶端('localhost', '8011')
+	用戶端 = 摩西用戶端('localhost', '8080')
 	語句 = "他 和 我 要 去 吃 飯 我 欲 去 食 飯 ."
-	結果 = 用戶端.翻譯(語句, 編碼器)
+	結果 = 用戶端.翻譯(語句, 編碼器, 另外參數={'nbest':3})
+	print(結果['nbest'][0]['hyp'].split())
 	print(結果)
 	if 'align' in 結果:
 		print("Phrase alignments:")
