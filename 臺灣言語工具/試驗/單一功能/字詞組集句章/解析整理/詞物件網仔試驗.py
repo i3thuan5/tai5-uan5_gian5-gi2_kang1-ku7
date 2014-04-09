@@ -39,7 +39,8 @@ class 詞物件網仔試驗(unittest.TestCase):
 		self.assertEqual(self.網仔.網出詞物件(字物件), [詞物件])
 		self.assertEqual(self.網仔.網出詞物件(詞物件), [詞物件])
 #＃＃＃＃＃＃＃
-	def test_網詞孤字(self):
+	def test_網組孤字(self):
+		raise NotImplementedError
 		型 = '媠'
 		字物件 = self.分析器.建立字物件(型)
 		詞物件 = self.分析器.建立詞物件(型)

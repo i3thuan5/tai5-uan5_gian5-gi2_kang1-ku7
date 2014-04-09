@@ -40,7 +40,7 @@ class 文章粗胚:
 	def 建立物件語句前處理減號(self, 音標工具, 語句):
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
-		if 語句==分字符號:
+		if 語句 == 分字符號:
 			return self.分字符號代表字
 		if 語句.startswith(分字符號 + 分字符號):
 			if self.後壁有音標無(音標工具, 語句[2:]):
@@ -93,6 +93,8 @@ class 文章粗胚:
 				狀態 = '一般'
 				組字式長度 = 0
 			位置 += 1
+		if 狀態 == '一般' and 語句.endswith(分字符號):
+			語句 += 分詞符號
 		return self.除掉重覆的空白(語句)
 
 	def 符號邊仔加空白(self, 語句):
@@ -113,7 +115,7 @@ class 文章粗胚:
 				組字式長度 += 1
 			if 狀態 == '一般' and 組字式長度 == 1:
 				if 語句[位置] in 聲調符號 \
-					and 位置-1>=0 and unicodedata.category(語句[位置-1]) in 統一碼羅馬字類:
+					and 位置 - 1 >= 0 and unicodedata.category(語句[位置 - 1]) in 統一碼羅馬字類:
 					pass
 				elif 語句[位置] != 分字符號 and 語句[位置] != 分詞符號 and 語句[位置] in 標點符號:
 					語句 = 語句[:位置] + '{0}{1}{0}'.format(分詞符號, 語句[位置]) + 語句[位置 + 1:]

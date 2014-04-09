@@ -206,6 +206,17 @@ class 拆文分析器試驗(unittest.TestCase):
 		組物件, 詞陣列 = self.建立組檢查(處理好語句, 切好語句)
 		self.assertEqual(組物件.內底詞, 詞陣列)
 
+	def test_建立組濟字連字號尾(self):
+		原來語句 = 'king2-tshat4 tsioh4-ue7 tsio1 sian3 -'
+		處理好語句 = 'king2-tshat4 tsioh4-ue7 tsio1 sian3 - '
+		加空白後語句 = 'king2-tshat4 tsioh4-ue7 tsio1 sian3 - '
+		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
+		self.assertEqual(self.粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
+		切好語句 = ['king2-tshat4', 'tsioh4-ue7',
+			'tsio1', 'sian3', '-']
+		組物件, 詞陣列 = self.建立組檢查(處理好語句, 切好語句)
+		self.assertEqual(組物件.內底詞, 詞陣列)
+		
 	def test_建立集孤字(self):
 		型 = '媠'
 		集物件 = self.分析器.建立集物件(型)

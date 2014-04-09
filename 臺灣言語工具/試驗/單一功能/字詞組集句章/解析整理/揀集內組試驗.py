@@ -33,6 +33,7 @@ class 揀集內組試驗(unittest.TestCase):
 	def tearDown(self):
 		pass
 	def test_章物件(self):
+		raise NotImplementedError
 		self.assertEqual(0, 1)
 # 	def test_章句集物件(self):
 # 	def test_組詞字物件(self):

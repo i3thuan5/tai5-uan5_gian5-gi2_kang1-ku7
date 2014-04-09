@@ -59,7 +59,7 @@ class 動態規劃標音試驗(TestCase):
 		self.連詞.看(self.桌仔垃圾)
 		self.assertLess(self.標音.評分(self.連詞, self.桌仔), 0.0)
 		self.assertLess(self.標音.評分(self.連詞, self.椅仔), self.標音.評分(self.連詞, self.桌仔))
-		self.assertEqual(self.標音.評分(self.連詞, self.柴), self.標音.評分(self.連詞, self.桌仔))
+		self.assertAlmostEqual(self.標音.評分(self.連詞, self.柴), self.標音.評分(self.連詞, self.桌仔), delta = self.忍受)
 
 	def test_長的好句袂使輸短的爛句(self):
 		self.連詞.看(self.我有一張椅仔)
@@ -87,12 +87,22 @@ class 動態規劃標音試驗(TestCase):
 		的 = self.分析器.產生對齊組('的', 'e5')
 		鞋 = self.分析器.產生對齊組('鞋', 'e5')
 		仔 = self.分析器.產生對齊集('仔', 'a2')
-		e5_鞋的 = 集([鞋, 的, ])
-		我_e5_e5_仔_鞋的 = 句([我, e5_鞋的, e5_鞋的, 仔])
-		e5_的鞋 = 集([的, 鞋, ])
-		我_e5_e5_仔_的鞋 = 句([我, e5_的鞋, e5_的鞋, 仔])
-		我鞋鞋仔 = 句([我, 集([鞋, ]), 集([鞋, ]), 仔])
-		我的鞋仔 = 句([我, 集([的, ]), 集([鞋, ]), 仔])
+		e5_鞋的 = 集()
+		e5_鞋的.內底組 = [鞋, 的, ]
+		我_e5_e5_仔_鞋的 = 句()
+		我_e5_e5_仔_鞋的 .內底集 = [我, e5_鞋的, e5_鞋的, 仔]
+		e5_的鞋 = 集()
+		e5_的鞋.內底組 = [的, 鞋, ]
+		我_e5_e5_仔_的鞋 = 句()
+		我_e5_e5_仔_的鞋 .內底集 = [我, e5_的鞋, e5_的鞋, 仔]
+		鞋集=集()
+		鞋集.內底組=[鞋, ]
+		的集=集()
+		的集.內底組=[的, ]
+		我鞋鞋仔 = 句()
+		我鞋鞋仔.內底集 = [我, 鞋集, 鞋集, 仔]
+		我的鞋仔 = 句()
+		我的鞋仔.內底集 = [我, 的集, 鞋集, 仔]
 		self.連詞.看(self.分析器.產生對齊句('我穿布鞋。', 'gua2 tshng1 poo3 e5.'))
 		self.連詞.看(self.分析器.產生對齊句('我鞋仔歹去矣。', 'gua2 e5 a2 phainn2-0khi3 0ah4.'))
 		我的 = [self.分析器.產生對齊詞('我', 'gua2'), self.分析器.產生對齊詞('的', 'e5')]
@@ -120,6 +130,16 @@ class 動態規劃標音試驗(TestCase):
 		鞋的結果, 鞋的分數 , 鞋的詞數 = self.標音.標音(self.連詞, 我_e5_e5_仔_鞋的)
 		的鞋結果, 的鞋分數 , 的鞋詞數 = self.標音.標音(self.連詞, 我_e5_e5_仔_的鞋)
 		self.assertEqual(鞋的結果, 我的鞋仔)
+		self.assertEqual(的鞋結果, 鞋的結果)
+		self.assertLess(鞋的分數, 0.0)
+		self.assertEqual(鞋的分數, 的鞋分數)
+		self.assertEqual(鞋的詞數, 6)
+		self.assertEqual(鞋的詞數, 的鞋詞數)
+		的.內底詞[0].屬性 = {'機率':self.連詞.對數(0.01)}
+		鞋.內底詞[0].屬性 = {'機率':self.連詞.對數(0.99)}
+		鞋的結果, 鞋的分數 , 鞋的詞數 = self.標音.標音(self.連詞, 我_e5_e5_仔_鞋的)
+		的鞋結果, 的鞋分數 , 的鞋詞數 = self.標音.標音(self.連詞, 我_e5_e5_仔_的鞋)
+		self.assertEqual(鞋的結果, 我鞋鞋仔)
 		self.assertEqual(的鞋結果, 鞋的結果)
 		self.assertLess(鞋的分數, 0.0)
 		self.assertEqual(鞋的分數, 的鞋分數)
@@ -156,10 +176,10 @@ class 動態規劃標音試驗(TestCase):
 		self.連詞.看(靚細妹)
 		self.連詞.看(靚細妹)
 		結果, 分數, 詞數 = self.標音.標音(self.連詞, 問題句物件)
-		#因為詞組干焦一个詞，所以會靚細妹輸媠姑娘
+		# 因為詞組干焦一个詞，所以會靚細妹輸媠姑娘
 		self.assertEqual(結果, 媠姑娘句物件)
 		self.assertEqual(詞數, 7)
-		#詞組較長，所以應該愛搶網別人
+		# 詞組較長，所以應該愛搶網別人
 		self.連詞.看(大美女)
 # 		self.連詞.看(大美女)
 # 		self.連詞.看(大美女)
