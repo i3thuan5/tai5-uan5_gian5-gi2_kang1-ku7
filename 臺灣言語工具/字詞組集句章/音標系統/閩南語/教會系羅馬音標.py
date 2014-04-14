@@ -75,7 +75,7 @@ class 教會系羅馬音標(閩南語音標介面):
 			self.音標 = None
 		return self.音標
 	def 做音標(self):
-		self.音標 = self.輕 + self.日本話 + self.聲 + self.韻 + self.調
+		self.音標 = ''.join([self.輕, self.日本話, self.聲, self.韻, self.調])
 	def __轉教羅韻符號(self, 音標):
 		一開始 = True
 		字元陣列 = []
