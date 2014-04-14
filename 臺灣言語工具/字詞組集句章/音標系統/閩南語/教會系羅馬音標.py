@@ -109,11 +109,13 @@ class 教會系羅馬音標(閩南語音標介面):
 		無調號音標=無調號音標.replace('o͘','oo')
 		聲韻符合 = False
 		for 聲母 in self.聲母表:
-			for 韻母 in self.韻母表:
-				if 聲母 + 韻母 == 無調號音標:
-					self.聲 = 聲母
-					self.韻 = 韻母
-					聲韻符合 = True
+			if 無調號音標.startswith(聲母):
+				賰的=無調號音標[len(聲母):]
+				for 韻母 in self.韻母表:
+					if 韻母 == 賰的:
+						self.聲 = 聲母
+						self.韻 = 韻母
+						聲韻符合 = True
 		if not 聲韻符合:
 			音標是著的 = False
 		elif self.韻.endswith('p') or self.韻.endswith('t') or self.韻.endswith('k') or self.韻.endswith('h'):
