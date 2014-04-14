@@ -44,10 +44,10 @@ class 教會系羅馬音標(閩南語音標介面):
 	輕 = ''
 	日本話 = ''
 	音標 = None
-	正規法=lambda self,音標:unicodedata.normalize('NFC', 音標)
+	正規法 = lambda self, 音標:unicodedata.normalize('NFC', 音標)
 	def 分析聲韻調(self, 音標):
 		self.聲調符號表 = 教會系羅馬音標聲調符號表
-		self.音標 = ''
+# 		self.音標 = ''
 		音標 = self.正規法(音標)
 		if 音標.startswith('0'):
 			self.輕 = '0'
@@ -56,11 +56,12 @@ class 教會系羅馬音標(閩南語音標介面):
 			self.日本話 = '1'
 			音標 = 音標[1:]
 		一開始 = True
+		字元陣列 = []
 		for 字元 in 音標:
 			if 一開始:
 				字元 = 字元.lower()
 				一開始 = False
-			if 字元 == '.' and self.音標[-1:] == 'o':
+			if 字元 == '.' and self.音標[-1:] == ['o']:
 				字元 = 'o'
 			elif 字元 == 'o͘':
 				字元 = 'oo'
@@ -70,7 +71,8 @@ class 教會系羅馬音標(閩南語音標介面):
 				字元 = 'nn'
 			else:
 				字元 = 字元.lower()
-			self.音標 += 字元
+			字元陣列.append(字元)
+		self.音標 = ''.join(字元陣列)
 		無調號音標 = ''
 		前一字元 = ''
 		前一音調 = ''
@@ -99,18 +101,18 @@ class 教會系羅馬音標(閩南語音標介面):
 				無調號音標 += 無調字元
 				前一字元 = ''
 			elif 無調號音標[-1:] + 前一字元 + 字元 in self.聲調符號表:
-				無調字元 , self.調 = self.聲調符號表[無調號音標[-1:]+前一字元 + 字元]
+				無調字元 , self.調 = self.聲調符號表[無調號音標[-1:] + 前一字元 + 字元]
 				無調號音標 = 無調號音標[:-1] + 無調字元
 				前一字元 = ''
 			else:
 				無調號音標 += 前一字元
 				前一字元 = 字元
 		無調號音標 += 前一字元
-		無調號音標=無調號音標.replace('o͘','oo')
+		無調號音標 = 無調號音標.replace('o͘', 'oo')
 		聲韻符合 = False
 		for 聲母 in self.聲母表:
 			if 無調號音標.startswith(聲母):
-				賰的=無調號音標[len(聲母):]
+				賰的 = 無調號音標[len(聲母):]
 				if 賰的 in self.韻母表:
 					self.聲 = 聲母
 					self.韻 = 賰的
