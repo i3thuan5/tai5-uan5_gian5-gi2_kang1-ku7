@@ -55,6 +55,28 @@ class 教會系羅馬音標(閩南語音標介面):
 		elif 音標.startswith('1'):
 			self.日本話 = '1'
 			音標 = 音標[1:]
+		self.音標 = self.__轉教羅韻符號(音標)
+		音標是著的, 無調號音標 = self.__分離閏號聲調(self.音標)
+		聲韻符合, self.聲, self.韻 = self.__揣聲韻(無調號音標)
+		if not 聲韻符合:
+			音標是著的 = False
+		elif self.韻.endswith('p') or self.韻.endswith('t') or self.韻.endswith('k') or self.韻.endswith('h'):
+			if self.調 == 1:
+				self.調 = 4
+			elif self.調 != 0 and self.調 != 4 and self.調 != 8 and self.調 != 10:
+				音標是著的 = False
+		if self.聲 == 'm' or self.聲 == 'ng':
+			if self.韻 != 'ng' and self.韻 != 'ngh' and ('n' in self.韻 or 'm' in self.韻):
+				音標是著的 = False
+		self.調 = str(self.調)
+		if 音標是著的:
+			self.做音標()
+		else:
+			self.音標 = None
+		return self.音標
+	def 做音標(self):
+		self.音標 = self.輕 + self.日本話 + self.聲 + self.韻 + self.調
+	def __轉教羅韻符號(self, 音標):
 		一開始 = True
 		字元陣列 = []
 		for 字元 in 音標:
@@ -72,7 +94,8 @@ class 教會系羅馬音標(閩南語音標介面):
 			else:
 				字元 = 字元.lower()
 			字元陣列.append(字元)
-		self.音標 = ''.join(字元陣列)
+		return ''.join(字元陣列)
+	def __分離閏號聲調(self, 音標):
 		無調號音標 = ''
 		前一字元 = ''
 		前一音調 = ''
@@ -109,31 +132,13 @@ class 教會系羅馬音標(閩南語音標介面):
 				前一字元 = 字元
 		無調號音標 += 前一字元
 		無調號音標 = 無調號音標.replace('o͘', 'oo')
-		聲韻符合 = False
+		return 音標是著的, 無調號音標
+	def __揣聲韻(self, 無調號音標):
 		for 聲母 in self.聲母表:
 			if 無調號音標.startswith(聲母):
 				賰的 = 無調號音標[len(聲母):]
 				if 賰的 in self.韻母表:
-					self.聲 = 聲母
-					self.韻 = 賰的
-					聲韻符合 = True
-		if not 聲韻符合:
-			音標是著的 = False
-		elif self.韻.endswith('p') or self.韻.endswith('t') or self.韻.endswith('k') or self.韻.endswith('h'):
-			if self.調 == 1:
-				self.調 = 4
-			elif self.調 != 0 and self.調 != 4 and self.調 != 8 and self.調 != 10:
-				音標是著的 = False
-		if self.聲 == 'm' or self.聲 == 'ng':
-			if self.韻 != 'ng' and self.韻 != 'ngh' and ('n' in self.韻 or 'm' in self.韻):
-				音標是著的 = False
-		self.調 = str(self.調)
-		if 音標是著的:
-			self.做音標()
-		else:
-			self.音標 = None
-		return self.音標
-	def 做音標(self):
-		self.音標 = self.輕 + self.日本話 + self.聲 + self.韻 + self.調
+					return True, 聲母, 賰的
+		return False, None, None
 # 聲 介 韻 調，韻含元音跟韻尾
 
