@@ -134,11 +134,12 @@ class 教會系羅馬音標(閩南語音標介面):
 		無調號音標 = 無調號音標.replace('o͘', 'oo')
 		return 音標是著的, 無調號音標
 	def __揣聲韻(self, 無調號音標):
-		for 聲母 in self.聲母表:
-			if 無調號音標.startswith(聲母):
-				賰的 = 無調號音標[len(聲母):]
-				if 賰的 in self.韻母表:
-					return True, 聲母, 賰的
+		for 所在 in range(len(無調號音標)):
+			聲母=無調號音標[:所在]
+			if 聲母 in self.聲母表:
+				韻母 = 無調號音標[所在:]
+				if 韻母 in self.韻母表:
+					return True, 聲母, 韻母
 		return False, None, None
 # 聲 介 韻 調，韻含元音跟韻尾
 
