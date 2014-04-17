@@ -378,9 +378,15 @@ class 拆文分析器:
 				句陣列.append(語句[頭前:第幾字 + 1].strip(分詞符號))
 				頭前 = 第幾字 + 1
 		句陣列.append(語句[頭前:].strip(分詞符號))
-		return 句陣列
+		有處理分字符號的句陣列 = []
+		for 句字串 in 句陣列:
+			if 句字串.startswith(分字符號):
+				有處理分字符號的句陣列.append(' ' + 句字串)
+			else:
+				有處理分字符號的句陣列.append(句字串)
+		return 有處理分字符號的句陣列
 	
-	def 詞音拆字(self,詞音):
+	def 詞音拆字(self, 詞音):
 		if 詞音 == 分字符號:
 			return[分字符號]
 		return 詞音.split(分字符號)

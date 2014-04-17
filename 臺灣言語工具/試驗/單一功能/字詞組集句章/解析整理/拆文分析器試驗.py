@@ -989,6 +989,20 @@ class 拆文分析器試驗(unittest.TestCase):
 		self.assertEqual(self.粗胚.符號邊仔加空白(原來), 加空白)
 		self.assertEqual(self.分析器.拆章做句(原來), 答案)
 		self.assertEqual(self.分析器.拆章做句(加空白), 空白答案)
+		
+	def test_拆章做句有分字符號配分詞符號(self):
+		原來 = 'tsong-biau7 bo5 tse3 ” , --- tsiah e5 ue7 ,'
+		加空白 = 'tsong-biau7 bo5 tse3 ” , - - - tsiah e5 ue7 ,'
+		空白答案 = ['tsong-biau7 bo5 tse3 ” ,', ' - - - tsiah e5 ue7 ,']
+		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來), 加空白)
+		self.assertEqual(self.分析器.拆章做句(加空白), 空白答案)
+		self.assertEqual(len(self.分析器.建立章物件(加空白).內底句),
+			2)
+		self.assertEqual(self.分析器.建立章物件(加空白).內底句[0],
+			self.分析器.建立句物件(空白答案[0]))
+		self.assertEqual(self.分析器.建立章物件(加空白).內底句[1],
+			self.分析器.建立句物件(空白答案[1]))
+		 
 
 if __name__ == '__main__':
 	unittest.main()
