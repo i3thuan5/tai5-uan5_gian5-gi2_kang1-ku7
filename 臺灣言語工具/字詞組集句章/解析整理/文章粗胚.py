@@ -31,6 +31,8 @@ from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 聲�
 class 文章粗胚:
 	分字符號代表字 = '{0}{1}{0}'.format(分詞符號, 分字符號)
 	兩分字符號代表字 = '{0}{1}{0}{1}{0}'.format(分詞符號, 分字符號)
+	雙分字符號=分字符號*2
+	三分字符號=分字符號*3
 	
 	def 建立物件語句前減號變標點符號(self, 語句):
 		return 語句.replace(分字符號, self.分字符號代表字)
@@ -63,7 +65,9 @@ class 文章粗胚:
 			else:
 				組字式長度 += 1
 			if 狀態 == '一般' and 組字式長度 == 1:
-				if 位置 + 1 < len(語句) and 語句[位置] == 分字符號 and 語句[位置 + 1] == 分字符號:
+				if 語句[位置:].startswith(self.三分字符號):
+					pass
+				elif 語句[位置:].startswith(self.雙分字符號):
 	# 				print('原本', 語句,unicodedata.category(語句[位置 - 1]),unicodedata.category(語句[位置 +2]))
 					if self.頭前有音標無(音標工具, 語句[位置 + 2:]):
 # 						語句 = 語句[:位置] + '-0' + 語句[位置 + 2:]
