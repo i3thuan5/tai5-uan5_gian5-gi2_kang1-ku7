@@ -213,6 +213,6 @@ class 文章粗胚試驗(unittest.TestCase):
 	def test_分字符號一大堆(self):
 		原來語句 = 'lai5 tsing2-phoo7 khia7-kua3----tsit8 kua3 u7 sann-tsiah gu5, kiong7 tioh8 tsiann5-tsap8 kua3.'
 		處理好語句 = 'lai5 tsing2-phoo7 khia7-kua3 - - - - tsit8 kua3 u7 sann-tsiah gu5, kiong7 tioh8 tsiann5-tsap8 kua3.'
-		加空白後語句 = 'lai5 tsing2-phoo7 khia7-kua3 - - - - tsit8 kua3 u7 sann-tsiah gu5, kiong7 tioh8 tsiann5-tsap8 kua3 . '
+		加空白後語句 = 'lai5 tsing2-phoo7 khia7-kua3 - - - - tsit8 kua3 u7 sann-tsiah gu5 , kiong7 tioh8 tsiann5-tsap8 kua3 . '
 		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
 		self.assertEqual(self.粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
