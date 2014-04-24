@@ -33,10 +33,13 @@ from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 標�
 import unicodedata
 from 臺灣言語工具.字詞組集句章.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 統一碼音標類
+from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 分型音符號
+from 臺灣言語工具.字詞組集句章.解析整理.程式掠漏 import 程式掠漏
 
 class 拆文分析器:
 	符號邊仔加空白 = None
 	減號有照規則無 = None
+	__掠漏 = 程式掠漏()
 	def __init__(self):
 		粗胚 = 文章粗胚()
 		self.符號邊仔加空白 = 粗胚.符號邊仔加空白
@@ -390,3 +393,89 @@ class 拆文分析器:
 		if 詞音 == 分字符號:
 			return[分字符號]
 		return 詞音.split(分字符號)
+
+	def 轉做字物件(self, 分詞):
+		self.__掠漏.毋是字串都毋著(分詞)
+		try:
+			型, 音 = 分詞.split(分型音符號)
+		except:
+			raise 解析錯誤('毋是拄仔好有兩个部份：{0}'.format(分詞))
+		return self.產生對齊字(型, 音)
+	def 轉做詞物件(self, 分詞):
+		self.__掠漏.毋是字串都毋著(分詞)
+		if 分詞=='':
+			return self.建立詞物件(分詞)
+		try:
+			型, 音 = 分詞.split(分型音符號)
+		except:
+			raise 解析錯誤('毋是拄仔好有兩个部份：{0}'.format(分詞))
+		return self.產生對齊詞(型, 音)
+	
+	def 轉做組物件(self, 分詞):
+		self.__掠漏.毋是字串都毋著(分詞)
+		if 分詞 == '':
+			return 組()
+		組物件=self.建立組物件('')
+		for 分 in 分詞.split():
+			組物件.內底詞.append(self.轉做詞物件(分))
+		return 組物件
+	
+	def 轉做集物件(self, 分詞):
+		if 分詞 == '':
+			return 集()
+		集物件=self.建立集物件('')
+		集物件.內底組.append(self.轉做組物件(分詞))
+		return 集物件
+	
+	def 轉做句物件(self, 分詞):
+		if 分詞 == '':
+			return 句()
+		句物件=self.建立句物件('')
+		句物件.內底集.append(self.轉做集物件(分詞))
+		return 句物件
+	
+	def 轉做章物件(self, 分詞):
+		if 分詞 == '':
+			return 章()
+		句物件=self.轉做句物件(分詞)
+		章物件=self.句物件切一句一句做章物件(句物件)
+		return 章物件
+	
+	def 句物件切一句一句做章物件(self,句物件):
+		有一般字無 = False
+		愛換的所在 = []
+		for 集物件 in 句物件.內底集[::-1]:
+			是斷句=self.__集物件干焦一个斷句符號無(集物件)
+			print(集物件,是斷句)
+			if 有一般字無 and 是斷句:
+				愛換的所在.append(True)
+				有一般字無 = False
+			else:
+				愛換的所在.append(False)
+				if 是斷句:
+					有一般字無 = True
+		愛換的所在 = 愛換的所在[::-1]
+		章物件=章()
+		頭前 = 0
+		for 第幾字 in range(len(句物件.內底集)):
+			if 愛換的所在[第幾字]:
+				新句物件=句()
+				新句物件.內底集=句物件.內底集[頭前:第幾字 + 1]
+				章物件.內底句.append(新句物件)
+				頭前 = 第幾字 + 1
+		新句物件=句()
+		新句物件.內底集=句物件.內底集[頭前:第幾字 + 1]
+		章物件.內底句.append(新句物件)
+		return 章物件
+	
+	def __集物件干焦一个斷句符號無(self,集物件):
+		if len(集物件.內底組)==1:
+			組物件=集物件.內底組[0]
+			if len(組物件.內底詞)==1:
+				詞物件=組物件.內底詞[0]
+				if len(詞物件.內底字)==1:
+					字物件=詞物件.內底字[0]
+					print(字物件,字物件.型 in 斷句標點符號 and 字物件.音 in 斷句標點符號)
+					if 字物件.型 in 斷句標點符號 and 字物件.音 in 斷句標點符號:
+						return True
+		return False

@@ -61,3 +61,6 @@ class 程式掠漏:
 	def 毋是字詞組集句章的毋著(self, 物件):
 		raise 型態錯誤('傳入來的毋是字詞組集句章其中一種物件：{0}，{1}'
 			.format(type(物件), str(物件)))
+	def 毋是字串都毋著(self, 語句):
+		if not isinstance(語句, str):
+			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
