@@ -31,6 +31,9 @@ class 摩西用戶端():
 		結果 = self.主機.translate(參數)
 		if 編碼器 != None:
 			結果['text'] = 編碼器.解碼(結果['text'])
+			if 'nbest' in 結果:
+				for 候選 in 結果['nbest']:
+					候選['hyp']=編碼器.解碼(候選['hyp'])
 		return 結果
 	def 更新(self, 來源, 目標, 對齊, 編碼器=None):
 		if 編碼器 != None:
