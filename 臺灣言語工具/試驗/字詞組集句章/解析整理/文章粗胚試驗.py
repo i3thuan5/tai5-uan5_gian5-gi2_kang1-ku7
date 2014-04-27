@@ -148,6 +148,13 @@ class 文章粗胚試驗(unittest.TestCase):
 		加空白後語句 = '食-0tsit8-kua5才來 ， 阮hak8-hau7佇大學路1001 - 1號 ， 儂莫走boo5-0ki3 。 '
 		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
 		self.assertEqual(self.粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
+		
+	def test_建立物件語句前處理減號輕聲中央(self):
+		原來語句 = 'tsio2 --e5 ia7 u7 tsit8-ban7 goo7-tshing tsiah.'
+		處理好語句 = 'tsio2 0e5 ia7 u7 tsit8-ban7 goo7-tshing tsiah.'
+		加空白後語句 = 'tsio2 0e5 ia7 u7 tsit8-ban7 goo7-tshing tsiah . '
+		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
+		self.assertEqual(self.粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
 
 	def test_建立物件語句前處理減號組字式(self):
 		原來語句 = '⿰---⿰---⿱--,⿰-,⿱⿰-,---⿱--'
