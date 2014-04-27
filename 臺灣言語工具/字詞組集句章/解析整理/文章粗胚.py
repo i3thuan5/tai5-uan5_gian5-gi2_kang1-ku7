@@ -76,7 +76,10 @@ class 文章粗胚:
 	# 				print('原本', 語句,unicodedata.category(語句[位置 - 1]),unicodedata.category(語句[位置 +2]))
 					if self.頭前有音標無(音標工具, 語句[位置 + 2:]):
 # 						語句 = 語句[:位置] + '-0' + 語句[位置 + 2:]
-						字元陣列.append('-0')
+						if len(字元陣列)>0 and not 字元陣列[-1].endswith(分詞符號):
+							字元陣列.append('-0')
+						else:
+							字元陣列.append('0')
 					elif self.後壁有音標無(音標工具, 語句[:位置]) and (
 						位置 + 2 < len(語句) and unicodedata.category(語句[位置 + 2]) in 統一碼漢字佮組字式類):
 # 						語句 = 語句[:位置] + 分字符號 + 語句[位置 + 2:]

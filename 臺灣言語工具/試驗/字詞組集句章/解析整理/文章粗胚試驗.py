@@ -170,8 +170,8 @@ class 文章粗胚試驗(unittest.TestCase):
 		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1--   niu5'), 'sui2 koo1 - - niu5')
 		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1--niu5'), 'sui2 koo1-0niu5')
 		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1 - -niu5'), 'sui2 koo1 - - niu5')
-		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1 --niu5'), 'sui2 koo1 -0niu5')
-		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1  --niu5'), 'sui2 koo1 -0niu5')
+		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1 --niu5'), 'sui2 koo1 0niu5')
+		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1  --niu5'), 'sui2 koo1 0niu5')
 
 	def test_符號邊仔加空白(self):
 		self.assertEqual(self.粗胚.符號邊仔加空白('腹肚枵'), '腹肚枵')
