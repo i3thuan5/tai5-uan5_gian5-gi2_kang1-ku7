@@ -73,24 +73,20 @@ class 文章粗胚:
 						位置 += 1
 					位置 -= 1
 				elif 語句[位置:].startswith(self.雙分字符號):
-	# 				print('原本', 語句,unicodedata.category(語句[位置 - 1]),unicodedata.category(語句[位置 +2]))
 					if self.頭前有音標無(音標工具, 語句[位置 + 2:]):
-# 						語句 = 語句[:位置] + '-0' + 語句[位置 + 2:]
-						if len(字元陣列)>0 and not 字元陣列[-1].endswith(分詞符號):
+						if len(字元陣列) > 0 and not 字元陣列[-1].endswith(分詞符號):
 							字元陣列.append('-0')
 						else:
 							字元陣列.append('0')
 					elif self.後壁有音標無(音標工具, 語句[:位置]) and (
 						位置 + 2 < len(語句) and unicodedata.category(語句[位置 + 2]) in 統一碼漢字佮組字式類):
-# 						語句 = 語句[:位置] + 分字符號 + 語句[位置 + 2:]
-						字元陣列.append(分字符號)
+						if len(字元陣列) > 0 and not 字元陣列[-1].endswith(分詞符號):
+							字元陣列.append(分字符號)
 					elif (位置 - 1 >= 0 and unicodedata.category(語句[位置 - 1]) in 統一碼漢字佮組字式類) or (
 						位置 + 2 < len(語句) and unicodedata.category(語句[位置 + 2]) in 統一碼漢字佮組字式類):
-# 						語句 = 語句[:位置] + 分字符號 + 語句[位置 + 2:]
-						字元陣列.append(分字符號)
+						if len(字元陣列) > 0 and not 字元陣列[-1].endswith(分詞符號):
+							字元陣列.append(分字符號)
 					else:
-# 						語句 = 語句[:位置] + self.兩分字符號代表字 + 語句[位置 + 2:]
-# 						位置 += 4
 						字元陣列.append(self.兩分字符號代表字)
 					位置 += 1
 	# 				print('後來', 語句)
@@ -118,10 +114,8 @@ class 文章粗胚:
 			else:
 				字元陣列.append(語句[位置])
 			位置 += 1
-# 		字元陣列.append(語句[-1])
 		if 前回一開始狀態 == '一般' and 語句.endswith(分字符號):
 			字元陣列.append(分詞符號)
-# 			語句 += 分詞符號
 		return self.除掉重覆的空白(''.join(字元陣列))
 
 	def 符號邊仔加空白(self, 語句):
