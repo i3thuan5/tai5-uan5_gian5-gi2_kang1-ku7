@@ -365,22 +365,26 @@ class 拆文分析器建立試驗(unittest.TestCase):
 		self.assertEqual(self.分析器.拆章做句('！你！？轉去？矣？？'), ['！', '你！？', '轉去？', '矣？？'])
 		self.assertEqual(self.分析器.拆章做句('！！。。，。你好？'), ['！！。。，。', '你好？'])
 		self.assertEqual(self.分析器.拆章做句('!!..,.li2 ho2?'), ['!!..,.', 'li2 ho2?'])
-		self.assertEqual(self.分析器.拆章做句('!!..,. li2 ho2?'), ['!!..,.', 'li2 ho2?'])
+		self.assertEqual(self.分析器.拆章做句('!!..,. li2 ho2?'), ['!!..,. ', 'li2 ho2?'])
 		
 	def test_拆章做句配分詞符號(self):
 		原來 = '!!..,.li2-ho2?'
 		加空白 = ' ! ! . . , . li2-ho2 ? '
 		答案 = ['!!..,.', 'li2-ho2?']
-		空白答案 = ['! ! . . , .', 'li2-ho2 ?']
+		空白答案 = [' ! ! . . , . ', 'li2-ho2 ? ']
 		self.assertEqual(self.粗胚.符號邊仔加空白(原來), 加空白)
 		self.assertEqual(self.分析器.拆章做句(原來), 答案)
 		self.assertEqual(self.分析器.拆章做句(加空白), 空白答案)
 		
+	#	拆章做句莫加空白，保留原本的，若有空白佇中央，有標點就加
+	# 	按呢才有法度處理其他文本
 	def test_拆章做句有分字符號配分詞符號(self):
-		原來 = 'tsong-biau7 bo5 tse3 ” , --- tsiah e5 ue7 ,'
-		加空白 = 'tsong-biau7 bo5 tse3 ” , - - - tsiah e5 ue7 ,'
-		空白答案 = ['tsong-biau7 bo5 tse3 ” ,', ' - - - tsiah e5 ue7 ,']
-		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來), 加空白)
+		原來 = 'tsong-biau7 bo5 tse3” , --- tsiah e5 ue7 ,'
+		處理減號 = 'tsong-biau7 bo5 tse3” , - - - tsiah e5 ue7 ,'
+		加空白 = 'tsong-biau7 bo5 tse3 ” , - - - tsiah e5 ue7 , '
+		空白答案 = ['tsong-biau7 bo5 tse3 ” , ', ' - - - tsiah e5 ue7 , ']
+		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來), 處理減號)
+		self.assertEqual(self.粗胚.符號邊仔加空白(處理減號), 加空白)
 		self.assertEqual(self.分析器.拆章做句(加空白), 空白答案)
 		self.assertEqual(len(self.分析器.建立章物件(加空白).內底句),
 			2)

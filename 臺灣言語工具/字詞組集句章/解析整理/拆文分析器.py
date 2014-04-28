@@ -363,7 +363,7 @@ class 拆文分析器:
 		# =>無，下佇仝詞組，予斷詞處理
 		if not isinstance(語句, str):
 			raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
-		語句 = 語句.strip(分詞符號)
+# 		語句 = 語句.strip(分詞符號)
 		有一般字無 = False
 		愛換的所在 = []
 		for 第幾字 in range(len(語句))[::-1]:
@@ -379,16 +379,20 @@ class 拆文分析器:
 		頭前 = 0
 		for 第幾字 in range(len(語句)):
 			if 愛換的所在[第幾字]:
-				句陣列.append(語句[頭前:第幾字 + 1].strip(分詞符號))
+				if 語句[第幾字] in 斷句標點符號 and 語句[第幾字 + 1]==分詞符號:
+					句陣列.append(語句[頭前:第幾字 + 2])
+				else:
+					句陣列.append(語句[頭前:第幾字 + 1])
 				頭前 = 第幾字 + 1
-		句陣列.append(語句[頭前:].strip(分詞符號))
-		有處理分字符號的句陣列 = []
-		for 句字串 in 句陣列:
-			if 句字串.startswith(分字符號):
-				有處理分字符號的句陣列.append(' ' + 句字串)
+		句陣列.append(語句[頭前:])
+		處理了頭前的句陣列=[]
+		print(語句,句陣列)
+		for 一句 in 句陣列:
+			if 一句.startswith(分詞符號) and 一句[1] not in 標點符號:
+				處理了頭前的句陣列.append(一句[1:])
 			else:
-				有處理分字符號的句陣列.append(句字串)
-		return 有處理分字符號的句陣列
+				處理了頭前的句陣列.append(一句)
+		return 處理了頭前的句陣列
 	
 	def 詞音拆字(self, 詞音):
 		if 詞音 == 分字符號:
