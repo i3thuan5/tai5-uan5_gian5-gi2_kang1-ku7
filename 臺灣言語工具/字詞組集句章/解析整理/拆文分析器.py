@@ -386,7 +386,6 @@ class 拆文分析器:
 				頭前 = 第幾字 + 1
 		句陣列.append(語句[頭前:])
 		處理了頭前的句陣列=[]
-		print(語句,句陣列)
 		for 一句 in 句陣列:
 			if 一句.startswith(分詞符號) and 一句[1] not in 標點符號:
 				處理了頭前的句陣列.append(一句[1:])
