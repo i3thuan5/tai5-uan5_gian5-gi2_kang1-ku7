@@ -146,6 +146,13 @@ class 文章粗胚試驗(unittest.TestCase):
 		處理好語句 = '從中thang講，破錢、用憨錢'
 		加空白後語句 = '從中thang講 ， 破錢 、 用憨錢'
 		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
+		self.assertEqual(self.粗胚.符號邊仔加空白(處理好語句), 加空白後語句)		
+		
+	def test_建立物件語句前處理減號輕聲音標接符號(self):
+		原來語句 = '從中thang講，--phuat4錢、用憨錢'
+		處理好語句 = '從中thang講，0phuat4錢、用憨錢'
+		加空白後語句 = '從中thang講 ， 0phuat4錢 、 用憨錢'
+		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
 		self.assertEqual(self.粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
 
 	def test_建立物件語句前處理減號連字號漢字後(self):
