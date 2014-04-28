@@ -73,17 +73,19 @@ class 文章粗胚:
 						位置 += 1
 					位置 -= 1
 				elif 語句[位置:].startswith(self.雙分字符號):
+					後壁有物件=(位置 + 2 < len(語句) and unicodedata.category(語句[位置 + 2]) in 統一碼漢字佮組字式類)
 					if self.頭前有音標無(音標工具, 語句[位置 + 2:]):
 						if len(字元陣列) > 0 and not 字元陣列[-1].endswith(分詞符號):
 							字元陣列.append('-0')
 						else:
 							字元陣列.append('0')
-					elif self.後壁有音標無(音標工具, 語句[:位置]) and (
-						位置 + 2 < len(語句) and unicodedata.category(語句[位置 + 2]) in 統一碼漢字佮組字式類):
+					elif self.後壁有音標無(音標工具, 語句[:位置]) and 後壁有物件:
 						if len(字元陣列) > 0 and not 字元陣列[-1].endswith(分詞符號):
 							字元陣列.append(分字符號)
-					elif (位置 - 1 >= 0 and unicodedata.category(語句[位置 - 1]) in 統一碼漢字佮組字式類) or (
-						位置 + 2 < len(語句) and unicodedata.category(語句[位置 + 2]) in 統一碼漢字佮組字式類):
+					elif (前回一開始狀態=='組字' or \
+							位置 - 1 >= 0 and unicodedata.category(語句[位置 - 1]) in 統一碼漢字佮組字式類) and \
+							後壁有物件:
+						print(3,unicodedata.category(' '))
 						if len(字元陣列) > 0 and not 字元陣列[-1].endswith(分詞符號):
 							字元陣列.append(分字符號)
 					else:
