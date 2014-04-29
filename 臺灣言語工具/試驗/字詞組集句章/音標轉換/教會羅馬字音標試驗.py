@@ -151,5 +151,9 @@ class 教會羅馬字音標試驗(unittest.TestCase):
 		self.assertEqual(教會羅馬字音標('eng5').音標, 'eng5')
 		self.assertEqual(教會羅馬字音標('eng5').轉換到臺灣閩南語羅馬字拼音(), 'ing5')
 		
+	def test_相容臺羅(self):
+		self.assertEqual(教會羅馬字音標('tsoe3').音標, 'tsoe3')
+		self.assertEqual(教會羅馬字音標('tsoe3').轉換到臺灣閩南語羅馬字拼音(), 'tsue3')
+		
 if __name__ == '__main__':
 	unittest.main()
