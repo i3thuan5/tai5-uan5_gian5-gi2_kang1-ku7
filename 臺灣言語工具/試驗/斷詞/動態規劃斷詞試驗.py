@@ -70,12 +70,12 @@ class 動態規劃斷詞試驗(TestCase):
 	def tearDown(self):
 		pass
 	def test_斷詞結果型態(self):
-		self.assertIsInstance(self.斷詞.斷詞(self.字典, self.分析器.產生對齊字('我', 'gua2')),句)
-		self.assertIsInstance(self.斷詞.斷詞(self.字典, self.我對齊詞),句)
-		self.assertIsInstance(self.斷詞.斷詞(self.字典, self.我對齊組),句)
-		self.assertIsInstance(self.斷詞.斷詞(self.字典, self.我對齊集),句)
-		self.assertIsInstance(self.斷詞.斷詞(self.字典, self.句物件),句)
-		self.assertIsInstance(self.斷詞.斷詞(self.字典, 章()),章)
+		self.assertIsInstance(self.斷詞.斷詞(self.字典, self.分析器.產生對齊字('我', 'gua2')), 句)
+		self.assertIsInstance(self.斷詞.斷詞(self.字典, self.我對齊詞), 句)
+		self.assertIsInstance(self.斷詞.斷詞(self.字典, self.我對齊組), 句)
+		self.assertIsInstance(self.斷詞.斷詞(self.字典, self.我對齊集), 句)
+		self.assertIsInstance(self.斷詞.斷詞(self.字典, self.句物件), 句)
+		self.assertIsInstance(self.斷詞.斷詞(self.字典, 章()), 章)
 	
 	def test_基本斷詞(self):
 		self.字典.加詞(self.我對齊詞)
@@ -266,13 +266,16 @@ class 動態規劃斷詞試驗(TestCase):
 	
 	def test_加數字但是無斷詞(self):
 		self.字典.加詞(self.我對齊詞)
-		題目='我1231我2+2'
-		答案='我你我你你你'
-		結果=self.斷詞.斷詞(self.字典, self.分析器.建立句物件(答案))
-		結果.內底集[1].內底組[0].內底詞[0].內底字[0].型='1231'
-		結果.內底集[3].內底組[0].內底詞[0].內底字[0].型='2'
-		結果.內底集[4].內底組[0].內底詞[0].內底字[0].型='+'
-		結果.內底集[5].內底組[0].內底詞[0].內底字[0].型='2'
-		self.assertEqual(
-			self.斷詞.斷詞(self.字典, self.分析器.建立句物件(題目)),
-			結果)
+		題目 = '我1231我2+2'
+		答案 = '我你我你你你'
+		結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.分析器.建立句物件(答案))
+		self.assertLess(分數, 0)
+		self.assertEqual(詞數, 6)
+		結果.內底集[1].內底組[0].內底詞[0].內底字[0].型 = '1231'
+		結果.內底集[3].內底組[0].內底詞[0].內底字[0].型 = '2'
+		結果.內底集[4].內底組[0].內底詞[0].內底字[0].型 = '+'
+		結果.內底集[5].內底組[0].內底詞[0].內底字[0].型 = '2'
+		斷詞句物件, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.分析器.建立句物件(題目))
+		self.assertEqual(斷詞句物件, 結果)
+		self.assertLess(分數, 0)
+		self.assertEqual(詞數, 6)

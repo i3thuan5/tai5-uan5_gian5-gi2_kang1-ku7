@@ -72,7 +72,7 @@ class 動態規劃斷詞:
 				組物件.內底詞 = [詞物件]
 				組陣列.append(組物件)
 			集陣列.append(集物件)
-		return 句物件
+		return 句物件, None, None
 	def 章斷詞(self, 辭典, 章物件):
 		if not isinstance(章物件, 章):
 			raise 型態錯誤('傳入來的毋是章物件：{0}'.format(str(章物件)))
@@ -80,7 +80,7 @@ class 動態規劃斷詞:
 		用好句 = 標好章.內底句
 		for 一句 in 章物件.內底句:
 			用好句.append(self.斷詞(辭典, 一句))
-		return 標好章
+		return 標好章, None, None
 
 	# 字詞組集句=>句
 	# 章=>章
