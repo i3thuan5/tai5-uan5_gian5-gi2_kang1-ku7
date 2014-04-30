@@ -96,16 +96,21 @@ class 動態規劃斷詞試驗(TestCase):
 		self.字典.加詞(self.一張對齊詞)
 		self.字典.加詞(self.椅仔對齊詞)
 		self.字典.加詞(self.驚對齊詞)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.對齊句),
+		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.對齊句)
 		self.assertEqual(斷詞結果, self.句物件)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.型句),
+		self.檢查分數詞數(分數, 詞數, 0, 6)
+		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.型句)
 		self.assertEqual(斷詞結果, self.句物件)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.音句),
+		self.檢查分數詞數(分數, 詞數, 0, 6)
+		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.音句)
 		self.assertEqual(斷詞結果, self.句物件)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.有詞漢羅),
+		self.檢查分數詞數(分數, 詞數, 0, 6)
+		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.有詞漢羅)
 		self.assertEqual(斷詞結果, self.句物件)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅),
+		self.檢查分數詞數(分數, 詞數, 0, 6)
+		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
 		self.assertEqual(斷詞結果, self.句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		
 	def test_多詞斷詞(self):
 		self.字典.加詞(self.我對齊詞)
@@ -116,14 +121,19 @@ class 動態規劃斷詞試驗(TestCase):
 		self.字典.加詞(self.驚對齊詞)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.對齊句)
 		self.assertEqual(斷詞結果, self.句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.型句)
 		self.assertEqual(斷詞結果, self.文我句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.音句)
 		self.assertEqual(斷詞結果, self.句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.有詞漢羅)
 		self.assertEqual(斷詞結果, self.文我句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
 		self.assertEqual(斷詞結果, self.句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		
 	def test_集無使有多組(self):
 		self.字典.加詞(self.我對齊詞)
@@ -145,11 +155,13 @@ class 動態規劃斷詞試驗(TestCase):
 		結果章 = 章([self.句物件, self.句物件])
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, 章物件)
 		self.assertEqual(斷詞結果, 結果章)
+		self.檢查分數詞數(分數, 詞數, 0, 12)
 		
 	def test_空白斷詞(self):
 		self.字典.加詞(self.我對齊詞)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.分析器.建立句物件(''))
 		self.assertEqual(斷詞結果, 句())
+		self.檢查分數詞數(分數, 詞數, 0, 0)
 
 	def test_辭典無夠斷詞(self):
 		self.字典.加詞(self.我對齊詞)
@@ -157,42 +169,48 @@ class 動態規劃斷詞試驗(TestCase):
 		self.字典.加詞(self.椅仔對齊詞)
 		self.字典.加詞(self.驚對齊詞)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.對齊句)
-		self.assertEqual(斷詞結果,
-			self.句物件)
+		self.assertEqual(斷詞結果, self.句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
 		self.assertEqual(斷詞結果.內底集[1].內底組[0].內底詞[0].屬性,
 		 	{'無佇辭典':True})
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		新句物件 = self.句物件
 		新句物件.內底集[1] = self.分析器.建立集物件('有')
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.型句)
-		self.assertEqual(斷詞結果,
-			新句物件)
+		self.assertEqual(斷詞結果, 新句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
 		self.assertEqual(斷詞結果.內底集[1].內底組[0].內底詞[0].屬性,
 			{'無佇辭典':True})
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		新句物件 = self.句物件
 		新句物件.內底集[1].內底組[0] = self.分析器.建立組物件('u7')
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.音句)
-		self.assertEqual(斷詞結果,
-			新句物件)
+		self.assertEqual(斷詞結果, 新句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
 		self.assertEqual(斷詞結果.內底集[1].內底組[0].內底詞[0].屬性,
 			{'無佇辭典':True})
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		新句物件 = self.句物件
 		新句物件.內底集[1].內底組[0] = self.分析器.建立組物件('u7')
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.有詞漢羅)
 		self.assertEqual(斷詞結果, 新句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
 		self.assertEqual(斷詞結果.內底集[1].內底組[0].內底詞[0].屬性,
 			{'無佇辭典':True})
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		新句物件 = self.句物件
 		新句物件.內底集[1].內底組[0] = self.分析器.建立組物件('u7')
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
-		self.assertEqual(斷詞結果,
-			新句物件)
+		self.assertEqual(斷詞結果, 新句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
 		self.assertEqual(斷詞結果.內底集[1].內底組[0].內底詞[0].屬性,
 			{'無佇辭典':True})
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		
 	def test_兩三切比四一切閣較好(self):
 		self.test_基本斷詞()
@@ -204,14 +222,19 @@ class 動態規劃斷詞試驗(TestCase):
 			self.一張椅仔集, self.驚對齊集, self.驚對齊集])
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.對齊句)
 		self.assertEqual(斷詞結果, 新句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 5)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.型句)
 		self.assertEqual(斷詞結果, 新句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 5)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.音句)
 		self.assertEqual(斷詞結果, 新句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 5)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.有詞漢羅)
 		self.assertEqual(斷詞結果, 新句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 5)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
 		self.assertEqual(斷詞結果, 新句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 5)
 
 		self.有一張對齊詞 = self.分析器.產生對齊詞('有一張', 'u7-tsit8-tiunn1')
 		self.字典.加詞(self.有一張對齊詞)
@@ -220,14 +243,20 @@ class 動態規劃斷詞試驗(TestCase):
 			self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.對齊句)
 		self.assertEqual(斷詞結果, 新句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 5)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.型句)
 		self.assertEqual(斷詞結果, 新句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 5)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.音句)
 		self.assertEqual(斷詞結果, 新句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 5)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.有詞漢羅)
 		self.assertEqual(斷詞結果, 新句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 5)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
 		self.assertEqual(斷詞結果, 新句物件)
+		self.檢查分數詞數(分數, 詞數, 0, 5)
+		
 	def test_詞屬性愛留咧(self):
 		self.字典.加詞(self.我對齊詞)
 		self.字典.加詞(self.有對齊詞)
@@ -242,6 +271,8 @@ class 動態規劃斷詞試驗(TestCase):
 		self.assertEqual(上尾詞, self.驚對齊詞)
 		self.assertEqual(上尾第二詞.屬性, self.驚對齊詞.屬性)
 		self.assertEqual(上尾詞.屬性, self.驚對齊詞.屬性)
+		self.檢查分數詞數(分數, 詞數, 0, 6)
+		
 	def test_章斷詞詞屬性愛留咧(self):
 		self.字典.加詞(self.我對齊詞)
 		self.字典.加詞(self.文我對齊詞)
@@ -259,22 +290,21 @@ class 動態規劃斷詞試驗(TestCase):
 		self.assertEqual(上尾詞, self.驚對齊詞)
 		self.assertEqual(上尾第二詞.屬性, self.驚對齊詞.屬性)
 		self.assertEqual(上尾詞.屬性, self.驚對齊詞.屬性)
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 	
 	def test_加數字但是無斷詞(self):
 		self.字典.加詞(self.我對齊詞)
 		題目 = '我1231我2+2'
 		答案 = '我你我你你你'
 		結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.分析器.建立句物件(答案))
-		self.assertLess(分數, 0)
-		self.assertEqual(詞數, 6)
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		結果.內底集[1].內底組[0].內底詞[0].內底字[0].型 = '1231'
 		結果.內底集[3].內底組[0].內底詞[0].內底字[0].型 = '2'
 		結果.內底集[4].內底組[0].內底詞[0].內底字[0].型 = '+'
 		結果.內底集[5].內底組[0].內底詞[0].內底字[0].型 = '2'
 		斷詞句物件, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.分析器.建立句物件(題目))
 		self.assertEqual(斷詞句物件, 結果)
-		self.assertLess(分數, 0)
-		self.assertEqual(詞數, 6)
+		self.檢查分數詞數(分數, 詞數, 0, 6)
 		
 	def 檢查分數詞數(self, 分數, 詞數, 分數上限, 詞數答案):
 		self.assertLess(分數, 分數上限)
