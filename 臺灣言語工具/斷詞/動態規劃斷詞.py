@@ -72,15 +72,20 @@ class 動態規劃斷詞:
 				組物件.內底詞 = [詞物件]
 				組陣列.append(組物件)
 			集陣列.append(集物件)
-		return 句物件, None, None
+		return 句物件, -分數表[len(字陣列)][0], len(挑出來)
 	def 章斷詞(self, 辭典, 章物件):
 		if not isinstance(章物件, 章):
 			raise 型態錯誤('傳入來的毋是章物件：{0}'.format(str(章物件)))
 		標好章 = 章()
 		用好句 = 標好章.內底句
+		總分 = 0
+		總詞數 = 0
 		for 一句 in 章物件.內底句:
-			用好句.append(self.斷詞(辭典, 一句))
-		return 標好章, None, None
+			斷好句物件, 分數, 詞數=self.斷詞(辭典, 一句)
+			用好句.append(斷好句物件)
+			總分 += 分數
+			總詞數 += 詞數
+		return 標好章, 總分, 總詞數
 
 	# 字詞組集句=>句
 	# 章=>章

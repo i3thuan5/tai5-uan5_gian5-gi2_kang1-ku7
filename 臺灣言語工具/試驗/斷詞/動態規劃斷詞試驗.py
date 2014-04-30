@@ -85,10 +85,10 @@ class 動態規劃斷詞試驗(TestCase):
 		self.檢查分數詞數(分數, 詞數, 0.0, 1)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.句物件)
 		self.assertIsInstance(斷詞結果, 句)
-		self.檢查分數詞數(分數, 詞數, 0.0, 1)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, 章())
+		self.檢查分數詞數(分數, 詞數, 0.0, 8)
+		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, 章([self.句物件]))
 		self.assertIsInstance(斷詞結果, 章)
-		self.檢查分數詞數(分數, 詞數, 0.0, 1)
+		self.檢查分數詞數(分數, 詞數, 0.0, 8)
 	
 	def test_基本斷詞(self):
 		self.字典.加詞(self.我對齊詞)
@@ -157,11 +157,33 @@ class 動態規劃斷詞試驗(TestCase):
 		self.assertEqual(斷詞結果, 結果章)
 		self.檢查分數詞數(分數, 詞數, 0, 12)
 		
-	def test_空白斷詞(self):
+	def test_空白組斷詞(self):
+		self.字典.加詞(self.我對齊詞)
+		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.分析器.建立組物件(''))
+		self.assertEqual(斷詞結果, 句())
+		self.assertEqual(分數, 0)
+		self.assertEqual(詞數, 0)
+		
+	def test_空白集斷詞(self):
+		self.字典.加詞(self.我對齊詞)
+		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.分析器.建立集物件(''))
+		self.assertEqual(斷詞結果, 句())
+		self.assertEqual(分數, 0)
+		self.assertEqual(詞數, 0)
+		
+	def test_空白句斷詞(self):
 		self.字典.加詞(self.我對齊詞)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.分析器.建立句物件(''))
 		self.assertEqual(斷詞結果, 句())
-		self.檢查分數詞數(分數, 詞數, 0, 0)
+		self.assertEqual(分數, 0)
+		self.assertEqual(詞數, 0)
+		
+	def test_空白章斷詞(self):
+		self.字典.加詞(self.我對齊詞)
+		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.分析器.建立章物件(''))
+		self.assertEqual(斷詞結果, 章())
+		self.assertEqual(分數, 0)
+		self.assertEqual(詞數, 0)
 
 	def test_辭典無夠斷詞(self):
 		self.字典.加詞(self.我對齊詞)
@@ -212,9 +234,10 @@ class 動態規劃斷詞試驗(TestCase):
 			{'無佇辭典':True})
 		self.檢查分數詞數(分數, 詞數, 0, 6)
 		
-	def test_兩三切比四一切閣較好(self):
+	def test_兩三切比一四切閣較好(self):
 		self.test_基本斷詞()
-
+		
+		一四分數=[]
 		self.一張椅仔對齊詞 = self.分析器.產生對齊詞('一張椅仔', 'tsit8-tiunn1-i2-a2')
 		self.字典.加詞(self.一張椅仔對齊詞)
 		self.一張椅仔集 = self.分析器.產生對齊集('一張椅仔', 'tsit8-tiunn1-i2-a2')
@@ -223,19 +246,25 @@ class 動態規劃斷詞試驗(TestCase):
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.對齊句)
 		self.assertEqual(斷詞結果, 新句物件)
 		self.檢查分數詞數(分數, 詞數, 0, 5)
+		一四分數.append(分數)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.型句)
 		self.assertEqual(斷詞結果, 新句物件)
 		self.檢查分數詞數(分數, 詞數, 0, 5)
+		一四分數.append(分數)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.音句)
 		self.assertEqual(斷詞結果, 新句物件)
 		self.檢查分數詞數(分數, 詞數, 0, 5)
+		一四分數.append(分數)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.有詞漢羅)
 		self.assertEqual(斷詞結果, 新句物件)
 		self.檢查分數詞數(分數, 詞數, 0, 5)
+		一四分數.append(分數)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
 		self.assertEqual(斷詞結果, 新句物件)
 		self.檢查分數詞數(分數, 詞數, 0, 5)
+		一四分數.append(分數)
 
+		兩三分數=[]
 		self.有一張對齊詞 = self.分析器.產生對齊詞('有一張', 'u7-tsit8-tiunn1')
 		self.字典.加詞(self.有一張對齊詞)
 		self.有一張集 = self.分析器.產生對齊集('有一張', 'u7-tsit8-tiunn1')
@@ -244,18 +273,28 @@ class 動態規劃斷詞試驗(TestCase):
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.對齊句)
 		self.assertEqual(斷詞結果, 新句物件)
 		self.檢查分數詞數(分數, 詞數, 0, 5)
+		兩三分數.append(分數)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.型句)
 		self.assertEqual(斷詞結果, 新句物件)
 		self.檢查分數詞數(分數, 詞數, 0, 5)
+		兩三分數.append(分數)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.音句)
 		self.assertEqual(斷詞結果, 新句物件)
 		self.檢查分數詞數(分數, 詞數, 0, 5)
+		兩三分數.append(分數)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.有詞漢羅)
 		self.assertEqual(斷詞結果, 新句物件)
 		self.檢查分數詞數(分數, 詞數, 0, 5)
+		兩三分數.append(分數)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
 		self.assertEqual(斷詞結果, 新句物件)
 		self.檢查分數詞數(分數, 詞數, 0, 5)
+		兩三分數.append(分數)
+		for 分數 in 一四分數[1:]:
+			self.assertEqual(分數, 一四分數[0])
+		for 分數 in 兩三分數[1:]:
+			self.assertEqual(分數, 兩三分數[0])
+		self.assertLess(一四分數[0], 兩三分數[0])
 		
 	def test_詞屬性愛留咧(self):
 		self.字典.加詞(self.我對齊詞)
