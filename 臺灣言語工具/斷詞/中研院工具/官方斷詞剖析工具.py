@@ -21,6 +21,7 @@ from socket import AF_INET
 from socket import SOCK_STREAM
 import re
 import time
+import sys
 
 class 官方斷詞剖析工具:
 	檢查結果 = re.compile('<result>(.*)</result>')
@@ -34,6 +35,7 @@ class 官方斷詞剖析工具:
 				逐逝 = self.連線(語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
 			except:
 				if 一定愛成功:
+					print('連線失敗，小等閣試……',file=sys.stderr)
 					time.sleep(10)
 				else:
 					break
@@ -66,6 +68,7 @@ class 官方斷詞剖析工具:
 					剖的結果 = self.連線(愛剖逝, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
 				except:
 					if 一定愛成功:
+						print('連線失敗，小等閣試……',file=sys.stderr)
 						time.sleep(10)
 					else:
 						break
