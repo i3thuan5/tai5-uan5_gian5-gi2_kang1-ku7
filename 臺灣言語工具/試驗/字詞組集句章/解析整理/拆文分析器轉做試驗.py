@@ -65,6 +65,13 @@ class 拆文分析器轉做試驗(unittest.TestCase):
 		字物件 = self.分析器.轉做字物件(分詞)
 		self.assertEqual(字物件.型, 型)
 		self.assertEqual(字物件.音, 音)
+	def test_轉做字空白(self):
+		分詞 = ' ｜ '
+		型 = ' '
+		音 = ' '
+		字物件 = self.分析器.轉做字物件(分詞)
+		self.assertEqual(字物件.型, 型)
+		self.assertEqual(字物件.音, 音)
 
 	def test_轉做詞孤字(self):
 		分詞 = '𪜶｜in1'
@@ -121,6 +128,15 @@ class 拆文分析器轉做試驗(unittest.TestCase):
 	def test_轉做詞無分型音(self):
 		分詞 = '無'
 		self.assertRaises(解析錯誤, self.分析器.轉做字物件, 分詞)
+
+	def test_轉做詞空白(self):
+		分詞 = ' ｜ '
+		型 = ' '
+		音 = ' '
+		詞物件 = self.分析器.轉做詞物件(分詞)
+		self.assertEqual(len(詞物件.內底字), 1)
+		self.assertEqual(詞物件.內底字[0].型, 型)
+		self.assertEqual(詞物件.內底字[0].音, 音)
 
 	def test_轉做組集句章孤字(self):
 		分詞 = '𪜶｜in1'
