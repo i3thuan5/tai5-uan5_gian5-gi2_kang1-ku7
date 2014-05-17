@@ -52,6 +52,9 @@ class 拆文分析器轉做試驗(unittest.TestCase):
 	def test_轉做字無半字(self):
 		分詞 = ''
 		self.assertRaises(解析錯誤, self.分析器.轉做字物件, 分詞)
+	def test_轉做字有分型音無半字(self):
+		分詞 = '｜'
+		self.assertRaises(解析錯誤, self.分析器.轉做字物件, 分詞)
 	def test_轉做字無分型音(self):
 		分詞 = '無'
 		self.assertRaises(解析錯誤, self.分析器.轉做字物件, 分詞)
@@ -102,7 +105,7 @@ class 拆文分析器轉做試驗(unittest.TestCase):
 		分詞 = '美-麗｜sui2'
 		self.assertRaises(解析錯誤, self.分析器.轉做詞物件, 分詞)
 
-	def test_轉做詞有兩字(self):
+	def test_轉做詞有兩詞(self):
 		分詞 = '兩｜nng7 个｜e5'
 		self.assertRaises(解析錯誤, self.分析器.轉做詞物件, 分詞)
 
@@ -110,6 +113,10 @@ class 拆文分析器轉做試驗(unittest.TestCase):
 		分詞 = ''
 		詞物件 = self.分析器.轉做詞物件(分詞)
 		self.assertEqual(len(詞物件.內底字), 0)
+
+	def test_轉做詞有分詞無半字(self):
+		分詞 = '｜'
+		self.assertRaises(解析錯誤, self.分析器.轉做詞物件, 分詞)
 
 	def test_轉做詞無分型音(self):
 		分詞 = '無'
@@ -238,3 +245,19 @@ class 拆文分析器轉做試驗(unittest.TestCase):
 		self.assertRaises(型態錯誤, self.分析器.轉做集物件, None)
 		self.assertRaises(型態錯誤, self.分析器.轉做句物件, 14325)
 		self.assertRaises(型態錯誤, self.分析器.轉做章物件, ('None',))
+
+	def test_空白(self):
+		分詞='去｜khi3 飛-翔｜pue1-siong5  ｜  走｜tsau2 遍｜pian3 世-界｜se3-kai3'
+		組物件 = self.分析器.轉做組物件(分詞)
+		self.assertEqual(len(組物件.內底詞), 6)
+		self.assertEqual(len(組物件.內底詞[2].內底字), 1)
+		字物件 = self.分析器.產生對齊字(' ', ' ')
+		self.assertEqual(組物件.內底詞[2].內底字[0], 字物件)
+
+	def test_全形空白(self):
+		分詞='去｜khi3 飛-翔｜pue1-siong5 　｜　 走｜tsau2 遍｜pian3 世-界｜se3-kai3'
+		組物件 = self.分析器.轉做組物件(分詞)
+		self.assertEqual(len(組物件.內底詞), 6)
+		self.assertEqual(len(組物件.內底詞[2].內底字), 1)
+		字物件 = self.分析器.產生對齊字('　', '　')
+		self.assertEqual(組物件.內底詞[2].內底字[0], 字物件)

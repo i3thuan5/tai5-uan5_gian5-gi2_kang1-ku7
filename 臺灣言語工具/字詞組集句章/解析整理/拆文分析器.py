@@ -413,6 +413,8 @@ class 拆文分析器:
 			型, 音 = 分詞.split(分型音符號)
 		except:
 			raise 解析錯誤('毋是拄仔好有兩个部份：{0}'.format(分詞))
+		if 型=='':
+			raise 解析錯誤('型是空的：{0}'.format(分詞))
 		return self.產生對齊詞(型, 音)
 	
 	def 轉做組物件(self, 分詞):
