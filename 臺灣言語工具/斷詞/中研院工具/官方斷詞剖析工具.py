@@ -20,14 +20,25 @@ from socket import socket
 from socket import AF_INET
 from socket import SOCK_STREAM
 import re
+import time
 
 class 官方斷詞剖析工具:
 	檢查結果 = re.compile('<result>(.*)</result>')
 	分句 = re.compile('<sentence>(.*?)</sentence>')
 	分詞性 = re.compile('(.*)\((.*)\)')
 	回傳狀況 = re.compile('<processstatus code="\d">(.*?)</processstatus>')
-	def 斷詞(self, 語句, 編碼='UTF-8', 等待=1, 主機='140.109.19.104', 連接埠=1501, 帳號='ihcaoe', 密碼='aip1614'):
-		逐逝 = self.連線(語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
+	def 斷詞(self, 語句, 編碼 = 'UTF-8', 等待 = 1, 一定愛成功 = False,
+			主機 = '140.109.19.104', 連接埠 = 1501, 帳號 = 'ihcaoe', 密碼 = 'aip1614'):
+		while True:
+			try:
+				逐逝 = self.連線(語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
+			except:
+				if 一定愛成功:
+					time.sleep(10)
+				else:
+					break
+			else:
+				break
 		結果 = [[]]
 		for 一逝 in 逐逝:
 			逝結果 = []
@@ -41,18 +52,28 @@ class 官方斷詞剖析工具:
 			else:
 				結果[-1].append(逝結果)
 		return 結果
-	
-	def 剖析(self, 語句, 編碼='Big5', 等待=3, 主機='140.109.19.112', 連接埠=8000, 帳號='ihcaoe', 密碼='aip1614'):
+
+	def 剖析(self, 語句, 編碼 = 'Big5', 等待 = 3, 一定愛成功 = False,
+			主機 = '140.109.19.112', 連接埠 = 8000, 帳號 = 'ihcaoe', 密碼 = 'aip1614'):
 		# 官方功能無記錄原本換逝資訊，所以愛一逐一擺
 		結果 = []
 		for 一逝 in 語句.split('\n'):
 			愛剖逝 = 一逝.strip()
 			if 愛剖逝 == '':
 				continue
-			剖的結果 = self.連線(愛剖逝, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
+			while True:
+				try:
+					剖的結果 = self.連線(愛剖逝, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
+				except:
+					if 一定愛成功:
+						time.sleep(10)
+					else:
+						break
+				else:
+					break
 			結果.append(剖的結果)
-		return 結果 
-	
+		return 結果
+
 	def 連線(self, 語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼):
 		連線 = socket(
 			AF_INET, SOCK_STREAM)
