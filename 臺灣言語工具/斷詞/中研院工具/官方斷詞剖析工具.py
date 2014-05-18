@@ -38,7 +38,7 @@ class 官方斷詞剖析工具:
 					print('連線失敗，小等閣試……',file=sys.stderr)
 					time.sleep(10)
 				else:
-					break
+					raise
 			else:
 				break
 		結果 = [[]]
@@ -66,15 +66,15 @@ class 官方斷詞剖析工具:
 			while True:
 				try:
 					剖的結果 = self.連線(愛剖逝, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
+					結果.append(剖的結果)
 				except:
 					if 一定愛成功:
 						print('連線失敗，小等閣試……',file=sys.stderr)
 						time.sleep(10)
 					else:
-						break
+						raise
 				else:
 					break
-			結果.append(剖的結果)
 		return 結果
 
 	def 連線(self, 語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼):
