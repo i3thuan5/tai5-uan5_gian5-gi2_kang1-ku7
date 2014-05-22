@@ -18,7 +18,7 @@
 """
 import unittest
 from 臺灣言語工具.字音字型出題.揣閩南語辭典 import 揣閩南語題目
-from 臺灣言語工具.字詞組集句章.解析整理.拆文分析器 import 拆文分析器
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 class 揣閩南語題目試驗(unittest.TestCase):
 	def setUp(self):
 		self.閩南語題目 = 揣閩南語題目()

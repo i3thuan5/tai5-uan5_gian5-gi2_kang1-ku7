@@ -21,17 +21,17 @@ Created on 2013/9/22
 
 @author: Ihc
 '''
-from 臺灣言語工具.字詞組集句章.基本元素.字 import 字
-from 臺灣言語工具.字詞組集句章.基本元素.詞 import 詞
-from 臺灣言語工具.字詞組集句章.基本元素.組 import 組
-from 臺灣言語工具.字詞組集句章.基本元素.集 import 集
-from 臺灣言語工具.字詞組集句章.基本元素.句 import 句
-from 臺灣言語工具.字詞組集句章.基本元素.章 import 章
-from 臺灣言語工具.字詞組集句章.解析整理.型態錯誤 import 型態錯誤
-from 臺灣言語工具.字詞組集句章.解析整理.解析錯誤 import 解析錯誤
-from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 分字符號
-from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 分詞符號
-from 臺灣言語工具.字詞組集句章.基本元素.公用變數 import 無音
+from 臺灣言語工具.基本元素.字 import 字
+from 臺灣言語工具.基本元素.詞 import 詞
+from 臺灣言語工具.基本元素.組 import 組
+from 臺灣言語工具.基本元素.集 import 集
+from 臺灣言語工具.基本元素.句 import 句
+from 臺灣言語工具.基本元素.章 import 章
+from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
+from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
+from 臺灣言語工具.基本元素.公用變數 import 分字符號
+from 臺灣言語工具.基本元素.公用變數 import 分詞符號
+from 臺灣言語工具.基本元素.公用變數 import 無音
 
 class 程式掠漏:
 	def 毋是字物件就毋著(self, 字物件):

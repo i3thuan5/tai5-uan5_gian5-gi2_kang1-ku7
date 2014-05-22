@@ -17,10 +17,10 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import unittest
-from 臺灣言語工具.字詞組集句章.解析整理.解析錯誤 import 解析錯誤
-from 臺灣言語工具.字詞組集句章.解析整理.型態錯誤 import 型態錯誤
-from 臺灣言語工具.字詞組集句章.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.字詞組集句章.解析整理.程式掠漏 import 程式掠漏
+from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
+from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+from 臺灣言語工具.解析整理.程式掠漏 import 程式掠漏
 
 class 程式掠漏試驗(unittest.TestCase):
 	def setUp(self):

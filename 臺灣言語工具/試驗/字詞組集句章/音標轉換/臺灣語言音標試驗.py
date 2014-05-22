@@ -17,7 +17,7 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import unittest
-from 臺灣言語工具.字詞組集句章.音標系統.閩南語.臺灣語言音標 import 臺灣語言音標
+from 臺灣言語工具.音標系統.閩南語.臺灣語言音標 import 臺灣語言音標
 
 class 臺灣語言音標試驗(unittest.TestCase):
 	def setUp(self):

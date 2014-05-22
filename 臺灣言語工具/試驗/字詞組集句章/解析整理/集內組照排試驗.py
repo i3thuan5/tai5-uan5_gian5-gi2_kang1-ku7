@@ -17,12 +17,12 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 from unittest.case import TestCase
-from 臺灣言語工具.字詞組集句章.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.字詞組集句章.基本元素.集 import 集
-from 臺灣言語工具.字詞組集句章.基本元素.句 import 句
-from 臺灣言語工具.字詞組集句章.基本元素.章 import 章
-from 臺灣言語工具.字詞組集句章.解析整理.集內組照排 import 集內組照排
-from 臺灣言語工具.字詞組集句章.解析整理.物件譀鏡 import 物件譀鏡
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+from 臺灣言語工具.基本元素.集 import 集
+from 臺灣言語工具.基本元素.句 import 句
+from 臺灣言語工具.基本元素.章 import 章
+from 臺灣言語工具.解析整理.集內組照排 import 集內組照排
+from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from timeit import itertools
 
 class 集內組照排試驗(TestCase):

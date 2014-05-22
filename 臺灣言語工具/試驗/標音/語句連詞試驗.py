@@ -17,14 +17,14 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 from unittest.case import TestCase
-from 臺灣言語工具.字詞組集句章.解析整理.文章粗胚 import 文章粗胚
-from 臺灣言語工具.字詞組集句章.解析整理.拆文分析器 import 拆文分析器
+from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.斷詞.型音辭典 import 型音辭典
-from 臺灣言語工具.字詞組集句章.基本元素.詞 import 詞
-from 臺灣言語工具.字詞組集句章.解析整理.解析錯誤 import 解析錯誤
+from 臺灣言語工具.基本元素.詞 import 詞
+from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from math import log10
 from 臺灣言語工具.標音.語句連詞 import 語句連詞
-from 臺灣言語工具.字詞組集句章.解析整理.參數錯誤 import 參數錯誤
+from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 
 class 語句連詞試驗(TestCase):
 	def setUp(self):
