@@ -235,25 +235,25 @@ class 拆文分析器轉做試驗(unittest.TestCase):
 		self.assertEqual(len(章物件.內底句), 2)
 		self.assertEqual(章物件.內底句[0], self.分析器.轉做句物件(分詞一))
 		self.assertEqual(章物件.內底句[1], self.分析器.轉做句物件(分詞二))
-		
+
 	def test_轉做章濟標點句(self):
-		分詞零= '。｜. 。｜. '
+		分詞零 = '。｜. 。｜. '
 		分詞一 = '𪜶｜in1 兩｜nng7 个｜e5 兄-弟-仔｜hiann1-ti7-a2 '\
 			'為-著｜ui7-tioh8 拚｜piann3 生-理｜sing1-li2 ，｜, 。｜. '
-		分詞二 ='就｜to7 。｜. 。｜. '
-		分詞三= '就｜to7 按｜an2 。｜. '
+		分詞二 = '就｜to7 。｜. 。｜. '
+		分詞三 = '就｜to7 按｜an2 。｜. '
 		分詞四 = '就｜to7 按-呢｜an2-ne1 。｜. '
-		分詞五  = '就｜to7 按-呢｜an2-ne1 一-刀-兩-斷｜it4-to1-liong2-tuan7 '\
+		分詞五 = '就｜to7 按-呢｜an2-ne1 一-刀-兩-斷｜it4-to1-liong2-tuan7 '\
 			'無｜bo5 來-去｜lai5-khi3 。｜. 。｜. ！｜! '
-		分詞陣列 = [分詞零,分詞一,分詞二,分詞三,分詞四,分詞五]
+		分詞陣列 = [分詞零, 分詞一, 分詞二, 分詞三, 分詞四, 分詞五]
 		分詞 = ''.join(分詞陣列)
 		章物件 = self.分析器.轉做章物件(分詞)
-		句陣列=[]
+		句陣列 = []
 		for 分 in 分詞陣列:
 			 句陣列.append(self.分析器.轉做句物件(分))
 		self.assertEqual(len(章物件.內底句), 6)
 		self.assertEqual(章物件.內底句, 句陣列)
-		
+
 	def test_烏白傳參數(self):
 		self.assertRaises(型態錯誤, self.分析器.轉做字物件, None)
 		self.assertRaises(型態錯誤, self.分析器.轉做詞物件, 333)
@@ -263,7 +263,7 @@ class 拆文分析器轉做試驗(unittest.TestCase):
 		self.assertRaises(型態錯誤, self.分析器.轉做章物件, ('None',))
 
 	def test_空白(self):
-		分詞='去｜khi3 飛-翔｜pue1-siong5  ｜  走｜tsau2 遍｜pian3 世-界｜se3-kai3'
+		分詞 = '去｜khi3 飛-翔｜pue1-siong5  ｜  走｜tsau2 遍｜pian3 世-界｜se3-kai3'
 		組物件 = self.分析器.轉做組物件(分詞)
 		self.assertEqual(len(組物件.內底詞), 6)
 		self.assertEqual(len(組物件.內底詞[2].內底字), 1)
@@ -271,9 +271,13 @@ class 拆文分析器轉做試驗(unittest.TestCase):
 		self.assertEqual(組物件.內底詞[2].內底字[0], 字物件)
 
 	def test_全形空白(self):
-		分詞='去｜khi3 飛-翔｜pue1-siong5 　｜　 走｜tsau2 遍｜pian3 世-界｜se3-kai3'
+		分詞 = '去｜khi3 飛-翔｜pue1-siong5 　｜　 走｜tsau2 遍｜pian3 世-界｜se3-kai3'
 		組物件 = self.分析器.轉做組物件(分詞)
 		self.assertEqual(len(組物件.內底詞), 6)
 		self.assertEqual(len(組物件.內底詞[2].內底字), 1)
 		字物件 = self.分析器.產生對齊字('　', '　')
 		self.assertEqual(組物件.內底詞[2].內底字[0], 字物件)
+
+	def test_有部份無合法(self):
+		分詞 = '梅山 猴災 鄉-公-所｜hiong1-kong1-soo2 雇人 趕-走｜kuann2-tsau2 猴-山｜kau5-san1'
+		self.assertRaises(解析錯誤, self.分析器.轉做組物件, 分詞)
