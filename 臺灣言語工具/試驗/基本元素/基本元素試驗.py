@@ -95,12 +95,19 @@ class 基本元素試驗(unittest.TestCase):
 		self.assertRaises(型態錯誤, 集, None)
 		self.assertRaises(型態錯誤, 集, [None])
 		self.assertRaises(型態錯誤, 集, ['sui2'])
-		self.assertRaises(型態錯誤, 章, None)
-		self.assertRaises(型態錯誤, 章, [None])
-		self.assertRaises(型態錯誤, 章, ['sui2'])
 		self.assertRaises(型態錯誤, 句, None)
 		self.assertRaises(型態錯誤, 句, [None])
 		self.assertRaises(型態錯誤, 句, ['sui2'])
+		self.assertRaises(型態錯誤, 章, None)
+		self.assertRaises(型態錯誤, 章, [None])
+		self.assertRaises(型態錯誤, 章, ['sui2'])
+
+	def test_詞組集章句傳其他疊代(self):
+		self.assertEqual(self.詞物件, 詞(tuple(self.詞物件.內底字)))
+		self.assertEqual(self.組物件, 組(tuple(self.組物件.內底詞)))
+		self.assertEqual(self.集物件, 集(tuple(self.集物件.內底組)))
+		self.assertEqual(self.句物件, 句(tuple(self.句物件.內底集)))
+		self.assertEqual(self.章物件, 章(tuple(self.章物件.內底句)))
 
 	def test_句獨立檢查(self):
 		self.assertEqual(len(self.句物件.內底集), 2)
