@@ -19,20 +19,20 @@
 from unittest.case import TestCase
 from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.斷詞.型音辭典 import 型音辭典
-from 臺灣言語工具.斷詞.動態規劃斷詞 import 動態規劃斷詞
+from 臺灣言語工具.表單.型音辭典 import 型音辭典
+from 臺灣言語工具.斷詞.辭典揣詞 import 辭典揣詞
 from 臺灣言語工具.基本元素.組 import 組
 from 臺灣言語工具.基本元素.集 import 集
 from 臺灣言語工具.基本元素.句 import 句
 from 臺灣言語工具.基本元素.章 import 章
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 
-class 動態規劃斷詞試驗(TestCase):
+class 辭典揣詞試驗(TestCase):
 	def setUp(self):
 		self.字典 = 型音辭典(4)
 		self.粗胚 = 文章粗胚()
 		self.分析器 = 拆文分析器()
-		self.斷詞 = 動態規劃斷詞()
+		self.斷詞 = 辭典揣詞()
 
 		self.我對齊詞 = self.分析器.產生對齊詞('我', 'gua2')
 		self.文我對齊詞 = self.分析器.產生對齊詞('我', 'ngoo2')
