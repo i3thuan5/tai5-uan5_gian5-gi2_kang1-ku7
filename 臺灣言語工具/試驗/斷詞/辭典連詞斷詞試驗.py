@@ -39,20 +39,6 @@ class 辭典連詞斷詞試驗(TestCase):
 
 		self.分析器 = 拆文分析器()
 
-		self.我對齊詞 = self.分析器.產生對齊詞('我', 'gua2')
-		self.文我對齊詞 = self.分析器.產生對齊詞('我', 'ngoo2')
-		self.有對齊詞 = self.分析器.產生對齊詞('有', 'u7')
-		self.一張對齊詞 = self.分析器.產生對齊詞('一張', 'tsit8-tiunn1')
-		self.椅仔對齊詞 = self.分析器.產生對齊詞('椅仔', 'i2-a2')
-		self.驚對齊詞 = self.分析器.產生對齊詞('！', '!')
-
-		self.對齊句 = self.分析器.產生對齊句(
-			'我有一張椅仔！！', 'gua2 u7 tsit8-tiunn1 i2-a2!!')
-		self.型句 = self.分析器.建立句物件('我有一張椅仔！！')
-		self.音句 = self.分析器.建立句物件('gua2 u7 tsit8-tiunn1 i2-a2!!')
-		self.有詞漢羅 = self.分析器.建立句物件('我 u7 一張 i2-a2!!')
-		self.無詞漢羅 = self.分析器.建立句物件('gua2 u7 一張 i2-a2!!')
-
 		self.予對齊詞 = self.分析器.產生對齊詞('予', 'hoo7')
 		self.伊對齊詞 = self.分析器.產生對齊詞('伊', 'i1')
 		self.雨衣對齊詞 = self.分析器.產生對齊詞('雨衣', 'hoo7-i1')
@@ -71,28 +57,6 @@ class 辭典連詞斷詞試驗(TestCase):
 
 	def tearDown(self):
 		pass
-
-	def test_句無連詞(self):
-		self.字典.加詞(self.我對齊詞)
-		self.字典.加詞(self.有對齊詞)
-		self.字典.加詞(self.一張對齊詞)
-		self.字典.加詞(self.椅仔對齊詞)
-		self.字典.加詞(self.驚對齊詞)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.對齊句)
-		self.assertEqual(斷詞結果, self.句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 6)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.型句)
-		self.assertEqual(斷詞結果, self.句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 6)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.音句)
-		self.assertEqual(斷詞結果, self.句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 6)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.有詞漢羅)
-		self.assertEqual(斷詞結果, self.句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 6)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.無詞漢羅)
-		self.assertEqual(斷詞結果, self.句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 6)
 
 	def test_句毋是愈長愈好(self):
 		self.予對齊詞 = self.分析器.產生對齊詞('予', 'hoo7')
@@ -113,113 +77,93 @@ class 辭典連詞斷詞試驗(TestCase):
 		self.assertEqual(斷詞結果, self.雨衣對齊句)
 		self.檢查分數詞數(分數, 詞數, 0, 3)
 
-		self.連詞.看(self.self.予伊耍對齊句)
+		self.連詞.看(self.予伊耍對齊句)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.音句)
 		self.assertEqual(斷詞結果, self.句物件)
 		self.檢查分數詞數(分數, 詞數, 0, 4)
 		
+	def 加我有一張椅仔的資料(self):
+		self.白我對齊詞 = self.分析器.產生對齊詞('我', 'gua2')
+		self.文我對齊詞 = self.分析器.產生對齊詞('我', 'ngoo2')
+		self.有對齊詞 = self.分析器.產生對齊詞('有', 'u7')
+		self.一張對齊詞 = self.分析器.產生對齊詞('一張', 'tsit8-tiunn1')
+		self.椅仔對齊詞 = self.分析器.產生對齊詞('椅仔', 'i2-a2')
+		self.驚對齊詞 = self.分析器.產生對齊詞('！', '!')
+		
+		self.白我有對齊組 = self.分析器.產生對齊組('我有', 'gua2 u7')
+		self.文我有對齊組 = self.分析器.產生對齊組('我有', 'ngoo2 iu2')
+		
+		self.對齊句 = self.分析器.產生對齊句(
+			'我有一張椅仔！！', 'gua2 u7 tsit8-tiunn1 i2-a2!!')
+		self.型句 = self.分析器.建立句物件('我有一張椅仔！！')
+		self.音句 = self.分析器.建立句物件('gua2 u7 tsit8-tiunn1 i2-a2!!')
+		self.有詞漢羅 = self.分析器.建立句物件('我 u7 一張 i2-a2!!')
+		self.無詞漢羅 = self.分析器.建立句物件('gua2 u7 一張 i2-a2!!')
+		
 	def test_多詞斷詞(self):
-		self.字典.加詞(self.我對齊詞)
+		self.加我有一張椅仔的資料()
+		self.字典.加詞(self.白我對齊詞)
 		self.字典.加詞(self.文我對齊詞)
 		self.字典.加詞(self.有對齊詞)
 		self.字典.加詞(self.一張對齊詞)
 		self.字典.加詞(self.椅仔對齊詞)
 		self.字典.加詞(self.驚對齊詞)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.對齊句)
-		self.assertEqual(斷詞結果, self.句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 6)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.型句)
-		self.assertEqual(斷詞結果, self.文我句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 6)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.音句)
-		self.assertEqual(斷詞結果, self.句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 6)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.有詞漢羅)
-		self.assertEqual(斷詞結果, self.文我句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 6)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
-		self.assertEqual(斷詞結果, self.句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 6)
-		
-	def test_兩三切比一四切閣較好(self):
+		self.連詞.看(self.白我有對齊組)
+		self.連詞.看(self.文我有對齊組)
+		白有錢對齊組 = self.分析器.產生對齊組('有錢', 'u7 tsinn5')
+		self.連詞.看(白有錢對齊組)
+		self.逐種我有一張椅仔斷詞(對齊句, 0, 6)
+
+	def test_句無連詞(self):
 		self.字典.加詞(self.我對齊詞)
 		self.字典.加詞(self.有對齊詞)
 		self.字典.加詞(self.一張對齊詞)
 		self.字典.加詞(self.椅仔對齊詞)
 		self.字典.加詞(self.驚對齊詞)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.對齊句)
-		self.assertEqual(斷詞結果, self.句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 6)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.型句)
-		self.assertEqual(斷詞結果, self.句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 6)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.音句)
-		self.assertEqual(斷詞結果, self.句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 6)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.有詞漢羅)
-		self.assertEqual(斷詞結果, self.句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 6)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
-		self.assertEqual(斷詞結果, self.句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 6)
+		self.逐種我有一張椅仔斷詞(對齊句, 0, 6)
 		
-		一四分數=[]
+	def 逐種我有一張椅仔斷詞(self, 答案, 答案分數, 答案詞數):
+		全部分數 = []
+		for 題目 in [self.對齊句, self.型句, self.音句,
+				self.有詞漢羅, self.無詞漢羅, ]:
+			斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, 題目)
+			self.assertEqual(斷詞結果, self.答案)
+			self.檢查分數詞數(分數, 詞數, 答案分數, 答案詞數)
+			全部分數.append(分數)
+		for 分數 in 全部分數[1:]:
+			self.assertEqual(分數, 全部分數[0])
+		return 全部分數
+		
+	def test_兩三切比一四切閣較好(self):
+		self.加我有一張椅仔的資料()
+		self.字典.加詞(self.我對齊詞)
+		self.字典.加詞(self.有對齊詞)
+		self.字典.加詞(self.一張對齊詞)
+		self.字典.加詞(self.椅仔對齊詞)
+		self.字典.加詞(self.驚對齊詞)
+		原本分數=self.逐種我有一張椅仔斷詞(對齊句, 0, 6)
+		
 		self.一張椅仔對齊詞 = self.分析器.產生對齊詞('一張椅仔', 'tsit8-tiunn1-i2-a2')
 		self.字典.加詞(self.一張椅仔對齊詞)
 		self.一張椅仔集 = self.分析器.產生對齊集('一張椅仔', 'tsit8-tiunn1-i2-a2')
-		新句物件 = 句([self.我對齊集, self.有對齊集,
+		self.連詞.看(self.一張椅仔集)
+		一四新句物件 = 句([self.我對齊集, self.有對齊集,
 			self.一張椅仔集, self.驚對齊集, self.驚對齊集])
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.對齊句)
-		self.assertEqual(斷詞結果, 新句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 5)
-		一四分數.append(分數)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.型句)
-		self.assertEqual(斷詞結果, 新句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 5)
-		一四分數.append(分數)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.音句)
-		self.assertEqual(斷詞結果, 新句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 5)
-		一四分數.append(分數)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.有詞漢羅)
-		self.assertEqual(斷詞結果, 新句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 5)
-		一四分數.append(分數)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
-		self.assertEqual(斷詞結果, 新句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 5)
-		一四分數.append(分數)
+		一四分數 = self.逐種我有一張椅仔斷詞(一四新句物件, 0, 5)
 
-		兩三分數=[]
 		self.有一張對齊詞 = self.分析器.產生對齊詞('有一張', 'u7-tsit8-tiunn1')
 		self.字典.加詞(self.有一張對齊詞)
+		有一張的一四分數 = self.逐種我有一張椅仔斷詞(一四新句物件, 0, 5)
+		self.assertEqual(有一張的一四分數, 一四分數)
+		
+		self.連詞.看(self.有一張集)
+		self.連詞.看(self.椅仔對齊詞)
 		self.有一張集 = self.分析器.產生對齊集('有一張', 'u7-tsit8-tiunn1')
-		新句物件 = 句([self.我對齊集, self.有一張集,
+		兩三新句物件 = 句([self.我對齊集, self.有一張集,
 			self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.對齊句)
-		self.assertEqual(斷詞結果, 新句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 5)
-		兩三分數.append(分數)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.型句)
-		self.assertEqual(斷詞結果, 新句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 5)
-		兩三分數.append(分數)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.音句)
-		self.assertEqual(斷詞結果, 新句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 5)
-		兩三分數.append(分數)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.有詞漢羅)
-		self.assertEqual(斷詞結果, 新句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 5)
-		兩三分數.append(分數)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
-		self.assertEqual(斷詞結果, 新句物件)
-		self.檢查分數詞數(分數, 詞數, 0, 5)
-		兩三分數.append(分數)
-		for 分數 in 一四分數[1:]:
-			self.assertEqual(分數, 一四分數[0])
-		for 分數 in 兩三分數[1:]:
-			self.assertEqual(分數, 兩三分數[0])
+		兩三分數 = self.逐種我有一張椅仔斷詞(兩三新句物件, 0, 5)
+			
+		self.assertLess(原本分數[0], 一四分數[0])
 		self.assertLess(一四分數[0], 兩三分數[0])
 		
 	def test_章斷詞(self):
@@ -252,10 +196,10 @@ class 辭典連詞斷詞試驗(TestCase):
 		e5_的鞋.內底組 = [的, 鞋, ]
 		我_e5_e5_仔_的鞋 = 句()
 		我_e5_e5_仔_的鞋 .內底集 = [我, e5_的鞋, e5_的鞋, 仔]
-		鞋集=集()
-		鞋集.內底組=[鞋, ]
-		的集=集()
-		的集.內底組=[的, ]
+		鞋集 = 集()
+		鞋集.內底組 = [鞋, ]
+		的集 = 集()
+		的集.內底組 = [的, ]
 		我鞋鞋仔 = 句()
 		我鞋鞋仔.內底集 = [我, 鞋集, 鞋集, 仔]
 		我的鞋仔 = 句()
@@ -323,3 +267,6 @@ class 辭典連詞斷詞試驗(TestCase):
 		
 	def test_試驗好矣未(self):
 		raise NotImplementedError
+
+if __name__ == '__main__':
+	unittest.main()
