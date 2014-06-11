@@ -33,9 +33,10 @@ class 官方斷詞剖析工具:
 		while True:
 			try:
 				逐逝 = self.連線(語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
-			except:
+			except Exception as 問題:
 				if 一定愛成功:
-					print('連線失敗，小等閣試……', file=sys.stderr)
+					print('連線失敗，小等閣試……。原因：{0}'.format(問題),
+						file=sys.stderr)
 					time.sleep(10)
 				else:
 					raise
@@ -72,9 +73,10 @@ class 官方斷詞剖析工具:
 				try:
 					剖的結果 = self.連線(愛剖逝, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
 					結果.append(剖的結果)
-				except:
+				except Exception as 問題:
 					if 一定愛成功:
-						print('連線失敗，小等閣試……', file=sys.stderr)
+						print('連線失敗，小等閣試……。原因：{0}'.format(問題),
+							file=sys.stderr)
 						time.sleep(10)
 					else:
 						raise
