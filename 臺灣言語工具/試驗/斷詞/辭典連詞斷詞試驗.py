@@ -39,46 +39,26 @@ class 辭典連詞斷詞試驗(TestCase):
 
 		self.分析器 = 拆文分析器()
 
-		self.予對齊詞 = self.分析器.產生對齊詞('予', 'hoo7')
-		self.伊對齊詞 = self.分析器.產生對齊詞('伊', 'i1')
-		self.雨衣對齊詞 = self.分析器.產生對齊詞('雨衣', 'hoo7-i1')
-		self.出去對齊詞 = self.分析器.產生對齊詞('出去', 'tsut4-khi2')
-		self.耍對齊詞 = self.分析器.產生對齊詞('耍', 'sng2')
-
-		self.予伊出去耍全羅 = self.分析器.建立句物件('hoo7 i1 tsut4 khi2 sng2')
-		self.予伊對齊句 = self.分析器.產生對齊句(
-			'予伊出去耍', 'hoo7 i1 tsut4-khi3 sng2')
-		self.雨衣對齊句 = self.分析器.產生對齊句(
-			'雨衣出去耍', 'hoo7-i1 tsut4-khi3 sng2')
-		self.予伊耍對齊句 = self.分析器.產生對齊句(
-			'予伊耍雨衣', 'hoo7 i1 sng2 hoo7-i1')
-
-
-
 	def tearDown(self):
 		pass
 
 	def test_句毋是愈長愈好(self):
-		self.予對齊詞 = self.分析器.產生對齊詞('予', 'hoo7')
-		self.伊對齊詞 = self.分析器.產生對齊詞('伊', 'i1')
-		self.雨衣對齊詞 = self.分析器.產生對齊詞('雨衣', 'hoo7-i1')
-		self.出去對齊詞 = self.分析器.產生對齊詞('出去', 'tsut4-khi2')
-		self.耍對齊詞 = self.分析器.產生對齊詞('耍', 'sng2')
+		self.加予伊出去耍的資料()
 		self.字典.加詞(self.予對齊詞)
 		self.字典.加詞(self.伊對齊詞)
 		self.字典.加詞(self.出去對齊詞)
 		self.字典.加詞(self.耍對齊詞)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.對齊句)
+		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.予伊出去耍全羅)
 		self.assertEqual(斷詞結果, self.予伊對齊句)
 		self.檢查分數詞數(分數, 詞數, 0, 4)
 
 		self.字典.加詞(self.雨衣對齊詞)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.型句)
+		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.予伊出去耍全羅)
 		self.assertEqual(斷詞結果, self.雨衣對齊句)
 		self.檢查分數詞數(分數, 詞數, 0, 3)
 
 		self.連詞.看(self.予伊耍對齊句)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.音句)
+		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.予伊出去耍全羅)
 		self.assertEqual(斷詞結果, self.句物件)
 		self.檢查分數詞數(分數, 詞數, 0, 4)
 		
@@ -112,22 +92,23 @@ class 辭典連詞斷詞試驗(TestCase):
 		self.連詞.看(self.文我有對齊組)
 		白有錢對齊組 = self.分析器.產生對齊組('有錢', 'u7 tsinn5')
 		self.連詞.看(白有錢對齊組)
-		self.斷逐種我有一張椅仔(對齊句, 0, 6)
+		self.斷逐種我有一張椅仔(self.對齊句, 0, 6)
 
 	def test_句無連詞(self):
-		self.字典.加詞(self.我對齊詞)
+		self.加我有一張椅仔的資料()
+		self.字典.加詞(self.白我對齊詞)
 		self.字典.加詞(self.有對齊詞)
 		self.字典.加詞(self.一張對齊詞)
 		self.字典.加詞(self.椅仔對齊詞)
 		self.字典.加詞(self.驚對齊詞)
-		self.斷逐種我有一張椅仔(對齊句, 0, 6)
+		self.斷逐種我有一張椅仔(self.對齊句, 0, 6)
 		
 	def 斷逐種我有一張椅仔(self, 答案, 答案分數, 答案詞數):
 		全部分數 = []
 		for 題目 in [self.對齊句, self.型句, self.音句,
 				self.有詞漢羅, self.無詞漢羅, ]:
 			斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, 題目)
-			self.assertEqual(斷詞結果, self.答案)
+			self.assertEqual(斷詞結果, 答案)
 			self.檢查分數詞數(分數, 詞數, 答案分數, 答案詞數)
 			全部分數.append(分數)
 		for 分數 in 全部分數[1:]:
@@ -136,12 +117,12 @@ class 辭典連詞斷詞試驗(TestCase):
 		
 	def test_兩三切比一四切閣較好(self):
 		self.加我有一張椅仔的資料()
-		self.字典.加詞(self.我對齊詞)
+		self.字典.加詞(self.白我對齊詞)
 		self.字典.加詞(self.有對齊詞)
 		self.字典.加詞(self.一張對齊詞)
 		self.字典.加詞(self.椅仔對齊詞)
 		self.字典.加詞(self.驚對齊詞)
-		原本分數 = self.斷逐種我有一張椅仔(對齊句, 0, 6)
+		原本分數 = self.斷逐種我有一張椅仔(self.對齊句, 0, 6)
 		
 		self.一張椅仔對齊詞 = self.分析器.產生對齊詞('一張椅仔', 'tsit8-tiunn1-i2-a2')
 		self.字典.加詞(self.一張椅仔對齊詞)
@@ -167,7 +148,7 @@ class 辭典連詞斷詞試驗(TestCase):
 		self.assertLess(一四分數[0], 兩三分數[0])
 		
 	def test_章斷詞(self):
-		self.字典.加詞(self.我對齊詞)
+		self.字典.加詞(self.白我對齊詞)
 		self.字典.加詞(self.文我對齊詞)
 		self.字典.加詞(self.有對齊詞)
 		self.字典.加詞(self.一張對齊詞)
@@ -179,32 +160,31 @@ class 辭典連詞斷詞試驗(TestCase):
 		self.assertEqual(斷詞結果, 結果章)
 		self.檢查分數詞數(分數, 詞數, 0, 12)
 	def 加我的鞋仔的資料(self):
-		我 = self.分析器.產生對齊集('我', 'gua2')
-		的 = self.分析器.產生對齊組('的', 'e5')
-		鞋 = self.分析器.產生對齊組('鞋', 'e5')
-		仔 = self.分析器.產生對齊集('仔', 'a2')
+		self.我 = self.分析器.產生對齊集('我', 'gua2')
+		self.的 = self.分析器.產生對齊組('的', 'e5')
+		self.鞋 = self.分析器.產生對齊組('鞋', 'e5')
+		self.仔 = self.分析器.產生對齊集('仔', 'a2')
 		e5_鞋的 = 集()
-		e5_鞋的.內底組 = [鞋, 的, ]
-		我_e5_e5_仔_鞋的 = 句()
-		我_e5_e5_仔_鞋的 .內底集 = [我, e5_鞋的, e5_鞋的, 仔]
+		e5_鞋的.內底組 = [self.鞋, self.的, ]
+		self.我_e5_e5_仔_鞋的 = 句()
+		self.我_e5_e5_仔_鞋的 .內底集 = [self.我, e5_鞋的, e5_鞋的, self.仔]
 		e5_的鞋 = 集()
-		e5_的鞋.內底組 = [的, 鞋, ]
-		我_e5_e5_仔_的鞋 = 句()
-		我_e5_e5_仔_的鞋 .內底集 = [我, e5_的鞋, e5_的鞋, 仔]
-		我_e5_e5_仔=self.分析器.建立句物件('我 e5 e5 仔')
+		e5_的鞋.內底組 = [self.的, self.鞋, ]
+		self.我_e5_e5_仔_的鞋 = 句()
+		self.我_e5_e5_仔_的鞋 .內底集 = [self.我, e5_的鞋, e5_的鞋, self.仔]
+		self.我_e5_e5_仔=self.分析器.建立句物件('我 e5 e5 仔')
 		鞋集 = 集()
-		鞋集.內底組 = [鞋, ]
+		鞋集.內底組 = [self.鞋, ]
 		的集 = 集()
-		的集.內底組 = [的, ]
-		我鞋鞋仔 = 句()
-		我鞋鞋仔.內底集 = [我, 鞋集, 鞋集, 仔]
-		我的鞋仔 = 句()
-		我的鞋仔.內底集 = [我, 的集, 鞋集, 仔]
+		的集.內底組 = [self.的, ]
+		self.我鞋鞋仔 = 句()
+		self.我鞋鞋仔.內底集 = [self.我, 鞋集, 鞋集, self.仔]
+		self.我的鞋仔 = 句()
+		self.我的鞋仔.內底集 = [self.我, 的集, 鞋集, self.仔]
 	def 試斷我的鞋仔(self,答案):
-		鞋的結果, 鞋的分數 , 鞋的詞數 = self.斷詞.斷詞(self.連詞, 我_e5_e5_仔_鞋的)
-		的鞋結果, 的鞋分數, 的鞋詞數 = self.斷詞.斷詞(self.連詞, 我_e5_e5_仔_的鞋)
-		e5_e5_結果, e5_e5_分數, e5_e5_詞數 = self.斷詞.斷詞(self.連詞, 我_e5_e5_仔)
-		我_e5_e5_仔
+		鞋的結果, 鞋的分數 , 鞋的詞數 = self.斷詞.斷詞(self.連詞, self.我_e5_e5_仔_鞋的)
+		的鞋結果, 的鞋分數, 的鞋詞數 = self.斷詞.斷詞(self.連詞, self.我_e5_e5_仔_的鞋)
+		e5_e5_結果, e5_e5_分數, e5_e5_詞數 = self.斷詞.斷詞(self.連詞, self.我_e5_e5_仔)
 		self.assertEqual(答案, 鞋的結果)
 		self.assertEqual(答案, 的鞋結果)
 		self.assertEqual(答案, e5_e5_結果)
@@ -217,10 +197,10 @@ class 辭典連詞斷詞試驗(TestCase):
 		
 	def test_看機率選詞(self):
 		self.加我的鞋仔的資料()
-		self.字典.加詞(我)
-		self.字典.加詞(的)
-		self.字典.加詞(鞋)
-		self.字典.加詞(仔)
+		self.字典.加詞(self.我)
+		self.字典.加詞(self.的)
+		self.字典.加詞(self.鞋)
+		self.字典.加詞(self.仔)
 		self.連詞.看(self.分析器.產生對齊句('我穿布鞋。', 'gua2 tshng1 poo3 e5.'))
 		self.連詞.看(self.分析器.產生對齊句('我鞋仔歹去矣。', 'gua2 e5 a2 phainn2-0khi3 0ah4.'))
 		我的 = [self.分析器.產生對齊詞('我', 'gua2'), self.分析器.產生對齊詞('的', 'e5')]
@@ -228,17 +208,17 @@ class 辭典連詞斷詞試驗(TestCase):
 		我鞋 = [self.分析器.產生對齊詞('我', 'gua2'), self.分析器.產生對齊詞('鞋', 'e5')]
 		self.assertEqual(self.連詞.數量(我鞋), [2, 1])
 		
-		self.試斷我的鞋仔(我鞋鞋仔)
+		self.試斷我的鞋仔(self.我鞋鞋仔)
 		
 		self.連詞.看(self.分析器.產生對齊句('我的冊佇你遐。', 'gua2 e5 tsheh4 ti7 li2 hia1.'))
-		self.試斷我的鞋仔(我鞋鞋仔)
+		self.試斷我的鞋仔(self.我鞋鞋仔)
 		
 		self.連詞.看(self.分析器.產生對齊句('我的故鄉佇花蓮。', 'gua2 e5 koo3-hiong1 ti7 hua1-lian1.'))
-		self.試斷我的鞋仔(我的鞋仔)
+		self.試斷我的鞋仔(self.我的鞋仔)
 
-		的.內底詞[0].屬性 = {'機率':self.連詞.對數(0.01)}
-		鞋.內底詞[0].屬性 = {'機率':self.連詞.對數(0.99)}
-		self.試斷我的鞋仔(我鞋鞋仔)
+		self.的.內底詞[0].屬性 = {'機率':self.連詞.對數(0.01)}
+		self.鞋.內底詞[0].屬性 = {'機率':self.連詞.對數(0.99)}
+		self.試斷我的鞋仔(self.我鞋鞋仔)
 		
 	def test_標空的物件(self):
 		# 字物件有限制毋是空的
@@ -247,16 +227,31 @@ class 辭典連詞斷詞試驗(TestCase):
 		集物件 = self.分析器.建立集物件('')
 		句物件 = self.分析器.建立句物件('')
 		章物件 = self.分析器.建立章物件('')
-		結果, 分數, 詞數 = self.標音.標音(self.連詞, 詞物件)
+		結果, 分數, 詞數 = self.斷詞.斷詞(self.連詞,self.連詞, 詞物件)
 		全部分數 = {}
 		for 物件, 詞數答案 in zip([詞物件, 組物件, 句物件, 章物件], [3, 2, 2, 0]):
-			結果, 分數, 詞數 = self.標音.標音(self.連詞, 物件)
+			結果, 分數, 詞數 = self.斷詞.斷詞(self.連詞,self.連詞, 物件)
 			self.assertEqual(結果, 物件)
 			self.assertEqual(詞數, 詞數答案)
 			if 詞數 not in 全部分數:
 				全部分數[詞數] = 分數
 			self.assertEqual(分數, 全部分數[詞數])
-		self.assertRaises(解析錯誤, self.標音.標音, self.連詞, 集物件,)
+		self.assertRaises(解析錯誤, self.斷詞.斷詞,self.連詞, self.連詞, 集物件,)
+
+	def 加予伊出去耍的資料(self):
+		self.予對齊詞 = self.分析器.產生對齊詞('予', 'hoo7')
+		self.伊對齊詞 = self.分析器.產生對齊詞('伊', 'i1')
+		self.雨衣對齊詞 = self.分析器.產生對齊詞('雨衣', 'hoo7-i1')
+		self.出去對齊詞 = self.分析器.產生對齊詞('出去', 'tsut4-khi2')
+		self.耍對齊詞 = self.分析器.產生對齊詞('耍', 'sng2')
+
+		self.予伊出去耍全羅 = self.分析器.建立句物件('hoo7 i1 tsut4 khi2 sng2')
+		self.予伊對齊句 = self.分析器.產生對齊句(
+			'予伊出去耍', 'hoo7 i1 tsut4-khi3 sng2')
+		self.雨衣對齊句 = self.分析器.產生對齊句(
+			'雨衣出去耍', 'hoo7-i1 tsut4-khi3 sng2')
+		self.予伊耍對齊句 = self.分析器.產生對齊句(
+			'予伊耍雨衣', 'hoo7 i1 sng2 hoo7-i1')
 
 if __name__ == '__main__':
 	unittest.main()
