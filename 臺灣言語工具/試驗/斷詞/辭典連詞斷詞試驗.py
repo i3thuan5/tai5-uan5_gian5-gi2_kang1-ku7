@@ -55,7 +55,7 @@ class 辭典連詞斷詞試驗(TestCase):
 		self.加鞋仔的資料()
 		self.字典.加詞(self.鞋詞)
 		self.字典.加詞(self.仔詞)
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.鞋仔句物件)
+		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.鞋仔兩集句物件)
 		self.assertEqual(斷詞結果, self.兩詞鞋仔句)
 		self.assertLess(分數, 0)
 		self.assertEqual(詞數, 2)
@@ -74,7 +74,7 @@ class 辭典連詞斷詞試驗(TestCase):
 		self.字典.加詞(self.鞋詞)
 		self.字典.加詞(self.仔詞)
 		集物件=self.分析器.建立集物件('e5 a2')
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.鞋仔句物件)
+		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.鞋仔兩集句物件)
 		self.assertEqual(斷詞結果, self.兩詞鞋仔句)
 		self.assertLess(分數, 0)
 		self.assertEqual(詞數, 2)
@@ -156,6 +156,7 @@ class 辭典連詞斷詞試驗(TestCase):
 		self.字典.加詞(self.驚對齊詞)
 		原本分數 = self.斷逐種我有一張椅仔(self.對齊句, 0, 6)
 		
+		self.加我有一張椅仔的集資料()
 		self.一張椅仔對齊詞 = self.分析器.產生對齊詞('一張椅仔', 'tsit8-tiunn1-i2-a2')
 		self.字典.加詞(self.一張椅仔對齊詞)
 		self.一張椅仔集 = self.分析器.產生對齊集('一張椅仔', 'tsit8-tiunn1-i2-a2')
@@ -300,8 +301,8 @@ class 辭典連詞斷詞試驗(TestCase):
 		self.鞋仔詞 = self.分析器.產生對齊詞('鞋仔', 'e5-a2')
 		鞋集物件=self.分析器.建立集物件('e5')
 		仔集物件=self.分析器.建立集物件('a2')
-		self.鞋仔句物件=self.分析器.建立句物件('')
-		self.鞋仔句物件.內底集=[鞋集物件,仔集物件]
+		self.鞋仔兩集句物件=self.分析器.建立句物件('')
+		self.鞋仔兩集句物件.內底集=[鞋集物件,仔集物件]
 		self.孤詞鞋仔句 = self.分析器.產生對齊句('鞋仔', 'e5-a2')
 		self.兩詞鞋仔句 = self.分析器.產生對齊句('鞋仔', 'e5 a2')
 		
