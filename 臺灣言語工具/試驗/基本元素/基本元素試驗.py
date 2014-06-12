@@ -25,6 +25,7 @@ from 臺灣言語工具.基本元素.句 import 句
 from 臺灣言語工具.基本元素.章 import 章
 from 臺灣言語工具.基本元素.公用變數 import 無音
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
+import itertools
 
 class 基本元素試驗(unittest.TestCase):
 	def setUp(self):
@@ -79,7 +80,6 @@ class 基本元素試驗(unittest.TestCase):
 	def test_字烏白傳(self):
 		型 = '媠'
 		音 = 'ㄙㄨㄧˋ'
-		字物件 = 字(型)
 		self.assertRaises(型態錯誤, 字, 4)
 		self.assertRaises(型態錯誤, 字, (音,))
 		self.assertRaises(型態錯誤, 字, 型, None)
@@ -105,7 +105,7 @@ class 基本元素試驗(unittest.TestCase):
 	def test_詞組集章句傳其他疊代(self):
 		self.assertEqual(self.詞物件, 詞(tuple(self.詞物件.內底字)))
 		self.assertEqual(self.組物件, 組(tuple(self.組物件.內底詞)))
-		self.assertEqual(self.集物件, 集(tuple(self.集物件.內底組)))
+		self.assertEqual(self.集物件, 集(itertools.chain(self.集物件.內底組)))
 		self.assertEqual(self.句物件, 句(tuple(self.句物件.內底集)))
 		self.assertEqual(self.章物件, 章(tuple(self.章物件.內底句)))
 
@@ -198,7 +198,6 @@ class 基本元素試驗(unittest.TestCase):
 	def test_字獨立檢查(self):
 		新型 = '文'
 		新音 = 'ㆠㄨㄣˊ'
-		新字物件 = 字(self.型, self.音)
 		self.assertEqual(self.詞物件.內底字[0], 字(self.型, self.音))
 		self.assertEqual(self.組物件.內底詞[0].內底字[0], 字(self.型, self.音))
 		self.assertEqual(self.集物件.內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
@@ -213,8 +212,6 @@ class 基本元素試驗(unittest.TestCase):
 		self.assertEqual(self.章物件.內底句[0].內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
 
 	def test_字結構檢查(self):
-		新型 = '文'
-		新音 = 'ㆠㄨㄣˊ'
 		新字物件 = 字(self.型, self.音)
 		self.assertEqual(self.詞物件.內底字[0], 字(self.型, self.音))
 		self.assertEqual(self.組物件.內底詞[0].內底字[0], 字(self.型, self.音))
