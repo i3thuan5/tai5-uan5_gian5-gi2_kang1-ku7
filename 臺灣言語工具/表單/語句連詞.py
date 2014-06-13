@@ -26,7 +26,7 @@ from math import pow
 class 語句連詞(TestCase):
 	# 無看過的詞的出現機率，佮srilm仝款當做負的無限
 	無看過 = -99
-	__網仔 = 詞物件網仔()
+	_網仔 = 詞物件網仔()
 	def __init__(self, 上濟詞數):
 		if 上濟詞數 <= 0:
 			raise 參數錯誤('詞數愛是正整數，傳入來的是{0}'.format(上濟詞數))
@@ -71,7 +71,7 @@ class 語句連詞(TestCase):
 		if isinstance(物件, 章):
 			self.看章物件(物件)
 			return
-		詞陣列 = [None] + self.__網仔.網出詞物件(物件) + [None]
+		詞陣列 = [None] + self._網仔.網出詞物件(物件) + [None]
 		for 長度 in range(1, self.上濟詞數 + 1):
 			for 所在 in range(len(詞陣列) - 長度 + 1):
 				self.總數表[長度 - 1] += 1

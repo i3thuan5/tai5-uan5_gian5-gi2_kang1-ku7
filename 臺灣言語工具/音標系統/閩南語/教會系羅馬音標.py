@@ -55,9 +55,9 @@ class 教會系羅馬音標(閩南語音標介面):
 		elif 音標.startswith('1'):
 			self.日本話 = '1'
 			音標 = 音標[1:]
-		self.音標 = self.__轉教羅韻符號(音標)
-		音標是著的, 無調號音標 = self.__分離閏號聲調(self.音標)
-		聲韻符合, self.聲, self.韻 = self.__揣聲韻(無調號音標)
+		self.音標 = self._轉教羅韻符號(音標)
+		音標是著的, 無調號音標 = self._分離閏號聲調(self.音標)
+		聲韻符合, self.聲, self.韻 = self._揣聲韻(無調號音標)
 		if not 聲韻符合:
 			音標是著的 = False
 		elif self.韻.endswith('p') or self.韻.endswith('t') or self.韻.endswith('k') or self.韻.endswith('h'):
@@ -76,7 +76,7 @@ class 教會系羅馬音標(閩南語音標介面):
 		return self.音標
 	def 做音標(self):
 		self.音標 = ''.join([self.輕, self.日本話, self.聲, self.韻, self.調])
-	def __轉教羅韻符號(self, 音標):
+	def _轉教羅韻符號(self, 音標):
 		一開始 = True
 		字元陣列 = []
 		for 字元 in 音標:
@@ -95,7 +95,7 @@ class 教會系羅馬音標(閩南語音標介面):
 				字元 = 字元.lower()
 			字元陣列.append(字元)
 		return ''.join(字元陣列)
-	def __分離閏號聲調(self, 音標):
+	def _分離閏號聲調(self, 音標):
 		無調號音標 = ''
 		前一字元 = ''
 		前一音調 = ''
@@ -133,7 +133,7 @@ class 教會系羅馬音標(閩南語音標介面):
 		無調號音標 += 前一字元
 		無調號音標 = 無調號音標.replace('o͘', 'oo')
 		return 音標是著的, 無調號音標
-	def __揣聲韻(self, 無調號音標):
+	def _揣聲韻(self, 無調號音標):
 		for 所在 in range(len(無調號音標)):
 			聲母=無調號音標[:所在]
 			if 聲母 in self.聲母表:
