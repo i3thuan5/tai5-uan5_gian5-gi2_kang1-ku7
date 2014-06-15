@@ -32,12 +32,16 @@ class 生決策樹仔問題:
 					問題.add(一逝)
 			elif 問題種類 == '連紲':
 				for 頭 in range(len(分類)):
-					for 尾 in range(頭+1,len(分類)+1):
+					for 尾 in range(頭 + 1, len(分類) + 1):
 						一逝 = self._一堆組合產生問題(
 							所在, 頭前分開, 後壁分開, 分類[頭:尾])
 						問題.add(一逝)
 			elif 問題種類 == '組合':
-				pass
+				for 長度 in range(1, len(分類) + 1):
+					for 子分類 in itertools.combinations(分類, 長度):
+						一逝 = self._一堆組合產生問題(
+							所在, 頭前分開, 後壁分開, 子分類)
+						問題.add(一逝)
 			else:
 				raise 解析錯誤('種類愛是孤條、連紲、組合其中一个，傳入來的是：{}'
 					.format(問題種類))
