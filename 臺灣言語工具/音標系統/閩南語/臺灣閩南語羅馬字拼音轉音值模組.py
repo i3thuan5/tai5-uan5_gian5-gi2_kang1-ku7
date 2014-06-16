@@ -21,7 +21,7 @@
 	'p':'p', 'ph':'ph', 'm':'m', 'b':'b',
 	't':'t', 'th':'th', 'n':'n', 'l':'l',
 	'k':'k', 'kh':'kh', 'ng':'ŋ', 'g':'g',
-	'ts':'ts', 'tsh':'tsh', 's':'s', 'j':'j',
+	'ts':'ts', 'tsh':'tsh', 's':'s', 'j':'z',
 	'h':'h', '':'ʔ',
 	}
 
@@ -58,8 +58,8 @@
 	'iaunn':'iauⁿ', 'iaunnh':'iauⁿʔ',
 	'uai':'uai', 'uaih':'uaiʔ',
 	'uainn':'uaiⁿ', 'uainnh':'uaiⁿʔ',
-	'm':'xm', 'mh':'xmʔ',
-	'ng':'xŋ', 'ngh':'xŋʔ',
+	'm':'m̩', 'mh':'m̩ʔ',
+	'ng':'ŋ̩', 'ngh':'ŋ̩ʔ',
 	'ioo':'io', 'iooh':'ioʔ',
 	'er':'ə', 'erh':'əʔ',
 	'erm':'əm', 'ere':'əe', 'ereh':'əeʔ',
@@ -82,15 +82,6 @@ class 臺灣閩南語羅馬字拼音轉音值模組():
 	def __init__(self, 聲, 韻, 調, 輕):
 		if 聲 == None or 韻 == None or 調 == None or 輕 == None :
 			return
-		if 聲 == 'm' or 聲 == 'n' or 聲 == 'ng':
-			if 'm' not in 韻 and 'n' not in 韻:
-				if 韻.endswith('h') or 韻.endswith('p') or 韻.endswith('t') or 韻.endswith('k'):
-					韻 = 韻[:-1] + 'nn' + 韻[-1]
-				else:
-					韻 += 'nn'
-				if 韻 == 'oonnh':
-					韻 = 'onnh'
-		return (聲, 韻)
 		self.聲 = self.聲母表[聲]
 		self.韻 = self.韻母表[韻]
 		self.調 = 調
