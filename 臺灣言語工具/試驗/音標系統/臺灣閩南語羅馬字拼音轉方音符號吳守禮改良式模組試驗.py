@@ -23,7 +23,7 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 im
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組 import 臺灣閩南語羅馬字拼音對照吳守禮方音聲母表
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組 import 臺灣閩南語羅馬字拼音對照吳守禮方音韻母表
 
-class 臺灣閩南語羅馬字拼音模組試驗(unittest.TestCase):
+class 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組試驗(unittest.TestCase):
 	def setUp(self):
 		pass
 	def tearDown(self):
