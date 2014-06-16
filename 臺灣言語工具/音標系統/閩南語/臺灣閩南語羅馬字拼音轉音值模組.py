@@ -44,7 +44,7 @@
 	'ia':'ia', 'iah':'iaʔ', 'iap':'iap', 'iat':'iet', 'iak':'iak',
 	'iam':'iam', 'ian':'ien', 'iang':'iaŋ',
 	'iann':'iaⁿ', 'iannh':'iaⁿʔ',
-	'iə':'iə', 'iəh':'iəʔ', 'iok':'iok',
+	'io':'iə', 'ioh':'iəʔ', 'iok':'iok',
 	'iong':'ioŋ', 'ionn':'ioⁿ',
 	'iu':'iu', 'iuh':'iuʔ', 'iut':'iut',
 	'iunn':'iuⁿ', 'iunnh':'iuⁿʔ',
@@ -79,15 +79,15 @@ class 臺灣閩南語羅馬字拼音轉音值模組():
 	韻 = None
 	調 = None
 	音標 = None
-	def __init__(self, 聲, 韻, 調, 輕):
+	def 轉(self, 聲, 韻, 調, 輕):
 		if 聲 == None or 韻 == None or 調 == None or 輕 == None :
 			return
-		self.聲 = self.聲母表[聲]
-		self.韻 = self.韻母表[韻]
-		self.調 = 調
-		if 調 == '0' or 輕 == '0':
-			調 = 3
-			if self.韻.endswith('ʔ') or self.韻.endswith('p')\
-					or self.韻.endswith('t') or self.韻.endswith('k'):
-				self.韻 = self.韻[:-1]
-		return (self.聲, self.韻, self.調)
+		音值聲 = self.聲母表[聲]
+		音值韻 = self.韻母表[韻]
+		音值調 = 調
+		if 音值調 == '0' or 輕 == '0':
+			音值調 = '0'
+			if 音值韻.endswith('ʔ') or 音值韻.endswith('p')\
+					or 音值韻.endswith('t') or 音值韻.endswith('k'):
+				音值韻 = 音值韻[:-1]
+		return (音值聲, 音值韻, 音值調)

@@ -40,32 +40,33 @@ class 臺灣閩南語羅馬字拼音轉音值模組試驗(unittest.TestCase):
 
 	def test_零聲母聲韻調輕(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('sih').音值(), ('s','iʔ','4'))
+		self.assertEqual(臺灣閩南語羅馬字拼音('ah8').音值(), ('ʔ','aʔ','8'))
 		self.assertEqual(臺灣閩南語羅馬字拼音('m5').音值(), ('ʔ','m̩','5'))
 		self.assertEqual(臺灣閩南語羅馬字拼音('0e5').音值(), ('ʔ','e','0'))
 
 	def test_蚵芋音(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('ho2').音值(),('h','ə','2'))
-		self.assertEqual(臺灣閩南語羅馬字拼音('hoh').音值(), ('h','əh','4'))
+		self.assertEqual(臺灣閩南語羅馬字拼音('hoh').音值(), ('h','əʔ','4'))
 		self.assertEqual(臺灣閩南語羅馬字拼音('hok').音值(),('h','ok','4'))
 		self.assertEqual(臺灣閩南語羅馬字拼音('hio2').音值(), ('h','iə','2'))
-		self.assertEqual(臺灣閩南語羅馬字拼音('hioh').音值(), ('h','iəh','4'))
+		self.assertEqual(臺灣閩南語羅馬字拼音('hioh').音值(), ('h','iəʔ','4'))
 		self.assertEqual(臺灣閩南語羅馬字拼音('hiok8').音值(), ('h','iok','8'))
 		
 	def test_舌尖顎化(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('tsia').音值(),('ts','ia','1'))
 		self.assertEqual(臺灣閩南語羅馬字拼音('tsha').音值(),('tsh','a','1'))
-		self.assertEqual(臺灣閩南語羅馬字拼音('sa').音值(),('s','s','1'))
+		self.assertEqual(臺灣閩南語羅馬字拼音('sa').音值(),('s','a','1'))
 		self.assertEqual(臺灣閩南語羅馬字拼音('jia').音值(), ('z','ia','1'))
 
 	def test_輕聲(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('ta0').音值(),('t','a','0'))
-		self.assertEqual(臺灣閩南語羅馬字拼音('pih0').音值(),('p','iʔ','0'))
+		self.assertEqual(臺灣閩南語羅馬字拼音('pih0').音值(),('p','i','0'))
 
 	def test_語法輕聲(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('0a').音值(),('ʔ','a','0'))
 		self.assertEqual(臺灣閩南語羅馬字拼音('0e5').音值(),('ʔ','e','0'))
-		self.assertEqual(臺灣閩南語羅馬字拼音('0hannh').音值(),('t','aⁿ','0'))
-		self.assertEqual(臺灣閩南語羅馬字拼音('0tsi̍t').音值(), ('ts','it','0'))
+		self.assertEqual(臺灣閩南語羅馬字拼音('0hannh').音值(),('h','aⁿ','0'))
+		self.assertEqual(臺灣閩南語羅馬字拼音('0tsi̍t').音值(), ('ts','i','0'))
 
 	def test_罕用音標(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('tor').音值(),('t','ə','1'))

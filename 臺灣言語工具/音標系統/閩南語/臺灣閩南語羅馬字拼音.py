@@ -144,6 +144,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 	對通用聲對照表 = 臺羅對通用聲對照表
 	對通用韻對照表 = 臺羅對通用韻對照表
 	對通用調對照表 = 臺羅對通用調對照表
+	轉音值模組=臺灣閩南語羅馬字拼音轉音值模組()
 	def __init__(self, 音標):
 		self.分析聲韻調(音標)
 		if self.聲 == 'm' or self.聲 == 'n' or self.聲 == 'ng':
@@ -182,4 +183,4 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 	def 產生吳守禮方音物件(self):
 		return 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組(self.聲, self.韻, self.調, self.輕)
 	def 音值(self):
-		return 臺灣閩南語羅馬字拼音轉音值模組(self.聲, self.韻, self.調, self.輕)
+		return self.轉音值模組.轉(self.聲, self.韻, self.調, self.輕)
