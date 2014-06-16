@@ -94,9 +94,9 @@ class 臺灣閩南語羅馬字拼音轉音值模組():
 		self.聲 = self.聲母表[聲]
 		self.韻 = self.韻母表[韻]
 		self.調 = 調
-		if 調 == '0':
-			調=3
+		if 調 == '0' or 輕 == '0':
+			調 = 3
 			if self.韻.endswith('ʔ') or self.韻.endswith('p')\
 					or self.韻.endswith('t') or self.韻.endswith('k'):
-				self.韻=self.韻[:-1]
-		self.音標 = self.聲 + self.韻 + self.調
+				self.韻 = self.韻[:-1]
+		return (self.聲, self.韻, self.調)
