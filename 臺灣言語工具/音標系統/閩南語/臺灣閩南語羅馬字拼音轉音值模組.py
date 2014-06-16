@@ -18,61 +18,62 @@
 """
 
 臺灣閩南語羅馬字拼音對照音值聲母表 = {
-	'p':'p', 'ph':'ph','m':'m','b':'b', 
-	't':'t', 'th':'th','n':'n', 'l':'l', 
-	'k':'k', 'kh':'kh', 'ng':'ŋ', 'g':'g', 
-	'ts':'ts', 'tsh':'tsh', 's':'s', 'j':'j', 
+	'p':'p', 'ph':'ph', 'm':'m', 'b':'b',
+	't':'t', 'th':'th', 'n':'n', 'l':'l',
+	'k':'k', 'kh':'kh', 'ng':'ŋ', 'g':'g',
+	'ts':'ts', 'tsh':'tsh', 's':'s', 'j':'j',
 	'h':'h', '':'ʔ',
 	}
 
 臺灣閩南語羅馬字拼音對照音值韻母表 = {
-	'a':'a', 'ah':'aʔ', 'ap':'ap', 'at':'at', 'ak':'ak', 
+	'a':'a', 'ah':'aʔ', 'ap':'ap', 'at':'at', 'ak':'ak',
 	'am':'am', 'an':'an', 'ang':'aŋ',
-	'ann':'aⁿ', 'annh':'aⁿʔ', 
-	'e':'e', 'eh':'eʔ', 'enn':'eⁿ', 'ennh':'eⁿʔ', 
-	'i':'i', 'ih':'iʔ', 'ip':'ip', 'it':'it', 'ik':'ik', 
-	'inn':'iⁿ', 'innh':'iⁿʔ', 
-	'im':'im', 'in':'in', 'ing':'iŋ', 
+	'ann':'aⁿ', 'annh':'aⁿʔ',
+	'e':'e', 'eh':'eʔ', 'enn':'eⁿ', 'ennh':'eⁿʔ',
+	'i':'i', 'ih':'iʔ', 'ip':'ip', 'it':'it', 'ik':'ik',
+	'inn':'iⁿ', 'innh':'iⁿʔ',
+	'im':'im', 'in':'in', 'ing':'iŋ',
 	'o':'ə', 'oh':'əʔ',
-	'oo':'o', 'ooh':'oʔ', 'op':'op','ok':'ok', 
+	'oo':'o', 'ooh':'oʔ', 'op':'op', 'ok':'ok',
 	'om':'om', 'ong':'oŋ',
-	'onn':'oⁿ', 'onnh':'oⁿʔ', 
-	'oi':'əi', 'oih':'əiʔ', ###
-	'u':'u', 'uh':'uʔ', 'ut':'ut', 'un':'un', 
-	'ai':'ai', 'aih':'aiʔ', 'ainn':'aiⁿ', 'ainnh':'aiⁿʔ', 
-	'au':'au', 'auh':'auʔ', 'aunn':'auⁿ', 'aunnh':'auⁿʔ', 
-	'ia':'ia', 'iah':'iaʔ', 'iap':'iap', 'iat':'iet', 'iak':'iak', 
-	'iam':'iam', 'ian':'ien', 'iang':'iaŋ', 
-	'iann':'iaⁿ', 'iannh':'iaⁿʔ', 
-	'iə':'iə', 'iəh':'iəʔ', 'iok':'iok', 
-	'iong':'ioŋ', 'ionn':'ioⁿ', 
-	'iu':'iu', 'iuh':'iuʔ', 'iut':'iut', 
-	'iunn':'iuⁿ', 'iunnh':'iuⁿʔ', 
-	'ua':'ua', 'uah':'uaʔ', 'uat':'uat', 'uak':'uak', 
-	'uan':'uan', 'uann':'uaⁿ', 'uannh':'uaⁿʔ', 
-	'ue':'ue', 'ueh':'ueʔ', 
-	'uenn':'ueⁿ', 'uennh':'ueⁿʔ', 
-	'ui':'ui', 'uih':'uiʔ', 
-	'uinn':'uiⁿ', 'uinnh':'uiⁿʔ', 
-	'iau':'iau', 'iauh':'iauʔ', 
-	'iaunn':'iauⁿ', 'iaunnh':'iauⁿʔ', 
-	'uai':'uai', 'uaih':'uaiʔ', 
-	'uainn':'uaiⁿ', 'uainnh':'uaiⁿʔ', 
-	'm':'xm','mh':'xmʔ', 
-	'ng':'xŋ', 'ngh':'xŋʔ', 
-	'ioo':'io', 'iooh':'ioʔ', 
-	'er':'ə', 'erh':'əʔ', 
-	'erm':'əm', 'ere':'əe', 'ereh':'əeʔ', 
-	'ee':'ɛ', 'eeh':'ɛʔ', 'eng':'eŋ', 'uee':'uee', 
-	'ir':'ɨ', 'irh':'ɨʔ', 'irp':'ɨp', 'irt':'ɨt', 'irk':'ɨk', 
-	'irm':'ɨm', 'irn':'ɨn', 'irng':'ɨŋ', 
-	'irinn':'ɨiⁿ', 
-	'ie':'ie', 
-	'or':'ə', 'orh':'əʔ', 'ior':'iə', 'iorh':'iəʔ', 
-	'uang':'uaŋ', 
+	'onn':'oⁿ', 'onnh':'oⁿʔ',
+	'oi':'əi', 'oih':'əiʔ',  # ##
+	'u':'u', 'uh':'uʔ', 'ut':'ut', 'un':'un',
+	'ai':'ai', 'aih':'aiʔ', 'ainn':'aiⁿ', 'ainnh':'aiⁿʔ',
+	'au':'au', 'auh':'auʔ', 'aunn':'auⁿ', 'aunnh':'auⁿʔ',
+	'ia':'ia', 'iah':'iaʔ', 'iap':'iap', 'iat':'iet', 'iak':'iak',
+	'iam':'iam', 'ian':'ien', 'iang':'iaŋ',
+	'iann':'iaⁿ', 'iannh':'iaⁿʔ',
+	'iə':'iə', 'iəh':'iəʔ', 'iok':'iok',
+	'iong':'ioŋ', 'ionn':'ioⁿ',
+	'iu':'iu', 'iuh':'iuʔ', 'iut':'iut',
+	'iunn':'iuⁿ', 'iunnh':'iuⁿʔ',
+	'ua':'ua', 'uah':'uaʔ', 'uat':'uat', 'uak':'uak',
+	'uan':'uan', 'uann':'uaⁿ', 'uannh':'uaⁿʔ',
+	'ue':'ue', 'ueh':'ueʔ',
+	'uenn':'ueⁿ', 'uennh':'ueⁿʔ',
+	'ui':'ui', 'uih':'uiʔ',
+	'uinn':'uiⁿ', 'uinnh':'uiⁿʔ',
+	'iau':'iau', 'iauh':'iauʔ',
+	'iaunn':'iauⁿ', 'iaunnh':'iauⁿʔ',
+	'uai':'uai', 'uaih':'uaiʔ',
+	'uainn':'uaiⁿ', 'uainnh':'uaiⁿʔ',
+	'm':'xm', 'mh':'xmʔ',
+	'ng':'xŋ', 'ngh':'xŋʔ',
+	'ioo':'io', 'iooh':'ioʔ',
+	'er':'ə', 'erh':'əʔ',
+	'erm':'əm', 'ere':'əe', 'ereh':'əeʔ',
+	'ee':'ɛ', 'eeh':'ɛʔ', 'eng':'eŋ', 'uee':'uee',
+	'ir':'ɨ', 'irh':'ɨʔ', 'irp':'ɨp', 'irt':'ɨt', 'irk':'ɨk',
+	'irm':'ɨm', 'irn':'ɨn', 'irng':'ɨŋ',
+	'irinn':'ɨiⁿ',
+	'ie':'ie',
+	'or':'ə', 'orh':'əʔ', 'ior':'iə', 'iorh':'iəʔ',
+	'uang':'uaŋ',
 	}
 
 class 臺灣閩南語羅馬字拼音轉音值模組():
+	聲母表 = 臺灣閩南語羅馬字拼音對照音值聲母表
 	韻母表 = 臺灣閩南語羅馬字拼音對照音值韻母表
 	聲 = None
 	韻 = None
@@ -81,25 +82,21 @@ class 臺灣閩南語羅馬字拼音轉音值模組():
 	def __init__(self, 聲, 韻, 調, 輕):
 		if 聲 == None or 韻 == None or 調 == None or 輕 == None :
 			return
-		if 聲=='m' or 聲=='n' or 聲=='ng':
+		if 聲 == 'm' or 聲 == 'n' or 聲 == 'ng':
 			if 'm' not in 韻 and 'n' not in 韻:
 				if 韻.endswith('h') or 韻.endswith('p') or 韻.endswith('t') or 韻.endswith('k'):
-					韻=韻[:-1]+'nn'+韻[-1]
+					韻 = 韻[:-1] + 'nn' + 韻[-1]
 				else:
-					韻+='nn'
-				if 韻=='oonnh':
-					韻='onnh'
-		return (聲,韻)
-		if 韻.startswith('i') and (聲 == 'ts' or 聲 == 'tsh' or 聲 == 's' or 聲 == 'j'):
-			聲 += 'i'
-		if 輕 == '0':
-			調 = '0'
+					韻 += 'nn'
+				if 韻 == 'oonnh':
+					韻 = 'onnh'
+		return (聲, 韻)
 		self.聲 = self.聲母表[聲]
 		self.韻 = self.韻母表[韻]
-		self.調 = self.聲調符號表[調]
+		self.調 = 調
 		if 調 == '0':
-			self.音標 = self.調 + self.聲 + self.韻
-		elif 調 == '8':
-			self.音標 = self.聲 + self.韻[:-1] + self.調 + self.韻[-1:]
-		else:
-			self.音標 = self.聲 + self.韻 + self.調
+			調=3
+			if self.韻.endswith('ʔ') or self.韻.endswith('p')\
+					or self.韻.endswith('t') or self.韻.endswith('k'):
+				self.韻=self.韻[:-1]
+		self.音標 = self.聲 + self.韻 + self.調
