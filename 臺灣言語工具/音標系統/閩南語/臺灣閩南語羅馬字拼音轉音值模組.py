@@ -16,65 +16,91 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-#臺灣閩南語羅馬字拼音對照音值韻母表 = {
-#	'a', 'ah', 'ap', 'at', 'ak', 'ann', 'annh',
-#	'am', 'an', 'ang',
-#	'e', 'eh', 'enn', 'ennh',
-#	'i', 'ih', 'ip', 'it', 'ik', 'inn', 'innh',
-#	'im', 'in', 'ing',
-#	'o', 'oh',
-#	'oo', 'ooh', 'op', 'ok', 'om', 'ong', 'onn', 'onnh',
-#	'oi', 'oih',  # 硩⿰落去
-#	'u', 'uh', 'ut', 'un',
-#	'ai', 'aih', 'ainn', 'ainnh',
-#	'au', 'auh', 'aunn', 'aunnh',
-#	'ia', 'iah', 'iap', 'iat', 'iak', 'iam', 'ian', 'iang', 'iann', 'iannh',
-#	'io', 'ioh',
-#	'iok', 'iong', 'ionn',
-#	'iu', 'iuh', 'iut', 'iunn', 'iunnh',
-#	'ua', 'uah', 'uat', 'uak', 'uan', 'uann', 'uannh',
-#	'ue', 'ueh', 'uenn', 'uennh',
-#	'ui', 'uih', 'uinn', 'uinnh',
-#	'iau', 'iauh', 'iaunn', 'iaunnh',
-#	'uai', 'uaih', 'uainn', 'uainnh',
-#	'm', 'mh', 'ng', 'ngh',
-#	'er', 'erh', 'erm', 'ere', 'ereh',  # 泉　鍋
-#	'ee', 'eeh', 'eng', 'uee',  # 漳　家
-#	'ir', 'irh', 'irp', 'irt', 'irk', 'irm', 'irn', 'irng', 'irinn',
-#	'ioo', 'iooh',  # 諾 0hioo 0hiooh
-#	'ie',  # 鹿港偏泉腔
-#	'uang',
-#	'or', 'orh', 'ior', 'iorh',  # 蚵
-#		}
-#
-#class 臺灣閩南語羅馬字拼音轉音值模組():
-#	韻母表 = 臺灣閩南語羅馬字拼音對照音值韻母表
-#	聲 = None
-#	韻 = None
-#	調 = None
-#	音標 = None
-#	def __init__(self, 聲, 韻, 調, 輕):
-#		if 聲 == None or 韻 == None or 調 == None or 輕 == None :
-#			return
-#		if 聲=='m' or 聲=='n' or 聲=='ng':
-#			if 'm' not in 韻 and 'n' not in 韻:
-#				if 韻.endswith('h') or 韻.endswith('p') or 韻.endswith('t') or 韻.endswith('k'):
-#					韻=韻[:-1]+'nn'+韻[-1]
-#				else:
-#					韻+='nn'
-#				if 韻=='oonnh':
-#					韻='onnh'
-#		return (聲,韻)
-#		if 韻.startswith('i') and (聲 == 'ts' or 聲 == 'tsh' or 聲 == 's' or 聲 == 'j'):
-#			聲 += 'i'
-#		if 輕 == '0':
-#			調 = '0'
-#		self.聲 = self.聲母表[聲]
-#		self.韻 = self.韻母表[韻]
-#		self.調 = self.聲調符號表[調]
-#		if 調 == '0':
-#			self.音標 = self.調 + self.聲 + self.韻
-#		elif 調 == '8':
-#			self.音標 = self.聲 + self.韻[:-1] + self.調 + self.韻[-1:]
-#		else:
-#			self.音標 = self.聲 + self.韻 + self.調
+
+臺灣閩南語羅馬字拼音對照音值聲母表 = {
+	'p':'p', 'ph':'ph','m':'m','b':'b', 
+	't':'t', 'th':'th','n':'n', 'l':'l', 
+	'k':'k', 'kh':'kh', 'ng':'ng', 'g':'g', 
+	'ts':'ts', 'tsh':'tsh', 's':'s', 'j':'j', 
+	'h':'h', '':'',
+	}
+
+臺灣閩南語羅馬字拼音對照音值韻母表 = {'a':'a', 
+'ah':'ah', 'ap':'ap', 'at':'at', 'ak':'ak', 
+'ann':'aⁿ', 'annh':'aⁿh', 
+'am':'am', 'an':'an', 'ang':'ang', 'e':'e', 
+'eh':'eh', 'enn':'eⁿ', 'ennh':'eⁿh', 
+'i':'i', 'ih':'ih', 'ip':'ip', 'it':'it', 'ik':'ik', 
+'inn':'iⁿ', 'innh':'iⁿh', 
+'im':'im', 'in':'in', 'ing':'ing', 
+'o':'o', 'oh':'oh',
+'oo':'oo', 'ooh':'ooh', 'op':'op','ok':'ok', 
+'om':'om', 'ong':'ong',
+'onn':'oⁿ', 'onnh':'oⁿh', 
+'oi':'oi', 'oih':'oih', 
+'u':'u', 'uh':'uh', 'ut':'ut', 'un':'un', 
+'ai':'ai', 'aih':'aih', 'ainn':'aiⁿ', 'ainnh':'aiⁿh', 
+'au':'au', 'auh':'auh', 'aunn':'auⁿ', 'aunnh':'auⁿh', 
+'ia':'ia', 'iah':'iah', 'iap':'iap', 'iat':'iat', 'iak':'iak', 
+'iam':'iam', 'ian':'ian', 'iang':'iang', 
+'iann':'iaⁿ', 'iannh':'iaⁿh', 
+'io':'io', 'ioh':'ioh', 'iok':'iok', 
+'iong':'iong', 'ionn':'ioⁿ', 
+'iu':'iu', 'iuh':'iuh', 'iut':'iut', 
+'iunn':'iuⁿ', 'iunnh':'iuⁿh', 
+'ua':'ua', 'uah':'uah', 'uat':'uat', 'uak':'uak', 
+'uan':'uan', 'uann':'uaⁿ', 'uannh':'uaⁿh', 
+'ue':'ue', 'ueh':'ueh', 
+'uenn':'ueⁿ', 'uennh':'ueⁿh', 
+'ui':'ui', 'uih':'uih', 
+'uinn':'uiⁿ', 'uinnh':'uiⁿh', 
+'iau':'iau', 'iauh':'iauh', 
+'iaunn':'iauⁿ', 'iaunnh':'iauⁿh', 
+'uai':'uai', 'uaih':'uaih', 
+'uainn':'uaiⁿ', 'uainnh':'uaiⁿh', 
+'m':'m','mh':'mh', 
+'ng':'ng', 'ngh':'ngh', 
+'ioo':'ioo', 'iooh':'iooh', 
+'er':'er', 'erh':'erh', 
+'erm':'erm', 'ere':'ere', 'ereh':'ereh', 
+'ee':'ee', 'eeh':'eeh', 'eng':'eng', 'uee':'uee', 
+'ir':'ir', 'irh':'irh', 'irp':'irp', 'irt':'irt', 'irk':'irk', 
+'irm':'irm', 'irn':'irn', 'irng':'irng', 
+'irinn':'iriⁿ', 
+'ie':'ie', 
+'or':'or', 'orh':'orh', 'ior':'ior', 'iorh':'iorh', 
+'uang':'uang', 
+				}
+for a in 臺灣閩南語羅馬字拼音韻母表:
+	print("'{0}':'{0}', ".format(a))
+class 臺灣閩南語羅馬字拼音轉音值模組():
+	韻母表 = 臺灣閩南語羅馬字拼音對照音值韻母表
+	聲 = None
+	韻 = None
+	調 = None
+	音標 = None
+	def __init__(self, 聲, 韻, 調, 輕):
+		if 聲 == None or 韻 == None or 調 == None or 輕 == None :
+			return
+		if 聲=='m' or 聲=='n' or 聲=='ng':
+			if 'm' not in 韻 and 'n' not in 韻:
+				if 韻.endswith('h') or 韻.endswith('p') or 韻.endswith('t') or 韻.endswith('k'):
+					韻=韻[:-1]+'nn'+韻[-1]
+				else:
+					韻+='nn'
+				if 韻=='oonnh':
+					韻='onnh'
+		return (聲,韻)
+		if 韻.startswith('i') and (聲 == 'ts' or 聲 == 'tsh' or 聲 == 's' or 聲 == 'j'):
+			聲 += 'i'
+		if 輕 == '0':
+			調 = '0'
+		self.聲 = self.聲母表[聲]
+		self.韻 = self.韻母表[韻]
+		self.調 = self.聲調符號表[調]
+		if 調 == '0':
+			self.音標 = self.調 + self.聲 + self.韻
+		elif 調 == '8':
+			self.音標 = self.聲 + self.韻[:-1] + self.調 + self.韻[-1:]
+		else:
+			self.音標 = self.聲 + self.韻 + self.調
