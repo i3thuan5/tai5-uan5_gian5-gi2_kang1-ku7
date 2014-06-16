@@ -16,103 +16,72 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
-import itertools
-class 生決策樹仔問題:
-	題型 = 'QS "{0}是{1}" {{ {2} }}'
-	任意字 = '*'
-	符號所在 = ['頭前', '中央', '後壁']
-	def 問題集(self, 分類, 分開符號, 問題種類):
-		問題 = set()
-		for 所在, 頭前分開, 後壁分開 in \
-				zip(self.符號所在, 分開符號[:-1], 分開符號[1:]):
-			if 問題種類 == '孤條':
-				for 名, 選 in 分類:
-					一逝 = self._一逝題目(所在, 頭前分開, 後壁分開, [名], [選])
-					問題.add(一逝)
-			elif 問題種類 == '連紲':
-				for 頭 in range(len(分類)):
-					for 尾 in range(頭 + 1, len(分類) + 1):
-						一逝 = self._一堆組合產生問題(
-							所在, 頭前分開, 後壁分開, 分類[頭:尾])
-						問題.add(一逝)
-			elif 問題種類 == '組合':
-				for 長度 in range(1, len(分類) + 1):
-					for 子分類 in itertools.combinations(分類, 長度):
-						一逝 = self._一堆組合產生問題(
-							所在, 頭前分開, 後壁分開, 子分類)
-						問題.add(一逝)
-			else:
-				raise 解析錯誤('種類愛是孤條、連紲、組合其中一个，傳入來的是：{}'
-					.format(問題種類))
-		return 問題
-	def _一逝題目(self, 所在, 頭前分開, 後壁分開, 名, 選):
-		題名 = '、'.join(名)
-		符合 = self._選符合的(頭前分開, 後壁分開, 選)
-		return self.題型.format(所在, 題名, 符合)
-	def _選符合的(self, 頭前分開, 後壁分開, 選):
-# 		print('全選', 全選)
-		符合 = []
-		for 條 in itertools.chain.from_iterable(選):
-			型 = '"'
-			if 頭前分開 != '':
-				型 += self.任意字 + 頭前分開
-			型 += 條
-			if 後壁分開 != '':
-				型 += 後壁分開 + self.任意字
-			型 += '"'
-			符合.append(型)
-		return ','.join(符合)
-	def _一堆組合產生問題(self, 所在, 頭前分開, 後壁分開, 分類):
-		名集 = []
-		選集 = []
-		for 名, 選 in 分類:
-			名集.append(名)
-			選集.append(選)
-		return self._一逝題目(所在, 頭前分開, 後壁分開, 名集, 選集)
+from 臺灣言語工具.語音合成.生決策樹仔問題 import 生決策樹仔問題
+class 閩南語決策樹仔:
+	生問題=生決策樹仔問題()
+	def 生(self):
+		pass
+	def 詞句長度(self):
+		'''長度
+		詞句 頭前中 長度 <=
+		詞
+			3*10*2
+		句
+			3*20*2
+		'''
+	def 孤聲韻(self):
+		'''
+	孤聲韻
+		QS "Si7_xm" {*-xm+*}
+		QS "Si7_xng" {*-xng+*}
+		'''
+	def 元音(self):
+		'''
+		元音
+			QS "Si7_Sun5_Uan5_Im1"           {*-a+*,*-i+*,*-u+*,*-e+*,*-o+*}
+			QS "Si7_Uan5_Im1"           {*-*a*+*,*-*i*+*,*-*u*+*,*-*e*+*,*-*o*+*}
+			QS "Si7_Ki2_Uan5_Im1"      {*-*i*+*,*-*e*+*,*-*a*+*}
+			QS "Si7_Kin1_Uan5_Im1"    {*-*o*+*,*-*u*+*}
+			QS "Si7_Ting2_Uan5_Im1"      {*-*?i*+*,*-*?u*+*}
+			QS "Si7_Tiong1_Uan5_Im1"    {*-*e*+*,*-*o*+*}
+			QS "Si7_Ke1_Uan5_Im1"      {*-*a*+*}
+		'''
+	def 韻尾類(self):
+		'''
+			QS "Si7_Tsiap4_Tshun5_Im1" {*-*?p+*,*-*?m+*}
+			QS "Si7_Tsiap4_Ki2_Im1" {*-*?t+*,*-*?n+*}
+			QS "Si7_Tsiap4_Kin1_Im1" {*-*?k+*,*-*?ng+*}
+			QS "Si7_Tsiap4_Phinn5_Im1"    {*-*?m+*,*-*?n+*,*-*?ng+*}
+			QS "Si7_Un7_Hua3_Phinn5_Im1"    {*-xm+*,*-xng+*}
+			QS "Si7_Tsu2_Im1_Phinn5_Im1"    {*-m+*,*-ng+*,*-*am+*,*-*em+*,*-*um+*,*-*em+*,*-*om+*,*-*ang+*,*-*eng+*,*-*ung+*,*-*eng+*,*-*ong+*}
+		'''
+	def 介音類(self):
+		'''i*-,u*-'''
+	def 鼻化音類(self):
+		'''ⁿ'''
+	def 子音類(self):
+		'''
+		QS "Si7_Tsing1_Im1"   {*-p+*,*-t+*,*-k+*,*-ts+*}
+		QS "Si7_Song2_Ki3_Im1"      {*-ph+*,*-th+*,*-kh+*,*-tsh+*}
+		QS "Si7_Lo5_Im1"    {*-b+*,*-l+*,*-g+*,*-j+*}
+		QS "Si7_Lo5_Sail3_Im1"    {*-b+*,*-g+*,*-j+*}
+		QS "Si7_Phinn5_Im1"    {*-m+*,*-n+*,*-ng+*}
+		QS "Si7_Sun5_Sai3_Im1"      {*-p+*,*-ph+*,*-b+*,*-t+*,*-th+*,*-k+*,*-kh+*,*-g+*}
+		QS "Si7_Sai3_Im1"           {*-p+*,*-ph+*,*-b+*,*-t+*,*-th+*,*-k+*,*-kh+*,*-g+*,*-ts+*,*-tsh+*,*-j+*}
+		QS "Si7_Sai3_Tshat4_Im1"    {*-ts+*,*-tsh+*,*-j+*}
+		QS "Si7_Tshat4_Im1"         {*-s+*,*-h+*,*-ts+*,*-tsh+*,*-j+*}
+		QS "Si7_Sun5_Tshat4_Im1"    {*-s+*,*-h+*}
+		QS "Si7_Tshun5_Tsu2_Im1"   {*-p+*,*-ph+*,*-b+*,*-m+*}
+		QS "Si7_Ki2_Tsu2_Im1"      {*-t+*,*-th+*,*-n+*,*-l+*,*-ts+*,*-tsh+*,*-j+*,*-s+*}
+		QS "Si7_Kin1_Tsu2_Im1"    {*-k+*,*-kh+*,*-g+*,*-ng+*,*-h+*}
+		'''
+	def 聲韻公家(self):
+		'''
+		QS "Si7_U7_Phinn5_Im1"    {*-*m*+*,*-*ng*+*}
+		'''
+	def 調(self):
+		'''孤，組合'''		
 
 元音 = ['a', 'i', 'u', 'e', 'o']
-韻尾 = ['m', 'n', 'ng', 'h', 'p', 't', 'k']
+韻尾 = ['m', 'n', 'ŋ', 'h', 'p', 't', 'k']
 鼻化韻 = ['nn', 'nnh']
-if __name__ == '__main__':
-	音表 = [line.strip().split()
-		for line in open(對齊語料路徑 + '臺羅聲韻查通用音素.dic')]
-
-# 	for 音 in 音表[:-1]:
-# 		問題 = 'QS "Si7_' + 音[0] + '" {*-' + 音[0] + '+*}'
-# 		print(問題)
-#
-# 	for 音 in 韻尾:
-# 		問題 = ('QS "Si7_' + 音 + '_Bue2' +
-# 			'" {*-*?' + 音 + '+*}')
-# 		print(問題)
-# 	for 音 in 鼻化韻:
-# 		問題 = ('QS "Si7_' + 音 + '_Bue2' +
-# 			'" {*-*?' + 音 + '+*}')
-# 		print(問題)
-
-	for 音 in 音表[:-1]:
-		問題 = 'QS "Si7_Tau5_' + 音[0] + '" {*' + 音[0] + '-*}'
-		print(問題)
-
-	for 音 in 韻尾:
-		問題 = ('QS "Si7_Tau5_' + 音 + '_Bue2' +
-			'" {*?' + 音 + '-*}')
-		print(問題)
-	for 音 in 鼻化韻:
-		問題 = ('QS "Si7_Tau5_' + 音 + '_Bue2' +
-			'" {*?' + 音 + '-*}')
-		print(問題)
-
-	for 音 in 音表[:-1]:
-		問題 = 'QS "Si7_Bue2_' + 音[0] + '" {*+' + 音[0] + '/*}'
-		print(問題)
-
-	for 音 in 韻尾:
-		問題 = ('QS "Si7_Bue2_' + 音 + '_Bue2' +
-			'" {*+*?' + 音 + '/*}')
-		print(問題)
-	for 音 in 鼻化韻:
-		問題 = ('QS "Si7_Bue2_' + 音 + '_Bue2' +
-			'" {*+*?' + 音 + '/*}')
-		print(問題)
