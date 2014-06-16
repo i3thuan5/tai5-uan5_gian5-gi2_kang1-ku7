@@ -17,11 +17,15 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 from 臺灣言語工具.語音合成.生決策樹仔問題 import 生決策樹仔問題
+from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉音值模組 import 臺灣閩南語羅馬字拼音對照音值聲母表
+from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉音值模組 import 臺灣閩南語羅馬字拼音對照音值韻母表
+import itertools
 class 閩南語決策樹仔:
 	生問題 = 生決策樹仔問題()
 	def 生(self):
 		問題 = set()
 		問題 |= self.詞句長度(10, 20)
+		問題 = self.孤聲韻()
 		print ('\n'.join(問題))
 	def 詞句長度(self, 詞長, 句長):
 		'''長度
@@ -48,16 +52,22 @@ class 閩南語決策樹仔:
 			QS "Si7_xm" {*-xm+*}
 			QS "Si7_xng" {*-xng+*}
 		'''
+		聲韻 = []
+		for 實際音 in itertools.chain(
+				臺灣閩南語羅馬字拼音對照音值聲母表.values(),
+				臺灣閩南語羅馬字拼音對照音值韻母表.values()):
+			聲韻.append(('是{0}'.format(實際音),[實際音]))
+		return self.生問題.問題集(聲韻, ('', '-', '+', '/調:'), '孤條')
 	def 元音(self):
 		'''
-		元音
-			QS "Si7_Sun5_Uan5_Im1"           {*-a+*,*-i+*,*-u+*,*-e+*,*-o+*}
 			QS "Si7_Uan5_Im1"           {*-*a*+*,*-*i*+*,*-*u*+*,*-*e*+*,*-*o*+*}
-			QS "Si7_Ki2_Uan5_Im1"      {*-*i*+*,*-*e*+*,*-*a*+*}
-			QS "Si7_Kin1_Uan5_Im1"    {*-*o*+*,*-*u*+*}
 			QS "Si7_Ting2_Uan5_Im1"      {*-*?i*+*,*-*?u*+*}
 			QS "Si7_Tiong1_Uan5_Im1"    {*-*e*+*,*-*o*+*}
 			QS "Si7_Ke1_Uan5_Im1"      {*-*a*+*}
+		'''
+	def 純元音(self):
+		'''
+			QS "Si7_Sun5_Uan5_Im1"           {*-a+*,*-i+*,*-u+*,*-e+*,*-o+*}
 		'''
 	def 韻尾類(self):
 		'''
@@ -88,8 +98,10 @@ class 閩南語決策樹仔:
 		QS "Si7_Ki2_Tsu2_Im1"      {*-t+*,*-th+*,*-n+*,*-l+*,*-ts+*,*-tsh+*,*-j+*,*-s+*}
 		QS "Si7_Kin1_Tsu2_Im1"    {*-k+*,*-kh+*,*-g+*,*-ng+*,*-h+*}
 		'''
-	def 聲韻公家(self):
+	def 聲韻前後(self):
 		'''
+			QS "Si7_Ki2_Uan5_Im1"      {*-*i*+*,*-*e*+*,*-*a*+*}
+			QS "Si7_Kin1_Uan5_Im1"    {*-*o*+*,*-*u*+*}
 		QS "Si7_U7_Phinn5_Im1"    {*-*m*+*,*-*ng*+*}
 		'''
 	def 調(self):
