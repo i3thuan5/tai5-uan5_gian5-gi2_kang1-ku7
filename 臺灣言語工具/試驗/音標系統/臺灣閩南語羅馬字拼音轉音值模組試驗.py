@@ -35,7 +35,7 @@ class 臺灣閩南語羅馬字拼音轉音值模組試驗(unittest.TestCase):
 		self.assertEqual(臺灣閩南語羅馬字拼音('be2').音值(),('b','e','2'))
 		self.assertEqual(臺灣閩南語羅馬字拼音('ang3').音值(),('ʔ','aŋ','3'))
 		self.assertEqual(臺灣閩南語羅馬字拼音('mng5').音值(),('m','ŋ̩','5'))
-		self.assertEqual(臺灣閩南語羅馬字拼音('ainn7').音值(), ('ʔ','aiⁿ','7'))
+		self.assertEqual(臺灣閩南語羅馬字拼音('ainn7').音值(), ('ʔ','aⁿiⁿ','7'))
 		self.assertEqual(臺灣閩南語羅馬字拼音('ang9').音值(), ('ʔ','aŋ','9'))
 
 	def test_零聲母聲韻調輕(self):
@@ -86,3 +86,8 @@ class 臺灣閩南語羅馬字拼音轉音值模組試驗(unittest.TestCase):
 			self.assertIn(母,臺灣閩南語羅馬字拼音對照音值聲母表)
 		for 母 in 臺灣閩南語羅馬字拼音韻母表:
 			self.assertIn(母,臺灣閩南語羅馬字拼音對照音值韻母表)
+		
+	def test_鼻化韻逐个元音攏愛有鼻化(self):
+		for 韻 in 臺灣閩南語羅馬字拼音對照音值韻母表.values():
+			for 切 in 韻.split('ⁿ')[:-1]:
+				self.assertEqual(len(切), 1,'{}有問題'.format(韻))
