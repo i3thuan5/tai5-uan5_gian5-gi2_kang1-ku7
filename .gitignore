@@ -4,3 +4,4 @@ CKIPClient.log
 /dist
 /build
 /MANIFEST
+*.hed
