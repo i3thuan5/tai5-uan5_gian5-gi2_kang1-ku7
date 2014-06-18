@@ -24,16 +24,18 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 
 class 句物件轉合成標籤試驗(unittest.TestCase):
 	def setUp(self):
-		self.合成標籤工具=句物件轉合成標籤()
+		self.合成標籤工具 = 句物件轉合成標籤()
 		self.分析器 = 拆文分析器()
+		self.家私 = 轉物件音家私()
 	def tearDown(self):
 		pass
 
 	def test_臺灣閩南語羅馬字拼音(self):
 		# [我 gua2, 愛 ai3, 蔡 tshua3, 文 bun5, 莉 ni7, , ,]
-		標籤 = self.合成標籤工具.句物件轉標籤(臺灣閩南語羅馬字拼音,
-			self.分析器.產生對齊句('gua1 ai2 tshua3-bun7-le7', 'gua2 ai3 tshua3-bun5-le7'))
-		self.檢驗標仔有對無(標籤, 
+		句物件 = self.分析器.產生對齊句('gua2 ai3 tshua3-bun5-le7', 'gua1 ai2 tshua3-bun7-le7',)
+		音值句物件 = self.家私(臺灣閩南語羅馬字拼音, 句物件, 目標='音值')
+		標籤 = self.合成標籤工具.句物件轉標籤(音值句物件)
+		self.檢驗標仔有對無(標籤,
 			['x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x/驗:',
 			'sil-g+ua/調:x<1>2/詞:0!5@5/句:0^5_5/驗:',
 			'g-ua+H/調:x<1>2/詞:0!5@5/句:0^5_5/驗:',
@@ -45,12 +47,13 @@ class 句物件轉合成標籤試驗(unittest.TestCase):
 			'b-un+l/調:2<7>7/詞:3!2@5/句:3^2_5/驗:',
 			'un-l+e/調:7<7>x/詞:4!1@5/句:4^1_5/驗:',
 			'l-e+sil/調:7<7>x/詞:4!1@5/句:4^1_5/驗:',
-			'x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x/驗:',]
+			'x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x/驗:', ]
 			)
 
 	def test_臺灣客家話拼音(self):
-		標籤 = self.合成標籤工具.句物件轉標籤(臺灣客家話拼音,
-			self.分析器.產生對齊句('tienˊ-dangˋ labˋ-suiˋ', 'tienˊ-dangˋ labˋ-suiˋ'))
+		句物件 = self.分析器.產生對齊句('tienˊ-dangˋ labˋ-suiˋ', 'tienˊ-dangˋ labˋ-suiˋ')
+		音值句物件 = self.家私(臺灣客家話拼音, 句物件, 目標='音值')
+		標籤 = self.合成標籤工具.句物件轉標籤(音值句物件)
 		self.檢驗標仔有對無(標籤,
 			['x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x/驗:',
 			'sil-t+ien/調:x<ˊ>ˋ/詞:0!4@4/句:0^4_4/驗:',
@@ -61,9 +64,9 @@ class 句物件轉合成標籤試驗(unittest.TestCase):
 			'l-ab+s/調:ˋ<ˋ>ˋ/詞:2!2@4/句:2^2_4/驗:',
 			'ab-s+ui/調:ˋ<ˋ>x/詞:3!1@4/句:3^1_4/驗:',
 			's-ui+sil/調:ˋ<ˋ>x/詞:3!1@4/句:3^1_4/驗:',
-			'x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x/驗:',]
+			'x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x/驗:', ]
 			)
-	def 檢驗標仔有對無(self,結果,答案):
-		for 結,答 in zip(結果,答案):
-			self.assertEqual(結.startswith(答),True,(結,答))
+	def 檢驗標仔有對無(self, 結果, 答案):
+		for 結, 答 in zip(結果, 答案):
+			self.assertEqual(結.startswith(答), True, (結, 答))
 		

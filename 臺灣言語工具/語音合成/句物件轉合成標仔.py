@@ -50,7 +50,7 @@ class 句物件轉合成標仔:
 			self.免知, self.免知, self.免知,
 			self.免知, self.免知, self.免知,
 			)
-	def 句物件轉標仔(self, 拼音型態, 句物件):
+	def 句物件轉標仔(self, 句物件):
 		詞陣列 = self._網仔.網出詞物件(句物件)
 		攏總詞數量 = len(詞陣列)
 		if 攏總詞數量 == 0:
