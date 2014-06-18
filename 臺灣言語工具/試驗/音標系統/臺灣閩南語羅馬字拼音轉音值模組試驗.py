@@ -54,9 +54,9 @@ class 臺灣閩南語羅馬字拼音轉音值模組試驗(unittest.TestCase):
 		
 	def test_舌尖顎化(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('tsia').音值(),('ts','ia','1'))
-		self.assertEqual(臺灣閩南語羅馬字拼音('tsha').音值(),('tsh','a','1'))
+		self.assertEqual(臺灣閩南語羅馬字拼音('tsha').音值(),('tsʰ','a','1'))
 		self.assertEqual(臺灣閩南語羅馬字拼音('sa').音值(),('s','a','1'))
-		self.assertEqual(臺灣閩南語羅馬字拼音('jia').音值(), ('z','ia','1'))
+		self.assertEqual(臺灣閩南語羅馬字拼音('jia').音值(), ('dz','ia','1'))
 
 	def test_輕聲(self):
 		self.assertEqual(臺灣閩南語羅馬字拼音('ta0').音值(),('t','a','0'))
