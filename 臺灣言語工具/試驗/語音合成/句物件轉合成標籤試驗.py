@@ -17,14 +17,15 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import unittest
-from 臺灣言語工具.語音合成.句物件轉合成標仔 import 句物件轉合成標籤
+from 臺灣言語工具.語音合成.句物件轉合成標仔 import 句物件轉合成標仔
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 臺灣言語工具.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+from 臺灣言語工具.解析整理.轉物件音家私 import 轉物件音家私
 
-class 句物件轉合成標籤試驗(unittest.TestCase):
+class 句物件轉合成標仔試驗(unittest.TestCase):
 	def setUp(self):
-		self.合成標籤工具 = 句物件轉合成標籤()
+		self.合成標籤工具 = 句物件轉合成標仔()
 		self.分析器 = 拆文分析器()
 		self.家私 = 轉物件音家私()
 	def tearDown(self):
