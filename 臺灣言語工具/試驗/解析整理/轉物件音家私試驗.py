@@ -122,6 +122,16 @@ class 轉物件音家私試驗(unittest.TestCase):
 		原音章物件 = self.處理語句(原音拼音, 原音語句)
 		後來章物件 = self.處理語句(結果拼音, 標準結果)
 		self.assertEqual(原音章物件, 後來章物件)
-
-if __name__ == '__main__':
-	unittest.main()
+		
+	def test_無用預設轉換函式(self):
+		原音型 = '佗位'
+		原音音 = 'to1 ui7'
+		原音章物件 = self.分析器.產生對齊章(原音型, 原音減號了)
+		後來原音章物件 = self.轉音家私.轉做標準音標(臺灣閩南語羅馬字拼音, 原音章物件, 標準函式='音值')
+		篩仔 = 字物件篩仔()
+		字陣列 = 篩仔.篩出字物件(後來原音章物件)
+		self.assertEqual(len(字陣列), 2)
+		self.assertEqual(字陣列[0].型, '佗')
+		self.assertEqual(字陣列[0].音, ('t', 'ə', '1',))
+		self.assertEqual(字陣列[1].型, '位')
+		self.assertEqual(字陣列[1].音, ('ʔ', 'ui', '7',))
