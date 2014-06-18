@@ -34,7 +34,7 @@ class 句物件轉合成標仔試驗(unittest.TestCase):
 	def test_臺灣閩南語羅馬字拼音(self):
 		# [我 gua2, 愛 ai3, 蔡 tshua3, 文 bun5, 莉 ni7, , ,]
 		句物件 = self.分析器.產生對齊句('gua2 ai3 tshua3-bun5-le7', 'gua1 ai2 tshua3-bun7-le7',)
-		音值句物件 = self.家私(臺灣閩南語羅馬字拼音, 句物件, 目標='音值')
+		音值句物件 = self.家私.轉做標準音標(臺灣閩南語羅馬字拼音, 句物件, 目標='音值')
 		標籤 = self.合成標籤工具.句物件轉標籤(音值句物件)
 		self.檢驗標仔有對無(標籤,
 			['x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x/驗:',
@@ -53,7 +53,7 @@ class 句物件轉合成標仔試驗(unittest.TestCase):
 
 	def test_臺灣客家話拼音(self):
 		句物件 = self.分析器.產生對齊句('tienˊ-dangˋ labˋ-suiˋ', 'tienˊ-dangˋ labˋ-suiˋ')
-		音值句物件 = self.家私(臺灣客家話拼音, 句物件, 目標='音值')
+		音值句物件 = self.家私.轉做標準音標(臺灣客家話拼音, 句物件, 目標='音值')
 		標籤 = self.合成標籤工具.句物件轉標籤(音值句物件)
 		self.檢驗標仔有對無(標籤,
 			['x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x/驗:',
