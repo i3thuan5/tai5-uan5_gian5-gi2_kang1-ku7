@@ -20,7 +20,7 @@
 		'b', 'p', 'm', 'f', 'v', 'd', 't', 'n', 'l', 'g',
 		'k', 'ng', 'h', 'j', 'q', 'x', 'z', 'c', 's',
 		'zh', 'ch', 'sh', 'rh', '', 'bb'
-		 #'ngi','zi', 'ci', 'si',
+		 # 'ngi','zi', 'ci', 'si',
 }
 臺灣客家話拼音韻母對照表 = {
 		'ii', 'i', 'e', 'a', 'o', 'u', 'ie', 'eu', 'ieu', 'ia',
@@ -44,12 +44,11 @@
 #  意傳的客家話辨識用拼音
 #########################################
 class 臺灣客家話拼音:
-
 	#-------成員函式--------#
 	def __init__(self, 音標):
 		# self.腔
 		self.音標 = None
-		音標=音標.lower()
+		音標 = 音標.lower()
 		if 音標[-1:] in self.調類對照表:
 			for 所在 in range(len(音標) - 1):
 				if 音標[:所在] in self.聲母對照表 and 音標[所在:-1] in self.韻母對照表:
@@ -78,8 +77,10 @@ class 臺灣客家話拼音:
 					# special case
 	def 標準音標(self):
 		return self.音標
+	def 音值(self):
+		return (self.聲, self.韻, self.調)
 	#-------成員變數--------#
-	#ng uainn ˊ
+	# ng uainn ˊ
 	音標上長長度 = 8
 	聲 = None
 	韻 = None
@@ -89,5 +90,3 @@ class 臺灣客家話拼音:
 	聲母對照表 = 臺灣客家話拼音聲母對照表
 	韻母對照表 = 臺灣客家話拼音韻母對照表
 	調類對照表 = 臺灣客家話拼音調類對照表
-
-
