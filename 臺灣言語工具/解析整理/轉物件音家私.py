@@ -45,9 +45,10 @@ class 轉物件音家私():
 			新音 = 無音
 		新型物件 = 音標工具(字物件.型)
 		新型標準音標 = getattr(新型物件,函式)()
-		if 字物件.音.startswith(字物件.型):
+		if 字物件.音.startswith(字物件.型) and isinstance(新音, str):
 			新型 = 新音
-		elif 新型物件 != None and 新型標準音標 != None:
+		elif 新型物件 != None\
+			and 新型標準音標 != None and isinstance(新型標準音標, str):
 			新型 = 新型標準音標
 		else:
 			新型 = 字物件.型
