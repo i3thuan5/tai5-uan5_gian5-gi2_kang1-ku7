@@ -123,6 +123,7 @@ class 辭典揣詞試驗(TestCase):
 		self.assertEqual(斷詞結果, self.句物件)
 		self.檢查分數詞數(分數, 詞數, 0, 6)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.型句)
+		raise RuntimeError('這个無穩定')
 		self.assertEqual(斷詞結果, self.文我句物件)
 		self.檢查分數詞數(分數, 詞數, 0, 6)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.音句)

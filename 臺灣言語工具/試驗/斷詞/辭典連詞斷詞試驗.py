@@ -204,15 +204,19 @@ class 辭典連詞斷詞試驗(TestCase):
 		集物件 = self.分析器.建立集物件('')
 		句物件 = self.分析器.建立句物件('')
 		章物件 = self.分析器.建立章物件('')
+		空句物件 = 句([集([組()])])
 		結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, 詞物件)
 		全部分數 = {}
-		for 物件, 詞數答案 in zip([詞物件, 組物件, 句物件, 章物件], [3, 2, 2, 0]):
+		for 物件, 結果物件, 詞數答案 in \
+			zip([詞物件, 組物件, 句物件, 章物件], \
+				[空句物件, 空句物件, 空句物件, 章物件], \
+			 	[0, 0, 0, 0]):
 			結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, 物件)
-			self.assertEqual(結果, 物件)
+			self.assertEqual(結果, 結果物件)
 			self.assertEqual(詞數, 詞數答案)
 			if 詞數 not in 全部分數:
 				全部分數[詞數] = 分數
-			self.assertEqual(分數, 全部分數[詞數])
+			self.assertEqual(分數, 全部分數[詞數], 物件)
 		self.assertRaises(解析錯誤, self.斷詞.斷詞, self.字典, self.連詞, 集物件,)
 		
 	def 加我有一張椅仔的資料(self):
