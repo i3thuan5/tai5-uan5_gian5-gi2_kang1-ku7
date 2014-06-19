@@ -27,8 +27,10 @@ class 字:
 	def __init__(self, 型, 音 = 無音):
 		if not isinstance(型, str):
 			raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
-		if not isinstance(音, str):
-			raise 型態錯誤('傳入來的音毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
+		try:
+			''.join(音)
+		except:
+			raise 型態錯誤('傳入來的音毋是字串佮字串對：型＝{0}，音＝{1}'.format(str(型), str(音)))
 		if 型 == '':
 			raise 解析錯誤('傳入來的型是空的！')
 		self.型 = 型
