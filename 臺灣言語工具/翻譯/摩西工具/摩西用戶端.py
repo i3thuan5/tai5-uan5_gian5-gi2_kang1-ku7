@@ -5,6 +5,7 @@ from 臺灣言語工具.翻譯.摩西工具.語句編碼器 import 語句編碼�
 
 class 摩西用戶端():
 	網址格式 = "http://{0}:{1}/{2}"
+	未知詞記號 = '|UNK|UNK|UNK'
 	def __init__(self, 位址, 埠, 路徑='RPC2'):
 		網址 = self.網址格式.format(位址, 埠, 路徑)
 		self.主機 = xmlrpc.client.ServerProxy(網址)
@@ -32,7 +33,7 @@ class 摩西用戶端():
 			結果['text'] = 編碼器.解碼(結果['text'])
 			if 'nbest' in 結果:
 				for 候選 in 結果['nbest']:
-					候選['hyp']=編碼器.解碼(候選['hyp'])
+					候選['hyp'] = 編碼器.解碼(候選['hyp'])
 		return 結果
 	def 更新(self, 來源, 目標, 對齊, 編碼器=None):
 		if 編碼器 != None:
@@ -57,6 +58,10 @@ class 摩西用戶端():
 		print('weight vector (set lambda in moses.ini to this value to set as default): ')
 		print(','.join(map(str, weights)) + '\n')
 		return weights
+	def 是未知詞(self, 詞):
+		return 詞.endswith(self.未知詞記號)
+	def 提掉後壁未知詞記號(self, 詞):
+		return 詞[:-len(self.未知詞記號)]
 
 if __name__ == '__main__':
 	編碼器 = 語句編碼器()
