@@ -15,8 +15,7 @@ class 摩西用戶端():
 			來源 = 編碼器.編碼(語句)
 		參數 = {"text":來源, "align":"true", "report-all-factors":"true",
 			'nbest':0}
-		for 項目, 內容 in 另外參數.items():
-			參數[項目] = 內容
+		參數.update(另外參數)
 # 218     si = params.find("sg");
 # 220     si = params.find("topt");
 # 224     si = params.find("nbest");
