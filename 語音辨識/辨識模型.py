@@ -50,28 +50,27 @@ class 辨識模型:
 					全部語料.append((語料名, 音檔所在, 標仔所在))
 		return 全部語料
 	def 算特徵(self, 執行檔路徑, 參數檔, 音檔所在, 特徵所在):
-		特徵指令 = '{0}HCopy -C {1} {2} {3}'.format(
+		特徵指令 = '{0}HCopy -A -C {1} {2} {3}'.format(
 			執行檔路徑, 參數檔, 音檔所在, 特徵所在)
-		print(特徵指令)
 		os.system(特徵指令)
 	def 標仔加恬佮切開(self, 執行檔路徑, 全部標仔檔, 資料目錄, 聲韻類檔, 聲韻檔):
 		原來音類檔 = os.path.join(資料目錄, '原來音類檔')
 		原來音節檔 = os.path.join(資料目錄, '原來音節檔')
-		整理音節指令 = '{0}HLEd -l "*" -n {1} -i {2} -S {3} /dev/null'\
+		整理音節指令 = '{0}HLEd -A -l "*" -n {1} -i {2} -S {3} /dev/null'\
 			.format(執行檔路徑, 原來音類檔, 原來音節檔, 全部標仔檔)
 		os.system(整理音節指令)
 		加恬音類檔 = os.path.join(資料目錄, '加恬音類檔')
 		加恬音節檔 = os.path.join(資料目錄, '加恬音節檔')
 		加恬參數檔 = os.path.join(資料目錄, '加恬參數檔')
 		self.字串寫入檔案(加恬參數檔, 'IS sil sil')
-		加恬音節指令 = '{0}HLEd -l "*" -n {1} -i {2} {3} {4}'\
+		加恬音節指令 = '{0}HLEd -A -l "*" -n {1} -i {2} {3} {4}'\
 			.format(執行檔路徑, 加恬音類檔, 加恬音節檔, 加恬參數檔, 原來音節檔)
 		os.system(加恬音節指令)
 
 		音節聲韻對照檔 = '../config/Syl2Monophone.dic.ok'  # os.path.join(資料目錄, '')
 		切聲韻參數檔 = os.path.join(資料目錄, '拆聲韻參數檔')
 		self.字串寫入檔案(切聲韻參數檔, 'EX')
-		切聲韻指令 = '{0}HLEd -l "*" -i {1} -n {2} -d {3} {4} {5}'\
+		切聲韻指令 = '{0}HLEd -A -l "*" -i {1} -n {2} -d {3} {4} {5}'\
 			.format(執行檔路徑, 聲韻檔, 聲韻類檔, 音節聲韻對照檔, 切聲韻參數檔, 加恬音節檔)
 		os.system(切聲韻指令)
 	def 建立初步模型(self, 執行檔路徑, 資料目錄, 全部特徵檔, 聲韻類檔, 聲韻檔):
@@ -187,5 +186,5 @@ if __name__ == '__main__':
 	模型 = 辨識模型()
 	這馬目錄 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 	模型.訓練(這馬目錄 + '/wav', 這馬目錄 + '/labels', 這馬目錄 + '/data',
-		算特徵=False)
+		算特徵=True)
 		
