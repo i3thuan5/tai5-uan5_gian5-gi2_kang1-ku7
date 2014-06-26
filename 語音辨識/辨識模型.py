@@ -1,8 +1,6 @@
 import os
-import wave
 import itertools
 import shutil
-from genericpath import exists
 
 class 辨識模型:
 	wav副檔名 = '.wav'
@@ -99,21 +97,20 @@ class 辨識模型:
 			itertools.chain.from_iterable(初步模型資料))
 		self.模型重估(執行檔路徑, 資料目錄, 全部特徵檔, 聲韻類檔, 聲韻檔, 初步模型檔, 估幾擺=20)
 	def 模型重估(self, 執行檔路徑, 資料目錄, 全部特徵檔, 聲韻類檔, 聲韻檔, 原來模型檔, 估幾擺=10):
-		' -C $mfcc39_hcompv'
+		原來模型檔檔名 = os.path.basename(原來模型檔)
 		這馬模型檔 = 原來模型檔
-		檔名 = 原來模型檔.rsplit('.', 1)[0]
-		資料夾 = 檔名 + '-重估'
-		os.makedirs(資料夾, exist_ok=True)
+		基本路徑 = 原來模型檔.rsplit('.', 1)[0]
+		資料夾 = 基本路徑 + '-重估'
 		for 第幾擺 in range(估幾擺):
-			新模型檔 = os.path.join(資料夾, '{0:02}.marco'.format(第幾擺))
-			shutil.copy(這馬模型檔, 新模型檔)
-			這馬模型檔 = 新模型檔
-			新統計檔 = os.path.join(資料夾, '{0:02}.sts'.format(第幾擺))
+			這擺資料夾 = os.path.join(資料夾, '{0:02}'.format(第幾擺))
+			os.makedirs(這擺資料夾, exist_ok=True)
+			新統計檔 = os.path.join(這擺資料夾, '統計.sts')
 			重估指令 = '{0}HERest -A -T 407 -t 450.0 150.0 1000.0 -M {1} -H {2} -s {3} -I {4} -S {5} {6}'\
-				.format(執行檔路徑, 資料目錄, 新模型檔, 新統計檔,
+				.format(執行檔路徑, 這擺資料夾, 這馬模型檔, 新統計檔,
 					聲韻檔, 全部特徵檔, 聲韻類檔)
 			os.system(重估指令)
-		上尾模型檔 = '{0}-重估.marco'.format(檔名)
+			這馬模型檔 = os.path.join(這擺資料夾, 原來模型檔檔名)
+		上尾模型檔 = '{0}-重估.macro'.format(基本路徑)
 		shutil.copy(這馬模型檔, 上尾模型檔)
 	def 陣列寫入檔案(self, 檔名, 陣列):
 		self.字串寫入檔案(檔名, '\n'.join(陣列))
