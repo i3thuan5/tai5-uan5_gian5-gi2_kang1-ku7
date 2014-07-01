@@ -39,6 +39,7 @@ class 辨識模型:
 			上尾模型檔 = 加混合了模型
 		return 全部特徵檔, 聲韻類檔, 聲韻檔, 上尾模型檔
 	def 對齊音(self, 聲韻類檔, 模型檔, 聲韻檔, 特徵檔, 資料目錄, 執行檔路徑=''):
+		執行檔路徑 = self.執行檔路徑加尾(執行檔路徑)
 		對照表 = []
 		for 聲韻 in self.讀檔案(聲韻類檔):
 			對照表.append('{0}\t{0}'.format(聲韻))
@@ -49,6 +50,11 @@ class 辨識模型:
 			.format(執行檔路徑, 模型檔, 聲韻檔, 特徵檔, 對齊音結果檔, 聲韻對照檔, 聲韻類檔)
 		self.走指令(對齊音指令)
 		return 聲韻對照檔, 對齊音結果檔
+	def 辨識(self, 聲韻類檔, 模型檔, 特徵檔, 資料目錄, 執行檔路徑=''):
+		執行檔路徑 = self.執行檔路徑加尾(執行檔路徑)
+		網路檔 = os.path.join(資料目錄, '網路檔.lat')
+		self.生辨識網路(執行檔路徑, 資料目錄, 聲韻類檔, 網路檔)
+		辨識指令 = '{0}HVite -p -20 -o N -n 2 -z path -H $monoFinalMacroWithoutToneAfterUpMixture -l $tsit8_giam7_so2_tsai7 -t 400 -i $tsit8_giam7_ket4_ko2 -w $pian7_sik4_bang2_loo7 -S $tsit8_giam7_tik8_ting1_pio2 $syl2PhoneDict $monoListWithoutTone'
 	def 揣全部語料(self, 音檔目錄, 標仔目錄):
 		全部語料 = []
 		for 音檔檔名 in os.listdir(音檔目錄):
@@ -159,12 +165,11 @@ class 辨識模型:
 		加混合了模型 = os.path.join(資料目錄, '加混合了模型.macro')
 		shutil.copy(頂一个模型, 加混合了模型)
 		return 加混合了模型
-	def 辨識網路(self, 執行檔路徑, 資料目錄, 聲韻類檔):
+	def 生辨識網路(self, 執行檔路徑, 資料目錄, 聲韻類檔, 網路檔):
 		語法 = '(sil < {0} > sil)'.format(
 			'|'.join(self.讀檔案(聲韻類檔)))
 		語法檔 = os.path.join(資料目錄, '語法檔.syntax')
 		self.字串寫入檔案(語法檔, 語法)
-		網路檔 = os.path.join(資料目錄, '網路檔.lat')
 		產生網路指令 = '{0}HParse {1} {2}'\
 			.format(執行檔路徑, 語法檔, 網路檔)
 		self.走指令(產生網路指令)
@@ -273,3 +278,4 @@ if __name__ == '__main__':
 		這馬目錄 + '/wav', 這馬目錄 + '/labels', 資料目錄,
 		算特徵=False)
 	聲韻對照檔, 對齊音結果檔 = 模型.對齊音(聲韻類檔, 模型檔, 聲韻檔, 特徵檔, 資料目錄)
+	模型.辨識(聲韻類檔, 模型檔, 特徵檔, 資料目錄)
