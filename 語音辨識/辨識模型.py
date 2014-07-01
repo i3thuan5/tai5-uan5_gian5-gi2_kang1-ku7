@@ -17,6 +17,7 @@ class 辨識模型:
 # 		wave.open(全部語料[0][1])
 		全部特徵檔 = os.path.join(資料目錄, '全部特徵檔.scp')
 		全部標仔檔 = os.path.join(資料目錄, '全部標仔檔.scp')
+		os.makedirs(資料目錄, exist_ok=True)
 		if 算特徵:
 			算特徵參數檔 = os.path.join(資料目錄, '算特徵參數.cfg')
 			self.字串寫入檔案(算特徵參數檔, self.算特徵參數)
@@ -149,6 +150,8 @@ ACCWINDOW= 2
 '''
 	初步模型參數 = \
 '''
+SOURCEKIND = ANON
+SOURCEFORMAT = HTK
 TARGETKIND = MFCC_E_D_A_Z
 TARGETRATE = 100000.0
 WINDOWSIZE = 200000.0
@@ -208,4 +211,3 @@ if __name__ == '__main__':
 	這馬目錄 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 	模型.訓練(這馬目錄 + '/wav', 這馬目錄 + '/labels', 這馬目錄 + '/data',
 		算特徵=False)
-		
