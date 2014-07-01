@@ -151,6 +151,15 @@ class 辨識模型:
 		加混合了模型 = os.path.join(資料目錄, '加混合了模型.macro')
 		shutil.copy(頂一个模型, 加混合了模型)
 		return 加混合了模型
+	def 辨識網路(self, 執行檔路徑, 資料目錄, 聲韻類檔):
+		語法 = '(sil < {0} > sil)'.format(
+			'|'.join(self.讀檔案(聲韻類檔)))
+		語法檔 = os.path.join(資料目錄, '語法檔.syntax')
+		self.字串寫入檔案(語法檔, 語法)
+		網路檔 = os.path.join(資料目錄, '網路檔.lat')
+		產生網路指令 = '{0}HParse {1} {2}'\
+			.format(執行檔路徑, 語法檔, 網路檔)
+		self.走指令(產生網路指令)
 	def 執行檔路徑加尾(self, 執行檔路徑):
 		if 執行檔路徑 != '' and not 執行檔路徑.endswith('/'):
 			return 執行檔路徑 + '/'
