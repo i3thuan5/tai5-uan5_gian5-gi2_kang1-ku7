@@ -18,23 +18,15 @@ class 辨識模型:
 		全部標仔檔 = os.path.join(資料目錄, '全部標仔檔.scp')
 		os.makedirs(資料目錄, exist_ok=True)
 		if 算特徵:
-			算特徵參數檔 = os.path.join(資料目錄, '算特徵參數.cfg')
-			self.字串寫入檔案(算特徵參數檔, self.算特徵參數)
-			特徵目錄 = os.path.join(資料目錄, self.特徵)
-			os.makedirs(特徵目錄, exist_ok=True)
-			全部特徵 = []
-			全部標仔 = []
-			for 語料名, 音檔所在, 標仔所在 in 全部語料:
-				特徵所在 = os.path.join(特徵目錄,
-					語料名 + self.特徵副檔名)
-				self.算特徵(執行檔路徑, 算特徵參數檔, 音檔所在, 特徵所在)
-				全部特徵.append(特徵所在)
-				全部標仔.append(標仔所在)
-			self.陣列寫入檔案(全部特徵檔, 全部特徵)
-			self.陣列寫入檔案(全部標仔檔, 全部標仔)
+			self.揣特徵而且算(執行檔路徑, 資料目錄, 全部語料, 全部特徵檔)
 		聲韻類檔 = os.path.join(資料目錄, '聲韻類檔.list')
 		聲韻檔 = os.path.join(資料目錄, '聲韻檔.mlf')
 		if 切標仔:
+			全部標仔 = []
+			for 語料 in 全部語料:
+				標仔所在 = 語料[2]
+				全部標仔.append(標仔所在)
+			self.陣列寫入檔案(全部標仔檔, 全部標仔)
 			self.標仔加恬佮切開(執行檔路徑, 全部標仔檔, 資料目錄, 聲韻類檔, 聲韻檔)
 		初步模型檔 = os.path.join(資料目錄, '初步模型檔-重估.macro')
 		上尾模型檔 = None
@@ -62,12 +54,28 @@ class 辨識模型:
 		for 音檔檔名 in os.listdir(音檔目錄):
 			if 音檔檔名.endswith(self.音檔副檔名):
 				語料名 = 音檔檔名[:-len(self.音檔副檔名)]
-				標仔所在 = os.path.join(標仔目錄,
-					語料名 + self.標仔副檔名)
-				if os.path.isfile(標仔所在):
-					音檔所在 = os.path.join(音檔目錄, 音檔檔名)
-					全部語料.append((語料名, 音檔所在, 標仔所在))
+				音檔所在 = os.path.join(音檔目錄, 音檔檔名)
+				if 標仔目錄 == None:
+					全部語料.append((語料名, 音檔所在))
+				else:
+					標仔所在 = os.path.join(標仔目錄,
+						語料名 + self.標仔副檔名)
+					if os.path.isfile(標仔所在):
+						全部語料.append((語料名, 音檔所在, 標仔所在))
 		return 全部語料
+	def 揣特徵而且算(self, 執行檔路徑, 資料目錄, 全部語料, 全部特徵檔):
+		算特徵參數檔 = os.path.join(資料目錄, '算特徵參數.cfg')
+		self.字串寫入檔案(算特徵參數檔, self.算特徵參數)
+		特徵目錄 = os.path.join(資料目錄, self.特徵)
+		os.makedirs(特徵目錄, exist_ok=True)
+		全部特徵 = []
+		for 語料 in 全部語料:
+			語料名, 音檔所在 = 語料[0:2]
+			特徵所在 = os.path.join(特徵目錄,
+				語料名 + self.特徵副檔名)
+			self.算特徵(執行檔路徑, 算特徵參數檔, 音檔所在, 特徵所在)
+			全部特徵.append(特徵所在)
+		self.陣列寫入檔案(全部特徵檔, 全部特徵)
 	def 算特徵(self, 執行檔路徑, 參數檔, 音檔所在, 特徵所在):
 		特徵指令 = '{0}HCopy -A -C {1} {2} {3}'.format(
 			執行檔路徑, 參數檔, 音檔所在, 特徵所在)
