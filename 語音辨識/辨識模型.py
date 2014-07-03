@@ -40,21 +40,31 @@ class 辨識模型:
 		return 全部特徵檔, 聲韻類檔, 聲韻檔, 上尾模型檔
 	def 對齊音(self, 聲韻類檔, 模型檔, 聲韻檔, 特徵檔, 資料目錄, 執行檔路徑=''):
 		執行檔路徑 = self.執行檔路徑加尾(執行檔路徑)
-		對照表 = []
-		for 聲韻 in self.讀檔案(聲韻類檔):
-			對照表.append('{0}\t{0}'.format(聲韻))
 		聲韻對照檔 = os.path.join(資料目錄, '聲韻對照檔.dict')
-		self.陣列寫入檔案(聲韻對照檔, 對照表)
+		self.家己對照檔(聲韻類檔, 聲韻對照檔)
 		對齊音結果檔 = os.path.join(資料目錄, '對齊音結果檔.mlf')
 		對齊音指令 = '{0}HVite -A -p -20 -o N -H {1} -l "*" -t 400 -I {2} -S {3} -i {4} {5} {6}'\
 			.format(執行檔路徑, 模型檔, 聲韻檔, 特徵檔, 對齊音結果檔, 聲韻對照檔, 聲韻類檔)
 		self.走指令(對齊音指令)
 		return 聲韻對照檔, 對齊音結果檔
-	def 辨識(self, 聲韻類檔, 模型檔, 特徵檔, 資料目錄, 執行檔路徑=''):
+	def 辨識(self, 聲韻類檔, 模型檔, 特徵檔, 資料目錄, 幾條網路, 執行檔路徑=''):
 		執行檔路徑 = self.執行檔路徑加尾(執行檔路徑)
 		網路檔 = os.path.join(資料目錄, '網路檔.lat')
 		self.生辨識網路(執行檔路徑, 資料目錄, 聲韻類檔, 網路檔)
-		辨識指令 = '{0}HVite -p -20 -o N -n 2 -z path -H $monoFinalMacroWithoutToneAfterUpMixture -l $tsit8_giam7_so2_tsai7 -t 400 -i $tsit8_giam7_ket4_ko2 -w $pian7_sik4_bang2_loo7 -S $tsit8_giam7_tik8_ting1_pio2 $syl2PhoneDict $monoListWithoutTone'
+		結果檔 = os.path.join(資料目錄, '辨識結果檔.mlf')
+		聲韻對照檔 = os.path.join(資料目錄, '聲韻對照檔.dict')
+		self.家己對照檔(聲韻類檔, 聲韻對照檔)
+		if 幾條網路 > 0:
+			結果網路資料夾 = os.path.join(資料目錄, '辨識結果網路')
+			os.makedirs(結果網路資料夾, exist_ok=True)
+			幾條網路設定='-n {0}'.format(幾條網路)
+		else:
+			結果網路資料夾 = '*'
+			幾條網路設定=''
+		辨識指令 = '{0}HVite -p -20 -t 400 -H {1} -w {2} -S {3} -o N -y wav -z lattices -i {4} -l "{5}" {6} {7} {8}'\
+			.format(執行檔路徑, 模型檔, 網路檔, 特徵檔, 結果檔, 結果網路資料夾, 幾條網路設定, 聲韻對照檔, 聲韻類檔)
+		self.走指令(辨識指令)
+		return 結果檔, 結果網路資料夾
 	def 揣全部語料(self, 音檔目錄, 標仔目錄):
 		全部語料 = []
 		for 音檔檔名 in os.listdir(音檔目錄):
@@ -173,6 +183,11 @@ class 辨識模型:
 		產生網路指令 = '{0}HParse {1} {2}'\
 			.format(執行檔路徑, 語法檔, 網路檔)
 		self.走指令(產生網路指令)
+	def 家己對照檔(self, 類檔, 對照檔):
+		對照表 = []
+		for 類 in self.讀檔案(類檔):
+			對照表.append('{0}\t{0}'.format(類))
+		self.陣列寫入檔案(對照檔, 對照表)
 	def 執行檔路徑加尾(self, 執行檔路徑):
 		if 執行檔路徑 != '' and not 執行檔路徑.endswith('/'):
 			return 執行檔路徑 + '/'
@@ -278,4 +293,4 @@ if __name__ == '__main__':
 		這馬目錄 + '/wav', 這馬目錄 + '/labels', 資料目錄,
 		算特徵=False)
 	聲韻對照檔, 對齊音結果檔 = 模型.對齊音(聲韻類檔, 模型檔, 聲韻檔, 特徵檔, 資料目錄)
-	模型.辨識(聲韻類檔, 模型檔, 特徵檔, 資料目錄)
+	模型.辨識(聲韻類檔, 模型檔, 特徵檔, 資料目錄, 3)
