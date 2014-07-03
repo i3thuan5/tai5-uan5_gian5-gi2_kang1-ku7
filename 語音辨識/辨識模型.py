@@ -57,10 +57,10 @@ class 辨識模型:
 		if 幾條網路 > 0:
 			結果網路資料夾 = os.path.join(資料目錄, '辨識結果網路')
 			os.makedirs(結果網路資料夾, exist_ok=True)
-			幾條網路設定='-n {0}'.format(幾條網路)
+			幾條網路設定 = '-n {0}'.format(幾條網路)
 		else:
 			結果網路資料夾 = '*'
-			幾條網路設定=''
+			幾條網路設定 = ''
 		辨識指令 = '{0}HVite -p -20 -t 400 -H {1} -w {2} -S {3} -o N -y wav -z lattices -i {4} -l "{5}" {6} {7} {8}'\
 			.format(執行檔路徑, 模型檔, 網路檔, 特徵檔, 結果檔, 結果網路資料夾, 幾條網路設定, 聲韻對照檔, 聲韻類檔)
 		self.走指令(辨識指令)
@@ -81,7 +81,8 @@ class 辨識模型:
 		return 全部語料
 	def 揣特徵而且算(self, 執行檔路徑, 資料目錄, 全部語料, 全部特徵檔):
 		算特徵參數檔 = os.path.join(資料目錄, '算特徵參數.cfg')
-		self.字串寫入檔案(算特徵參數檔, self.算特徵參數)
+		self.字串寫入檔案(算特徵參數檔,
+			self.特徵參數.format('WAVEFORM', 'WAV'))
 		特徵目錄 = os.path.join(資料目錄, self.特徵)
 		os.makedirs(特徵目錄, exist_ok=True)
 		全部特徵 = []
@@ -118,7 +119,8 @@ class 辨識模型:
 		self.走指令(切聲韻指令)
 	def 建立初步模型(self, 執行檔路徑, 資料目錄, 全部特徵檔, 聲韻類檔, 聲韻檔):
 		公家模型建立參數檔 = os.path.join(資料目錄, '公家模型建立參數檔.cfg')
-		self.字串寫入檔案(公家模型建立參數檔, self.初步模型參數)
+		self.字串寫入檔案(公家模型建立參數檔,
+			self.特徵參數.format('ANON', 'HTK'))
 		公家模型檔 = os.path.join(資料目錄, '公家模型檔')
 		模型版檔 = os.path.join(資料目錄, '模型版檔')
 		self.字串寫入檔案(模型版檔, self.模型版參數)
@@ -212,25 +214,10 @@ class 辨識模型:
 				資料.append(一逝)
 		檔案.close()
 		return 資料
-	算特徵參數 = \
+	特徵參數 = \
 '''
-SOURCEKIND = WAVEFORM
-SOURCEFORMAT = WAV
-TARGETKIND = MFCC_E_D_A_Z
-TARGETRATE = 100000.0
-WINDOWSIZE = 200000.0
-PREEMCOEF = 0.975
-NUMCHANS = 26
-CEPLIFTER = 22
-NUMCEPS = 12
-USEHAMMING = T
-DELTAWINDOW = 2	
-ACCWINDOW= 2
-'''
-	初步模型參數 = \
-'''
-SOURCEKIND = ANON
-SOURCEFORMAT = HTK
+SOURCEKIND = {0}
+SOURCEFORMAT = {1}
 TARGETKIND = MFCC_E_D_A_Z
 TARGETRATE = 100000.0
 WINDOWSIZE = 200000.0
