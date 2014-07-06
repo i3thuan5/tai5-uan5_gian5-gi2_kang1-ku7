@@ -136,6 +136,12 @@ class 物件譀鏡試驗(unittest.TestCase):
 		self.assertRaises(型態錯誤, self.譀鏡.看型, 790830)
 		self.assertRaises(型態錯誤, self.譀鏡.看音, None)
 		self.assertRaises(型態錯誤, self.譀鏡.看斷詞, '｜', '｜')
+
+	def test_無音字(self):
+		字物件=self.分析器.建立字物件('媠')
+		self.assertEqual(self.譀鏡.看型(字物件), '媠')
+		self.assertEqual(self.譀鏡.看音(字物件), '')
+		self.assertRaises(解析錯誤, self.譀鏡.看斷詞, 字物件)
 		
 	def test_看章換分句符號(self):
 		raise NotImplementedError
