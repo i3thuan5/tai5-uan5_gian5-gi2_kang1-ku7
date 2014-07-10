@@ -5,5 +5,7 @@ CKIPClient.log
 /build
 /MANIFEST
 *.hed
-labels
+labels*
 wav
+data
+tiong1
