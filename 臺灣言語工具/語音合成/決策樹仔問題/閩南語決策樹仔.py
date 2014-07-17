@@ -46,9 +46,10 @@ class 閩南語決策樹仔:
 		'''
 		聲韻 = []
 		for 實際音 in itertools.chain(
+				['sil', 'sp'],
 				臺灣閩南語羅馬字拼音對照音值聲母表.values(),
 				臺灣閩南語羅馬字拼音對照音值韻母表.values()):
-			聲韻.append(('是{0}'.format(實際音), [實際音]))
+			聲韻.append(('{0}'.format(實際音), [實際音]))
 		return self._生問題.問題集(聲韻, self.聲韻符號, '孤條')
 	def 元音分韻(self):
 		'''
@@ -269,5 +270,5 @@ class 閩南語決策樹仔:
 if __name__ == '__main__':
 	問題 = 閩南語決策樹仔().生()
 	檔案 = open('questions_qst001.hed', 'w')
-	print('\n'.join(問題), file = 檔案)
+	print('\n'.join(問題), file=檔案)
 	檔案.close()
