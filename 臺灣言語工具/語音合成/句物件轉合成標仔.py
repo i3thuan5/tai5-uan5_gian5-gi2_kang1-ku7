@@ -132,10 +132,12 @@ class 句物件轉合成標仔:
 		'''予HTK切音，而且HTS粗胚用的'''
 		音值標仔 = []
 		for 標仔 in 完整標仔:
-			音值 = self.音值格式.format(
-				標仔.split('-', 1)[1].split('+')[0])
-			雜湊 = hashlib.md5()
-			雜湊.update(音值.encode(encoding='utf_8', errors='strict'))
-			雜湊音標 = 雜湊.hexdigest()
-			音值標仔.append(音值 + 雜湊音標)
+			音值標仔.append(self.產生主要音值標仔(標仔))
 		return 音值標仔
+	def 產生主要音值標仔(self, 完整標仔):
+		音值 = self.音值格式.format(
+			完整標仔.split('+', 1)[0].split('-', 1)[-1])
+		雜湊 = hashlib.md5()
+		雜湊.update(音值.encode(encoding='utf_8', errors='strict'))
+		雜湊音標 = 雜湊.hexdigest()
+		return 音值 + 雜湊音標
