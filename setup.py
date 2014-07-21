@@ -5,7 +5,14 @@ python3 setup.py sdist --format=zip upload
 '''
 import os
 from distutils.core import setup
-from setuptools import find_packages
+
+def 揣工具包(頭='.'):
+	'setup的find_packages無支援windows中文檔案'
+	工具包 = []
+	for 目錄, 資料夾, 檔案 in os.walk(頭):
+		if '__init__.py' in 檔案:
+			工具包.append(目錄.replace('/', '.'))
+	return 工具包
 
 def 讀(檔名):
 	return open(os.path.join(os.path.dirname(__file__), 檔名), encoding='utf-8').read()
@@ -13,7 +20,7 @@ def 讀(檔名):
 setup(
 	# 臺灣言語工具 tai5_uan5_gian5_gi2_kang1_ku7
 	name='tai5_uan5_gian5_gi2_kang1_ku7',
-	packages=find_packages(),
+	packages=揣工具包('臺灣言語工具'),
 	version='0.2.4',
 	description='臺灣語言資訊系統（Toolkit for Languages in Taiwan）',
 	long_description=讀('README'),
