@@ -5,6 +5,7 @@ python3 setup.py sdist --format=zip upload
 '''
 import os
 from distutils.core import setup
+from 版本 import 版本
 
 def 揣工具包(頭='.'):
 	'setup的find_packages無支援windows中文檔案'
@@ -21,7 +22,7 @@ setup(
 	# 臺灣言語工具 tai5_uan5_gian5_gi2_kang1_ku7
 	name='tai5_uan5_gian5_gi2_kang1_ku7',
 	packages=揣工具包('臺灣言語工具'),
-	version='0.2.4',
+	version=版本,
 	description='臺灣語言資訊系統（Toolkit for Languages in Taiwan）',
 	long_description=讀('README'),
 	author='薛丞宏',
