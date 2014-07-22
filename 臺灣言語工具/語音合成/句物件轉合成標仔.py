@@ -136,8 +136,9 @@ class 句物件轉合成標仔:
 			音值標仔.append(self.產生主要音值標仔(標仔))
 		return 音值標仔
 	def 產生主要音值標仔(self, 完整標仔):
-		音值 = self.音值格式.format(
-			完整標仔.split('+', 1)[0].split('-', 1)[-1])
+		音 = 完整標仔.split('+', 1)[0].split('-', 1)[-1]
+		return 音
+		音值 = self.音值格式.format(音)
 		雜湊 = hashlib.md5()
 		雜湊.update(音值.encode(encoding='utf_8', errors='strict'))
 		雜湊音標 = 雜湊.hexdigest()
