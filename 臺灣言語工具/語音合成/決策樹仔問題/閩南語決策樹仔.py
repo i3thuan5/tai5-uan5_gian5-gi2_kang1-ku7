@@ -29,14 +29,24 @@ class 閩南語決策樹仔:
 	def 生(self):
 		問題 = set()
 		問題 |= self.孤聲韻()
+		print(len(問題))
 		問題 |= self.元音分韻()
+		print(len(問題))
 		問題 |= self.孤元音()
+		print(len(問題))
 		問題 |= self.陰聲韻()
+		print(len(問題))
 		問題 |= self.鼻化韻佮聲化韻()
+		print(len(問題))
 		問題 |= self.韻尾()
+		print(len(問題))
 		問題 |= self.輔音()
-		問題 |= self.調()
+		print(len(問題))
+# 		問題 |= self.全部調()
+		問題 |= self.指定調()
+		print(len(問題))
 		問題 |= self.詞句長度(10, 20)
+		print(len(問題))
 
 		self._生問題.檢查(問題)
 		return 問題
@@ -238,10 +248,43 @@ class 閩南語決策樹仔:
 			QS "Si7_U7_Phinn5_Im1"    {*-*m*+*,*-*ng*+*}
 			共i、佮n濫做伙，毋過可能無需要
 		'''
-	def 調(self):
+	def 指定調(self):
+		'''孤，孤條
+		0:11
+		1:33
+		2:31
+		3:11
+		4:2
+		5:12
+		6:31
+		7:22
+		8:3
+		9:23
+		10:1
+		'''
+		孤調題目 = []
+		for 調號 in range(0, 11):  # 有輕聲到第十調
+			孤調題目.append(('第{}調'.format(調號), ['{}'.format(調號)]))
+		調懸低題目 = [
+			('音頭前低調', ['{}'.format(0), '{}'.format(3), '{}'.format(5), '{}'.format(10), ]),
+			('音中央低調', ['{}'.format(0), '{}'.format(3), '{}'.format(10), ]),
+			('音後壁低調', ['{}'.format(0), '{}'.format(2), '{}'.format(3), '{}'.format(6), '{}'.format(10), ]),
+			('音頭前中調', ['{}'.format(4), '{}'.format(7), '{}'.format(9), ]),
+			('音中央中調', ['{}'.format(4), '{}'.format(7), ]),
+			('音中央有中調', ['{}'.format(2), '{}'.format(4), '{}'.format(6), '{}'.format(7), ]),
+			('音後壁中調', ['{}'.format(4), '{}'.format(5), '{}'.format(7), ]),
+			('音頭前懸調', ['{}'.format(1), '{}'.format(2), '{}'.format(6), '{}'.format(8), ]),
+			('音中央懸調', ['{}'.format(1), '{}'.format(8), ]),
+			('音後壁懸調', ['{}'.format(1), '{}'.format(8), '{}'.format(9), ]),
+			('音入聲', ['{}'.format(4), '{}'.format(8), '{}'.format(10), ]),
+			]
+		return self._生問題.問題集(孤調題目, self.調符號, '孤條')|\
+			self._生問題.問題集(調懸低題目, self.調符號, '孤條')
+	def 全部調(self):
 		'''孤，組合'''
 		題目 = []
-		for 調號 in range(0, 11):  # 有輕聲到第十調
+		for 調號 in [1, 2, 3, 4, 5, 7, 8, 9, 10]:  # 輕聲配去第三調佮別的，第六調本調佮第二調仝款
+# 		for 調號 in range(0, 11):  # 有輕聲到第十調
 			題目.append(('第{}調'.format(調號), ['{}'.format(調號)]))
 		return self._生問題.問題集(題目, self.調符號, '組合')
 	def 詞句長度(self, 詞長, 句長):
@@ -270,5 +313,5 @@ class 閩南語決策樹仔:
 if __name__ == '__main__':
 	問題 = 閩南語決策樹仔().生()
 	檔案 = open('questions_qst001.hed', 'w')
-	print('\n'.join(問題), file=檔案)
+	print('\n'.join(問題), file = 檔案)
 	檔案.close()
