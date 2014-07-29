@@ -5,13 +5,9 @@ import re
 from 臺灣言語工具.語音合成.句物件轉合成標仔 import 句物件轉合成標仔
 from 語音辨識.腳本程式 import 腳本程式
 from 語音辨識.辨識模型 import 辨識模型
+from 語音辨識.語料處理 import 語料處理
 
-class 模型訓練(腳本程式):
-	wav副檔名 = '.wav'
-	音檔副檔名 = wav副檔名
-	標仔副檔名 = '.lab'
-	特徵 = 'mfcc'
-	特徵副檔名 = '.' + 特徵
+class 模型訓練(腳本程式,語料處理):
 	音檔結束符號 = '.'
 	_轉合成標仔 = 句物件轉合成標仔()
 	恬音 = _轉合成標仔.產生主要音值標仔(_轉合成標仔.恬音)
@@ -117,43 +113,6 @@ class 模型訓練(腳本程式):
 		上尾模型檔 = self.模型重估(執行檔路徑, 資料目錄, 全部特徵檔,
 			上尾聲韻類檔, 上尾聲韻檔, 加混合了模型, 估幾擺=50)
 		return 上尾聲韻類檔, 上尾模型檔
-	def 處理試驗語料(self, 音檔目錄, 資料目錄,
-			標仔目錄=None, 音節聲韻對照檔=None, 執行檔路徑=''):
-		全部語料 = self.揣全部語料(音檔目錄, 標仔目錄)
-		全部特徵檔 = os.path.join(資料目錄, '資料特徵檔.scp')
-		os.makedirs(資料目錄, exist_ok=True)
-		self.揣特徵而且算(執行檔路徑, 資料目錄, 全部語料, 全部特徵檔)
-		if 標仔目錄 == None:
-			return 全部特徵檔
-		全部標仔檔 = os.path.join(資料目錄, '試驗語料標仔檔.scp')
-		音節檔 = os.path.join(資料目錄, '試驗語料音節檔.mlf')
-		聲韻類檔 = os.path.join(資料目錄, '試驗語料聲韻類檔.list')
-		聲韻檔 = os.path.join(資料目錄, '試驗語料聲韻檔.mlf')
-		全部標仔 = []
-		for 語料 in 全部語料:
-			標仔所在 = 語料[2]
-			全部標仔.append(標仔所在)
-		self.陣列寫入檔案(全部標仔檔, 全部標仔)
-		用袂著的檔案 = os.path.join(資料目錄, '用袂著的檔案.garbage')
-		self.標仔收集起來(執行檔路徑, 全部標仔檔, 資料目錄, 用袂著的檔案, 音節檔)
-		self.標仔切做聲韻(執行檔路徑, 音節檔, 音節聲韻對照檔, 資料目錄, 聲韻類檔, 聲韻檔)
-# 		self.標仔加恬佮切開(執行檔路徑, 全部標仔檔, 音節聲韻對照檔,
-# 			資料目錄, 音節檔, 聲韻類檔, 聲韻檔)
-		return 全部特徵檔, 音節檔, 聲韻檔
-	def 揣全部語料(self, 音檔目錄, 標仔目錄):
-		全部語料 = []
-		for 音檔檔名 in os.listdir(音檔目錄):
-			if 音檔檔名.endswith(self.音檔副檔名):
-				語料名 = 音檔檔名[:-len(self.音檔副檔名)]
-				音檔所在 = os.path.join(音檔目錄, 音檔檔名)
-				if 標仔目錄 == None:
-					全部語料.append((語料名, 音檔所在))
-				else:
-					標仔所在 = os.path.join(標仔目錄,
-						語料名 + self.標仔副檔名)
-					if os.path.isfile(標仔所在):
-						全部語料.append((語料名, 音檔所在, 標仔所在))
-		return 全部語料
 	def 標仔換目錄(self, 原本全部標仔檔, 新標仔目錄):
 		全部標仔 = []
 		for 標仔檔名 in self.讀檔案(原本全部標仔檔):
@@ -161,32 +120,6 @@ class 模型訓練(腳本程式):
 			if os.path.isfile(標仔所在):
 				全部標仔.append(標仔所在)
 		return 全部標仔
-	def 揣特徵而且算(self, 執行檔路徑, 資料目錄, 全部語料, 全部特徵檔):
-		算特徵參數檔 = os.path.join(資料目錄, '算特徵參數.cfg')
-		self.字串寫入檔案(算特徵參數檔,
-			self.特徵參數.format('WAVEFORM', 'WAV'))
-		特徵目錄 = os.path.join(資料目錄, self.特徵)
-		os.makedirs(特徵目錄, exist_ok=True)
-		全部特徵 = []
-		for 語料 in 全部語料:
-			語料名, 音檔所在 = 語料[0:2]
-			特徵所在 = os.path.join(特徵目錄,
-				語料名 + self.特徵副檔名)
-			self.算特徵(執行檔路徑, 算特徵參數檔, 音檔所在, 特徵所在)
-			全部特徵.append(特徵所在)
-		self.陣列寫入檔案(全部特徵檔, 全部特徵)
-	def 算特徵(self, 執行檔路徑, 參數檔, 音檔所在, 特徵所在):
-		執行檔路徑 = self.執行檔路徑加尾(執行檔路徑)
-		特徵指令 = '{0}HCopy -A -C {1} {2} {3}'.format(
-			執行檔路徑, 參數檔, 音檔所在, 特徵所在)
-		self.走指令(特徵指令)
-	def 標仔收集起來(self, 執行檔路徑, 全部標仔檔, 資料目錄, 原來音類檔, 原來音節檔):
-		執行檔路徑 = self.執行檔路徑加尾(執行檔路徑)
-		莫跳脫聲韻 = os.path.join(資料目錄, '莫跳脫聲韻.cfg')
-		self.字串寫入檔案(莫跳脫聲韻, 'noNumEscapes = T')
-		整理音節指令 = '{0}HLEd -A -C {1} -l "*" -n {2} -i {3} -S {4} /dev/null'\
-			.format(執行檔路徑, 莫跳脫聲韻, 原來音類檔, 原來音節檔, 全部標仔檔)
-		self.走指令(整理音節指令)
 	def 建立初步模型(self, 執行檔路徑, 資料目錄, 全部特徵檔, 聲韻類檔, 聲韻檔):
 		公家模型建立參數檔 = os.path.join(資料目錄, '公家模型建立參數檔.cfg')
 		self.字串寫入檔案(公家模型建立參數檔,
@@ -273,16 +206,6 @@ class 模型訓練(腳本程式):
 			except:
 				新聲韻.append(一逝)
 		self.陣列寫入檔案(新拄好短恬聲韻檔, 新聲韻)
-	def 標仔切做聲韻(self, 執行檔路徑, 音節檔, 音節聲韻對照檔, 資料目錄, 聲韻類檔, 聲韻檔):
-		執行檔路徑 = self.執行檔路徑加尾(執行檔路徑)
-		莫跳脫聲韻 = os.path.join(資料目錄, '莫跳脫聲韻.cfg')
-		self.字串寫入檔案(莫跳脫聲韻, 'noNumEscapes = T')
-		切聲韻參數檔 = os.path.join(資料目錄, '拆聲韻參數檔.led')
-		self.字串寫入檔案(切聲韻參數檔, 'EX')
-		切聲韻指令 = '{0}HLEd -A -C {1} -l "*" -i {2} -n {3} -d {4} {5} {6}'\
-			.format(執行檔路徑, 莫跳脫聲韻,
-				聲韻檔, 聲韻類檔, 音節聲韻對照檔, 切聲韻參數檔, 音節檔)
-		self.走指令(切聲韻指令)
 	def 模型加短恬(self, 原本模型, 加短恬模型):
 		恬中央狀態 = '~h \"{0}.*?\".*?<STATE> 3[ \n]*(.*?)[ \n]*<STATE> 4'\
 			.format(self.恬音)
@@ -386,21 +309,6 @@ SH
 		加混合了模型 = os.path.join(資料目錄, '加混合了模型.macro')
 		shutil.copy(頂一个模型, 加混合了模型)
 		return 加混合了模型
-	特徵參數 = \
-'''
-SOURCEKIND = {0}
-SOURCEFORMAT = {1}
-TARGETKIND = MFCC_E_D_A_Z
-TARGETRATE = 100000.0
-WINDOWSIZE = 200000.0
-PREEMCOEF = 0.975
-NUMCHANS = 26
-CEPLIFTER = 22
-NUMCEPS = 12
-USEHAMMING = T
-DELTAWINDOW = 2	
-ACCWINDOW= 2
-'''
 	模型版參數 = \
 '''
 ~o <VecSize> 39 <MFCC_E_D_A_Z> <DiagC> <StreamInfo> 1 39
