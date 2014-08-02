@@ -298,12 +298,12 @@ class 閩南語決策樹仔:
 		詞 = []
 		for 長度 in range(詞長 + 1):
 			詞.append(('詞{}字'.format(長度),
-				'{}'.format(長度)))
+				['{}'.format(長度)]))
 		問題 = self._生問題.問題集(詞, self.詞符號, '連紲')
 		句 = []
 		for 長度 in range(句長 + 1):
 			句.append(('句{}詞'.format(長度),
-				'{}'.format(長度)))
+				['{}'.format(長度)]))
 		問題 |= self._生問題.問題集(句, self.句符號, '連紲')
 		恬的音 = [
 			('恬', ['x']),
