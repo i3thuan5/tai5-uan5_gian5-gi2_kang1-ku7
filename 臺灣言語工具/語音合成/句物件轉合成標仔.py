@@ -44,7 +44,12 @@ class 句物件轉合成標仔:
 			self.免知, self.免知, self.免知,
 			self.免知, self.免知, self.免知,
 			)
-	def 句物件轉標仔(self, 句物件):
+		self.短恬標仔 = self.產生合成標仔(self.免知, self.短恬, self.免知,
+			self.免知, self.免知, self.免知,
+			self.免知, self.免知, self.免知,
+			self.免知, self.免知, self.免知,
+			)
+	def 句物件轉標仔(self, 句物件, 加短恬 = False):
 		for 集物件 in 句物件.內底集:
 			新組陣列 = []
 			for 詞物件 in 集物件.內底組[0].內底詞:
@@ -67,6 +72,10 @@ class 句物件轉合成標仔:
 			for 字物件 in 字陣列:
 				try:
 					聲, 韻, 調 = 字物件.音
+					if 加短恬 and len(全部聲韻資料) > 0:
+						頂一个聲韻 = 全部聲韻資料[-1][0]
+						if 頂一个聲韻 != self.恬音 and 頂一个聲韻 != self.短恬:
+							全部聲韻資料.append((self.短恬, len(全部字資料)))
 					全部聲韻資料.append((聲, len(全部字資料)))
 					全部聲韻資料.append((韻, len(全部字資料)))
 				except:
@@ -79,8 +88,11 @@ class 句物件轉合成標仔:
 		合成標仔 = [self.恬標仔]
 		for 聲韻資料所在 in range(len(全部聲韻資料)):
 			這馬聲韻, 這馬字所在 = 全部聲韻資料[聲韻資料所在]
-			if 這馬聲韻 == self.恬標仔:
+			if 這馬聲韻 == self.恬音:
 				合成標仔.append(self.恬標仔)
+				continue
+			elif 這馬聲韻 == self.短恬:
+				合成標仔.append(self.短恬標仔)
 				continue
 			if 聲韻資料所在 - 1 >= 0:
 				頭前聲韻 = 全部聲韻資料[聲韻資料所在 - 1][0]
