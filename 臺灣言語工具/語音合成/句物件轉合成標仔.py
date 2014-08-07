@@ -49,7 +49,7 @@ class 句物件轉合成標仔:
 			self.免知, self.免知, self.免知,
 			self.免知, self.免知, self.免知,
 			)
-	def 句物件轉標仔(self, 句物件, 加短恬 = False):
+	def 句物件轉標仔(self, 句物件, 加短恬=False):
 		for 集物件 in 句物件.內底集:
 			新組陣列 = []
 			for 詞物件 in 集物件.內底組[0].內底詞:
@@ -148,5 +148,6 @@ class 句物件轉合成標仔:
 			音值標仔.append(self.產生主要音值標仔(標仔))
 		return 音值標仔
 	def 產生主要音值標仔(self, 完整標仔):
-		音 = 完整標仔.split('+', 1)[0].split('-', 1)[-1]
+		'split(None, 1)[0]是為著縛做伙三連音做對照表時會當用的'
+		音 = 完整標仔.split(None, 1)[0].split('+', 1)[0].split('-', 1)[-1]
 		return 音
