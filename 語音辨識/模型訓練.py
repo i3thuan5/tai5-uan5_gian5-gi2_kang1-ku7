@@ -321,7 +321,7 @@ SH
 			問題設定.append(
 				'QS "頭前是{0}" {{{0}-*}}'.format(聲韻))
 			問題設定.append(
-				'QS "後壁是{0}" {{*-{0}}}'.format(聲韻))
+				'QS "後壁是{0}" {{*+{0}}}'.format(聲韻))
 			if self._是恬(聲韻):
 				continue
 			for 第幾个狀態 in range(2, 5):
