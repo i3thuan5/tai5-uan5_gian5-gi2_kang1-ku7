@@ -130,7 +130,6 @@ class 臺灣客家話拼音試驗(TestCase):
 		self.assertEqual(臺灣客家話拼音('ianˇ').音標, 'ianˇ')#圓
 		self.assertEqual(臺灣客家話拼音('giadˋ').音標, 'giadˋ')#結
 		self.assertEqual(臺灣客家話拼音('giai').音標, 'giai')#街
-		 
 		
 		
 	def test_大寫音標(self):
