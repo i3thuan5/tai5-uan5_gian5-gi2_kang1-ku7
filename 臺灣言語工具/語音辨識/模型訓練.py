@@ -21,9 +21,9 @@ import itertools
 import shutil
 import re
 from 臺灣言語工具.語音合成.句物件轉合成標仔 import 句物件轉合成標仔
-from 語音辨識.腳本程式 import 腳本程式
-from 語音辨識.辨識模型 import 辨識模型
-from 語音辨識.語料處理 import 語料處理
+from 臺灣言語工具.語音辨識.腳本程式 import 腳本程式
+from 臺灣言語工具.語音辨識.辨識模型 import 辨識模型
+from 臺灣言語工具.語音辨識.語料處理 import 語料處理
 
 class 模型訓練(腳本程式, 語料處理):
 	音檔結束符號 = '.'

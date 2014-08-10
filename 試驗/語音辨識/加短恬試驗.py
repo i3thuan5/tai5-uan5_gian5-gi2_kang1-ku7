@@ -17,9 +17,9 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 from unittest.case import TestCase
-from 語音辨識.辨識模型 import 辨識模型
 import os
 import unittest
+from 臺灣言語工具.語音辨識.模型訓練 import 模型訓練
 
 class 加短恬試驗(TestCase):
 	def setUp(self):
@@ -27,7 +27,7 @@ class 加短恬試驗(TestCase):
 	def tearDown(self):
 		pass
 	def test_加短恬(self):
-		模型 = 辨識模型()
+		模型 = 模型訓練()
 		這馬目錄 = os.path.dirname(os.path.abspath(__file__))
 		無短恬的模型 = os.path.join(這馬目錄, '試料', '無短恬的模型')
 		試加短恬的模型 = os.path.join(這馬目錄, '試料', '試加短恬的模型')
