@@ -181,3 +181,7 @@ class 句物件轉合成標仔試驗(unittest.TestCase):
 		for 結, 答 in zip(結果, 答案):
 			self.assertEqual(結, 答, (結, 答))
 
+	def test_主要音值(self):
+		self.assertEqual(self.合成標籤工具.產生主要音值標仔('a-sp+t'), 'sp')
+		self.assertEqual(self.合成標籤工具.產生主要音值標仔('tsʰ'), 'tsʰ')
+		self.assertEqual(self.合成標籤工具.產生主要音值標仔('ab-s+ui ab-s+ue'), 's')
