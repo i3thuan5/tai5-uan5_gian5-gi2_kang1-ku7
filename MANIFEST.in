@@ -1,3 +1,4 @@
 recursive-include 臺灣言語工具 *.py
+include 版本.py
 include *程式授權
 include *著作權聲明
