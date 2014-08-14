@@ -42,6 +42,7 @@ class 官話注音符號轉音值模組試驗(unittest.TestCase):
 	def test_空韻(self):
 		self.assertEqual(官話注音符號('ㄗ').音值(), ('ts', 'ɿ', ''))
 		self.assertEqual(官話注音符號('ㄓ').音值(), ('tʂ', 'ʅ', ''))
+		self.assertEqual(官話注音符號('ㄖˋ').音值(), ('ʐ', 'ʅ', 'ˋ'))
 	def test_喔我婆(self):
 		self.assertEqual(官話注音符號('ㄛ').音值(), ('ʔ', 'o', ''))
 		self.assertEqual(官話注音符號('ㄨㄛˇ').音值(), ('ʔ', 'uo', 'ˇ'))

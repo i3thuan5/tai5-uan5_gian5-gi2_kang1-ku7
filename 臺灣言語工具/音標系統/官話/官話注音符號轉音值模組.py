@@ -54,10 +54,11 @@ class 官話注音符號轉音值模組():
 		if 音值韻 == 'ï':
 			if 's' in 音值聲:  # 舌尖前音
 				音值韻 = 'ɿ'
-			elif 'ʂ' in 音值聲:  # 舌尖前音
+			elif 'ʂ' in 音值聲 or 'ʐ' in 音值聲: # 舌尖前音
 				音值韻 = 'ʅ'
 			else:
-				raise RuntimeError('函式庫有問題！！')
+				raise RuntimeError(
+					'函式庫有問題！！傳入來的是：{}、{}、{}'.format(聲, 韻, 調))
 		elif 音值韻 == 'o':
 			if 音值聲 in self.唇音:
 				音值韻 = 'uo'
