@@ -18,9 +18,7 @@
 """
 import unittest
 from 臺灣言語工具.音標系統.官話.官話注音符號 import 官話注音符號
-import itertools
 from 臺灣言語工具.音標系統.官話.官話注音符號 import 官話注音符號聲
-from 臺灣言語工具.音標系統.官話.官話注音符號 import 官話注音符號空韻聲
 from 臺灣言語工具.音標系統.官話.官話注音符號 import 官話注音符號韻
 from 臺灣言語工具.音標系統.官話.官話注音符號轉音值模組 import 官話注音符號對照音值聲母表
 from 臺灣言語工具.音標系統.官話.官話注音符號轉音值模組 import 官話注音符號對照音值韻母表
@@ -56,7 +54,7 @@ class 官話注音符號轉音值模組試驗(unittest.TestCase):
 		self.assertEqual(官話注音符號('').音值(), None)
 	
 	def test_全部攏會使產生方音物件(self):
-		for 母 in itertools.chain(官話注音符號聲, 官話注音符號空韻聲):
+		for 母 in 官話注音符號聲:
 			self.assertIn(母, 官話注音符號對照音值聲母表)
 		for 母 in 官話注音符號韻:
 			self.assertIn(母, 官話注音符號對照音值韻母表)
