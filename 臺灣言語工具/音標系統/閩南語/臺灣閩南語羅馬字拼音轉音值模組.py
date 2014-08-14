@@ -75,10 +75,6 @@
 class 臺灣閩南語羅馬字拼音轉音值模組():
 	聲母表 = 臺灣閩南語羅馬字拼音對照音值聲母表
 	韻母表 = 臺灣閩南語羅馬字拼音對照音值韻母表
-	聲 = None
-	韻 = None
-	調 = None
-	音標 = None
 	def 轉(self, 聲, 韻, 調, 輕):
 		if 聲 == None or 韻 == None or 調 == None or 輕 == None :
 			return

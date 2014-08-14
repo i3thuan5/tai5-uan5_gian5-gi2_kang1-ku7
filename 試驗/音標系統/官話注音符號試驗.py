@@ -17,9 +17,9 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 from unittest.case import TestCase
-from 臺灣言語工具.音標系統.國語.國語注音符號 import 國語注音符號
+from 臺灣言語工具.音標系統.官話.官話注音符號 import 官話注音符號
 
-class 國語注音符號試驗(TestCase):
+class 官話注音符號試驗(TestCase):
 	def setUp(self):
 		pass
 	def tearDown(self):
@@ -28,7 +28,7 @@ class 國語注音符號試驗(TestCase):
 #---------------------------------------------
 		
 	def test_介音(self):
-		注音 = 國語注音符號('ㄧˋ')
+		注音 = 官話注音符號('ㄧˋ')
 		self.assertEqual(注音.音標, 'ㄧˋ')
 		self.assertEqual(注音.聲, '')
 		self.assertEqual(注音.韻, 'ㄧ')
@@ -36,7 +36,7 @@ class 國語注音符號試驗(TestCase):
 		self.assertEqual(注音.聲韻, 'ㄧ')
 		
 	def test_完整音(self):
-		注音 = 國語注音符號('ㄔㄨㄢˊ')
+		注音 = 官話注音符號('ㄔㄨㄢˊ')
 		self.assertEqual(注音.音標, 'ㄔㄨㄢˊ')
 		self.assertEqual(注音.聲, 'ㄔ')
 		self.assertEqual(注音.韻, 'ㄨㄢ')
@@ -44,7 +44,7 @@ class 國語注音符號試驗(TestCase):
 		self.assertEqual(注音.聲韻, 'ㄔㄨㄢ')
 		
 	def test_一聲(self):
-		注音 = 國語注音符號('ㄒㄩㄝ')
+		注音 = 官話注音符號('ㄒㄩㄝ')
 		self.assertEqual(注音.音標, 'ㄒㄩㄝ')
 		self.assertEqual(注音.聲, 'ㄒ')
 		self.assertEqual(注音.韻, 'ㄩㄝ')
@@ -52,7 +52,7 @@ class 國語注音符號試驗(TestCase):
 		self.assertEqual(注音.聲韻, 'ㄒㄩㄝ')
 		
 	def test_零聲母(self):
-		注音 = 國語注音符號('ㄨㄛˇ')
+		注音 = 官話注音符號('ㄨㄛˇ')
 		self.assertEqual(注音.音標, 'ㄨㄛˇ')
 		self.assertEqual(注音.聲, '')
 		self.assertEqual(注音.韻, 'ㄨㄛ')
@@ -60,7 +60,15 @@ class 國語注音符號試驗(TestCase):
 		self.assertEqual(注音.聲韻, 'ㄨㄛ')
 		
 	def test_輕聲(self):
-		注音 = 國語注音符號('ㄉㄜ˙')
+		注音 = 官話注音符號('ㄉㄜ˙')
+		self.assertEqual(注音.音標, 'ㄉㄜ˙')
+		self.assertEqual(注音.聲, 'ㄉ')
+		self.assertEqual(注音.韻, 'ㄜ')
+		self.assertEqual(注音.調, '˙')
+		self.assertEqual(注音.聲韻, 'ㄉㄜ')
+		
+	def test_輕聲頭前(self):
+		注音 = 官話注音符號('˙ㄉㄜ')
 		self.assertEqual(注音.音標, 'ㄉㄜ˙')
 		self.assertEqual(注音.聲, 'ㄉ')
 		self.assertEqual(注音.韻, 'ㄜ')
@@ -68,7 +76,7 @@ class 國語注音符號試驗(TestCase):
 		self.assertEqual(注音.聲韻, 'ㄉㄜ')
 		
 	def test_空韻(self):
-		注音 = 國語注音符號('ㄗ')
+		注音 = 官話注音符號('ㄗ')
 		self.assertEqual(注音.音標, 'ㄗ')
 		self.assertEqual(注音.聲, 'ㄗ')
 		self.assertEqual(注音.韻, '')
@@ -76,12 +84,9 @@ class 國語注音符號試驗(TestCase):
 		self.assertEqual(注音.聲韻, 'ㄗ')
 		
 	def test_無合法(self):
-		self.assertEqual(國語注音符號('˙ㄉㄜ').音標, None)
-		self.assertEqual(國語注音符號('ㄉㄜ˙').音標, 'ㄉㄜ˙')
-		self.assertEqual(國語注音符號('˙ㄉㄜ').音標, None)
-		self.assertEqual(國語注音符號('ㄆㄢ').音標, 'ㄆㄢ')
-		self.assertEqual(國語注音符號('ㄆㄢ+').音標, None)
-		self.assertEqual(國語注音符號('ㄗㄧㄨ').音標, None)
-		self.assertEqual(國語注音符號('ㄐ').音標, None)
-		self.assertEqual(國語注音符號('').音標, None)
-		self.assertEqual(國語注音符號('Ⅹㄛˇ').音標, None)#怪怪的「ㄨ」
+		self.assertEqual(官話注音符號('ㄆㄢ').音標, 'ㄆㄢ')
+		self.assertEqual(官話注音符號('ㄆㄢ+').音標, None)
+		self.assertEqual(官話注音符號('ㄗㄧㄨ').音標, None)
+		self.assertEqual(官話注音符號('ㄐ').音標, None)
+		self.assertEqual(官話注音符號('').音標, None)
+		self.assertEqual(官話注音符號('Ⅹㄛˇ').音標, None)#怪怪的「ㄨ」
