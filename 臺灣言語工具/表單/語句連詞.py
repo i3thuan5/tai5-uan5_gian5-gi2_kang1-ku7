@@ -16,14 +16,13 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-from unittest.case import TestCase
 from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
 from 臺灣言語工具.基本元素.章 import 章
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 from math import log10
 from math import pow
 
-class 語句連詞(TestCase):
+class 語句連詞():
 	# 無看過的詞的出現機率，佮srilm仝款當做負的無限
 	無看過 = -99
 	_網仔 = 詞物件網仔()
