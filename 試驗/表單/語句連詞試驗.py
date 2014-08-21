@@ -23,7 +23,7 @@ from 臺灣言語工具.表單.型音辭典 import 型音辭典
 from 臺灣言語工具.基本元素.詞 import 詞
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from math import log10
-from 臺灣言語工具.表單.語句連詞 import 語句連詞
+from 臺灣言語工具.表單.實際語句連詞 import 實際語句連詞
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 '''
 srilm的結果
@@ -74,12 +74,12 @@ class 語句連詞試驗(TestCase):
 		self.出去型 = '出去'
 		self.出去音 = 'tshut4-0khi3'
 		self.出去物件 = self.分析器.產生對齊詞(self.出去型, self.出去音)
-		
+		self.型態 = 實際語句連詞
 	def tearDown(self):
 		pass
 		
 	def test_算頭尾(self):
-		連詞 = 語句連詞(3)
+		連詞 = self.型態(3)
 		self.assertEqual(連詞.機率([None, self.今仔日物件, None]),
 			[連詞.無看過, 連詞.無看過, 連詞.無看過])
 		self.assertEqual(連詞.條件([None, self.今仔日物件, None]),
@@ -137,7 +137,7 @@ class 語句連詞試驗(TestCase):
 		self.assertEqual(連詞.數量([None]), [5])
 		
 	def test_長句(self):
-		連詞 = 語句連詞(3)
+		連詞 = self.型態(3)
 		連詞.看(self.分析器.產生對齊句('你好無？', 'li2 ho2 0bo5 ?'))
 		self.assertEqual(連詞.總數(), [6, 5, 4])
 		連詞.看(self.分析器.產生對齊句('你好出去矣！', 'li2 ho2 tshut4-0khi3 0ah4 !'))
@@ -175,7 +175,7 @@ class 語句連詞試驗(TestCase):
 			[log10(5 / 32), log10(4 / 5), ])
 		
 	def test_看物件時愛先斷句(self):
-		兩句連詞 = 語句連詞(3)
+		兩句連詞 = self.型態(3)
 		型一 = '今仔日我請你食飯。'
 		音一 = 'kin1-a2-jit8 gua2 tshiann2 li2 tsiah8 png7 .'
 		型二 = '請你來鬥相共好無？'
@@ -186,12 +186,12 @@ class 語句連詞試驗(TestCase):
 		兩句連詞.看(self.分析器.產生對齊章(型二, 音二))
 		self.assertEqual(兩句連詞.總數(), [17, 15, 13])
 		self.assertEqual(兩句連詞.數量([self.你物件]), [2])
-		self.assertEqual(兩句連詞.數量(self.我請你物件.內底詞), [2,2,1])
+		self.assertEqual(兩句連詞.數量(self.我請你物件.內底詞), [2, 2, 1])
 		self.assertEqual(兩句連詞.機率(self.我請你物件.內底詞),
 			[log10(2 / 17), log10(2 / 15), log10(1 / 13), ])
 		self.assertEqual(兩句連詞.條件(self.我請你物件.內底詞),
 			[log10(2 / 17), log10(2 / 2), log10(1 / 1), ])
-		孤句連詞 = 語句連詞(3)
+		孤句連詞 = self.型態(3)
 		孤句連詞.看(self.分析器.產生對齊章(型一 + 型二, 音一 + 音二))
 		self.assertEqual(孤句連詞.總數(), 兩句連詞.總數())
 		self.assertEqual(孤句連詞.機率(self.我請你物件.內底詞),
@@ -200,15 +200,15 @@ class 語句連詞試驗(TestCase):
 			兩句連詞.條件(self.我請你物件.內底詞))
 
 	def test_零連詞(self):
-		self.assertRaises(參數錯誤, 語句連詞, 0)
-		self.assertRaises(參數錯誤, 語句連詞, -5)
+		self.assertRaises(參數錯誤, self.型態, 0)
+		self.assertRaises(參數錯誤, self.型態, -5)
 
 	def test_看零連詞(self):
-		連詞 = 語句連詞(5)
-		self.assertEqual(連詞.總數(), [0,0,0,0,0])
+		連詞 = self.型態(5)
+		self.assertEqual(連詞.總數(), [0, 0, 0, 0, 0])
 		self.assertEqual(連詞.數量([]), [])
-		self.assertEqual(連詞.機率([]),[])
-		self.assertEqual(連詞.條件([]),[])
+		self.assertEqual(連詞.機率([]), [])
+		self.assertEqual(連詞.條件([]), [])
 
 	def 定椅桌(self):
 		self.我有一張桌仔 = self.分析器.產生對齊句(
@@ -226,14 +226,16 @@ class 語句連詞試驗(TestCase):
 		self.我 = self.分析器.產生對齊句(
 			'我', 'gua2')
 	def test_頭中尾詞比較(self):
+		self.連詞 = self.型態(3)
 		self.定椅桌()
 		self.連詞.看(self.我有一張桌仔)
 		self.連詞.看(self.桌仔垃圾)
 		self.assertLess(self.連詞.評分(self.桌仔), 0.0)
 		self.assertLess(self.連詞.評分(self.椅仔), self.連詞.評分(self.桌仔))
-		self.assertAlmostEqual(self.連詞.評分(self.柴), self.連詞.評分(self.桌仔), delta = self.忍受)
+		self.assertAlmostEqual(self.連詞.評分(self.柴), self.連詞.評分(self.桌仔), delta=self.忍受)
 
 	def test_長的好句袂使輸短的爛句(self):
+		self.連詞 = self.型態(3)
 		self.定椅桌()
 		self.連詞.看(self.我有一張椅仔)
 		self.連詞.看(self.桌仔垃圾)
