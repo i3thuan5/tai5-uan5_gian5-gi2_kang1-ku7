@@ -58,16 +58,16 @@ class 連詞揀集內組試驗(TestCase):
 		self.連詞.看(self.我有一張桌仔)
 		標好, 分數, 詞數 = self.標音.標音(self.連詞, self.我)
 		self.assertEqual(標好, self.我)
-		self.assertAlmostEqual(分數, self.連詞.評分(self.我), delta = self.忍受)
-		self.assertEqual(詞數, 3)
+		self.assertAlmostEqual(分數, sum(self.連詞.評分(self.我)), delta=self.忍受)
+		self.assertEqual(3, 詞數)
 		標好, 分數, 詞數 = self.標音.標音(self.連詞, self.桌仔)
 		self.assertEqual(標好, self.桌仔)
-		self.assertAlmostEqual(分數, self.連詞.評分(self.桌仔), delta = self.忍受)
-		self.assertEqual(詞數, 4)
+		self.assertAlmostEqual(分數, sum(self.連詞.評分(self.桌仔)), delta=self.忍受)
+		self.assertEqual(4, 詞數)
 		標好, 分數, 詞數 = self.標音.標音(self.連詞, self.我有一張桌仔)
 		self.assertEqual(標好, self.我有一張桌仔)
-		self.assertAlmostEqual(分數, self.連詞.評分(self.我有一張桌仔), delta = self.忍受)
-		self.assertEqual(詞數, 7)
+		self.assertAlmostEqual(分數, sum(self.連詞.評分(self.我有一張桌仔)), delta=self.忍受)
+		self.assertEqual(7, 詞數)
 
 	def test_看機率選詞(self):
 		我 = self.分析器.產生對齊集('我', 'gua2')
@@ -82,10 +82,10 @@ class 連詞揀集內組試驗(TestCase):
 		e5_的鞋.內底組 = [的, 鞋, ]
 		我_e5_e5_仔_的鞋 = 句()
 		我_e5_e5_仔_的鞋 .內底集 = [我, e5_的鞋, e5_的鞋, 仔]
-		鞋集=集()
-		鞋集.內底組=[鞋, ]
-		的集=集()
-		的集.內底組=[的, ]
+		鞋集 = 集()
+		鞋集.內底組 = [鞋, ]
+		的集 = 集()
+		的集.內底組 = [的, ]
 		我鞋鞋仔 = 句()
 		我鞋鞋仔.內底集 = [我, 鞋集, 鞋集, 仔]
 		我的鞋仔 = 句()
