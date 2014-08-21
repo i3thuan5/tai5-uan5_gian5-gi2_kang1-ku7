@@ -26,14 +26,14 @@ from 臺灣言語工具.基本元素.集 import 集
 from 臺灣言語工具.基本元素.句 import 句
 from 臺灣言語工具.基本元素.章 import 章
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
-from 臺灣言語工具.表單.語句連詞 import 語句連詞
 from 臺灣言語工具.斷詞.連詞揀集內組 import 連詞揀集內組
+from 臺灣言語工具.表單.實際語句連詞 import 實際語句連詞
 
 class 連詞揀集內組試驗(TestCase):
 	忍受 = 1e-10
 	def setUp(self):
 		self.分析器 = 拆文分析器()
-		self.連詞 = 語句連詞(3)
+		self.連詞 = 實際語句連詞(3)
 		self.標音 = 連詞揀集內組()
 
 		self.我有一張桌仔 = self.分析器.產生對齊句(
@@ -54,32 +54,19 @@ class 連詞揀集內組試驗(TestCase):
 	def tearDown(self):
 		pass
 
-	def test_頭中尾詞比較(self):
-		self.連詞.看(self.我有一張桌仔)
-		self.連詞.看(self.桌仔垃圾)
-		self.assertLess(self.標音.評分(self.連詞, self.桌仔), 0.0)
-		self.assertLess(self.標音.評分(self.連詞, self.椅仔), self.標音.評分(self.連詞, self.桌仔))
-		self.assertAlmostEqual(self.標音.評分(self.連詞, self.柴), self.標音.評分(self.連詞, self.桌仔), delta = self.忍受)
-
-	def test_長的好句袂使輸短的爛句(self):
-		self.連詞.看(self.我有一張椅仔)
-		self.連詞.看(self.桌仔垃圾)
-		self.assertLess(self.標音.評分(self.連詞, self.椅仔), self.標音.評分(self.連詞, self.桌仔垃圾))
-		self.assertLess(self.標音.評分(self.連詞, self.柴), self.標音.評分(self.連詞, self.桌仔垃圾))
-
 	def test_標音的分數愛佮評分仝款(self):
 		self.連詞.看(self.我有一張桌仔)
 		標好, 分數, 詞數 = self.標音.標音(self.連詞, self.我)
 		self.assertEqual(標好, self.我)
-		self.assertAlmostEqual(分數, self.標音.評分(self.連詞, self.我), delta = self.忍受)
+		self.assertAlmostEqual(分數, self.連詞.評分(self.我), delta = self.忍受)
 		self.assertEqual(詞數, 3)
 		標好, 分數, 詞數 = self.標音.標音(self.連詞, self.桌仔)
 		self.assertEqual(標好, self.桌仔)
-		self.assertAlmostEqual(分數, self.標音.評分(self.連詞, self.桌仔), delta = self.忍受)
+		self.assertAlmostEqual(分數, self.連詞.評分(self.桌仔), delta = self.忍受)
 		self.assertEqual(詞數, 4)
 		標好, 分數, 詞數 = self.標音.標音(self.連詞, self.我有一張桌仔)
 		self.assertEqual(標好, self.我有一張桌仔)
-		self.assertAlmostEqual(分數, self.標音.評分(self.連詞, self.我有一張桌仔), delta = self.忍受)
+		self.assertAlmostEqual(分數, self.連詞.評分(self.我有一張桌仔), delta = self.忍受)
 		self.assertEqual(詞數, 7)
 
 	def test_看機率選詞(self):

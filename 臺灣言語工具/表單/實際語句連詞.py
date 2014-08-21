@@ -21,22 +21,39 @@ from 臺灣言語工具.基本元素.章 import 章
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 from math import log10
 from math import pow
+from 臺灣言語工具.表單.語句連詞 import 語句連詞
 
-class 語句連詞():
-	# 無看過的詞的出現機率，佮srilm仝款當做負的無限
-	無看過 = -99
+class 實際語句連詞(語句連詞):
+	基本 = 0.02
+	權重 = [0.08, 0.2, 0.7]
 	_網仔 = 詞物件網仔()
 	def __init__(self, 上濟詞數):
 		if 上濟詞數 <= 0:
 			raise 參數錯誤('詞數愛是正整數，傳入來的是{0}'.format(上濟詞數))
-		self.上濟詞數 = 上濟詞數
-		self.總數表 = [0] * self.上濟詞數
+		self._上濟詞數 = 上濟詞數
+		self.總數表 = [0] * self.上濟詞數()
 		self.連詞表 = {}
+	def 上濟詞數(self):
+		return self._上濟詞數
+	def 評詞陣列分(self, 詞陣列, 開始的所在=0):
+		for 所在 in range(開始的所在, len(詞陣列)):
+			分數 = self.感覺(詞陣列[max(0, 所在 + 1 - self.上濟詞數()):所在 + 1])
+			try:
+				分數 += 詞陣列[所在].屬性['機率']
+			except:
+				pass
+			yield 分數
+	def 感覺(self, 語句):
+		條件 = self.條件(語句)
+		分數 = self.基本
+		for 分, 權 in zip(條件, self.權重):
+			分數 += self.指數(分) * 權
+		return self.對數(分數)
 	def 總數(self):
 		return self.總數表
 	def 數量(self, 連詞):
 		數量表 = []
-		for 長度 in range(min(self.上濟詞數, len(連詞))):
+		for 長度 in range(min(self.上濟詞數(), len(連詞))):
 			組合 = tuple(連詞[-1 - 長度:])
 			if 組合 in self.連詞表:
 				數量表.append(self.連詞表[組合])
@@ -71,7 +88,7 @@ class 語句連詞():
 			self.看章物件(物件)
 			return
 		詞陣列 = [None] + self._網仔.網出詞物件(物件) + [None]
-		for 長度 in range(1, self.上濟詞數 + 1):
+		for 長度 in range(1, self.上濟詞數() + 1):
 			for 所在 in range(len(詞陣列) - 長度 + 1):
 				self.總數表[長度 - 1] += 1
 				組合 = tuple(詞陣列[所在:所在 + 長度])

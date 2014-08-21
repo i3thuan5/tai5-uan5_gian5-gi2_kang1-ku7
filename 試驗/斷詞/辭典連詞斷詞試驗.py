@@ -26,16 +26,16 @@ from 臺灣言語工具.基本元素.集 import 集
 from 臺灣言語工具.基本元素.句 import 句
 from 臺灣言語工具.基本元素.章 import 章
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
-from 臺灣言語工具.表單.語句連詞 import 語句連詞
 from 臺灣言語工具.斷詞.連詞揀集內組 import 連詞揀集內組
 from 臺灣言語工具.斷詞.辭典連詞斷詞 import 辭典連詞斷詞
+from 臺灣言語工具.表單.實際語句連詞 import 實際語句連詞
 
 class 辭典連詞斷詞試驗(TestCase):
 	忍受 = 1e-10
 	def setUp(self):
 		self.斷詞 = 辭典連詞斷詞()
 		self.字典 = 型音辭典(4)
-		self.連詞 = 語句連詞(3)
+		self.連詞 = 實際語句連詞(3)
 
 		self.分析器 = 拆文分析器()
 

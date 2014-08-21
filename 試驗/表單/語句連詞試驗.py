@@ -25,8 +25,37 @@ from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from math import log10
 from 臺灣言語工具.表單.語句連詞 import 語句連詞
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
+'''
+srilm的結果
+原本檔案sui2：
+sui2 sui2 khiau2 tsiang5
+走ngram-count -order 3 -text sui2 -lm sui.lm：
+結果sui.lm：
+\data\
+ngram 1=5
+ngram 2=5
+ngram 3=0
 
+\1-grams:
+-0.69897	</s>
+-99	<s>	-99
+-0.69897	khiau2	-99
+-0.39794	sui2	-7.083871
+-0.69897	tsiang5	-99
+
+\2-grams:
+0	<s> sui2
+0	khiau2 tsiang5
+-0.30103	sui2 khiau2
+-0.30103	sui2 sui2
+0	tsiang5 </s>
+
+\3-grams:
+
+\end\
+'''
 class 語句連詞試驗(TestCase):
+	忍受 = 1e-10
 	def setUp(self):
 		self.粗胚 = 文章粗胚()
 		self.分析器 = 拆文分析器()
@@ -180,3 +209,34 @@ class 語句連詞試驗(TestCase):
 		self.assertEqual(連詞.數量([]), [])
 		self.assertEqual(連詞.機率([]),[])
 		self.assertEqual(連詞.條件([]),[])
+
+	def 定椅桌(self):
+		self.我有一張桌仔 = self.分析器.產生對齊句(
+			'我有一張桌仔！', 'gua2 u7 tsit8-tiunn1 toh4-a2!')
+		self.桌仔垃圾 = self.分析器.產生對齊句(
+			'桌仔垃圾！？', 'toh4-a2 lap4-sap4!?')
+		self.我有一張椅仔 = self.分析器.產生對齊句(
+			'我有一張椅仔！', 'gua2 u7 tsit8-tiunn1 i2-a2!')
+		self.椅仔 = self.分析器.產生對齊句(
+			'椅仔。', 'i2-a2.')
+		self.桌仔 = self.分析器.產生對齊句(
+			'桌仔。', 'toh4-a2.')
+		self.柴 = self.分析器.產生對齊句(
+			'柴！', 'tsha5!')
+		self.我 = self.分析器.產生對齊句(
+			'我', 'gua2')
+	def test_頭中尾詞比較(self):
+		self.定椅桌()
+		self.連詞.看(self.我有一張桌仔)
+		self.連詞.看(self.桌仔垃圾)
+		self.assertLess(self.連詞.評分(self.桌仔), 0.0)
+		self.assertLess(self.連詞.評分(self.椅仔), self.連詞.評分(self.桌仔))
+		self.assertAlmostEqual(self.連詞.評分(self.柴), self.連詞.評分(self.桌仔), delta = self.忍受)
+
+	def test_長的好句袂使輸短的爛句(self):
+		self.定椅桌()
+		self.連詞.看(self.我有一張椅仔)
+		self.連詞.看(self.桌仔垃圾)
+		self.assertLess(self.連詞.評分(self.椅仔), self.連詞.評分(self.桌仔垃圾))
+		self.assertLess(self.連詞.評分(self.柴), self.連詞.評分(self.桌仔垃圾))
+
