@@ -30,7 +30,7 @@ class 閩南語字綜合標音(字綜合標音):
 	臺羅閏號調 = None
 	通用數字調 = None
 	吳守禮方音 = None
-	def __init__(self, 字物件):
+	def __init__(self, 字物件, 音標一定愛著=False):
 		if not isinstance(字物件, 字):
 			raise 型態錯誤('傳入來的毋是字物件！{0}，{1}'.format(type(字物件), str(字物件)))
 		self.型體 = 字物件.型
@@ -50,7 +50,7 @@ class 閩南語字綜合標音(字綜合標音):
 			self.吳守禮方音 = 臺羅.產生吳守禮方音物件().產生音標組字式()
 			self.臺羅閏號調 = 臺羅.轉閏號調()
 			self.通用數字調 = 臺羅.轉通用拼音()
-			if not self.標音完整無():
+			if 音標一定愛著 and not self.標音完整無():
 				raise 解析錯誤('音標無合法：{0}，{1}，{2}，{3}，{4}，{5}'.
 					format(字物件, self.型體, self.臺羅數字調, self.吳守禮方音,
 					self.臺羅閏號調, self.通用數字調,))
