@@ -50,6 +50,9 @@ class 官話注音符號轉音值模組試驗(unittest.TestCase):
 	def test_翁東(self):
 		self.assertEqual(官話注音符號('ㄨㄥ').音值(), ('ʔ', 'uŋ', ''))
 		self.assertEqual(官話注音符號('ㄉㄨㄥ').音值(), ('t', 'oŋ', ''))
+	def test_生風(self):
+		self.assertEqual(官話注音符號('ㄕㄥ').音值(), ('ʂ', 'əŋ', ''))
+		self.assertEqual(官話注音符號('ㄈㄥ').音值(), ('f', 'oŋ', ''))
 	def test_無合法(self):
 		self.assertEqual(官話注音符號('ㄗㄧㄨ').音值(), None)
 		self.assertEqual(官話注音符號('').音值(), None)
