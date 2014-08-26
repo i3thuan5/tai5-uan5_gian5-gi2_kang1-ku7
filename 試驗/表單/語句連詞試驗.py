@@ -230,15 +230,19 @@ class 語句連詞試驗(TestCase):
 		self.定椅桌()
 		self.連詞.看(self.我有一張桌仔)
 		self.連詞.看(self.桌仔垃圾)
-		self.assertLess(self.連詞.評分(self.桌仔), 0.0)
-		self.assertLess(self.連詞.評分(self.椅仔), self.連詞.評分(self.桌仔))
-		self.assertAlmostEqual(self.連詞.評分(self.柴), self.連詞.評分(self.桌仔), delta=self.忍受)
+		self.assertLess(sum(self.連詞.評分(self.桌仔)), 0.0)
+		self.assertLess(sum(self.連詞.評分(self.椅仔)),
+			sum(self.連詞.評分(self.桌仔)))
+		self.assertAlmostEqual(sum(self.連詞.評分(self.柴)),
+			sum(self.連詞.評分(self.桌仔)), delta=self.忍受)
 
 	def test_長的好句袂使輸短的爛句(self):
 		self.連詞 = self.型態(3)
 		self.定椅桌()
 		self.連詞.看(self.我有一張椅仔)
 		self.連詞.看(self.桌仔垃圾)
-		self.assertLess(self.連詞.評分(self.椅仔), self.連詞.評分(self.桌仔垃圾))
-		self.assertLess(self.連詞.評分(self.柴), self.連詞.評分(self.桌仔垃圾))
+		self.assertLess(sum(self.連詞.評分(self.椅仔)),
+			sum(self.連詞.評分(self.桌仔垃圾)))
+		self.assertLess(sum(self.連詞.評分(self.柴)),
+			sum(self.連詞.評分(self.桌仔垃圾)))
 

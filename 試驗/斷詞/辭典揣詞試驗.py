@@ -48,9 +48,9 @@ class 辭典揣詞試驗(TestCase):
 		self.椅仔對齊組 = 組([self.椅仔對齊詞])
 		self.驚對齊組 = 組([self.驚對齊詞])
 		
-		我詞順序 = list({self.我對齊詞, self.文我對齊詞})
 		self.我對齊集 = 集([self.我對齊組])
-		self.文我對齊集 = 集([組([我詞順序[0]]), 組([我詞順序[1]])])
+		self.白文我對齊集 = 集([組([self.我對齊詞]), 組([self.文我對齊詞])])
+		self.文白我對齊集 = 集([組([self.文我對齊詞]), 組([self.我對齊詞])])
 		self.有對齊集 = 集([self.有對齊組])
 		self.一張對齊集 = 集([self.一張對齊組])
 		self.椅仔對齊集 = 集([self.椅仔對齊組])
@@ -58,7 +58,9 @@ class 辭典揣詞試驗(TestCase):
 
 		self.句物件 = 句([self.我對齊集, self.有對齊集, self.一張對齊集,
 			self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
-		self.文我句物件 = 句([self.文我對齊集, self.有對齊集, self.一張對齊集,
+		self.文白我句物件 = 句([self.文白我對齊集, self.有對齊集, self.一張對齊集,
+			self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
+		self.白文我句物件 = 句([self.白文我對齊集, self.有對齊集, self.一張對齊集,
 			self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
 
 		self.對齊句 = self.分析器.產生對齊句(
@@ -123,14 +125,14 @@ class 辭典揣詞試驗(TestCase):
 		self.assertEqual(斷詞結果, self.句物件)
 		self.檢查分數詞數(分數, 詞數, 0, 6)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.型句)
-		raise RuntimeError('這个無穩定')
-		self.assertEqual(斷詞結果, self.文我句物件)
+# 		raise RuntimeError('這个無穩定')
+		self.assertIn(斷詞結果, [self.文白我句物件, self.白文我句物件])
 		self.檢查分數詞數(分數, 詞數, 0, 6)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.音句)
 		self.assertEqual(斷詞結果, self.句物件)
 		self.檢查分數詞數(分數, 詞數, 0, 6)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.有詞漢羅)
-		self.assertEqual(斷詞結果, self.文我句物件)
+		self.assertIn(斷詞結果, [self.文白我句物件, self.白文我句物件])
 		self.檢查分數詞數(分數, 詞數, 0, 6)
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.無詞漢羅)
 		self.assertEqual(斷詞結果, self.句物件)
@@ -143,7 +145,7 @@ class 辭典揣詞試驗(TestCase):
 		self.字典.加詞(self.椅仔對齊詞)
 		self.字典.加詞(self.驚對齊詞)
 		self.assertRaises(解析錯誤,
-			self.斷詞.斷詞, self.字典, self.文我句物件)
+			self.斷詞.斷詞, self.字典, self.文白我句物件)
 		
 	def test_章斷詞(self):
 		self.字典.加詞(self.我對齊詞)
@@ -238,7 +240,7 @@ class 辭典揣詞試驗(TestCase):
 	def test_兩三切比一四切閣較好(self):
 		self.test_基本斷詞()
 		
-		一四分數=[]
+		一四分數 = []
 		self.一張椅仔對齊詞 = self.分析器.產生對齊詞('一張椅仔', 'tsit8-tiunn1-i2-a2')
 		self.字典.加詞(self.一張椅仔對齊詞)
 		self.一張椅仔集 = self.分析器.產生對齊集('一張椅仔', 'tsit8-tiunn1-i2-a2')
@@ -265,7 +267,7 @@ class 辭典揣詞試驗(TestCase):
 		self.檢查分數詞數(分數, 詞數, 0, 5)
 		一四分數.append(分數)
 
-		兩三分數=[]
+		兩三分數 = []
 		self.有一張對齊詞 = self.分析器.產生對齊詞('有一張', 'u7-tsit8-tiunn1')
 		self.字典.加詞(self.有一張對齊詞)
 		self.有一張集 = self.分析器.產生對齊集('有一張', 'u7-tsit8-tiunn1')
