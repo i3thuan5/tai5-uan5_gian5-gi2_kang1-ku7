@@ -192,7 +192,13 @@ class 拆文分析器建立試驗(unittest.TestCase):
 		原來語句 = '伊18:30會來'
 		切好語句 = ['伊', '18', ':', '30', '會', '來']
 		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-		self.assertEqual(組物件.內底詞, 詞陣列)
+		self.assertEqual(詞陣列, 組物件.內底詞)
+
+	def test_雙數字音標(self):
+		原來語句 = 'gua51 ai51 li51'
+		切好語句 = ['gua51', 'ai51', 'li51']
+		組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
+		self.assertEqual(詞陣列, 組物件.內底詞)
 
 	def test_建立組濟字算式佮連字號(self):
 		原來語句 = '食-0tsit8-kua5才來，阮hak8-hau7佇大學路1001-1號，儂莫走boo5-0ki3。'
@@ -376,7 +382,7 @@ class 拆文分析器建立試驗(unittest.TestCase):
 		self.assertEqual(self.分析器.拆章做句(原來), 答案)
 		self.assertEqual(self.分析器.拆章做句(加空白), 空白答案)
 		
-	#	拆章做句莫加空白，保留原本的，若有空白佇中央，有標點就加
+	# 	拆章做句莫加空白，保留原本的，若有空白佇中央，有標點就加
 	# 	按呢才有法度處理其他文本
 	def test_拆章做句有分字符號配分詞符號(self):
 		原來 = 'tsong-biau7 bo5 tse3” , --- tsiah e5 ue7 ,'
