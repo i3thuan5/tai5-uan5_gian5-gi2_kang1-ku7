@@ -275,8 +275,8 @@ class 拆文分析器:
 		佮後一个字是佇仝一个詞 = []
 		# 一般　組字
 		狀態 = '一般'
-		頂一个字種類=None
-		頂一个是注音符號=False
+		頂一个字種類 = None
+		頂一个是注音符號 = False
 		# 下組字式抑是數羅
 		一个字 = ''
 		長度 = 0
@@ -284,9 +284,8 @@ class 拆文分析器:
 		while 位置 < len(語句):
 			字 = 語句[位置]
 			字種類 = unicodedata.category(字)
-			是注音符號 = unicodedata.name(字,'').startswith('BOPOMOFO LETTER')
-# 			print(字, 狀態, 字陣列, 一个字)
-			print(字種類,字陣列,是注音符號,unicodedata.name(字,'QQ'))
+			是注音符號 = unicodedata.name(字, '').startswith('BOPOMOFO LETTER')
+# 			print(字種類, 字陣列, 是注音符號, unicodedata.name(字, 'QQ'))
 			if 狀態 == '組字':
 				一个字 += 字
 				if 字 in 組字式符號:
@@ -324,30 +323,30 @@ class 拆文分析器:
 						字陣列.append(一个字)
 						佮後一个字是佇仝一个詞.append(False)
 						一个字 = ''
-				#羅馬字接做伙
+				# 羅馬字接做伙
 				elif 字種類 in 統一碼羅馬字佮數字:
 					if not 頂一个字種類 in 統一碼羅馬字佮數字\
 							and not 頂一个是注音符號:
-						#頭前愛清掉
+						# 頭前愛清掉
 						if 一个字 != '':
 							字陣列.append(一个字)
 							佮後一个字是佇仝一个詞.append(False)
 							一个字 = ''
 					一个字 += 字
-				#音標後壁可能有聲調符號
+				# 音標後壁可能有聲調符號
 				elif 字種類 in 統一碼聲調符號 and 頂一个字種類 in 統一碼羅馬字類:
 					一个字 += 字
-				#處理注音，輕聲、注音、空三个後壁會當接注音
+				# 處理注音，輕聲、注音、空三个後壁會當接注音
 				elif 是注音符號:
 					if not 頂一个字種類 in 統一碼注音聲調符號\
 					 		and not 頂一个是注音符號:
-						#頭前愛清掉
+						# 頭前愛清掉
 						if 一个字 != '':
 							字陣列.append(一个字)
 							佮後一个字是佇仝一个詞.append(False)
 							一个字 = ''
 					一个字 += 字
-				#注音後壁會當接聲調
+				# 注音後壁會當接聲調
 				elif 字種類 in 統一碼注音聲調符號 and 頂一个是注音符號:
 					一个字 += 字
 					
@@ -377,8 +376,8 @@ class 拆文分析器:
 			else:
 				raise RuntimeError('程式發生內部錯誤，語句＝{0}'.format(str(語句)))
 			位置 += 1
-			頂一个字種類=字種類
-			頂一个是注音符號=是注音符號
+			頂一个字種類 = 字種類
+			頂一个是注音符號 = 是注音符號
 		if 一个字 != '':
 			if 狀態 == '一般':
 				字陣列.append(一个字)
@@ -459,9 +458,9 @@ class 拆文分析器:
 			return 組()
 		組物件 = self.建立組物件('')
 		切開 = self.切組物件分詞.split(分詞)
-		if ''.join(切開[::2]).strip()!='':
+		if ''.join(切開[::2]).strip() != '':
 			raise 解析錯誤('分詞無合法！！分詞加的：{0}。原來：{1}'
-				.format(切開[::2],分詞))
+				.format(切開[::2], 分詞))
 		for 分 in 切開[1::2]:
 			組物件.內底詞.append(self.轉做詞物件(分))
 		return 組物件
