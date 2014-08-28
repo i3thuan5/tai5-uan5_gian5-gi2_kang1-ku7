@@ -50,18 +50,22 @@ class 連詞揀集內組試驗(TestCase):
 		pass
 
 	def test_標音的分數愛佮評分仝款(self):
+		'「分數 * (詞數 - 1)」因為頭一个開始的機率是1'
 		self.連詞.看(self.我有一張桌仔)
 		標好, 分數, 詞數 = self.用連詞揀.揀(self.連詞, self.我)
 		self.assertEqual(標好, self.我)
-		self.assertAlmostEqual(分數, sum(self.連詞.評分(self.我)), delta=self.忍受)
+		self.assertAlmostEqual(分數 * (詞數 - 1),
+			sum(self.連詞.評分(self.我)), delta=self.忍受)
 		self.assertEqual(3, 詞數)
 		標好, 分數, 詞數 = self.用連詞揀.揀(self.連詞, self.桌仔)
 		self.assertEqual(標好, self.桌仔)
-		self.assertAlmostEqual(分數, sum(self.連詞.評分(self.桌仔)), delta=self.忍受)
+		self.assertAlmostEqual(分數 * (詞數 - 1),
+			sum(self.連詞.評分(self.桌仔)), delta=self.忍受)
 		self.assertEqual(4, 詞數)
 		標好, 分數, 詞數 = self.用連詞揀.揀(self.連詞, self.我有一張桌仔)
 		self.assertEqual(標好, self.我有一張桌仔)
-		self.assertAlmostEqual(分數, sum(self.連詞.評分(self.我有一張桌仔)), delta=self.忍受)
+		self.assertAlmostEqual(分數 * (詞數 - 1),
+			sum(self.連詞.評分(self.我有一張桌仔)), delta=self.忍受)
 		self.assertEqual(7, 詞數)
 
 	def test_看機率選詞(self):
@@ -99,7 +103,7 @@ class 連詞揀集內組試驗(TestCase):
 		self.assertEqual(鞋的分數, 的鞋分數)
 		self.assertEqual(鞋的詞數, 6)
 		self.assertEqual(鞋的詞數, 的鞋詞數)
-		頂擺分數=鞋的分數
+		頂擺分數 = 鞋的分數
 		self.連詞.看(self.分析器.產生對齊句('我的冊佇你遐。', 'gua2 e5 tsheh4 ti7 li2 hia1.'))
 		鞋的結果, 鞋的分數 , 鞋的詞數 = self.用連詞揀.揀(self.連詞, 我_e5_e5_仔_鞋的)
 		的鞋結果, 的鞋分數, 的鞋詞數 = self.用連詞揀.揀(self.連詞, 我_e5_e5_仔_的鞋)
@@ -110,7 +114,7 @@ class 連詞揀集內組試驗(TestCase):
 		self.assertEqual(鞋的分數, 的鞋分數)
 		self.assertEqual(鞋的詞數, 6)
 		self.assertEqual(鞋的詞數, 的鞋詞數)
-		頂擺分數=鞋的分數
+		頂擺分數 = 鞋的分數
 		self.連詞.看(self.分析器.產生對齊句('我的故鄉佇花蓮。', 'gua2 e5 koo3-hiong1 ti7 hua1-lian1.'))
 		鞋的結果, 鞋的分數 , 鞋的詞數 = self.用連詞揀.揀(self.連詞, 我_e5_e5_仔_鞋的)
 		的鞋結果, 的鞋分數 , 的鞋詞數 = self.用連詞揀.揀(self.連詞, 我_e5_e5_仔_的鞋)
@@ -121,7 +125,7 @@ class 連詞揀集內組試驗(TestCase):
 		self.assertEqual(鞋的分數, 的鞋分數)
 		self.assertEqual(鞋的詞數, 6)
 		self.assertEqual(鞋的詞數, 的鞋詞數)
-		頂擺分數=鞋的分數
+		頂擺分數 = 鞋的分數
 		的.內底詞[0].屬性 = {'機率':self.連詞.對數(0.01)}
 		鞋.內底詞[0].屬性 = {'機率':self.連詞.對數(0.99)}
 		鞋的結果, 鞋的分數, 鞋的詞數 = self.用連詞揀.揀(self.連詞, 我_e5_e5_仔_鞋的)

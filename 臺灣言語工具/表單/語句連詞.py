@@ -20,14 +20,15 @@ from math import log10
 from math import pow
 from abc import ABCMeta
 from abc import abstractmethod
+from 臺灣言語工具.基本元素.詞 import 詞
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 
 class 語句連詞(metaclass=ABCMeta):
 	# 無看過的詞的出現機率，佮srilm仝款當做負的無限
 	無看過 = -99
 	_分析器 = 拆文分析器()
-	開始 = _分析器.建立詞物件('<s>')
-	結束 = _分析器.建立詞物件('</s>')
+	開始 = 詞([_分析器.建立字物件('<s>')])
+	結束 = 詞([_分析器.建立字物件('</s>')])
 	def 對數(self, 數字):
 		return log10(數字)
 	def 指數(self, 數字):
