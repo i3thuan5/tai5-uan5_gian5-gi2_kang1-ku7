@@ -52,7 +52,7 @@ class 句物件轉合成標仔試驗(unittest.TestCase):
 			'l-e+sil/調:7<7>x/詞:2!1@3/句:2^1_3',
 			'x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x', ]
 			)
-		音值標仔 = self.合成標籤工具.提出標仔主要音值(完整標仔)
+		音值標仔 = self.合成標籤工具.提出標仔陣列主要音值(完整標仔)
 		self.檢驗標仔有對無(音值標仔,
 			['sil',
 			'g',
@@ -91,7 +91,7 @@ class 句物件轉合成標仔試驗(unittest.TestCase):
 			'l-e+sil/調:7<7>x/詞:2!1@3/句:2^1_3',
 			'x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x', ]
 			)
-		音值標仔 = self.合成標籤工具.提出標仔主要音值(完整標仔)
+		音值標仔 = self.合成標籤工具.提出標仔陣列主要音值(完整標仔)
 		self.檢驗標仔有對無(音值標仔,
 			['sil',
 			'g',
@@ -127,7 +127,7 @@ class 句物件轉合成標仔試驗(unittest.TestCase):
 			's-ui+sil/調:ˋ<ˋ>x/詞:1!1@2/句:1^1_2',
 			'x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x', ]
 			)
-		音值標仔 = self.合成標籤工具.提出標仔主要音值(完整標仔)
+		音值標仔 = self.合成標籤工具.提出標仔陣列主要音值(完整標仔)
 		self.檢驗標仔有對無(音值標仔,
 			['sil',
 			't',
@@ -160,7 +160,7 @@ class 句物件轉合成標仔試驗(unittest.TestCase):
 			's-ui+sil/調:ˋ<ˋ>x/詞:1!1@2/句:1^1_2',
 			'x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x', ]
 			)
-		音值標仔 = self.合成標籤工具.提出標仔主要音值(完整標仔)
+		音值標仔 = self.合成標籤工具.提出標仔陣列主要音值(完整標仔)
 		self.檢驗標仔有對無(音值標仔,
 			['sil',
 			't',
@@ -182,6 +182,6 @@ class 句物件轉合成標仔試驗(unittest.TestCase):
 			self.assertEqual(結, 答, (結, 答))
 
 	def test_主要音值(self):
-		self.assertEqual(self.合成標籤工具.產生主要音值標仔('a-sp+t'), 'sp')
-		self.assertEqual(self.合成標籤工具.產生主要音值標仔('tsʰ'), 'tsʰ')
-		self.assertEqual(self.合成標籤工具.產生主要音值標仔('ab-s+ui ab-s+ue'), 's')
+		self.assertEqual(self.合成標籤工具.提出標仔主要音值('a-sp+t'), 'sp')
+		self.assertEqual(self.合成標籤工具.提出標仔主要音值('tsʰ'), 'tsʰ')
+		self.assertEqual(self.合成標籤工具.提出標仔主要音值('ab-s+ui ab-s+ue'), 's')
