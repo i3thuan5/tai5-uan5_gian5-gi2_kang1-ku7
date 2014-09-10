@@ -16,29 +16,27 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-from math import log10
-from math import pow
-from abc import ABCMeta
-from abc import abstractmethod
-from 臺灣言語工具.基本元素.詞 import 詞
-from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+from 臺灣言語工具.表單.語句連詞 import 語句連詞
+from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
+from 臺灣言語工具.基本元素.公用變數 import 分詞符號
 
-class 語句連詞(metaclass=ABCMeta):
-	# 無看過的詞的出現機率，佮srilm仝款當做負的無限
-	無看過 = -99
-	_分析器 = 拆文分析器()
-	開始 = 詞([_分析器.建立字物件('<s>')])
-	結束 = 詞([_分析器.建立字物件('</s>')])
-	def 對數(self, 數字):
-		return log10(數字)
-	def 指數(self, 數字):
-		return pow(10.0, 數字)
-	@abstractmethod
+class 肯語句連詞(語句連詞):
+	_譀鏡 = 物件譀鏡()
+	def __init__(self, 語言模型檔案):
+		self._語言模型 = kenlm.LanguageModel(語言模型檔案)
 	def 上濟詞數(self):
-		pass
-	def 評分(self, 物件):
-		詞陣列 = [self.開始] + self._網仔.網出詞物件(物件) + [self.結束]
-		return self.評詞陣列分(詞陣列, 開始的所在=1)
-	@abstractmethod
+		return self._語言模型.order()
 	def 評詞陣列分(self, 詞陣列, 開始的所在=0):
-		pass
+		字串 = []
+		for 詞物件 in 詞陣列: 
+			字串.append(self._譀鏡.看斷詞(詞物件))
+		for 所在, 結果 in enumerate(
+				self._語言模型.full_scores(分詞符號.join(字串))):
+			if 所在 >= 開始的所在:
+				分數 = 結果[0]
+# 				長度 = 結果[1] #這个機率連詞長度
+				try:
+					分數 += 詞陣列[所在].屬性['機率']
+				except:
+					pass
+				yield 分數
