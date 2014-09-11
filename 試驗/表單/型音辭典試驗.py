@@ -33,14 +33,14 @@ class 型音辭典試驗(TestCase):
 		self.孤詞物 = self.分析器.建立詞物件('你')
 		self.孤詞音 = self.分析器.建立詞物件('li2')
 		self.二詞物 = self.分析器.建立詞物件('好')
-		self.二詞音 = self.分析器.建立詞物件('hoo2')
+		self.二詞音 = self.分析器.建立詞物件('ho2')
 		self.短詞物 = self.分析器.建立詞物件('你好')
-		self.短詞音 = self.分析器.建立詞物件('li2-hoo2')
+		self.短詞音 = self.分析器.建立詞物件('li2-ho2')
 		self.詞物件 = self.分析器.建立詞物件('你好無？')
-		self.詞音標 = self.分析器.建立詞物件('li2-hoo2-bo5-?')
-		self.對齊詞 = self.分析器.產生對齊詞('你好無？', 'li2-hoo2-bo5-?')
+		self.詞音標 = self.分析器.建立詞物件('li2-ho2-bo5-?')
+		self.對齊詞 = self.分析器.產生對齊詞('你好無？', 'li2-ho2-bo5-?')
 		self.無仝詞 = self.分析器.產生對齊詞('你有無？', 'li2-u7-bo5-?')
-		self.傷長詞 = self.分析器.產生對齊詞('你有好無？', 'li2-u7-hoo2-bo5-?')
+		self.傷長詞 = self.分析器.產生對齊詞('你有好無？', 'li2-u7-ho2-bo5-?')
 		
 	def tearDown(self):
 		pass
