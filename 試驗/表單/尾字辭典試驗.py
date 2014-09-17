@@ -16,13 +16,7 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-from unittest.case import TestCase
-from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
-from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.表單.型音辭典 import 型音辭典
-from 臺灣言語工具.基本元素.詞 import 詞
-from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
-from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 from 試驗.表單.型音辭典試驗 import 型音辭典試驗
 from 臺灣言語工具.表單.尾字辭典 import 尾字辭典
 
@@ -51,9 +45,11 @@ class 尾字辭典試驗(型音辭典試驗):
 				好無型物件, 好無音物件, 好無對齊物件]:
 			self.字典.加詞(詞物件)
 		self.assertEqual(self.字典.查詞(self.詞物件),
-			[{問號型物件, 問號對齊物件}, {無型物件}, set(), {self.詞物件}])
+			[{問號型物件, 問號對齊物件}, {無型物件},
+				set(), {self.詞物件, self.對齊詞}])
 		self.assertEqual(self.字典.查詞(self.詞音標),
-			[{問號音物件, 問號對齊物件}, {無音物件}, set(), {self.詞音標}])
+			[{問號音物件, 問號對齊物件}, {無音物件},
+				set(), {self.詞音標, self.對齊詞}])
 		self.assertEqual(self.字典.查詞(self.對齊詞),
-			[{問號型物件, 問號音物件, 問號對齊物件}, {無型物件, 無音物件},
-				set(), {self.詞物件}])
+			[{問號對齊物件}, set(),
+				set(), {self.對齊詞}])
