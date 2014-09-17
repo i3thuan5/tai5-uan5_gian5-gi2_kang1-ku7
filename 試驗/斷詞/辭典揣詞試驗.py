@@ -28,8 +28,9 @@ from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 
 class 辭典揣詞試驗(TestCase):
 	辭典揣詞 = None
+	辭典型態 = 型音辭典
 	def setUp(self):
-		self.辭典 = 型音辭典(4)
+		self.辭典 = self.辭典型態(4)
 		self.粗胚 = 文章粗胚()
 		self.分析器 = 拆文分析器()
 		self.揣詞 = self.辭典揣詞()
