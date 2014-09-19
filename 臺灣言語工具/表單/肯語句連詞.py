@@ -16,6 +16,7 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
+import kenlm
 from 臺灣言語工具.表單.語句連詞 import 語句連詞
 from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.基本元素.公用變數 import 分詞符號
@@ -29,7 +30,7 @@ class 肯語句連詞(語句連詞):
 	def 評詞陣列分(self, 詞陣列, 開始的所在=0):
 		字串 = []
 		for 詞物件 in 詞陣列: 
-			字串.append(self._譀鏡.看斷詞(詞物件))
+			字串.append(self._譀鏡.看分詞(詞物件))
 		for 所在, 結果 in enumerate(
 				self._語言模型.full_scores(分詞符號.join(字串))):
 			if 所在 >= 開始的所在:
