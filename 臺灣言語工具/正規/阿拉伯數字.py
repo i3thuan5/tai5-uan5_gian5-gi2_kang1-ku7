@@ -126,10 +126,10 @@ class 阿拉伯數字():
 			return 數量[:-1]
 		return 數量
 	
-	def 轉國語數量無(self, 數量):
-		return self.轉國語數量(數量) != 數量
+	def 轉官話數量無(self, 數量):
+		return self.轉官話數量(數量) != 數量
 	
-	def 轉國語數量(self, 數量):
+	def 轉官話數量(self, 數量):
 		if len(數量) >= 4 and \
 			 (數量[-3] in self.細位 or 數量[-3] in self.大位) and \
 			 數量[-1] in self.細位:

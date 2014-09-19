@@ -284,6 +284,24 @@ class 拆文分析器對齊試驗(unittest.TestCase):
 		self.assertEqual(組物件.內底詞[0], self.分析器.產生對齊詞(音一, 音一))
 		self.assertEqual(組物件.內底詞[1], self.分析器.產生對齊詞(音二, 音二))
 
+	def test_客話音標對齊組加號調(self):
+		詞音 = 'shu+ er'
+		組物件 = self.分析器.產生對齊組(詞音, 詞音)
+		音一 = 'shu+'
+		音二 = 'er'
+		self.assertEqual(len(組物件.內底詞), 2)
+		self.assertEqual(組物件.內底詞[0], self.分析器.產生對齊詞(音一, 音一))
+		self.assertEqual(組物件.內底詞[1], self.分析器.產生對齊詞(音二, 音二))
+
+	def test_客話音標對齊組懸降調(self):
+		詞音 = 'ngi^ zu^'
+		組物件 = self.分析器.產生對齊組(詞音, 詞音)
+		音一 = 'ngi^'
+		音二 = 'zu^'
+		self.assertEqual(len(組物件.內底詞), 2)
+		self.assertEqual(組物件.內底詞[0], self.分析器.產生對齊詞(音一, 音一))
+		self.assertEqual(組物件.內底詞[1], self.分析器.產生對齊詞(音二, 音二))
+
 	def test_對齊組濟字佮符號(self):
 		詞型 = '枋寮漁港「大條巷」上闊兩公尺。'
 		原來詞音 = 'Pang-liau5 hi5-kang2 「 Tua7-tiau5-hang7 」 siang7-khoah nng7-kong-tshioh.'

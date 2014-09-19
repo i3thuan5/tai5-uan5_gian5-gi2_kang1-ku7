@@ -25,7 +25,7 @@ from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 
 class 型音辭典試驗(TestCase):
-	辭典型態=型音辭典
+	辭典型態 = 型音辭典
 	def setUp(self):
 		self.字典 = self.辭典型態(4)
 		self.粗胚 = 文章粗胚()
@@ -33,14 +33,15 @@ class 型音辭典試驗(TestCase):
 		self.孤詞物 = self.分析器.建立詞物件('你')
 		self.孤詞音 = self.分析器.建立詞物件('li2')
 		self.二詞物 = self.分析器.建立詞物件('好')
-		self.二詞音 = self.分析器.建立詞物件('hoo2')
+		self.二詞音 = self.分析器.建立詞物件('ho2')
 		self.短詞物 = self.分析器.建立詞物件('你好')
-		self.短詞音 = self.分析器.建立詞物件('li2-hoo2')
+		self.短詞音 = self.分析器.建立詞物件('li2-ho2')
 		self.詞物件 = self.分析器.建立詞物件('你好無？')
-		self.詞音標 = self.分析器.建立詞物件('li2-hoo2-bo5-?')
-		self.對齊詞 = self.分析器.產生對齊詞('你好無？', 'li2-hoo2-bo5-?')
+		self.詞音標 = self.分析器.建立詞物件('li2-ho2-bo5-?')
+		self.對齊詞 = self.分析器.產生對齊詞('你好無？', 'li2-ho2-bo5-?')
+		self.偏泉詞 = self.分析器.產生對齊詞('你好無？', 'lu2-ho2-bo5-?')
 		self.無仝詞 = self.分析器.產生對齊詞('你有無？', 'li2-u7-bo5-?')
-		self.傷長詞 = self.分析器.產生對齊詞('你有好無？', 'li2-u7-hoo2-bo5-?')
+		self.傷長詞 = self.分析器.產生對齊詞('你有好無？', 'li2-u7-ho2-bo5-?')
 		
 	def tearDown(self):
 		pass
@@ -89,6 +90,15 @@ class 型音辭典試驗(TestCase):
 			[{self.孤詞物}, {self.短詞物}, set(), {self.詞物件}])
 		self.assertEqual(self.字典.查詞(self.詞音標),
 			[{self.孤詞音}, {self.短詞音}, set(), {self.詞音標}])
+		
+	def test_仝款長度有兩个以上(self):
+		self.字典.加詞(self.詞物件)
+		self.字典.加詞(self.對齊詞)
+		self.字典.加詞(self.偏泉詞)
+		self.assertEqual(self.字典.查詞(self.詞物件),
+			[set(), set(), set(), {self.詞物件, self.對齊詞, self.偏泉詞}])
+		self.assertEqual(self.字典.查詞(self.詞音標),
+			[set(), set(), set(), {self.對齊詞}])
 
 	def test_長度零的詞愛錯誤(self):
 		self.assertRaises(解析錯誤, self.字典.加詞, 詞())

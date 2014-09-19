@@ -176,7 +176,7 @@ class 阿拉伯數字試驗(TestCase):
 			('七十九億', None),
 			]
 		self.檢查客家話數量(問答)
-	def test_轉國語數量省上尾單位(self):
+	def test_轉官話數量省上尾單位(self):
 		問答 = [
 			('一百二十', '一百二'),
 			('兩百三十', '兩百三'),
@@ -196,8 +196,8 @@ class 阿拉伯數字試驗(TestCase):
 			('一兆零一十六萬七千', '一兆零一十六萬七'),
 			('七十九億', None),
 			]
-		self.檢查國語數量(問答)
-	def test_轉國語兩佮二數量(self):
+		self.檢查官話數量(問答)
+	def test_轉官話兩佮二數量(self):
 		問答 = [
 			('十二', None),
 			('一百二十', '一百二'),
@@ -211,7 +211,7 @@ class 阿拉伯數字試驗(TestCase):
 			('三千兩百萬', None),
 			('兩億', None),
 			]
-		self.檢查國語數量(問答)
+		self.檢查官話數量(問答)
 		
 	def 檢查數量(self, 問答):
 		for 問, 答 in 問答:
@@ -239,11 +239,11 @@ class 阿拉伯數字試驗(TestCase):
 			else:
 				self.assertEqual(self.數字.轉客家話數量無(問), True, 問)
 				self.assertEqual(self.數字.轉客家話數量(問), 答, 問)
-	def 檢查國語數量(self, 問答):
+	def 檢查官話數量(self, 問答):
 		for 問, 答 in 問答:
 			if 答 == None:
-				self.assertEqual(self.數字.轉國語數量無(問), False, 問)
-				self.assertEqual(self.數字.轉國語數量(問), 問)
+				self.assertEqual(self.數字.轉官話數量無(問), False, 問)
+				self.assertEqual(self.數字.轉官話數量(問), 問)
 			else:
-				self.assertEqual(self.數字.轉國語數量無(問), True, 問)
-				self.assertEqual(self.數字.轉國語數量(問), 答, 問)
+				self.assertEqual(self.數字.轉官話數量無(問), True, 問)
+				self.assertEqual(self.數字.轉官話數量(問), 答, 問)

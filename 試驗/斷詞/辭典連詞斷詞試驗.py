@@ -17,25 +17,22 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 from unittest.case import TestCase
-from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.表單.型音辭典 import 型音辭典
-from 臺灣言語工具.斷詞.辭典揣詞 import 辭典揣詞
 from 臺灣言語工具.基本元素.組 import 組
 from 臺灣言語工具.基本元素.集 import 集
 from 臺灣言語工具.基本元素.句 import 句
 from 臺灣言語工具.基本元素.章 import 章
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
-from 臺灣言語工具.表單.語句連詞 import 語句連詞
-from 臺灣言語工具.斷詞.連詞揀集內組 import 連詞揀集內組
 from 臺灣言語工具.斷詞.辭典連詞斷詞 import 辭典連詞斷詞
+from 臺灣言語工具.表單.實際語句連詞 import 實際語句連詞
 
 class 辭典連詞斷詞試驗(TestCase):
 	忍受 = 1e-10
 	def setUp(self):
 		self.斷詞 = 辭典連詞斷詞()
 		self.字典 = 型音辭典(4)
-		self.連詞 = 語句連詞(3)
+		self.連詞 = 實際語句連詞(3)
 
 		self.分析器 = 拆文分析器()
 
@@ -45,8 +42,7 @@ class 辭典連詞斷詞試驗(TestCase):
 	def test_一集一詞(self):
 		self.加鞋仔的資料()
 		self.字典.加詞(self.鞋仔詞)
-		集物件 = self.分析器.建立集物件('e5 a2')
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, 集物件)
+		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.鞋仔一集句物件)
 		self.assertEqual(斷詞結果, self.孤詞鞋仔句)
 		self.assertLess(分數, 0)
 		self.assertEqual(詞數, 1)
@@ -63,8 +59,7 @@ class 辭典連詞斷詞試驗(TestCase):
 	def test_兩集一詞(self):
 		self.加鞋仔的資料()
 		self.字典.加詞(self.鞋仔詞)
-		集物件 = self.分析器.建立集物件('e5 a2')
-		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, 集物件)
+		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.鞋仔一集句物件)
 		self.assertEqual(斷詞結果, self.孤詞鞋仔句)
 		self.assertLess(分數, 0)
 		self.assertEqual(詞數, 1)
@@ -73,7 +68,6 @@ class 辭典連詞斷詞試驗(TestCase):
 		self.加鞋仔的資料()
 		self.字典.加詞(self.鞋詞)
 		self.字典.加詞(self.仔詞)
-		集物件 = self.分析器.建立集物件('e5 a2')
 		斷詞結果, 分數, 詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.鞋仔兩集句物件)
 		self.assertEqual(斷詞結果, self.兩詞鞋仔句)
 		self.assertLess(分數, 0)
@@ -305,6 +299,7 @@ class 辭典連詞斷詞試驗(TestCase):
 		self.鞋仔詞 = self.分析器.產生對齊詞('鞋仔', 'e5-a2')
 		鞋集物件 = self.分析器.建立集物件('e5')
 		仔集物件 = self.分析器.建立集物件('a2')
+		self.鞋仔一集句物件 = self.分析器.建立句物件('e5 a2')
 		self.鞋仔兩集句物件 = self.分析器.建立句物件('')
 		self.鞋仔兩集句物件.內底集 = [鞋集物件, 仔集物件]
 		self.孤詞鞋仔句 = self.分析器.產生對齊句('鞋仔', 'e5-a2')

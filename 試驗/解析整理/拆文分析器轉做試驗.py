@@ -21,6 +21,7 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
+from 臺灣言語工具.基本元素.公用變數 import 無音
 
 class 拆文分析器轉做試驗(unittest.TestCase):
 	def setUp(self):
@@ -57,7 +58,9 @@ class 拆文分析器轉做試驗(unittest.TestCase):
 		self.assertRaises(解析錯誤, self.分析器.轉做字物件, 分詞)
 	def test_轉做字無分型音(self):
 		分詞 = '無'
-		self.assertRaises(解析錯誤, self.分析器.轉做字物件, 分詞)
+		字物件 = self.分析器.轉做字物件(分詞)
+		self.assertEqual(字物件.型, 分詞)
+		self.assertEqual(字物件.音, 無音)
 	def test_轉做字連字(self):
 		分詞 = '-｜-'
 		型 = '-'
@@ -126,8 +129,13 @@ class 拆文分析器轉做試驗(unittest.TestCase):
 		self.assertRaises(解析錯誤, self.分析器.轉做詞物件, 分詞)
 
 	def test_轉做詞無分型音(self):
-		分詞 = '無'
-		self.assertRaises(解析錯誤, self.分析器.轉做字物件, 分詞)
+		分詞 = '美麗'
+		詞物件 = self.分析器.轉做詞物件(分詞)
+		self.assertEqual(len(詞物件.內底字), 2)
+		self.assertEqual(詞物件.內底字[0].型, '美')
+		self.assertEqual(詞物件.內底字[0].音, 無音)
+		self.assertEqual(詞物件.內底字[1].型, '麗')
+		self.assertEqual(詞物件.內底字[1].音, 無音)
 
 	def test_轉做詞空白(self):
 		分詞 = ' ｜ '
@@ -250,7 +258,7 @@ class 拆文分析器轉做試驗(unittest.TestCase):
 		章物件 = self.分析器.轉做章物件(分詞)
 		句陣列 = []
 		for 分 in 分詞陣列:
-			 句陣列.append(self.分析器.轉做句物件(分))
+			句陣列.append(self.分析器.轉做句物件(分))
 		self.assertEqual(len(章物件.內底句), 6)
 		self.assertEqual(章物件.內底句, 句陣列)
 
@@ -270,6 +278,14 @@ class 拆文分析器轉做試驗(unittest.TestCase):
 		字物件 = self.分析器.產生對齊字(' ', ' ')
 		self.assertEqual(組物件.內底詞[2].內底字[0], 字物件)
 
+	def test_空白邊仔有空白(self):
+		分詞 = '去｜khi3 飛-翔｜pue1-siong5    ｜    走｜tsau2 遍｜pian3 世-界｜se3-kai3'
+		組物件 = self.分析器.轉做組物件(分詞)
+		self.assertEqual(len(組物件.內底詞), 6)
+		self.assertEqual(len(組物件.內底詞[2].內底字), 1)
+		字物件 = self.分析器.產生對齊字(' ', ' ')
+		self.assertEqual(組物件.內底詞[2].內底字[0], 字物件)
+
 	def test_全形空白(self):
 		分詞 = '去｜khi3 飛-翔｜pue1-siong5 　｜　 走｜tsau2 遍｜pian3 世-界｜se3-kai3'
 		組物件 = self.分析器.轉做組物件(分詞)
@@ -278,6 +294,15 @@ class 拆文分析器轉做試驗(unittest.TestCase):
 		字物件 = self.分析器.產生對齊字('　', '　')
 		self.assertEqual(組物件.內底詞[2].內底字[0], 字物件)
 
-	def test_有部份無合法(self):
-		分詞 = '梅山 猴災 鄉-公-所｜hiong1-kong1-soo2 雇人 趕-走｜kuann2-tsau2 猴-山｜kau5-san1'
-		self.assertRaises(解析錯誤, self.分析器.轉做組物件, 分詞)
+	def test_接受無音的詞(self):
+		分詞 = '梅山 猴-災 鄉-公所｜hiong1-kong1-soo2 tshiann2-lang5 趕-走｜kuann2-tsau2 猴山｜kau5-san1'
+		組物件 = self.分析器.轉做組物件(分詞)
+		答案詞陣列=[
+			self.分析器.建立詞物件('梅山'),
+			self.分析器.建立詞物件('猴-災'),
+			self.分析器.產生對齊詞('鄉-公所', 'hiong1-kong1-soo2'),
+			self.分析器.建立詞物件('tshiann2-lang5'),
+			self.分析器.產生對齊詞('趕-走', 'kuann2-tsau2'),
+			self.分析器.產生對齊詞('猴山', 'kau5-san1'),
+			]
+		self.assertEqual(組物件.內底詞, 答案詞陣列)
