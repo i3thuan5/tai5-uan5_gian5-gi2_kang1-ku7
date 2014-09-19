@@ -141,7 +141,34 @@ class 物件譀鏡試驗(unittest.TestCase):
 		字物件=self.分析器.建立字物件('媠')
 		self.assertEqual(self.譀鏡.看型(字物件), '媠')
 		self.assertEqual(self.譀鏡.看音(字物件), '')
-		self.assertRaises(解析錯誤, self.譀鏡.看斷詞, 字物件)
+		self.assertEqual(self.譀鏡.看斷詞(字物件), '媠')
 		
 	def test_看章換分句符號(self):
 		raise NotImplementedError
+
+	def test_接受無音的詞(self):
+		組物件 = self.分析器.建立組物件('')
+		組物件.內底詞=[
+			self.分析器.建立詞物件('梅山'),
+			self.分析器.建立詞物件('猴-災'),
+			self.分析器.產生對齊詞('鄉-公所', 'hiong1-kong1-soo2'),
+			self.分析器.建立詞物件('tshiann2-lang5'),
+			self.分析器.產生對齊詞('趕-走', 'kuann2-tsau2'),
+			self.分析器.產生對齊詞('猴山', 'kau5-san1'),
+			]
+		分詞答案 = '梅-山 猴-災 鄉-公-所｜hiong1-kong1-soo2 tshiann2-lang5 趕-走｜kuann2-tsau2 猴-山｜kau5-san1'
+		self.assertEqual(self.譀鏡.看斷詞(組物件), 分詞答案)
+
+	def test_詞有字無音(self):
+		梅詞物件 = self.分析器.建立詞物件('')
+		梅詞物件.內底字=[
+			self.分析器.產生對齊字('梅','mui5'),
+			self.分析器.建立字物件('山'),
+			]
+		山詞物件 = self.分析器.建立詞物件('')
+		山詞物件.內底字=[
+			self.分析器.建立字物件('梅'),
+			self.分析器.產生對齊字('山', 'san1'),
+			]
+		self.assertRaises(解析錯誤, self.譀鏡.看斷詞, 梅詞物件)
+		self.assertRaises(解析錯誤, self.譀鏡.看斷詞, 山詞物件)

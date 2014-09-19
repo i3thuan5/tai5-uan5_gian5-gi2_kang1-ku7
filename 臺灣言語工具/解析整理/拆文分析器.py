@@ -44,7 +44,7 @@ from 臺灣言語工具.基本元素.公用變數 import 統一碼注音聲調�
 class 拆文分析器:
 	符號邊仔加空白 = None
 	減號有照規則無 = None
-	切組物件分詞 = re.compile('([^ ]*.｜.[^ ]*)')
+	切組物件分詞 = re.compile('([^ ]*.｜.[^ ]*|[\S]+)')
 	_掠漏 = 程式掠漏()
 	def __init__(self):
 		粗胚 = 文章粗胚()
@@ -387,7 +387,7 @@ class 拆文分析器:
 			else:
 				raise RuntimeError('程式發生內部錯誤，語句＝{0}'.format(str(語句)))
 		if len(字陣列) != len(佮後一个字是佇仝一个詞):
-				raise RuntimeError('程式發生內部錯誤，語句＝{0}'.format(str(語句)))
+			raise RuntimeError('程式發生內部錯誤，語句＝{0}'.format(str(語句)))
 		if [] in 字陣列:
 			raise RuntimeError('程式發生內部錯誤，語句＝{0}'.format(str(語句)))
 		return (字陣列, 佮後一个字是佇仝一个詞)
@@ -435,22 +435,28 @@ class 拆文分析器:
 
 	def 轉做字物件(self, 分詞):
 		self._掠漏.毋是字串都毋著(分詞)
-		try:
-			型, 音 = 分詞.split(分型音符號)
-		except:
-			raise 解析錯誤('毋是拄仔好有兩个部份：{0}'.format(分詞))
-		return self.產生對齊字(型, 音)
+		切開結果 = 分詞.split(分型音符號)
+		if len(切開結果) == 2:
+			return self.產生對齊字(*切開結果)
+		if len(切開結果) == 1:
+			return self.建立字物件(*切開結果)
+		raise 解析錯誤('毋是拄仔好有一个抑是兩个部份：{0}'.format(分詞))
 	def 轉做詞物件(self, 分詞):
 		self._掠漏.毋是字串都毋著(分詞)
 		if 分詞 == '':
 			return self.建立詞物件(分詞)
-		try:
-			型, 音 = 分詞.split(分型音符號)
-		except:
-			raise 解析錯誤('毋是拄仔好有兩个部份：{0}'.format(分詞))
-		if 型 == '':
-			raise 解析錯誤('型是空的：{0}'.format(分詞))
-		return self.產生對齊詞(型, 音)
+		切開結果 = 分詞.split(分型音符號)
+		if len(切開結果) == 2:
+			型, 音 = 切開結果
+			if 型 == '':
+				raise 解析錯誤('型是空的：{0}'.format(分詞))
+			return self.產生對齊詞(型, 音)
+		if len(切開結果) == 1:
+			型 = 切開結果[0]
+			if 型 == '':
+				raise 解析錯誤('型是空的：{0}'.format(分詞))
+			return self.建立詞物件(型)
+		raise 解析錯誤('毋是拄仔好有一个抑是兩个部份：{0}'.format(分詞))
 
 	def 轉做組物件(self, 分詞):
 		self._掠漏.毋是字串都毋著(分詞)
