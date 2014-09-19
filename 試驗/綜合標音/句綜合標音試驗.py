@@ -68,7 +68,6 @@ class 句綜合標音試驗(unittest.TestCase):
 			]
 			)
 
-
 	def test_一句無連字轉json格式(self):
 		句物件 = self.分析器.產生對齊句('點仔膠，黏著跤，', 'tiam2 a2 ka1, liam5 tioh8 kha1,')
 		標音句 = 句綜合標音(閩南語字綜合標音, 句物件)

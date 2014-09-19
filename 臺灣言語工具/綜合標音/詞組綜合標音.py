@@ -39,7 +39,7 @@ class 詞組綜合標音():
 				if not isinstance(self.綜合字[-1], 字綜合標音):
 					raise 型態錯誤('傳入來的毋是字綜合標音型態！{0}，{1}'
 						.format(type(self.綜合字[-1]), str(self.綜合字[-1])))
-			self.連字音 = self.譀鏡.看詞物件音(詞物件)
+			self.連字音 = self.譀鏡.看音(詞物件)
 		elif isinstance(詞或組物件, 組):
 			組物件 = 詞或組物件
 			for 詞物件 in 組物件.內底詞:
@@ -48,7 +48,7 @@ class 詞組綜合標音():
 					if not isinstance(self.綜合字[-1], 字綜合標音):
 						raise 型態錯誤('傳入來的毋是字綜合標音型態！{0}，{1}'
 							.format(type(self.綜合字[-1]), str(self.綜合字[-1])))
-			self.連字音 = self.譀鏡.看組物件音(組物件)
+			self.連字音 = self.譀鏡.看音(組物件)
 		else:
 			raise 型態錯誤('傳入來的毋是詞或組物件！{0}，{1}'.format(type(詞或組物件), str(詞或組物件)))
 	def 轉json格式(self):
