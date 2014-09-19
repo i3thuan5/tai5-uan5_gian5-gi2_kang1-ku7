@@ -16,9 +16,19 @@ pip install tai5_uan5_gian5_gi2_kang1_ku7
 ```
 ###上新的開發版本
 ```bash
-pip install git+https://github.com/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7.git 
+pip install https://github.com/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7/archive/master.zip
 ```
 ###徙掉
 ```bash
 pip uninstall tai5_uan5_gian5_gi2_kang1_ku7
+```
+
+##相關套件
+#bleualign
+```bash
+pip install https://github.com/rsennrich/Bleualign/archive/master.zip
+```
+#kenlm
+```bash
+pip install https://github.com/kpu/kenlm/archive/master.zip
 ```
