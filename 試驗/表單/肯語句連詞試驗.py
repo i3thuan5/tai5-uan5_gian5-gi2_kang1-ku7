@@ -17,11 +17,8 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 from unittest.case import TestCase
-from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from math import log10
-from 臺灣言語工具.表單.實際語句連詞 import 實際語句連詞
-from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 import os
 from 臺灣言語工具.表單.肯語句連詞 import 肯語句連詞
 import itertools
@@ -69,6 +66,7 @@ class 肯語句連詞試驗(TestCase):
 		\end\
 		'''
 		連詞 = 肯語句連詞(os.path.join(os.path.dirname(__file__), '語料', 'sui2.lm'))
+		self.assertEqual(連詞.上濟詞數(), 3)
 		媠媠巧靚 = self.分析器.建立組物件('sui2 sui2 khiau2 tsiang5')
 		self.陣列比較(list(連詞.評詞陣列分(媠媠巧靚.內底詞)),
 			[-0.0, log10(1 / 2), log10(1 / 2), -0.0, -0.0], self.忍受)
