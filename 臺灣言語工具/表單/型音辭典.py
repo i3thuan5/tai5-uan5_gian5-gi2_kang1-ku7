@@ -25,12 +25,11 @@ from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 
 class 型音辭典(文字辭典):
-	上濟字數 = None
 	表 = None
 	def __init__(self, 上濟字數):
 		if 上濟字數 <= 0:
 			raise 參數錯誤('字數愛是正整數，傳入來的是{0}'.format(上濟字數))
-		self.上濟字數 = 上濟字數
+		self._上濟字數 = 上濟字數
 		self.表 = 型音點()
 		
 	def 加詞(self, 詞物件):
@@ -38,7 +37,7 @@ class 型音辭典(文字辭典):
 			raise 型態錯誤('傳入來的毋是詞物件：{0}'.format(str(詞物件)))
 		if len(詞物件.內底字) == 0:
 			raise 解析錯誤('傳入來的詞物件是空的：{0}'.format(str(詞物件)))
-		if len(詞物件.內底字)<=self.上濟字數:
+		if len(詞物件.內底字)<=self.上濟字數():
 			self.加詞佇點(詞物件, 0, self.表)
 		return
 

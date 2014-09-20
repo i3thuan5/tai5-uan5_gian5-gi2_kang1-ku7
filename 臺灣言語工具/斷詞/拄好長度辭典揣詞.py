@@ -31,12 +31,12 @@ class 拄好長度辭典揣詞:
 	分析器 = 拆文分析器()
 	數字 = 阿拉伯數字()
 	def 字陣列揣詞(self, 辭典, 字陣列):
-		if hasattr(辭典, '空'):
+		if False and hasattr(辭典, '空'):
 			字陣列 = self.字陣列改數字(辭典, 字陣列)
 		揣詞結果 = []
 		# from multiprocessing import Pool
 		for 所在 in range(len(字陣列)):
-			揣詞結果.append(辭典.查詞(詞(字陣列[所在:所在 + 辭典.上濟字數])))
+			揣詞結果.append(辭典.查詞(詞(字陣列[所在:所在 + 辭典.上濟字數()])))
 		# 分數 頂一个位置 有啥物詞通用
 		分數表 = [(0, None, None)] * (len(字陣列) + 1)
 		for 所在 in range(len(字陣列)):

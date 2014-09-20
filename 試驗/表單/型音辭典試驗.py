@@ -106,3 +106,7 @@ class 型音辭典試驗(TestCase):
 	def test_零連詞(self):
 		self.assertRaises(參數錯誤, self.辭典型態, 0)
 		self.assertRaises(參數錯誤, self.辭典型態, -10)
+		
+	def test_字數(self):
+		for 長度 in range(1, 100):
+			self.assertEqual(self.辭典型態(長度).上濟字數(), 長度)
