@@ -397,6 +397,22 @@ class 拆文分析器對齊試驗(unittest.TestCase):
 		self.assertEqual(組物件.內底詞, [self.分析器.產生對齊詞(型, 原來音)])
 		組物件 = self.分析器.產生對齊組(空白型, 原來音)
 		self.assertEqual(組物件.內底詞, [self.分析器.產生對齊詞(型, 原來音)])
+		
+	def test_對齊教羅符號(self):
+		型音 = 'taⁿh'
+		字物件 = self.分析器.產生對齊字(型音, 型音)
+		詞物件 = self.分析器.產生對齊詞(型音, 型音)
+		self.assertEqual(詞物件.內底字, [字物件])
+		組物件 = self.分析器.產生對齊組(型音, 型音)
+		self.assertEqual(組物件.內底詞, [詞物件])
+		
+	def test_對齊連紲教羅符號(self):
+		型音 = 'taⁿtī'
+		字物件 = self.分析器.產生對齊字(型音, 型音)
+		詞物件 = self.分析器.產生對齊詞(型音, 型音)
+		self.assertEqual(詞物件.內底字, [字物件])
+		組物件 = self.分析器.產生對齊組(型音, 型音)
+		self.assertEqual(組物件.內底詞, [詞物件])
 
 	def test_對齊集濟字(self):
 		型 = '我有一張椅仔！'
