@@ -1,20 +1,34 @@
 # -*- coding: utf-8 -*-
+"""
+著作權所有 (C) 民國103年 意傳文化科技
+開發者：薛丞宏
+網址：http://意傳.台灣
+語料來源：請看各資料庫內說明
 
+本程式乃自由軟體，您必須遵照SocialCalc設計的通用公共授權（Common Public Attribution License, CPAL)來修改和重新發佈這一程式，詳情請參閱條文。授權大略如下，若有歧異，以授權原文為主：
+	１．得使用、修改、複製並發佈此程式碼，且必須以通用公共授權發行；
+	２．任何以程式碼衍生的執行檔或網路服務，必須公開該程式碼；
+	３．將此程式的原始碼當函式庫引用入商業軟體，且不需公開非關此函式庫的任何程式碼
+
+此開放原始碼、共享軟體或說明文件之使用或散佈不負擔保責任，並拒絕負擔因使用上述軟體或說明文件所致任何及一切賠償責任或損害。
+
+臺灣言語工具緣起於本土文化推廣與傳承，非常歡迎各界用於商業軟體，但希望在使用之餘，能夠提供建議、錯誤回報或修補，回饋給這塊土地。
+
+感謝您的使用與推廣～～勞力！承蒙！
+"""
 import xmlrpc.client
 from 臺灣言語工具.翻譯.摩西工具.語句編碼器 import 語句編碼器
+from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
 
 class 摩西用戶端():
 	網址格式 = "http://{0}:{1}/{2}"
 	未知詞記號 = '|UNK|UNK|UNK'
-	def __init__(self, 位址, 埠, 路徑 = 'RPC2', 編碼器 = None):
+	def __init__(self, 位址, 埠, 路徑 = 'RPC2', 編碼器 = 無編碼器()):
 		網址 = self.網址格式.format(位址, 埠, 路徑)
 		self.主機 = xmlrpc.client.ServerProxy(網址)
 		self.編碼器 = 編碼器
 	def 翻譯(self, 語句, 另外參數 = {}):
-		if self.編碼器 == None:
-			來源 = 語句
-		else:
-			來源 = self.編碼器.編碼(語句)
+		來源 = self.編碼器.編碼(語句)
 		參數 = {"text":來源, "align":"true", "report-all-factors":"true",
 			'nbest':0}
 		參數.update(另外參數)
@@ -30,16 +44,14 @@ class 摩西用戶端():
 			參數['model_name'] = model_name
 			參數['lambda'] = weights
 		結果 = self.主機.translate(參數)
-		if self.編碼器 != None:
-			結果['text'] = self.編碼器.解碼(結果['text'])
-			if 'nbest' in 結果:
-				for 候選 in 結果['nbest']:
-					候選['hyp'] = self.編碼器.解碼(候選['hyp'])
+		結果['text'] = self.編碼器.解碼(結果['text'])
+		if 'nbest' in 結果:
+			for 候選 in 結果['nbest']:
+				候選['hyp'] = self.編碼器.解碼(候選['hyp'])
 		return 結果
 	def 更新(self, 來源, 目標, 對齊):
-		if self.編碼器 != None:
-			來源 = self.編碼器.編碼(來源)
-			目標 = self.編碼器.編碼(目標)
+		來源 = self.編碼器.編碼(來源)
+		目標 = self.編碼器.編碼(目標)
 
 		參數 = {"source":來源, "target":目標, "alignment":對齊}
 		print("Updating with %s ..." % 參數)

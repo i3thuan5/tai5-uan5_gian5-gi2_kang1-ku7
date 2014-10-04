@@ -17,8 +17,8 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 
-class 語句編碼器:
+class 無編碼器:
 	def 編碼(self,語句):
-		return 語句.encode('unicode_escape').decode('ascii')
+		return 語句
 	def 解碼(self,語句):
-		return 語句.encode('ascii').decode('unicode_escape')
+		return 語句
