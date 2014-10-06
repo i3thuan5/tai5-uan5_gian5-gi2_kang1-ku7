@@ -116,7 +116,7 @@ class 物件譀鏡試驗(unittest.TestCase):
 		分詞 = '恁｜lin1 老-母｜lau3-bu2 ti3｜ti3 佗｜to1 位｜ui7 ！｜! 恁｜lin1 lau3-bu2-ti3｜lau3-bu2-ti3 佗-位｜to1-ui7 ！｜!'
 		self.assertEqual(self.譀鏡.看分詞(章物件), 分詞)
 		self.assertEqual(self.譀鏡.看分詞(章物件, '｜'), 分詞)
-		self.assertEqual(self.譀鏡.看分詞(章物件, 物件分型音符號 = '｜'), 分詞)
+		self.assertEqual(self.譀鏡.看分詞(章物件, 物件分型音符號='｜'), 分詞)
 
 	def test_看章換連字符(self):
 		型 = '恁老母ti3佗位！恁老母ti3佗位！'
@@ -126,11 +126,11 @@ class 物件譀鏡試驗(unittest.TestCase):
 		章物件 = self.分析器.產生對齊章(型, 音)
 		self.assertEqual(self.譀鏡.看型(章物件, '_', '|'), 答型)
 		self.assertEqual(self.譀鏡.看音(章物件, '_', '|'), 答音)
-		self.assertEqual(self.譀鏡.看型(章物件, 物件分字符號 = '_', 物件分詞符號 = '|'), 答型)
-		self.assertEqual(self.譀鏡.看音(章物件, 物件分字符號 = '_', 物件分詞符號 = '|'), 答音)
+		self.assertEqual(self.譀鏡.看型(章物件, 物件分字符號='_', 物件分詞符號='|'), 答型)
+		self.assertEqual(self.譀鏡.看音(章物件, 物件分字符號='_', 物件分詞符號='|'), 答音)
 		分詞 = '恁@lin1^老_母@lau3_bu2^ti3@ti3^佗@to1^位@ui7^！@!^恁@lin1^老_母_ti3@lau3_bu2_ti3^佗_位@to1_ui7^！@!'
 		self.assertEqual(self.譀鏡.看分詞(章物件, '@', '_', '^'), 分詞)
-		self.assertEqual(self.譀鏡.看分詞(章物件, 物件分型音符號 = '@', 物件分字符號 = '_', 物件分詞符號 = '^'), 分詞)
+		self.assertEqual(self.譀鏡.看分詞(章物件, 物件分型音符號='@', 物件分字符號='_', 物件分詞符號='^'), 分詞)
 
 	def test_參數烏白傳(self):
 		self.assertRaises(型態錯誤, self.譀鏡.看型, 790830)
@@ -138,7 +138,7 @@ class 物件譀鏡試驗(unittest.TestCase):
 		self.assertRaises(型態錯誤, self.譀鏡.看分詞, '｜', '｜')
 
 	def test_無音字(self):
-		字物件=self.分析器.建立字物件('媠')
+		字物件 = self.分析器.建立字物件('媠')
 		self.assertEqual(self.譀鏡.看型(字物件), '媠')
 		self.assertEqual(self.譀鏡.看音(字物件), '')
 		self.assertEqual(self.譀鏡.看分詞(字物件), '媠')
@@ -148,7 +148,7 @@ class 物件譀鏡試驗(unittest.TestCase):
 
 	def test_接受無音的詞(self):
 		組物件 = self.分析器.建立組物件('')
-		組物件.內底詞=[
+		組物件.內底詞 = [
 			self.分析器.建立詞物件('梅山'),
 			self.分析器.建立詞物件('猴-災'),
 			self.分析器.產生對齊詞('鄉-公所', 'hiong1-kong1-soo2'),
@@ -159,16 +159,41 @@ class 物件譀鏡試驗(unittest.TestCase):
 		分詞答案 = '梅-山 猴-災 鄉-公-所｜hiong1-kong1-soo2 tshiann2-lang5 趕-走｜kuann2-tsau2 猴-山｜kau5-san1'
 		self.assertEqual(self.譀鏡.看分詞(組物件), 分詞答案)
 
-	def test_詞有字無音(self):
+	def test_兩字詞有字無音(self):
 		梅詞物件 = self.分析器.建立詞物件('')
-		梅詞物件.內底字=[
-			self.分析器.產生對齊字('梅','mui5'),
+		梅詞物件.內底字 = [
+			self.分析器.產生對齊字('梅', 'mui5'),
 			self.分析器.建立字物件('山'),
 			]
+		梅分詞答案 = '梅-山｜mui5-'
+		self.assertEqual(self.譀鏡.看分詞(梅詞物件), 梅分詞答案)
 		山詞物件 = self.分析器.建立詞物件('')
-		山詞物件.內底字=[
+		山詞物件.內底字 = [
 			self.分析器.建立字物件('梅'),
 			self.分析器.產生對齊字('山', 'san1'),
 			]
-		self.assertRaises(解析錯誤, self.譀鏡.看分詞, 梅詞物件)
-		self.assertRaises(解析錯誤, self.譀鏡.看分詞, 山詞物件)
+		山分詞答案 = '梅-山｜-san1'
+		self.assertEqual(self.譀鏡.看分詞(山詞物件), 山分詞答案)
+
+	def test_三字詞有字無音(self):
+		公詞物件 = self.分析器.建立詞物件('')
+		公詞物件.內底字 = [
+			self.分析器.建立字物件('鄉'),
+			self.分析器.產生對齊字('公', 'kong1'),
+			self.分析器.建立字物件('所'),
+			]
+		公分詞答案 = '鄉-公-所｜-kong1-'
+		self.assertEqual(self.譀鏡.看分詞(公詞物件), 公分詞答案)
+		
+		鄉所詞物件 = self.分析器.建立詞物件('')
+		鄉所詞物件.內底字 = [
+			self.分析器.產生對齊字('鄉', 'hiang1'),
+			self.分析器.建立字物件('公'),
+			self.分析器.產生對齊字('所', 'soo2'),
+			]
+		鄉所分詞答案 = '鄉-公-所｜hiang1--soo2'
+		self.assertEqual(self.譀鏡.看分詞(鄉所詞物件), 鄉所分詞答案)
+		
+		公鄉所組物件 = self.分析器.建立組物件('')
+		公鄉所組物件.內底詞 = [公詞物件, 鄉所詞物件]
+		self.assertEqual(self.譀鏡.看分詞(公鄉所組物件), ' '.join([公分詞答案, 鄉所分詞答案]))
