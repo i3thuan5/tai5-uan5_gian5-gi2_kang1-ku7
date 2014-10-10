@@ -30,5 +30,6 @@ pip install https://github.com/rsennrich/Bleualign/archive/master.zip
 ```
 #kenlm
 ```bash
+sudo apt-get install libboost-all-dev # install boost libarary for linux ubuntu series
 pip install https://github.com/kpu/kenlm/archive/master.zip
 ```
