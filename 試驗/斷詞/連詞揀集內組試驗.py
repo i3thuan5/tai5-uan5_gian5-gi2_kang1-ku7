@@ -54,19 +54,19 @@ class 連詞揀集內組試驗(TestCase):
 		self.連詞.看(self.我有一張桌仔)
 		標好, 分數, 詞數 = self.用連詞揀.揀(self.連詞, self.我)
 		self.assertEqual(標好, self.我)
+		self.assertEqual(3, 詞數)
 		self.assertAlmostEqual(分數 * (詞數 - 1),
 			sum(self.連詞.評分(self.我)), delta=self.忍受)
-		self.assertEqual(3, 詞數)
 		標好, 分數, 詞數 = self.用連詞揀.揀(self.連詞, self.桌仔)
 		self.assertEqual(標好, self.桌仔)
+		self.assertEqual(4, 詞數)
 		self.assertAlmostEqual(分數 * (詞數 - 1),
 			sum(self.連詞.評分(self.桌仔)), delta=self.忍受)
-		self.assertEqual(4, 詞數)
 		標好, 分數, 詞數 = self.用連詞揀.揀(self.連詞, self.我有一張桌仔)
 		self.assertEqual(標好, self.我有一張桌仔)
+		self.assertEqual(7, 詞數)
 		self.assertAlmostEqual(分數 * (詞數 - 1),
 			sum(self.連詞.評分(self.我有一張桌仔)), delta=self.忍受)
-		self.assertEqual(7, 詞數)
 
 	def test_看機率選詞(self):
 		我 = self.分析器.產生對齊集('我', 'gua2')

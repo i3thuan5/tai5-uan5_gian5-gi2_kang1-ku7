@@ -27,8 +27,12 @@ class 語句連詞(metaclass=ABCMeta):
 	# 無看過的詞的出現機率，佮srilm仝款當做負的無限
 	無看過 = -99
 	_分析器 = 拆文分析器()
-	開始 = 詞([_分析器.建立字物件('<s>')])
-	結束 = 詞([_分析器.建立字物件('</s>')])
+	_開始 = 詞([_分析器.建立字物件('<s>')])
+	_結束 = 詞([_分析器.建立字物件('</s>')])
+	def 開始(self):
+		return self._開始
+	def 結束(self):
+		return self._結束 
 	def 對數(self, 數字):
 		return log10(數字)
 	def 指數(self, 數字):
@@ -37,7 +41,7 @@ class 語句連詞(metaclass=ABCMeta):
 	def 上濟詞數(self):
 		pass
 	def 評分(self, 物件):
-		詞陣列 = [self.開始] + self._網仔.網出詞物件(物件) + [self.結束]
+		詞陣列 = [self.開始()] + self._網仔.網出詞物件(物件) + [self.結束()]
 		return self.評詞陣列分(詞陣列, 開始的所在=1)
 	@abstractmethod
 	def 評詞陣列分(self, 詞陣列, 開始的所在=0):

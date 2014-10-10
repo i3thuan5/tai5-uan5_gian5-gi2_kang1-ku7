@@ -87,7 +87,7 @@ class 實際語句連詞(語句連詞):
 		if isinstance(物件, 章):
 			self.看章物件(物件)
 			return
-		詞陣列 = [self.開始] + self._網仔.網出詞物件(物件) + [self.結束]
+		詞陣列 = [self.開始()] + self._網仔.網出詞物件(物件) + [self.結束()]
 		for 長度 in range(1, self.上濟詞數() + 1):
 			for 所在 in range(len(詞陣列) - 長度 + 1):
 				self.總數表[長度 - 1] += 1
