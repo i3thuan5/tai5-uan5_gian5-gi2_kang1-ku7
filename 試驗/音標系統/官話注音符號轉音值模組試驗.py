@@ -54,8 +54,8 @@ class 官話注音符號轉音值模組試驗(unittest.TestCase):
 		self.assertEqual(官話注音符號('ㄕㄥ').音值(), ('ʂ', 'əŋ', ''))
 		self.assertEqual(官話注音符號('ㄈㄥ').音值(), ('f', 'oŋ', ''))
 	def test_無合法(self):
-		self.assertEqual(官話注音符號('ㄗㄧㄨ').音值(), None)
-		self.assertEqual(官話注音符號('').音值(), None)
+		self.assertEqual(官話注音符號('ㄗㄧㄨ').音值(), (None,))
+		self.assertEqual(官話注音符號('').音值(), (None,))
 	
 	def test_全部攏會使產生方音物件(self):
 		for 母 in 官話注音符號聲:

@@ -48,7 +48,7 @@ class 官話注音符號轉音值模組():
 	唇音 = {'p', 'pʰ', 'm', 'f', }
 	def 轉(self, 聲, 韻, 調):
 		if 聲 == None or 韻 == None or 調 == None:
-			return
+			return (None,)
 		音值聲 = self.聲母表[聲]
 		音值韻 = self.韻母表[韻]
 		if 音值韻 == 'ï':

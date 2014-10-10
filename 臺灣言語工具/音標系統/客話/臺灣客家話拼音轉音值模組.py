@@ -57,7 +57,7 @@ class 臺灣客家話拼音轉音值模組():
 	韻母表 = 臺灣客家話拼音對照音值韻母表
 	def 轉(self, 聲, 韻, 調):
 		if 聲 == None or 韻 == None or 調 == None:
-			return
+			return (None,)
 		音值聲 = self.聲母表[聲]
 		音值韻 = self.韻母表[韻]
 		if 音值聲 == 'ŋ' and 音值韻.startswith('i'):
