@@ -73,6 +73,18 @@ class 閩南語變調試驗(unittest.TestCase):
 			[('g', 'ua', '2'), (None,), ('ʔ', 'ai', '2'), ('s', 'ui', '1'), ('s', 'ui', '2')])
 		self.assertEqual(self.閩南語變調.變調(原本), None)
 		self.assertEqual(原本, 變調了)
+
+	def test_章物件句尾變調(self):
+		原本 = self.分析器.建立章物件('我愛媠媠。我愛媠媠。')
+		self._設定音值(原本,
+			[('g', 'ua', '2'), ('ʔ', 'ai', '3'), ('s', 'ui', '2'), ('s', 'ui', '2'), (None,),
+			('g', 'ua', '2'), ('ʔ', 'ai', '3'), ('s', 'ui', '2'), ('s', 'ui', '2'), (None,), ])
+		變調了 = self.分析器.建立章物件('我愛媠媠。我愛媠媠。')
+		self._設定音值(變調了,
+			[('g', 'ua', '1'), ('ʔ', 'ai', '2'), ('s', 'ui', '1'), ('s', 'ui', '2'), (None,),
+			('g', 'ua', '1'), ('ʔ', 'ai', '2'), ('s', 'ui', '1'), ('s', 'ui', '2'), (None,), ])
+		self.assertEqual(self.閩南語變調.變調(原本), None)
+		self.assertEqual(原本, 變調了)
 		
 	def _設定音值(self, 物件, 音值陣列):
 		字陣列 = self.篩仔.篩出字物件(物件)
