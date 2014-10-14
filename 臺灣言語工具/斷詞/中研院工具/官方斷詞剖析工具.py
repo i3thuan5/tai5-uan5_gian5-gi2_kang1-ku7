@@ -28,7 +28,7 @@ class 官方斷詞剖析工具:
 	分句 = re.compile('<sentence>(.*?)</sentence>')
 	分詞性 = re.compile('(.*)\((.*)\)')
 	回傳狀況 = re.compile('<processstatus code="\d">(.*?)</processstatus>')
-	def 斷詞(self, 語句, 編碼='UTF-8', 等待=1, 一定愛成功=False,
+	def 斷詞(self, 語句, 編碼='UTF-8', 等待=3, 一定愛成功=False,
 			主機='140.109.19.104', 連接埠=1501, 帳號='ihcaoe', 密碼='aip1614'):
 		while True:
 			try:
@@ -61,7 +61,7 @@ class 官方斷詞剖析工具:
 				結果[-1].append(逝結果)
 		return 結果
 
-	def 剖析(self, 語句, 編碼='Big5', 等待=3, 一定愛成功=False,
+	def 剖析(self, 語句, 編碼='Big5', 等待=5, 一定愛成功=False,
 			主機='140.109.19.112', 連接埠=8000, 帳號='ihcaoe', 密碼='aip1614'):
 		# 官方功能無記錄原本換逝資訊，所以愛一逐一擺
 		結果 = []
