@@ -267,6 +267,18 @@ class 拆文分析器建立試驗(unittest.TestCase):
 		組物件, 詞陣列 = self.建立組檢查(處理好語句, 切好語句)
 		self.assertEqual(詞陣列, 組物件.內底詞)
 		
+	def test_無空白分開的閩南語音標(self):
+		有空白='sui2 sui2 e5 koo1 niu5'
+		無空白=有空白.replace(' ','')
+		self.assertEqual(self.分析器.建立組物件(有空白),
+			self.分析器.建立組物件(無空白))
+		
+	def test_無空白分開的音調音標(self):
+		有空白='sui55 sui51 e13 koo33 niu13'
+		無空白=有空白.replace(' ','')
+		self.assertEqual(self.分析器.建立組物件(有空白),
+			self.分析器.建立組物件(無空白))
+		
 	def test_建立集孤字(self):
 		型 = '媠'
 		集物件 = self.分析器.建立集物件(型)

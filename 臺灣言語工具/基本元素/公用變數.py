@@ -62,7 +62,7 @@ def 是拼音字元無(字元, 種類=None):
 		return False
 	if 種類 == None:
 		字元 = unicodedata.category(字元)
-	return 種類 in 統一碼羅馬字佮數字 or 字元 in ['ⁿ']
+	return 種類 in 統一碼羅馬字類 or 字元 in ['ⁿ']
 
 def 是注音符號無(字元):
 	return unicodedata.name(字元, '').startswith('BOPOMOFO LETTER')
