@@ -52,7 +52,6 @@ class 句物件轉合成標仔:
 	def 章物件轉標仔(self, 章物件, 加短恬=False):
 		全部標仔=[]
 		for 句物件 in 章物件.內底句:
-			print('self.句物件轉標仔(句物件, 加短恬)',self.句物件轉標仔(句物件, 加短恬))
 			全部標仔.append(self.句物件轉標仔(句物件, 加短恬))
 		return itertools.chain.from_iterable(全部標仔)
 	def 句物件轉標仔(self, 句物件, 加短恬=False):
