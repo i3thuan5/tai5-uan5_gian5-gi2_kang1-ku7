@@ -50,7 +50,7 @@ class 句物件轉合成標仔:
 			self.免知, self.免知, self.免知,
 			)
 	def 章物件轉標仔(self, 章物件, 加短恬=False):
-		全部標仔=[]
+		全部標仔 = []
 		for 句物件 in 章物件.內底句:
 			全部標仔.append(self.句物件轉標仔(句物件, 加短恬))
 		return itertools.chain.from_iterable(全部標仔)
@@ -65,7 +65,7 @@ class 句物件轉合成標仔:
 		詞陣列 = self._網仔.網出詞物件(句物件)
 		攏總詞數量 = len(詞陣列)
 		if 攏總詞數量 == 0:
-			return ([self.恬標仔], [self.恬音])
+			return [self.恬標仔]
 		句中第幾詞 = 0
 		全部詞資料 = []
 		全部字資料 = []
@@ -157,7 +157,7 @@ class 句物件轉合成標仔:
 		音 = 完整標仔.split(None, 1)[0].split('+', 1)[0].split('-', 1)[-1]
 		return 音
 	def 跳脫標仔陣列(self, 標仔陣列):
-		新標仔=[]
+		新標仔 = []
 		for 語句 in 標仔陣列:
 			新標仔.append(self.跳脫標仔(語句))
 		return 新標仔
@@ -173,7 +173,7 @@ class 句物件轉合成標仔:
 		 fputc(((n/64)%8)+'0',f);fputc(((n/8)%8)+'0',f);fputc((n%8)+'0',f);
 		 """
 		處理了 = []
-		for 字元編碼 in 標仔.encode(encoding = 'utf_8', errors = 'strict'):
+		for 字元編碼 in 標仔.encode(encoding='utf_8', errors='strict'):
 			字元 = chr(字元編碼)
 			if curses.ascii.isprint(字元):
 				處理了.append(字元)
