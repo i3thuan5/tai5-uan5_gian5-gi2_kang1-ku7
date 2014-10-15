@@ -398,6 +398,32 @@ class 拆文分析器對齊試驗(unittest.TestCase):
 		組物件 = self.分析器.產生對齊組(空白型, 原來音)
 		self.assertEqual(組物件.內底詞, [self.分析器.產生對齊詞(型, 原來音)])
 		
+	def test_對齊組大寫專有符號袂使拆開(self):
+		型 = 'H1N1 新型 流感 包含 四種 病毒'
+		音 = 'H1N1 sin1-hing5 liu5-kam2 pau1-ham5 si3-tsiong2 pinn7-tok8'
+		組物件 = self.分析器.產生對齊組(型, 音)
+		self.assertEqual(len(組物件.內底詞), 6)
+		self.assertEqual(len(組物件.內底詞[0].內底字), 1)
+		
+	def test_對齊組小寫專有符號袂使拆開(self):
+		型 = 'g0v 是 咱 的 好 厝邊'
+		音 = 'g0v si7 lan2 e5 ho2 tshu3-pinn1'
+		組物件 = self.分析器.產生對齊組(型, 音)
+		self.assertEqual(len(組物件.內底詞), 6)
+		self.assertEqual(len(組物件.內底詞[0].內底字), 1)
+		
+	def test_對齊組大寫音標袂使拆開(self):
+		# 愛予粗胚處理
+		型 = 'Sui2sui2 是 咱 的 好 厝邊'
+		音 = 'Sui2-sui2 si7 lan2 e5 ho2 tshu3-pinn1'
+		self.assertRaises(解析錯誤, self.分析器.產生對齊組, 型, 音)
+		
+	def test_對齊組小寫音標袂使拆開(self):
+		# 愛予粗胚處理
+		型 = 'sui2sui2 是 咱 的 好 厝邊'
+		音 = 'sui2-sui2 si7 lan2 e5 ho2 tshu3-pinn1'
+		self.assertRaises(解析錯誤, self.分析器.產生對齊組, 型, 音)
+		
 	def test_對齊教羅符號(self):
 		型音 = 'taⁿh'
 		字物件 = self.分析器.產生對齊字(型音, 型音)
