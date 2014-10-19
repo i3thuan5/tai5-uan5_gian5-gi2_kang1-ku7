@@ -17,9 +17,9 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import os
-from 摩西翻譯模型訓練 import 摩西翻譯模型訓練
+from 臺灣言語工具.翻譯.摩西工具.摩西翻譯模型訓練 import 摩西翻譯模型訓練
 from 臺灣言語工具.翻譯.摩西工具.語句編碼器 import 語句編碼器
-from 斷詞轉斷字的編碼器 import 斷詞轉斷字編碼器
+from 臺灣言語工具.翻譯.摩西工具.斷詞轉斷字的編碼器 import 斷詞轉斷字編碼器
 
 if __name__ == '__main__':
 	平行華語 = ['/home/Ihc/git/i3_thuan5/語料/華', ]
