@@ -17,18 +17,12 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import unittest
-from 臺灣言語工具.基本元素.字 import 字
-from 臺灣言語工具.基本元素.詞 import 詞
-from 臺灣言語工具.基本元素.組 import 組
-from 臺灣言語工具.基本元素.集 import 集
-from 臺灣言語工具.基本元素.句 import 句
-from 臺灣言語工具.基本元素.章 import 章
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 
-class 文章粗胚試驗(unittest.TestCase):
+class 文章粗胚處理減號試驗(unittest.TestCase):
 	def setUp(self):
 		self.粗胚 = 文章粗胚()
 	def tearDown(self):

@@ -268,15 +268,49 @@ class 拆文分析器建立試驗(unittest.TestCase):
 		self.assertEqual(詞陣列, 組物件.內底詞)
 		
 	def test_無空白分開的閩南語音標(self):
-		有空白='sui2 sui2 e5 koo1 niu5'
-		無空白=有空白.replace(' ','')
-		self.assertEqual(self.分析器.建立組物件(有空白),
+		有空白 = 'sui2 sui2 e5 koo1 niu5'
+		無空白 = 有空白.replace(' ', '')
+		self.assertNotEqual(self.分析器.建立組物件(有空白),
 			self.分析器.建立組物件(無空白))
 		
 	def test_無空白分開的音調音標(self):
-		有空白='sui55 sui51 e13 koo33 niu13'
-		無空白=有空白.replace(' ','')
-		self.assertEqual(self.分析器.建立組物件(有空白),
+		有空白 = 'sui55 sui51 e13 koo33 niu13'
+		無空白 = 有空白.replace(' ', '')
+		self.assertNotEqual(self.分析器.建立組物件(有空白),
+			self.分析器.建立組物件(無空白))
+		
+	def test_大寫專有符號袂寫拆開(self):
+		無空白 = 'H1N1 新型 流感 包含 四種 病毒'
+		有空白 = 'H1 N1 新型 流感 包含 四種 病毒'
+		self.assertEqual(len(self.分析器.建立組物件(無空白).內底詞),
+			11)
+		self.assertNotEqual(self.分析器.建立組物件(有空白),
+			self.分析器.建立組物件(無空白))
+		
+	def test_小寫專有符號袂使拆開(self):
+		無空白 = 'g0v 是 咱 的 好 厝邊'
+		有空白 = 'g0 v 是 咱 的 好 厝邊'
+		self.assertEqual(len(self.分析器.建立組物件(無空白).內底詞),
+			7)
+		self.assertNotEqual(self.分析器.建立組物件(有空白),
+			self.分析器.建立組物件(無空白))
+		
+	def test_大寫音標袂使拆開(self):
+		# 愛予粗胚處理
+		無空白 = 'Sui2sui2 是 咱 的 好 厝邊'
+		有空白 = 'Sui2 sui2 是 咱 的 好 厝邊'
+		self.assertEqual(len(self.分析器.建立組物件(無空白).內底詞),
+			7)
+		self.assertNotEqual(self.分析器.建立組物件(有空白),
+			self.分析器.建立組物件(無空白))
+		
+	def test_小寫音標袂使拆開(self):
+		# 愛予粗胚處理
+		無空白 = 'sui2sui2 是 咱 的 好 厝邊'
+		有空白 = 'sui2 sui2 是 咱 的 好 厝邊'
+		self.assertEqual(len(self.分析器.建立組物件(無空白).內底詞),
+			7)
+		self.assertNotEqual(self.分析器.建立組物件(有空白),
 			self.分析器.建立組物件(無空白))
 		
 	def test_建立集孤字(self):

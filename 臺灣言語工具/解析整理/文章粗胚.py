@@ -198,12 +198,11 @@ class 文章粗胚:
 				新語句.append(字)
 		return ''.join(新語句)
 
-	def 數字調英文中央加分字符號(self, 語句):
+	def 數字英文中央全加分字符號(self, 語句):
 		新語句 = []
-		舊字 = '0'
+		舊字 = '字'
 		for 字 in 語句:
-			if 舊字 != '0' and \
-				unicodedata.category(舊字) in 統一碼數字類 and \
+			if unicodedata.category(舊字) in 統一碼數字類 and \
 				unicodedata.category(字) in 統一碼羅馬字類:
 				新語句.append(分字符號)
 			新語句.append(字)

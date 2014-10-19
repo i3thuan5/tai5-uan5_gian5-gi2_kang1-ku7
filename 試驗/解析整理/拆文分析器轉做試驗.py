@@ -221,6 +221,30 @@ class 拆文分析器轉做試驗(unittest.TestCase):
 		章物件 = self.分析器.轉做章物件(分詞)
 		self.assertEqual(len(章物件.內底句), 1)
 		self.assertEqual(章物件.內底句[0], 句物件)
+		
+	def test_轉做組大寫專有符號袂使拆開(self):
+		分詞 = 'H1N1 新型｜sin1-hing5 流感｜liu5-kam2 包含｜pau1-ham5 四種｜si3-tsiong2 病毒｜pinn7-tok8'
+		組物件 = self.分析器.轉做組物件(分詞)
+		self.assertEqual(len(組物件.內底詞), 6)
+		self.assertEqual(len(組物件.內底詞[0].內底字), 1)
+		
+	def test_轉做組小寫專有符號袂使拆開(self):
+		分詞 = 'g0v 是｜si7 咱｜lan2 的｜e5 好｜ho2 厝邊｜tshu3-pinn1'
+		組物件 = self.分析器.轉做組物件(分詞)
+		self.assertEqual(len(組物件.內底詞), 6)
+		self.assertEqual(len(組物件.內底詞[0].內底字), 1)
+		
+	def test_轉做組大寫音標袂使拆開(self):
+		分詞 = 'Sui2sui2 是｜si7 咱｜lan2 的｜e5 好｜ho2 厝邊｜tshu3-pinn1'
+		組物件 = self.分析器.轉做組物件(分詞)
+		self.assertEqual(len(組物件.內底詞), 6)
+		self.assertEqual(len(組物件.內底詞[0].內底字), 1)
+		
+	def test_轉做組小寫音標袂使拆開(self):
+		分詞 = 'sui2sui2 是｜si7 咱｜lan2 的｜e5 好｜ho2 厝邊｜tshu3-pinn1'
+		組物件 = self.分析器.轉做組物件(分詞)
+		self.assertEqual(len(組物件.內底詞), 6)
+		self.assertEqual(len(組物件.內底詞[0].內底字), 1)
 
 	def test_轉做組集句章無半字(self):
 		分詞 = ''
