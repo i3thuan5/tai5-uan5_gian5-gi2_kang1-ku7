@@ -51,7 +51,8 @@ class 摩西翻譯模型訓練(腳本程式):
 		self._檔案合做一个(目標平行檔名, 目標語言平行語料, 編碼器)
 		
 		翻譯模型資料夾 = os.path.join(暫存資料夾, '翻譯模型資料夾')
-		shutil.rmtree(翻譯模型資料夾)
+		if os.path.exists(翻譯模型資料夾):
+			shutil.rmtree(翻譯模型資料夾)
 		翻譯模型指令版 = \
 			'SCRIPTS_ROOTDIR={1} {1}/training/train-model.perl -root-dir {2} -corpus {3} -f {4} -e {5} -alignment grow-diag-final-and -reordering msd-bidirectional-fe -lm 0:{7}:{6} -external-bin-dir={0}'
 		翻譯模型指令 = 翻譯模型指令版.format(

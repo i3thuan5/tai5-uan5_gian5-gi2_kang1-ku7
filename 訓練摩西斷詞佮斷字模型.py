@@ -19,43 +19,28 @@
 import os
 from 摩西翻譯模型訓練 import 摩西翻譯模型訓練
 from 臺灣言語工具.翻譯.摩西工具.語句編碼器 import 語句編碼器
-from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
-from 臺灣言語工具.解析整理.字物件篩仔 import 字物件篩仔
-from 臺灣言語工具.基本元素.公用變數 import 分詞符號
+from 斷詞轉斷字的編碼器 import 斷詞轉斷字編碼器
 
 if __name__ == '__main__':
+	平行華語 = ['/home/Ihc/git/i3_thuan5/語料/華', ]
+	平行閩南語 = ['/home/Ihc/git/i3_thuan5/語料/閩', ]
+	閩南語語料 = ['/home/Ihc/git/i3_thuan5/語料/閩全', ]
 	模型訓練 = 摩西翻譯模型訓練()
 	斷詞暫存資料夾 = os.path.join(os.path.dirname(__file__), '斷詞暫存資料夾')
-# 	模型訓練.訓練(
-# 		['/home/Ihc/git/i3_thuan5/語料/華', ],
-# 		['/home/Ihc/git/i3_thuan5/語料/閩', ],
-# 		['/home/Ihc/git/i3_thuan5/語料/閩全'],
-# 		暫存資料夾,
-# 		連紲詞長度=3,
-# 		編碼器=語句編碼器(),
-# 		SRILM執行檔路徑='/usr/local/srilm/bin/i686-m64/',
-# 		GIZA執行檔路徑='/usr/local/mt/',
-# 		MOSES腳本路徑='/usr/local/mosesdecoder/scripts/',
-# 		)
-	
-	_分析器 = 拆文分析器()
-	_譀鏡 = 物件譀鏡()
-	_篩仔 = 字物件篩仔()
-	def 斷詞編碼(self, 斷詞語句):
-		句物件 = _分析器.轉做句物件(斷詞語句)
-		字陣列 = _篩仔.篩出字物件(句物件)
-		孤字 = []
-		for 字物件 in 字陣列:
-			孤字.append(_譀鏡.看分詞(字物件))
-		斷字語句 = 分詞符號.join(孤字)
-		return super(self.__class__, self).編碼(斷字語句)
-	斷詞編碼器 = type('斷詞編碼器', (語句編碼器,), {'編碼':斷詞編碼})
+	模型訓練.訓練(
+		平行華語, 平行閩南語, 閩南語語料,
+		斷詞暫存資料夾,
+		連紲詞長度=3,
+		編碼器=語句編碼器(),
+		SRILM執行檔路徑='/usr/local/srilm/bin/i686-m64/',
+		GIZA執行檔路徑='/usr/local/mt/',
+		MOSES腳本路徑='/usr/local/mosesdecoder/scripts/',
+		)
+
+	斷詞編碼器 = 斷詞轉斷字編碼器()
 	斷字暫存資料夾 = os.path.join(os.path.dirname(__file__), '斷字暫存資料夾')
 	模型訓練.訓練(
-		['/home/Ihc/git/i3_thuan5/語料/華', ],
-		['/home/Ihc/git/i3_thuan5/語料/閩', ],
-		['/home/Ihc/git/i3_thuan5/語料/閩全'],
+		平行華語, 平行閩南語, 閩南語語料,
 		斷字暫存資料夾,
 		連紲詞長度=3,
 		編碼器=斷詞編碼器(),
