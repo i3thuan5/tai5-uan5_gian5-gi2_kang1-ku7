@@ -17,20 +17,27 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import os
-from 臺灣言語工具.翻譯.摩西工具.摩西翻譯模型訓練 import 摩西翻譯模型訓練
-from 臺灣言語工具.翻譯.摩西工具.語句編碼器 import 語句編碼器
+from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
+from 臺灣言語工具.系統整合.腳本程式 import 腳本程式
 
-if __name__ == '__main__':
-	平行華語 = ['/home/Ihc/git/i3_thuan5/語料/華', ]
-	平行閩南語 = ['/home/Ihc/git/i3_thuan5/語料/閩', ]
-	閩南語語料 = ['/home/Ihc/git/i3_thuan5/語料/閩全', ]
-	模型訓練 = 摩西翻譯模型訓練()
-	模型訓練.訓練(
-		平行華語, 平行閩南語, 閩南語語料,
-		os.path.join(os.path.dirname(__file__), '暫存資料夾'),
-		連紲詞長度=3,
-		編碼器=語句編碼器(),
-		SRILM執行檔路徑='/usr/local/srilm/bin/i686-m64/',
-		GIZA執行檔路徑='/usr/local/mt/',
-		MOSES腳本路徑='/usr/local/mosesdecoder/scripts/',
-		)
+class 斯里語句連詞訓練(腳本程式):
+	'SRILM'
+	def 訓練(self, 語料,
+			暫存資料夾,
+			連紲詞長度=3,
+			編碼器=無編碼器(),
+			SRILM執行檔路徑=''):
+		os.makedirs(暫存資料夾, exist_ok=True)
+		目標語言檔名 = os.path.join(暫存資料夾, '語言模型.txt')
+		self._檔案合做一个(目標語言檔名, 語料, 編碼器)
+		語言模型檔 = os.path.join(暫存資料夾, '語言模型.lm')
+		語言模型指令版 = \
+			'{0}ngram-count -order {1} -interpolate -wbdiscount -unk -text {2} -lm {3}'
+		語言模型指令 = 語言模型指令版.format(
+			self._執行檔路徑加尾(SRILM執行檔路徑),
+			連紲詞長度,
+			目標語言檔名,
+			語言模型檔
+			)
+		self._走指令(語言模型指令)
+		return 語言模型檔

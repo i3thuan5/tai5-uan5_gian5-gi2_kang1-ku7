@@ -16,11 +16,11 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-from 臺灣言語工具.語音辨識.腳本程式 import 腳本程式
-import gzip
+from 臺灣言語工具.系統整合.腳本程式 import 腳本程式
 import os
 from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
 import shutil
+from 臺灣言語工具.表單.斯里語句連詞訓練 import 斯里語句連詞訓練
 
 class 摩西翻譯模型訓練(腳本程式):
 	def 訓練(self, 來源語言平行語料, 目標語言平行語料, 目標語言語料,
@@ -30,19 +30,9 @@ class 摩西翻譯模型訓練(腳本程式):
 			SRILM執行檔路徑='',
 			GIZA執行檔路徑='',  # 愛有 mkcls, GIZA++/mgiza, & snt2cooc.out/snt2cooc
 			MOSES腳本路徑=''):
+		_斯里語句連詞訓練 = 斯里語句連詞訓練()
 		os.makedirs(暫存資料夾, exist_ok=True)
-		目標語言檔名 = os.path.join(暫存資料夾, '語言模型.txt')
-		self._檔案合做一个(目標語言檔名, 目標語言語料, 編碼器)
-		語言模型檔 = os.path.join(暫存資料夾, '語言模型.lm')
-		語言模型指令版 = \
-			'{0}ngram-count -order {1} -interpolate -wbdiscount -unk -text {2} -lm {3}'
-		語言模型指令 = 語言模型指令版.format(
-			self.執行檔路徑加尾(SRILM執行檔路徑),
-			連紲詞長度,
-			目標語言檔名,
-			語言模型檔
-			)
-		self.走指令(語言模型指令)
+		語言模型檔 = _斯里語句連詞訓練.訓練(目標語言語料, 暫存資料夾, 連紲詞長度, 編碼器, SRILM執行檔路徑)
 		
 		平行檔名 = os.path.join(暫存資料夾, '翻')
 		來源平行檔名 = os.path.join(暫存資料夾, '翻.源')
@@ -56,8 +46,8 @@ class 摩西翻譯模型訓練(腳本程式):
 		翻譯模型指令版 = \
 			'SCRIPTS_ROOTDIR={1} {1}/training/train-model.perl -root-dir {2} -corpus {3} -f {4} -e {5} -alignment grow-diag-final-and -reordering msd-bidirectional-fe -lm 0:{7}:{6} -external-bin-dir={0}'
 		翻譯模型指令 = 翻譯模型指令版.format(
-			self.執行檔路徑加尾(GIZA執行檔路徑),
-			self.執行檔路徑加尾(MOSES腳本路徑),
+			self._執行檔路徑加尾(GIZA執行檔路徑),
+			self._執行檔路徑加尾(MOSES腳本路徑),
 			翻譯模型資料夾,
 			平行檔名,
 			'源',
@@ -65,14 +55,4 @@ class 摩西翻譯模型訓練(腳本程式):
 			語言模型檔,
 			連紲詞長度,
 			)
-		self.走指令(翻譯模型指令)
-	def _檔案合做一个(self, 平行檔名, 語言平行語料, 編碼器):
-		with open(平行檔名, 'w') as 寫檔:
-			for 語言檔案 in 語言平行語料:
-				if 語言檔案.endswith('.gz'):
-					開檔 = gzip.open
-				else:
-					開檔 = open
-				with 開檔(語言檔案, mode='rt') as 檔案:
-					for 一逝 in 檔案.readlines():
-						print(編碼器.編碼(一逝.strip()), file=寫檔)
+		self._走指令(翻譯模型指令)
