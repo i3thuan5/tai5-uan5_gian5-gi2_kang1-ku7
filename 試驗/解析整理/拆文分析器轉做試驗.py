@@ -286,6 +286,18 @@ class 拆文分析器轉做試驗(unittest.TestCase):
 		self.assertEqual(len(章物件.內底句), 6)
 		self.assertEqual(章物件.內底句, 句陣列)
 
+	def test_轉做章華語濟句(self):
+		章分詞='如-果 你 5 歲 的 孩-子 罹-癌 ， 你 會 怎-樣 ？ 如-果 你 知-道 核-電 輻-射 正-在 慢-性 屠-殺 我-們 大-家 ， 你 要 怎-麼-辦 ？'
+		句分詞=['如-果 你 5 歲 的 孩-子 罹-癌 ，',
+			'你 會 怎-樣 ？',
+			'如-果 你 知-道 核-電 輻-射 正-在 慢-性 屠-殺 我-們 大-家 ，',
+			'你 要 怎-麼-辦 ？']
+		章物件 = self.分析器.轉做章物件(章分詞)
+		句陣列 = []
+		for 分 in 句分詞:
+			句陣列.append(self.分析器.轉做句物件(分))
+		self.assertEqual(章物件.內底句, 句陣列)
+
 	def test_烏白傳參數(self):
 		self.assertRaises(型態錯誤, self.分析器.轉做字物件, None)
 		self.assertRaises(型態錯誤, self.分析器.轉做詞物件, 333)
