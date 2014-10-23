@@ -34,7 +34,7 @@ class 腳本程式:
 		os.makedirs(細項目錄, exist_ok=True)
 		return 細項目錄
 	def _陣列寫入檔案(self, 檔名, 陣列):
-		self.字串寫入檔案(檔名, '\n'.join(陣列))
+		self._字串寫入檔案(檔名, '\n'.join(陣列))
 	def _字串寫入檔案(self, 檔名, 字串):
 		檔案 = open(檔名, 'w')
 		print(字串, file=檔案)
