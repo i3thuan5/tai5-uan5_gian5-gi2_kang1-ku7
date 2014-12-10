@@ -10,6 +10,11 @@
 
 ##準備
 ----------------------------
+###作業系統
+推薦[Mint Linux](http://www.linuxmint.com/download.php)佮[Ubuntu Linux](http://www.ubuntu-tw.org/modules/tinyd0/)
+若是別的Linux抑是iOS攏會使
+只是指令愛家己變化
+
 ###請先安裝python3、[pip](https://pip.pypa.io/en/latest/installing.html)佮[virtualenv](https://virtualenv.readthedocs.org/en/latest/)
 ```bash
 sudo apt-get install python3 python3-pip
@@ -41,7 +46,7 @@ pip install https://github.com/rsennrich/Bleualign/archive/master.zip
 ```
 ###kenlm
 ```bash
-sudo apt-get install libboost-all-dev # install boost libarary for linux ubuntu series
+sudo apt-get install libboost-all-dev
 pip install https://github.com/kpu/kenlm/archive/master.zip
 ```
 ###htsengine
