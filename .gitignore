@@ -1,7 +1,5 @@
 __pycache__/
 *.pyc
-CKIPClient.log
 /dist
 /build
 /MANIFEST
-*.hed
