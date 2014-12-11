@@ -26,7 +26,8 @@ if __name__ == '__main__':
 	平行閩南語 = ['/home/Ihc/git/i3_thuan5/語料/閩', ]
 	閩南語語料 = ['/home/Ihc/git/i3_thuan5/語料/閩全', ]
 	模型訓練 = 摩西翻譯模型訓練()
-	斷詞暫存資料夾 = os.path.join(os.path.dirname(__file__), '斷詞暫存資料夾')
+	這馬資料夾 = os.path.dirname(os.path.abspath(__file__))
+	斷詞暫存資料夾 = os.path.join(這馬資料夾, '斷詞暫存資料夾')
 	模型訓練.訓練(
 		平行華語, 平行閩南語, 閩南語語料,
 		斷詞暫存資料夾,
@@ -38,7 +39,7 @@ if __name__ == '__main__':
 		)
 
 	斷詞編碼器 = 斷詞轉斷字編碼器()
-	斷字暫存資料夾 = os.path.join(os.path.dirname(__file__), '斷字暫存資料夾')
+	斷字暫存資料夾 = os.path.join(這馬資料夾, '斷字暫存資料夾')
 	模型訓練.訓練(
 		平行華語, 平行閩南語, 閩南語語料,
 		斷字暫存資料夾,

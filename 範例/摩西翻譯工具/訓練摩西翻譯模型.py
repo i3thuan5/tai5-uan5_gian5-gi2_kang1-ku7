@@ -27,7 +27,7 @@ if __name__ == '__main__':
 	模型訓練 = 摩西翻譯模型訓練()
 	模型訓練.訓練(
 		平行華語, 平行閩南語, 閩南語語料,
-		os.path.join(os.path.dirname(__file__), '暫存資料夾'),
+		os.path.join(os.path.dirname(os.path.abspath(__file__)), '暫存資料夾'),
 		連紲詞長度=3,
 		編碼器=語句編碼器(),
 		SRILM執行檔路徑='/usr/local/srilm/bin/i686-m64/',
