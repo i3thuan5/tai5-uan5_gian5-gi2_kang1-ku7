@@ -231,14 +231,14 @@ class 實際語句連詞試驗(TestCase):
 			[0])
 		self.assertEqual(連詞.機率([連詞.開始()]),
 			[連詞.無看過])
-		self.assertEqual(連詞.條件([連詞.開始(), self.今仔日物件, 連詞.結束()]),
+		self.assertEqual(連詞.條件([連詞.開始()]),
 			[log10(1)])
 		連詞.看(self.我請你物件)
 		self.assertEqual(連詞.數量([連詞.開始()]),
 			[1])
 		self.assertEqual(連詞.機率([連詞.開始()]),
 			[log10(1 / 5)])
-		self.assertEqual(連詞.條件([連詞.開始(), self.今仔日物件, 連詞.結束()]),
+		self.assertEqual(連詞.條件([連詞.開始()]),
 			[log10(1)])
 
 	def test_零連詞(self):
