@@ -46,7 +46,7 @@ pip install https://github.com/rsennrich/Bleualign/archive/master.zip
 ```
 ###kenlm
 ```bash
-sudo apt-get install libboost-all-dev
+sudo apt-get install -y g++ libboost-all-dev # for Ubuntu 14.04+ /Mint 17+
 pip install https://github.com/kpu/kenlm/archive/master.zip
 ```
 ###htsengine
