@@ -1,5 +1,7 @@
 #臺灣言語工具
----------------------
+
+[![Build Status](https://travis-ci.org/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7.svg?branch=master)](https://travis-ci.org/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7)
+[![Coverage Status](https://coveralls.io/repos/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7/badge.svg)](https://coveralls.io/r/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7)
 
 臺灣語言資訊系統製作，教材編排、語音辨識、合成、翻譯、…
 
@@ -9,7 +11,7 @@
 
 
 ##準備
-----------------------------
+
 ###作業系統
 推薦[Mint Linux](http://www.linuxmint.com/download.php)佮[Ubuntu Linux](http://www.ubuntu-tw.org/modules/tinyd0/)
 若是別的Linux抑是iOS攏會使
@@ -23,7 +25,7 @@ sudo pip3 install virtualenv
 會當參考：[virtualenv](http://www.openfoundry.org/tw/tech-column/8516-pythons-virtual-environment-and-multi-version-programming-tools-virtualenv-and-pythonbrew)使用說明
 
 ##安裝
-----------------------------
+
 <!---
 ###PYPI發行版本
 ```bash
