@@ -23,7 +23,7 @@ import unittest
 from unittest.suite import TestSuite
 
 
-from 試驗.基本元素.基本元素試驗 import 基本元素試驗
+# from 試驗.基本元素.c基本元素試驗 import 基本元素試驗
 from 試驗.解析整理.程式掠漏試驗 import 程式掠漏試驗
 from 試驗.解析整理.文章粗胚試驗 import 文章粗胚處理減號試驗
 from 試驗.解析整理.文章粗胚數字英文中央加分字試驗 import 文章粗胚數字英文中央加分字試驗
@@ -83,7 +83,7 @@ if __name__ == '__main__':
 	整合試驗 = '單元試驗' not in sys.argv
 	愛走的試驗 = []
 	
-	愛走的試驗.append(基本元素試驗)
+# 	愛走的試驗.append(基本元素試驗)
 
 	愛走的試驗.extend([
 		程式掠漏試驗,
@@ -165,7 +165,9 @@ if __name__ == '__main__':
 		語句編碼器試驗,
 		])
 	
-	試驗包 = TestSuite()
-	for 試驗 in 愛走的試驗:
-		試驗包.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(試驗))
-	unittest.TextTestRunner().run(試驗包)
+# 	試驗包 = TestSuite()
+# 	for 試驗 in 愛走的試驗:
+# 		試驗包.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(試驗))
+# 	unittest.TextTestRunner().run(試驗包)
+	a=unittest.defaultTestLoader.discover('試驗',pattern='*.py')
+	unittest.TextTestRunner().run(a)
