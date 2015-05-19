@@ -1,0 +1,21 @@
+sudo: false
+language: python
+python:
+ - "3.3"
+ - "3.4"
+env:
+  matrix:
+install:
+ - pip install https://github.com/rsennrich/Bleualign/archive/master.zip
+ - pip install https://github.com/kpu/kenlm/archive/master.zip
+ - pip install https://github.com/sih4sing5hong5/hts_engine_python/archive/master.zip
+ - pip install coverage
+branches:
+ only:
+  - master
+script:
+ - coverage run manage.py test 試驗/走全部試驗.py
+after_success:
+  - coverage report
+  - pip install --quiet python-coveralls
+  - coveralls
