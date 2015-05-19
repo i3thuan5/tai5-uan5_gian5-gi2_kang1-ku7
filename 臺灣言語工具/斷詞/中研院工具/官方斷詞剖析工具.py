@@ -25,6 +25,7 @@ import sys
 
 class 官方斷詞剖析工具:
 	檢查結果 = re.compile('<result>(.*)</result>')
+	檢查空結果 = re.compile('<result/>')
 	分句 = re.compile('<sentence>(.*?)</sentence>')
 	分詞性 = re.compile('(.*)\((.*)\)')
 	回傳狀況 = re.compile('<processstatus code="\d">(.*?)</processstatus>')
@@ -116,6 +117,8 @@ class 官方斷詞剖析工具:
 		if 收著結果 != None:
 			逐逝 = self.分句.split(收著結果.group(1))[1::2]
 			return 逐逝
+		if self.檢查空結果.search(全部收著字串) != None:
+			return []
 		狀況 = self.回傳狀況.split(全部收著字串)
 		if 狀況 != None:
 # 			<processstatus code="1">Service internal error</processstatus>

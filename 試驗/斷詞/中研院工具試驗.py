@@ -59,7 +59,8 @@ class 中研院工具試驗(unittest.TestCase):
 		self.assertEqual(工具.斷詞('我想) :>'), [[
 			[('我', 'N'), ('想', 'Vt'), (')', 'PARENTHESISCATEGORY'), (':', 'COLONCATEGORY'), ('&gt;', 'PARENTHESISCATEGORY')],
 			]])
-		self.assertRaises(RuntimeError, 工具.斷詞, '我想) :<')
+		self.assertEqual(工具.斷詞('我想) :<'), [[
+			]])
 
 	def test_官方剖析工具(self):
 		工具 = 官方斷詞剖析工具()
@@ -85,12 +86,12 @@ class 中研院工具試驗(unittest.TestCase):
 	def test_官方剖析工具標點符號(self):
 		工具 = 官方斷詞剖析工具()
 		self.assertEqual(工具.剖析('> >'), [[
-			'#1:1.[0] NP(Head:N:&gt;&gt;)#',
 			]])
 		self.assertEqual(工具.剖析('我想) :>'), [[
-			'#1:1.[0] S(NP(Head:N:我)|Head:Vt:想)#:(COLONCATEGORY)',
+			'#1:1.[0] %(NP(Head:N:我)|Vt:想|COLONCATEGORY::)#&gt;(PARENTHESISCATEGORY)',
 			]])
-		self.assertRaises(RuntimeError, 工具.剖析, '我想) :<')
+		self.assertEqual(工具.剖析('我想) :<'), [[
+			]])
 
 	@unittest.skip('定定歹去，無穩')
 	def test_自設剖析工具(self):
