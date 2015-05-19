@@ -1,5 +1,6 @@
 #臺灣言語工具
 
+[![PyPI version](https://badge.fury.io/py/tai5_uan5_gian5_gi2_kang1_ku7.svg)](http://badge.fury.io/py/tai5_uan5_gian5_gi2_kang1_ku7)
 [![Build Status](https://travis-ci.org/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7.svg?branch=master)](https://travis-ci.org/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7)
 [![Coverage Status](https://coveralls.io/repos/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7/badge.svg)](https://coveralls.io/r/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7)
 
