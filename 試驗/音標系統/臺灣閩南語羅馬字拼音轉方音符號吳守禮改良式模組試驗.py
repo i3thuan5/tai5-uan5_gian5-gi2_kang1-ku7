@@ -126,6 +126,3 @@ class 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組試�
 			self.assertIn(母,臺灣閩南語羅馬字拼音對照吳守禮方音聲母表)
 		for 母 in 臺灣閩南語羅馬字拼音韻母表:
 			self.assertIn(母,臺灣閩南語羅馬字拼音對照吳守禮方音韻母表)
-		
-if __name__ == '__main__':
-	unittest.main()

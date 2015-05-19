@@ -67,6 +67,3 @@ class 閩南語字綜合標音試驗(unittest.TestCase):
 		self.assertRaises(型態錯誤, 閩南語字綜合標音, '我')
 		self.assertRaises(型態錯誤, 閩南語字綜合標音, '我', False)
 		self.assertRaises(型態錯誤, 閩南語字綜合標音, '我', True)
-
-if __name__ == '__main__':
-	unittest.main()

@@ -108,6 +108,3 @@ class 集綜合標音試驗(unittest.TestCase):
 		組的標音詞組 = [詞組綜合標音(閩南語字綜合標音, 白組物件).轉json格式()]
 		組的標音詞組.append(詞組綜合標音(閩南語字綜合標音, 文組物件).轉json格式())
 		self.assertEqual(標音集.轉json格式(), 組的標音詞組)
-
-if __name__ == '__main__':
-	unittest.main()

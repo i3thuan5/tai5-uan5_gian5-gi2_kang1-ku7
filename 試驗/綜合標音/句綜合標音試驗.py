@@ -240,6 +240,3 @@ class 句綜合標音試驗(unittest.TestCase):
 		self.assertRaises(型態錯誤, 句綜合標音, ' ', 章物件)
 		self.assertRaises(型態錯誤, 句綜合標音, 詞組綜合標音, 章物件)
 		self.assertRaises(型態錯誤, 句綜合標音, None, None)
-
-if __name__ == '__main__':
-	unittest.main()

@@ -74,6 +74,3 @@ class 官話字綜合標音試驗(unittest.TestCase):
 		self.assertEqual(綜合標音.標音完整無(), True)
 		self.assertEqual(綜合標音.轉json格式(),
 			{"型體":型, "注音符號":'⿳⿳˙ㄉㄜ'})
-
-if __name__ == '__main__':
-	unittest.main()

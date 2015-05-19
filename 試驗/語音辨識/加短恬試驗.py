@@ -18,7 +18,6 @@
 """
 from unittest.case import TestCase
 import os
-import unittest
 from 臺灣言語工具.語音辨識.模型訓練 import 模型訓練
 
 class 加短恬試驗(TestCase):
@@ -36,6 +35,3 @@ class 加短恬試驗(TestCase):
 		self.assertEqual(模型._讀檔案(試加短恬的模型),
 			模型._讀檔案(加短恬的模型))
 		os.remove(試加短恬的模型)
-
-if __name__ == '__main__':
-	unittest.main()
