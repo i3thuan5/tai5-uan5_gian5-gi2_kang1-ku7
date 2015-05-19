@@ -63,28 +63,28 @@ class 文章粗胚數字英文中央加分字試驗(unittest.TestCase):
 		結果 = self.粗胚.數字英文中央全加分字符號(原本)
 		self.assertEqual(結果, 答案)
 
-	@unittest.skip('閣揣時間做')
+	@unittest.expectedFailure
 	def test_看情形大寫專有符號袂使拆開(self):
 		原本 = 'H1N1 新型 流感 包含 四種 病毒'
 		答案 = 'H1N1 新型 流感 包含 四種 病毒'
 		結果 = self.粗胚.數字英文中央看情形加分字符號(原本)
 		self.assertEqual(結果, 答案)
 		
-	@unittest.skip('閣揣時間做')
+	@unittest.expectedFailure
 	def test_看情形小寫專有符號袂使拆開(self):
 		原本 = 'g0v 是 咱 的 好 厝邊'
 		答案 = 'g0v 是 咱 的 好 厝邊'
 		結果 = self.粗胚.數字英文中央看情形加分字符號(原本)
 		self.assertEqual(結果, 答案)
 		
-	@unittest.skip('閣揣時間做')
+	@unittest.expectedFailure
 	def test_看情形對齊組大寫音標袂使拆開(self):
 		原本 = 'Sui2sui2 是 咱 的 好 厝邊'
 		答案 = 'Sui2 sui2 是 咱 的 好 厝邊'
 		結果 = self.粗胚.數字英文中央看情形加分字符號(原本)
 		self.assertEqual(結果, 答案)
 		
-	@unittest.skip('閣揣時間做')
+	@unittest.expectedFailure
 	def test_看情形對齊組小寫音標袂使拆開(self):
 		原本 = 'sui2sui2 是 咱 的 好 厝邊'
 		答案 = 'sui2 sui2 是 咱 的 好 厝邊'

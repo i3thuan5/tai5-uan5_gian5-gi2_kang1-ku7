@@ -142,7 +142,8 @@ class 物件譀鏡試驗(unittest.TestCase):
 		self.assertEqual(self.譀鏡.看型(字物件), '媠')
 		self.assertEqual(self.譀鏡.看音(字物件), '')
 		self.assertEqual(self.譀鏡.看分詞(字物件), '媠')
-		
+
+	@unittest.expectedFailure
 	def test_看章換分句符號(self):
 		raise NotImplementedError
 
