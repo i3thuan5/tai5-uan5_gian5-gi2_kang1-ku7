@@ -14,7 +14,7 @@ branches:
  only:
   - master
 script:
- - coverage run 試驗/走全部試驗.py
+ - PYTHONPATH=. coverage run 試驗/走全部試驗.py
 after_success:
   - coverage report
   - pip install --quiet python-coveralls
