@@ -27,7 +27,7 @@ class 官話字綜合標音試驗(unittest.TestCase):
 	def setUp(self):
 		self.我型 = '我'
 		self.我音 = 'ㄨㄛˇ'
-		self.我標音 = '⿳⿳ㄨㄛˇ'
+		self.我標音 = '⿿⿿ㄨㄛˇ'
 		self.你型 = '你'
 		self.你音 = 'ㄋㄧˇ'
 	def tearDown(self):
@@ -73,4 +73,4 @@ class 官話字綜合標音試驗(unittest.TestCase):
 		綜合標音 = 官話字綜合標音(字(型, 音))
 		self.assertEqual(綜合標音.標音完整無(), True)
 		self.assertEqual(綜合標音.轉json格式(),
-			{"型體":型, "注音符號":'⿳⿳˙ㄉㄜ'})
+			{"型體":型, "注音符號":'⿿⿿˙ㄉㄜ'})
