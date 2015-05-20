@@ -36,7 +36,7 @@ class 文本音值對照表試驗(TestCase):
 		self.assertGreater(len(聲韻表), 80)
 	def test_閩南語聲韻對照(self):
 		文本音值表 = 閩南語文本音值表()
-		對照=文本音值表.聲韻對照()
+		對照=文本音值表.音節佮聲韻對照()
 		self.assertGreater(len(對照), 1000)
 		文本音值表.聲韻表()
 	def test_客家話聲韻表(self):
@@ -45,7 +45,7 @@ class 文本音值對照表試驗(TestCase):
 		self.assertGreater(len(聲韻表), 50)
 	def test_客家話聲韻對照(self):
 		文本音值表 = 客家話文本音值表()
-		對照=文本音值表.聲韻對照()
+		對照=文本音值表.音節佮聲韻對照()
 		self.assertGreater(len(對照), 800)
 		文本音值表.聲韻表()
 	def test_官話聲韻表(self):
@@ -54,6 +54,6 @@ class 文本音值對照表試驗(TestCase):
 		self.assertGreater(len(聲韻表), 50)
 	def test_官話聲韻對照(self):
 		文本音值表 = 官話文本音值表()
-		對照=文本音值表.聲韻對照()
+		對照=文本音值表.音節佮聲韻對照()
 		self.assertGreater(len(對照), 400)
 		文本音值表.聲韻表()
