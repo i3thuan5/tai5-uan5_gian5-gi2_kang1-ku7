@@ -21,6 +21,9 @@ from 臺灣言語工具.語音合成.生決策樹仔問題 import 生決策樹�
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉音值模組 import 臺灣閩南語羅馬字拼音對照音值聲母表
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉音值模組 import 臺灣閩南語羅馬字拼音對照音值韻母表
 import itertools
+import os
+import sys
+
 
 class 閩南語決策樹仔(公家決策樹仔):
 	_生問題 = 生決策樹仔問題()
@@ -28,27 +31,27 @@ class 閩南語決策樹仔(公家決策樹仔):
 	調符號 = ('/調:', '<', '>', '/詞:')
 	詞符號 = ('/詞:', '!', '@', '/句:')
 	句符號 = ('/句:', '^', '_', '')
-	def 生(self):
+	def 生(self, 輸出目的=open(os.devnull, 'w')):
 		問題 = set()
 		問題 |= self.孤聲韻()
-		print(len(問題))
+		print(len(問題), file=輸出目的)
 		問題 |= self.元音分韻()
-		print(len(問題))
+		print(len(問題), file=輸出目的)
 		問題 |= self.孤元音()
-		print(len(問題))
+		print(len(問題), file=輸出目的)
 		問題 |= self.陰聲韻()
-		print(len(問題))
+		print(len(問題), file=輸出目的)
 		問題 |= self.鼻化韻佮聲化韻()
-		print(len(問題))
+		print(len(問題), file=輸出目的)
 		問題 |= self.韻尾()
-		print(len(問題))
+		print(len(問題), file=輸出目的)
 		問題 |= self.輔音()
-		print(len(問題))
+		print(len(問題), file=輸出目的)
 # 		問題 |= self.全部調()
 		問題 |= self.指定調()
-		print(len(問題))
+		print(len(問題), file=輸出目的)
 		問題 |= self.詞句長度(10, 20)
-		print(len(問題))
+		print(len(問題), file=輸出目的)
 
 		self._生問題.檢查(問題)
 		return 問題
@@ -291,7 +294,7 @@ class 閩南語決策樹仔(公家決策樹仔):
 		return self._生問題.問題集(題目, self.調符號, '組合')
 
 if __name__ == '__main__':
-	問題 = 閩南語決策樹仔().生()
+	問題 = 閩南語決策樹仔().生(sys.stdout)
 	檔案 = open('questions_qst001.hed', 'w')
 	print('\n'.join(問題), file=檔案)
 	檔案.close()
