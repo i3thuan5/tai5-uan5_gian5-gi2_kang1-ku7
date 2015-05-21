@@ -18,7 +18,6 @@
 """
 from unittest.case import TestCase
 from unittest.mock import patch, call
-import xmlrpc.client
 
 
 from 臺灣言語工具.翻譯.摩西工具.摩西用戶端 import 摩西用戶端
@@ -68,16 +67,22 @@ class 摩西用戶端試驗(TestCase):
 			'align':翻譯對應關係,
 			'totalScore':-21.66,
 			}]}
+		self.翻譯結果先後有變化 = {'nbest':[{
+			'text':'阮  食  飯  愛  去  。  ',
+			'align':[
+					{'tgt-start': 0, 'src-start': 0, 'src-end': 1},
+					{'tgt-start': 1, 'src-start': 4, 'src-end': 5},
+					{'tgt-start': 3, 'src-start': 2, 'src-end': 2},
+					{'tgt-start': 4, 'src-start': 3, 'src-end': 3},
+					{'tgt-start': 5, 'src-start': 6, 'src-end': 6},
+				],
+			'totalScore':-21.66,
+			}]}
 	def tearDown(self):
 		self.xmlrpcPatcher.stop()
 	@patch('臺灣言語工具.解析整理.物件譀鏡.物件譀鏡.看分詞')
 	def test_用看分詞(self, 分詞mock):
 		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
-		while False:
-			print(self.xmlrpcMock)
-			print(self.xmlrpcMock.translate)
-			print(xmlrpc.client.ServerProxy)
-			print(xmlrpc.client.ServerProxy.translate)
 		self.用戶端.翻譯(self.華語句物件)
 		分詞mock.assert_called_once_with(self.華語句物件)
 	@patch('臺灣言語工具.翻譯.摩西工具.無編碼器.無編碼器.編碼')
@@ -193,6 +198,11 @@ class 摩西用戶端試驗(TestCase):
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
 		self.assertEqual(self.譀鏡.看型(結果句物件.內底集[0].內底組[0]), '阮')
 		self.assertFalse(hasattr(結果句物件.內底集[0].內底組[0], '屬性'))
+	def test_翻譯結果先後有變化(self):
+		self.xmlrpcMock.return_value.translate.return_value = self.翻譯結果先後有變化
+		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
+		self.assertEqual(self.譀鏡.看型(結果句物件.內底集[0].內底組[1]), '食飯')
+		self.assertEqual(self.譀鏡.看型(結果句物件.內底集[0].內底組[1].翻譯來源組物件), '吃飯')
 	@patch('臺灣言語工具.翻譯.摩西工具.摩西用戶端.摩西用戶端._翻譯句物件')
 	def test_章物件的結果是章物件(self, 翻譯句物件mock):
 		翻譯句物件mock.return_value = None, None, -21.66
