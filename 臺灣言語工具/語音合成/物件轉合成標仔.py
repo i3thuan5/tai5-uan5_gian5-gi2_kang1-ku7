@@ -21,6 +21,9 @@ from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
 from 臺灣言語工具.基本元素.公用變數 import 標點符號
 import curses.ascii
 import itertools
+
+
+from 臺灣言語工具.基本元素.章 import 章
 """
 變調
 處理無音的字物件
@@ -49,12 +52,16 @@ class 物件轉合成標仔:
 			self.免知, self.免知, self.免知,
 			self.免知, self.免知, self.免知,
 			)
-	def 章物件轉標仔(self, 章物件, 加短恬=False):
+	def 轉完整標仔(self, 物件, 加短恬=False):
+		if isinstance(物件, 章):
+			return self._章物件轉完整標仔(物件, 加短恬)
+		return self._句物件轉完整標仔(物件, 加短恬)
+	def _章物件轉完整標仔(self, 章物件, 加短恬):
 		全部標仔 = []
 		for 句物件 in 章物件.內底句:
-			全部標仔.append(self.句物件轉標仔(句物件, 加短恬))
+			全部標仔.append(self._句物件轉標仔(句物件, 加短恬))
 		return itertools.chain.from_iterable(全部標仔)
-	def 句物件轉標仔(self, 句物件, 加短恬=False):
+	def _句物件轉完整標仔(self, 句物件, 加短恬):
 		for 集物件 in 句物件.內底集:
 			新組陣列 = []
 			for 詞物件 in 集物件.內底組[0].內底詞:
