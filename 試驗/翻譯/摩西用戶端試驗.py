@@ -71,7 +71,7 @@ class 摩西用戶端試驗(TestCase):
 		self.xmlrpcPatcher.stop()
 	@patch('臺灣言語工具.解析整理.物件譀鏡.物件譀鏡.看分詞')
 	def test_用看分詞(self, 分詞mock):
-		self.xmlrpcMock.translate.return_value = self.全漢翻譯結果
+		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
 		while False:
 			print(self.xmlrpcMock)
 			print(self.xmlrpcMock.translate)
@@ -81,20 +81,20 @@ class 摩西用戶端試驗(TestCase):
 		分詞mock.assert_called_once_with(self.華語句物件)
 	@patch('臺灣言語工具.翻譯.摩西工具.語句編碼器.語句編碼器.編碼')
 	def test_有編碼(self, 編碼mock):
-		self.xmlrpcMock.translate.return_value = self.全漢翻譯結果
+		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
 		self.用戶端.翻譯(self.華語句物件)
 		編碼mock.assert_called_once_with("我 們 要 去 吃 飯 。")
 	@patch('臺灣言語工具.翻譯.摩西工具.語句編碼器.語句編碼器.解碼')
 	def test_有解碼(self, 解碼mock):
-		self.xmlrpcMock.translate.return_value = self.全漢翻譯結果
+		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
 		self.用戶端.翻譯(self.華語句物件)
-		解碼mock.assert_called_once_with(self.全漢翻譯結果['text'])
+		解碼mock.assert_called_once_with(self.全漢翻譯結果['nbest'][0]['text'])
 	def test_翻譯結果是章物件(self):
-		self.xmlrpcMock.translate.return_value = self.全漢翻譯結果
+		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
 		self.assertIsInstance(結果句物件, 章)
 	def test_翻譯結果結構(self):
-		self.xmlrpcMock.translate.return_value = self.全漢翻譯結果
+		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
 		閩南語集物件 = self.分析器.建立集物件('')
 		閩南語集物件.內底組 = [
@@ -108,9 +108,8 @@ class 摩西用戶端試驗(TestCase):
 		閩南語句物件.內底集 = [閩南語集物件]
 		self.assertEqual(結果句物件, 閩南語句物件)
 	def test_來源新結構檢查(self):
-		self.xmlrpcMock.translate.return_value = self.全漢翻譯結果
+		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
 		_, 華語新結構句物件, _ = self.用戶端.翻譯(self.華語句物件)
-		self.fail()
 		華語集物件 = self.分析器.建立集物件('')
 		華語集物件.內底組 = [
 			self.分析器.建立組物件('我們'),
@@ -131,16 +130,16 @@ class 摩西用戶端試驗(TestCase):
 		for 組物件 in 結果句物件.內底集[0].內底組:
 			self.assertEqual(組物件, 組物件.翻譯來源組物件.翻譯目標組物件)
 	def test_來源新結構對齊檢查(self):
-		self.xmlrpcMock.translate.return_value = self.全漢翻譯結果
+		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
 		_, 華語新結構句物件, _ = self.用戶端.翻譯(self.華語句物件)
 		for 組物件 in 華語新結構句物件.內底集[0].內底組:
 			self.assertEqual(組物件, 組物件.翻譯目標組物件.翻譯來源組物件)
 	def test_翻譯分數(self):
-		self.xmlrpcMock.translate.return_value = self.全漢翻譯結果
+		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
 		_, _, 分數 = self.用戶端.翻譯(self.華語句物件)
 		self.assertEqual(分數, -21.66)
 	def test_全漢全羅分詞結果(self):
-		self.xmlrpcMock.translate.return_value = self.全漢全羅分詞翻譯結果
+		self.xmlrpcMock.return_value.translate.return_value = self.全漢全羅分詞翻譯結果
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
 		閩南語集物件 = self.分析器.建立集物件('')
 		閩南語集物件.內底組 = [
@@ -154,7 +153,7 @@ class 摩西用戶端試驗(TestCase):
 		閩南語句物件.內底集 = [閩南語集物件]
 		self.assertEqual(結果句物件, 閩南語句物件)
 	def test_全漢全羅分詞含詞結果(self):
-		self.xmlrpcMock.translate.return_value = self.全漢全羅分詞含詞翻譯結果
+		self.xmlrpcMock.return_value.translate.return_value = self.全漢全羅分詞含詞翻譯結果
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
 		閩南語集物件 = self.分析器.建立集物件('')
 		閩南語集物件.內底組 = [
@@ -168,7 +167,7 @@ class 摩西用戶端試驗(TestCase):
 		閩南語句物件.內底集 = [閩南語集物件]
 		self.assertEqual(結果句物件, 閩南語句物件)
 	def test_未知詞結果(self):
-		self.xmlrpcMock.translate.return_value = self.翻譯結果有未知詞出來
+		self.xmlrpcMock.return_value.translate.return_value = self.翻譯結果有未知詞出來
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
 		閩南語集物件 = self.分析器.建立集物件('')
 		閩南語集物件.內底組 = [
@@ -182,7 +181,7 @@ class 摩西用戶端試驗(TestCase):
 		閩南語句物件.內底集 = [閩南語集物件]
 		self.assertEqual(結果句物件, 閩南語句物件)
 	def test_未知詞的詞愛記錄(self):
-		self.xmlrpcMock.translate.return_value = self.翻譯結果有未知詞出來
+		self.xmlrpcMock.return_value.translate.return_value = self.翻譯結果有未知詞出來
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
 		閩南語集物件 = self.分析器.建立集物件('')
 		閩南語集物件.內底組 = [
@@ -198,22 +197,22 @@ class 摩西用戶端試驗(TestCase):
 		self.assertEqual(結果句物件.內底集[0].內底組[1].屬性['未知詞'], '是')
 	@patch('臺灣言語工具.翻譯.摩西工具.摩西用戶端.摩西用戶端._翻譯句物件')
 	def test_章物件的結果是章物件(self, 翻譯句物件mock):
-		翻譯句物件mock.return_value = None, None, None
+		翻譯句物件mock.return_value = None, None, -21.66
 		結果章物件, _, _ = self.用戶端.翻譯(self.華語章物件)
 		self.assertIsInstance(結果章物件, 章)
 	@patch('臺灣言語工具.翻譯.摩西工具.摩西用戶端.摩西用戶端._翻譯句物件')
 	def test_章物件的來源新結構章物件(self, 翻譯句物件mock):
-		翻譯句物件mock.return_value = None, None, None
+		翻譯句物件mock.return_value = None, None, -21.66
 		_, 華語新結構章物件, _ = self.用戶端.翻譯(self.華語章物件)
 		self.assertIsInstance(華語新結構章物件, 章)
 	@patch('臺灣言語工具.翻譯.摩西工具.摩西用戶端.摩西用戶端._翻譯句物件')
 	def test_結果章物件長度佮原本一樣(self, 翻譯句物件mock):
-		翻譯句物件mock.return_value = None, None, None
+		翻譯句物件mock.return_value = None, None, -21.66
 		結果章物件, _, _ = self.用戶端.翻譯(self.華語章物件)
 		self.assertIsInstance(len(結果章物件), len(self.華語章物件))
 	@patch('臺灣言語工具.翻譯.摩西工具.摩西用戶端.摩西用戶端._翻譯句物件')
 	def test_新結構章物件長度佮原本一樣(self, 翻譯句物件mock):
-		翻譯句物件mock.return_value = None, None, None
+		翻譯句物件mock.return_value = None, None, -21.66
 		_, 華語新結構章物件, _ = self.用戶端.翻譯(self.華語章物件)
 		self.assertIsInstance(len(華語新結構章物件), len(self.華語章物件))
 	@patch('臺灣言語工具.翻譯.摩西工具.摩西用戶端.摩西用戶端._翻譯句物件')
