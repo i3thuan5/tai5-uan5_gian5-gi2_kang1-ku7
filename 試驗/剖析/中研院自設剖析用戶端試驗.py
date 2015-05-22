@@ -22,7 +22,7 @@ from unittest.mock import patch
 
 from 臺灣言語工具.剖析.中研院.自設剖析用戶端 import 自設剖析用戶端
 
-class 中研院剖析工具試驗(unittest.TestCase):
+class 中研院自設剖析用戶端試驗(unittest.TestCase):
 	def setUp(self):
 		pass
 	def tearDown(self):
