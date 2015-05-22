@@ -24,17 +24,17 @@ from 臺灣言語工具.斷詞.中研院.斷詞用戶端 import 斷詞用戶端
 
 class 中研院斷詞用戶端試驗(unittest.TestCase):
 	def setUp(self):
-		pass
+		self.用戶端 = 斷詞用戶端()
 	def tearDown(self):
 		pass
 
-	def test_官方斷詞工具(self):
-		工具 = 斷詞用戶端()
-		self.assertEqual(工具.斷詞('我想吃飯。我想吃很多飯。'), [[
+	def test_語句斷一逝字(self):
+		self.assertEqual(self.用戶端.語句斷詞做語句('我想吃飯。我想吃很多飯。'), [[
 			[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
 			[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
 			]])
-		self.assertEqual(工具.斷詞('我想吃飯。我想吃很多飯。\n我吃飽了。'), [
+	def test_語句斷兩逝字(self):
+		self.assertEqual(self.用戶端.語句斷詞做語句('我想吃飯。我想吃很多飯。\n我吃飽了。'), [
 			[
 				[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
 				[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
@@ -43,7 +43,8 @@ class 中研院斷詞用戶端試驗(unittest.TestCase):
 				[('我', 'N'), ('吃飽', 'Vi'), ('了', 'T'), ('。', 'PERIODCATEGORY')],
 			],
 			])
-		self.assertEqual(工具.斷詞('\n\n我想吃飯。我想吃很多飯。\n\n  \n\n  　 \n\n我吃飽了。\n\n'), [
+	def test_語句斷濟逝字(self):
+		self.assertEqual(self.用戶端.語句斷詞做語句('\n\n我想吃飯。我想吃很多飯。\n\n  \n\n  　 \n\n我吃飽了。\n\n'), [
 			[
 				[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
 				[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
@@ -52,14 +53,76 @@ class 中研院斷詞用戶端試驗(unittest.TestCase):
 				[('我', 'N'), ('吃飽', 'Vi'), ('了', 'T'), ('。', 'PERIODCATEGORY')],
 			],
 			])
-
-	def test_官方斷詞工具標點符號(self):
-		工具 = 斷詞用戶端()
-		self.assertEqual(工具.斷詞('> >'), [[
-			[('&gt;', 'PARENTHESISCATEGORY'), ('&gt;', 'PARENTHESISCATEGORY')],
-			]])
-		self.assertEqual(工具.斷詞('我想) :>'), [[
+	def test_語句斷大於符號(self):
+		self.assertEqual(self.用戶端.語句斷詞做語句('我想) :>'), [[
 			[('我', 'N'), ('想', 'Vt'), (')', 'PARENTHESISCATEGORY'), (':', 'COLONCATEGORY'), ('&gt;', 'PARENTHESISCATEGORY')],
 			]])
-		self.assertEqual(工具.斷詞('我想) :<'), [[
+	def test_語句斷小於符號的空白結果(self):
+		self.assertEqual(self.用戶端.語句斷詞做語句('我想) :<'), [[
+			]])
+
+	def test_結構斷一逝字(self):
+		self.assertEqual(self.用戶端.語句斷詞做陣列結構('我想吃飯。我想吃很多飯。'), [[
+			[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
+			[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
+			]])
+	def test_結構斷兩逝字(self):
+		self.assertEqual(self.用戶端.語句斷詞做陣列結構('我想吃飯。我想吃很多飯。\n我吃飽了。'), [
+			[
+				[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
+				[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
+			],
+			[
+				[('我', 'N'), ('吃飽', 'Vi'), ('了', 'T'), ('。', 'PERIODCATEGORY')],
+			],
+			])
+	def test_結構斷濟逝字(self):
+		self.assertEqual(self.用戶端.語句斷詞做陣列結構('\n\n我想吃飯。我想吃很多飯。\n\n  \n\n  　 \n\n我吃飽了。\n\n'), [
+			[
+				[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
+				[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
+			],
+			[
+				[('我', 'N'), ('吃飽', 'Vi'), ('了', 'T'), ('。', 'PERIODCATEGORY')],
+			],
+			])
+	def test_結構斷大於符號(self):
+		self.assertEqual(self.用戶端.語句斷詞做陣列結構('我想) :>'), [[
+			[('我', 'N'), ('想', 'Vt'), (')', 'PARENTHESISCATEGORY'), (':', 'COLONCATEGORY'), ('&gt;', 'PARENTHESISCATEGORY')],
+			]])
+	def test_結構斷小於符號的空白結果(self):
+		self.assertEqual(self.用戶端.語句斷詞做陣列結構('我想) :<'), [[
+			]])
+
+	def test_物件斷一逝字(self):
+		self.assertEqual(self.用戶端.斷詞物件('我想吃飯。我想吃很多飯。'), [[
+			[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
+			[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
+			]])
+	def test_物件斷兩逝字(self):
+		self.assertEqual(self.用戶端.斷詞物件('我想吃飯。我想吃很多飯。\n我吃飽了。'), [
+			[
+				[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
+				[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
+			],
+			[
+				[('我', 'N'), ('吃飽', 'Vi'), ('了', 'T'), ('。', 'PERIODCATEGORY')],
+			],
+			])
+	def test_物件斷濟逝字(self):
+		self.assertEqual(self.用戶端.斷詞物件('\n\n我想吃飯。我想吃很多飯。\n\n  \n\n  　 \n\n我吃飽了。\n\n'), [
+			[
+				[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
+				[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
+			],
+			[
+				[('我', 'N'), ('吃飽', 'Vi'), ('了', 'T'), ('。', 'PERIODCATEGORY')],
+			],
+			])
+	def test_物件斷大於符號(self):
+		self.assertEqual(self.用戶端.斷詞物件('我想) :>'), [[
+			[('我', 'N'), ('想', 'Vt'), (')', 'PARENTHESISCATEGORY'), (':', 'COLONCATEGORY'), ('&gt;', 'PARENTHESISCATEGORY')],
+			]])
+	def test_物件斷小於符號的空白結果(self):
+		self.assertEqual(self.用戶端.斷詞物件('我想) :<'), [[
 			]])
