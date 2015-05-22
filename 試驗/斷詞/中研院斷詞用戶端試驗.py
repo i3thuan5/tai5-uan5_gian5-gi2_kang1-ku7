@@ -17,34 +17,88 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import unittest
+from unittest.mock import patch, call
 
 
 from 臺灣言語工具.斷詞.中研院.斷詞用戶端 import 斷詞用戶端
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+from 臺灣言語工具.基本元素.組 import 組
+from 臺灣言語工具.基本元素.集 import 集
+from 臺灣言語工具.基本元素.句 import 句
+from 臺灣言語工具.基本元素.章 import 章
+from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
 
 
 class 中研院斷詞用戶端試驗(unittest.TestCase):
 	def setUp(self):
 		self.用戶端 = 斷詞用戶端()
+		
+		self.分析器 = 拆文分析器()
+		self.網仔 = 詞物件網仔()
 	def tearDown(self):
 		pass
 
-	def test_物件斷一句話句物件(self):
-		self.assertEqual(self.用戶端.斷詞物件('我想吃飯。'), [[
-			[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
-			[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
-			]])
-	def test_物件斷一句話章物件(self):
-		self.assertEqual(self.用戶端.斷詞物件('我想吃飯。'), [[
-			[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
-			[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
-			]])
-	def test_物件斷一逝字(self):
-		self.assertEqual(self.用戶端.斷詞物件('我想吃飯。我想吃很多飯。'), [[
-			[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
-			[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
-			]])
+	def test_物件斷一句話句物件內容(self):
+		輸入句物件 = self.分析器.建立句物件('我想吃飯。')
+		斷詞後章物件 = self.用戶端.斷物件詞(輸入句物件)
+		答案組物件 = 組()
+		答案組物件.內底詞 = [
+				self.分析器.建立詞物件('我'),
+				self.分析器.建立詞物件('想'),
+				self.分析器.建立詞物件('吃飯'),
+				self.分析器.建立詞物件('。'),
+			]
+		答案集物件 = 集()
+		答案集物件.內底組 = [答案組物件]
+		答案句物件 = 句()
+		答案句物件.內底集 = [答案集物件]
+		答案章物件 = 章()
+		答案章物件.內底集 = [答案句物件]
+		self.assertEqual(斷詞後章物件, 答案章物件)
+	def test_物件斷一句話句物件詞性(self):
+		輸入句物件 = self.分析器.建立句物件('我想吃飯。')
+		斷詞後章物件 = self.用戶端.斷物件詞(輸入句物件)
+		for 詞物件, 詞性 in zip(
+					self.網仔.網出詞物件(斷詞後章物件),
+					['N', 'Vt', 'Vi', 'PERIODCATEGORY']
+				):
+			self.assertEqual(詞物件.屬性['詞性'], 詞性)
+	def test_物件斷一句話章物件內容(self):
+		輸入章物件 = self.分析器.建立章物件('我想吃飯。')
+		斷詞後章物件 = self.用戶端.斷物件詞(輸入章物件)
+		答案組物件 = 組()
+		答案組物件.內底詞 = [
+				self.分析器.建立詞物件('我'),
+				self.分析器.建立詞物件('想'),
+				self.分析器.建立詞物件('吃飯'),
+				self.分析器.建立詞物件('。'),
+			]
+		答案集物件 = 集()
+		答案集物件.內底組 = [答案組物件]
+		答案句物件 = 句()
+		答案句物件.內底集 = [答案集物件]
+		答案章物件 = 章()
+		答案章物件.內底集 = [答案句物件]
+		self.assertEqual(斷詞後章物件, 答案章物件)
+	def test_物件斷一句話章物件詞性(self):
+		輸入章物件 = self.分析器.建立章物件('我想吃飯。')
+		斷詞後章物件 = self.用戶端.斷物件詞(輸入章物件)
+		for 詞物件, 詞性 in zip(
+					self.網仔.網出詞物件(斷詞後章物件),
+					['N', 'Vt', 'Vi', 'PERIODCATEGORY']
+				):
+			self.assertEqual(詞物件.屬性['詞性'], 詞性)
+	@patch('臺灣言語工具.斷詞.中研院.斷詞用戶端.斷詞用戶端._斷句物件詞')
+	def test_物件斷一逝字(self, 斷句物件詞mock):
+		輸入章物件 = self.分析器.建立章物件('我想吃飯。我想吃很多飯。')
+		self.用戶端.斷物件詞(輸入章物件)
+		斷句物件詞mock.assert_has_calls([
+				call(self.分析器.建立句物件('我想吃飯。')),
+				call(self.分析器.建立句物件('我想吃很多飯。'))
+			])
+		
 	def test_物件斷兩逝字(self):
-		self.assertEqual(self.用戶端.斷詞物件('我想吃飯。我想吃很多飯。\n我吃飽了。'), [
+		self.assertEqual(self.用戶端.斷物件詞('我想吃飯。我想吃很多飯。\n我吃飽了。'), [
 			[
 				[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
 				[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
@@ -54,7 +108,7 @@ class 中研院斷詞用戶端試驗(unittest.TestCase):
 			],
 			])
 	def test_物件斷濟逝字(self):
-		self.assertEqual(self.用戶端.斷詞物件('\n\n我想吃飯。我想吃很多飯。\n\n  \n\n  　 \n\n我吃飽了。\n\n'), [
+		self.assertEqual(self.用戶端.斷物件詞('\n\n我想吃飯。我想吃很多飯。\n\n  \n\n  　 \n\n我吃飽了。\n\n'), [
 			[
 				[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
 				[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
@@ -64,11 +118,11 @@ class 中研院斷詞用戶端試驗(unittest.TestCase):
 			],
 			])
 	def test_物件斷大於符號(self):
-		self.assertEqual(self.用戶端.斷詞物件('我想) :>'), [[
+		self.assertEqual(self.用戶端.斷物件詞('我想) :>'), [[
 			[('我', 'N'), ('想', 'Vt'), (')', 'PARENTHESISCATEGORY'), (':', 'COLONCATEGORY'), ('&gt;', 'PARENTHESISCATEGORY')],
 			]])
 	def test_物件斷小於符號的空白結果(self):
-		self.assertEqual(self.用戶端.斷詞物件('我想) :<'), [[
+		self.assertEqual(self.用戶端.斷物件詞('我想) :<'), [[
 			]])
 
 	def test_結構斷一句話(self):
