@@ -234,6 +234,3 @@ class 基本元素試驗(unittest.TestCase):
 		新組物件.內底詞[0].內底字[0].音 = 新音
 # 		self.assertRaises(AssertionError, self.assertNotEqual, 新組物件, self.組物件,)
 		self.assertNotEqual(新組物件, self.組物件)
-
-if __name__ == '__main__':
-	unittest.main()

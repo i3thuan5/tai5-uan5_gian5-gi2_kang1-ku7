@@ -157,6 +157,3 @@ class 字物件篩仔試驗(unittest.TestCase):
 		self.assertRaises(型態錯誤, self.篩仔.篩出字物件, 2123)
 		self.assertRaises(型態錯誤, self.篩仔.篩出字物件, self.篩仔)
 		self.assertRaises(型態錯誤, self.篩仔.篩出字物件, None)
-
-if __name__ == '__main__':
-	unittest.main()

@@ -47,10 +47,10 @@ class 閩南語字綜合標音試驗(unittest.TestCase):
 		綜合標音 = 閩南語字綜合標音(字('我', 'gua2'))
 		self.assertEqual(綜合標音.標音完整無(), True)
 		self.assertEqual(綜合標音.轉json格式(), json.loads(
-			'{"型體":"我","臺羅數字調":"gua2","臺羅閏號調":"guá","通用數字調":"ghua4","吳守禮方音":"⿳⿳⿳ㆣㄨㄚˋ"}'))
+			'{"型體":"我","臺羅數字調":"gua2","臺羅閏號調":"guá","通用數字調":"ghua4","吳守禮方音":"⿿⿿⿿ㆣㄨㄚˋ"}'))
 		self.assertEqual(綜合標音.轉json格式(),
 			{"型體":"我", "臺羅數字調":"gua2", "臺羅閏號調":"guá", "通用數字調":"ghua4",
-			"吳守禮方音":"⿳⿳⿳ㆣㄨㄚˋ"})
+			"吳守禮方音":"⿿⿿⿿ㆣㄨㄚˋ"})
 	def test_標點合法(self):
 		標點 = 閩南語字綜合標音(字('，', 無音))
 		self.assertEqual(標點.標音完整無(), True)
@@ -67,6 +67,3 @@ class 閩南語字綜合標音試驗(unittest.TestCase):
 		self.assertRaises(型態錯誤, 閩南語字綜合標音, '我')
 		self.assertRaises(型態錯誤, 閩南語字綜合標音, '我', False)
 		self.assertRaises(型態錯誤, 閩南語字綜合標音, '我', True)
-
-if __name__ == '__main__':
-	unittest.main()

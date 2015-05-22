@@ -166,7 +166,7 @@ class 臺灣閩南語羅馬字拼音試驗(unittest.TestCase):
 		self.assertEqual(臺灣閩南語羅馬字拼音('moo5').轉閏號調(), 'môo')
 		self.assertEqual(臺灣閩南語羅馬字拼音('tere5').轉閏號調(), 'terê')
 		self.assertEqual(臺灣閩南語羅馬字拼音('tir5').轉閏號調(), 'tîr')
-		#符號予別的工具處理
+		# 符號予別的工具處理
 		self.assertEqual(臺灣閩南語羅馬字拼音('0tir5').轉閏號調(), '0tîr')
 		self.assertEqual(臺灣閩南語羅馬字拼音('1tir5').轉閏號調(), '1tîr')
 
@@ -179,11 +179,7 @@ class 臺灣閩南語羅馬字拼音試驗(unittest.TestCase):
 			self.assertIn(母, 臺羅對通用聲對照表)
 		for 母 in 臺灣閩南語羅馬字拼音韻母表:
 			self.assertIn(母, 臺羅對通用韻對照表)
-		for 臺, 通 in 臺羅對通用聲對照表.items():
+		for _, 通 in 臺羅對通用聲對照表.items():
 			self.assertIn(通, 通用拼音佮臺灣羅馬聲母對照表)
-		for 臺, 通 in 臺羅對通用韻對照表.items():
+		for _, 通 in 臺羅對通用韻對照表.items():
 			self.assertIn(通, 通用拼音佮臺灣羅馬韻母對照表)
-		臺 = 臺
-
-if __name__ == '__main__':
-	unittest.main()

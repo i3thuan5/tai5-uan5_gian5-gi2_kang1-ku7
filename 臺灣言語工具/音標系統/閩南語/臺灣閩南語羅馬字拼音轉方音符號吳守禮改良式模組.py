@@ -70,6 +70,6 @@ class 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組():
 		if self.音標 == None:
 			return None
 		elif len(self.音標) == 1:
-			return '⿳' + self.音標 + '　'
+			return '⿿' + self.音標 + '　'
 		else:
-			return '⿳' * (len(self.音標) - 1) + self.音標
+			return '⿿' * (len(self.音標) - 1) + self.音標
