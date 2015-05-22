@@ -56,6 +56,43 @@ class 語音標仔轉換:
 		if isinstance(物件, 章):
 			return self._章物件轉完整合成標仔(物件, 加短恬)
 		return self._句物件轉完整合成標仔(物件, 加短恬)
+	def 提出標仔陣列主要音值(self, 完整標仔陣列):
+		'''予HTK切音，而且HTS粗胚用的'''
+		音值標仔陣列 = []
+		for 標仔 in 完整標仔陣列:
+			音值標仔陣列.append(self.提出標仔主要音值(標仔))
+		return 音值標仔陣列
+	def 提出標仔主要音值(self, 完整標仔):
+		'split(None, 1)[0]是為著縛做伙三連音做對照表時會當用的'
+		音 = 完整標仔.split(None, 1)[0].split('+', 1)[0].split('-', 1)[-1]
+		return 音
+	def 跳脫標仔陣列(self, 標仔陣列):
+		新標仔 = []
+		for 語句 in 標仔陣列:
+			新標仔.append(self.跳脫標仔(語句))
+		return 新標仔
+	def 跳脫標仔(self, 標仔):
+		"""
+		佇HTK內底的HShell.c
+		ReWriteString((char*)s.c_str(), NULL, ESCAPE_CHAR)
+		....
+		else if (isprint(*p) || noNumEscapes) fputc(*p,f);
+	  	else {
+		 n=*p;
+		 fputc(ESCAPE_CHAR,f);
+		 fputc(((n/64)%8)+'0',f);fputc(((n/8)%8)+'0',f);fputc((n%8)+'0',f);
+		 """
+		處理了 = []
+		for 字元編碼 in 標仔.encode(encoding='utf_8', errors='strict'):
+			字元 = chr(字元編碼)
+			if curses.ascii.isprint(字元):
+				處理了.append(字元)
+			else:
+				處理了.append('\\')
+				數值 = 字元編碼
+				for 編碼 in [(數值 // 64) % 8, (數值 // 8) % 8, 數值 % 8]:
+					處理了.append(chr(ord('0') + 編碼))
+		return ''.join(處理了)
 	def _章物件轉完整合成標仔(self, 章物件, 加短恬):
 		全部標仔 = []
 		for 句物件 in 章物件.內底句:
@@ -153,40 +190,3 @@ class 語音標仔轉換:
 			前音, 此音, 後音, 前字調, 此字調, 後字調,
 			詞中第幾字, 詞攏總字數 - 詞中第幾字, 詞攏總字數,
 			句中第幾詞, 句攏總詞數 - 句中第幾詞, 句攏總詞數)
-	def 提出標仔陣列主要音值(self, 完整標仔陣列):
-		'''予HTK切音，而且HTS粗胚用的'''
-		音值標仔陣列 = []
-		for 標仔 in 完整標仔陣列:
-			音值標仔陣列.append(self.提出標仔主要音值(標仔))
-		return 音值標仔陣列
-	def 提出標仔主要音值(self, 完整標仔):
-		'split(None, 1)[0]是為著縛做伙三連音做對照表時會當用的'
-		音 = 完整標仔.split(None, 1)[0].split('+', 1)[0].split('-', 1)[-1]
-		return 音
-	def 跳脫標仔陣列(self, 標仔陣列):
-		新標仔 = []
-		for 語句 in 標仔陣列:
-			新標仔.append(self.跳脫標仔(語句))
-		return 新標仔
-	def 跳脫標仔(self, 標仔):
-		"""
-		佇HTK內底的HShell.c
-		ReWriteString((char*)s.c_str(), NULL, ESCAPE_CHAR)
-		....
-		else if (isprint(*p) || noNumEscapes) fputc(*p,f);
-	  	else {
-		 n=*p;
-		 fputc(ESCAPE_CHAR,f);
-		 fputc(((n/64)%8)+'0',f);fputc(((n/8)%8)+'0',f);fputc((n%8)+'0',f);
-		 """
-		處理了 = []
-		for 字元編碼 in 標仔.encode(encoding='utf_8', errors='strict'):
-			字元 = chr(字元編碼)
-			if curses.ascii.isprint(字元):
-				處理了.append(字元)
-			else:
-				處理了.append('\\')
-				數值 = 字元編碼
-				for 編碼 in [(數值 // 64) % 8, (數值 // 8) % 8, 數值 % 8]:
-					處理了.append(chr(ord('0') + 編碼))
-		return ''.join(處理了)
