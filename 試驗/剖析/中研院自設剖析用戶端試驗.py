@@ -16,15 +16,22 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-import telnetlib
+import unittest
+from unittest.mock import patch
 
-class 自設剖析工具:
-	主機 = "140.113.207.101"
-	連接埠 = 23222
-	def 剖析(self, 愛轉換的字串):
-		大五碼字串 = 愛轉換的字串.encode('big5')
-		連線 = telnetlib.Telnet(self.主機, self.連接埠, 0.5)
-		連線.write(大五碼字串)
-		結果 = 連線.read_all().decode('big5')
-		連線.close()
-		return 結果.replace('\r', '').rstrip().split('\n')
+
+from 臺灣言語工具.剖析.中研院.自設剖析用戶端 import 自設剖析用戶端
+
+class 中研院剖析工具試驗(unittest.TestCase):
+	def setUp(self):
+		pass
+	def tearDown(self):
+		pass
+	@patch('telnetlib.Telnet')
+	def test_自設剖析工具(self, 連線mock):
+		連線mock.return_value.read_all.return_value.decode.return_value = '#1:1.[0] S(agent:NP(Head:Nhaa:我)|Head:VE2:想|goal:VP(Head:VA4:吃飯))#。(PERIODCATEGORY)\r\n#2:1.[0] S(agent:NP(Head:Nhaa:我)|Head:VE2:想|goal:VP(Head:VC31:吃|theme:NP(quantifier:Neqa:很多|Head:Nab:飯)))#。(PERIODCATEGORY)\r\n'
+		工具 = 自設剖析用戶端()
+		self.assertEqual(工具.剖析('我想吃飯。我想吃很多飯。'),
+			['#1:1.[0] S(agent:NP(Head:Nhaa:我)|Head:VE2:想|goal:VP(Head:VA4:吃飯))#。(PERIODCATEGORY)',
+			'#2:1.[0] S(agent:NP(Head:Nhaa:我)|Head:VE2:想|goal:VP(Head:VC31:吃|theme:NP(quantifier:Neqa:很多|Head:Nab:飯)))#。(PERIODCATEGORY)'
+			])

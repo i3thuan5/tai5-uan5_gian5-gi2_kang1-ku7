@@ -23,7 +23,7 @@ import re
 import time
 import sys
 
-class 官方斷詞剖析工具:
+class 剖析用戶端:
 	檢查結果 = re.compile('<result>(.*)</result>')
 	檢查空結果 = re.compile('<result/>')
 	分句 = re.compile('<sentence>(.*?)</sentence>')
@@ -43,6 +43,7 @@ class 官方斷詞剖析工具:
 					raise
 			else:
 				break
+		print('斷詞',逐逝)
 		結果 = [[]]
 		for 一逝 in 逐逝:
 			逝結果 = []
@@ -83,6 +84,7 @@ class 官方斷詞剖析工具:
 						raise
 				else:
 					break
+		print('剖析',結果)
 		return 結果
 
 	def 連線(self, 語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼):
