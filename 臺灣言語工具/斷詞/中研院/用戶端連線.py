@@ -26,7 +26,14 @@ class 用戶端連線:
 	檢查空結果 = re.compile('<result/>')
 	分句 = re.compile('<sentence>(.*?)</sentence>')
 	回傳狀況 = re.compile('<processstatus code="\d">(.*?)</processstatus>')
-
+	傳去格式 = '''
+<?xml version="1.0" ?>
+<wordsegmentation version="0.1" charsetcode='{}' >
+<option showcategory="1" />
+<authentication username="{}" password="{}" />
+<text>{}</text>
+</wordsegmentation>
+'''
 	def 連線(self, 語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼):
 		連線 = socket(
 			AF_INET, SOCK_STREAM)
@@ -68,11 +75,3 @@ class 用戶端連線:
 # 			<processstatus code="3">Authentication failed</processstatus>
 			raise RuntimeError(狀況[1])
 		raise RuntimeError('回傳的資料有問題！！')
-	傳去格式 = '''
-<?xml version="1.0" ?>
-<wordsegmentation version="0.1" charsetcode='{}' >
-<option showcategory="1" />
-<authentication username="{}" password="{}" />
-<text>{}</text>
-</wordsegmentation>
-'''
