@@ -1,0 +1,3 @@
+-e git+https://github.com/rsennrich/Bleualign/archive/master.zip
+-e git+https://github.com/kpu/kenlm/archive/master.zip
+-e git+https://github.com/sih4sing5hong5/hts_engine_python/archive/master.zip
