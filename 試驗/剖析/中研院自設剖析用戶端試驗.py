@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-著作權所有 (C) 民國103年 意傳文化科技
+著作權所有 (C) 民國102年 意傳文化科技
 開發者：薛丞宏
 網址：http://意傳.台灣
 語料來源：請看各資料庫內說明
@@ -16,22 +16,22 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-from unittest.case import TestCase
-import os
-from 臺灣言語工具.語音辨識.模型訓練 import 模型訓練
+import unittest
+from unittest.mock import patch
 
-class 加短恬試驗(TestCase):
+
+from 臺灣言語工具.剖析.中研院.自設剖析用戶端 import 自設剖析用戶端
+
+class 中研院自設剖析用戶端試驗(unittest.TestCase):
 	def setUp(self):
 		pass
 	def tearDown(self):
 		pass
-	def test_加短恬(self):
-		模型 = 模型訓練()
-		這馬目錄 = os.path.dirname(os.path.abspath(__file__))
-		無短恬的模型 = os.path.join(這馬目錄, '試料', '無短恬的模型')
-		試加短恬的模型 = os.path.join(這馬目錄, '試料', '試加短恬的模型')
-		加短恬的模型 = os.path.join(這馬目錄, '試料', '加短恬的模型')
-		模型.模型加短恬(無短恬的模型, 試加短恬的模型)
-		self.assertEqual(模型._讀檔案(試加短恬的模型),
-			模型._讀檔案(加短恬的模型))
-		os.remove(試加短恬的模型)
+	@patch('telnetlib.Telnet')
+	def test_自設剖析工具(self, 連線mock):
+		連線mock.return_value.read_all.return_value.decode.return_value = '#1:1.[0] S(agent:NP(Head:Nhaa:我)|Head:VE2:想|goal:VP(Head:VA4:吃飯))#。(PERIODCATEGORY)\r\n#2:1.[0] S(agent:NP(Head:Nhaa:我)|Head:VE2:想|goal:VP(Head:VC31:吃|theme:NP(quantifier:Neqa:很多|Head:Nab:飯)))#。(PERIODCATEGORY)\r\n'
+		工具 = 自設剖析用戶端()
+		self.assertEqual(工具.剖析('我想吃飯。我想吃很多飯。'),
+			['#1:1.[0] S(agent:NP(Head:Nhaa:我)|Head:VE2:想|goal:VP(Head:VA4:吃飯))#。(PERIODCATEGORY)',
+			'#2:1.[0] S(agent:NP(Head:Nhaa:我)|Head:VE2:想|goal:VP(Head:VC31:吃|theme:NP(quantifier:Neqa:很多|Head:Nab:飯)))#。(PERIODCATEGORY)'
+			])

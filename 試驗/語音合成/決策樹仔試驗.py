@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-著作權所有 (C) 民國102年 意傳文化科技
+著作權所有 (C) 民國103年 意傳文化科技
 開發者：薛丞宏
 網址：http://意傳.台灣
 語料來源：請看各資料庫內說明
@@ -16,15 +16,29 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-import telnetlib
+from unittest.case import TestCase
 
-class 自設剖析工具:
-	主機 = "140.113.207.101"
-	連接埠 = 23222
-	def 剖析(self, 愛轉換的字串):
-		大五碼字串 = 愛轉換的字串.encode('big5')
-		連線 = telnetlib.Telnet(self.主機, self.連接埠, 0.5)
-		連線.write(大五碼字串)
-		結果 = 連線.read_all().decode('big5')
-		連線.close()
-		return 結果.replace('\r', '').rstrip().split('\n')
+
+from 臺灣言語工具.語音合成.決策樹仔問題.閩南語決策樹仔 import 閩南語決策樹仔
+from 臺灣言語工具.語音合成.決策樹仔問題.客家話決策樹仔 import 客家話決策樹仔
+from 臺灣言語工具.語音合成.決策樹仔問題.官話決策樹仔 import 官話決策樹仔
+
+
+
+class 決策樹仔試驗(TestCase):
+	def setUp(self):
+		pass
+	def tearDown(self):
+		pass
+	def test_閩南語生決策樹仔問題(self):
+		樹仔 = 閩南語決策樹仔()
+		問題 = 樹仔.生()
+		self.assertGreater(len(問題), 1000)
+	def test_客家話生決策樹仔問題(self):
+		樹仔 = 客家話決策樹仔()
+		問題 = 樹仔.生()
+		self.assertGreater(len(問題), 1000)
+	def test_官話生決策樹仔問題(self):
+		樹仔 = 官話決策樹仔()
+		問題 = 樹仔.生()
+		self.assertGreater(len(問題), 1000)

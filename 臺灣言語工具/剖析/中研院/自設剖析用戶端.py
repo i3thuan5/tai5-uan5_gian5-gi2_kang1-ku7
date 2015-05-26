@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-著作權所有 (C) 民國103年 意傳文化科技
+著作權所有 (C) 民國102年 意傳文化科技
 開發者：薛丞宏
 網址：http://意傳.台灣
 語料來源：請看各資料庫內說明
@@ -16,22 +16,15 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-from unittest.case import TestCase
-import os
-from 臺灣言語工具.語音辨識.模型訓練 import 模型訓練
+import telnetlib
 
-class 加短恬試驗(TestCase):
-	def setUp(self):
-		pass
-	def tearDown(self):
-		pass
-	def test_加短恬(self):
-		模型 = 模型訓練()
-		這馬目錄 = os.path.dirname(os.path.abspath(__file__))
-		無短恬的模型 = os.path.join(這馬目錄, '試料', '無短恬的模型')
-		試加短恬的模型 = os.path.join(這馬目錄, '試料', '試加短恬的模型')
-		加短恬的模型 = os.path.join(這馬目錄, '試料', '加短恬的模型')
-		模型.模型加短恬(無短恬的模型, 試加短恬的模型)
-		self.assertEqual(模型._讀檔案(試加短恬的模型),
-			模型._讀檔案(加短恬的模型))
-		os.remove(試加短恬的模型)
+class 自設剖析用戶端:
+	主機 = "140.113.207.101"
+	連接埠 = 23222
+	def 剖析(self, 愛轉換的字串):
+		大五碼字串 = 愛轉換的字串.encode('big5')
+		連線 = telnetlib.Telnet(self.主機, self.連接埠, 0.5)
+		連線.write(大五碼字串)
+		結果 = 連線.read_all().decode('big5')
+		連線.close()
+		return 結果.replace('\r', '').rstrip().split('\n')
