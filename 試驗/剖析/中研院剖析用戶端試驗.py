@@ -29,18 +29,18 @@ class 中研院剖析用戶端試驗(unittest.TestCase):
 
 	@unittest.expectedFailure
 	def test_物件剖一句(self):
-		self.assertEqual(self.用戶端.剖析物件('我想吃飯'), [[
+		self.assertEqual(self.用戶端.剖析('我想吃飯'), [[
  			'#1:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vi:吃飯))#',
  			]])
 	@unittest.expectedFailure
 	def test_物件剖一逝字(self):
-		self.assertEqual(self.用戶端.剖析物件('我想吃飯。我想吃很多飯。'), [[
+		self.assertEqual(self.用戶端.剖析('我想吃飯。我想吃很多飯。'), [[
  			'#1:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vi:吃飯))#。(PERIODCATEGORY)',
  			'#2:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vt:吃|NP(DET:很多|Head:N:飯)))#。(PERIODCATEGORY)'],
  			])
 	@unittest.expectedFailure
 	def test_物件剖兩逝字(self):
-		self.assertEqual(self.用戶端.剖析物件('我想吃飯。我想吃很多飯。\n我吃飽了。'), [[
+		self.assertEqual(self.用戶端.剖析('我想吃飯。我想吃很多飯。\n我吃飽了。'), [[
 	 			'#1:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vi:吃飯))#。(PERIODCATEGORY)',
 	 			'#2:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vt:吃|NP(DET:很多|Head:N:飯)))#。(PERIODCATEGORY)',
  			], [
@@ -49,7 +49,7 @@ class 中研院剖析用戶端試驗(unittest.TestCase):
 			])
 	@unittest.expectedFailure
 	def test_物件剖濟逝字(self):
-		self.assertEqual(self.用戶端.剖析物件('\n\n我想吃飯。我想吃很多飯。\n\n  \n\n  　 \n\n我吃飽了。\n\n'), [[
+		self.assertEqual(self.用戶端.剖析('\n\n我想吃飯。我想吃很多飯。\n\n  \n\n  　 \n\n我吃飽了。\n\n'), [[
 	 			'#1:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vi:吃飯))#。(PERIODCATEGORY)',
 	 			'#2:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vt:吃|NP(DET:很多|Head:N:飯)))#。(PERIODCATEGORY)',
  			], [
@@ -58,12 +58,12 @@ class 中研院剖析用戶端試驗(unittest.TestCase):
 			])
 	@unittest.expectedFailure
 	def test_物件剖著大於符號(self):
-		self.assertEqual(self.用戶端.剖析物件('我想) :>'), [[
+		self.assertEqual(self.用戶端.剖析('我想) :>'), [[
 			'#1:1.[0] %(NP(Head:N:我)|Vt:想|COLONCATEGORY::)#&gt;(PARENTHESISCATEGORY)',
 			]])
 	@unittest.expectedFailure
 	def test_物件剖著小於符號是空的(self):
-		self.assertEqual(self.用戶端.剖析物件('我想) :<'), [[
+		self.assertEqual(self.用戶端.剖析('我想) :<'), [[
 			]])
 
 	def test_結構剖一句(self):
