@@ -192,7 +192,7 @@ class 中研院斷詞用戶端試驗(unittest.TestCase):
 		語句斷詞做語句mock.return_value = [
 				'\u3000我(N)\u3000想(Vt)\u3000吃飯(Vi)\u3000。(PERIODCATEGORY)',
 			]
-		self.assertEqual(self.用戶端.語句斷詞做陣列結構('我想吃飯。'), [[
+		self.assertEqual(self.用戶端.語句斷詞後結構化('我想吃飯。'), [[
 			[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
 			]])
 	def test_結構斷一逝字(self, 語句斷詞做語句mock):
@@ -200,7 +200,7 @@ class 中研院斷詞用戶端試驗(unittest.TestCase):
 				'\u3000我(N)\u3000想(Vt)\u3000吃飯(Vi)\u3000。(PERIODCATEGORY)',
 				'\u3000我(N)\u3000想(Vt)\u3000吃(Vt)\u3000很多(DET)\u3000飯(N)\u3000。(PERIODCATEGORY)',
 			]
-		self.assertEqual(self.用戶端.語句斷詞做陣列結構('我想吃飯。我想吃很多飯。'), [[
+		self.assertEqual(self.用戶端.語句斷詞後結構化('我想吃飯。我想吃很多飯。'), [[
 			[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
 			[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
 			]])
@@ -211,7 +211,7 @@ class 中研院斷詞用戶端試驗(unittest.TestCase):
 				'\u3000',
 				'\u3000我(N)\u3000吃飽(Vi)\u3000了(T)\u3000。(PERIODCATEGORY)',
 			]
-		self.assertEqual(self.用戶端.語句斷詞做陣列結構('我想吃飯。我想吃很多飯。\n我吃飽了。'), [
+		self.assertEqual(self.用戶端.語句斷詞後結構化('我想吃飯。我想吃很多飯。\n我吃飽了。'), [
 			[
 				[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
 				[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
@@ -224,10 +224,10 @@ class 中研院斷詞用戶端試驗(unittest.TestCase):
 		語句斷詞做語句mock.return_value = [
 				'\u3000我(N)\u3000想(Vt)\u3000)(PARENTHESISCATEGORY)\u3000:(COLONCATEGORY)\u3000&gt;(PARENTHESISCATEGORY)'
 			]
-		self.assertEqual(self.用戶端.語句斷詞做陣列結構('我想) :>'), [[
+		self.assertEqual(self.用戶端.語句斷詞後結構化('我想) :>'), [[
 			[('我', 'N'), ('想', 'Vt'), (')', 'PARENTHESISCATEGORY'), (':', 'COLONCATEGORY'), ('&gt;', 'PARENTHESISCATEGORY')],
 			]])
 	def test_結構斷小於符號的空白結果(self, 語句斷詞做語句mock):
 		語句斷詞做語句mock.return_value = []
-		self.assertEqual(self.用戶端.語句斷詞做陣列結構('我想) :<'), [[
+		self.assertEqual(self.用戶端.語句斷詞後結構化('我想) :<'), [[
 			]])
