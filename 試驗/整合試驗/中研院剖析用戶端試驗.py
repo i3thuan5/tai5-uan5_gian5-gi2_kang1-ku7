@@ -20,53 +20,16 @@ import unittest
 from unittest.mock import patch
 
 
-from 臺灣言語工具.斷詞.中研院工具.官方斷詞剖析工具 import 官方斷詞剖析工具
-from 臺灣言語工具.斷詞.中研院工具.自設剖析工具 import 自設剖析工具
+from 臺灣言語工具.剖析.中研院.剖析用戶端 import 剖析用戶端
 
-class 中研院工具試驗(unittest.TestCase):
+class 中研院剖析用戶端試驗(unittest.TestCase):
 	def setUp(self):
 		pass
 	def tearDown(self):
 		pass
 
-	def test_官方斷詞工具(self):
-		工具 = 官方斷詞剖析工具()
-		self.assertEqual(工具.斷詞('我想吃飯。我想吃很多飯。'), [[
-			[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
-			[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
-			]])
-		self.assertEqual(工具.斷詞('我想吃飯。我想吃很多飯。\n我吃飽了。'), [
-			[
-				[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
-				[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
-			],
-			[
-				[('我', 'N'), ('吃飽', 'Vi'), ('了', 'T'), ('。', 'PERIODCATEGORY')],
-			],
-			])
-		self.assertEqual(工具.斷詞('\n\n我想吃飯。我想吃很多飯。\n\n  \n\n  　 \n\n我吃飽了。\n\n'), [
-			[
-				[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
-				[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
-			],
-			[
-				[('我', 'N'), ('吃飽', 'Vi'), ('了', 'T'), ('。', 'PERIODCATEGORY')],
-			],
-			])
-
-	def test_官方斷詞工具標點符號(self):
-		工具 = 官方斷詞剖析工具()
-		self.assertEqual(工具.斷詞('> >'), [[
-			[('&gt;', 'PARENTHESISCATEGORY'), ('&gt;', 'PARENTHESISCATEGORY')],
-			]])
-		self.assertEqual(工具.斷詞('我想) :>'), [[
-			[('我', 'N'), ('想', 'Vt'), (')', 'PARENTHESISCATEGORY'), (':', 'COLONCATEGORY'), ('&gt;', 'PARENTHESISCATEGORY')],
-			]])
-		self.assertEqual(工具.斷詞('我想) :<'), [[
-			]])
-
 	def test_官方剖析工具(self):
-		工具 = 官方斷詞剖析工具()
+		工具 = 剖析用戶端()
 		self.assertEqual(工具.剖析('我想吃飯。我想吃很多飯。'), [[
  			'#1:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vi:吃飯))#。(PERIODCATEGORY)',
  			'#2:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vt:吃|NP(DET:很多|Head:N:飯)))#。(PERIODCATEGORY)'],
@@ -87,7 +50,7 @@ class 中研院工具試驗(unittest.TestCase):
 			])
 
 	def test_官方剖析工具標點符號(self):
-		工具 = 官方斷詞剖析工具()
+		工具 = 剖析用戶端()
 		self.assertEqual(工具.剖析('> >'), [[
 			]])
 		self.assertEqual(工具.剖析('我想) :>'), [[
@@ -95,12 +58,3 @@ class 中研院工具試驗(unittest.TestCase):
 			]])
 		self.assertEqual(工具.剖析('我想) :<'), [[
 			]])
-
-	@patch('telnetlib.Telnet')
-	def test_自設剖析工具(self, 連線mock):
-		連線mock.return_value.read_all.return_value.decode.return_value = '#1:1.[0] S(agent:NP(Head:Nhaa:我)|Head:VE2:想|goal:VP(Head:VA4:吃飯))#。(PERIODCATEGORY)\r\n#2:1.[0] S(agent:NP(Head:Nhaa:我)|Head:VE2:想|goal:VP(Head:VC31:吃|theme:NP(quantifier:Neqa:很多|Head:Nab:飯)))#。(PERIODCATEGORY)\r\n'
-		工具 = 自設剖析工具()
-		self.assertEqual(工具.剖析('我想吃飯。我想吃很多飯。'),
-			['#1:1.[0] S(agent:NP(Head:Nhaa:我)|Head:VE2:想|goal:VP(Head:VA4:吃飯))#。(PERIODCATEGORY)',
-			'#2:1.[0] S(agent:NP(Head:Nhaa:我)|Head:VE2:想|goal:VP(Head:VC31:吃|theme:NP(quantifier:Neqa:很多|Head:Nab:飯)))#。(PERIODCATEGORY)'
-			])
