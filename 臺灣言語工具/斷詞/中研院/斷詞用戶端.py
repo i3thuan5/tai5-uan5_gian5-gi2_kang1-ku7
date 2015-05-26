@@ -25,7 +25,7 @@ from 臺灣言語工具.斷詞.中研院.用戶端連線 import 用戶端連線
 
 class 斷詞用戶端(用戶端連線):
 	分詞性 = re.compile('(.*)\((.*)\)')
-	def 斷詞(self, 語句, 編碼='UTF-8', 等待=3, 一定愛成功=False,
+	def 語句斷詞做語句(self, 語句, 編碼='UTF-8', 等待=3, 一定愛成功=False,
 			主機='140.109.19.104', 連接埠=1501, 帳號='ihcaoe', 密碼='aip1614'):
 		while True:
 			try:
@@ -39,6 +39,8 @@ class 斷詞用戶端(用戶端連線):
 					raise
 			else:
 				break
+		print('逐逝',逐逝)
+		return 逐逝
 		結果 = [[]]
 		for 一逝 in 逐逝:
 			逝結果 = []
