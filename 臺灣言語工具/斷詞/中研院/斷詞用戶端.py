@@ -25,8 +25,15 @@ from 臺灣言語工具.斷詞.中研院.用戶端連線 import 用戶端連線
 
 class 斷詞用戶端(用戶端連線):
 	分詞性 = re.compile('(.*)\((.*)\)')
-	def 語句斷詞後結構化(self,語句):
-		逐逝=self.語句斷詞做語句(語句)
+	def __init__(self, 主機='140.109.19.104', 連接埠=1501, 編碼='UTF-8',
+			帳號='ihcaoe', 密碼='aip1614'):
+		self.編碼 = 編碼
+		self.主機 = 主機
+		self.連接埠 = 連接埠
+		self.帳號 = 帳號
+		self.密碼 = 密碼
+	def 語句斷詞後結構化(self, 語句):
+		逐逝 = self.語句斷詞做語句(語句)
 		結果 = [[]]
 		for 一逝 in 逐逝:
 			逝結果 = []
@@ -45,11 +52,10 @@ class 斷詞用戶端(用戶端連線):
 			else:
 				結果[-1].append(逝結果)
 		return 結果
-	def 語句斷詞做語句(self, 語句, 編碼='UTF-8', 等待=3, 一定愛成功=False,
-			主機='140.109.19.104', 連接埠=1501, 帳號='ihcaoe', 密碼='aip1614'):
+	def 語句斷詞做語句(self, 語句, 等待=3, 一定愛成功=False):
 		while True:
 			try:
-				逐逝 = self.連線(語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
+				逐逝 = self.連線(語句, 等待, self.編碼, self.主機, self.連接埠, self.帳號, self.密碼)
 			except Exception as 問題:
 				if 一定愛成功:
 					print('連線失敗，小等閣試……。原因：{0}'.format(問題),
