@@ -20,19 +20,11 @@ import sys
 
 class 剖析結構化工具:
 	def 結構化剖析結果(self, 剖析結果字串):
-# 		print(剖析結果字串.split('#'))
-# 		print(len(剖析結果字串.split('#')))
 		空白, 語句資訊, 結束符號 = 剖析結果字串.split('#')
 		if 空白 != '':
-			print('有問題')
+			raise RuntimeError('剖析工具的格式有改變！！')
 		逝資料, 語句 = 語句資訊.split(' ', 1)
-# 		print(語句)
-		結構化結果 = [逝資料.split(':')[0]]
-		結構化結果.append(self.結構化語句(語句))
-
-
-		結構化結果.append(結束符號)
-		return 結構化結果
+		return 逝資料.split(':')[0],self.結構化語句(語句),結束符號
 	def 結構化語句(self, 剖析語句):
 # 		print(剖析語句			)
 		括號位置 = 剖析語句.find('(')
