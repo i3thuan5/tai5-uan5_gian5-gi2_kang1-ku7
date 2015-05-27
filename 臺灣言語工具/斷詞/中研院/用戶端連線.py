@@ -20,60 +20,39 @@ from socket import socket
 from socket import AF_INET
 from socket import SOCK_STREAM
 import re
-import time
 import sys
+import time
 
-class 官方斷詞剖析工具:
+class 用戶端連線:
 	檢查結果 = re.compile('<result>(.*)</result>')
 	檢查空結果 = re.compile('<result/>')
 	分句 = re.compile('<sentence>(.*?)</sentence>')
-	分詞性 = re.compile('(.*)\((.*)\)')
 	回傳狀況 = re.compile('<processstatus code="\d">(.*?)</processstatus>')
-	def 斷詞(self, 語句, 編碼='UTF-8', 等待=3, 一定愛成功=False,
-			主機='140.109.19.104', 連接埠=1501, 帳號='ihcaoe', 密碼='aip1614'):
-		while True:
-			try:
-				逐逝 = self.連線(語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
-			except Exception as 問題:
-				if 一定愛成功:
-					print('連線失敗，小等閣試……。原因：{0}'.format(問題),
-						file=sys.stderr)
-					time.sleep(10)
-				else:
-					raise
-			else:
-				break
-		結果 = [[]]
-		for 一逝 in 逐逝:
-			逝結果 = []
-			for 詞 in 一逝.strip().split('　'):
-				if 詞 == '':
-					continue
-				# 1989 年 5 月 19, 32 歲 ê 詹益樺為 tio̍h 「台灣獨立」 , tī 台北總督府頭前自焚 .
-				# ['\u30001989(DET)\u3000年5(N)\u3000月(N)\u300019,\u300032(DET)\u3000歲(M)\u3000ê(FW)\u3000詹益樺(N)\u3000為(P)\u3000tio(FW)\u3000̍(FW)\u3000h(FW)\u3000「(PARENTHESISCATEGORY)\u3000台灣(N)\u3000獨立(Vi)\u3000」(PARENTHESISCATEGORY)\u3000,(COMMACATEGORY)', '\u3000t(FW)\u3000ī(FW)\u3000台北(N)\u3000總督府(N)\u3000頭(N)\u3000前(N)\u3000自焚(Vi)\u3000.(PERIODCATEGORY)']
-				try:
-					字, 性 = self.分詞性.split(詞)[1:3]
-				except:
-					字, 性 = 詞, None
-				逝結果.append((字, 性))
-			if 逝結果 == []:
-				結果.append([])
-			else:
-				結果[-1].append(逝結果)
-		return 結果
-
-	def 剖析(self, 語句, 編碼='Big5', 等待=5, 一定愛成功=False,
-			主機='140.109.19.112', 連接埠=8000, 帳號='ihcaoe', 密碼='aip1614'):
+	傳去格式 = '''
+<?xml version="1.0" ?>
+<wordsegmentation version="0.1" charsetcode='{}' >
+<option showcategory="1" />
+<authentication username="{}" password="{}" />
+<text>{}</text>
+</wordsegmentation>
+'''
+	def __init__(self, 主機, 連接埠, 編碼, 帳號, 密碼):
+		self.編碼 = 編碼
+		self.主機 = 主機
+		self.連接埠 = 連接埠
+		self.帳號 = 帳號
+		self.密碼 = 密碼
+	def _語句做了嘛是語句(self, 語句, 等待=3, 一定愛成功=False):
 		# 官方功能無記錄原本換逝資訊，所以愛一逐一擺
 		結果 = []
 		for 一逝 in 語句.split('\n'):
-			愛剖逝 = 一逝.strip()
-			if 愛剖逝 == '':
+			愛做 = 一逝.strip()
+			if 愛做 == '':
 				continue
 			while True:
 				try:
-					剖的結果 = self.連線(愛剖逝, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
-					結果.append(剖的結果)
+					逐逝 = self._連線(愛做, 等待, self.編碼, self.主機, self.連接埠, self.帳號, self.密碼)
+					結果.append(逐逝)
 				except Exception as 問題:
 					if 一定愛成功:
 						print('連線失敗，小等閣試……。原因：{0}'.format(問題),
@@ -84,8 +63,7 @@ class 官方斷詞剖析工具:
 				else:
 					break
 		return 結果
-
-	def 連線(self, 語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼):
+	def _連線(self, 語句, 等待, 編碼, 主機, 連接埠, 帳號, 密碼):
 		連線 = socket(
 			AF_INET, SOCK_STREAM)
 		連線.settimeout(等待)
@@ -126,11 +104,3 @@ class 官方斷詞剖析工具:
 # 			<processstatus code="3">Authentication failed</processstatus>
 			raise RuntimeError(狀況[1])
 		raise RuntimeError('回傳的資料有問題！！')
-	傳去格式 = '''
-<?xml version="1.0" ?>
-<wordsegmentation version="0.1" charsetcode='{}' >
-<option showcategory="1" />
-<authentication username="{}" password="{}" />
-<text>{}</text>
-</wordsegmentation>
-'''
