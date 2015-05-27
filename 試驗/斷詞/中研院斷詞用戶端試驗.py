@@ -16,6 +16,7 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
+from itertools import zip_longest
 import unittest
 from unittest.mock import patch, call
 
@@ -64,10 +65,10 @@ class 中研院斷詞用戶端試驗(unittest.TestCase):
 			'\u3000我(N)\u3000想(Vt)\u3000吃飯(Vi)\u3000。(PERIODCATEGORY)'
 			]
 		斷詞後章物件 = self.用戶端.斷詞(輸入句物件)
-		for 詞物件, 詞性 in zip(
+		for 詞物件, 詞性 in zip_longest(
 					self.網仔.網出詞物件(斷詞後章物件),
 					['N', 'Vt', 'Vi', 'PERIODCATEGORY']
-				, 語句斷詞做語句mock):
+				):
 			self.assertEqual(詞物件.屬性['詞性'], 詞性)
 	def test_物件斷一句話章物件內容(self, 語句斷詞做語句mock):
 		輸入章物件 = self.分析器.建立章物件('我想吃飯。')
@@ -95,10 +96,10 @@ class 中研院斷詞用戶端試驗(unittest.TestCase):
 			'\u3000我(N)\u3000想(Vt)\u3000吃飯(Vi)\u3000。(PERIODCATEGORY)'
 			]
 		斷詞後章物件 = self.用戶端.斷詞(輸入章物件)
-		for 詞物件, 詞性 in zip(
+		for 詞物件, 詞性 in zip_longest(
 					self.網仔.網出詞物件(斷詞後章物件),
 					['N', 'Vt', 'Vi', 'PERIODCATEGORY']
-				, 語句斷詞做語句mock):
+				):
 			self.assertEqual(詞物件.屬性['詞性'], 詞性)
 	@patch('臺灣言語工具.斷詞.中研院.斷詞用戶端.斷詞用戶端._斷句物件詞')
 	def test_物件斷一逝字(self, 斷句物件詞mock, 語句斷詞做語句mock):
@@ -149,10 +150,10 @@ class 中研院斷詞用戶端試驗(unittest.TestCase):
 				'\u3000我(N)\u3000想(Vt)\u3000吃飯(Vi)\u3000。(PERIODCATEGORY)',
 			]
 		斷詞後章物件 = self.用戶端.斷詞(輸入章物件)
-		for 詞物件, 詞性 in zip(
+		for 詞物件, 詞性 in zip_longest(
 					self.網仔.網出詞物件(斷詞後章物件),
 					['N', 'Vt', 'Vi', 'PERIODCATEGORY', '']
-				, 語句斷詞做語句mock):
+				):
 			self.assertEqual(詞物件.屬性['詞性'], 詞性)
 	def test_物件空白逝句物件詞數檢查(self, 語句斷詞做語句mock):
 		輸入章物件 = self.分析器.建立章物件('\n \n')
@@ -182,10 +183,10 @@ class 中研院斷詞用戶端試驗(unittest.TestCase):
 		輸入章物件 = self.分析器.建立章物件('\n \n')
 		語句斷詞做語句mock.return_value = []
 		斷詞後章物件 = self.用戶端.斷詞(輸入章物件)
-		for 詞物件, 詞性 in zip(
+		for 詞物件, 詞性 in zip_longest(
 					self.網仔.網出詞物件(斷詞後章物件),
 					['', '']
-				, 語句斷詞做語句mock):
+				):
 			self.assertEqual(詞物件.屬性['詞性'], 詞性)
 
 	def test_結構斷一句話(self, 語句斷詞做語句mock):
