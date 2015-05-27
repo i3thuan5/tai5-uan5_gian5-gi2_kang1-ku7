@@ -17,8 +17,6 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import re
-import sys
-import time
 
 
 from 臺灣言語工具.斷詞.中研院.用戶端連線 import 用戶端連線
@@ -34,11 +32,7 @@ class 斷詞用戶端(用戶端連線):
 	分詞性 = re.compile('(.*)\((.*)\)')
 	def __init__(self, 主機='140.109.19.104', 連接埠=1501, 編碼='UTF-8',
 			帳號='ihcaoe', 密碼='aip1614'):
-		self.編碼 = 編碼
-		self.主機 = 主機
-		self.連接埠 = 連接埠
-		self.帳號 = 帳號
-		self.密碼 = 密碼
+		super(斷詞用戶端, self).__init__(主機, 連接埠, 編碼, 帳號, 密碼)
 		
 		self.譀鏡 = 物件譀鏡()
 		self.篩仔 = 字物件篩仔()
@@ -95,36 +89,22 @@ class 斷詞用戶端(用戶端連線):
 		結果組物件.內底詞 = [結果詞物件]
 		return 結果組物件
 	def 語句斷詞後結構化(self, 語句):
-		逐逝 = self.語句斷詞做語句(語句)
-		結果 = [[]]
-		for 一逝 in 逐逝:
-			逝結果 = []
-			for 詞 in 一逝.strip().split('　'):
-				if 詞 == '':
-					continue
-				# 1989 年 5 月 19, 32 歲 ê 詹益樺為 tio̍h 「台灣獨立」 , tī 台北總督府頭前自焚 .
-				# ['\u30001989(DET)\u3000年5(N)\u3000月(N)\u300019,\u300032(DET)\u3000歲(M)\u3000ê(FW)\u3000詹益樺(N)\u3000為(P)\u3000tio(FW)\u3000̍(FW)\u3000h(FW)\u3000「(PARENTHESISCATEGORY)\u3000台灣(N)\u3000獨立(Vi)\u3000」(PARENTHESISCATEGORY)\u3000,(COMMACATEGORY)', '\u3000t(FW)\u3000ī(FW)\u3000台北(N)\u3000總督府(N)\u3000頭(N)\u3000前(N)\u3000自焚(Vi)\u3000.(PERIODCATEGORY)']
-				try:
-					字, 性 = self.分詞性.split(詞)[1:3]
-				except:
-					字, 性 = 詞, None
-				逝結果.append((字, 性))
-			if 逝結果 == []:
-				結果.append([])
-			else:
-				結果[-1].append(逝結果)
-		return 結果
+		語句結果 = self.語句斷詞做語句(語句)
+		結構化結果 = []
+		for 一逝字 in 語句結果:
+			一逝結構化=[]
+			for 一句 in 一逝字:
+				逝結果 = []
+				for 詞 in 一句.strip().split('\u3000'):
+					if 詞 == '':
+						continue
+					try:
+						字, 性 = self.分詞性.split(詞)[1:3]
+					except:
+						字, 性 = 詞, None
+					逝結果.append((字, 性))
+				一逝結構化.append(逝結果)
+			結構化結果.append(一逝結構化)
+		return 結構化結果
 	def 語句斷詞做語句(self, 語句, 等待=3, 一定愛成功=False):
-		while True:
-			try:
-				逐逝 = self.連線(語句, 等待, self.編碼, self.主機, self.連接埠, self.帳號, self.密碼)
-			except Exception as 問題:
-				if 一定愛成功:
-					print('連線失敗，小等閣試……。原因：{0}'.format(問題),
-						file=sys.stderr)
-					time.sleep(10)
-				else:
-					raise
-			else:
-				break
-		return 逐逝
+		return self._語句做了嘛是語句(語句, 等待, 一定愛成功)

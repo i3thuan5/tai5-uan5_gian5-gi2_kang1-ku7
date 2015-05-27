@@ -16,43 +16,23 @@
 
 感謝您的使用與推廣～～勞力！承蒙！
 """
-import sys
-import time
-
-
 from 臺灣言語工具.斷詞.中研院.用戶端連線 import 用戶端連線
+from 臺灣言語工具.剖析.中研院.剖析結構化工具 import 剖析結構化工具
 
 class 剖析用戶端(用戶端連線):
 	def __init__(self, 主機='140.109.19.112', 連接埠=8000, 編碼='Big5',
 			帳號='ihcaoe', 密碼='aip1614'):
-		self.編碼 = 編碼
-		self.主機 = 主機
-		self.連接埠 = 連接埠
-		self.帳號 = 帳號
-		self.密碼 = 密碼
-	def 剖析物件(self):
-		pass
-	def 語句剖析後結構化(self):
-		pass
+		super(剖析用戶端, self).__init__(主機, 連接埠, 編碼, 帳號, 密碼)
+		
+		self.結構化工具 = 剖析結構化工具()
+	def 語句剖析後結構化(self, 語句, 等待=5, 一定愛成功=False):
+		語句結果=self.語句剖析做語句(語句, 等待, 一定愛成功)
+		結構化結果=[]
+		for 一逝字 in 語句結果:
+			一逝結構化=[]
+			for 一句 in 一逝字:
+				一逝結構化.append(self.結構化工具.結構化剖析結果(一句))
+			結構化結果.append(一逝結構化)
+		return 結構化結果
 	def 語句剖析做語句(self, 語句, 等待=5, 一定愛成功=False):
-		# 官方功能無記錄原本換逝資訊，所以愛一逐一擺
-		結果 = []
-		for 一逝 in 語句.split('\n'):
-			愛剖逝 = 一逝.strip()
-			if 愛剖逝 == '':
-				continue
-			while True:
-				try:
-					剖的結果 = self.連線(愛剖逝, 等待, self.編碼, self.主機, self.連接埠, self.帳號, self.密碼)
-					結果.append(剖的結果)
-				except Exception as 問題:
-					if 一定愛成功:
-						print('連線失敗，小等閣試……。原因：{0}'.format(問題),
-							file=sys.stderr)
-						time.sleep(10)
-					else:
-						raise
-				else:
-					break
-		print('剖析', 結果)
-		return 結果
+		return self._語句做了嘛是語句(語句, 等待, 一定愛成功)
