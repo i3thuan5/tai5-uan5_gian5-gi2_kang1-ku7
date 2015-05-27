@@ -23,12 +23,18 @@ import time
 from 臺灣言語工具.斷詞.中研院.用戶端連線 import 用戶端連線
 
 class 剖析用戶端(用戶端連線):
+	def __init__(self, 主機='140.109.19.112', 連接埠=8000, 編碼='Big5',
+			帳號='ihcaoe', 密碼='aip1614'):
+		self.編碼 = 編碼
+		self.主機 = 主機
+		self.連接埠 = 連接埠
+		self.帳號 = 帳號
+		self.密碼 = 密碼
 	def 剖析物件(self):
 		pass
 	def 語句剖析後結構化(self):
 		pass
-	def 語句剖析做語句(self, 語句, 編碼='Big5', 等待=5, 一定愛成功=False,
-			主機='140.109.19.112', 連接埠=8000, 帳號='ihcaoe', 密碼='aip1614'):
+	def 語句剖析做語句(self, 語句, 等待=5, 一定愛成功=False):
 		# 官方功能無記錄原本換逝資訊，所以愛一逐一擺
 		結果 = []
 		for 一逝 in 語句.split('\n'):
@@ -37,7 +43,7 @@ class 剖析用戶端(用戶端連線):
 				continue
 			while True:
 				try:
-					剖的結果 = self.連線(愛剖逝, 編碼, 等待, 主機, 連接埠, 帳號, 密碼)
+					剖的結果 = self.連線(愛剖逝, 等待, self.編碼, self.主機, self.連接埠, self.帳號, self.密碼)
 					結果.append(剖的結果)
 				except Exception as 問題:
 					if 一定愛成功:
@@ -48,5 +54,5 @@ class 剖析用戶端(用戶端連線):
 						raise
 				else:
 					break
-		print('剖析',結果)
+		print('剖析', 結果)
 		return 結果

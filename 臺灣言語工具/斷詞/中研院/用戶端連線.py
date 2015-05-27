@@ -34,7 +34,7 @@ class 用戶端連線:
 <text>{}</text>
 </wordsegmentation>
 '''
-	def 連線(self, 語句, 編碼, 等待, 主機, 連接埠, 帳號, 密碼):
+	def 連線(self, 語句, 等待, 編碼, 主機, 連接埠, 帳號, 密碼):
 		連線 = socket(
 			AF_INET, SOCK_STREAM)
 		連線.settimeout(等待)

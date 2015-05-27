@@ -17,12 +17,11 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import unittest
-from unittest.mock import patch
 
 
 from 臺灣言語工具.剖析.中研院.剖析用戶端 import 剖析用戶端
 
-class 中研院剖析用戶端試驗(unittest.TestCase):
+class 中研院剖析用戶端整合試驗(unittest.TestCase):
 	def setUp(self):
 		pass
 	def tearDown(self):
