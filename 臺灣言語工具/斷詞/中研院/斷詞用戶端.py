@@ -17,8 +17,6 @@
 感謝您的使用與推廣～～勞力！承蒙！
 """
 import re
-import sys
-import time
 
 
 from 臺灣言語工具.斷詞.中研院.用戶端連線 import 用戶端連線
@@ -34,11 +32,7 @@ class 斷詞用戶端(用戶端連線):
 	分詞性 = re.compile('(.*)\((.*)\)')
 	def __init__(self, 主機='140.109.19.104', 連接埠=1501, 編碼='UTF-8',
 			帳號='ihcaoe', 密碼='aip1614'):
-		self.編碼 = 編碼
-		self.主機 = 主機
-		self.連接埠 = 連接埠
-		self.帳號 = 帳號
-		self.密碼 = 密碼
+		super(斷詞用戶端, self).__init__(主機, 連接埠, 編碼, 帳號, 密碼)
 		
 		self.譀鏡 = 物件譀鏡()
 		self.篩仔 = 字物件篩仔()
@@ -113,22 +107,4 @@ class 斷詞用戶端(用戶端連線):
 			結構化結果.append(一逝結構化)
 		return 結構化結果
 	def 語句斷詞做語句(self, 語句, 等待=3, 一定愛成功=False):
-		斷詞結果=[]
-		for 一逝 in 語句.split('\n'):
-			愛斷詞 = 一逝.strip()
-			if 愛斷詞 == '':
-				continue
-			while True:
-				try:
-					逐逝 = self.連線(愛斷詞, 等待, self.編碼, self.主機, self.連接埠, self.帳號, self.密碼)
-					斷詞結果.append(逐逝)
-				except Exception as 問題:
-					if 一定愛成功:
-						print('連線失敗，小等閣試……。原因：{0}'.format(問題),
-							file=sys.stderr)
-						time.sleep(10)
-					else:
-						raise
-				else:
-					break
-		return 斷詞結果
+		return self._語句做了嘛是語句(語句, 等待, 一定愛成功)
