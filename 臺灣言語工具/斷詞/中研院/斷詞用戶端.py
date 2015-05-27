@@ -101,7 +101,7 @@ class 斷詞用戶端(用戶端連線):
 			一逝結構化=[]
 			for 一句 in 一逝字:
 				逝結果 = []
-				for 詞 in 一句.strip().split('　'):
+				for 詞 in 一句.strip().split('\u3000'):
 					if 詞 == '':
 						continue
 					try:
@@ -113,16 +113,22 @@ class 斷詞用戶端(用戶端連線):
 			結構化結果.append(一逝結構化)
 		return 結構化結果
 	def 語句斷詞做語句(self, 語句, 等待=3, 一定愛成功=False):
-		while True:
-			try:
-				逐逝 = self.連線(語句, 等待, self.編碼, self.主機, self.連接埠, self.帳號, self.密碼)
-			except Exception as 問題:
-				if 一定愛成功:
-					print('連線失敗，小等閣試……。原因：{0}'.format(問題),
-						file=sys.stderr)
-					time.sleep(10)
+		斷詞結果=[]
+		for 一逝 in 語句.split('\n'):
+			愛斷詞 = 一逝.strip()
+			if 愛斷詞 == '':
+				continue
+			while True:
+				try:
+					逐逝 = self.連線(愛斷詞, 等待, self.編碼, self.主機, self.連接埠, self.帳號, self.密碼)
+					斷詞結果.append(逐逝)
+				except Exception as 問題:
+					if 一定愛成功:
+						print('連線失敗，小等閣試……。原因：{0}'.format(問題),
+							file=sys.stderr)
+						time.sleep(10)
+					else:
+						raise
 				else:
-					raise
-			else:
-				break
-		return 逐逝
+					break
+		return 斷詞結果
