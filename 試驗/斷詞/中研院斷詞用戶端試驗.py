@@ -109,8 +109,8 @@ class 中研院斷詞用戶端試驗(unittest.TestCase):
 			]]
 		self.用戶端.斷詞(輸入章物件)
 		斷句物件詞mock.assert_has_calls([
-				call(self.分析器.建立句物件('我想吃飯。')),
-				call(self.分析器.建立句物件('我想吃很多飯。'))
+				call(self.分析器.建立句物件('我想吃飯。'), 10, False),
+				call(self.分析器.建立句物件('我想吃很多飯。'), 10, False)
 			])
 	def test_物件上尾有換逝符號詞數檢查(self, 語句斷詞做語句mock):
 		輸入章物件 = self.分析器.建立章物件('我想吃飯。\n')
