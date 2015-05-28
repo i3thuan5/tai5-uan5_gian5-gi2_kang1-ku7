@@ -13,12 +13,16 @@
 sudo apt-get install -y g++ libboost-all-dev python3 python-virtualenv
 virtualenv venv --python python3 # 設置環境檔
 . venv/bin/activate # 載入環境
-pip install tai5_uan5_gian5_gi2_kang1_ku7 https://github.com/rsennrich/Bleualign/archive/master.zip pip install https://github.com/kpu/kenlm/archive/master.zip
+pip install https://github.com/rsennrich/Bleualign/archive/master.zip pip install https://github.com/kpu/kenlm/archive/master.zip
+pip install tai5_uan5_gian5_gi2_kang1_ku7
 ```
 
 ##開發
 上面的pip不要裝`tai5_uan5_gian5_gi2_kang1_ku7`
 ```bash
+sudo apt-get install -y g++ libboost-all-dev python3 python-virtualenv
+virtualenv venv --python python3 # 設置環境檔
+. venv/bin/activate # 載入環境
 pip install https://github.com/rsennrich/Bleualign/archive/master.zip pip install https://github.com/kpu/kenlm/archive/master.zip
 ```
 
@@ -33,7 +37,6 @@ pip install https://github.com/rsennrich/Bleualign/archive/master.zip pip instal
 請先安裝python3、[pip](https://pip.pypa.io/en/latest/installing.html)佮[virtualenv](https://virtualenv.readthedocs.org/en/latest/)
 ```bash
 sudo apt-get install -y python3 python-virtualenv
-sudo pip3 install virtualenv
 virtualenv venv --python python3 # 設置環境檔
 . venv/bin/activate # 載入環境
 ```
@@ -59,15 +62,18 @@ pip uninstall tai5_uan5_gian5_gi2_kang1_ku7
 
 ###相關套件
 ####[bleualign](https://github.com/rsennrich/Bleualign)
+平行語句對齊函式庫
 ```bash
 pip install https://github.com/rsennrich/Bleualign/archive/master.zip
 ```
 ####[kenlm](https://github.com/kpu/kenlm)
+語言模型函式庫
 ```bash
 sudo apt-get install -y g++ libboost-all-dev # for Ubuntu 14.04+ /Mint 17+
 pip install https://github.com/kpu/kenlm/archive/master.zip
 ```
 ####[htsengine](https://github.com/sih4sing5hong5/hts_engine_python)
+語音合成工具
 ```bash
 pip install https://github.com/sih4sing5hong5/hts_engine_python/archive/master.zip
 ```
