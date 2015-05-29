@@ -14,6 +14,7 @@ branches:
  only:
   - master
 script:
+ - PYTHONPATH=. coverage run 試驗/走全部試驗.py 單元試驗
  - PYTHONPATH=. coverage run 試驗/走全部試驗.py
 after_success:
   - coverage report
