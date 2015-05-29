@@ -14,11 +14,11 @@ if __name__ == '__main__':
 
 	試驗包 = TestSuite()
 	試驗包.addTest(
-			unittest.defaultTestLoader.discover('試驗',pattern='*[^整][^合].py')
+			unittest.defaultTestLoader.discover('試驗',pattern='*單元試驗.py')
 		)
 	if 整合試驗:
 		試驗包.addTest(
-				unittest.defaultTestLoader.discover('試驗',pattern='*整合.py')
+				unittest.defaultTestLoader.discover('試驗',pattern='*整合試驗.py')
 			)
 	試驗結果=unittest.TextTestRunner().run(試驗包)
 	if 試驗結果. errors!=[] or 試驗結果.failures!=[]:
