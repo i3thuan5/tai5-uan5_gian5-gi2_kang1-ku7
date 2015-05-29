@@ -18,6 +18,7 @@ class 翻譯整合試驗(unittest.TestCase):
 	def tearDown(self):
 		pass
 
+	@unittest.expectedFailure
 	def test_字串轉聲音檔(self):
 		_編碼器 = 語句編碼器()
 		斷詞用戶端 = 摩西用戶端('localhost', 8504, 編碼器=_編碼器)

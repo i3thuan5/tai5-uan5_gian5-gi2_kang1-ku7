@@ -10,7 +10,7 @@ from 臺灣言語工具.斷詞.連詞揀集內組 import 連詞揀集內組
 from 臺灣言語工具.解析整理.轉物件音家私 import 轉物件音家私
 from 臺灣言語工具.解析整理 import 物件譀鏡
 
-class 標音整合試驗(unittest.TestCase):
+class 標全漢全羅整合試驗(unittest.TestCase):
 	def setUp(self):
 		self.粗胚 = 文章粗胚()
 		self.分析器 = 拆文分析器()
@@ -22,6 +22,7 @@ class 標音整合試驗(unittest.TestCase):
 	def tearDown(self):
 		pass
 
+	@unittest.expectedFailure
 	def test_字串斷詞後轉聲音檔(self):
 		閩南語辭典 = ("PYRO:閩南語辭典@localhost:9839")
 		閩南語連詞 = 肯語句連詞('語料/翻譯/閩.lm') 
