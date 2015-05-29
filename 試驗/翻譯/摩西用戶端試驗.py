@@ -1,21 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-著作權所有 (C) 民國103年 意傳文化科技
-開發者：薛丞宏
-網址：http://意傳.台灣
-語料來源：請看各資料庫內說明
-
-本程式乃自由軟體，您必須遵照SocialCalc設計的通用公共授權（Common Public Attribution License, CPAL)來修改和重新發佈這一程式，詳情請參閱條文。授權大略如下，若有歧異，以授權原文為主：
-	１．得使用、修改、複製並發佈此程式碼，且必須以通用公共授權發行；
-	２．任何以程式碼衍生的執行檔或網路服務，必須公開該程式碼；
-	３．將此程式的原始碼當函式庫引用入商業軟體，且不需公開非關此函式庫的任何程式碼
-
-此開放原始碼、共享軟體或說明文件之使用或散佈不負擔保責任，並拒絕負擔因使用上述軟體或說明文件所致任何及一切賠償責任或損害。
-
-臺灣言語工具緣起於本土文化推廣與傳承，非常歡迎各界用於商業軟體，但希望在使用之餘，能夠提供建議、錯誤回報或修補，回饋給這塊土地。
-
-感謝您的使用與推廣～～勞力！承蒙！
-"""
 from unittest.case import TestCase
 from unittest.mock import patch, call
 
@@ -25,6 +8,7 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.基本元素.章 import 章
 from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.基本元素.句 import 句
+from 臺灣言語工具.基本元素.集 import 集
 
 class 摩西用戶端試驗(TestCase):
 	def setUp(self):
@@ -103,45 +87,41 @@ class 摩西用戶端試驗(TestCase):
 	def test_翻譯結果結構(self):
 		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
-		閩南語集物件 = self.分析器.建立集物件('')
-		閩南語集物件.內底組 = [
+		閩南語組陣列 = [
 			self.分析器.建立組物件('阮'),
 			self.分析器.建立組物件('欲'),
 			self.分析器.建立組物件('去'),
 			self.分析器.建立組物件('食飯'),
 			self.分析器.建立組物件('。'),
 			]
-		閩南語句物件 = self.分析器.建立句物件('')
-		閩南語句物件.內底集 = [閩南語集物件]
+		閩南語句物件 = self._組陣列分開包做句物件(閩南語組陣列)
 		self.assertEqual(結果句物件, 閩南語句物件)
 	def test_來源新結構檢查(self):
 		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
 		_, 華語新結構句物件, _ = self.用戶端.翻譯(self.華語句物件)
-		華語集物件 = self.分析器.建立集物件('')
-		華語集物件.內底組 = [
+		華語組陣列 = [
 			self.分析器.建立組物件('我們'),
 			self.分析器.建立組物件('要'),
 			self.分析器.建立組物件('去'),
 			self.分析器.建立組物件('吃飯'),
 			self.分析器.建立組物件('。'),
 			]
-		華語句物件 = self.分析器.建立句物件('')
-		華語句物件.內底集 = [華語集物件]
+		華語句物件 = self._組陣列分開包做句物件(華語組陣列)
 		self.assertEqual(華語新結構句物件, 華語句物件)
 	def test_翻譯結果佮來源長度相仝(self):
 		結果句物件, 華語新結構句物件, _ = self.用戶端.翻譯(self.華語句物件)
-		self.assertEqual(len(結果句物件.內底集[0].內底組),
-			len(華語新結構句物件.內底集[0].內底組))
+		self.assertEqual(len(結果句物件.內底集),
+			len(華語新結構句物件.內底集))
 	def test_翻譯結果對齊檢查(self):
 		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
-		for 組物件 in 結果句物件.內底集[0].內底組:
-			self.assertEqual(組物件, 組物件.翻譯來源組物件.翻譯目標組物件)
+		for 集物件 in 結果句物件.內底集:
+			self.assertEqual(集物件.內底組[0], 集物件.內底組[0].翻譯來源組物件.翻譯目標組物件)
 	def test_來源新結構對齊檢查(self):
 		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
 		_, 華語新結構句物件, _ = self.用戶端.翻譯(self.華語句物件)
-		for 組物件 in 華語新結構句物件.內底集[0].內底組:
-			self.assertEqual(組物件, 組物件.翻譯目標組物件.翻譯來源組物件)
+		for 集物件 in 華語新結構句物件.內底集:
+			self.assertEqual(集物件.內底組[0], 集物件.內底組[0].翻譯目標組物件.翻譯來源組物件)
 	def test_翻譯分數(self):
 		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
 		_, _, 分數 = self.用戶端.翻譯(self.華語句物件)
@@ -149,50 +129,44 @@ class 摩西用戶端試驗(TestCase):
 	def test_全漢全羅分詞結果(self):
 		self.xmlrpcMock.return_value.translate.return_value = self.全漢全羅分詞翻譯結果
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
-		閩南語集物件 = self.分析器.建立集物件('')
-		閩南語集物件.內底組 = [
+		閩南語組陣列 = [
 			self.分析器.轉做組物件('阮｜gun2'),
 			self.分析器.轉做組物件('欲｜beh4'),
 			self.分析器.轉做組物件('去｜khi3'),
 			self.分析器.轉做組物件('食｜tsiah8  飯｜png7'),
 			self.分析器.轉做組物件('。｜.'),
 			]
-		閩南語句物件 = self.分析器.建立句物件('')
-		閩南語句物件.內底集 = [閩南語集物件]
+		閩南語句物件 = self._組陣列分開包做句物件(閩南語組陣列)
 		self.assertEqual(結果句物件, 閩南語句物件)
 	def test_全漢全羅分詞含詞結果(self):
 		self.xmlrpcMock.return_value.translate.return_value = self.全漢全羅分詞含詞翻譯結果
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
-		閩南語集物件 = self.分析器.建立集物件('')
-		閩南語集物件.內底組 = [
+		閩南語組陣列 = [
 			self.分析器.轉做組物件('阮｜gun2'),
 			self.分析器.轉做組物件('欲｜beh4'),
 			self.分析器.轉做組物件('去｜khi3'),
 			self.分析器.轉做組物件('食｜tsiah8 炒-飯｜tsha2-png7'),
 			self.分析器.轉做組物件('。｜.'),
 			]
-		閩南語句物件 = self.分析器.建立句物件('')
-		閩南語句物件.內底集 = [閩南語集物件]
+		閩南語句物件 = self._組陣列分開包做句物件(閩南語組陣列)
 		self.assertEqual(結果句物件, 閩南語句物件)
 	def test_未知詞結果(self):
 		self.xmlrpcMock.return_value.translate.return_value = self.翻譯結果有未知詞出來
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
-		閩南語集物件 = self.分析器.建立集物件('')
-		閩南語集物件.內底組 = [
+		閩南語組陣列 = [
 			self.分析器.建立組物件('阮'),
 			self.分析器.建立組物件('要'),
 			self.分析器.建立組物件('去'),
 			self.分析器.建立組物件('食飯'),
 			self.分析器.建立組物件('。'),
 			]
-		閩南語句物件 = self.分析器.建立句物件('')
-		閩南語句物件.內底集 = [閩南語集物件]
+		閩南語句物件 = self._組陣列分開包做句物件(閩南語組陣列)
 		self.assertEqual(結果句物件, 閩南語句物件)
 	def test_未知詞的詞愛記錄(self):
 		self.xmlrpcMock.return_value.translate.return_value = self.翻譯結果有未知詞出來
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
-		self.assertEqual(self.譀鏡.看型(結果句物件.內底集[0].內底組[1]), '要')
-		self.assertEqual(結果句物件.內底集[0].內底組[1].屬性['未知詞'], '是')
+		self.assertEqual(self.譀鏡.看型(結果句物件.內底集[1].內底組[0]), '要')
+		self.assertEqual(結果句物件.內底集[1].內底組[0].屬性['未知詞'], '是')
 	def test_毋是未知詞的詞袂使記錄(self):
 		self.xmlrpcMock.return_value.translate.return_value = self.翻譯結果有未知詞出來
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
@@ -201,8 +175,8 @@ class 摩西用戶端試驗(TestCase):
 	def test_翻譯結果先後有變化(self):
 		self.xmlrpcMock.return_value.translate.return_value = self.翻譯結果先後有變化
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
-		self.assertEqual(self.譀鏡.看型(結果句物件.內底集[0].內底組[1]), '食飯')
-		self.assertEqual(self.譀鏡.看型(結果句物件.內底集[0].內底組[1].翻譯來源組物件), '吃飯')
+		self.assertEqual(self.譀鏡.看型(結果句物件.內底集[1].內底組[0]), '食飯')
+		self.assertEqual(self.譀鏡.看型(結果句物件.內底集[1].內底組[0].翻譯來源組物件), '吃飯')
 	@patch('臺灣言語工具.翻譯.摩西工具.摩西用戶端.摩西用戶端._翻譯句物件')
 	def test_章物件的結果是章物件(self, 翻譯句物件mock):
 		翻譯句物件mock.return_value = None, None, -21.66
@@ -236,3 +210,10 @@ class 摩西用戶端試驗(TestCase):
 			[call(self.華語句物件), call(self.華語句物件二)],
 			any_order=True
 		)
+	def _組陣列分開包做句物件(self,組陣列):
+		句物件 = 句()
+		for 組物件 in 組陣列:
+			集物件 = 集()
+			集物件.內底組 = [組物件]
+			句物件.內底集.append(集物件)
+		return 句物件
