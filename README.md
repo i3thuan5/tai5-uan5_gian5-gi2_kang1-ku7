@@ -66,7 +66,7 @@ pip uninstall tai5_uan5_gian5_gi2_kang1_ku7
 ```bash
 pip install https://github.com/rsennrich/Bleualign/archive/master.zip
 ```
-####[kenlm](https://github.com/kpu/kenlm)
+####[Kenlm](https://github.com/kpu/kenlm)
 語言模型函式庫
 ```bash
 sudo apt-get install -y g++ libboost-all-dev # for Ubuntu 14.04+ /Mint 17+
@@ -76,6 +76,29 @@ pip install https://github.com/kpu/kenlm/archive/master.zip
 語音合成工具
 ```bash
 pip install https://github.com/sih4sing5hong5/hts_engine_python/archive/master.zip
+```
+### [Moses](http://www.statmt.org/moses/?n=Development.GetStarted)
+翻譯工具
+```bash
+sudo apt-get install -y g++ git subversion automake libtool zlib1g-dev libboost-all-dev libbz2-dev liblzma-dev python3-dev libgoogle-perftools-dev # moses
+sudo apt-get install -y libxmlrpc-c++8-dev # mosesserver的套件
+sudo apt-get install cmake # mgiza
+```
+mgiza安裝
+```
+git clone --depth 1 https://github.com/moses-smt/mgiza.git
+cd mgiza/mgizapp/
+cmake .
+make
+make install
+```
+資料位置：`mgiza/mgizapp/inst`
+
+moses安裝
+```bash
+git clone --depth 1 https://github.com/moses-smt/mosesdecoder.git
+cd mosesdecoder/
+./bjam -j4
 ```
 
 ##聲明
