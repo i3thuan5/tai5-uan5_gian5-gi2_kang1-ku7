@@ -8,7 +8,7 @@ from 臺灣言語工具.表單.肯語句連詞 import 肯語句連詞
 from 臺灣言語工具.斷詞.拄好長度辭典揣詞 import 拄好長度辭典揣詞
 from 臺灣言語工具.斷詞.連詞揀集內組 import 連詞揀集內組
 from 臺灣言語工具.解析整理.轉物件音家私 import 轉物件音家私
-from 臺灣言語工具.解析整理 import 物件譀鏡
+from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 
 class 標全漢全羅整合試驗(unittest.TestCase):
 	def setUp(self):

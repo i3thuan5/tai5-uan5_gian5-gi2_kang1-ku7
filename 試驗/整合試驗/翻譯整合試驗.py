@@ -5,7 +5,7 @@ from 臺灣言語工具.翻譯.斷詞斷字翻譯 import 斷詞斷字翻譯
 from 臺灣言語工具.翻譯.摩西工具.摩西用戶端 import 摩西用戶端
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.翻譯.摩西工具.語句編碼器 import 語句編碼器
-from 臺灣言語工具.解析整理 import 物件譀鏡
+from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.斷詞.中研院.斷詞用戶端 import 斷詞用戶端
 
 class 翻譯整合試驗(unittest.TestCase):
