@@ -79,7 +79,7 @@ class 語音標仔轉換:
 	def _章物件轉完整合成標仔(self, 章物件, 加短恬):
 		全部標仔 = []
 		for 句物件 in 章物件.內底句:
-			全部標仔.append(self._句物件轉標仔(句物件, 加短恬))
+			全部標仔.append(self._句物件轉完整合成標仔(句物件, 加短恬))
 		return itertools.chain.from_iterable(全部標仔)
 	def _句物件轉完整合成標仔(self, 句物件, 加短恬):
 		for 集物件 in 句物件.內底集:

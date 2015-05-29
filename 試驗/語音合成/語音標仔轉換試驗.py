@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 import unittest
+from unittest.mock import patch, call
+
+
 from 臺灣言語工具.語音合成.語音標仔轉換 import 語音標仔轉換
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 臺灣言語工具.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
@@ -177,6 +180,14 @@ class 語音標仔轉換試驗(unittest.TestCase):
 			'ui',
 			'sil', ]
 			)
+	@patch('臺灣言語工具.語音合成.語音標仔轉換.語音標仔轉換._句物件轉完整合成標仔')
+	def test_章物件轉合成標仔(self, 句物件轉標仔mock):
+		章物件 = self.分析器.建立章物件('食飽未？食飽矣！')
+		self.合成標籤工具.物件轉完整合成標仔(章物件)
+		句物件轉標仔mock.assert_has_calls([
+				call(self.分析器.建立句物件('食飽未？'), False),
+				call(self.分析器.建立句物件('食飽矣！'), False),
+			])
 
 	def 檢驗標仔有對無(self, 結果, 答案):
 		self.assertEqual(len(結果), len(答案))
