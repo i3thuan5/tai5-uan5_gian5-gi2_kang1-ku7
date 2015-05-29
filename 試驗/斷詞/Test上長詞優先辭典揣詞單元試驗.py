@@ -2,8 +2,9 @@
 from 臺灣言語工具.斷詞.上長詞優先辭典揣詞 import 上長詞優先辭典揣詞
 from 臺灣言語工具.基本元素.句 import 句
 from 試驗.斷詞.辭典揣詞單元試驗 import 辭典揣詞單元試驗
+from unittest.case import TestCase
 
-class 上長詞優先辭典揣詞單元試驗(辭典揣詞單元試驗):
+class 上長詞優先辭典揣詞單元試驗(辭典揣詞單元試驗, TestCase):
 	辭典揣詞 = 上長詞優先辭典揣詞
 
 	def test_四一切比兩三切比一四切閣較好(self):
