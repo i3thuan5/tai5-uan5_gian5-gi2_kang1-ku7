@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
+from sys import exit
 import sys
 import unittest
 from unittest.suite import TestSuite
@@ -64,7 +65,7 @@ from 試驗.剖析.中研院自設剖析用戶端試驗 import 中研院自設�
 from 試驗.整合試驗.中研院斷詞用戶端整合試驗 import 中研院斷詞用戶端整合試驗
 from 試驗.整合試驗.中研院剖析用戶端整合試驗 import 中研院剖析用戶端整合試驗
 from 試驗.翻譯.斷詞斷字翻譯試驗 import 斷詞斷字翻譯試驗
-from sys import exit
+from 試驗.整合試驗.語音合成整合試驗 import 語音合成整合試驗
 # from 試驗.字音字型出題.揣閩南語辭典試驗 import 揣閩南語題目試驗
 
 if __name__ == '__main__':
@@ -166,6 +167,11 @@ if __name__ == '__main__':
 		摩西用戶端試驗,
 		斷詞斷字翻譯試驗,
 		])
+	
+	if 整合試驗:
+		愛走的試驗.extend([
+			語音合成整合試驗,
+			])
 	
 	試驗包 = TestSuite()
 	for 試驗 in 愛走的試驗:

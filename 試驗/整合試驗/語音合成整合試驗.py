@@ -57,6 +57,7 @@ class 語音合成整合試驗(unittest.TestCase):
 		聲音檔 = self.音檔頭前表 .加起哩(原始取樣, 一點幾位元組, 一秒幾點, 幾个聲道)
 		self.assertIsInstance(聲音檔, bytes)
 		
+	@unittest.expectedFailure
 	def test_字串斷詞後轉聲音檔(self):
 		閩南語辭典 = Pyro4.Proxy("PYRO:閩南語辭典@localhost:9839")
 		閩南語連詞 = 肯語句連詞('語料/翻譯/閩.lm') 
