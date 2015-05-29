@@ -12,14 +12,13 @@ class 翻譯整合單元試驗(unittest.TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
 		self.譀鏡 = 物件譀鏡()
-		
-		self.用戶端 = 斷詞用戶端()
-		self.斷詞斷字翻譯 = 斷詞斷字翻譯()
 	def tearDown(self):
 		pass
 
 	@unittest.expectedFailure
 	def test_字串轉聲音檔(self):
+		self.用戶端 = 斷詞用戶端()
+		self.斷詞斷字翻譯 = 斷詞斷字翻譯()
 		_編碼器 = 語句編碼器()
 		斷詞用戶端 = 摩西用戶端('localhost', 8504, 編碼器=_編碼器)
 		斷字用戶端 = 摩西用戶端('localhost', 8501, 編碼器=_編碼器)
