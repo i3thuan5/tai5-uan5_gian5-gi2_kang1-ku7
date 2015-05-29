@@ -20,6 +20,9 @@ if __name__ == '__main__':
 		試驗包.addTest(
 				unittest.defaultTestLoader.discover('試驗',pattern='*整合試驗.py')
 			)
+	print(試驗包.countTestCases)
+	print((試驗包.countTestCases()))
+	exit(0)
 	試驗結果=unittest.TextTestRunner().run(試驗包)
 	if 試驗結果. errors!=[] or 試驗結果.failures!=[]:
 		exit(1)
