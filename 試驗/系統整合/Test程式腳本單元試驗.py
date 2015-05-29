@@ -2,11 +2,11 @@
 from unittest.case import TestCase
 
 
-from 臺灣言語工具.系統整合.腳本程式 import 腳本程式
-class 腳本程式單元試驗(TestCase):
+from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
+class 程式腳本單元試驗(TestCase):
 	@classmethod
 	def setUpClass(cls):
-		cls.腳本=腳本程式()
+		cls.腳本=程式腳本()
 	def test_空執行檔路徑加尾(self):
 		self.assertEqual(self.腳本._執行檔路徑加尾(''),'')
 	def test_根目錄執行檔路徑加尾(self):

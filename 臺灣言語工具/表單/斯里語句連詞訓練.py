@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
 from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
-from 臺灣言語工具.系統整合.腳本程式 import 腳本程式
+from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 
-class 斯里語句連詞訓練(腳本程式):
+class 斯里語句連詞訓練(程式腳本):
 	'SRILM'
 	def 訓練(self, 語料,
 			暫存資料夾,

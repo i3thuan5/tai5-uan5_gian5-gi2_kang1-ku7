@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
 from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
-from 臺灣言語工具.系統整合.腳本程式 import 腳本程式
+from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 
-class KenLM語言模型訓練(腳本程式):
+class KenLM語言模型訓練(程式腳本):
 	def 訓練(self, 語料,
 			暫存資料夾,
 			連紲詞長度=3,

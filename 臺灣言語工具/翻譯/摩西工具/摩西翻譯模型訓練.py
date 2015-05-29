@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.系統整合.腳本程式 import 腳本程式
+from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 import os
 import shutil
 
@@ -7,7 +7,7 @@ import shutil
 from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
 from 臺灣言語工具.表單.KenLM語言模型訓練 import KenLM語言模型訓練
 
-class 摩西翻譯模型訓練(腳本程式):
+class 摩西翻譯模型訓練(程式腳本):
 	def 訓練(self, 來源語言平行語料, 目標語言平行語料, 目標語言語料,
 			暫存資料夾,
 			連紲詞長度=3,

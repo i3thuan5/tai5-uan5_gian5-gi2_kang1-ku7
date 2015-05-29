@@ -2,7 +2,7 @@
 import os
 import gzip
 
-class 腳本程式:
+class 程式腳本:
 	def _執行檔路徑加尾(self, 執行檔路徑):
 		if 執行檔路徑 != '' and not 執行檔路徑.endswith('/'):
 			return 執行檔路徑 + '/'
