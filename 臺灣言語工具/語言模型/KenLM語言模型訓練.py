@@ -7,7 +7,7 @@ class KenLM語言模型訓練(程式腳本):
 	def __init__(self, MOSES資料夾路徑=''):
 		self.訓練指令 = '{0}bin/lmplz'.format(self._執行檔路徑加尾(MOSES資料夾路徑))
 		if not os.path.isfile(self.訓練指令):
-			raise FileNotFoundError('佇{0}揣無KenLM執行檔！！')
+			raise FileNotFoundError('佇{0}揣無KenLM執行檔！！'.format(self.訓練指令))
 	def 訓練(self, 語料陣列,
 				暫存資料夾,
 				連紲詞長度=3,

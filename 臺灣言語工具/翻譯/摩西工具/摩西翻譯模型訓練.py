@@ -12,7 +12,6 @@ class 摩西翻譯模型訓練(程式腳本):
 			暫存資料夾,
 			連紲詞長度=3,
 			編碼器=無編碼器(),
-			SRILM執行檔路徑='',
 			GIZA執行檔路徑='',  # 愛有 mkcls, GIZA++/mgiza, & snt2cooc.out/snt2cooc
 			MOSES路徑=''):
 		語言模型訓練 = KenLM語言模型訓練(MOSES路徑)
