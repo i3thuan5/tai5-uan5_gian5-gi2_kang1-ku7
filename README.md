@@ -79,7 +79,7 @@ pip install https://github.com/sih4sing5hong5/hts_engine_python/archive/master.z
 ```
 
 ##聲明
-本程式乃自由軟體，您必須遵照SocialCalc設計的通用公共授權（Common Public Attribution License, CPAL)來修改和重新發佈這一程式，詳情請參閱條文。授權大略如下，若有歧異，以授權原文為主：
+本程式乃自由軟體，您必須遵照SocialCalc設計的通用公共授權（Common Public Attribution License, CPAL)來修改和重新發佈這一程式，詳情請參閱條文。授權大略如下，若有歧異，以`LICENSE`授權原文為主：
 	１．得使用、修改、複製並發佈此程式碼，且必須以通用公共授權發行；
 	２．任何以程式碼衍生的執行檔或網路服務，必須公開該程式碼；
 	３．將此程式的原始碼當函式庫引用入商業軟體，且不需公開非關此函式庫的任何程式碼
