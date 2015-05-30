@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-import os
 import gzip
+import io
+import os
+
 
 class 程式腳本:
 	def _執行檔路徑加尾(self, 執行檔路徑):
@@ -19,11 +21,13 @@ class 程式腳本:
 	def _陣列寫入檔案(self, 檔名, 陣列):
 		self._字串寫入檔案(檔名, '\n'.join(陣列))
 	def _字串寫入檔案(self, 檔名, 字串):
-		檔案 = open(檔名, 'w')
+		開檔 = self._開檔函式(檔名)
+		檔案 = 開檔(檔名, mode='wt', encoding='utf-8')
 		print(字串, file=檔案)
 		檔案.close()
 	def _讀檔案(self, 檔名):
-		檔案 = open(檔名, 'r')
+		開檔 = self._開檔函式(檔名)
+		檔案 = 開檔(檔名, mode='rt', encoding='utf-8')
 		資料 = []
 		for 一逝 in 檔案:
 			一逝 = 一逝.rstrip()
@@ -31,13 +35,13 @@ class 程式腳本:
 				資料.append(一逝)
 		檔案.close()
 		return 資料
-	def _檔案合做一个(self, 平行檔名, 語言平行語料, 編碼器):
-		with open(平行檔名, 'w') as 寫檔:
-			for 語言檔案 in 語言平行語料:
-				if 語言檔案.endswith('.gz'):
-					開檔 = gzip.open
-				else:
-					開檔 = open
-				with 開檔(語言檔案, mode='rt') as 檔案:
-					for 一逝 in 檔案.readlines():
-						print(編碼器.編碼(一逝.strip()), file=寫檔)
+	def _檔案合做一个(self, 上尾平行語料檔名, 全部平行語料檔名陣列, 編碼器):
+		with open(上尾平行語料檔名, 'w') as 寫檔:
+			for 平行語料檔名 in 全部平行語料檔名陣列:
+				for 一逝 in self._讀檔案(平行語料檔名):
+					print(編碼器.編碼(一逝.strip()), file=寫檔)
+	def _開檔函式(self, 檔名):
+		if 檔名.endswith('gz'):
+			return gzip.open
+		else:
+			return io.open
