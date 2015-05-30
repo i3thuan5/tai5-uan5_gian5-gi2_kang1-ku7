@@ -11,7 +11,7 @@ import itertools
 機率=P(丙), P(乙丙), P(甲乙丙)
 條件=P(丙), P(乙丙)/P(乙), P(甲乙丙)/P(甲乙)
 '''
-class 肯語句連詞單元試驗(TestCase):
+class KenLM語言模型訓練單元試驗(TestCase):
 	忍受 = 1e-7
 	def setUp(self):
 		self.分析器 = 拆文分析器()

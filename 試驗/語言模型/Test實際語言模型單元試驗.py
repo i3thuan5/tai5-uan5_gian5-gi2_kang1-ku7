@@ -11,7 +11,7 @@ from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 機率=P(丙), P(乙丙), P(甲乙丙)
 條件=P(丙), P(乙丙)/P(乙), P(甲乙丙)/P(甲乙)
 '''
-class 實際語句連詞單元試驗(TestCase):
+class 實際語言模型單元試驗(TestCase):
 	忍受 = 1e-10
 	def setUp(self):
 		self.粗胚 = 文章粗胚()
