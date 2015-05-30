@@ -24,7 +24,7 @@ class 摩西翻譯模型訓練整合試驗(TestCase):
 				編碼器=語句編碼器(),
 				SRILM執行檔路徑='/home/tshau/git/mosesdecoder-depth1',
 				GIZA執行檔路徑='/home/tshau/git/mgiza/mgizapp/bin',
-				MOSES腳本路徑='/home/tshau/git/mosesdecoder-depth1/scripts/',
+				MOSES路徑='/home/tshau/git/mosesdecoder-depth1/',
 			)
 		
 		#刣掉訓練出來的模型
@@ -40,7 +40,7 @@ class 摩西翻譯模型訓練整合試驗(TestCase):
 				編碼器=語句編碼器(),
 				SRILM執行檔路徑='/home/tshau/git/mosesdecoder-depth1',
 				GIZA執行檔路徑='/home/tshau/git/mgiza/mgizapp/bin',
-				MOSES腳本路徑='/home/tshau/git/mosesdecoder-depth1/scripts/',
+				MOSES路徑='/home/tshau/git/mosesdecoder-depth1/',
 			)
 	
 		斷詞編碼器 = 斷詞轉斷字編碼器()
@@ -52,7 +52,7 @@ class 摩西翻譯模型訓練整合試驗(TestCase):
 				編碼器=斷詞編碼器(),
 				SRILM執行檔路徑='/home/tshau/git/mosesdecoder-depth1',
 				GIZA執行檔路徑='/home/tshau/git/mgiza/mgizapp/bin',
-				MOSES腳本路徑='/home/tshau/git/mosesdecoder-depth1/scripts/',
+				MOSES路徑='/home/tshau/git/mosesdecoder-depth1/',
 			)
 		
 		#刣掉訓練出來的模型
