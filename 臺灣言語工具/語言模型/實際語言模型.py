@@ -3,9 +3,11 @@ from 臺灣言語工具.基本元素.章 import 章
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 from math import log10
 from math import pow
-from 臺灣言語工具.表單.語句連詞 import 語句連詞
 
-class 實際語句連詞(語句連詞):
+
+from 臺灣言語工具.語言模型.語言模型 import 語言模型
+
+class 實際語言模型(語言模型):
 	基本 = 0.02
 	權重 = [0.08, 0.2, 0.7]
 	def __init__(self, 上濟詞數):

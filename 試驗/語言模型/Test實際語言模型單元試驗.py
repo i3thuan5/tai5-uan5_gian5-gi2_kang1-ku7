@@ -3,8 +3,8 @@ from unittest.case import TestCase
 from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from math import log10
-from 臺灣言語工具.表單.實際語句連詞 import 實際語句連詞
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
+from 臺灣言語工具.語言模型.實際語言模型 import 實際語言模型
 '''
 甲乙丙
 數量=C(丙), C(乙丙), C(甲乙丙)
@@ -31,7 +31,7 @@ class 實際語言模型單元試驗(TestCase):
 		self.出去型 = '出去'
 		self.出去音 = 'tshut4-0khi3'
 		self.出去物件 = self.分析器.產生對齊詞(self.出去型, self.出去音)
-		self.型態 = 實際語句連詞
+		self.型態 = 實際語言模型
 	def tearDown(self):
 		pass
 		

@@ -5,13 +5,13 @@ from 臺灣言語工具.基本元素.集 import 集
 from 臺灣言語工具.基本元素.句 import 句
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.斷詞.連詞揀集內組 import 連詞揀集內組
-from 臺灣言語工具.表單.實際語句連詞 import 實際語句連詞
+from 臺灣言語工具.語言模型.實際語言模型 import 實際語言模型
 
 class 連詞揀集內組單元試驗(TestCase):
 	忍受 = 1e-10
 	def setUp(self):
 		self.分析器 = 拆文分析器()
-		self.連詞 = 實際語句連詞(3)
+		self.連詞 = 實際語言模型(3)
 		self.用連詞揀 = 連詞揀集內組()
 
 		self.我有一張桌仔 = self.分析器.產生對齊句(
