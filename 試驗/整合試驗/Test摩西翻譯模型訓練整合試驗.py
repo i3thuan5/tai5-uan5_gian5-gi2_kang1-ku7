@@ -22,8 +22,6 @@ class 摩西翻譯模型訓練整合試驗(TestCase):
 				os.path.join(self.這馬目錄, '模型資料'),
 				連紲詞長度=2,
 				編碼器=語句編碼器(),
-				GIZA執行檔路徑='/home/tshau/git/mgiza/mgizapp/bin',
-				MOSES路徑='/home/tshau/git/mosesdecoder-depth1/',
 			)
 		
 		#刣掉訓練出來的模型
@@ -37,8 +35,6 @@ class 摩西翻譯模型訓練整合試驗(TestCase):
 				斷詞暫存資料夾,
 				連紲詞長度=2,
 				編碼器=語句編碼器(),
-				GIZA執行檔路徑='/home/tshau/git/mgiza/mgizapp/bin',
-				MOSES路徑='/home/tshau/git/mosesdecoder-depth1/',
 			)
 	
 		斷詞編碼器 = 斷詞轉斷字編碼器()

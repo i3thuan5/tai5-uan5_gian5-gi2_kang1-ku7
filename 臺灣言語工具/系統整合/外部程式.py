@@ -7,4 +7,8 @@ class 外部程式:
 		while os.path.basename(程式所在) != '臺灣言語工具':
 			程式所在 = os.path.dirname(程式所在)
 		程式所在 = os.path.dirname(程式所在)
-		return os.path.join(程式所在,'外部程式')
+		return os.path.join(程式所在, '外部程式')
+	def moses預設目錄(self):
+		return os.path.join(self.目錄(), 'mosesdecoder')
+	def mgiza預設目錄(self):
+		return os.path.join(self.目錄(), 'mgiza', 'mgizapp')
