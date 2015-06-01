@@ -3,6 +3,7 @@ import gzip
 import io
 import os
 from subprocess import Popen, PIPE
+from contextlib import contextmanager
 
 
 class 程式腳本:
@@ -50,3 +51,12 @@ class 程式腳本:
 			return gzip.open
 		else:
 			return io.open
+	@contextmanager
+	def _換目錄(self,newdir):
+		'http://stackoverflow.com/questions/431684/how-do-i-cd-in-python/24176022#24176022'
+		prevdir = os.getcwd()
+		os.chdir(os.path.expanduser(newdir))
+		try:
+			yield
+		finally:
+			os.chdir(prevdir)

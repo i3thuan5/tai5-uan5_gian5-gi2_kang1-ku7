@@ -91,3 +91,10 @@ class 程式腳本單元試驗(TestCase):
 		os.remove(臺灣檔名)
 		os.remove(建國檔名)
 		os.remove(上尾平行語料檔名)
+	
+	def test_換目錄(self):
+		原本目錄=os.getcwd()
+		self.assertNotEqual(os.getcwd(), self.這馬目錄)
+		with self.腳本._換目錄(self.這馬目錄):
+			self.assertEqual(os.getcwd(), self.這馬目錄)
+		self.assertEqual(os.getcwd(), 原本目錄)
