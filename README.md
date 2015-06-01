@@ -96,7 +96,7 @@ make install
 
 moses安裝
 ```bash
-git clone --depth 1 https://github.com/moses-smt/mosesdecoder.git
+git clone --depth 1 https://github.com/sih4sing5hong5/mosesdecoder.git
 cd mosesdecoder/
 ./bjam -j4
 ```
