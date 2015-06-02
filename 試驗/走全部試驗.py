@@ -15,16 +15,16 @@ if __name__ == '__main__':
 
 	試驗包 = TestSuite()
 	試驗包.addTest(
-			unittest.defaultTestLoader.discover('試驗',pattern='Test*單元試驗.py')
+			unittest.defaultTestLoader.discover('試驗', pattern='Test*單元試驗.py')
 		)
 	if 整合試驗:
 		試驗包.addTest(
-				unittest.defaultTestLoader.discover('試驗',pattern='Test*整合試驗.py')
+				unittest.defaultTestLoader.discover('試驗', pattern='Test*整合試驗.py')
 			)
-		安裝程式=安裝摩西翻譯佮相關程式()
-		安裝程式.安裝moses()
+		安裝程式 = 安裝摩西翻譯佮相關程式()
+		安裝程式.安裝moses(編譯CPU數=1)
 		安裝程式.安裝mgiza()
-	試驗結果=unittest.TextTestRunner().run(試驗包)
-	if 試驗結果. errors!=[] or 試驗結果.failures!=[]:
+	試驗結果 = unittest.TextTestRunner().run(試驗包)
+	if 試驗結果. errors != [] or 試驗結果.failures != []:
 		exit(1)
 	exit(0)
