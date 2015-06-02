@@ -11,15 +11,23 @@ class 程式腳本:
 		if 執行檔路徑 != '' and not 執行檔路徑.endswith('/'):
 			return 執行檔路徑 + '/'
 		return 執行檔路徑
-	def _走指令(self, 指令):
-		程序 = Popen([指令], stdout=PIPE, stderr=PIPE, shell=True)
-		輸出資訊, 錯誤輸出資訊 = 程序.communicate()
-		回傳值 = 程序.poll()
-		if 回傳值 != 0:
-			raise RuntimeError(
-					'指令走到一半發生問題！！指令：{0}\n輸出：{1}\n錯誤資訊：{2}\n'
-						.format(指令, 輸出資訊.decode('utf-8'), 錯誤輸出資訊.decode('utf-8'))
-				)
+	def _走指令(self, 指令, 愛直接顯示輸出=False):
+		if 愛直接顯示輸出:
+			程序 = Popen([指令], shell=True)
+			回傳值 = 程序.wait()
+			if 回傳值 != 0:
+				raise RuntimeError(
+						'指令走到一半發生問題！！指令：{0}'.format(指令)
+					)
+		else:
+			程序 = Popen([指令], stdout=PIPE, stderr=PIPE, shell=True)
+			輸出資訊, 錯誤輸出資訊 = 程序.communicate()
+			回傳值 = 程序.poll()
+			if 回傳值 != 0:
+				raise RuntimeError(
+						'指令走到一半發生問題！！指令：{0}\n輸出：{1}\n錯誤資訊：{2}\n'
+							.format(指令, 輸出資訊.decode('utf-8'), 錯誤輸出資訊.decode('utf-8'))
+					)
 	def _細項目錄(self, 資料目錄, 細項名):
 		細項目錄 = os.path.join(資料目錄, 細項名)
 		os.makedirs(細項目錄, exist_ok=True)
@@ -52,7 +60,7 @@ class 程式腳本:
 		else:
 			return io.open
 	@contextmanager
-	def _換目錄(self,newdir):
+	def _換目錄(self, newdir):
 		'http://stackoverflow.com/questions/431684/how-do-i-cd-in-python/24176022#24176022'
 		prevdir = os.getcwd()
 		os.chdir(os.path.expanduser(newdir))
