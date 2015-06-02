@@ -8,6 +8,7 @@ from unittest.mock import patch, call
 
 from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
+from itertools import zip_longest
 class 程式腳本單元試驗(TestCase):
 	def setUp(self):
 		self.腳本 = 程式腳本()
@@ -39,8 +40,9 @@ class 程式腳本單元試驗(TestCase):
 	def test_寫一般檔案(self):
 		檔名 = os.path.join(self.這馬目錄, '文件.txt')
 		self.腳本._陣列寫入檔案(檔名, ['臺灣', '建國'])
-		for 原本, 讀檔 in zip(['臺灣', '建國'], io.open(檔名, mode='rt').readlines()):
-			self.assertEqual(原本, 讀檔.strip())
+		with io.open(檔名, mode='rt') as 檔案:
+			for 原本, 讀檔 in zip_longest(['臺灣', '建國'], 檔案.readlines()):
+				self.assertEqual(原本, 讀檔.strip())
 		os.remove(檔名)
 	def test_讀寫一般檔案(self):
 		檔名 = os.path.join(self.這馬目錄, '文件.txt')
@@ -50,8 +52,9 @@ class 程式腳本單元試驗(TestCase):
 	def test_寫壓縮檔案(self):
 		檔名 = os.path.join(self.這馬目錄, '文件.txt.gz')
 		self.腳本._陣列寫入檔案(檔名, ['臺灣', '建國'])
-		for 原本, 讀檔 in zip(['臺灣', '建國'], gzip.open(檔名, mode='rt').readlines()):
-			self.assertEqual(原本, 讀檔.strip())
+		with gzip.open(檔名, mode='rt') as 檔案:
+			for 原本, 讀檔 in zip_longest(['臺灣', '建國'], 檔案.readlines()):
+				self.assertEqual(原本, 讀檔.strip())
 		os.remove(檔名)
 	def test_讀寫壓縮檔案(self):
 		檔名 = os.path.join(self.這馬目錄, '文件.txt.gz')
