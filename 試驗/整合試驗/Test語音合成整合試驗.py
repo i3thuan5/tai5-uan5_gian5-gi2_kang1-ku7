@@ -15,6 +15,7 @@ from 臺灣言語工具.斷詞.連詞揀集內組 import 連詞揀集內組
 from 臺灣言語工具.解析整理.轉物件音家私 import 轉物件音家私
 from 臺灣言語工具.語音合成.閩南語變調 import 閩南語變調
 from 臺灣言語工具.語言模型.KenLM語言模型 import KenLM語言模型
+from 臺灣言語工具.辭典.型音辭典 import 型音辭典
 
 class 語音合成整合單元試驗(unittest.TestCase):
 	模型網址 = 'http://sih4sing5hong5.github.io/hts_engine_python/example/Taiwanese.htsvoice'
@@ -56,13 +57,18 @@ class 語音合成整合單元試驗(unittest.TestCase):
 			htsengine.synthesize(self.閩南語模型, 愛合成標仔)
 		聲音檔 = self.音檔頭前表 .加起哩(原始取樣, 一點幾位元組, 一秒幾點, 幾个聲道)
 		self.assertIsInstance(聲音檔, bytes)
-		
-	@unittest.expectedFailure
+	
 	def test_字串斷詞後轉聲音檔(self):
-		閩南語辭典 = "PYRO:閩南語辭典@localhost:9839"
-		閩南語連詞 = KenLM語言模型('語料/翻譯/閩.lm') 
+		閩南語辭典 = 型音辭典(2)
+		閩南語辭典.加詞(self.分析器.產生對齊詞('阿媠', 'a1-sui2'))
+		閩南語辭典.加詞(self.分析器.產生對齊詞('愛 ', 'ai3'))
+		閩南語辭典.加詞(self.分析器.產生對齊詞('我', 'gua2'))
+		閩南語辭典.加詞(self.分析器.產生對齊詞('我', 'ngoo2'))
+		閩南語連詞 = KenLM語言模型(os.path.join(  # '我｜gua2 愛｜ai3 阿-媠｜a1-sui2'
+				os.path.dirname(os.path.abspath(__file__)),'合成語料','我愛阿媠.arpa')
+			)
 		
-		閩南語語句 = 'gua2 ai3 a1-sui2'
+		閩南語語句 = '我愛阿媠'
 		
 		處理減號 = self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 閩南語語句)
 		章物件 = self.分析器.建立章物件(處理減號)
