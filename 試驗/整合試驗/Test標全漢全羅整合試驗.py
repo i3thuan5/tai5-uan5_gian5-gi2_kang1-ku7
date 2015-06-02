@@ -4,11 +4,11 @@ import unittest
 
 
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.表單.肯語句連詞 import 肯語句連詞
 from 臺灣言語工具.斷詞.拄好長度辭典揣詞 import 拄好長度辭典揣詞
 from 臺灣言語工具.斷詞.連詞揀集內組 import 連詞揀集內組
 from 臺灣言語工具.解析整理.轉物件音家私 import 轉物件音家私
 from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
+from 臺灣言語工具.語言模型.KenLM語言模型 import KenLM語言模型
 
 class 標全漢全羅整合單元試驗(unittest.TestCase):
 	def setUp(self):
@@ -25,7 +25,7 @@ class 標全漢全羅整合單元試驗(unittest.TestCase):
 	@unittest.expectedFailure
 	def test_字串斷詞後轉聲音檔(self):
 		閩南語辭典 = ("PYRO:閩南語辭典@localhost:9839")
-		閩南語連詞 = 肯語句連詞('語料/翻譯/閩.lm') 
+		閩南語連詞 = KenLM語言模型('語料/翻譯/閩.lm') 
 		
 		閩南語語句 = 'gua2 ai3 a1-sui2'
 		

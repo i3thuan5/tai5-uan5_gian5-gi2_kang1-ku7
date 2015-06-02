@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import kenlm
-from 臺灣言語工具.表單.語句連詞 import 語句連詞
 from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.基本元素.公用變數 import 分詞符號
+from 臺灣言語工具.語言模型.語言模型 import 語言模型
 
-class 肯語句連詞(語句連詞):
+class KenLM語言模型(語言模型):
 	_譀鏡 = 物件譀鏡()
 	def __init__(self, 語言模型檔案):
 		self._語言模型 = kenlm.LanguageModel(語言模型檔案)

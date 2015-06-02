@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.表單.文字辭典 import 文字辭典
+from 臺灣言語工具.辭典.文字辭典 import 文字辭典
 from 臺灣言語工具.基本元素.公用變數 import 無音
 from 臺灣言語工具.基本元素.詞 import 詞
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
@@ -25,7 +25,7 @@ class 現掀辭典(文字辭典):
 		if not isinstance(詞物件, 詞):
 			raise 型態錯誤('傳入來的毋是詞物件：{0}'.format(str(詞物件)))
 		結果=[]
-		for 所在 in range(len(詞物件.內底字)):
+		for _ in range(len(詞物件.內底字)):
 			結果.append(set())
 		for 辭典條 in self.條目:
 			if self.查詞有仝無(詞物件, 辭典條):
