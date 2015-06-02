@@ -33,7 +33,7 @@ class 摩西翻譯模型訓練(程式腳本):
 		翻譯模型指令版 = \
 			'SCRIPTS_ROOTDIR={1} {1}/training/train-model.perl -root-dir {2} -corpus {3} -f {4} -e {5} -alignment grow-diag-final-and -reordering msd-bidirectional-fe -lm 0:{7}:{6} --mgiza -external-bin-dir={0}'
 		翻譯模型指令 = 翻譯模型指令版.format(
-				self._執行檔路徑加尾(mgiza執行檔路徑),
+				self._執行檔路徑加尾(os.path.join(mgiza執行檔路徑,'bin')),
 				self._執行檔路徑加尾(os.path.join(moses路徑,'scripts')),
 				翻譯模型資料夾,
 				平行檔名,
