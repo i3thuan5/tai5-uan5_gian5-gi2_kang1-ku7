@@ -6,7 +6,7 @@ python:
 env:
   matrix:
 install:
- - sudo apt-get install -y g++ git subversion automake libtool zlib1g-dev libboost-all-dev libbz2-dev liblzma-dev python3-dev libgoogle-perftools-dev libxmlrpc-c++.*-dev
+ - sudo apt-get install -y build-essential g++ git subversion automake libtool zlib1g-dev libboost-all-dev libbz2-dev liblzma-dev python3-dev libgoogle-perftools-dev libxmlrpc-c++.*-dev
  - pip install https://github.com/rsennrich/Bleualign/archive/master.zip
  - pip install https://github.com/kpu/kenlm/archive/master.zip
  - pip install https://github.com/sih4sing5hong5/hts_engine_python/archive/master.zip
