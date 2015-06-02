@@ -6,11 +6,12 @@ from unittest.suite import TestSuite
 from 臺灣言語工具.翻譯.摩西工具.安裝摩西翻譯佮相關程式 import 安裝摩西翻譯佮相關程式
 
 
+'''預設做單元試驗佮整合試驗'
+PYTHONPATH=. python 試驗/走全部試驗.py # 試驗全做 
+PYTHONPATH=. python 試驗/走全部試驗.py 單元試驗 # 只做單元試驗 
+PYTHONPATH=. python -m unittest 試驗.系統整合.Test程式腳本單元試驗 # 走單一試驗
+'''
 if __name__ == '__main__':
-	'''預設做單元試驗佮整合試驗'
-	PYTHONPATH=. python 試驗/走全部試驗.py # 試驗全做 
-	PYTHONPATH=. python 試驗/走全部試驗.py 單元試驗 # 只做單元試驗 
-	'''
 	整合試驗 = '單元試驗' not in sys.argv
 
 	試驗包 = TestSuite()
