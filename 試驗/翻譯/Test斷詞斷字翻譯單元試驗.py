@@ -60,59 +60,59 @@ class 斷詞斷字翻譯單元試驗(TestCase):
 			]
 		
 		self.斷詞全翻譯結果 = {'nbest':[{
-			'text':'阮｜gun2  欲｜beh4  去｜khi3  食-飯｜tsiah8-png7  。｜.  ',
+			'hyp':'阮｜gun2  欲｜beh4  去｜khi3  食-飯｜tsiah8-png7  。｜.  ',
 			'align':翻譯對應關係,
 			'totalScore':-21.66,
 			}]}
 		self.斷詞孤字未知詞譯孤字 = {'nbest':[{
-			'text':'阮｜gun2  要|UNK|UNK|UNK  去｜khi3  食-飯｜tsiah8-png7  。｜.  ',
+			'hyp':'阮｜gun2  要|UNK|UNK|UNK  去｜khi3  食-飯｜tsiah8-png7  。｜.  ',
 			'align':翻譯對應關係,
 			'totalScore':-21.66,
 			}]}
 		self.斷字孤字未知詞譯孤字 = {'nbest':[{
-			'text':'欲｜beh4  ',
+			'hyp':'欲｜beh4  ',
 			'align':[{'tgt-start': 0, 'src-start': 0, 'src-end': 0}],
 			'totalScore':-3.33,
 			}]}
 		self.斷字孤字未知詞譯袂出來 = {'nbest':[{
-			'text':'要|UNK|UNK|UNK  ',
+			'hyp':'要|UNK|UNK|UNK  ',
 			'align':[{'tgt-start': 0, 'src-start': 0, 'src-end': 0}],
 			'totalScore':-3.33,
 			}]}
 		self.斷詞雙字未知詞譯孤字 = {'nbest':[{
-			'text':'我們|UNK|UNK|UNK  欲｜beh4  去｜khi3  食-飯｜tsiah8-png7  。｜.  ',
+			'hyp':'我們|UNK|UNK|UNK  欲｜beh4  去｜khi3  食-飯｜tsiah8-png7  。｜.  ',
 			'align':翻譯對應關係,
 			'totalScore':-21.66,
 			}]}
 		self.斷字雙字未知詞譯孤字 = {'nbest':[{
-			'text':'阮｜gun2  ',
+			'hyp':'阮｜gun2  ',
 			'align':[{'tgt-start': 0, 'src-start': 0, 'src-end': 1}],
 			'totalScore':-3.33,
 			}]}
 		self.斷詞雙字未知詞譯雙字 = {'nbest':[{
-			'text':'阮｜gun2  欲｜beh4  去｜khi3  吃飯|UNK|UNK|UNK  。｜.  ',
+			'hyp':'阮｜gun2  欲｜beh4  去｜khi3  吃飯|UNK|UNK|UNK  。｜.  ',
 			'align':翻譯對應關係,
 			'totalScore':-21.66,
 			}]}
 		
 		self.斷字雙字未知詞譯雙詞 = {'nbest':[{
-			'text':'食｜tsiah8  飯｜png7  ',
+			'hyp':'食｜tsiah8  飯｜png7  ',
 			'align':[{'tgt-start': 0, 'src-start': 0, 'src-end': 1}],
 			'totalScore':-3.33,
 			}]}
 		
 		self.斷詞雙未知詞 = {'nbest':[{
-			'text':'阮｜gun2  欲｜beh4  去|UNK|UNK|UNK  吃飯|UNK|UNK|UNK  。｜.  ',
+			'hyp':'阮｜gun2  欲｜beh4  去|UNK|UNK|UNK  吃飯|UNK|UNK|UNK  。｜.  ',
 			'align':翻譯對應關係,
 			'totalScore':-21.66,
 			}]}
 		self.斷字雙未知詞譯一詞 = {'nbest':[{
-			'text':'去｜khi3  食｜tsiah8  飯｜png7  ',
+			'hyp':'去｜khi3  食｜tsiah8  飯｜png7  ',
 			'align':[{'tgt-start': 0, 'src-start': 0, 'src-end': 2}],
 			'totalScore':-3.33,
 			}]}
 		self.斷字雙未知詞譯兩詞 = {'nbest':[{
-			'text':'去｜khi3  食｜tsiah8  飯｜png7  ',
+			'hyp':'去｜khi3  食｜tsiah8  飯｜png7  ',
 			'align':[{'tgt-start': 0, 'src-start': 0, 'src-end': 0},
 					{'tgt-start': 1, 'src-start': 1, 'src-end': 2}],
 			'totalScore':-3.33,
