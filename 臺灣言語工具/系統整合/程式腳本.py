@@ -11,17 +11,18 @@ class 程式腳本:
 		if 執行檔路徑 != '' and not 執行檔路徑.endswith('/'):
 			return 執行檔路徑 + '/'
 		return 執行檔路徑
-	def _走指令(self, 指令, 愛直接顯示輸出=False):
+	def _走指令(self, 指令, 愛直接顯示輸出=False,
+			stdin=None, stdout=PIPE, stderr=PIPE):
 		try:
 			if 愛直接顯示輸出:
-				程序 = Popen(指令)
+				程序 = Popen(指令, stdin=stdin)
 				回傳值 = 程序.wait()
 				if 回傳值 != 0:
 					raise RuntimeError(
 							'指令走到一半發生問題！！指令：{0}'.format(指令)
 						)
 			else:
-				程序 = Popen(指令, stdout=PIPE, stderr=PIPE)
+				程序 = Popen(指令, stdin=stdin, stdout=stdout, stderr=stderr)
 				輸出資訊, 錯誤輸出資訊 = 程序.communicate()
 				回傳值 = 程序.poll()
 				if 回傳值 != 0:
