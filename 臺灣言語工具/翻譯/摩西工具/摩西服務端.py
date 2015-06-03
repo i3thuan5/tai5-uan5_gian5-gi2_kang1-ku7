@@ -25,6 +25,8 @@ class 摩西服務端():
 			self.程序 = Popen(
 					[self.執行程式, '-f', self.模型路徑, '--server-port', str(self.埠)],
 				)
+	def 狀態(self):
+		return self.程序.poll()
 	def 停(self):
 		self.程序.terminate()
 		self.程序 = None
