@@ -19,33 +19,35 @@ class 摩西翻譯模型訓練整合試驗(TestCase):
 		模型訓練 = 摩西翻譯模型訓練()
 		模型訓練.訓練(
 				self.平行華語, self.平行閩南語, self.閩南語語料,
-				os.path.join(self.這馬目錄, '模型資料'),
+				os.path.join(self.這馬目錄, '暫存資料夾','翻譯模型'),
 				連紲詞長度=2,
 				編碼器=語句編碼器(),
+				刣掉暫存檔=False,
 			)
 		
 		#刣掉訓練出來的模型
-		rmtree(os.path.join(self.這馬目錄, '模型資料'))
+		rmtree(os.path.join(self.這馬目錄, '暫存資料夾'))
 	def test_訓練摩西斷詞佮斷字模型(self):
 		模型訓練 = 摩西翻譯模型訓練()
 		這馬資料夾 = os.path.dirname(os.path.abspath(__file__))
-		斷詞暫存資料夾 = os.path.join(這馬資料夾, '斷詞模型資料')
+		斷詞暫存資料夾 = os.path.join(這馬資料夾,'暫存資料夾', '斷詞翻譯模型')
 		模型訓練.訓練(
 				self.平行華語, self.平行閩南語, self.閩南語語料,
 				斷詞暫存資料夾,
 				連紲詞長度=2,
 				編碼器=語句編碼器(),
+				刣掉暫存檔=True,
 			)
 	
 		斷詞編碼器 = 斷詞轉斷字編碼器()
-		斷字暫存資料夾 = os.path.join(這馬資料夾, '斷字模型資料')
+		斷字暫存資料夾 = os.path.join(這馬資料夾, '暫存資料夾','斷字翻譯模型')
 		模型訓練.訓練(
 				self.平行華語, self.平行閩南語, self.閩南語語料,
 				斷字暫存資料夾,
 				連紲詞長度=2,
 				編碼器=斷詞編碼器(),
+				刣掉暫存檔=True,
 			)
 		
 		#刣掉訓練出來的模型
-		rmtree(os.path.join(self.這馬目錄, '斷詞模型資料'))
-		rmtree(os.path.join(self.這馬目錄, '斷字模型資料'))
+		rmtree(os.path.join(self.這馬目錄, '暫存資料夾'))
