@@ -10,6 +10,7 @@ install:
  - free
  - cat /proc/cpuinfo
  - dd if=/dev/zero of=./swap bs=10M count=50
+ - sudo mkswap swap
  - sudo swapon swap
  - sudo apt-get install -y build-essential g++ git subversion automake libtool zlib1g-dev libboost-all-dev libbz2-dev liblzma-dev python3-dev libgoogle-perftools-dev libxmlrpc-c++.*-dev
  - pip install https://github.com/rsennrich/Bleualign/archive/master.zip
