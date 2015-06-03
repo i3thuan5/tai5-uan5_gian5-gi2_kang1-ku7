@@ -101,6 +101,13 @@ class 斷詞斷字翻譯單元試驗(TestCase):
 			'totalScore':-3.33,
 			}]}
 		
+		self.斷字雙字未知詞譯袂出來 = {'nbest':[{
+			'hyp':'吃|UNK|UNK|UNK  飯|UNK|UNK|UNK  ',
+			'align':[{'tgt-start': 0, 'src-start': 0, 'src-end': 0},
+					{'tgt-start': 1, 'src-start': 1, 'src-end': 1}],
+			'totalScore':-3.33,
+			}]}
+		
 		self.斷詞雙未知詞 = {'nbest':[{
 			'hyp':'阮｜gun2  欲｜beh4  去|UNK|UNK|UNK  吃飯|UNK|UNK|UNK  。｜.  ',
 			'align':翻譯對應關係,
@@ -214,6 +221,33 @@ class 斷詞斷字翻譯單元試驗(TestCase):
 			]
 		結果句物件, _, _ = self.翻譯工具.翻譯(self.華語句物件)
 		self.assertEqual(結果句物件, self.閩南語句物件)
+	def test_斷字雙字未知詞譯袂出來閩南語未知詞猶原是詞(self):
+		self.xmlrpcMock.return_value.translate.side_effect = [
+			self.斷詞雙字未知詞譯雙字, self.斷字雙字未知詞譯袂出來
+			]
+		結果句物件, _, _ = self.翻譯工具.翻譯(self.華語句物件)
+		self.assertEqual(self.譀鏡.看分詞(結果句物件.內底集[3]), '吃-飯')
+	def test_斷字雙字未知詞譯袂出來閩南語未知詞紀錄(self):
+		self.xmlrpcMock.return_value.translate.side_effect = [
+			self.斷詞雙字未知詞譯雙字, self.斷字雙字未知詞譯袂出來
+			]
+		結果句物件, _, _ = self.翻譯工具.翻譯(self.華語句物件)
+		self.assertEqual(結果句物件.內底集[3].內底組[0].屬性['未知詞'], '是')
+	def test_斷字雙字未知詞譯袂出來華語(self):
+		self.xmlrpcMock.return_value.translate.side_effect = [
+			self.斷詞雙字未知詞譯雙字, self.斷字雙字未知詞譯袂出來
+			]
+		_, 華語新結構句物件, _ = self.翻譯工具.翻譯(self.華語句物件)
+		華語組陣列 = [
+			self.分析器.轉做組物件('我們'),
+			self.分析器.轉做組物件('要'),
+			self.分析器.轉做組物件('去'),
+			self.分析器.轉做組物件('吃飯'),
+			self.分析器.轉做組物件('。'),
+			]
+		華語句物件 = self._組陣列分開包做句物件(華語組陣列)
+		self.assertEqual(華語新結構句物件, 華語句物件)
+		
 	def test_雙未知詞譯做伙翻譯(self):
 		self.xmlrpcMock.return_value.translate.side_effect = [
 			self.斷詞雙未知詞, self.斷字雙未知詞譯兩詞
