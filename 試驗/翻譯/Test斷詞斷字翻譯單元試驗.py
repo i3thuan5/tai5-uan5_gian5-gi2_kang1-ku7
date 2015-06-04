@@ -64,6 +64,7 @@ class 斷詞斷字翻譯單元試驗(TestCase):
 			'align':翻譯對應關係,
 			'totalScore':-21.66,
 			}]}
+		
 		self.斷詞孤字未知詞譯孤字 = {'nbest':[{
 			'hyp':'阮｜gun2  要|UNK|UNK|UNK  去｜khi3  食-飯｜tsiah8-png7  。｜.  ',
 			'align':翻譯對應關係,
@@ -79,6 +80,7 @@ class 斷詞斷字翻譯單元試驗(TestCase):
 			'align':[{'tgt-start': 0, 'src-start': 0, 'src-end': 0}],
 			'totalScore':-3.33,
 			}]}
+		
 		self.斷詞雙字未知詞譯孤字 = {'nbest':[{
 			'hyp':'我們|UNK|UNK|UNK  欲｜beh4  去｜khi3  食-飯｜tsiah8-png7  。｜.  ',
 			'align':翻譯對應關係,
@@ -89,18 +91,17 @@ class 斷詞斷字翻譯單元試驗(TestCase):
 			'align':[{'tgt-start': 0, 'src-start': 0, 'src-end': 1}],
 			'totalScore':-3.33,
 			}]}
+		
 		self.斷詞雙字未知詞譯雙字 = {'nbest':[{
 			'hyp':'阮｜gun2  欲｜beh4  去｜khi3  吃飯|UNK|UNK|UNK  。｜.  ',
 			'align':翻譯對應關係,
 			'totalScore':-21.66,
 			}]}
-		
 		self.斷字雙字未知詞譯雙詞 = {'nbest':[{
 			'hyp':'食｜tsiah8  飯｜png7  ',
 			'align':[{'tgt-start': 0, 'src-start': 0, 'src-end': 1}],
 			'totalScore':-3.33,
 			}]}
-		
 		self.斷字雙字未知詞譯袂出來 = {'nbest':[{
 			'hyp':'吃|UNK|UNK|UNK  飯|UNK|UNK|UNK  ',
 			'align':[{'tgt-start': 0, 'src-start': 0, 'src-end': 0},
@@ -122,6 +123,13 @@ class 斷詞斷字翻譯單元試驗(TestCase):
 			'hyp':'去｜khi3  食｜tsiah8  飯｜png7  ',
 			'align':[{'tgt-start': 0, 'src-start': 0, 'src-end': 0},
 					{'tgt-start': 1, 'src-start': 1, 'src-end': 2}],
+			'totalScore':-3.33,
+			}]}
+		self.斷字雙未知詞譯袂出來 = {'nbest':[{
+			'hyp':'去|UNK|UNK|UNK  吃|UNK|UNK|UNK  飯|UNK|UNK|UNK  ',
+			'align':[{'tgt-start': 0, 'src-start': 0, 'src-end': 0},
+					{'tgt-start': 1, 'src-start': 1, 'src-end': 1},
+					{'tgt-start': 2, 'src-start': 2, 'src-end': 2}],
 			'totalScore':-3.33,
 			}]}
 	def tearDown(self):
@@ -200,14 +208,14 @@ class 斷詞斷字翻譯單元試驗(TestCase):
 			]
 		結果句物件, _, _ = self.翻譯工具.翻譯(self.華語句物件)
 		self.assertEqual(self.譀鏡.看型(結果句物件.內底集[1].內底組[0]), '要')
-		self.assertEqual(結果句物件.內底集[1].內底組[0].屬性['未知詞'], '是')
+		self.assertTrue(結果句物件.內底集[1].內底組[0].屬性['未知詞'])
 	def test_斷字毋是未知詞的詞袂使記錄(self):
 		self.xmlrpcMock.return_value.translate.side_effect = [
 			self.斷詞孤字未知詞譯孤字, self.斷字孤字未知詞譯袂出來
 			]
 		結果句物件, _, _ = self.翻譯工具.翻譯(self.華語句物件)
 		self.assertEqual(self.譀鏡.看型(結果句物件.內底集[0].內底組[0]), '阮')
-		self.assertFalse(hasattr(結果句物件.內底集[0].內底組[0], '屬性'))
+		self.assertFalse(結果句物件.內底集[0].內底組[0].屬性['未知詞'])
 		
 	def test_斷詞雙字未知詞譯孤字(self):
 		self.xmlrpcMock.return_value.translate.side_effect = [
@@ -232,7 +240,7 @@ class 斷詞斷字翻譯單元試驗(TestCase):
 			self.斷詞雙字未知詞譯雙字, self.斷字雙字未知詞譯袂出來
 			]
 		結果句物件, _, _ = self.翻譯工具.翻譯(self.華語句物件)
-		self.assertEqual(結果句物件.內底集[3].內底組[0].屬性['未知詞'], '是')
+		self.assertTrue(結果句物件.內底集[3].內底組[0].屬性['未知詞'])
 	def test_斷字雙字未知詞譯袂出來華語(self):
 		self.xmlrpcMock.return_value.translate.side_effect = [
 			self.斷詞雙字未知詞譯雙字, self.斷字雙字未知詞譯袂出來
@@ -247,6 +255,12 @@ class 斷詞斷字翻譯單元試驗(TestCase):
 			]
 		華語句物件 = self._組陣列分開包做句物件(華語組陣列)
 		self.assertEqual(華語新結構句物件, 華語句物件)
+	def test_斷字雙字未知詞譯袂出來閩南語華語集數仝款(self):
+		self.xmlrpcMock.return_value.translate.side_effect = [
+			self.斷詞雙字未知詞譯雙字, self.斷字雙字未知詞譯袂出來
+			]
+		結果句物件, 華語新結構句物件, _ = self.翻譯工具.翻譯(self.華語句物件)
+		self.assertEqual(len(結果句物件.內底集),len(華語新結構句物件.內底集))
 		
 	def test_雙未知詞譯做伙翻譯(self):
 		self.xmlrpcMock.return_value.translate.side_effect = [
@@ -267,6 +281,34 @@ class 斷詞斷字翻譯單元試驗(TestCase):
 			]
 		結果句物件, _, _ = self.翻譯工具.翻譯(self.華語句物件)
 		self.assertEqual(結果句物件, self.閩南語句物件)
+	def test_雙未知詞譯袂出來閩南語(self):
+		self.xmlrpcMock.return_value.translate.side_effect = [
+			self.斷詞雙未知詞, self.斷字雙未知詞譯袂出來
+			]
+		結果句物件, _, _ = self.翻譯工具.翻譯(self.華語句物件)
+		閩南語組陣列 = [
+			self.分析器.轉做組物件('阮｜gun2'),
+			self.分析器.轉做組物件('欲｜beh4'),
+			self.分析器.轉做組物件('去'),
+			self.分析器.轉做組物件('吃-飯'),
+			self.分析器.轉做組物件('。｜.'),
+			]
+		閩南語句物件 = self._組陣列分開包做句物件(閩南語組陣列)
+		self.assertEqual(結果句物件, 閩南語句物件)
+	def test_雙未知詞譯袂出來華語(self):
+		self.xmlrpcMock.return_value.translate.side_effect = [
+			self.斷詞雙未知詞, self.斷字雙未知詞譯袂出來
+			]
+		_, 華語新結構句物件, _ = self.翻譯工具.翻譯(self.華語句物件)
+		華語組陣列 = [
+			self.分析器.轉做組物件('我們'),
+			self.分析器.轉做組物件('要'),
+			self.分析器.轉做組物件('去'),
+			self.分析器.轉做組物件('吃飯'),
+			self.分析器.轉做組物件('。'),
+			]
+		華語句物件 = self._組陣列分開包做句物件(華語組陣列)
+		self.assertEqual(華語新結構句物件, 華語句物件)
 	def test_雙未知詞譯一詞閩南語(self):
 		self.xmlrpcMock.return_value.translate.side_effect = [
 			self.斷詞雙未知詞, self.斷字雙未知詞譯一詞

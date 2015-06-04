@@ -166,12 +166,12 @@ class 摩西用戶端單元試驗(TestCase):
 		self.xmlrpcMock.return_value.translate.return_value = self.翻譯結果有未知詞出來
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
 		self.assertEqual(self.譀鏡.看型(結果句物件.內底集[1].內底組[0]), '要')
-		self.assertEqual(結果句物件.內底集[1].內底組[0].屬性['未知詞'], '是')
+		self.assertTrue(結果句物件.內底集[1].內底組[0].屬性['未知詞'])
 	def test_毋是未知詞的詞袂使記錄(self):
 		self.xmlrpcMock.return_value.translate.return_value = self.翻譯結果有未知詞出來
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
 		self.assertEqual(self.譀鏡.看型(結果句物件.內底集[0].內底組[0]), '阮')
-		self.assertFalse(hasattr(結果句物件.內底集[0].內底組[0], '屬性'))
+		self.assertFalse(結果句物件.內底集[0].內底組[0].屬性['未知詞'])
 	def test_翻譯結果先後有變化(self):
 		self.xmlrpcMock.return_value.translate.return_value = self.翻譯結果先後有變化
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
@@ -210,7 +210,7 @@ class 摩西用戶端單元試驗(TestCase):
 			[call(self.華語句物件), call(self.華語句物件二)],
 			any_order=True
 		)
-	def _組陣列分開包做句物件(self,組陣列):
+	def _組陣列分開包做句物件(self, 組陣列):
 		句物件 = 句()
 		for 組物件 in 組陣列:
 			集物件 = 集()
