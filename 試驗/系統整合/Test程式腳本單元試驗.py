@@ -22,11 +22,19 @@ class 程式腳本單元試驗(TestCase):
 			self.腳本._執行檔路徑加尾('/home/git/mgiza/mgizapp/bin'),
 			'/home/git/mgiza/mgizapp/bin/')
 	def test_走正常指令(self):
-		self.腳本._走指令('cd') 
+		self.腳本._走指令('/bin/echo')
+	def test_走正常指令陣列(self):
+		self.腳本._走指令(['/bin/echo','tai5gi2']) 
+	def test_走正常指令有參數愛陣列(self):
+		self.assertRaises(RuntimeError, self.腳本._走指令, '/bin/echo tai5gi2')
 	def test_走錯誤正常指令(self):
-		self.assertRaises(RuntimeError, self.腳本._走指令, 'cd ----')
+		self.assertRaises(RuntimeError, self.腳本._走指令, '/bin/grep') 
+	def test_走錯誤正常指令陣列(self):
+		self.assertRaises(RuntimeError, self.腳本._走指令, ['/bin/grep'])
 	def test_走無指令(self):
-		self.assertRaises(RuntimeError, self.腳本._走指令, 'tai5gi2') 
+		self.assertRaises(RuntimeError, self.腳本._走指令, '/bin/tai5gi2')
+	def test_走無指令陣列(self):
+		self.assertRaises(RuntimeError, self.腳本._走指令, ['/bin/tai5gi2']) 
 	def test_建細項目錄(self):
 		if os.path.isdir(os.path.join(self.這馬目錄, '細項名')):
 			os.rmdir(os.path.join(self.這馬目錄, '細項名'))

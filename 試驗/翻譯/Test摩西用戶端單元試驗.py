@@ -32,27 +32,27 @@ class 摩西用戶端單元試驗(TestCase):
 			{'tgt-start': 5, 'src-start': 6, 'src-end': 6},
 			]
 		self.全漢翻譯結果 = {'nbest':[{
-			'text':'阮  欲  去  食  飯  。  ',
+			'hyp':'阮  欲  去  食  飯  。  ',
 			'align':翻譯對應關係,
 			'totalScore':-21.66,
 			}]}
 		self.全漢全羅分詞翻譯結果 = {'nbest':[{
-			'text':'阮｜gun2  欲｜beh4  去｜khi3  食｜tsiah8  飯｜png7  。｜.  ',
+			'hyp':'阮｜gun2  欲｜beh4  去｜khi3  食｜tsiah8  飯｜png7  。｜.  ',
 			'align':翻譯對應關係,
 			'totalScore':-21.66,
 			}]}
 		self.全漢全羅分詞含詞翻譯結果 = {'nbest':[{
-			'text':'阮｜gun2  欲｜beh4  去｜khi3  食｜tsiah8  炒-飯｜tsha2-png7  。｜.  ',
+			'hyp':'阮｜gun2  欲｜beh4  去｜khi3  食｜tsiah8  炒-飯｜tsha2-png7  。｜.  ',
 			'align':翻譯對應關係,
 			'totalScore':-21.66,
 			}]}
 		self.翻譯結果有未知詞出來 = {'nbest':[{
-			'text':'阮  要|UNK|UNK|UNK  去  食  飯  。  ',
+			'hyp':'阮  要|UNK|UNK|UNK  去  食  飯  。  ',
 			'align':翻譯對應關係,
 			'totalScore':-21.66,
 			}]}
 		self.翻譯結果先後有變化 = {'nbest':[{
-			'text':'阮  食  飯  愛  去  。  ',
+			'hyp':'阮  食  飯  愛  去  。  ',
 			'align':[
 					{'tgt-start': 0, 'src-start': 0, 'src-end': 1},
 					{'tgt-start': 1, 'src-start': 4, 'src-end': 5},
@@ -79,7 +79,7 @@ class 摩西用戶端單元試驗(TestCase):
 		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
 		解碼mock.return_value = '阮  欲  去  食  飯  。  '
 		self.用戶端.翻譯(self.華語句物件)
-		解碼mock.assert_called_once_with(self.全漢翻譯結果['nbest'][0]['text'])
+		解碼mock.assert_called_once_with(self.全漢翻譯結果['nbest'][0]['hyp'])
 	def test_翻譯結果是句物件(self):
 		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
@@ -166,12 +166,12 @@ class 摩西用戶端單元試驗(TestCase):
 		self.xmlrpcMock.return_value.translate.return_value = self.翻譯結果有未知詞出來
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
 		self.assertEqual(self.譀鏡.看型(結果句物件.內底集[1].內底組[0]), '要')
-		self.assertEqual(結果句物件.內底集[1].內底組[0].屬性['未知詞'], '是')
+		self.assertTrue(結果句物件.內底集[1].內底組[0].屬性['未知詞'])
 	def test_毋是未知詞的詞袂使記錄(self):
 		self.xmlrpcMock.return_value.translate.return_value = self.翻譯結果有未知詞出來
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
 		self.assertEqual(self.譀鏡.看型(結果句物件.內底集[0].內底組[0]), '阮')
-		self.assertFalse(hasattr(結果句物件.內底集[0].內底組[0], '屬性'))
+		self.assertFalse(結果句物件.內底集[0].內底組[0].屬性['未知詞'])
 	def test_翻譯結果先後有變化(self):
 		self.xmlrpcMock.return_value.translate.return_value = self.翻譯結果先後有變化
 		結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
@@ -210,7 +210,7 @@ class 摩西用戶端單元試驗(TestCase):
 			[call(self.華語句物件), call(self.華語句物件二)],
 			any_order=True
 		)
-	def _組陣列分開包做句物件(self,組陣列):
+	def _組陣列分開包做句物件(self, 組陣列):
 		句物件 = 句()
 		for 組物件 in 組陣列:
 			集物件 = 集()
