@@ -37,9 +37,10 @@ class 程式腳本單元試驗(TestCase):
 	def test_走無指令陣列(self):
 		self.assertRaises(RuntimeError, self.腳本._走指令, ['/bin/tai5gi2']) 
 	def test_走指令錯誤輸出檔案(self):
-		with io.open('暫檔', 'w') as 檔案:
+		with io.open(os.path.join(self.這馬目錄, '暫檔'), 'w') as 檔案:
 			self.assertRaises(RuntimeError,
-				self.腳本._走指令, ['/bin/grep', '----'], stdout=檔案) 
+				self.腳本._走指令, ['/bin/grep', '----'], stdout=檔案)
+		os.remove(os.path.join(self.這馬目錄, '暫檔')) 
 	def test_建細項目錄(self):
 		if os.path.isdir(os.path.join(self.這馬目錄, '細項名')):
 			os.rmdir(os.path.join(self.這馬目錄, '細項名'))
