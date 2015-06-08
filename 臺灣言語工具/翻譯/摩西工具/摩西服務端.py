@@ -27,6 +27,8 @@ class 摩西服務端():
 				)
 	def 狀態(self):
 		return self.程序.poll()
+	def 等(self):
+		return self.程序.wait()
 	def 停(self):
 		self.程序.terminate()
 		self.程序 = None

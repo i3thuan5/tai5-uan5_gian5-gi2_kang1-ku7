@@ -22,7 +22,7 @@ class 程式腳本:
 			else:
 				程序 = Popen(指令, stdin=stdin, stdout=stdout, stderr=stderr)
 				輸出資訊, 錯誤輸出資訊 = 程序.communicate()
-				回傳值 = 程序.poll()
+				回傳值 = 程序.wait()
 				if 回傳值 != 0:
 					self._走指令錯誤(指令, 輸出資訊, 錯誤輸出資訊)
 		except FileNotFoundError:
