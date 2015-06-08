@@ -18,23 +18,31 @@ class 程式腳本:
 				程序 = Popen(指令, stdin=stdin)
 				回傳值 = 程序.wait()
 				if 回傳值 != 0:
-					raise RuntimeError(
-							'指令走到一半發生問題！！指令：{0}'.format(指令)
-						)
+					self._走指令錯誤(指令)
 			else:
 				程序 = Popen(指令, stdin=stdin, stdout=stdout, stderr=stderr)
 				輸出資訊, 錯誤輸出資訊 = 程序.communicate()
 				回傳值 = 程序.poll()
 				if 回傳值 != 0:
-					raise RuntimeError(
-							'指令走到一半發生問題！！指令：{0}\n輸出：{1}\n錯誤資訊：{2}\n'
-								.format(指令, 輸出資訊.decode('utf-8'), 錯誤輸出資訊.decode('utf-8'))
-						)
+					self._走指令錯誤(指令, 輸出資訊, 錯誤輸出資訊)
 		except FileNotFoundError:
 				raise RuntimeError(
 						'檔案無存在，抑是指令參數愛用陣列的形式！！指令：{0}'
 							.format(指令)
 					)
+	def _走指令錯誤(self,指令, 輸出資訊=None, 錯誤輸出資訊=None):
+		if 輸出資訊:
+			輸出 = '輸出：{0}\n'.format(輸出資訊.decode('utf-8'))
+		else:
+			輸出 = ''
+		if 錯誤輸出資訊:
+			錯誤輸出 = '錯誤資訊：{0}\n'.format(錯誤輸出資訊.decode('utf-8'))
+		else:
+			錯誤輸出 = ''
+		raise RuntimeError(
+				'指令走到一半發生問題！！指令：{0}\n{1}{2}'
+					.format(指令, 輸出, 錯誤輸出)
+			)
 	def _細項目錄(self, 資料目錄, 細項名):
 		細項目錄 = os.path.join(資料目錄, 細項名)
 		os.makedirs(細項目錄, exist_ok=True)

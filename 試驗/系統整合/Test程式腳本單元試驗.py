@@ -9,6 +9,7 @@ from unittest.mock import patch, call
 from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
 from itertools import zip_longest
+
 class 程式腳本單元試驗(TestCase):
 	def setUp(self):
 		self.腳本 = 程式腳本()
@@ -24,7 +25,7 @@ class 程式腳本單元試驗(TestCase):
 	def test_走正常指令(self):
 		self.腳本._走指令('/bin/echo')
 	def test_走正常指令陣列(self):
-		self.腳本._走指令(['/bin/echo','tai5gi2']) 
+		self.腳本._走指令(['/bin/echo', 'tai5gi2']) 
 	def test_走正常指令有參數愛陣列(self):
 		self.assertRaises(RuntimeError, self.腳本._走指令, '/bin/echo tai5gi2')
 	def test_走錯誤正常指令(self):
@@ -35,6 +36,10 @@ class 程式腳本單元試驗(TestCase):
 		self.assertRaises(RuntimeError, self.腳本._走指令, '/bin/tai5gi2')
 	def test_走無指令陣列(self):
 		self.assertRaises(RuntimeError, self.腳本._走指令, ['/bin/tai5gi2']) 
+	def test_走指令錯誤輸出檔案(self):
+		with io.open('暫檔', 'w') as 檔案:
+			self.assertRaises(RuntimeError,
+				self.腳本._走指令, ['/bin/grep', '----'], stdout=檔案) 
 	def test_建細項目錄(self):
 		if os.path.isdir(os.path.join(self.這馬目錄, '細項名')):
 			os.rmdir(os.path.join(self.這馬目錄, '細項名'))
@@ -72,10 +77,10 @@ class 程式腳本單元試驗(TestCase):
 		
 	@patch('臺灣言語工具.系統整合.程式腳本.程式腳本._字串寫入檔案')
 	def test_寫檔案有用著字串(self, 字串mock):
-		字串mock.return_value='臺灣建國'
+		字串mock.return_value = '臺灣建國'
 		檔名 = os.path.join(self.這馬目錄, '文件.txt.gz')
 		self.腳本._陣列寫入檔案(檔名, ['臺灣', '建國'])
-		字串mock.assert_called_once_with(檔名,'臺灣\n建國')
+		字串mock.assert_called_once_with(檔名, '臺灣\n建國')
 		
 	def test_檔案合做一个(self):
 		臺灣檔名 = os.path.join(self.這馬目錄, '臺灣.txt')
@@ -104,7 +109,7 @@ class 程式腳本單元試驗(TestCase):
 		os.remove(上尾平行語料檔名)
 	
 	def test_換目錄(self):
-		原本目錄=os.getcwd()
+		原本目錄 = os.getcwd()
 		self.assertNotEqual(os.getcwd(), self.這馬目錄)
 		with self.腳本._換目錄(self.這馬目錄):
 			self.assertEqual(os.getcwd(), self.這馬目錄)
