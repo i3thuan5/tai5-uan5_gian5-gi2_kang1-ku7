@@ -20,7 +20,7 @@ class 摩西翻譯模型訓練(程式腳本):
 			):
 		語言模型訓練 = KenLM語言模型訓練(moses路徑)
 		os.makedirs(暫存資料夾, exist_ok=True)
-		語言模型檔 = 語言模型訓練.訓練(目標語言語料, 暫存資料夾, 連紲詞長度, 編碼器, 使用記憶體量='50%',)
+		語言模型檔 = 語言模型訓練.訓練(目標語言語料, 暫存資料夾, 連紲詞長度, 編碼器, 使用記憶體量='20%',)
 		
 		平行檔名 = os.path.join(暫存資料夾, '翻')
 		來源平行檔名 = os.path.join(暫存資料夾, '翻.源')
@@ -49,7 +49,6 @@ class 摩西翻譯模型訓練(程式腳本):
 				'-alignment', 'grow-diag-final-and',
 				'-reordering', 'msd-bidirectional-fe',
 				'-lm', '0:{0}:{1}'.format(連紲詞長度, 語言模型檔),
-				'--mgiza',
 				'-external-bin-dir={0}'.format(
 					self._執行檔路徑加尾(os.path.join(mgiza執行檔路徑, 'bin')))
 			])
