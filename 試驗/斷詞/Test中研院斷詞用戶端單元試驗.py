@@ -179,6 +179,15 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 					['', '', '', '', '', ]
 				):
 			self.assertEqual(詞物件.屬性['詞性'], 詞性)
+	def test_物件英文字(self, 語句斷詞做語句mock):
+		輸入章物件 = self.分析器.建立章物件('sui2')
+		語句斷詞做語句mock.return_value = [['\u3000sui2(FW)']]
+		斷詞後章物件 = self.用戶端.斷詞(輸入章物件)
+		for 詞物件, 詞性 in zip_longest(
+					self.網仔.網出詞物件(斷詞後章物件),
+					['FW']
+				):
+			self.assertEqual(詞物件.屬性['詞性'], 詞性)
 
 	def test_結構斷一句話(self, 語句斷詞做語句mock):
 		語句斷詞做語句mock.return_value = [[
