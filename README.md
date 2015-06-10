@@ -17,6 +17,41 @@ pip install https://github.com/rsennrich/Bleualign/archive/master.zip pip instal
 pip install tai5_uan5_gian5_gi2_kang1_ku7
 ```
 
+##使用說明
+
+###基本元素
+* 字
+* 詞
+* 組
+* 集
+* 句
+* 章
+
+解析工具
+
+會當參考`python 範例/基本元素.py`
+
+###常見情境
+會當參考`試驗/整合試驗`的檔案
+
+### 翻譯模型訓練 
+本函式庫使用[Moses](http://www.statmt.org/moses/?n=Development.GetStarted)統計式機器翻譯。
+
+#### 翻譯工具需要套件
+```bash
+sudo apt-get install -y g++ git subversion automake libtool zlib1g-dev libboost-all-dev libbz2-dev liblzma-dev python3-dev libgoogle-perftools-dev libxmlrpc-c++.*-dev # moses, libxmlrpc for mosesserver
+sudo apt-get install -y cmake # mgiza
+```
+
+#### 安裝
+```python3
+from 臺灣言語工具.翻譯.摩西工具.安裝摩西翻譯佮相關程式 import 安裝摩西翻譯佮相關程式
+安裝程式 = 安裝摩西翻譯佮相關程式()
+安裝程式.安裝moses(編譯CPU數=4)
+安裝程式.安裝gizapp()
+安裝程式.安裝mgiza()
+```
+
 ##開發
 上面的pip不要裝`tai5_uan5_gian5_gi2_kang1_ku7`
 ```bash
@@ -76,29 +111,6 @@ pip install https://github.com/kpu/kenlm/archive/master.zip
 語音合成工具
 ```bash
 pip install https://github.com/sih4sing5hong5/hts_engine_python/archive/master.zip
-```
-### [Moses](http://www.statmt.org/moses/?n=Development.GetStarted)
-翻譯工具
-```bash
-sudo apt-get install -y g++ git subversion automake libtool zlib1g-dev libboost-all-dev libbz2-dev liblzma-dev python3-dev libgoogle-perftools-dev # moses
-sudo apt-get install -y libxmlrpc-c++8-dev # mosesserver的套件
-sudo apt-get install cmake # mgiza
-```
-mgiza安裝
-```
-git clone --depth 1 https://github.com/moses-smt/mgiza.git
-cd mgiza/mgizapp/
-cmake .
-make
-make install
-```
-資料位置：`mgiza/mgizapp/inst`
-
-moses安裝
-```bash
-git clone --depth 1 https://github.com/sih4sing5hong5/mosesdecoder.git
-cd mosesdecoder/
-./bjam -j4
 ```
 
 ##聲明

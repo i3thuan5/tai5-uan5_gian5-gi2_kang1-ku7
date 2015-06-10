@@ -15,6 +15,9 @@ branches:
  only:
   - master
 script:
+ - PYTHONPATH=. python 範例/基本元素.py
+ - PYTHONPATH=. python 範例/斷詞範例.py
+ - PYTHONPATH=. python 範例/轉拼音系統.py
  - PYTHONPATH=. coverage run 試驗/走全部試驗.py 單元試驗
  - PYTHONPATH=. coverage run 試驗/走全部試驗.py
 after_success:
