@@ -50,7 +50,7 @@ class 摩西翻譯模型訓練(程式腳本):
 				'-e', '目',
 				'-alignment', 'grow-diag-final-and',
 				'-reordering', 'msd-bidirectional-fe',
-				'-lm', '0:{0}:{1}'.format(連紲詞長度, 語言模型檔),
+				'-lm', '0:{0}:{1}:9'.format(連紲詞長度, 語言模型檔),
 			]
 		if not giza多執行緒:
 			指令.append(
