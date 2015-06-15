@@ -10,6 +10,7 @@ from 臺灣言語工具.基本元素.公用變數 import 統一碼漢字佮組�
 from 臺灣言語工具.基本元素.公用變數 import 統一碼羅馬字類
 from 臺灣言語工具.基本元素.公用變數 import 統一碼數字類
 from 臺灣言語工具.基本元素.公用變數 import 聲調符號
+import re
 
 class 文章粗胚:
 	分字符號代表字 = '{0}{1}{0}'.format(分詞符號, 分字符號)
@@ -193,8 +194,12 @@ class 文章粗胚:
 		return self.除掉重覆的空白(''.join(新語句))
 	
 	def 數字英文中央看情形加分字符號(self,語句,專有名詞):
-		愛切的物件='|'.join(專有名詞)
-		切好的語句=split(愛切的物件,語句)
-		for XX in 切好的語句:
-			pass
-		return ''.join()
+		愛切的物件='('+'|'.join(專有名詞)+')'
+		切好的語句=re.split(愛切的物件,語句)
+		結果=[]
+		for 第幾个,部份語句 in enumerate(切好的語句):
+			if 第幾个%2==0:
+				結果.append(self.數字英文中央全加分字符號(部份語句))
+			else:
+				結果.append(部份語句)
+		return ''.join(結果)

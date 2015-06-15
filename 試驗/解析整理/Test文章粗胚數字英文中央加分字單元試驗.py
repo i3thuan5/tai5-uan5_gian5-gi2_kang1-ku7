@@ -56,7 +56,7 @@ class 文章粗胚數字英文中央加分字單元試驗(unittest.TestCase):
 		
 	def test_看情形對齊組大寫音標袂使拆開(self):
 		原本 = 'Sui2sui2 是 咱 的 好 厝邊'
-		結果 = self.粗胚.數字英文中央看情形加分字符號(原本, {'Sui2Sui2'})
+		結果 = self.粗胚.數字英文中央看情形加分字符號(原本, {'Sui2sui2'})
 		self.assertEqual(結果, 原本)
 		
 	def test_看情形對齊組小寫音標袂使拆開(self):
