@@ -191,3 +191,10 @@ class 文章粗胚:
 			新語句.append(字)
 			舊字 = 字
 		return self.除掉重覆的空白(''.join(新語句))
+	
+	def 數字英文中央看情形加分字符號(self,語句,專有名詞):
+		愛切的物件='|'.join(專有名詞)
+		切好的語句=split(愛切的物件,語句)
+		for XX in 切好的語句:
+			pass
+		return ''.join()
