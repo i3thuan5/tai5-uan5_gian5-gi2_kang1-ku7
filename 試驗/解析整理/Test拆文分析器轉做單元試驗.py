@@ -226,6 +226,12 @@ class 拆文分析器轉做單元試驗(unittest.TestCase):
 		組物件 = self.分析器.轉做組物件(分詞)
 		self.assertEqual(len(組物件.內底詞), 6)
 		self.assertEqual(len(組物件.內底詞[0].內底字), 1)
+		
+	def test_轉做組標點符號(self):
+		分詞 = ' 「｜" 丈-姆｜tiunn7-m2 」｜" 就｜to7 是｜si7 阮｜guan2 某｜boo2 的｜e5 老-母｜lau7-bu2 。｜.'
+		組物件 = self.分析器.轉做組物件(分詞)
+		self.assertEqual(len(組物件.內底詞), 10)
+		self.assertEqual(len(組物件.內底詞[0].內底字), 1)
 
 	def test_轉做組集句章無半字(self):
 		分詞 = ''
