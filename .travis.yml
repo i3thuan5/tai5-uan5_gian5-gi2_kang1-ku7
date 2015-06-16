@@ -19,8 +19,8 @@ script:
  - python 範例/基本元素.py
  - python 範例/斷詞範例.py
  - python 範例/轉拼音系統.py
- - coverage run 試驗/走全部試驗.py 單元試驗
- - coverage run 試驗/走全部試驗.py
+ - coverage run 走全部試驗.py 單元試驗
+ - coverage run 走全部試驗.py
 after_success:
   - coverage report
   - pip install --quiet python-coveralls
