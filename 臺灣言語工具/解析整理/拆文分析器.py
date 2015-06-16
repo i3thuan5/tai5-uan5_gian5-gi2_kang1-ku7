@@ -13,25 +13,27 @@ from 臺灣言語工具.基本元素.公用變數 import 無音
 from 臺灣言語工具.基本元素.公用變數 import 組字式符號
 from 臺灣言語工具.基本元素.公用變數 import 斷句標點符號
 from 臺灣言語工具.基本元素.公用變數 import 標點符號
+from itertools import chain
+import re
 import unicodedata
+
+
 from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.基本元素.公用變數 import 分型音符號
 from 臺灣言語工具.解析整理.程式掠漏 import 程式掠漏
 from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
-import re
 from 臺灣言語工具.基本元素.公用變數 import 統一碼羅馬字類
-from 臺灣言語工具.基本元素.公用變數 import 統一碼羅馬字佮數字
 from 臺灣言語工具.基本元素.公用變數 import 統一碼聲調符號
 from 臺灣言語工具.基本元素.公用變數 import 統一碼注音聲調符號
 from 臺灣言語工具.基本元素.公用變數 import 是拼音字元無
 from 臺灣言語工具.基本元素.公用變數 import 是注音符號無
 from 臺灣言語工具.基本元素.公用變數 import 統一碼數字類
-from 臺灣言語工具.基本元素.公用變數 import 統一碼大寫羅馬字類
 
 class 拆文分析器:
 	符號邊仔加空白 = None
 	減號有照規則無 = None
-	切組物件分詞 = re.compile('([^ ]*.｜.[^ ]*|\S+)')
+	_切組物件分詞 = re.compile('([^ ]*.｜.[^ ]*|\S+)')
+	_切章分詞 = re.compile('(\n｜.|.｜\n|\n)',re.DOTALL)
 	_掠漏 = 程式掠漏()
 	def __init__(self):
 		粗胚 = 文章粗胚()
@@ -465,7 +467,7 @@ class 拆文分析器:
 		if 分詞 == '':
 			return 組()
 		組物件 = self.建立組物件('')
-		切開 = self.切組物件分詞.split(分詞)
+		切開 = self._切組物件分詞.split(分詞)
 		if ''.join(切開[::2]).strip() != '':
 			raise 解析錯誤('分詞無合法！！分詞加的：{0}。原來：{1}'
 				.format(切開[::2], 分詞))
@@ -490,12 +492,22 @@ class 拆文分析器:
 	def 轉做章物件(self, 分詞):
 		if 分詞 == '':
 			return 章()
-		原來句物件 = self.轉做句物件(分詞)
-		網仔 = 詞物件網仔()
-		原來詞陣列 = 網仔.網句(原來句物件)
-		斷句詞陣列 = self.詞陣列分一句一句(原來詞陣列)
+		全部斷句詞陣列 = []
+		try:
+			for 第幾个, 句分詞 in enumerate(self._切章分詞.split(分詞)):
+				if 第幾个 % 2 == 0:
+					if 句分詞.strip() != '':
+						原來句物件 = self.轉做句物件(句分詞)
+						網仔 = 詞物件網仔()
+						原來詞陣列 = 網仔.網句(原來句物件)
+						斷句詞陣列 = self.詞陣列分一句一句(原來詞陣列)
+						全部斷句詞陣列.append(斷句詞陣列)
+				else:
+						全部斷句詞陣列[-1][-1].append(self.轉做詞物件(句分詞))
+		except TypeError:
+			raise 型態錯誤('分詞型態有問題，分詞：{}' .format(分詞))
 		章物件 = 章()
-		for 詞陣列 in 斷句詞陣列:
+		for 詞陣列 in chain.from_iterable(全部斷句詞陣列):
 			組物件 = 組()
 			組物件.內底詞 = 詞陣列
 			集物件 = 集()
@@ -531,6 +543,6 @@ class 拆文分析器:
 		if len(詞物件.內底字) == 1:
 			字物件 = 詞物件.內底字[0]
 			if 字物件.型 in 斷句標點符號 and\
-					(字物件.音==無音 or 字物件.音 in 斷句標點符號):
+					(字物件.音 == 無音 or 字物件.音 in 斷句標點符號):
 				return True
 		return False
