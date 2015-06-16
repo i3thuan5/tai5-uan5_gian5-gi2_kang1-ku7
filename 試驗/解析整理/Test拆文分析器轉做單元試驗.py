@@ -5,6 +5,7 @@ from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.基本元素.公用變數 import 無音
+from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
 
 class 拆文分析器轉做單元試驗(unittest.TestCase):
 	def setUp(self):
@@ -184,7 +185,7 @@ class 拆文分析器轉做單元試驗(unittest.TestCase):
 		self.assertEqual(len(章物件.內底句), 1)
 		self.assertEqual(章物件.內底句[0], 句物件)
 
-	def test_轉做組集句章濟字有加的空白(self):
+	def test_轉做組集句濟字有加的空白佮換逝符號(self):
 		分詞 = '  𪜶｜in1    兩｜nng7     个｜e5 \n'\
 			'  生-做｜senn1-tso3 一-模-一-樣｜it4-boo5-it4-iunn7 。｜.    '
 		組物件 = self.分析器.轉做組物件(分詞)
@@ -201,9 +202,6 @@ class 拆文分析器轉做單元試驗(unittest.TestCase):
 		句物件 = self.分析器.轉做句物件(分詞)
 		self.assertEqual(len(句物件.內底集), 1)
 		self.assertEqual(句物件.內底集[0], 集物件)
-		章物件 = self.分析器.轉做章物件(分詞)
-		self.assertEqual(len(章物件.內底句), 1)
-		self.assertEqual(章物件.內底句[0], 句物件)
 		
 	def test_轉做組大寫專有符號袂使拆開(self):
 		分詞 = 'H1N1 新型｜sin1-hing5 流感｜liu5-kam2 包含｜pau1-ham5 四種｜si3-tsiong2 病毒｜pinn7-tok8'
@@ -270,8 +268,8 @@ class 拆文分析器轉做單元試驗(unittest.TestCase):
 		self.assertEqual(章物件.內底句, 句陣列)
 
 	def test_轉做章華語濟句(self):
-		章分詞='如-果 你 5 歲 的 孩-子 罹-癌 ， 你 會 怎-樣 ？ 如-果 你 知-道 核-電 輻-射 正-在 慢-性 屠-殺 我-們 大-家 ， 你 要 怎-麼-辦 ？'
-		句分詞=['如-果 你 5 歲 的 孩-子 罹-癌 ，',
+		章分詞 = '如-果 你 5 歲 的 孩-子 罹-癌 ， 你 會 怎-樣 ？ 如-果 你 知-道 核-電 輻-射 正-在 慢-性 屠-殺 我-們 大-家 ， 你 要 怎-麼-辦 ？'
+		句分詞 = ['如-果 你 5 歲 的 孩-子 罹-癌 ，',
 			'你 會 怎-樣 ？',
 			'如-果 你 知-道 核-電 輻-射 正-在 慢-性 屠-殺 我-們 大-家 ，',
 			'你 要 怎-麼-辦 ？']
@@ -280,6 +278,62 @@ class 拆文分析器轉做單元試驗(unittest.TestCase):
 		for 分 in 句分詞:
 			句陣列.append(self.分析器.轉做句物件(分))
 		self.assertEqual(章物件.內底句, 句陣列)
+
+	def test_轉做章濟句用換逝符號隔開(self):
+		語句 = '民視新聞報導\n桃園 工業區 的 連續 兩場 大火 ，'
+		章物件 = self.分析器.轉做章物件(語句)
+		self.assertEqual(len(章物件.內底句), 2)
+
+	def test_轉做章濟句連紲換逝符號隔開(self):
+		語句 = '民視新聞報導\n\n桃園 工業區 的 連續 兩場 大火 ，'
+		章物件 = self.分析器.轉做章物件(語句)
+		self.assertEqual(len(章物件.內底句), 2)
+
+	def test_轉做章濟句連紲換逝符號隔開詞數(self):
+		語句 = '民視新聞報導\n\n桃園 工業區 的 連續 兩場 大火 ，'
+		章物件 = self.分析器.轉做章物件(語句)
+		網仔 = 詞物件網仔()
+		self.assertEqual(len(網仔.網出詞物件(章物件.內底句[0])), 3)
+		self.assertEqual(len(網仔.網出詞物件(章物件.內底句[1])), 7)
+		
+	def test_轉做章分詞濟句用換逝符號隔開(self):
+		語句 = '𪜶｜in1 兩｜nng7 个｜e5 兄-弟-仔｜hiann1-ti7-a2\n'\
+			'為-著｜ui7-tioh8 拚｜piann3 生-理｜sing1-li2 ，｜, 。｜. '
+		章物件 = self.分析器.轉做章物件(語句)
+		self.assertEqual(len(章物件.內底句), 2)
+		
+	def test_轉做章分詞濟句用換逝符號隔開詞數(self):
+		語句 = '𪜶｜in1 兩｜nng7 个｜e5 兄-弟-仔｜hiann1-ti7-a2\n'\
+			'為-著｜ui7-tioh8 拚｜piann3 生-理｜sing1-li2 ，｜, 。｜. '
+		章物件 = self.分析器.轉做章物件(語句)
+		網仔 = 詞物件網仔()
+		self.assertEqual(len(網仔.網出詞物件(章物件.內底句[0])), 5)
+		self.assertEqual(len(網仔.網出詞物件(章物件.內底句[1])), 5)
+		
+	def test_轉做章分詞濟句用換逝分詞隔開(self):
+		語句 = '𪜶｜in1 兩｜nng7 个｜e5 兄-弟-仔｜hiann1-ti7-a2 \n｜\n '\
+			'為-著｜ui7-tioh8 拚｜piann3 生-理｜sing1-li2 ，｜, 。｜. '
+		章物件 = self.分析器.轉做章物件(語句)
+		self.assertEqual(len(章物件.內底句), 2)
+		
+	def test_轉做章有加的空白佮換逝符號(self):
+		分詞 = '  𪜶｜in1    兩｜nng7     个｜e5 \n'\
+			'  生-做｜senn1-tso3 一-模-一-樣｜it4-boo5-it4-iunn7 。｜.    '
+		章物件 = self.分析器.轉做章物件(分詞)
+		self.assertEqual(len(章物件.內底句), 2)
+		
+	def test_轉做章有加的空白佮換逝符號詞數(self):
+		分詞 = '  𪜶｜in1    兩｜nng7     个｜e5 \n'\
+			'  生-做｜senn1-tso3 一-模-一-樣｜it4-boo5-it4-iunn7 。｜.    '
+		章物件 = self.分析器.轉做章物件(分詞)
+		網仔 = 詞物件網仔()
+		self.assertEqual(len(網仔.網出詞物件(章物件.內底句[0])), 4)
+		self.assertEqual(len(網仔.網出詞物件(章物件.內底句[1])), 3)
+		
+	def test_轉做章換逝後壁閣有符號(self):
+		分詞 = '  𪜶｜in1    兩｜nng7     个｜e5 \n  。｜.    '
+		章物件 = self.分析器.轉做章物件(分詞)
+		self.assertEqual(len(章物件.內底句), 2)
 
 	def test_烏白傳參數(self):
 		self.assertRaises(型態錯誤, self.分析器.轉做字物件, None)
