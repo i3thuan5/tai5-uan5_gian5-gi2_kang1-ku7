@@ -258,6 +258,28 @@ class 摩西用戶端單元試驗(TestCase):
 			}]}
 		用戶端 = 摩西用戶端(編碼器=語句編碼器())
 		用戶端.翻譯(self.分析器.轉做章物件(華語章))
+	def test_翻譯語句換逝應該先提掉(self):
+		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
+		章物件=self.分析器.轉做章物件('我 們 要 去 吃 飯 。\n\n')
+		self.用戶端.翻譯(章物件)
+		self.xmlrpcMock.return_value.translate.assert_called_once_with({
+					'text': '我 們 要 去 吃 飯 。',
+					'align': 'true',
+					'nbest': 1,
+					'report-all-factors': 'true',
+		  		}
+			)
+	def test_翻譯語句換逝分詞應該先提掉(self):
+		self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
+		章物件=self.分析器.轉做章物件('我 們 要 去 吃 飯 。\n｜\n')
+		self.用戶端.翻譯(章物件)
+		self.xmlrpcMock.return_value.translate.assert_called_once_with({
+					'text': '我 們 要 去 吃 飯 。',
+					'align': 'true',
+					'nbest': 1,
+					'report-all-factors': 'true',
+		  		}
+			)
 	def _組陣列分開包做句物件(self, 組陣列):
 		句物件 = 句()
 		for 組物件 in 組陣列:

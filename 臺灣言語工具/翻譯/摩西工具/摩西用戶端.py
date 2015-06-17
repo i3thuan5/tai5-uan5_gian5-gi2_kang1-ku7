@@ -38,7 +38,7 @@ class 摩西用戶端():
 		return 結果章物件, 來源新結構章物件, 總分
 	def _翻譯句物件(self, 來源句物件):
 		參數 = {
-			"text":self.編碼器.編碼(self.譀鏡.看分詞(來源句物件)),
+			"text":self.編碼器.編碼(self.譀鏡.看分詞(來源句物件).strip('｜\n\t ')),
 			"align":"true",
 			"report-all-factors":"true",
 			'nbest':1,
