@@ -51,7 +51,7 @@ class 官話注音符號:
 				self.聲 = 聲韻
 				self.韻 = ''
 				self.聲韻 = 聲韻
-	def 標準音標(self):
+	def 預設音標(self):
 		return self.音標
 	def 音值(self):
 		return self.轉音值模組.轉(self.聲, self.韻, self.調)

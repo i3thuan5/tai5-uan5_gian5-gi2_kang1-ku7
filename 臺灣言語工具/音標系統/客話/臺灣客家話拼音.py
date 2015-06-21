@@ -59,7 +59,7 @@ class 臺灣客家話拼音:
 					self.聲韻 = 音標
 					self.音標 = 音標
 					# special case
-	def 標準音標(self):
+	def 預設音標(self):
 		return self.音標
 	def 音值(self):
 		return self.轉音值模組.轉(self.聲, self.韻, self.調)
