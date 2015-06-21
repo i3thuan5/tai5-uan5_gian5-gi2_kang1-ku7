@@ -27,12 +27,12 @@ class 轉物件音家私():
 		else:
 			新音 = 無音
 		新型物件 = 音標工具(字物件.型)
-		新型標準音標 = getattr(新型物件,函式)()
+		新型預設音標 = getattr(新型物件,函式)()
 		if 字物件.音.startswith(字物件.型) and isinstance(新音, str):
 			新型 = 新音
 		elif 新型物件 != None\
-			and 新型標準音標 != None and isinstance(新型標準音標, str):
-			新型 = 新型標準音標
+			and 新型預設音標 != None and isinstance(新型預設音標, str):
+			新型 = 新型預設音標
 		else:
 			新型 = 字物件.型
 		return 字(新型, 新音)
@@ -77,7 +77,7 @@ class 轉物件音家私():
 			新章物件.內底句.append(self._轉句音(音標工具, 句, 函式))
 		return 新章物件
 
-	def 轉音(self, 音標工具, 物件, 函式='標準音標'):
+	def 轉音(self, 音標工具, 物件, 函式='預設音標'):
 		if isinstance(物件, 字):
 			return self._轉字音(音標工具, 物件, 函式)
 		if isinstance(物件, 詞):
