@@ -7,6 +7,7 @@ import os
 from distutils.core import setup
 from 版本 import 版本
 
+
 def 揣工具包(頭='.'):
 	'setup的find_packages無支援windows中文檔案'
 	工具包 = []

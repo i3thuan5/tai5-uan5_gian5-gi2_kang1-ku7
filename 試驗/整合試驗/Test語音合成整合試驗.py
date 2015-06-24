@@ -17,17 +17,21 @@ from 臺灣言語工具.語音合成.閩南語變調 import 閩南語變調
 from 臺灣言語工具.語言模型.KenLM語言模型 import KenLM語言模型
 from 臺灣言語工具.辭典.型音辭典 import 型音辭典
 
+
 class 語音合成整合單元試驗(unittest.TestCase):
 	模型網址 = 'http://sih4sing5hong5.github.io/hts_engine_python/example/Taiwanese.htsvoice'
 	閩南語模型 = 'Taiwanese.htsvoice'
+
 	@classmethod
 	def setUpClass(cls):
 		with urlopen(cls.模型網址) as 模型資料:
 			with open(cls.閩南語模型, 'wb') as 模型檔案:
 				模型檔案.write(模型資料.read())
+
 	@classmethod
 	def tearDownClass(cls):
 		os.remove(cls.閩南語模型) 
+
 	def setUp(self):
 		self.粗胚 = 文章粗胚()
 		self.分析器 = 拆文分析器()
@@ -40,6 +44,7 @@ class 語音合成整合單元試驗(unittest.TestCase):
 		
 		self.語音標仔轉換 = 語音標仔轉換()
 		self.音檔頭前表 = 音檔頭前表()
+
 	def tearDown(self):
 		pass
 

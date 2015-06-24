@@ -2,9 +2,11 @@
 import unittest
 from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 
+
 class 文章粗胚數字英文中央加分字單元試驗(unittest.TestCase):
 	def setUp(self):
 		self.粗胚 = 文章粗胚()
+
 	def tearDown(self):
 		pass
 

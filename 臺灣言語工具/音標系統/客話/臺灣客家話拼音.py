@@ -27,6 +27,8 @@ from 臺灣言語工具.音標系統.客話.臺灣客家話拼音轉音值模組
 #  2013/11/1
 #  意傳的客家話辨識用拼音
 #########################################
+
+
 class 臺灣客家話拼音:
 	#-------成員函式--------#
 	def __init__(self, 音標):
@@ -59,10 +61,13 @@ class 臺灣客家話拼音:
 					self.聲韻 = 音標
 					self.音標 = 音標
 					# special case
+
 	def 預設音標(self):
 		return self.音標
+
 	def 音值(self):
 		return self.轉音值模組.轉(self.聲, self.韻, self.調)
+
 	def 通用音值(self):
 		return (self.聲, self.韻, self.調)
 	#-------成員變數--------#

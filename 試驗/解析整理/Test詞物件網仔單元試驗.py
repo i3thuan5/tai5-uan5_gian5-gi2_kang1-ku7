@@ -9,13 +9,16 @@ from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
 
+
 class 詞物件網仔單元試驗(unittest.TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
 		self.粗胚 = 文章粗胚()
 		self.網仔 = 詞物件網仔()
+
 	def tearDown(self):
 		pass
+
 	def test_網字詞(self):
 		型 = '媠'
 		字物件 = self.分析器.建立字物件(型)

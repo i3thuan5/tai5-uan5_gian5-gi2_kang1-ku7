@@ -109,6 +109,8 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
 	'ie':'ie', 'uang':'uang',
 }
 臺羅對通用調對照表 = {'1':'1', '7':'2', '3':'3', '2':'4', '5':'5', '8':'6', '4':'7', '10':'8', '9':'9', '6':'7'}
+
+
 class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 	聲母表 = 臺灣閩南語羅馬字拼音聲母表
 	韻母表 = 臺灣閩南語羅馬字拼音韻母表
@@ -128,14 +130,17 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 	對通用韻對照表 = 臺羅對通用韻對照表
 	對通用調對照表 = 臺羅對通用調對照表
 	轉音值模組=臺灣閩南語羅馬字拼音轉音值模組()
+
 	def __init__(self, 音標):
 		self.分析聲韻調(音標)
 		if self.聲 == 'm' or self.聲 == 'n' or self.聲 == 'ng':
 			if self.韻 == 'o':
 				self.韻 = 'oo'
 				self.做音標()
+
 	def 轉換到臺灣閩南語羅馬字拼音(self):
 		return self.音標
+
 	def 轉閏號調(self):
 		if self.音標 == None:
 			return None
@@ -154,6 +159,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 # 		return 方音符號吳守禮改良式(self.音標).音標
 # 	def 轉吳守禮方音組字式(self):
 # 		return 方音符號吳守禮改良式(self.音標).產生音標組字式()
+
 	def 轉通用拼音(self):
 		if self.音標 == None:
 			return None
@@ -163,7 +169,9 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 				.format(self.聲, self.韻, self.調,
 				 self.韻 in self.對通用韻對照表, self.調 in self.對通用調對照表))
 		return self.對通用聲對照表[self.聲] + self.對通用韻對照表[self.韻] + self.對通用調對照表[self.調]
+
 	def 產生吳守禮方音物件(self):
 		return 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組(self.聲, self.韻, self.調, self.輕)
+
 	def 音值(self):
 		return self.轉音值模組.轉(self.聲, self.韻, self.調, self.輕)

@@ -13,6 +13,7 @@ from 臺灣言語工具.基本元素.章 import 章
 from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
 from 臺灣言語工具.基本元素.詞 import 詞
 
+
 @patch('臺灣言語工具.斷詞.中研院.斷詞用戶端.斷詞用戶端.語句斷詞做語句')
 class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 	def setUp(self):
@@ -20,6 +21,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 		
 		self.分析器 = 拆文分析器()
 		self.網仔 = 詞物件網仔()
+
 	def tearDown(self):
 		pass
 
@@ -41,6 +43,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 		答案句物件 = 句()
 		答案句物件.內底集 = [答案集物件]
 		self.assertEqual(斷詞後句物件, 答案句物件)
+
 	def test_物件斷一句話句物件詞性(self, 語句斷詞做語句mock):
 		輸入句物件 = self.分析器.建立句物件('我想吃飯。')
 		語句斷詞做語句mock.return_value = [[
@@ -52,6 +55,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 					['N', 'Vt', 'Vi', 'PERIODCATEGORY']
 				):
 			self.assertEqual(詞物件.屬性['詞性'], 詞性)
+
 	def test_物件斷一句話章物件內容(self, 語句斷詞做語句mock):
 		輸入章物件 = self.分析器.建立章物件('我想吃飯。')
 		語句斷詞做語句mock.return_value = [[
@@ -72,6 +76,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 		答案章物件 = 章()
 		答案章物件.內底句 = [答案句物件]
 		self.assertEqual(斷詞後章物件, 答案章物件)
+
 	def test_物件斷一句話章物件詞性(self, 語句斷詞做語句mock):
 		輸入章物件 = self.分析器.建立章物件('我想吃飯。')
 		語句斷詞做語句mock.return_value = [[
@@ -83,6 +88,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 					['N', 'Vt', 'Vi', 'PERIODCATEGORY']
 				):
 			self.assertEqual(詞物件.屬性['詞性'], 詞性)
+
 	@patch('臺灣言語工具.斷詞.中研院.斷詞用戶端.斷詞用戶端._斷句物件詞')
 	def test_物件斷一逝字(self, 斷句物件詞mock, 語句斷詞做語句mock):
 		輸入章物件 = self.分析器.建立章物件('我想吃飯。我想吃很多飯。')
@@ -95,6 +101,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 				call(self.分析器.建立句物件('我想吃飯。'), 10, False),
 				call(self.分析器.建立句物件('我想吃很多飯。'), 10, False)
 			])
+
 	def test_物件上尾有換逝符號詞數檢查(self, 語句斷詞做語句mock):
 		輸入章物件 = self.分析器.建立章物件('我想吃飯。\n')
 		語句斷詞做語句mock.return_value = [[
@@ -105,6 +112,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 				len(self.網仔.網出詞物件(斷詞後章物件)),
 				5,
 			)
+
 	def test_物件上尾有換逝符號結構檢查(self, 語句斷詞做語句mock):
 		輸入章物件 = self.分析器.建立章物件('我想吃飯。\n')
 		語句斷詞做語句mock.return_value = [[
@@ -126,6 +134,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 		答案章物件 = 章()
 		答案章物件.內底句 = [答案句物件]
 		self.assertEqual(斷詞後章物件, 答案章物件)
+
 	def test_物件上尾有換逝符號詞性檢查(self, 語句斷詞做語句mock):
 		輸入章物件 = self.分析器.建立章物件('我想吃飯。\n')
 		語句斷詞做語句mock.return_value = [[
@@ -137,6 +146,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 					['N', 'Vt', 'Vi', 'PERIODCATEGORY', '']
 				):
 			self.assertEqual(詞物件.屬性['詞性'], 詞性)
+
 	def test_物件空白逝句物件詞數檢查(self, 語句斷詞做語句mock):
 		輸入章物件 = self.分析器.建立章物件('\n \n')
 		語句斷詞做語句mock.return_value = []
@@ -145,6 +155,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 				len(self.網仔.網出詞物件(斷詞後章物件)),
 				2,
 			)
+
 	def test_物件空白逝句物件結構檢查(self, 語句斷詞做語句mock):
 		輸入章物件 = self.分析器.建立章物件('\n \n')
 		語句斷詞做語句mock.return_value = []
@@ -161,6 +172,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 		答案章物件 = 章()
 		答案章物件.內底句 = [答案句物件]
 		self.assertEqual(斷詞後章物件, 答案章物件)
+
 	def test_物件空白逝句物件詞性檢查(self, 語句斷詞做語句mock):
 		輸入章物件 = self.分析器.建立章物件('\n \n')
 		語句斷詞做語句mock.return_value = []
@@ -170,6 +182,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 					['', '']
 				):
 			self.assertEqual(詞物件.屬性['詞性'], 詞性)
+
 	def test_物件斷小於符號的空白結果(self, 語句斷詞做語句mock):
 		輸入章物件 = self.分析器.建立章物件('我想) :<')
 		語句斷詞做語句mock.return_value = []
@@ -179,6 +192,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 					['', '', '', '', '', ]
 				):
 			self.assertEqual(詞物件.屬性['詞性'], 詞性)
+
 	def test_物件英文字(self, 語句斷詞做語句mock):
 		輸入章物件 = self.分析器.建立章物件('sui2')
 		語句斷詞做語句mock.return_value = [['\u3000sui2(FW)']]
@@ -196,6 +210,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 		self.assertEqual(self.用戶端.語句斷詞後結構化('我想吃飯。'), [[
 			[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
 			]])
+
 	def test_結構斷一逝字(self, 語句斷詞做語句mock):
 		語句斷詞做語句mock.return_value = [[
 				'\u3000我(N)\u3000想(Vt)\u3000吃飯(Vi)\u3000。(PERIODCATEGORY)',
@@ -205,6 +220,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 			[('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
 			[('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
 			]])
+
 	def test_結構斷兩逝字(self, 語句斷詞做語句mock):
 		語句斷詞做語句mock.return_value = [
 				[
@@ -223,6 +239,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 				[('我', 'N'), ('吃飽', 'Vi'), ('了', 'T'), ('。', 'PERIODCATEGORY')],
 			],
 			])
+
 	def test_結構斷大於符號(self, 語句斷詞做語句mock):
 		語句斷詞做語句mock.return_value = [[
 				'\u3000我(N)\u3000想(Vt)\u3000)(PARENTHESISCATEGORY)\u3000:(COLONCATEGORY)\u3000&gt;(PARENTHESISCATEGORY)'
@@ -230,6 +247,7 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
 		self.assertEqual(self.用戶端.語句斷詞後結構化('我想) :>'), [[
 			[('我', 'N'), ('想', 'Vt'), (')', 'PARENTHESISCATEGORY'), (':', 'COLONCATEGORY'), ('&gt;', 'PARENTHESISCATEGORY')],
 			]])
+
 	def test_結構斷小於符號的空白結果(self, 語句斷詞做語句mock):
 		語句斷詞做語句mock.return_value = []
 		self.assertEqual(self.用戶端.語句斷詞後結構化('我想) :<'), [

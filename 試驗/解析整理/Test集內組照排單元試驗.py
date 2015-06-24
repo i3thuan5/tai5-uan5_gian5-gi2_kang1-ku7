@@ -8,6 +8,7 @@ from 臺灣言語工具.解析整理.集內組照排 import 集內組照排
 from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from timeit import itertools
 
+
 class 集內組照排單元試驗(TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()

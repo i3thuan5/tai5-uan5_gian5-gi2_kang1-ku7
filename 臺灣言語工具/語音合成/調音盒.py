@@ -3,6 +3,7 @@ from tempfile import NamedTemporaryFile
 import os
 from 臺灣言語工具.系統整合.外部程式 import 外部程式
 
+
 class 調音盒:
 	指令 = '/usr/bin/sox '
 	單指令 = 指令+'{{0}} {{1}} '
@@ -13,6 +14,7 @@ class 調音盒:
 	篩懸音指令 = (指令 + '{{0}} -n highpass {0} noiseprof |'
 		+ 單指令 + ' noisered')
 	程式工具 = 外部程式()
+
 	def 用指令調(self, 音, 指令):
 		舊音 = NamedTemporaryFile(mode = 'wb', suffix = '.wav',
 			delete = False)
@@ -25,11 +27,15 @@ class 調音盒:
 		os.unlink(舊音.name)
 		os.unlink(新音.name)
 		return 調好音
+
 	def 改大細聲(self, 音, 大細聲):
 		return self.用指令調(音, self.大細聲指令.format(大細聲))
+
 	def 改音懸(self, 音, 音懸):
 		return self.用指令調(音, self.音懸指令.format(音懸))
+
 	def 篩雜訊(self, 音, 雜訊=程式工具.目錄()+'/Sox/雜訊.wav'):
 		return self.用指令調(音, self.篩雜訊指令.format(雜訊))
+
 	def 篩懸音(self, 音, 懸音):
 		return self.用指令調(音, self.篩懸音指令.format(懸音))

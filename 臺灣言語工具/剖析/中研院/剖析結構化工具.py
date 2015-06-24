@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 
+
 class 剖析結構化工具:
 	def 結構化剖析結果(self, 剖析結果字串):
 		空白, 語句資訊, 結束符號 = 剖析結果字串.split('#')
@@ -8,6 +9,7 @@ class 剖析結構化工具:
 			raise RuntimeError('剖析工具的格式有改變！！')
 		逝資料, 語句 = 語句資訊.split(' ', 1)
 		return 逝資料.split(':')[0],self._結構化語句(語句),結束符號
+
 	def _結構化語句(self, 剖析語句):
 		括號位置 = 剖析語句.find('(')
 		冒號位置 = 剖析語句.find(':')
@@ -24,6 +26,7 @@ class 剖析結構化工具:
 			return [剖析語句[:括號位置]] + 片語內容
 # 		print('「' + 剖析語句 + '」毋知按怎切！！！')
 		return (剖析語句)
+
 	def _切片語(self, 片語):
 		切開結果 = []
 		有問題 = False
@@ -49,6 +52,7 @@ class 剖析結構化工具:
 		if 有問題:
 			raise RuntimeError('剖析時，「' + 片語 + '」括號有問題！！！')
 		return 切開結果
+
 	def 處理結構化結果(self, 剖析結果, 處理函式):
 		處理結果 = []
 		for 一段剖析 in 剖析結果:

@@ -10,6 +10,7 @@ from 臺灣言語工具.基本元素.公用變數 import 無音
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 import itertools
 
+
 class 基本元素單元試驗(unittest.TestCase):
 	def setUp(self):
 		self.型 = '媠'
@@ -25,7 +26,6 @@ class 基本元素單元試驗(unittest.TestCase):
 		self.句物件 = 句(self.集陣列)
 		self.句陣列 = [self.句物件, self.句物件, self.句物件]
 		self.章物件 = 章(self.句陣列)
-
 
 	def tearDown(self):
 		pass
@@ -51,12 +51,16 @@ class 基本元素單元試驗(unittest.TestCase):
 		詞物件 = 詞(字陣列)
 		另外字陣列 = [字(型, 音), 字(型, 音)]
 		self.assertEqual(詞物件.內底字, 另外字陣列)
+
 	def test_組(self):
 		self.assertEqual(self.組物件.內底詞, self.詞陣列)
+
 	def test_集(self):
 		self.assertEqual(self.集物件.內底組, self.組陣列)
+
 	def test_句(self):
 		self.assertEqual(self.句物件.內底集, self.集陣列)
+
 	def test_章(self):
 		self.assertEqual(self.章物件.內底句, self.句陣列)
 

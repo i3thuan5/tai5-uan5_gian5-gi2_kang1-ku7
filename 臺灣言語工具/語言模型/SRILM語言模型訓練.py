@@ -3,11 +3,13 @@ import os
 from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
 from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 
+
 class SRILM語句連詞訓練(程式腳本):
 	def __init__(self, SRILM執行檔路徑=''):
 		self.訓練指令 = '{0}ngram-count'.format(self._執行檔路徑加尾(SRILM執行檔路徑))
 		if not os.path.isfile(self.訓練指令):
 			raise FileNotFoundError('佇{0}揣無SRILM執行檔！！'.format(self.訓練指令))
+
 	def 訓練(self,
 				語料,
 				暫存資料夾,

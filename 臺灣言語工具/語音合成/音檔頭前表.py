@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import io
 import wave
+
+
 class 音檔頭前表:
 	def 提掉(self, 音):
 		音檔 = io.BytesIO(音)
@@ -9,6 +11,7 @@ class 音檔頭前表:
 		音物件.close()
 		音檔.close()
 		return 原始
+
 	def 加起哩(self, 原始, 一點幾位元組, 一秒幾點, 幾个聲道):
 		音檔 = io.BytesIO()
 		音物件 = wave.open(音檔, mode = 'wb')

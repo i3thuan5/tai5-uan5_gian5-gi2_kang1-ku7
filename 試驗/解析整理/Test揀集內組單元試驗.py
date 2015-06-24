@@ -6,11 +6,13 @@ from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
 
+
 class 揀集內組單元試驗(unittest.TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
 		self.粗胚 = 文章粗胚()
 		self.網仔 = 詞物件網仔()
+
 	def tearDown(self):
 		pass
 	

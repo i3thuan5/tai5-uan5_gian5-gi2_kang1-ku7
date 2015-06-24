@@ -7,17 +7,21 @@ from math import pow
 
 from 臺灣言語工具.語言模型.語言模型 import 語言模型
 
+
 class 實際語言模型(語言模型):
 	基本 = 0.02
 	權重 = [0.08, 0.2, 0.7]
+
 	def __init__(self, 上濟詞數):
 		if 上濟詞數 <= 0:
 			raise 參數錯誤('詞數愛是正整數，傳入來的是{0}'.format(上濟詞數))
 		self._上濟詞數 = 上濟詞數
 		self.總數表 = [0] * self.上濟詞數()
 		self.連詞表 = {}
+
 	def 上濟詞數(self):
 		return self._上濟詞數
+
 	def 評詞陣列分(self, 詞陣列, 開始的所在=0):
 		for 所在 in range(開始的所在, len(詞陣列)):
 			分數 = self.感覺(詞陣列[max(0, 所在 + 1 - self.上濟詞數()):所在 + 1])
@@ -26,14 +30,17 @@ class 實際語言模型(語言模型):
 			except:
 				pass
 			yield 分數
+
 	def 感覺(self, 語句):
 		條件 = self.條件(語句)
 		分數 = self.基本
 		for 分, 權 in zip(條件, self.權重):
 			分數 += self.指數(分) * 權
 		return self.對數(分數)
+
 	def 總數(self):
 		return self.總數表
+
 	def 數量(self, 連詞):
 		數量表 = []
 		for 長度 in range(min(self.上濟詞數(), len(連詞))):
@@ -43,6 +50,7 @@ class 實際語言模型(語言模型):
 			else:
 				數量表.append(0)
 		return 數量表
+
 	def 機率(self, 連詞):
 		數量表 = self.數量(連詞)
 		機率表 = []
@@ -52,6 +60,7 @@ class 實際語言模型(語言模型):
 			else:
 				機率表.append(self.對數(數 / 總))
 		return 機率表
+
 	def 條件(self, 連詞):
 		'''條件機率'''
 		if 連詞 == [self.開始()]:
@@ -68,6 +77,7 @@ class 實際語言模型(語言模型):
 				條件表.append(self.對數(數 / 前))
 # 		print('條件表',條件表)
 		return 條件表
+
 	def 看(self, 物件):
 		if isinstance(物件, 章):
 			self.看章物件(物件)
@@ -82,11 +92,14 @@ class 實際語言模型(語言模型):
 				else:
 					self.連詞表[組合] += 1
 		return
+
 	def 看章物件(self, 章物件):
 		for 句物件 in 章物件.內底句:
 			self.看(句物件)
 		return
+
 	def 對數(self, 數字):
 		return log10(數字)
+
 	def 指數(self, 數字):
 		return pow(10.0, 數字)

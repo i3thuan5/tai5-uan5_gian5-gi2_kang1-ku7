@@ -7,11 +7,13 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 im
 from 臺灣言語工具.音標系統.閩南語.通用拼音音標 import 通用拼音音標
 from 臺灣言語工具.解析整理.字物件篩仔 import 字物件篩仔
 
+
 class 轉物件音家私單元試驗(unittest.TestCase):
 	def setUp(self):
 		self.粗胚 = 文章粗胚()
 		self.分析器 = 拆文分析器()
 		self.轉音家私 = 轉物件音家私()
+
 	def tearDown(self):
 		pass
 

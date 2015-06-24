@@ -3,11 +3,14 @@ from unittest.case import TestCase
 import os
 from 臺灣言語工具.語音辨識.模型訓練 import 模型訓練
 
+
 class 加短恬單元試驗(TestCase):
 	def setUp(self):
 		pass
+
 	def tearDown(self):
 		pass
+
 	def test_加短恬(self):
 		模型 = 模型訓練()
 		這馬目錄 = os.path.dirname(os.path.abspath(__file__))

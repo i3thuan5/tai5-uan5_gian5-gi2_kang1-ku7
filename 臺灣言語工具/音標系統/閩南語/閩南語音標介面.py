@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from abc import ABCMeta, abstractmethod
 
+
 class 閩南語音標介面(metaclass=ABCMeta):
 	#消警告用
 	頂層=ABCMeta
@@ -8,6 +9,7 @@ class 閩南語音標介面(metaclass=ABCMeta):
 	韻 = None
 	調 = 1
 	音標 = None
+
 	def 分析聲韻調(self, 音標):
 		self.音標 = ''
 		一開始 = True
@@ -66,8 +68,10 @@ class 閩南語音標介面(metaclass=ABCMeta):
 			print('不合法 原音標＝' + 音標)
 			self.音標 = None
 		return self.音標
+
 	def 預設音標(self):
 		return self.轉換到臺灣閩南語羅馬字拼音()
+
 	@abstractmethod
 	def 轉換到臺灣閩南語羅馬字拼音(self):
 		pass

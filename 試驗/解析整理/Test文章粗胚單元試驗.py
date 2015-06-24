@@ -5,9 +5,11 @@ from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 
+
 class 文章粗胚處理減號單元試驗(unittest.TestCase):
 	def setUp(self):
 		self.粗胚 = 文章粗胚()
+
 	def tearDown(self):
 		pass
 
@@ -81,14 +83,12 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
 		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
 		self.assertEqual(self.粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
 
-
 	def test_建立物件語句前處理減號長連字符(self):
 		原來語句 = '欲khuànn--tsit-ē--bô？'
 		處理好語句 = '欲khuànn-0tsit-ē-0bô？'
 		加空白後語句 = '欲khuànn-0tsit-ē-0bô ？ '
 		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
 		self.assertEqual(self.粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
-
 
 	def test_建立物件語句前處理減號連字號音標輕聲開頭(self):
 		原來語句 = '--ah'
@@ -159,7 +159,6 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
 		加空白後語句 =' - 幕 - '
 		self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
 		self.assertEqual(self.粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
-
 
 	def test_建立物件語句前處理減號連字號前後漢字(self):
 		# 這種測資嘛無法度

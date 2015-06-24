@@ -7,12 +7,15 @@ from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 臺灣言語工具.基本元素.公用變數 import 無音
 
+
 class 拆文分析器建立單元試驗(unittest.TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
 		self.粗胚 = 文章粗胚()
+
 	def tearDown(self):
 		pass
+
 	def test_建立字孤字(self):
 		型 = '媠'
 		字物件 = self.分析器.建立字物件(型)

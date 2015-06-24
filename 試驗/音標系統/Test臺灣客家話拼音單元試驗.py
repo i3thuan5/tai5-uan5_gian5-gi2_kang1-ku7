@@ -2,9 +2,11 @@
 from unittest.case import TestCase
 from 臺灣言語工具.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
 
+
 class 臺灣客家話拼音單元試驗(TestCase):
 	def setUp(self):
 		pass
+
 	def tearDown(self):
 		pass
 
@@ -113,7 +115,6 @@ class 臺灣客家話拼音單元試驗(TestCase):
 		self.assertEqual(臺灣客家話拼音('ianˇ').音標, 'ianˇ')#圓
 		self.assertEqual(臺灣客家話拼音('giadˋ').音標, 'giadˋ')#結
 		self.assertEqual(臺灣客家話拼音('giai').音標, 'giai')#街
-		
 		
 	def test_大寫音標(self):
 		self.assertEqual(臺灣客家話拼音('JIANGˊ').音標, 'jiangˊ')

@@ -2,6 +2,7 @@
 from unittest.case import TestCase
 from 臺灣言語工具.正規.阿拉伯數字 import 阿拉伯數字
 
+
 class 阿拉伯數字單元試驗(TestCase):
 	def setUp(self):
 		self.數字 = 阿拉伯數字()
@@ -57,6 +58,7 @@ class 阿拉伯數字單元試驗(TestCase):
 				self.assertEqual(self.數字.轉號碼('空', 問), 答)
 				self.assertEqual(self.數字.轉號碼('零', 問),
 						答.replace('空', '零'))
+
 	def test_轉數量(self):
 		問答 = [
 			('2', '兩'),
@@ -121,6 +123,7 @@ class 阿拉伯數字單元試驗(TestCase):
 			('七十九億', None),
 			]
 		self.檢查閩南語數量(問答)
+
 	def test_轉閩南語兩佮二數量(self):
 		問答 = [
 			('十二', None),
@@ -138,6 +141,7 @@ class 阿拉伯數字單元試驗(TestCase):
 			('三千兩百億', None),
 			]
 		self.檢查閩南語數量(問答)
+
 	def test_轉客家話數量省單位(self):
 		問答 = [
 			('一百二十', '百二'),
@@ -159,6 +163,7 @@ class 阿拉伯數字單元試驗(TestCase):
 			('七十九億', None),
 			]
 		self.檢查客家話數量(問答)
+
 	def test_轉官話數量省上尾單位(self):
 		問答 = [
 			('一百二十', '一百二'),
@@ -180,6 +185,7 @@ class 阿拉伯數字單元試驗(TestCase):
 			('七十九億', None),
 			]
 		self.檢查官話數量(問答)
+
 	def test_轉官話兩佮二數量(self):
 		問答 = [
 			('十二', None),
@@ -206,6 +212,7 @@ class 阿拉伯數字單元試驗(TestCase):
 				self.assertEqual(self.數字.轉數量('空', 問), 答, 問)
 				self.assertEqual(self.數字.轉數量('零', 問),
 						答.replace('空', '零'), 問)
+
 	def 檢查閩南語數量(self, 問答):
 		for 問, 答 in 問答:
 			if 答 == None:
@@ -214,6 +221,7 @@ class 阿拉伯數字單元試驗(TestCase):
 			else:
 				self.assertEqual(self.數字.轉閩南語數量無(問), True, 問)
 				self.assertEqual(self.數字.轉閩南語數量(問), 答, 問)
+
 	def 檢查客家話數量(self, 問答):
 		for 問, 答 in 問答:
 			if 答 == None:
@@ -222,6 +230,7 @@ class 阿拉伯數字單元試驗(TestCase):
 			else:
 				self.assertEqual(self.數字.轉客家話數量無(問), True, 問)
 				self.assertEqual(self.數字.轉客家話數量(問), 答, 問)
+
 	def 檢查官話數量(self, 問答):
 		for 問, 答 in 問答:
 			if 答 == None:

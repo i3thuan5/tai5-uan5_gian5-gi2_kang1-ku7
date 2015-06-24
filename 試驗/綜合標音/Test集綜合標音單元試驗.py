@@ -9,12 +9,15 @@ from 臺灣言語工具.綜合標音.集綜合標音 import 集綜合標音
 from 臺灣言語工具.綜合標音.詞組綜合標音 import 詞組綜合標音
 from 臺灣言語工具.基本元素.公用變數 import 無音
 
+
 class 集綜合標音單元試驗(unittest.TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
 		self.粗胚 = 文章粗胚()
+
 	def tearDown(self):
 		pass
+
 	def test_基本單元試驗(self):
 		媠某 = self.分析器.產生對齊組('美女', 'sui2-boo2')
 		美女 = self.分析器.產生對齊組('美女', 'mi2-lu2')
@@ -23,6 +26,7 @@ class 集綜合標音單元試驗(unittest.TestCase):
 		self.assertEqual(len(標音集.綜合詞組), 2)
 		self.assertEqual(標音集.綜合詞組[0], 詞組綜合標音(閩南語字綜合標音, 媠某))
 		self.assertEqual(標音集.綜合詞組[1], 詞組綜合標音(閩南語字綜合標音, 美女))
+
 	def test_有無音字(self):
 		集物件 = 集([self.分析器.產生對齊組('點仔膠', 'tiam2-a2-ka1'),
 				self.分析器.建立組物件('，'),

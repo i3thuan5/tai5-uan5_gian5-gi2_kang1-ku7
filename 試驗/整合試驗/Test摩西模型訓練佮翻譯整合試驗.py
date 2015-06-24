@@ -16,6 +16,7 @@ from 臺灣言語工具.翻譯.斷詞斷字翻譯 import 斷詞斷字翻譯
 from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 
+
 class 摩西模型訓練佮翻譯整合試驗(TestCase):
 	def setUp(self):
 		self.這馬目錄 = os.path.dirname(os.path.abspath(__file__))
@@ -23,9 +24,11 @@ class 摩西模型訓練佮翻譯整合試驗(TestCase):
 		self.平行華語 = [os.path.join(資料目錄, '華'), ]
 		self.平行閩南語 = [os.path.join(資料目錄, '閩'), ]
 		self.閩南語語料 = [os.path.join(資料目錄, '閩'), ]
+
 	def tearDown(self):
 		# 刣掉訓練出來的模型
 		rmtree(os.path.join(self.這馬目錄, '暫存資料夾'))
+
 	def test_單一模型訓練(self):
 		翻譯編碼器 = 語句編碼器()  # 若用著Unicdoe擴充就需要
 		
@@ -156,10 +159,8 @@ class 摩西模型訓練佮翻譯整合試驗(TestCase):
 				刣掉暫存檔=True,
 			)
 		
-		
 		服務 = 摩西服務端(moses模型資料夾路徑, 埠=8504)
 		服務.走()
-		
 		
 		等待patch=patch('subprocess.Popen.wait')
 		等待mock=等待patch.start()

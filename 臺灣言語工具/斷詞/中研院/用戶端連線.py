@@ -6,6 +6,7 @@ import re
 import sys
 import time
 
+
 class 用戶端連線:
 	檢查結果 = re.compile('<result>(.*)</result>')
 	檢查空結果 = re.compile('<result/>')
@@ -19,12 +20,14 @@ class 用戶端連線:
 <text>{}</text>
 </wordsegmentation>
 '''
+
 	def __init__(self, 主機, 連接埠, 編碼, 帳號, 密碼):
 		self.編碼 = 編碼
 		self.主機 = 主機
 		self.連接埠 = 連接埠
 		self.帳號 = 帳號
 		self.密碼 = 密碼
+
 	def _語句做了嘛是語句(self, 語句, 等待=3, 一定愛成功=False):
 		# 官方功能無記錄原本換逝資訊，所以愛一逐一擺
 		結果 = []
@@ -46,6 +49,7 @@ class 用戶端連線:
 				else:
 					break
 		return 結果
+
 	def _連線(self, 語句, 等待, 編碼, 主機, 連接埠, 帳號, 密碼):
 		連線 = socket(
 			AF_INET, SOCK_STREAM)

@@ -11,12 +11,15 @@ from 臺灣言語工具.綜合標音.集綜合標音 import 集綜合標音
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.綜合標音.詞組綜合標音 import 詞組綜合標音
 
+
 class 句綜合標音單元試驗(unittest.TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
 		self.粗胚 = 文章粗胚()
+
 	def tearDown(self):
 		pass
+
 	def test_基本單元試驗(self):
 		我 = self.分析器.產生對齊集('我', 'gua2')
 		愛 = self.分析器.產生對齊集('愛', 'ai3')
@@ -148,6 +151,7 @@ class 句綜合標音單元試驗(unittest.TestCase):
 				{"型體":"，", "臺羅數字調":",", "臺羅閏號調":",", "通用數字調":",", "吳守禮方音":""}],
 			"連字音":","}]
 			])
+
 	def test_食章物件(self):
 		章物件 = self.分析器.產生對齊章('點仔膠，黏著跤，', 'tiam2-a2-ka1, liam5-tioh8 kha1,')
 		標音句 = 句綜合標音(閩南語字綜合標音, 章物件)

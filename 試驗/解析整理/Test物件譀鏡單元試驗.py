@@ -7,10 +7,12 @@ from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.基本元素.公用變數 import 分字符號
 
+
 class 物件譀鏡單元試驗(unittest.TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
 		self.譀鏡 = 物件譀鏡()
+
 	def tearDown(self):
 		pass
 
@@ -189,6 +191,7 @@ class 物件譀鏡單元試驗(unittest.TestCase):
 			'tsiah8-pa2 0bue7 ? tsiah8-pa2 0ah4 !')
 		self.assertEqual(self.譀鏡.看分詞(章物件), 
 			'食-飽｜tsiah8-pa2 未｜0bue7 ？｜? 食-飽｜tsiah8-pa2 矣｜0ah4 ！｜!')
+
 	def test_換句分句符號(self):
 		原本語句='食-飽｜tsiah8-pa2 未｜0bue7 ？｜? 食-飽｜tsiah8-pa2 矣｜0ah4 ！｜!'
 		章物件 = self.分析器.轉做章物件(原本語句)

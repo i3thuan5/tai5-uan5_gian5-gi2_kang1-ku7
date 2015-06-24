@@ -6,9 +6,11 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 im
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉音值模組 import 臺灣閩南語羅馬字拼音對照音值聲母表
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉音值模組 import 臺灣閩南語羅馬字拼音對照音值韻母表
 
+
 class 臺灣閩南語羅馬字拼音轉音值模組單元試驗(unittest.TestCase):
 	def setUp(self):
 		pass
+
 	def tearDown(self):
 		pass
 		

@@ -5,8 +5,10 @@ from 臺灣言語工具.基本元素.詞 import 詞
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 
+
 class 辭典單元試驗:
 	辭典型態 = None
+
 	def setUp(self):
 		self.字典 = self.辭典型態(4)
 		self.粗胚 = 文章粗胚()
@@ -26,6 +28,7 @@ class 辭典單元試驗:
 		
 	def tearDown(self):
 		pass
+
 	def test_漢字加詞成功無(self):
 		self.字典.加詞(self.詞物件)
 		self.assertEqual(self.字典.查詞(self.詞物件), [set(), set(), set(), {self.詞物件}])

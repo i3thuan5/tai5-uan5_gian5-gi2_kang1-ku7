@@ -6,10 +6,12 @@ from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 
+
 class 拆文分析器對齊單元試驗(unittest.TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
 		self.粗胚 = 文章粗胚()
+
 	def tearDown(self):
 		pass
 
@@ -670,18 +672,22 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
 		self.assertRaises(型態錯誤, self.分析器.產生對齊詞, None, [音一, 音二, 音三])
 		self.assertRaises(型態錯誤, self.分析器.產生對齊詞, [型一, 型二, None], [音一, 音二, 音三])
 		self.assertRaises(型態錯誤, self.分析器.產生對齊詞, [型一, 型二, 型三], [音一, 音二, 3])
+
 	def test_對齊組烏白傳(self):
 		self.assertRaises(型態錯誤, self.分析器.產生對齊組, None, None)
 		self.assertRaises(型態錯誤, self.分析器.產生對齊組, None, None)
 		self.assertRaises(型態錯誤, self.分析器.產生對齊組, None, None)
+
 	def test_對齊集烏白傳(self):
 		self.assertRaises(型態錯誤, self.分析器.產生對齊集, None, None)
 		self.assertRaises(型態錯誤, self.分析器.產生對齊集, '', None)
 		self.assertRaises(型態錯誤, self.分析器.產生對齊集, None, '')
+
 	def test_對齊句烏白傳(self):
 		self.assertRaises(型態錯誤, self.分析器.產生對齊句, None, None)
 		self.assertRaises(型態錯誤, self.分析器.產生對齊句, '', None)
 		self.assertRaises(型態錯誤, self.分析器.產生對齊句, None, '')
+
 	def test_對齊章烏白傳(self):
 		self.assertRaises(型態錯誤, self.分析器.產生對齊章, None, None)
 		self.assertRaises(型態錯誤, self.分析器.產生對齊章, '', None)

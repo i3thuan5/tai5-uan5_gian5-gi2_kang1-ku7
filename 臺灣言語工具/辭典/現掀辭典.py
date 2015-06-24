@@ -6,12 +6,14 @@ from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 
+
 class 現掀辭典(文字辭典):
 	def __init__(self, 上濟字數):
 		if 上濟字數 <= 0:
 			raise 參數錯誤('字數愛是正整數，傳入來的是{0}'.format(上濟字數))
 		self._上濟字數 = 上濟字數
 		self.條目 = []
+
 	def 加詞(self, 詞物件):
 		if not isinstance(詞物件, 詞):
 			raise 型態錯誤('傳入來的毋是詞物件：{0}'.format(str(詞物件)))

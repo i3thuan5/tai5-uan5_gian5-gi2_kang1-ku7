@@ -12,6 +12,7 @@ from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.語言模型.KenLM語言模型 import KenLM語言模型
 from 臺灣言語工具.辭典.型音辭典 import 型音辭典
 
+
 class 標全漢全羅整合單元試驗(unittest.TestCase):
 	def setUp(self):
 		self.粗胚 = 文章粗胚()
@@ -21,6 +22,7 @@ class 標全漢全羅整合單元試驗(unittest.TestCase):
 		
 		self.揣詞 = 拄好長度辭典揣詞()
 		self.揀集內組 = 連詞揀集內組()
+
 	def tearDown(self):
 		pass
 

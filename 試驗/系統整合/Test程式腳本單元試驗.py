@@ -10,47 +10,62 @@ from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
 from itertools import zip_longest
 
+
 class 程式腳本單元試驗(TestCase):
 	def setUp(self):
 		self.腳本 = 程式腳本()
 		self.這馬目錄 = os.path.dirname(os.path.abspath(__file__))
+
 	def test_空執行檔路徑加尾(self):
 		self.assertEqual(self.腳本._執行檔路徑加尾(''), '')
+
 	def test_根目錄執行檔路徑加尾(self):
 		self.assertEqual(self.腳本._執行檔路徑加尾('/'), '/')
+
 	def test_一般資料夾執行檔路徑加尾(self):
 		self.assertEqual(
 			self.腳本._執行檔路徑加尾('/home/git/mgiza/mgizapp/bin'),
 			'/home/git/mgiza/mgizapp/bin/')
+
 	def test_走正常指令(self):
 		self.腳本._走指令('/bin/echo')
+
 	def test_走正常指令陣列(self):
 		self.腳本._走指令(['/bin/echo', 'tai5gi2']) 
+
 	def test_走正常指令有參數愛陣列(self):
 		self.assertRaises(RuntimeError, self.腳本._走指令, '/bin/echo tai5gi2')
+
 	def test_走錯誤正常指令(self):
 		self.assertRaises(RuntimeError, self.腳本._走指令, '/bin/grep') 
+
 	def test_走錯誤正常指令陣列(self):
 		self.assertRaises(RuntimeError, self.腳本._走指令, ['/bin/grep'])
+
 	def test_走無指令(self):
 		self.assertRaises(RuntimeError, self.腳本._走指令, '/bin/tai5gi2')
+
 	def test_走無指令陣列(self):
 		self.assertRaises(RuntimeError, self.腳本._走指令, ['/bin/tai5gi2']) 
+
 	def test_走指令錯誤輸出檔案(self):
 		with io.open(os.path.join(self.這馬目錄, '暫檔'), 'w') as 檔案:
 			self.assertRaises(RuntimeError,
 				self.腳本._走指令, ['/bin/grep', '----'], stdout=檔案)
 		os.remove(os.path.join(self.這馬目錄, '暫檔')) 
+
 	def test_建細項目錄(self):
 		if os.path.isdir(os.path.join(self.這馬目錄, '細項名')):
 			os.rmdir(os.path.join(self.這馬目錄, '細項名'))
 		self.腳本._細項目錄(self.這馬目錄, '細項名')
 		self.assertTrue(os.path.isdir(os.path.join(self.這馬目錄, '細項名'))) 
 		os.rmdir(os.path.join(self.這馬目錄, '細項名'))
+
 	def test_建兩細項目錄嘛無要緊(self):
 		self.腳本._細項目錄(self.這馬目錄, '細項名')
 		self.腳本._細項目錄(self.這馬目錄, '細項名')
 		os.rmdir(os.path.join(self.這馬目錄, '細項名'))
+
 	def test_寫一般檔案(self):
 		檔名 = os.path.join(self.這馬目錄, '文件.txt')
 		self.腳本._陣列寫入檔案(檔名, ['臺灣', '建國'])
@@ -58,11 +73,13 @@ class 程式腳本單元試驗(TestCase):
 			for 原本, 讀檔 in zip_longest(['臺灣', '建國'], 檔案.readlines()):
 				self.assertEqual(原本, 讀檔.strip())
 		os.remove(檔名)
+
 	def test_讀寫一般檔案(self):
 		檔名 = os.path.join(self.這馬目錄, '文件.txt')
 		self.腳本._陣列寫入檔案(檔名, ['臺灣', '建國'])
 		self.assertEqual(self.腳本._讀檔案(檔名), ['臺灣', '建國'])
 		os.remove(檔名)
+
 	def test_寫壓縮檔案(self):
 		檔名 = os.path.join(self.這馬目錄, '文件.txt.gz')
 		self.腳本._陣列寫入檔案(檔名, ['臺灣', '建國'])
@@ -70,6 +87,7 @@ class 程式腳本單元試驗(TestCase):
 			for 原本, 讀檔 in zip_longest(['臺灣', '建國'], 檔案.readlines()):
 				self.assertEqual(原本, 讀檔.strip())
 		os.remove(檔名)
+
 	def test_讀寫壓縮檔案(self):
 		檔名 = os.path.join(self.這馬目錄, '文件.txt.gz')
 		self.腳本._陣列寫入檔案(檔名, ['臺灣', '建國'])

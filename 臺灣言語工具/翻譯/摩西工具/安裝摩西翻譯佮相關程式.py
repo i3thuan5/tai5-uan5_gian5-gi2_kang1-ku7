@@ -7,6 +7,8 @@ from 臺灣言語工具.系統整合.外部程式 import 外部程式
 from shutil import move
 
 _外部程式目錄 = 外部程式().目錄()
+
+
 class 安裝摩西翻譯佮相關程式(程式腳本):
 	def 安裝moses(self, moses安裝路徑=_外部程式目錄, 編譯CPU數=4):
 		os.makedirs(moses安裝路徑, exist_ok=True)

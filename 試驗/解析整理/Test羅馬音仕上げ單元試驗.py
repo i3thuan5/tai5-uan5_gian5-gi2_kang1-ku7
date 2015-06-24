@@ -6,9 +6,12 @@ from 臺灣言語工具.解析整理.羅馬音仕上げ import 羅馬音仕上�
 #しあげ
 #ㄒㄧ˫ ㄚ ㆣㆤㆷ
 #1si7_1a1_1geh4
+
+
 class 羅馬音仕上げ單元試驗(unittest.TestCase):
 	def setUp(self):
 		pass
+
 	def tearDown(self):
 		self.羅馬音仕上げ = 羅馬音仕上げ()
 		self.assertEqual(

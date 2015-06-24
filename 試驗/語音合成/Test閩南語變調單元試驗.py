@@ -8,6 +8,7 @@ from 臺灣言語工具.解析整理.字物件篩仔 import 字物件篩仔
 from 臺灣言語工具.基本元素.句 import 句
 from 臺灣言語工具.基本元素.章 import 章
 
+
 class 閩南語變調單元試驗(unittest.TestCase):
 	def setUp(self):
 		self.閩南語變調 = 閩南語變調()
@@ -25,6 +26,7 @@ class 閩南語變調單元試驗(unittest.TestCase):
 		self._設定音值(變調了,
 			[('g', 'ua', '1'), ('ʔ', 'ai', '2'), ('s', 'ui', '1'), ('s', 'ui', '2')])
 		self.assertEqual(self.閩南語變調.變調(原本), 變調了)
+
 	def test_句尾變調原本物件無變(self):
 		原本 = self.分析器.建立句物件('我愛媠媠')
 		self._設定音值(原本,
@@ -43,6 +45,7 @@ class 閩南語變調單元試驗(unittest.TestCase):
 			[('g', 'ua', '1'), ('s', 'ioŋ', '3'), ('ʔ', 'ai', '2'),
 			('s', 'ui', '1'), ('s', 'ui', '2'), ('ʔ', 'e', '7'), ('k', 'o', '7'), ('n', 'iu', '5')])
 		self.assertEqual(self.閩南語變調.變調(原本), 變調了)
+
 	def test_的前無變調原本物件無變(self):
 		原本 = self.分析器.建立句物件('我上愛媠媠的姑娘')
 		self._設定音值(原本,
@@ -62,6 +65,7 @@ class 閩南語變調單元試驗(unittest.TestCase):
 			[('g', 'ua', '1'), ('ʔ', 'e', '7'),
 			('s', 'ui', '1'), ('s', 'ui', '2'), ])
 		self.assertEqual(self.閩南語變調.變調(原本), 變調了)
+
 	def test_的前代名詞變調原本物件無變(self):
 		原本 = self.分析器.建立句物件('我的媠媠')
 		self._設定音值(原本,
@@ -79,6 +83,7 @@ class 閩南語變調單元試驗(unittest.TestCase):
 		self._設定音值(變調了,
 			[('g', 'ua', '2'), (None,), ('ʔ', 'ai', '2'), ('s', 'ui', '1'), ('s', 'ui', '2')])
 		self.assertEqual(self.閩南語變調.變調(原本), 變調了)
+
 	def test_井前無變調原本物件無變(self):
 		原本 = self.分析器.建立句物件('我#愛媠媠')
 		self._設定音值(原本,
@@ -97,6 +102,7 @@ class 閩南語變調單元試驗(unittest.TestCase):
 			[('g', 'ua', '1'), ('ʔ', 'ai', '2'), ('s', 'ui', '1'), ('s', 'ui', '2'), (None,),
 			('g', 'ua', '1'), ('ʔ', 'ai', '2'), ('s', 'ui', '1'), ('s', 'ui', '2'), (None,), ])
 		self.assertEqual(self.閩南語變調.變調(原本), 變調了)
+
 	def test_章物件句尾變調原本物件無變(self):
 		原本 = self.分析器.建立章物件('我愛媠媠。我愛媠媠。')
 		self._設定音值(原本,

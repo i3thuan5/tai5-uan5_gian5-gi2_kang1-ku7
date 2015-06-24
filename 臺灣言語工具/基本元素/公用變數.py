@@ -41,12 +41,14 @@ import unicodedata
 統一碼聲調符號 = 統一碼數字類 | 統一碼注音聲調符號
 統一碼音標類 = 統一碼羅馬字類 | 統一碼聲調符號
 
+
 def 是拼音字元無(字元, 種類=None):
 	if 字元 == None:
 		return False
 	if 種類 == None:
 		字元 = unicodedata.category(字元)
 	return 種類 in 統一碼羅馬字類 or 字元 in ['ⁿ']
+
 
 def 是注音符號無(字元):
 	return unicodedata.name(字元, '').startswith('BOPOMOFO LETTER')

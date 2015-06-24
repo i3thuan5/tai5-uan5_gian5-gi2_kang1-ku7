@@ -8,9 +8,11 @@ from 臺灣言語工具.基本元素.句 import 句
 from 臺灣言語工具.基本元素.章 import 章
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 
+
 class 辭典揣詞單元試驗():
 	辭典揣詞 = None
 	辭典型態 = 型音辭典
+
 	def setUp(self):
 		self.辭典 = self.辭典型態(4)
 		self.粗胚 = 文章粗胚()
@@ -52,6 +54,7 @@ class 辭典揣詞單元試驗():
 		self.音句 = self.分析器.建立句物件('gua2 u7 tsit8-tiunn1 i2-a2!!')
 		self.有詞漢羅 = self.分析器.建立句物件('我 u7 一張 i2-a2!!')
 		self.無詞漢羅 = self.分析器.建立句物件('gua2 u7 一張 i2-a2!!')
+
 	def tearDown(self):
 		pass
 		

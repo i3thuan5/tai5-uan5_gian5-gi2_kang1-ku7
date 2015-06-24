@@ -7,8 +7,10 @@ from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.斷詞.連詞揀集內組 import 連詞揀集內組
 from 臺灣言語工具.語言模型.實際語言模型 import 實際語言模型
 
+
 class 連詞揀集內組單元試驗(TestCase):
 	忍受 = 1e-10
+
 	def setUp(self):
 		self.分析器 = 拆文分析器()
 		self.連詞 = 實際語言模型(3)
@@ -166,7 +168,6 @@ class 連詞揀集內組單元試驗(TestCase):
 		self.assertEqual(結果, 大美女句物件)
 		self.assertLess(分數, 0.0)
 		self.assertEqual(詞數, 9)
-
 
 	def test_標空的物件(self):
 		# 字物件有限制毋是空的

@@ -2,9 +2,11 @@
 import unittest
 from 臺灣言語工具.音標系統.閩南語.教會羅馬字音標 import 教會羅馬字音標
 
+
 class 教會羅馬字音標單元試驗(unittest.TestCase):
 	def setUp(self):
 		pass
+
 	def tearDown(self):
 		pass
 

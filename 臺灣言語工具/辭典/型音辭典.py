@@ -7,8 +7,10 @@ from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 
+
 class 型音辭典(文字辭典):
 	表 = None
+
 	def __init__(self, 上濟字數):
 		if 上濟字數 <= 0:
 			raise 參數錯誤('字數愛是正整數，傳入來的是{0}'.format(上濟字數))

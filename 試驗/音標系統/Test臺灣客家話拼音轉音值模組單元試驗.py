@@ -6,9 +6,11 @@ from 臺灣言語工具.音標系統.客話.臺灣客家話拼音轉音值模組
 from 臺灣言語工具.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音聲母對照表
 from 臺灣言語工具.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音韻母對照表
 
+
 class 臺灣客家話拼音轉音值模組單元試驗(unittest.TestCase):
 	def setUp(self):
 		pass
+
 	def tearDown(self):
 		pass
 		

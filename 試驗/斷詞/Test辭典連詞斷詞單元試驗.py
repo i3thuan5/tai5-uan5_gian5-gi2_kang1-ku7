@@ -13,8 +13,10 @@ from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.斷詞.辭典連詞斷詞 import 辭典連詞斷詞
 from 臺灣言語工具.語言模型.實際語言模型 import 實際語言模型
 
+
 class 辭典連詞斷詞單元試驗(TestCase):
 	忍受 = 1e-10
+
 	def setUp(self):
 		self.斷詞 = 辭典連詞斷詞()
 		self.字典 = 型音辭典(4)

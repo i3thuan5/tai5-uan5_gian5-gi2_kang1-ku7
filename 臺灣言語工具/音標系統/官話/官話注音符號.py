@@ -21,6 +21,8 @@ from 臺灣言語工具.音標系統.官話.官話注音符號轉音值模組 im
 #  2013/11/1→12/13
 #  意傳的客家話辨識用拼音→官話注音符號
 #########################################
+
+
 class 官話注音符號:
 
 	#-------成員函式--------#
@@ -39,6 +41,7 @@ class 官話注音符號:
 			self.音標 = self.聲韻 + self.調
 		else:
 			self.音標 = None
+
 	def _分聲韻(self, 聲韻):
 		for 所在 in range(len(聲韻)):
 			if 聲韻[:所在] in self.聲母對照表 and 聲韻[所在:] in self.韻母對照表:
@@ -51,8 +54,10 @@ class 官話注音符號:
 				self.聲 = 聲韻
 				self.韻 = ''
 				self.聲韻 = 聲韻
+
 	def 預設音標(self):
 		return self.音標
+
 	def 音值(self):
 		return self.轉音值模組.轉(self.聲, self.韻, self.調)
 	#-------成員變數--------#

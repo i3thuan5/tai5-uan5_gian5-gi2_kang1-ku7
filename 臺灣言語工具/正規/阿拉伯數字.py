@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
 import unicodedata
 
+
 class 阿拉伯數字():
 	一二三 = '一二三四五六七八九'
 	兩 = '兩'
 	細位 = ['', '十', '百', '千', ]
 	大位 = ['', '萬', '億', '兆', ]
+
 	def 是數字無(self, 數字):
 		return 數字.isdigit()
+
 	def 是號碼無(self, 數字):
 		return self.是數字無(數字)
+
 	def 是數量無(self, 數字):
 		if not self.是數字無(數字):
 			return False

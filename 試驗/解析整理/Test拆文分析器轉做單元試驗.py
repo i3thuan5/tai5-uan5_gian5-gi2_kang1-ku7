@@ -7,10 +7,12 @@ from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.基本元素.公用變數 import 無音
 from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
 
+
 class 拆文分析器轉做單元試驗(unittest.TestCase):
 	def setUp(self):
 		self.分析器 = 拆文分析器()
 		self.粗胚 = 文章粗胚()
+
 	def tearDown(self):
 		pass
 
@@ -34,17 +36,21 @@ class 拆文分析器轉做單元試驗(unittest.TestCase):
 	def test_轉做字有兩字(self):
 		分詞 = '兩｜nng7 个｜e5'
 		self.assertRaises(解析錯誤, self.分析器.轉做字物件, 分詞)
+
 	def test_轉做字無半字(self):
 		分詞 = ''
 		self.assertRaises(解析錯誤, self.分析器.轉做字物件, 分詞)
+
 	def test_轉做字有分型音無半字(self):
 		分詞 = '｜'
 		self.assertRaises(解析錯誤, self.分析器.轉做字物件, 分詞)
+
 	def test_轉做字無分型音(self):
 		分詞 = '無'
 		字物件 = self.分析器.轉做字物件(分詞)
 		self.assertEqual(字物件.型, 分詞)
 		self.assertEqual(字物件.音, 無音)
+
 	def test_轉做字連字(self):
 		分詞 = '-｜-'
 		型 = '-'
@@ -52,6 +58,7 @@ class 拆文分析器轉做單元試驗(unittest.TestCase):
 		字物件 = self.分析器.轉做字物件(分詞)
 		self.assertEqual(字物件.型, 型)
 		self.assertEqual(字物件.音, 音)
+
 	def test_轉做字空白(self):
 		分詞 = ' ｜ '
 		型 = ' '

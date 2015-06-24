@@ -2,11 +2,14 @@
 import unittest
 from 臺灣言語工具.音標系統.閩南語.臺灣語言音標 import 臺灣語言音標
 
+
 class 臺灣語言音標單元試驗(unittest.TestCase):
 	def setUp(self):
 		pass
+
 	def tearDown(self):
 		pass
+
 	def test_定看音標(self):
 		self.assertEqual(臺灣語言音標('ainn7').音標, 'ainn7')
 		self.assertEqual(臺灣語言音標('ang3').音標, 'ang3')
@@ -55,7 +58,6 @@ class 臺灣語言音標單元試驗(unittest.TestCase):
 		self.assertEqual(臺灣語言音標('ter5').音標, 'ter5')
 		self.assertEqual(臺灣語言音標('tere5').音標, 'tere5')
 		self.assertEqual(臺灣語言音標('tir5').音標, 'tir5')
-
 
 	def test_違法音標(self):
 		self.assertEqual(臺灣語言音標('@@').音標, None)

@@ -3,9 +3,11 @@ import unittest
 from 臺灣言語工具.語音合成.生決策樹仔問題 import 生決策樹仔問題
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 
+
 class 生決策樹仔問題單元試驗(unittest.TestCase):
 	def setUp(self):
 		self.生問題 = 生決策樹仔問題()
+
 	def tearDown(self):
 		pass
 
@@ -23,6 +25,7 @@ class 生決策樹仔問題單元試驗(unittest.TestCase):
 			self.生問題.問題集(
 				資料, ('ZZ', 'X', '+', '＠＠'), '孤條',),
 			答案)
+
 	def test_頭前空(self):
 		資料 = [('i', ['i']), ('e', ['e']), ]
 		答案 = {
@@ -37,6 +40,7 @@ class 生決策樹仔問題單元試驗(unittest.TestCase):
 			self.生問題.問題集(
 				資料, ('', '-', '+', '其他'), '孤條',),
 			答案)
+
 	def test_後壁空(self):
 		資料 = [('i', ['i']), ('e', ['e']), ]
 		答案 = {
@@ -51,6 +55,7 @@ class 生決策樹仔問題單元試驗(unittest.TestCase):
 			self.生問題.問題集(
 				資料, ('音：', '-', '+', ''), '孤條',),
 			答案)
+
 	def test_一類兩个物件(self):
 		資料 = [('i類', ['i', 'ii', 'iii']), ('e類', ['e']), ('a類', ['*a*']) ]
 		答案 = {
@@ -94,14 +99,17 @@ class 生決策樹仔問題單元試驗(unittest.TestCase):
 			self.生問題.問題集(
 				self.看排法資料, ('', '-', '+', '/'), '組合',),
 			self.組合答案)
+
 	def test_檢查正常(self):
 		self.生問題.檢查({
 			'QS "後壁是e類" { "*+e/*" }',
 			'QS "後壁是a類" { "*+*a*/*" }'})
+
 	def test_檢查內容仝款(self):
 		self.生問題.檢查({
 			'QS "後壁是e類" { "*+*a*/*" }',
 			'QS "後壁是a類" { "*+*a*/*" }'})
+
 	def test_檢查問題名仝款(self):
 		self.assertRaises(解析錯誤,
 			self.生問題.檢查,
