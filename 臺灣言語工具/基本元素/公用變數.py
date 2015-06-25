@@ -43,9 +43,9 @@ import unicodedata
 
 
 def 是拼音字元無(字元, 種類=None):
-	if 字元 == None:
+	if 字元 is None:
 		return False
-	if 種類 == None:
+	if 種類 is None:
 		字元 = unicodedata.category(字元)
 	return 種類 in 統一碼羅馬字類 or 字元 in ['ⁿ']
 

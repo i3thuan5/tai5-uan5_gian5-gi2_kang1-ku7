@@ -142,7 +142,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 		return self.音標
 
 	def 轉閏號調(self):
-		if self.音標 == None:
+		if self.音標 is None:
 			return None
 
 		if (self.調 != '2' and self.調 != '3' and self.調 != '5' and self.調 != '6'
@@ -161,7 +161,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 # 		return 方音符號吳守禮改良式(self.音標).產生音標組字式()
 
 	def 轉通用拼音(self):
-		if self.音標 == None:
+		if self.音標 is None:
 			return None
 		if self.聲 not in self.對通用聲對照表 or self.韻 not in self.對通用韻對照表 or self.調 not in self.對通用調對照表:
 			raise RuntimeError(

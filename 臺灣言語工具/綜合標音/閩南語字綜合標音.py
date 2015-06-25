@@ -46,8 +46,8 @@ class 閩南語字綜合標音(字綜合標音):
 			"吳守禮方音":self.吳守禮方音}
 
 	def 標音完整無(self):
-		return (self.型體 != None and self.臺羅數字調 != None
-			and self.吳守禮方音 != None and self.臺羅閏號調 != None and self.通用數字調 != None)
+		return (self.型體 is not None and self.臺羅數字調 is not None
+			and self.吳守禮方音 is not None and self.臺羅閏號調 is not None and self.通用數字調 is not None)
 
 	def __repr__(self):
 		return self.轉json格式()

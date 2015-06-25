@@ -20,7 +20,7 @@ class 語料處理:
 			if 音檔檔名.endswith(self.音檔副檔名):
 				語料名 = 音檔檔名[:-len(self.音檔副檔名)]
 				音檔所在 = os.path.join(音檔目錄, 音檔檔名)
-				if 標仔目錄 == None:
+				if 標仔目錄 is None:
 					全部語料.append((語料名, 音檔所在))
 				else:
 					標仔所在 = os.path.join(標仔目錄,

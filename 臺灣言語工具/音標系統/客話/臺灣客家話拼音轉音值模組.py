@@ -41,7 +41,7 @@ class 臺灣客家話拼音轉音值模組():
 	韻母表 = 臺灣客家話拼音對照音值韻母表
 
 	def 轉(self, 聲, 韻, 調):
-		if 聲 == None or 韻 == None or 調 == None:
+		if 聲 is None or 韻 is None or 調 is None:
 			return (None,)
 		音值聲 = self.聲母表[聲]
 		音值韻 = self.韻母表[韻]

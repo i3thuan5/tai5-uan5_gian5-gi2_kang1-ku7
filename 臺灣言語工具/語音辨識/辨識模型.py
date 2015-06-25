@@ -83,7 +83,7 @@ class 辨識模型(程式腳本, 語料處理):
 		全部特徵檔 = os.path.join(資料目錄, '資料特徵檔.scp')
 		os.makedirs(資料目錄, exist_ok=True)
 		self.揣特徵而且算(執行檔路徑, 資料目錄, 全部語料, 全部特徵檔)
-		if 標仔目錄 == None:
+		if 標仔目錄 is None:
 			return 全部特徵檔
 		全部標仔檔 = os.path.join(資料目錄, '試驗語料標仔檔.scp')
 		音節檔 = os.path.join(資料目錄, '試驗語料音節檔.mlf')

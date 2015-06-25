@@ -29,7 +29,7 @@ class 臺灣語言音標(教會系羅馬音標):
 				self.做音標()
 
 	def 轉換到臺灣閩南語羅馬字拼音(self):
-		if self.音標 == None:
+		if self.音標 is None:
 			return None
 		聲母 = None
 		if self.聲 == 'c':

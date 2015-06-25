@@ -79,13 +79,13 @@ class 用戶端連線:
 		全部收著字串 = 全部收著資料.decode(編碼)
 # 		print('收著', 全部收著字串)
 		收著結果 = self.檢查結果.search(全部收著字串)
-		if 收著結果 != None:
+		if 收著結果 is not None:
 			逐逝 = self.分句.split(收著結果.group(1))[1::2]
 			return 逐逝
-		if self.檢查空結果.search(全部收著字串) != None:
+		if self.檢查空結果.search(全部收著字串) is not None:
 			return []
 		狀況 = self.回傳狀況.split(全部收著字串)
-		if 狀況 != None:
+		if 狀況 is not None:
 # 			<processstatus code="1">Service internal error</processstatus>
 # 			<processstatus code="2">XML format error</processstatus>
 # 			<processstatus code="3">Authentication failed</processstatus>

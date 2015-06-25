@@ -166,13 +166,13 @@ class 文章粗胚:
 
 	def 頭前有音標無(self, 音標工具, 語句):
 		for 長度 in range(1, min(len(語句), 音標工具.音標上長長度) + 1):
-			if 音標工具(語句[:長度]).音標 != None:
+			if 音標工具(語句[:長度]).音標 is not None:
 				return True
 		return False
 
 	def 後壁有音標無(self, 音標工具, 語句):
 		for 長度 in range(1, min(len(語句), 音標工具.音標上長長度) + 1):
-			if 音標工具(語句[-長度:]).音標 != None:
+			if 音標工具(語句[-長度:]).音標 is not None:
 				return True
 		return False
 

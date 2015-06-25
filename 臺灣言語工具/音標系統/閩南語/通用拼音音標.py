@@ -94,12 +94,12 @@ class 通用拼音音標(閩南語音標介面):
 							self.調 = '8'
 					self.聲韻 = self.聲 + self.韻
 					self.音標 = self.聲韻 + self.調
-		if self.轉換到臺灣閩南語羅馬字拼音() == None:
+		if self.轉換到臺灣閩南語羅馬字拼音() is None:
 			self.聲韻 = None
 			self.音標 = None
 
 	def 轉換到臺灣閩南語羅馬字拼音(self):
-		if self.音標 == None:
+		if self.音標 is None:
 			return None
 		聲 = self.聲母對照表[self.聲]
 		韻 = self.韻母對照表[self.韻]

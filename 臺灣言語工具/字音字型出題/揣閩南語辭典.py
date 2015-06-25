@@ -126,7 +126,7 @@ class 揣閩南語題目:
 
 	def 揣資料庫加到型音對照(self, 型音對照, 腔口):
 		for 流水號, 型, 音 in self.揣來源資料(教育部閩南語辭典名, 腔口):
-			if self.是俗音無(流水號) == None:
+			if self.是俗音無(流水號) is None:
 				if (型, 音) in self.俗音:
 					print('資料庫內底有俗音，流={0}，{1}，{2}'.format(流水號, 型, 音))
 				else:

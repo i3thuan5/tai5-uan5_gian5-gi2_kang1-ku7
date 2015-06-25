@@ -20,10 +20,10 @@ class 轉物件音家私():
 			新音 = 字物件.音
 		elif 字物件.音 != 無音:
 			新音物件 = 音標工具(字物件.音)
-			if 新音物件 == None:
+			if 新音物件 is None:
 				raise 解析錯誤('音標無合法：{0}'.format(str(字物件)))
 			新音 = getattr(新音物件,函式)()
-			if 新音 == None:
+			if 新音 is None:
 				raise 解析錯誤('音標無法度轉：{0}'.format(str(字物件)))
 		else:
 			新音 = 無音
@@ -31,8 +31,8 @@ class 轉物件音家私():
 		新型預設音標 = getattr(新型物件,函式)()
 		if 字物件.音.startswith(字物件.型) and isinstance(新音, str):
 			新型 = 新音
-		elif 新型物件 != None\
-			and 新型預設音標 != None and isinstance(新型預設音標, str):
+		elif 新型物件 is not None\
+			and 新型預設音標 is not None and isinstance(新型預設音標, str):
 			新型 = 新型預設音標
 		else:
 			新型 = 字物件.型

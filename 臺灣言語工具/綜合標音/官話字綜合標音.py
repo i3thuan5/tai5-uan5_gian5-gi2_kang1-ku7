@@ -22,7 +22,7 @@ class 官話字綜合標音(字綜合標音):
 			self.注音符號 = 無音
 		else:
 			注音 = 官話注音符號(字物件.音)
-			if 注音.音標 == None:
+			if 注音.音標 is None:
 				self.注音符號 = None
 			elif len(注音.音標) == 1:
 				self.注音符號 = '⿿' + 注音.音標 + ' '
@@ -40,7 +40,7 @@ class 官話字綜合標音(字綜合標音):
 		return {"型體":self.型體, "注音符號":self.注音符號}
 
 	def 標音完整無(self):
-		return (self.型體 != None and self.注音符號 != None)
+		return (self.型體 is not None and self.注音符號 is not None)
 
 	def __repr__(self):
 		return self.轉json格式()

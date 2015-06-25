@@ -36,7 +36,7 @@ class 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組():
 	音標 = None
 
 	def __init__(self, 聲, 韻, 調, 輕):
-		if 聲 == None or 韻 == None or 調 == None or 輕 == None :
+		if 聲 is None or 韻 is None or 調 is None or 輕 is None :
 			return
 		if 韻.startswith('i') and (聲 == 'ts' or 聲 == 'tsh' or 聲 == 's' or 聲 == 'j'):
 			聲 += 'i'
@@ -53,7 +53,7 @@ class 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組():
 			self.音標 = self.聲 + self.韻 + self.調
 
 	def 產生音標組字式(self):
-		if self.音標 == None:
+		if self.音標 is None:
 			return None
 		elif len(self.音標) == 1:
 			return '⿿' + self.音標 + '　'

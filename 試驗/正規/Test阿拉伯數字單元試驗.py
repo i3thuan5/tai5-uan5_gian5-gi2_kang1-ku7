@@ -50,7 +50,7 @@ class 阿拉伯數字單元試驗(TestCase):
 			('0830', '空八三空'),
 			]
 		for 問, 答 in 問答:
-			if 答 == None:
+			if 答 is None:
 				self.assertEqual(self.數字.是號碼無(問), False)
 				self.assertEqual(self.數字.轉號碼('空', 問), 問)
 			else:
@@ -204,7 +204,7 @@ class 阿拉伯數字單元試驗(TestCase):
 		
 	def 檢查數量(self, 問答):
 		for 問, 答 in 問答:
-			if 答 == None:
+			if 答 is None:
 				self.assertEqual(self.數字.是數量無(問), False, 問)
 				self.assertEqual(self.數字.轉數量('空', 問), 問)
 			else:
@@ -215,7 +215,7 @@ class 阿拉伯數字單元試驗(TestCase):
 
 	def 檢查閩南語數量(self, 問答):
 		for 問, 答 in 問答:
-			if 答 == None:
+			if 答 is None:
 				self.assertEqual(self.數字.轉閩南語數量無(問), False, 問)
 				self.assertEqual(self.數字.轉閩南語數量(問), 問)
 			else:
@@ -224,7 +224,7 @@ class 阿拉伯數字單元試驗(TestCase):
 
 	def 檢查客家話數量(self, 問答):
 		for 問, 答 in 問答:
-			if 答 == None:
+			if 答 is None:
 				self.assertEqual(self.數字.轉客家話數量無(問), False, 問)
 				self.assertEqual(self.數字.轉客家話數量(問), 問)
 			else:
@@ -233,7 +233,7 @@ class 阿拉伯數字單元試驗(TestCase):
 
 	def 檢查官話數量(self, 問答):
 		for 問, 答 in 問答:
-			if 答 == None:
+			if 答 is None:
 				self.assertEqual(self.數字.轉官話數量無(問), False, 問)
 				self.assertEqual(self.數字.轉官話數量(問), 問)
 			else:

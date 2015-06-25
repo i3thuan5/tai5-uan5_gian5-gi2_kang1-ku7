@@ -31,7 +31,7 @@ class 客話字綜合標音(字綜合標音):
 		return {"型體":self.型體, "臺灣客話":self.臺灣客話}
 
 	def 標音完整無(self):
-		return (self.型體 != None and self.臺灣客話 != None)
+		return (self.型體 is not None and self.臺灣客話 is not None)
 
 	def __repr__(self):
 		return self.轉json格式()
