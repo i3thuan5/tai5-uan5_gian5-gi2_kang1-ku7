@@ -24,7 +24,7 @@ class 中研院剖析用戶端單元試驗(unittest.TestCase):
 
 	def test_結構剖一逝字(self, 語句剖析做語句mock):
 		語句剖析做語句mock.return_value=[[
-		 			'#1:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vi:吃飯))#。(PERIODCATEGORY)',
+ 			'#1:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vi:吃飯))#。(PERIODCATEGORY)',
  			'#2:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vt:吃|NP(DET:很多|Head:N:飯)))#。(PERIODCATEGORY)',
  			]]
 		self.assertEqual(self.用戶端.語句剖析後結構化('我想吃飯。我想吃很多飯。'), [[
