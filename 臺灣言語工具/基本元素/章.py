@@ -6,7 +6,7 @@ from 臺灣言語工具.基本元素.句 import 句
 class 章:
 	內底句 = None
 
-	def __init__(self, 句陣列 = []):
+	def __init__(self, 句陣列=[]):
 		try:
 			self.內底句 = []
 			for 句物件 in 句陣列:

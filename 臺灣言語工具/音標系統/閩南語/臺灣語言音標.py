@@ -34,7 +34,7 @@ class 臺灣語言音標(教會系羅馬音標):
 		聲母 = None
 		if self.聲 == 'c':
 			聲母 = 'ts'
-		elif  self.聲 == 'ch':
+		elif self.聲 == 'ch':
 			聲母 = 'tsh'
 		else:
 			聲母 = self.聲

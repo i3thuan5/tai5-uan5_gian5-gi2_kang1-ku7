@@ -64,5 +64,5 @@ class 剖析結構化工具:
 				處理結果.append(一段剖析)
 		return 處理結果
 
-	def 印出(self, 型體佮詞性語意, 目的 = sys.stdout):
-		print(型體佮詞性語意[0], end = ' ', file = 目的)
+	def 印出(self, 型體佮詞性語意, 目的=sys.stdout):
+		print(型體佮詞性語意[0], end=' ', file=目的)

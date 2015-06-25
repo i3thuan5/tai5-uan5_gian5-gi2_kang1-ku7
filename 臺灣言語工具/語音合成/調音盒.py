@@ -16,11 +16,11 @@ class 調音盒:
 	程式工具 = 外部程式()
 
 	def 用指令調(self, 音, 指令):
-		舊音 = NamedTemporaryFile(mode = 'wb', suffix = '.wav',
-			delete = False)
+		舊音 = NamedTemporaryFile(mode='wb', suffix='.wav',
+			delete=False)
 		舊音.write(音)
 		舊音.close()
-		新音 = NamedTemporaryFile(suffix = '.wav', delete = False)
+		新音 = NamedTemporaryFile(suffix='.wav', delete=False)
 		新音.close()
 		os.system(指令.format(舊音.name, 新音.name))
 		調好音 = open(新音.name, 'rb').read()

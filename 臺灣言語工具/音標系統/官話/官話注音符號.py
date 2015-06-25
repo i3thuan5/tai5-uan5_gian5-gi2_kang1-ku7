@@ -37,7 +37,7 @@ class 官話注音符號:
 		else:  # :調是1聲
 			self._分聲韻(音標)
 			self.調 = ''
-		if 	self.聲韻 is not None:
+		if self.聲韻 is not None:
 			self.音標 = self.聲韻 + self.調
 		else:
 			self.音標 = None

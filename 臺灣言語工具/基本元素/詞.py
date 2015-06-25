@@ -6,7 +6,7 @@ from 臺灣言語工具.基本元素.字 import 字
 class 詞:
 	內底字 = None
 
-	def __init__(self, 字陣列 = []):
+	def __init__(self, 字陣列=[]):
 		try:
 			self.內底字 = []
 			for 字物件 in 字陣列:

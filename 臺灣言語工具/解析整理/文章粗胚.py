@@ -199,7 +199,7 @@ class 文章粗胚:
 		切好的語句=re.split(愛切的物件,語句)
 		結果=[]
 		for 第幾个,部份語句 in enumerate(切好的語句):
-			if 第幾个%2==0:
+			if 第幾个 %2==0:
 				結果.append(self.數字英文中央全加分字符號(部份語句))
 			else:
 				結果.append(部份語句)

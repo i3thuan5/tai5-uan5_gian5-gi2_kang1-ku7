@@ -11,33 +11,33 @@ class 產生字音字形檔案:
 	問標 = ['號', '題目', '答案']
 	答標 = ['號', '答案']
 
-	def 產生無引號csv(self, 孤表, 欄 = 2, 換頁逝 = 15):
+	def 產生無引號csv(self, 孤表, 欄=2, 換頁逝=15):
 		這頁 = []
 		for 這逝 in 孤表:
 			這頁.append(','.join(這逝))
 		return '\n'.join(這頁)
 
-	def 產生csv(self, 孤表, 欄 = 2, 換頁逝 = 15):
+	def 產生csv(self, 孤表, 欄=2, 換頁逝=15):
 		表 = self.產生sods(孤表, 欄, 換頁逝)
 		檔 = SodsCsv(表)
 		return 檔.exportCsv()
 
-	def 產生xml(self, 孤表, 欄 = 2, 換頁逝 = 15):
+	def 產生xml(self, 孤表, 欄=2, 換頁逝=15):
 		表 = self.產生sods(孤表, 欄, 換頁逝)
 		檔 = SodsXml(表)
 		return 檔.exportXml()
 
-	def 產生html(self, 孤表, 欄 = 2, 換頁逝 = 15):
+	def 產生html(self, 孤表, 欄=2, 換頁逝=15):
 		表 = self.產生sods(孤表, 欄, 換頁逝)
 		檔 = SodsHtml(表)
 		return 檔.exportHtml()
 
-	def 產生html原始檔(self, 孤表, 欄 = 2, 換頁逝 = 15):
+	def 產生html原始檔(self, 孤表, 欄=2, 換頁逝=15):
 		表 = self.產生sods(孤表, 欄, 換頁逝)
 		檔 = SodsHtml(表)
 		return 檔.exportTableHtmlAndCss()
 
-	def 產生xls(self, 孤表, 欄 = 2, 換頁逝 = 15):
+	def 產生xls(self, 孤表, 欄=2, 換頁逝=15):
 		表 = self.產生sods(孤表, 欄, 換頁逝)
 		檔 = SodsXls(表)
 		資 = io.BytesIO()
@@ -46,7 +46,7 @@ class 產生字音字形檔案:
 		資.close()
 		return 資料
 
-	def 產生sods(self, 孤表, 欄 = 2, 換頁逝 = 15):
+	def 產生sods(self, 孤表, 欄=2, 換頁逝=15):
 		表 = SodsSpreadSheet(len(孤表) + 1, len(孤表[-1]) * 欄 + 1)
 		這馬逝 = 1
 		for 一逝 in 孤表:
@@ -54,14 +54,14 @@ class 產生字音字形檔案:
 				座標 = 表.encodeColName(所在 + 1) + str(這馬逝)
 				表.setValue(座標, 一逝[所在])
 				表.setStyle(座標,
-					border_top = "1pt solid #000000",
-					border_bottom = "1pt solid #000000",
-					border_left = "1pt solid #000000",
-					border_right = "1pt solid #000000",)
+					border_top="1pt solid #000000",
+					border_bottom="1pt solid #000000",
+					border_left="1pt solid #000000",
+					border_right="1pt solid #000000",)
 			這馬逝 += 1
 		return 表
 
-	def 產生問答表(self, 配對, 欄 = 2, 換頁逝 = 15):
+	def 產生問答表(self, 配對, 欄=2, 換頁逝=15):
 		一頁幾个 = 欄 * 換頁逝
 		這頁 = []
 		彼頁 = []

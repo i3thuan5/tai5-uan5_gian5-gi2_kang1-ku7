@@ -2,7 +2,7 @@
 from abc import ABCMeta, abstractmethod
 
 
-class 文字辭典(metaclass = ABCMeta):
+class 文字辭典(metaclass=ABCMeta):
 	_上濟字數 = None
 
 	def 上濟字數(self):

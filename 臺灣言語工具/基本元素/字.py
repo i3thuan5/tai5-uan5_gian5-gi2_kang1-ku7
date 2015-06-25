@@ -9,7 +9,7 @@ class 字:
 	型 = None
 	音 = None
 
-	def __init__(self, 型, 音 = 無音):
+	def __init__(self, 型, 音=無音):
 		if not isinstance(型, str):
 			raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
 		try:

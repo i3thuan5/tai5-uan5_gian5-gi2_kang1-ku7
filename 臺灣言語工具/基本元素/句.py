@@ -6,7 +6,7 @@ from 臺灣言語工具.基本元素.集 import 集
 class 句:
 	內底集 = None
 
-	def __init__(self, 集陣列 = []):
+	def __init__(self, 集陣列=[]):
 		try:
 			self.內底集 = []
 			for 集物件 in 集陣列:

@@ -6,7 +6,7 @@ from 臺灣言語工具.基本元素.組 import 組
 class 集:
 	內底組 = None
 
-	def __init__(self, 組陣列 = []):
+	def __init__(self, 組陣列=[]):
 		try:
 			self.內底組 = []
 			for 組物件 in 組陣列:

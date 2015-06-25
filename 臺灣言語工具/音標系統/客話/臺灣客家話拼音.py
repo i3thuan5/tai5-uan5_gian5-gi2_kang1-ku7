@@ -42,7 +42,7 @@ class 臺灣客家話拼音:
 					self.韻 = 音標[所在:-1]
 					self.調 = 音標[-1:]
 					# 檢查入聲字的調是否正確（只允許1和4聲）
-					if (self.韻.endswith('g')  and not self.韻.endswith('ng')) or\
+					if (self.韻.endswith('g') and not self.韻.endswith('ng')) or\
 						self.韻.endswith('d') or\
 						self.韻.endswith('k') :
 						# if(wrong)continue;
