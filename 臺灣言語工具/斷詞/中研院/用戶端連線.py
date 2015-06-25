@@ -86,8 +86,8 @@ class 用戶端連線:
 			return []
 		狀況 = self.回傳狀況.split(全部收著字串)
 		if 狀況 is not None:
-# 			<processstatus code="1">Service internal error</processstatus>
-# 			<processstatus code="2">XML format error</processstatus>
-# 			<processstatus code="3">Authentication failed</processstatus>
+			# <processstatus code="1">Service internal error</processstatus>
+			# <processstatus code="2">XML format error</processstatus>
+			# <processstatus code="3">Authentication failed</processstatus>
 			raise RuntimeError(狀況[1])
 		raise RuntimeError('回傳的資料有問題！！')

@@ -7,8 +7,6 @@ class 詞:
 	內底字 = None
 
 	def __init__(self, 字陣列 = []):
-# 		if not isinstance(字陣列, list):
-# 			raise 型態錯誤('傳入來的字陣列毋是陣列：{0}'.format(str(字陣列)))
 		try:
 			self.內底字 = []
 			for 字物件 in 字陣列:

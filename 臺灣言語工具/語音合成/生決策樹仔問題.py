@@ -51,7 +51,6 @@ class 生決策樹仔問題:
 		return self.題型.format(所在, 題名, 符合)
 
 	def _選符合的(self, 頭前分開, 後壁分開, 選):
-# 		print('全選', 全選)
 		符合 = []
 		for 條 in itertools.chain.from_iterable(選):
 			型 = '"'

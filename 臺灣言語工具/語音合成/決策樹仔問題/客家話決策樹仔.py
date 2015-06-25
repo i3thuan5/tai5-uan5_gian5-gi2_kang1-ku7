@@ -208,8 +208,8 @@ class 客家話決策樹仔(公家決策樹仔):
 	def 全部調(self):
 		'''孤，組合'''
 		題目 = []
+		# for 調號 in range(0, 11):  # 有輕聲到第十調
 		for 調號 in 臺灣客家話拼音調類對照表:
-# 		for 調號 in range(0, 11):  # 有輕聲到第十調
 			題目.append(('{}調'.format(調號), ['{}'.format(調號)]))
 		return self._生問題.問題集(題目, self.調符號, '組合')
 if __name__ == '__main__':
