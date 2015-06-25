@@ -8,18 +8,18 @@ from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
 
 
 class 揀集內組單元試驗(unittest.TestCase):
-	def setUp(self):
-		self.分析器 = 拆文分析器()
-		self.粗胚 = 文章粗胚()
-		self.網仔 = 詞物件網仔()
+    def setUp(self):
+        self.分析器 = 拆文分析器()
+        self.粗胚 = 文章粗胚()
+        self.網仔 = 詞物件網仔()
 
-	def tearDown(self):
-		pass
-	
-	@unittest.expectedFailure
-	def test_章物件(self):
-		raise NotImplementedError
-		self.assertEqual(0, 1)
-		# 空集
+    def tearDown(self):
+        pass
+
+    @unittest.expectedFailure
+    def test_章物件(self):
+        raise NotImplementedError
+        self.assertEqual(0, 1)
+        # 空集
 # 	def test_章句集物件(self):
 # 	def test_組詞字物件(self):

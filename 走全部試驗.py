@@ -12,21 +12,21 @@ PYTHONPATH=. python 走全部試驗.py 單元試驗 # 只做單元試驗
 PYTHONPATH=. python -m unittest 試驗.整合試驗.Test摩西模型訓練佮翻譯整合試驗 # 走單一試驗
 '''
 if __name__ == '__main__':
-	整合試驗 = '單元試驗' not in sys.argv
+    整合試驗 = '單元試驗' not in sys.argv
 
-	試驗包 = TestSuite()
-	試驗包.addTest(
-			unittest.defaultTestLoader.discover('試驗', pattern='Test*單元試驗.py')
-		)
-	if 整合試驗:
-		試驗包.addTest(
-				unittest.defaultTestLoader.discover('試驗', pattern='Test*整合試驗.py')
-			)
-		安裝程式 = 安裝摩西翻譯佮相關程式()
-		安裝程式.安裝moses(編譯CPU數=4)
-		安裝程式.安裝gizapp()
-		安裝程式.安裝mgiza()
-	試驗結果 = unittest.TextTestRunner().run(試驗包)
-	if 試驗結果. errors != [] or 試驗結果.failures != []:
-		exit(1)
-	exit(0)
+    試驗包 = TestSuite()
+    試驗包.addTest(
+                    unittest.defaultTestLoader.discover('試驗', pattern='Test*單元試驗.py')
+            )
+    if 整合試驗:
+        試驗包.addTest(
+                        unittest.defaultTestLoader.discover('試驗', pattern='Test*整合試驗.py')
+                )
+        安裝程式 = 安裝摩西翻譯佮相關程式()
+        安裝程式.安裝moses(編譯CPU數=4)
+        安裝程式.安裝gizapp()
+        安裝程式.安裝mgiza()
+    試驗結果 = unittest.TextTestRunner().run(試驗包)
+    if 試驗結果. errors != [] or 試驗結果.failures != []:
+        exit(1)
+    exit(0)
