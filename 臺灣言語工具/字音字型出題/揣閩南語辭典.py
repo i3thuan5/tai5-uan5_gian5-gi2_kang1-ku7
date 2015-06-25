@@ -18,7 +18,7 @@ from 臺灣言語工具.基本元素.公用變數 import 標點符號
 
 
 class 揣閩南語題目:
-	揣來源資料 = lambda self, 來源, 腔口:資料庫連線.prepare('SELECT ' +
+	揣來源資料 = lambda self, 來源, 腔口: 資料庫連線.prepare('SELECT ' +
 		'"子"."流水號","子"."型體","子"."音標" ' +
 		'FROM "言語"."文字" AS "子" ' +
 		' WHERE "子"."腔口" = $1 ' +
@@ -29,7 +29,7 @@ class 揣閩南語題目:
 # 		+ 'ORDER BY "子"."流水號" '
 # 	 	+ 'LIMIT 200 '
 		)(腔口, 來源)
-	是俗音無 = lambda self, 流水號:資料庫連線.prepare('SELECT "乙流水號"' +
+	是俗音無 = lambda self, 流水號: 資料庫連線.prepare('SELECT "乙流水號"' +
 		'FROM "言語"."演化" ' +
 		'WHERE "乙流水號"=$1 ' +
 		'AND "乙對甲的演化類型"= \'俗音\''

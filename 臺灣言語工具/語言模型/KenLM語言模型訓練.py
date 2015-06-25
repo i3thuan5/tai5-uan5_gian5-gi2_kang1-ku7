@@ -8,7 +8,7 @@ from 臺灣言語工具.系統整合.外部程式 import 外部程式
 
 
 class KenLM語言模型訓練(程式腳本):
-	_外部程式=外部程式()
+	_外部程式 = 外部程式()
 
 	def __init__(self, moses資料夾路徑=_外部程式.moses預設目錄()):
 		self.訓練指令 = '{0}bin/lmplz'.format(self._執行檔路徑加尾(moses資料夾路徑))
@@ -34,14 +34,14 @@ class KenLM語言模型訓練(程式腳本):
 # 			語言模型檔,
 # 			使用記憶體量,
 # 			)
-		with open(目標語言全部語料檔名,'r') as 目標語言全部語料:
-			with open(語言模型檔,'w') as 語言模型:
+		with open(目標語言全部語料檔名, 'r') as 目標語言全部語料:
+			with open(語言模型檔, 'w') as 語言模型:
 				self._走指令(
 						[
 							self.訓練指令,
-							'-o',str(連紲詞長度),
-							'-S',使用記憶體量,
-							'-T','/tmp',
+							'-o', str(連紲詞長度),
+							'-S', 使用記憶體量,
+							'-T', '/tmp',
 						],
 						stdin=目標語言全部語料,
 						stdout=語言模型,

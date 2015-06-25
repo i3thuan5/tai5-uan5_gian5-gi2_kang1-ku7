@@ -24,7 +24,7 @@ class 中研院斷詞用戶端整合單元試驗(unittest.TestCase):
 			]])
 
 	def test_語句斷一句話閣換逝(self):
-		self.assertEqual(self.用戶端.語句斷詞做語句('我想吃飯。\n'),[ [
+		self.assertEqual(self.用戶端.語句斷詞做語句('我想吃飯。\n'), [[
 				'\u3000我(N)\u3000想(Vt)\u3000吃飯(Vi)\u3000。(PERIODCATEGORY)',
 			]])
 
@@ -57,7 +57,7 @@ class 中研院斷詞用戶端整合單元試驗(unittest.TestCase):
 			])
 
 	def test_語句斷大於符號(self):
-		self.assertEqual(self.用戶端.語句斷詞做語句('我想) :>'),[[
+		self.assertEqual(self.用戶端.語句斷詞做語句('我想) :>'), [[
 				'\u3000我(N)\u3000想(Vt)\u3000)(PARENTHESISCATEGORY)\u3000:(COLONCATEGORY)\u3000&gt;(PARENTHESISCATEGORY)'
 			]])
 

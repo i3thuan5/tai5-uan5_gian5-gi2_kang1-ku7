@@ -15,7 +15,7 @@ class 詞:
 				self.內底字.append(字(字物件.型, 字物件.音))
 		except TypeError as 問題:
 			raise 型態錯誤('傳入來的字陣列毋法度疊代：{0}，問題：{1}'
-					.format(str(字陣列),問題))
+					.format(str(字陣列), 問題))
 
 	def __eq__(self, 別个):
 		return isinstance(別个, 詞) and self.內底字 == 別个.內底字

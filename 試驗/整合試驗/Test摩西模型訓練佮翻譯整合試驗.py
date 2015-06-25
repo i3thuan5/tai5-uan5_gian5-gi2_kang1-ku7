@@ -162,8 +162,8 @@ class 摩西模型訓練佮翻譯整合試驗(TestCase):
 		服務 = 摩西服務端(moses模型資料夾路徑, 埠=8504)
 		服務.走()
 		
-		等待patch=patch('subprocess.Popen.wait')
-		等待mock=等待patch.start()
+		等待patch = patch('subprocess.Popen.wait')
+		等待mock = 等待patch.start()
 		服務.等()
 		等待mock.assert_called_once_with()
 		等待patch.stop()

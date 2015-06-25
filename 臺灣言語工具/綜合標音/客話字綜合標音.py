@@ -12,7 +12,7 @@ class 客話字綜合標音(字綜合標音):
 	型體 = None
 	臺灣客話 = None
 
-	def __init__(self, 字物件,音標一定愛著=False):
+	def __init__(self, 字物件, 音標一定愛著=False):
 		if not isinstance(字物件, 字):
 			raise 型態錯誤('傳入來的毋是字物件！{0}，{1}'.format(type(字物件), str(字物件)))
 		self.型體 = 字物件.型
@@ -28,7 +28,7 @@ class 客話字綜合標音(字綜合標音):
 					format(字物件, self.型體, self.臺灣客話))
 
 	def 轉json格式(self):
-		return {"型體":self.型體, "臺灣客話":self.臺灣客話}
+		return {"型體": self.型體, "臺灣客話": self.臺灣客話}
 
 	def 標音完整無(self):
 		return (self.型體 is not None and self.臺灣客話 is not None)

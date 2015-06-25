@@ -5,7 +5,7 @@ from 試驗.斷詞.辭典揣詞單元試驗 import 辭典揣詞單元試驗
 from unittest.case import TestCase
 
 
-class 拄好長度辭典揣詞單元試驗(辭典揣詞單元試驗,TestCase):
+class 拄好長度辭典揣詞單元試驗(辭典揣詞單元試驗, TestCase):
 	辭典揣詞 = 拄好長度辭典揣詞
 
 	def test_兩三切比一四切閣較好(self):

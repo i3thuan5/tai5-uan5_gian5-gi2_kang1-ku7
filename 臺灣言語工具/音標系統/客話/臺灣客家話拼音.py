@@ -30,7 +30,7 @@ from 臺灣言語工具.音標系統.客話.臺灣客家話拼音轉音值模組
 
 
 class 臺灣客家話拼音:
-	#-------成員函式--------#
+	# -------成員函式-------- #
 	def __init__(self, 音標):
 		# self.腔
 		self.音標 = None
@@ -44,7 +44,7 @@ class 臺灣客家話拼音:
 					# 檢查入聲字的調是否正確（只允許1和4聲）
 					if (self.韻.endswith('g') and not self.韻.endswith('ng')) or\
 						self.韻.endswith('d') or\
-						self.韻.endswith('k') :
+						self.韻.endswith('k'):
 						# if(wrong)continue;
 						if(self.調 == '^' or self.調 == '+'):
 							continue
@@ -70,7 +70,7 @@ class 臺灣客家話拼音:
 
 	def 通用音值(self):
 		return (self.聲, self.韻, self.調)
-	#-------成員變數--------#
+	# -------成員變數-------- #
 	# ng uainn ˊ
 	音標上長長度 = 8
 	聲 = None

@@ -21,21 +21,21 @@ class 官話決策樹仔(公家決策樹仔):
 	def 生(self, 輸出目的=open(os.devnull, 'w')):
 		問題 = set()
 		問題 |= self.孤聲韻()
-		print(len(問題),file=輸出目的)
+		print(len(問題), file=輸出目的)
 		問題 |= self.元音分韻()
-		print(len(問題),file=輸出目的)
+		print(len(問題), file=輸出目的)
 		問題 |= self.孤元音()
-		print(len(問題),file=輸出目的)
+		print(len(問題), file=輸出目的)
 		問題 |= self.陰聲韻()
-		print(len(問題),file=輸出目的)
+		print(len(問題), file=輸出目的)
 		問題 |= self.韻尾()
-		print(len(問題),file=輸出目的)
+		print(len(問題), file=輸出目的)
 		問題 |= self.輔音()
-		print(len(問題),file=輸出目的)
+		print(len(問題), file=輸出目的)
 		問題 |= self.全部調()
-		print(len(問題),file=輸出目的)
+		print(len(問題), file=輸出目的)
 		問題 |= self.詞句長度(10, 20)
-		print(len(問題),file=輸出目的)
+		print(len(問題), file=輸出目的)
 
 		self._生問題.檢查(問題)
 		return 問題
@@ -156,7 +156,7 @@ class 官話決策樹仔(公家決策樹仔):
 		發音方法 = [
 			('鼻音', ['m', 'n', ]),
 			('清塞音', ['p', 't', 'k', 'ts', 'tɕ', 'tʂ', 'ʔ', ]),
-			('送氣音', ['pʰ', 'tʰ', 'kʰ', 'tɕʰ', 'tʂʰ' ]),
+			('送氣音', ['pʰ', 'tʰ', 'kʰ', 'tɕʰ', 'tʂʰ']),
 			('濁輔音', ['ʐ', 'l']),
 			('濁非元音', ['m', 'n', 'ʐ', 'l']),
 			]

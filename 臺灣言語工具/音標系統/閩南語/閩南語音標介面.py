@@ -3,8 +3,8 @@ from abc import ABCMeta, abstractmethod
 
 
 class 閩南語音標介面(metaclass=ABCMeta):
-	#消警告用
-	頂層=ABCMeta
+	# 消警告用
+	頂層 = ABCMeta
 	聲 = None
 	韻 = None
 	調 = 1
@@ -26,7 +26,7 @@ class 閩南語音標介面(metaclass=ABCMeta):
 		前一字元 = ''
 		愛結束矣 = False
 		音標是著的 = True
-		for 字元 in self.音標 :
+		for 字元 in self.音標:
 			if 字元.isnumeric():
 				if self.調 == 1:
 					self.調 = int(字元)
@@ -36,11 +36,11 @@ class 閩南語音標介面(metaclass=ABCMeta):
 			elif 愛結束矣:
 				音標是著的 = False
 			elif 字元 in self.聲調符號表:
-				無調字元 , self.調 = self.聲調符號表[字元]
+				無調字元, self.調 = self.聲調符號表[字元]
 				無調號音標 += 前一字元 + 無調字元
 				前一字元 = ''
 			elif 前一字元 + 字元 in self.聲調符號表:
-				無調字元 , self.調 = self.聲調符號表[前一字元 + 字元]
+				無調字元, self.調 = self.聲調符號表[前一字元 + 字元]
 				無調號音標 += 無調字元
 				前一字元 = ''				
 			else:

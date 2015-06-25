@@ -10,5 +10,5 @@ class 外部程式單元試驗(TestCase):
 		self.這馬目錄 = os.path.dirname(os.path.abspath(__file__))
 
 	def test_空執行檔路徑加尾(self):
-		路徑=os.path.abspath(os.path.join(self.這馬目錄,'..','..','外部程式'))
+		路徑 = os.path.abspath(os.path.join(self.這馬目錄, '..', '..', '外部程式'))
 		self.assertEqual(self.外部程式.目錄(), 路徑)

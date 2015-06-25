@@ -43,10 +43,10 @@ class 摩西用戶端():
 
 	def _翻譯句物件(self, 來源句物件):
 		參數 = {
-			"text":self.編碼器.編碼(self.譀鏡.看分詞(來源句物件).strip('｜\n\t ')),
-			"align":"true",
-			"report-all-factors":"true",
-			'nbest':1,
+			"text": self.編碼器.編碼(self.譀鏡.看分詞(來源句物件).strip('｜\n\t ')),
+			"align": "true",
+			"report-all-factors": "true",
+			'nbest': 1,
 			}
 		翻譯結果 = self.主機.translate(參數)
 		翻譯結果物件 = 翻譯結果['nbest'][0]
@@ -57,10 +57,10 @@ class 摩西用戶端():
 			if 分詞 != '':
 				if 分詞.endswith(self.未知詞記號):
 					詞物件 = self.分析器.轉做詞物件(分詞[:-len(self.未知詞記號)])
-					詞物件.屬性 = {'未知詞':True}
+					詞物件.屬性 = {'未知詞': True}
 				else:
 					詞物件 = self.分析器.轉做詞物件(分詞)
-					詞物件.屬性 = {'未知詞':False}
+					詞物件.屬性 = {'未知詞': False}
 				結果詞物件陣列.append(詞物件)
 			
 		翻譯結果對齊 = 翻譯結果物件['align']

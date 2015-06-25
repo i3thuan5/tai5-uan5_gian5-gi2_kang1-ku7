@@ -8,7 +8,7 @@ class 剖析結構化工具:
 		if 空白 != '':
 			raise RuntimeError('剖析工具的格式有改變！！')
 		逝資料, 語句 = 語句資訊.split(' ', 1)
-		return 逝資料.split(':')[0],self._結構化語句(語句),結束符號
+		return 逝資料.split(':')[0], self._結構化語句(語句), 結束符號
 
 	def _結構化語句(self, 剖析語句):
 		括號位置 = 剖析語句.find('(')

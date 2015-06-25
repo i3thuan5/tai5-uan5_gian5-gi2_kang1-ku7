@@ -37,7 +37,7 @@ class 官話字綜合標音(字綜合標音):
 					format(字物件, self.型體, self.注音符號))
 
 	def 轉json格式(self):
-		return {"型體":self.型體, "注音符號":self.注音符號}
+		return {"型體": self.型體, "注音符號": self.注音符號}
 
 	def 標音完整無(self):
 		return (self.型體 is not None and self.注音符號 is not None)

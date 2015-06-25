@@ -41,9 +41,9 @@ class 閩南語字綜合標音(字綜合標音):
 					self.臺羅閏號調, self.通用數字調,))
 
 	def 轉json格式(self):
-		return {"型體":self.型體, "臺羅數字調":self.臺羅數字調,
-			"臺羅閏號調":self.臺羅閏號調, "通用數字調":self.通用數字調,
-			"吳守禮方音":self.吳守禮方音}
+		return {"型體": self.型體, "臺羅數字調": self.臺羅數字調,
+			"臺羅閏號調": self.臺羅閏號調, "通用數字調": self.通用數字調,
+			"吳守禮方音": self.吳守禮方音}
 
 	def 標音完整無(self):
 		return (self.型體 is not None and self.臺羅數字調 is not None

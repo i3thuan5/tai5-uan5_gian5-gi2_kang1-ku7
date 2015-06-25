@@ -34,7 +34,7 @@ class 拆文分析器:
 	符號邊仔加空白 = None
 	減號有照規則無 = None
 	_切組物件分詞 = re.compile('([^ ]*.｜.[^ ]*|\S+)')
-	_切章分詞 = re.compile('(\n｜.|.｜\n|\n)',re.DOTALL)
+	_切章分詞 = re.compile('(\n｜.|.｜\n|\n)', re.DOTALL)
 	_掠漏 = 程式掠漏()
 
 	def __init__(self):

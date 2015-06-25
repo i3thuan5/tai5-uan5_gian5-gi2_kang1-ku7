@@ -29,7 +29,7 @@ class 集內組照排單元試驗(TestCase):
 		答案集.內底組 = [空, 一]
 		顛倒集.物件 = '6'
 		譀鏡 = 物件譀鏡()
-		排法 = lambda 組物件:譀鏡.看型(組物件)
+		排法 = lambda 組物件: 譀鏡.看型(組物件)
 		self.assertEqual(self.組照排.排好(排法, 顛倒集), 答案集)
 		self.assertEqual(self.組照排.排好(排法, 答案集), 答案集)
 		self.assertEqual(self.組照排.排好(排法, 顛倒集).內底組[0].屬性, 空.屬性)
@@ -80,4 +80,4 @@ class 集內組照排單元試驗(TestCase):
 		for 組陣列 in itertools.permutations([毋著四, 毋著三, 毋著二, 毋著一, 無毋著]):
 			集物件 = 集()
 			集物件.內底組 = 組陣列
-			self.assertEqual(self.組照排.排好(lambda 組物件:-組物件.分數, 集物件), 答案集)
+			self.assertEqual(self.組照排.排好(lambda 組物件: -組物件.分數, 集物件), 答案集)

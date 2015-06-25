@@ -17,7 +17,7 @@ class 通用拼音音標單元試驗(unittest.TestCase):
 	def test_定看音標(self):
 		表 = [('bai5', 'pai5'), ('ang3', 'ang3'),
 			('zin4', 'tsin2'), ('gior2', 'kio7'), ('gier1', 'kio1'),
-			('tang3', 'thang3'), 	('kong9', 'khong9'), ('mng5', 'mng5')]
+			('tang3', 'thang3'), ('kong9', 'khong9'), ('mng5', 'mng5')]
 		for 通, 臺 in 表:
 			字音對照 = 通用拼音音標(通)
 			self.assertEqual(字音對照.音標, 通)

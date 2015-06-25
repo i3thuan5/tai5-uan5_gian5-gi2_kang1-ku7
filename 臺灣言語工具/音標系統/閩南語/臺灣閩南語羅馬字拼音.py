@@ -51,64 +51,64 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
 	ń = ('n', 2), ǹ = ('n', 3), n̂ = ('n', 5), ň = ('n', 6), n̄ = ('n', 7), n̍ = ('n', 8), n̋ = ('n', 9),)
 
 臺灣閩南語羅馬字拼音數字調轉閏號調表 = {
-	('a', '2'):"á", ('a', '3'):"à", ('a', '5'):"â", ('a', '6'):"ǎ", ('a', '7'):"ā", ('a', '8'):"a̍", ('a', '9'):"a̋",
-	('e', '2'):"é", ('e', '3'):"è", ('e', '5'):"ê", ('e', '6'):"ě", ('e', '7'):"ē", ('e', '8'):"e̍", ('e', '9'):"e̋",
-	('ee', '2'):"ée", ('ee', '3'):"èe", ('ee', '5'):"êe", ('ee', '6'):"ěe", ('ee', '7'):"ēe", ('ee', '8'):"e̍e", ('ee', '9'):"e̋e",
-	('ere', '2'):"eré", ('ere', '3'):"erè", ('ere', '5'):"erê", ('ere', '6'):"erě", ('ere', '7'):"erē", ('ere', '8'):"ere̍", ('ere', '9'):"ere̋",
-	('i', '2'):"í", ('i', '3'):"ì", ('i', '5'):"î", ('i', '6'):"ǐ", ('i', '7'):"ī", ('i', '8'):"i̍", ('i', '9'):"i̋",
-	('iri', '2'):"irí", ('iri', '3'):"irì", ('iri', '5'):"irî", ('iri', '6'):"irǐ", ('iri', '7'):"irī", ('iri', '8'):"iri̍", ('iri', '9'):"iri̋",
-	('m', '2'):"ḿ", ('m', '3'):"m̀", ('m', '5'):"m̂", ('m', '6'):"m̌", ('m', '7'):"m̄", ('m', '8'):"m̍", ('m', '9'):"m̋",
-	('ng', '2'):"ńg", ('ng', '3'):"ǹg", ('ng', '5'):"n̂g", ('ng', '6'):"ňg", ('ng', '7'):"n̄g", ('ng', '8'):"n̍g", ('ng', '9'):"n̋g",
-	('o', '2'):"ó", ('o', '3'):"ò", ('o', '5'):"ô", ('o', '6'):"ǒ", ('o', '7'):"ō", ('o', '8'):"o̍", ('o', '9'):"ő",
-	('oo', '2'):"óo", ('oo', '3'):"òo", ('oo', '5'):"ôo", ('oo', '6'):"ǒo", ('oo', '7'):"ōo", ('oo', '8'):"o̍o", ('oo', '9'):"őo",
-	('u', '2'):"ú", ('u', '3'):"ù", ('u', '5'):"û", ('u', '6'):"ǔ", ('u', '7'):"ū", ('u', '8'):"u̍", ('u', '9'):"ű",
-	('ui', '2'):"uí", ('ui', '3'):"uì", ('ui', '5'):"uî", ('ui', '6'):"uǐ", ('ui', '7'):"uī", ('ui', '8'):"ui̍", ('ui', '9'):"ui̋",
-	('iu', '2'):"iú", ('iu', '3'):"iù", ('iu', '5'):"iû", ('iu', '6'):"iǔ", ('iu', '7'):"iū", ('iu', '8'):"iu̍", ('iu', '9'):"iű", }
+	('a', '2'): "á", ('a', '3'): "à", ('a', '5'): "â", ('a', '6'): "ǎ", ('a', '7'): "ā", ('a', '8'): "a̍", ('a', '9'): "a̋",
+	('e', '2'): "é", ('e', '3'): "è", ('e', '5'): "ê", ('e', '6'): "ě", ('e', '7'): "ē", ('e', '8'): "e̍", ('e', '9'): "e̋",
+	('ee', '2'): "ée", ('ee', '3'): "èe", ('ee', '5'): "êe", ('ee', '6'): "ěe", ('ee', '7'): "ēe", ('ee', '8'): "e̍e", ('ee', '9'): "e̋e",
+	('ere', '2'): "eré", ('ere', '3'): "erè", ('ere', '5'): "erê", ('ere', '6'): "erě", ('ere', '7'): "erē", ('ere', '8'): "ere̍", ('ere', '9'): "ere̋",
+	('i', '2'): "í", ('i', '3'): "ì", ('i', '5'): "î", ('i', '6'): "ǐ", ('i', '7'): "ī", ('i', '8'): "i̍", ('i', '9'): "i̋",
+	('iri', '2'): "irí", ('iri', '3'): "irì", ('iri', '5'): "irî", ('iri', '6'): "irǐ", ('iri', '7'): "irī", ('iri', '8'): "iri̍", ('iri', '9'): "iri̋",
+	('m', '2'): "ḿ", ('m', '3'): "m̀", ('m', '5'): "m̂", ('m', '6'): "m̌", ('m', '7'): "m̄", ('m', '8'): "m̍", ('m', '9'): "m̋",
+	('ng', '2'): "ńg", ('ng', '3'): "ǹg", ('ng', '5'): "n̂g", ('ng', '6'): "ňg", ('ng', '7'): "n̄g", ('ng', '8'): "n̍g", ('ng', '9'): "n̋g",
+	('o', '2'): "ó", ('o', '3'): "ò", ('o', '5'): "ô", ('o', '6'): "ǒ", ('o', '7'): "ō", ('o', '8'): "o̍", ('o', '9'): "ő",
+	('oo', '2'): "óo", ('oo', '3'): "òo", ('oo', '5'): "ôo", ('oo', '6'): "ǒo", ('oo', '7'): "ōo", ('oo', '8'): "o̍o", ('oo', '9'): "őo",
+	('u', '2'): "ú", ('u', '3'): "ù", ('u', '5'): "û", ('u', '6'): "ǔ", ('u', '7'): "ū", ('u', '8'): "u̍", ('u', '9'): "ű",
+	('ui', '2'): "uí", ('ui', '3'): "uì", ('ui', '5'): "uî", ('ui', '6'): "uǐ", ('ui', '7'): "uī", ('ui', '8'): "ui̍", ('ui', '9'): "ui̋",
+	('iu', '2'): "iú", ('iu', '3'): "iù", ('iu', '5'): "iû", ('iu', '6'): "iǔ", ('iu', '7'): "iū", ('iu', '8'): "iu̍", ('iu', '9'): "iű", }
 
 臺羅對通用聲對照表 = {
-	'p':'b', 'ph':'p', 'm':'m', 'b':'bh',
-	't':'d', 'th':'t', 'n':'n', 'l':'l',
-	'k':'g', 'kh':'k', 'ng':'ng', 'g':'gh',
-	'ts':'z', 'tsh':'c', 's':'s', 'j':'r',
-	'h':'h', '':'', }
+	'p': 'b', 'ph': 'p', 'm': 'm', 'b': 'bh',
+	't': 'd', 'th': 't', 'n': 'n', 'l': 'l',
+	'k': 'g', 'kh': 'k', 'ng': 'ng', 'g': 'gh',
+	'ts': 'z', 'tsh': 'c', 's': 's', 'j': 'r',
+	'h': 'h', '': '', }
 臺羅對通用韻對照表 = {
-	'a':'a', 'am':'am', 'an':'an', 'ang':'ang',
-	'ah':'ah', 'ap':'ap', 'at':'at', 'ak':'ak',
-	'ann':'ann', 'annh':'annh',
-	'ai':'ai', 'aih':'aih', 'ainn':'ainn', 'ainnh':'ainnh',
-	'au':'au', 'auh':'auh', 'aunn':'aunn', 'aunnh':'aunnh',
-	'e':'e', 'eh':'eh', 'enn':'enn', 'ennh':'ennh',
-	'ia':'ia', 'iah':'iah', 'iap':'iap', 'iat':'et', 'iak':'iak',
-	'iam':'iam', 'ian':'en', 'iang':'iang',
-	'iann':'iann', 'iannh':'iannh',
-	'iau':'iau', 'iauh':'iauh', 'iaunn':'iaunn', 'iaunnh':'iaunnh',
-	'i':'i', 'ih':'ih', 'ip':'ip', 'it':'it', 'ik':'ik',
-	'im':'im', 'in':'in', 'ing':'ing',
-	'inn':'inn', 'innh':'innh',
-	'io':'ior', 'ioh':'iorh',
-	'ioo':'io', 'iooh':'ioh', 'ionn':'ionn', 'iok':'iok', 'iong':'iong',
-	'iu':'iu', 'iuh':'iuh', 'iut':'iut', 'iunn':'iunn', 'iunnh':'iunnh',
-	'm':'m', 'mh':'mh', 'ng':'ng', 'ngh':'ngh',
-	'o':'or', 'oh':'orh', 'op':'op',
-	'om':'om', 'ong':'ong',
-	'oo':'o', 'ooh':'oh', 'ok':'ok', 'onn':'onn', 'onnh':'onnh',
-	'oi':'oi', 'oih':'oih',
-	'ua':'ua', 'uah':'uah', 'uat':'uat', 'uak':'uak',
-	'uann':'uann', 'uannh':'uannh', 'uan':'uan',
-	'uai':'uai', 'uaih':'uaih', 'uainn':'uainn', 'uainnh':'uainnh',
-	'ue':'ue', 'ueh':'ueh', 'uenn':'uenn', 'uennh':'uennh',
-	'ui':'ui', 'uih':'uih', 'uinn':'uinn', 'uinnh':'uinnh',
-	'u':'u', 'uh':'uh', 'ut':'ut',
-	'un':'un',
+	'a': 'a', 'am': 'am', 'an': 'an', 'ang': 'ang',
+	'ah': 'ah', 'ap': 'ap', 'at': 'at', 'ak': 'ak',
+	'ann': 'ann', 'annh': 'annh',
+	'ai': 'ai', 'aih': 'aih', 'ainn': 'ainn', 'ainnh': 'ainnh',
+	'au': 'au', 'auh': 'auh', 'aunn': 'aunn', 'aunnh': 'aunnh',
+	'e': 'e', 'eh': 'eh', 'enn': 'enn', 'ennh': 'ennh',
+	'ia': 'ia', 'iah': 'iah', 'iap': 'iap', 'iat': 'et', 'iak': 'iak',
+	'iam': 'iam', 'ian': 'en', 'iang': 'iang',
+	'iann': 'iann', 'iannh': 'iannh',
+	'iau': 'iau', 'iauh': 'iauh', 'iaunn': 'iaunn', 'iaunnh': 'iaunnh',
+	'i': 'i', 'ih': 'ih', 'ip': 'ip', 'it': 'it', 'ik': 'ik',
+	'im': 'im', 'in': 'in', 'ing': 'ing',
+	'inn': 'inn', 'innh': 'innh',
+	'io': 'ior', 'ioh': 'iorh',
+	'ioo': 'io', 'iooh': 'ioh', 'ionn': 'ionn', 'iok': 'iok', 'iong': 'iong',
+	'iu': 'iu', 'iuh': 'iuh', 'iut': 'iut', 'iunn': 'iunn', 'iunnh': 'iunnh',
+	'm': 'm', 'mh': 'mh', 'ng': 'ng', 'ngh': 'ngh',
+	'o': 'or', 'oh': 'orh', 'op': 'op',
+	'om': 'om', 'ong': 'ong',
+	'oo': 'o', 'ooh': 'oh', 'ok': 'ok', 'onn': 'onn', 'onnh': 'onnh',
+	'oi': 'oi', 'oih': 'oih',
+	'ua': 'ua', 'uah': 'uah', 'uat': 'uat', 'uak': 'uak',
+	'uann': 'uann', 'uannh': 'uannh', 'uan': 'uan',
+	'uai': 'uai', 'uaih': 'uaih', 'uainn': 'uainn', 'uainnh': 'uainnh',
+	'ue': 'ue', 'ueh': 'ueh', 'uenn': 'uenn', 'uennh': 'uennh',
+	'ui': 'ui', 'uih': 'uih', 'uinn': 'uinn', 'uinnh': 'uinnh',
+	'u': 'u', 'uh': 'uh', 'ut': 'ut',
+	'un': 'un',
 	# 下跤是方音
-	'or':'or', 'orh':'orh', 'ior':'ior', 'iorh':'iorh',
-	'ee':'e', 'eeh':'eh', 'eng':'ing', 'uee':'ue',
-	'ir':'i', 'irh':'ih', 'irp':'ip', 'irt':'it', 'irk':'ik',
-	'irm':'im', 'irn':'in', 'irng':'ing', 'irinn':'inn',  # 無確定
-	'er':'or', 'erh':'orh', 'erm':'orm', 'erm':'orm', 'ere':'er', 'ereh':'erh',
-	'ie':'ie', 'uang':'uang',
+	'or': 'or', 'orh': 'orh', 'ior': 'ior', 'iorh': 'iorh',
+	'ee': 'e', 'eeh': 'eh', 'eng': 'ing', 'uee': 'ue',
+	'ir': 'i', 'irh': 'ih', 'irp': 'ip', 'irt': 'it', 'irk': 'ik',
+	'irm': 'im', 'irn': 'in', 'irng': 'ing', 'irinn': 'inn',  # 無確定
+	'er': 'or', 'erh': 'orh', 'erm': 'orm', 'erm': 'orm', 'ere': 'er', 'ereh': 'erh',
+	'ie': 'ie', 'uang': 'uang',
 }
-臺羅對通用調對照表 = {'1':'1', '7':'2', '3':'3', '2':'4', '5':'5', '8':'6', '4':'7', '10':'8', '9':'9', '6':'7'}
+臺羅對通用調對照表 = {'1': '1', '7': '2', '3': '3', '2': '4', '5': '5', '8': '6', '4': '7', '10': '8', '9': '9', '6': '7'}
 
 
 class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
@@ -129,7 +129,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 	對通用聲對照表 = 臺羅對通用聲對照表
 	對通用韻對照表 = 臺羅對通用韻對照表
 	對通用調對照表 = 臺羅對通用調對照表
-	轉音值模組=臺灣閩南語羅馬字拼音轉音值模組()
+	轉音值模組 = 臺灣閩南語羅馬字拼音轉音值模組()
 
 	def __init__(self, 音標):
 		self.分析聲韻調(音標)

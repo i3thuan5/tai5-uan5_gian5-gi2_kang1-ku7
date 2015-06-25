@@ -44,7 +44,7 @@ class 摩西翻譯模型訓練(程式腳本):
 # 				語言模型檔,
 # 				連紲詞長度,
 # 			)
-		指令=[
+		指令 = [
 				os.path.join(moses路徑, 'scripts', 'training', 'train-model.perl'),
 				'-root-dir', 暫存資料夾,
 				'-corpus', 平行檔名,

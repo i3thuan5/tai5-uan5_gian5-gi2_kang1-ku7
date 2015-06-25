@@ -22,13 +22,13 @@ class 轉物件音家私():
 			新音物件 = 音標工具(字物件.音)
 			if 新音物件 is None:
 				raise 解析錯誤('音標無合法：{0}'.format(str(字物件)))
-			新音 = getattr(新音物件,函式)()
+			新音 = getattr(新音物件, 函式)()
 			if 新音 is None:
 				raise 解析錯誤('音標無法度轉：{0}'.format(str(字物件)))
 		else:
 			新音 = 無音
 		新型物件 = 音標工具(字物件.型)
-		新型預設音標 = getattr(新型物件,函式)()
+		新型預設音標 = getattr(新型物件, 函式)()
 		if 字物件.音.startswith(字物件.型) and isinstance(新音, str):
 			新型 = 新音
 		elif 新型物件 is not None\

@@ -10,7 +10,7 @@ class 官話注音符號單元試驗(TestCase):
 	def tearDown(self):
 		pass
 
-#---------------------------------------------
+# ---------------------------------------------
 		
 	def test_介音(self):
 		注音 = 官話注音符號('ㄧˋ')
@@ -74,4 +74,4 @@ class 官話注音符號單元試驗(TestCase):
 		self.assertEqual(官話注音符號('ㄗㄧㄨ').音標, None)
 		self.assertEqual(官話注音符號('ㄐ').音標, None)
 		self.assertEqual(官話注音符號('').音標, None)
-		self.assertEqual(官話注音符號('Ⅹㄛˇ').音標, None)#怪怪的「ㄨ」
+		self.assertEqual(官話注音符號('Ⅹㄛˇ').音標, None)  # 怪怪的「ㄨ」

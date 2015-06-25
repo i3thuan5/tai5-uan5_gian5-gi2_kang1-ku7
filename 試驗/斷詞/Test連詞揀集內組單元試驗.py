@@ -90,7 +90,7 @@ class 連詞揀集內組單元試驗(TestCase):
 		self.assertEqual(鞋的詞數, 的鞋詞數)
 		頂擺分數 = 鞋的分數
 		self.連詞.看(self.分析器.產生對齊句('我的冊佇你遐。', 'gua2 e5 tsheh4 ti7 li2 hia1.'))
-		鞋的結果, 鞋的分數 , 鞋的詞數 = self.用連詞揀.揀(self.連詞, 我_e5_e5_仔_鞋的)
+		鞋的結果, 鞋的分數, 鞋的詞數 = self.用連詞揀.揀(self.連詞, 我_e5_e5_仔_鞋的)
 		的鞋結果, 的鞋分數, 的鞋詞數 = self.用連詞揀.揀(self.連詞, 我_e5_e5_仔_的鞋)
 		self.assertEqual(鞋的結果, 我鞋鞋仔)
 		self.assertEqual(的鞋結果, 鞋的結果)
@@ -101,8 +101,8 @@ class 連詞揀集內組單元試驗(TestCase):
 		self.assertEqual(鞋的詞數, 的鞋詞數)
 		頂擺分數 = 鞋的分數
 		self.連詞.看(self.分析器.產生對齊句('我的故鄉佇花蓮。', 'gua2 e5 koo3-hiong1 ti7 hua1-lian1.'))
-		鞋的結果, 鞋的分數 , 鞋的詞數 = self.用連詞揀.揀(self.連詞, 我_e5_e5_仔_鞋的)
-		的鞋結果, 的鞋分數 , 的鞋詞數 = self.用連詞揀.揀(self.連詞, 我_e5_e5_仔_的鞋)
+		鞋的結果, 鞋的分數, 鞋的詞數 = self.用連詞揀.揀(self.連詞, 我_e5_e5_仔_鞋的)
+		的鞋結果, 的鞋分數, 的鞋詞數 = self.用連詞揀.揀(self.連詞, 我_e5_e5_仔_的鞋)
 		self.assertEqual(鞋的結果, 我的鞋仔)
 		self.assertEqual(的鞋結果, 鞋的結果)
 		self.assertLess(鞋的分數, 0.0)
@@ -111,8 +111,8 @@ class 連詞揀集內組單元試驗(TestCase):
 		self.assertEqual(鞋的詞數, 6)
 		self.assertEqual(鞋的詞數, 的鞋詞數)
 		頂擺分數 = 鞋的分數
-		的.內底詞[0].屬性 = {'機率':self.連詞.對數(0.01)}
-		鞋.內底詞[0].屬性 = {'機率':self.連詞.對數(0.99)}
+		的.內底詞[0].屬性 = {'機率': self.連詞.對數(0.01)}
+		鞋.內底詞[0].屬性 = {'機率': self.連詞.對數(0.99)}
 		鞋的結果, 鞋的分數, 鞋的詞數 = self.用連詞揀.揀(self.連詞, 我_e5_e5_仔_鞋的)
 		的鞋結果, 的鞋分數, 的鞋詞數 = self.用連詞揀.揀(self.連詞, 我_e5_e5_仔_的鞋)
 		self.assertEqual(鞋的結果, 我鞋鞋仔)

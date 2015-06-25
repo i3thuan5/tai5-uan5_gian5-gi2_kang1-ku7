@@ -37,7 +37,7 @@ class 客話字綜合標音單元試驗(unittest.TestCase):
 		綜合標音 = 客話字綜合標音(字(self.我型, self.我音))
 		self.assertEqual(綜合標音.標音完整無(), True)
 		self.assertEqual(綜合標音.轉json格式(),
-			{"型體":self.我型, "臺灣客話":self.我音})
+			{"型體": self.我型, "臺灣客話": self.我音})
 
 	def test_標點合法(self):
 		標點 = 客話字綜合標音(字('，', 無音))
@@ -45,7 +45,7 @@ class 客話字綜合標音單元試驗(unittest.TestCase):
 
 	def test_標點轉json格式(self):
 		標點 = 客話字綜合標音(字('，', 無音))
-		self.assertEqual(標點.轉json格式(), {"型體":"，", "臺灣客話":""})
+		self.assertEqual(標點.轉json格式(), {"型體": "，", "臺灣客話": ""})
 
 	def test_標點音無合法(self):
 		綜合標音 = 客話字綜合標音(字('我', 'nggai'))

@@ -26,12 +26,12 @@ class 現掀辭典(文字辭典):
 	def 查詞(self, 詞物件):
 		if not isinstance(詞物件, 詞):
 			raise 型態錯誤('傳入來的毋是詞物件：{0}'.format(str(詞物件)))
-		結果=[]
+		結果 = []
 		for _ in range(len(詞物件.內底字)):
 			結果.append(set())
 		for 辭典條 in self.條目:
 			if self.查詞有仝無(詞物件, 辭典條):
-				結果[len(辭典條.內底字)-1].add(辭典條)
+				結果[len(辭典條.內底字) - 1].add(辭典條)
 		return 結果
 
 	def 查詞有仝無(self, 詞物件, 辭典條):
@@ -40,7 +40,7 @@ class 現掀辭典(文字辭典):
 		for 第幾字 in range(len(辭典條.內底字)):
 			字物件 = 詞物件.內底字[第幾字]
 			辭典條字物件 = 辭典條.內底字[第幾字]
-			有著=False
+			有著 = False
 			if 字物件.音 != 無音:
 				if 字物件 == 辭典條字物件:
 					有著 = True

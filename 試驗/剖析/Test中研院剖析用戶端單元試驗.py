@@ -15,7 +15,7 @@ class 中研院剖析用戶端單元試驗(unittest.TestCase):
 		pass
 
 	def test_結構剖一句(self, 語句剖析做語句mock):
-		語句剖析做語句mock.return_value=[[
+		語句剖析做語句mock.return_value = [[
  			'#1:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vi:吃飯))#',
  			]]
 		self.assertEqual(self.用戶端.語句剖析後結構化('我想吃飯'), [[
@@ -23,7 +23,7 @@ class 中研院剖析用戶端單元試驗(unittest.TestCase):
  			]])
 
 	def test_結構剖一逝字(self, 語句剖析做語句mock):
-		語句剖析做語句mock.return_value=[[
+		語句剖析做語句mock.return_value = [[
  			'#1:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vi:吃飯))#。(PERIODCATEGORY)',
  			'#2:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vt:吃|NP(DET:很多|Head:N:飯)))#。(PERIODCATEGORY)',
  			]]
@@ -34,7 +34,7 @@ class 中研院剖析用戶端單元試驗(unittest.TestCase):
  			])
 
 	def test_結構剖有換逝句(self, 語句剖析做語句mock):
-		語句剖析做語句mock.return_value= [[
+		語句剖析做語句mock.return_value = [[
 		 			'#1:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vi:吃飯))#。(PERIODCATEGORY)',
 		 			'#2:1.[0] S(NP(Head:N:我)|Head:Vt:想|VP(Head:Vt:吃|NP(DET:很多|Head:N:飯)))#。(PERIODCATEGORY)',
 	 			], [
@@ -50,7 +50,7 @@ class 中研院剖析用戶端單元試驗(unittest.TestCase):
 			])
 
 	def test_結構剖著大於符號(self, 語句剖析做語句mock):
-		語句剖析做語句mock.return_value= [[
+		語句剖析做語句mock.return_value = [[
 			'#1:1.[0] %(NP(Head:N:我)|Vt:想|COLONCATEGORY::)#&gt;(PARENTHESISCATEGORY)',
 			]]
 		self.assertEqual(self.用戶端.語句剖析後結構化('我想) :>'), [[
@@ -58,6 +58,6 @@ class 中研院剖析用戶端單元試驗(unittest.TestCase):
 			]])
 
 	def test_結構剖著小於符號是空的(self, 語句剖析做語句mock):
-		語句剖析做語句mock.return_value= [[]]
+		語句剖析做語句mock.return_value = [[]]
 		self.assertEqual(self.用戶端.語句剖析後結構化('我想) :<'), [[
 			]])

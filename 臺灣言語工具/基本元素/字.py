@@ -22,13 +22,13 @@ class 字:
 		self.音 = 音
 
 	def 有音(self):
-		return self.音!=無音 and self.音 not in 標點符號
+		return self.音 != 無音 and self.音 not in 標點符號
 
 	def __eq__(self, 別个):
 		return isinstance(別个, 字) and self.型 == 別个.型 and self.音 == 別个.音
 
 	def __hash__(self):
-		return hash((self.型,self.音))
+		return hash((self.型, self.音))
 
 	def __str__(self):
 		return '字：{0} {1}'.format(self.型, self.音)

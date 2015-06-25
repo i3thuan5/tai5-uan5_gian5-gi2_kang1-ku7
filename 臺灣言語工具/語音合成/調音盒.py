@@ -6,7 +6,7 @@ from 臺灣言語工具.系統整合.外部程式 import 外部程式
 
 class 調音盒:
 	指令 = '/usr/bin/sox '
-	單指令 = 指令+'{{0}} {{1}} '
+	單指令 = 指令 + '{{0}} {{1}} '
 	大細聲指令 = 單指令 + 'vol {0}'
 	音懸指令 = 單指令 + 'pitch {0}'
 	篩雜訊指令 = (指令 + '-c 1 -t s16 -r 16000 {0} -n noiseprof |'
@@ -34,7 +34,7 @@ class 調音盒:
 	def 改音懸(self, 音, 音懸):
 		return self.用指令調(音, self.音懸指令.format(音懸))
 
-	def 篩雜訊(self, 音, 雜訊=程式工具.目錄()+'/Sox/雜訊.wav'):
+	def 篩雜訊(self, 音, 雜訊=程式工具.目錄() + '/Sox/雜訊.wav'):
 		return self.用指令調(音, self.篩雜訊指令.format(雜訊))
 
 	def 篩懸音(self, 音, 懸音):

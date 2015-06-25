@@ -38,7 +38,7 @@ class 詞組綜合標音():
 			raise 型態錯誤('傳入來的毋是詞或組物件！{0}，{1}'.format(type(詞或組物件), str(詞或組物件)))
 
 	def 轉json格式(self):
-		return {"詞組綜合標音":[
+		return {"詞組綜合標音": [
 			標音.轉json格式() for 標音 in self.綜合字
 			], "連字音": self.連字音}
 

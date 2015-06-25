@@ -2,10 +2,10 @@
 import unittest
 from 臺灣言語工具.解析整理.羅馬音仕上げ import 羅馬音仕上げ
 
-#仕上げ
-#しあげ
-#ㄒㄧ˫ ㄚ ㆣㆤㆷ
-#1si7_1a1_1geh4
+# 仕上げ
+# しあげ
+# ㄒㄧ˫ ㄚ ㆣㆤㆷ
+# 1si7_1a1_1geh4
 
 
 class 羅馬音仕上げ單元試驗(unittest.TestCase):

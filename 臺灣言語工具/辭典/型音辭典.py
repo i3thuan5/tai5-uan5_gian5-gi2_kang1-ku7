@@ -22,7 +22,7 @@ class 型音辭典(文字辭典):
 			raise 型態錯誤('傳入來的毋是詞物件：{0}'.format(str(詞物件)))
 		if len(詞物件.內底字) == 0:
 			raise 解析錯誤('傳入來的詞物件是空的：{0}'.format(str(詞物件)))
-		if len(詞物件.內底字)<=self.上濟字數():
+		if len(詞物件.內底字) <= self.上濟字數():
 			self.加詞佇點(詞物件, 0, self.表)
 		return
 

@@ -32,7 +32,7 @@ class 程式腳本:
 							.format(指令)
 					)
 
-	def _走指令錯誤(self,指令, 輸出資訊=None, 錯誤輸出資訊=None):
+	def _走指令錯誤(self, 指令, 輸出資訊=None, 錯誤輸出資訊=None):
 		if 輸出資訊:
 			輸出 = '輸出：{0}\n'.format(輸出資訊.decode('utf-8'))
 		else:
