@@ -42,40 +42,40 @@ class 轉物件音家私():
         if not isinstance(詞物件, 詞):
             raise 型態錯誤('傳入來的毋是詞物件：{0}'.format(str(詞物件)))
         新詞物件 = 詞()
-        for 字 in 詞物件.內底字:
-            新詞物件.內底字.append(self._轉字音(音標工具, 字, 函式))
+        for 字物件 in 詞物件.內底字:
+            新詞物件.內底字.append(self._轉字音(音標工具, 字物件, 函式))
         return 新詞物件
 
     def _轉組音(self, 音標工具, 組物件, 函式):
         if not isinstance(組物件, 組):
             raise 型態錯誤('傳入來的毋是組物件：{0}'.format(str(組物件)))
         新組物件 = 組()
-        for 詞 in 組物件.內底詞:
-            新組物件.內底詞.append(self._轉詞音(音標工具, 詞, 函式))
+        for 詞物件 in 組物件.內底詞:
+            新組物件.內底詞.append(self._轉詞音(音標工具, 詞物件, 函式))
         return 新組物件
 
     def _轉集音(self, 音標工具, 集物件, 函式):
         if not isinstance(集物件, 集):
             raise 型態錯誤('傳入來的毋是集物件：{0}'.format(str(集物件)))
         新集物件 = 集()
-        for 組 in 集物件.內底組:
-            新集物件.內底組.append(self._轉組音(音標工具, 組, 函式))
+        for 組物件 in 集物件.內底組:
+            新集物件.內底組.append(self._轉組音(音標工具, 組物件, 函式))
         return 新集物件
 
     def _轉句音(self, 音標工具, 句物件, 函式):
         if not isinstance(句物件, 句):
             raise 型態錯誤('傳入來的毋是句物件：{0}'.format(str(句物件)))
         新句物件 = 句()
-        for 集 in 句物件.內底集:
-            新句物件.內底集.append(self._轉集音(音標工具, 集, 函式))
+        for 集物件 in 句物件.內底集:
+            新句物件.內底集.append(self._轉集音(音標工具, 集物件, 函式))
         return 新句物件
 
     def _轉章音(self, 音標工具, 章物件, 函式):
         if not isinstance(章物件, 章):
             raise 型態錯誤('傳入來的毋是章物件：{0}'.format(str(章物件)))
         新章物件 = 章()
-        for 句 in 章物件.內底句:
-            新章物件.內底句.append(self._轉句音(音標工具, 句, 函式))
+        for 句物件 in 章物件.內底句:
+            新章物件.內底句.append(self._轉句音(音標工具, 句物件, 函式))
         return 新章物件
 
     def 轉音(self, 音標工具, 物件, 函式='預設音標'):

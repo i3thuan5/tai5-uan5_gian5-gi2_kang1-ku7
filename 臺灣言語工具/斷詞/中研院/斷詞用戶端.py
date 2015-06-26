@@ -88,13 +88,13 @@ class 斷詞用戶端(用戶端連線):
             一逝結構化 = []
             for 一句 in 一逝字:
                 逝結果 = []
-                for 詞 in 一句.strip().split('\u3000'):
-                    if 詞 == '':
+                for 詞文本 in 一句.strip().split('\u3000'):
+                    if 詞文本 == '':
                         continue
                     try:
-                        字, 性 = self.分詞性.split(詞)[1:3]
+                        字, 性 = self.分詞性.split(詞文本)[1:3]
                     except:
-                        字, 性 = 詞, None
+                        字, 性 = 詞文本, None
                     逝結果.append((字, 性))
                 一逝結構化.append(逝結果)
             結構化結果.append(一逝結構化)

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import unittest
-from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.解析整理.程式掠漏 import 程式掠漏
