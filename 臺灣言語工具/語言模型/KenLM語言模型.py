@@ -16,7 +16,7 @@ class KenLM語言模型(語言模型):
 
     def 評詞陣列分(self, 詞陣列, 開始的所在=0):
         字串 = []
-        for 詞物件 in 詞陣列: 
+        for 詞物件 in 詞陣列:
             字串.append(self._譀鏡.看分詞(詞物件))
         for 所在, 結果 in enumerate(
                 self._語言模型.full_scores(分詞符號.join(字串), bos=False, eos=False)):

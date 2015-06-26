@@ -21,7 +21,7 @@ class 辭典連詞斷詞:
     def 斷詞(self, 辭典, 連詞, 物件):
         if isinstance(物件, 章):
             return self.章斷詞(辭典, 連詞, 物件)
-        if isinstance(物件, 字): 
+        if isinstance(物件, 字):
             詞物件 = self.分析器.建立詞物件('')
             詞物件.內底字.append(物件)
             物件 = 詞物件

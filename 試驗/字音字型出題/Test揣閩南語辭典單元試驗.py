@@ -18,7 +18,7 @@ class 揣閩南語題目單元試驗(unittest.TestCase):
                ], [('媠噹「噹」', 'sui2-tang1-「tang1」')],
               ]
         for 擺 in range(10):
-            self.assertIn(self.閩南語題目.出題(1), 答案) 
+            self.assertIn(self.閩南語題目.出題(1), 答案)
 
     def test_四字(self):
         self.閩南語題目.資料.append((self._分析器.產生對齊組('一心一意', 'it4-sim1-it4-i3'), 4))

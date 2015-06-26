@@ -42,7 +42,7 @@ class 閩南語音標介面(metaclass=ABCMeta):
             elif 前一字元 + 字元 in self.聲調符號表:
                 無調字元, self.調 = self.聲調符號表[前一字元 + 字元]
                 無調號音標 += 無調字元
-                前一字元 = ''				
+                前一字元 = ''
             else:
                 無調號音標 += 前一字元
                 前一字元 = 字元
@@ -61,7 +61,7 @@ class 閩南語音標介面(metaclass=ABCMeta):
                 self.調 = 4
             elif self.調 != 4 and self.調 != 8:
                 音標是著的 = False
-        if 音標是著的:					
+        if 音標是著的:
             print('聲母=' + self.聲 + ' 韻母=' + self.韻 + ' 調＝' + str(self.調))
             self.音標 = self.聲 + self.韻 + str(self.調)
         else:

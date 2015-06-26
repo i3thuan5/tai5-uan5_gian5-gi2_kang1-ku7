@@ -15,4 +15,4 @@ class 教會系羅馬音標單元試驗(unittest.TestCase):
         正規法 = 教會系羅馬音標.正規法
         for 原本, _ in 教會系羅馬音標聲調符號表.items():
             self.assertEqual(原本, 正規法(None, 原本))
-            self.assertLessEqual(len(原本), 3) 
+            self.assertLessEqual(len(原本), 3)

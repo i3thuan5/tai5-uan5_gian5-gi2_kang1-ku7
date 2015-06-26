@@ -283,7 +283,7 @@ class 斷詞斷字翻譯單元試驗(TestCase):
         self.xmlrpcMock.return_value.translate.side_effect = [
             self.斷詞雙未知詞, self.斷字雙未知詞譯兩詞
         ]
-        self.翻譯工具.翻譯(self.華語句物件)		
+        self.翻譯工具.翻譯(self.華語句物件)
         self.xmlrpcMock.return_value.translate.assert_has_calls([
             call({
                 "text": '去 吃 飯',

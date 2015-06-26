@@ -15,7 +15,7 @@ class 文本音值對照表單元試驗(TestCase):
         pass
 
     def test_閩南語聲韻表(self):
-        文本音值表 = 閩南語文本音值表()	
+        文本音值表 = 閩南語文本音值表()
         聲韻表 = 文本音值表.聲韻表()
         self.assertGreater(len(聲韻表), 80)
 

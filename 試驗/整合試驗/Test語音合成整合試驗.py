@@ -30,7 +30,7 @@ class 語音合成整合單元試驗(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        os.remove(cls.閩南語模型) 
+        os.remove(cls.閩南語模型)
 
     def setUp(self):
         self.粗胚 = 文章粗胚()

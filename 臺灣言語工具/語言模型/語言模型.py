@@ -20,7 +20,7 @@ class 語言模型(metaclass=ABCMeta):
         return self._開始
 
     def 結束(self):
-        return self._結束 
+        return self._結束
 
     def 對數(self, 數字):
         return log10(數字)

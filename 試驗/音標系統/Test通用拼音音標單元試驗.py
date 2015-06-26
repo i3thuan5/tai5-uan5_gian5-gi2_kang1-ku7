@@ -27,7 +27,7 @@ class 通用拼音音標單元試驗(unittest.TestCase):
         表 = [('zit4', None, None),
              ('pih8', 'pih8', 'phih10'),
              ('bah2', 'bah7', 'pah4',),
-             ('zierk1', None, None), 
+             ('zierk1', None, None),
              ('ziok1', 'ziok6', 'tsiok8'), ]
         for 原, 通, 臺 in 表:
             字音對照 = 通用拼音音標(原)
