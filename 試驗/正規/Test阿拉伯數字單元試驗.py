@@ -57,7 +57,7 @@ class 阿拉伯數字單元試驗(TestCase):
                 self.assertEqual(self.數字.是號碼無(問), True)
                 self.assertEqual(self.數字.轉號碼('空', 問), 答)
                 self.assertEqual(self.數字.轉號碼('零', 問),
-                                答.replace('空', '零'))
+                                 答.replace('空', '零'))
 
     def test_轉數量(self):
         問答 = [
@@ -211,7 +211,7 @@ class 阿拉伯數字單元試驗(TestCase):
                 self.assertEqual(self.數字.是數量無(問), True)
                 self.assertEqual(self.數字.轉數量('空', 問), 答, 問)
                 self.assertEqual(self.數字.轉數量('零', 問),
-                                答.replace('空', '零'), 問)
+                                 答.replace('空', '零'), 問)
 
     def 檢查閩南語數量(self, 問答):
         for 問, 答 in 問答:

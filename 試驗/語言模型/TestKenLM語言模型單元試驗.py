@@ -59,14 +59,14 @@ class KenLM語言模型單元試驗(TestCase):
     def test_媠媠巧靚_評詞陣列分(self):
         self.assertEqual(self.媠媠巧靚連詞.上濟詞數(), 3)
         self.陣列比較(list(self.媠媠巧靚連詞.評詞陣列分(self.媠媠巧靚組物件.內底詞)),
-                [log10(2 / 5), log10(1 / 2), log10(1 / 2), -0.0], self.忍受)
+                  [log10(2 / 5), log10(1 / 2), log10(1 / 2), -0.0], self.忍受)
         self.陣列比較(list(self.媠媠巧靚連詞.評詞陣列分(self.媠媠巧靚組物件.內底詞, 開始的所在=1)),
-                [log10(1 / 2), log10(1 / 2), -0.0], self.忍受)
+                  [log10(1 / 2), log10(1 / 2), -0.0], self.忍受)
 
     def test_媠媠巧靚_評分(self):
         self.assertEqual(self.媠媠巧靚連詞.上濟詞數(), 3)
         self.陣列比較(list(self.媠媠巧靚連詞.評分(self.媠媠巧靚組物件)),
-                [-0.0, log10(1 / 2), log10(1 / 2), -0.0, -0.0], self.忍受)
+                  [-0.0, log10(1 / 2), log10(1 / 2), -0.0, -0.0], self.忍受)
 
     def 陣列比較(self, 結果陣列, 答案陣列, 範圍):
         for 結果, 答案 in itertools.zip_longest(結果陣列, 答案陣列):

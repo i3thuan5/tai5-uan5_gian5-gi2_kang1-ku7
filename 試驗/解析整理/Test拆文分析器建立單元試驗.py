@@ -42,17 +42,17 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
     def test_建立詞濟字漢字(self):
         語句 = '椅仔！'
         self.assertEqual(self.分析器.建立詞物件(語句).內底字,
-                [self.分析器.建立字物件('椅'), self.分析器.建立字物件('仔'), self.分析器.建立字物件('！')])
+                         [self.分析器.建立字物件('椅'), self.分析器.建立字物件('仔'), self.分析器.建立字物件('！')])
 
     def test_建立詞濟字音標(self):
         語句 = 'tsit8-tiunn1 !'
         self.assertEqual(self.分析器.建立詞物件(語句).內底字,
-                [self.分析器.建立字物件('tsit8'), self.分析器.建立字物件('tiunn1'), self.分析器.建立字物件('!')])
+                         [self.分析器.建立字物件('tsit8'), self.分析器.建立字物件('tiunn1'), self.分析器.建立字物件('!')])
 
     def test_建立詞濟字漢羅(self):
         語句 = 'tsit8-張!'
         self.assertEqual(self.分析器.建立詞物件(語句).內底字,
-                [self.分析器.建立字物件('tsit8'), self.分析器.建立字物件('張'), self.分析器.建立字物件('!')])
+                         [self.分析器.建立字物件('tsit8'), self.分析器.建立字物件('張'), self.分析器.建立字物件('!')])
 
     def test_建立組孤字(self):
         型 = '媠'
@@ -257,47 +257,47 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         有空白 = 'sui2 sui2 e5 koo1 niu5'
         無空白 = 有空白.replace(' ', '')
         self.assertNotEqual(self.分析器.建立組物件(有空白),
-                self.分析器.建立組物件(無空白))
+                            self.分析器.建立組物件(無空白))
 
     def test_無空白分開的音調音標(self):
         有空白 = 'sui55 sui51 e13 koo33 niu13'
         無空白 = 有空白.replace(' ', '')
         self.assertNotEqual(self.分析器.建立組物件(有空白),
-                self.分析器.建立組物件(無空白))
+                            self.分析器.建立組物件(無空白))
 
     def test_大寫專有符號袂寫拆開(self):
         無空白 = 'H1N1 新型 流感 包含 四種 病毒'
         有空白 = 'H1 N1 新型 流感 包含 四種 病毒'
         self.assertEqual(len(self.分析器.建立組物件(無空白).內底詞),
-                11)
+                         11)
         self.assertNotEqual(self.分析器.建立組物件(有空白),
-                self.分析器.建立組物件(無空白))
+                            self.分析器.建立組物件(無空白))
 
     def test_小寫專有符號袂使拆開(self):
         無空白 = 'g0v 是 咱 的 好 厝邊'
         有空白 = 'g0 v 是 咱 的 好 厝邊'
         self.assertEqual(len(self.分析器.建立組物件(無空白).內底詞),
-                7)
+                         7)
         self.assertNotEqual(self.分析器.建立組物件(有空白),
-                self.分析器.建立組物件(無空白))
+                            self.分析器.建立組物件(無空白))
 
     def test_大寫音標袂使拆開(self):
         # 愛予粗胚處理
         無空白 = 'Sui2sui2 是 咱 的 好 厝邊'
         有空白 = 'Sui2 sui2 是 咱 的 好 厝邊'
         self.assertEqual(len(self.分析器.建立組物件(無空白).內底詞),
-                7)
+                         7)
         self.assertNotEqual(self.分析器.建立組物件(有空白),
-                self.分析器.建立組物件(無空白))
+                            self.分析器.建立組物件(無空白))
 
     def test_小寫音標袂使拆開(self):
         # 愛予粗胚處理
         無空白 = 'sui2sui2 是 咱 的 好 厝邊'
         有空白 = 'sui2 sui2 是 咱 的 好 厝邊'
         self.assertEqual(len(self.分析器.建立組物件(無空白).內底詞),
-                7)
+                         7)
         self.assertNotEqual(self.分析器.建立組物件(有空白),
-                self.分析器.建立組物件(無空白))
+                            self.分析器.建立組物件(無空白))
 
     def test_建立集孤字(self):
         型 = '媠'
@@ -469,8 +469,8 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         self.assertEqual(self.粗胚.符號邊仔加空白(處理減號), 加空白)
         self.assertEqual(self.分析器.拆章做句(加空白), 空白答案)
         self.assertEqual(len(self.分析器.建立章物件(加空白).內底句),
-                2)
+                         2)
         self.assertEqual(self.分析器.建立章物件(加空白).內底句[0],
-                self.分析器.建立句物件(空白答案[0]))
+                         self.分析器.建立句物件(空白答案[0]))
         self.assertEqual(self.分析器.建立章物件(加空白).內底句[1],
-                self.分析器.建立句物件(空白答案[1]))
+                         self.分析器.建立句物件(空白答案[1]))

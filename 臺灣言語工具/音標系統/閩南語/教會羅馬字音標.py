@@ -56,7 +56,7 @@ class 教會羅馬字音標(教會系羅馬音標):
 
     def __init__(self, 音標):
         self.分析聲韻調(音標.replace('hN', 'Nh').replace('ou', 'oo')
-                .replace('ooN', 'onn').replace('oonn', 'onn'))
+                   .replace('ooN', 'onn').replace('oonn', 'onn'))
         if self.聲 == 'm' or self.聲 == 'n' or self.聲 == 'ng':
             if self.韻 == 'o':
                 self.音標 = None

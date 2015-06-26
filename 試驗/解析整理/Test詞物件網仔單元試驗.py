@@ -106,7 +106,7 @@ class 詞物件網仔單元試驗(unittest.TestCase):
         原來語句 = '我有一張椅仔！'
         句陣列 = [self.分析器.建立句物件(原來語句)] * 2
         self.assertEqual(self.網仔.網出詞物件(章(句陣列)),
-                self.網仔.網出詞物件(self.分析器.建立句物件(原來語句)) * 2)
+                         self.網仔.網出詞物件(self.分析器.建立句物件(原來語句)) * 2)
 
     def test_烏白擲物件(self):
         self.assertRaises(型態錯誤, self.網仔.網出詞物件, 2123)

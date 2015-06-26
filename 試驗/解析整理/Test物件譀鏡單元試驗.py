@@ -186,18 +186,18 @@ class 物件譀鏡單元試驗(unittest.TestCase):
         原本語句 = '食-飽｜tsiah8-pa2 未｜0bue7 ？｜? 食-飽｜tsiah8-pa2 矣｜0ah4 ！｜!'
         章物件 = self.分析器.轉做章物件(原本語句)
         self.assertEqual(self.譀鏡.看型(章物件),
-                '食飽未？食飽矣！')
+                         '食飽未？食飽矣！')
         self.assertEqual(self.譀鏡.看音(章物件),
-                'tsiah8-pa2 0bue7 ? tsiah8-pa2 0ah4 !')
+                         'tsiah8-pa2 0bue7 ? tsiah8-pa2 0ah4 !')
         self.assertEqual(self.譀鏡.看分詞(章物件), 
-                '食-飽｜tsiah8-pa2 未｜0bue7 ？｜? 食-飽｜tsiah8-pa2 矣｜0ah4 ！｜!')
+                         '食-飽｜tsiah8-pa2 未｜0bue7 ？｜? 食-飽｜tsiah8-pa2 矣｜0ah4 ！｜!')
 
     def test_換句分句符號(self):
         原本語句 = '食-飽｜tsiah8-pa2 未｜0bue7 ？｜? 食-飽｜tsiah8-pa2 矣｜0ah4 ！｜!'
         章物件 = self.分析器.轉做章物件(原本語句)
         self.assertEqual(self.譀鏡.看型(章物件, 物件分句符號='\n'),
-                '食飽未？\n食飽矣！')
+                         '食飽未？\n食飽矣！')
         self.assertEqual(self.譀鏡.看音(章物件, 物件分句符號='\n'),
-                'tsiah8-pa2 0bue7 ?\ntsiah8-pa2 0ah4 !')
+                         'tsiah8-pa2 0bue7 ?\ntsiah8-pa2 0ah4 !')
         self.assertEqual(self.譀鏡.看分詞(章物件, 物件分句符號='\n'),
-                '食-飽｜tsiah8-pa2 未｜0bue7 ？｜?\n食-飽｜tsiah8-pa2 矣｜0ah4 ！｜!')
+                         '食-飽｜tsiah8-pa2 未｜0bue7 ？｜?\n食-飽｜tsiah8-pa2 矣｜0ah4 ！｜!')

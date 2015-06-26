@@ -188,7 +188,7 @@ class 斷詞斷字翻譯單元試驗(TestCase):
                 ]
         結果句物件, 華語新結構句物件, _ = self.翻譯工具.翻譯(self.華語句物件)
         self.assertEqual(len(結果句物件.內底集[0].內底組),
-                len(華語新結構句物件.內底集[0].內底組))
+                         len(華語新結構句物件.內底集[0].內底組))
 
     def test_翻譯結果對齊檢查(self):
         self.xmlrpcMock.return_value.translate.side_effect = [

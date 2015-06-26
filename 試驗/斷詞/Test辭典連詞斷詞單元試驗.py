@@ -146,7 +146,7 @@ class 辭典連詞斷詞單元試驗(TestCase):
         self.字典.加詞(self.一張椅仔對齊詞)
         self.連詞.看(self.一張椅仔對齊詞)
         一四新組物件 = 組([self.白我對齊詞, self.有對齊詞,
-                self.一張椅仔對齊詞, self.驚對齊詞, self.驚對齊詞, ])
+                    self.一張椅仔對齊詞, self.驚對齊詞, self.驚對齊詞, ])
         一四新句物件 = 句([集([一四新組物件])])
         一四分數 = self.斷逐種我有一張椅仔(一四新句物件, 0, 5)
 
@@ -160,7 +160,7 @@ class 辭典連詞斷詞單元試驗(TestCase):
         self.連詞.看(self.椅仔對齊詞)
 # 		self.有一張集 = self.分析器.產生對齊集('有一張', 'u7-tsit8-tiunn1')
         兩三新組物件 = 組([self.白我對齊詞, self.有一張對齊詞,
-                self.椅仔對齊詞, self.驚對齊詞, self.驚對齊詞])
+                    self.椅仔對齊詞, self.驚對齊詞, self.驚對齊詞])
         兩三新句物件 = 句([集([兩三新組物件])])
         兩三分數 = self.斷逐種我有一張椅仔(兩三新句物件, 0, 5)
 
@@ -240,14 +240,14 @@ class 辭典連詞斷詞單元試驗(TestCase):
         self.驚對齊集 = 集([self.驚對齊組])
 
         self.句物件 = 句([self.我對齊集, self.有對齊集, self.一張對齊集,
-                self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
+                      self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
         self.文我句物件 = 句([self.文我對齊集, self.有對齊集, self.一張對齊集,
-                self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
+                        self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
 
         self.句物件 = 句([self.我對齊集, self.有對齊集, self.一張對齊集,
-                self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
+                      self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
         self.文我句物件 = 句([self.文我對齊集, self.有對齊集, self.一張對齊集,
-                self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
+                        self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
 
     def 斷逐種我有一張椅仔(self, 答案, 答案分數, 答案詞數):
         全部分數 = []

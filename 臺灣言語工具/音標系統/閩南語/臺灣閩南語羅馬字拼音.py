@@ -167,7 +167,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
             raise RuntimeError(
                     '轉通用拼音時對照表有問題！！{0}、{1}、{2}、{3}、{4}、{5}'
                     .format(self.聲, self.韻, self.調,
-                     self.韻 in self.對通用韻對照表, self.調 in self.對通用調對照表))
+                            self.韻 in self.對通用韻對照表, self.調 in self.對通用調對照表))
         return self.對通用聲對照表[self.聲] + self.對通用韻對照表[self.韻] + self.對通用調對照表[self.調]
 
     def 產生吳守禮方音物件(self):

@@ -25,7 +25,7 @@ class 客話字綜合標音(字綜合標音):
             self.臺灣客話 = 客音.音標
             if 音標一定愛著 and not self.標音完整無():
                 raise 解析錯誤('音標無合法：{0}，{1}，{2}'.
-                        format(字物件, self.型體, self.臺灣客話))
+                           format(字物件, self.型體, self.臺灣客話))
 
     def 轉json格式(self):
         return {"型體": self.型體, "臺灣客話": self.臺灣客話}

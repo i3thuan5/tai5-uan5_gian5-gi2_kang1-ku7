@@ -54,10 +54,10 @@ class 產生字音字形檔案:
                 座標 = 表.encodeColName(所在 + 1) + str(這馬逝)
                 表.setValue(座標, 一逝[所在])
                 表.setStyle(座標,
-                        border_top="1pt solid #000000",
-                        border_bottom="1pt solid #000000",
-                        border_left="1pt solid #000000",
-                        border_right="1pt solid #000000",)
+                           border_top="1pt solid #000000",
+                           border_bottom="1pt solid #000000",
+                           border_left="1pt solid #000000",
+                           border_right="1pt solid #000000",)
             這馬逝 += 1
         return 表
 

@@ -37,8 +37,8 @@ class 閩南語字綜合標音(字綜合標音):
             self.通用數字調 = 臺羅.轉通用拼音()
             if 音標一定愛著 and not self.標音完整無():
                 raise 解析錯誤('音標無合法：{0}，{1}，{2}，{3}，{4}，{5}'.
-                        format(字物件, self.型體, self.臺羅數字調, self.吳守禮方音,
-                        self.臺羅閏號調, self.通用數字調,))
+                           format(字物件, self.型體, self.臺羅數字調, self.吳守禮方音,
+                                  self.臺羅閏號調, self.通用數字調,))
 
     def 轉json格式(self):
         return {"型體": self.型體, "臺羅數字調": self.臺羅數字調,

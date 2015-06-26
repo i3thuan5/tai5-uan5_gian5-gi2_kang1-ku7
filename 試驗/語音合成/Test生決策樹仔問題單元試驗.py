@@ -77,7 +77,7 @@ class 生決策樹仔問題單元試驗(unittest.TestCase):
     def test_種類毋著(self):
         '''1 2 3'''
         self.assertRaises(解析錯誤, self.生問題.問題集,
-                        self.看排法資料, ('', '-', '+', '/'), '攏愛',)
+                          self.看排法資料, ('', '-', '+', '/'), '攏愛',)
 
     def test_孤條(self):
         '''1 2 3'''
@@ -112,8 +112,8 @@ class 生決策樹仔問題單元試驗(unittest.TestCase):
 
     def test_檢查問題名仝款(self):
         self.assertRaises(解析錯誤,
-                self.生問題.檢查,
-                {
+                          self.生問題.檢查,
+                          {
                         'QS "後壁是a類" { "*+e/*" }',
                         'QS "後壁是a類" { "*+*a*/*" }'},
                 )

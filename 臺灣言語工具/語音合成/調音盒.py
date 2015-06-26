@@ -10,14 +10,14 @@ class 調音盒:
     大細聲指令 = 單指令 + 'vol {0}'
     音懸指令 = 單指令 + 'pitch {0}'
     篩雜訊指令 = (指令 + '-c 1 -t s16 -r 16000 {0} -n noiseprof |'
-            + 單指令 + ' noisered')
+             + 單指令 + ' noisered')
     篩懸音指令 = (指令 + '{{0}} -n highpass {0} noiseprof |'
-            + 單指令 + ' noisered')
+             + 單指令 + ' noisered')
     程式工具 = 外部程式()
 
     def 用指令調(self, 音, 指令):
         舊音 = NamedTemporaryFile(mode='wb', suffix='.wav',
-                delete=False)
+                                delete=False)
         舊音.write(音)
         舊音.close()
         新音 = NamedTemporaryFile(suffix='.wav', delete=False)

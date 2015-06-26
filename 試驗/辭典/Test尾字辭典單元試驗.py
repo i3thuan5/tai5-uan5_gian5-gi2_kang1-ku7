@@ -33,11 +33,11 @@ class 尾字辭典單元試驗(辭典單元試驗, TestCase):
                         好無型物件, 好無音物件, 好無對齊物件]:
             self.字典.加詞(詞物件)
         self.assertEqual(self.字典.查詞(self.詞物件),
-                [{問號型物件, 問號對齊物件}, {無型物件},
-                        set(), {self.詞物件, self.對齊詞}])
+                         [{問號型物件, 問號對齊物件}, {無型物件},
+                          set(), {self.詞物件, self.對齊詞}])
         self.assertEqual(self.字典.查詞(self.詞音標),
-                [{問號音物件, 問號對齊物件}, {無音物件},
-                        set(), {self.詞音標, self.對齊詞}])
+                         [{問號音物件, 問號對齊物件}, {無音物件},
+                          set(), {self.詞音標, self.對齊詞}])
         self.assertEqual(self.字典.查詞(self.對齊詞),
-                [{問號對齊物件}, set(),
-                        set(), {self.對齊詞}])
+                         [{問號對齊物件}, set(),
+                          set(), {self.對齊詞}])

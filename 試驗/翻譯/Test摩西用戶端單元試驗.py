@@ -121,7 +121,7 @@ class 摩西用戶端單元試驗(TestCase):
     def test_翻譯結果佮來源長度相仝(self):
         結果句物件, 華語新結構句物件, _ = self.用戶端.翻譯(self.華語句物件)
         self.assertEqual(len(結果句物件.內底集),
-                len(華語新結構句物件.內底集))
+                         len(華語新結構句物件.內底集))
 
     def test_翻譯結果對齊檢查(self):
         self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果

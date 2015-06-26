@@ -33,7 +33,7 @@ setup(
                 'Text to Speech', 'TTS',
                 'Machine Translateion',
                 'Word Segmentation',
-                ],
+        ],
         classifiers=[
                 'Development Status :: 3 - Alpha',
                 'Operating System :: POSIX :: Other',

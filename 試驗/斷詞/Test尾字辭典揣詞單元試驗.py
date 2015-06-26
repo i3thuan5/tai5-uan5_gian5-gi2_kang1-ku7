@@ -21,7 +21,7 @@ class 尾字辭典揣詞單元試驗(辭典揣詞單元試驗, TestCase):
         self.辭典.加詞(self.有一張對齊詞)
         self.有一張集 = self.分析器.產生對齊集('有一張', 'u7-tsit8-tiunn1')
         新句物件 = 句([self.我對齊集, self.有一張集,
-                self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
+                  self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
         揣詞結果, 分數, 詞數 = self.揣詞.揣詞(self.辭典, self.對齊句)
         self.assertEqual(揣詞結果, 新句物件)
         self.檢查分數詞數(分數, 詞數, 0, 5)
@@ -48,7 +48,7 @@ class 尾字辭典揣詞單元試驗(辭典揣詞單元試驗, TestCase):
         self.辭典.加詞(self.一張椅仔對齊詞)
         self.一張椅仔集 = self.分析器.產生對齊集('一張椅仔', 'tsit8-tiunn1-i2-a2')
         新句物件 = 句([self.我對齊集, self.有對齊集,
-                self.一張椅仔集, self.驚對齊集, self.驚對齊集])
+                  self.一張椅仔集, self.驚對齊集, self.驚對齊集])
         揣詞結果, 分數, 詞數 = self.揣詞.揣詞(self.辭典, self.對齊句)
         self.assertEqual(揣詞結果, 新句物件)
         self.檢查分數詞數(分數, 詞數, 0, 5)

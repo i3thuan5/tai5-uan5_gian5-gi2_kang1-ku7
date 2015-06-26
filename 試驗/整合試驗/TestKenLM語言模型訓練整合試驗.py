@@ -31,10 +31,10 @@ class KenLM語言模型訓練整合試驗(TestCase):
     def test_訓練模型(self):
         self.模型訓練 = KenLM語言模型訓練()
         模型檔 = self.模型訓練.訓練(self.閩南語語料陣列,
-                        os.path.join(self.這馬目錄, '暫存資料夾'),
-                        連紲詞長度=2,
-                        編碼器=無編碼器(),
-                        使用記憶體量='20%',
+                           os.path.join(self.這馬目錄, '暫存資料夾'),
+                           連紲詞長度=2,
+                           編碼器=無編碼器(),
+                           使用記憶體量='20%',
                 )
         self.assertTrue(os.path.isfile(模型檔))
 

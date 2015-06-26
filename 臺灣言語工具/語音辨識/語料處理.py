@@ -24,7 +24,7 @@ class 語料處理:
                     全部語料.append((語料名, 音檔所在))
                 else:
                     標仔所在 = os.path.join(標仔目錄,
-                            語料名 + self.標仔副檔名)
+                                        語料名 + self.標仔副檔名)
                     if os.path.isfile(標仔所在):
                         全部語料.append((語料名, 音檔所在, 標仔所在))
         return 全部語料
@@ -32,14 +32,14 @@ class 語料處理:
     def 揣特徵而且算(self, 執行檔路徑, 資料目錄, 全部語料, 全部特徵檔):
         算特徵參數檔 = os.path.join(資料目錄, '算特徵參數.cfg')
         self.字串寫入檔案(算特徵參數檔,
-                self.特徵參數.format('WAVEFORM', 'WAV'))
+                    self.特徵參數.format('WAVEFORM', 'WAV'))
         特徵目錄 = os.path.join(資料目錄, self.特徵)
         os.makedirs(特徵目錄, exist_ok=True)
         全部特徵 = []
         for 語料 in 全部語料:
             語料名, 音檔所在 = 語料[0:2]
             特徵所在 = os.path.join(特徵目錄,
-                    語料名 + self.特徵副檔名)
+                                語料名 + self.特徵副檔名)
             self.算特徵(執行檔路徑, 算特徵參數檔, 音檔所在, 特徵所在)
             全部特徵.append(特徵所在)
         self.陣列寫入檔案(全部特徵檔, 全部特徵)
@@ -69,7 +69,7 @@ class 語料處理:
                         聲韻檔, 聲韻類檔, 音節聲韻對照檔, 切聲韻參數檔, 音節檔)
         self.走指令(切聲韻指令)
     特徵參數 = \
-'''
+    '''
 SOURCEKIND = {0}
 SOURCEFORMAT = {1}
 TARGETKIND = MFCC_E_D_A_Z

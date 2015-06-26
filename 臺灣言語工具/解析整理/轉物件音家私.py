@@ -92,4 +92,4 @@ class 轉物件音家私():
         if isinstance(物件, 章):
             return self._轉章音(音標工具, 物件, 函式)
         raise 型態錯誤('傳入來的毋是字詞組集句章其中一種物件：{0}，{1}'
-                .format(type(物件), str(物件)))
+                   .format(type(物件), str(物件)))

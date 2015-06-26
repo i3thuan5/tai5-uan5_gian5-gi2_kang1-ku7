@@ -71,18 +71,18 @@ class 辭典單元試驗:
         self.字典.加詞(self.短詞音)
         self.字典.加詞(self.詞音標)
         self.assertEqual(self.字典.查詞(self.詞物件),
-                [{self.孤詞物}, {self.短詞物}, set(), {self.詞物件}])
+                         [{self.孤詞物}, {self.短詞物}, set(), {self.詞物件}])
         self.assertEqual(self.字典.查詞(self.詞音標),
-                [{self.孤詞音}, {self.短詞音}, set(), {self.詞音標}])
+                         [{self.孤詞音}, {self.短詞音}, set(), {self.詞音標}])
 
     def test_仝款長度有兩个以上(self):
         self.字典.加詞(self.詞物件)
         self.字典.加詞(self.對齊詞)
         self.字典.加詞(self.偏泉詞)
         self.assertEqual(self.字典.查詞(self.詞物件),
-                [set(), set(), set(), {self.詞物件, self.對齊詞, self.偏泉詞}])
+                         [set(), set(), set(), {self.詞物件, self.對齊詞, self.偏泉詞}])
         self.assertEqual(self.字典.查詞(self.詞音標),
-                [set(), set(), set(), {self.對齊詞}])
+                         [set(), set(), set(), {self.對齊詞}])
 
     def test_長度零的詞愛錯誤(self):
         self.assertRaises(解析錯誤, self.字典.加詞, 詞())
