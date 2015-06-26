@@ -43,7 +43,7 @@ class 用戶端連線:
                 except Exception as 問題:
                     if 一定愛成功:
                         print('連線失敗，小等閣試……。原因：{0}'.format(問題),
-                                file=sys.stderr)
+                              file=sys.stderr)
                         time.sleep(10)
                     else:
                         raise

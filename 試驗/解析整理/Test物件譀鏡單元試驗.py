@@ -140,7 +140,7 @@ class 物件譀鏡單元試驗(unittest.TestCase):
             self.分析器.建立詞物件('tshiann2-lang5'),
             self.分析器.產生對齊詞('趕-走', 'kuann2-tsau2'),
             self.分析器.產生對齊詞('猴山', 'kau5-san1'),
-            ]
+        ]
         分詞答案 = '梅-山 猴-災 鄉-公-所｜hiong1-kong1-soo2 tshiann2-lang5 趕-走｜kuann2-tsau2 猴-山｜kau5-san1'
         self.assertEqual(self.譀鏡.看分詞(組物件), 分詞答案)
 
@@ -149,14 +149,14 @@ class 物件譀鏡單元試驗(unittest.TestCase):
         梅詞物件.內底字 = [
             self.分析器.產生對齊字('梅', 'mui5'),
             self.分析器.建立字物件('山'),
-            ]
+        ]
         梅分詞答案 = '梅-山｜mui5-'
         self.assertEqual(self.譀鏡.看分詞(梅詞物件), 梅分詞答案)
         山詞物件 = self.分析器.建立詞物件('')
         山詞物件.內底字 = [
             self.分析器.建立字物件('梅'),
             self.分析器.產生對齊字('山', 'san1'),
-            ]
+        ]
         山分詞答案 = '梅-山｜-san1'
         self.assertEqual(self.譀鏡.看分詞(山詞物件), 山分詞答案)
 
@@ -166,7 +166,7 @@ class 物件譀鏡單元試驗(unittest.TestCase):
             self.分析器.建立字物件('鄉'),
             self.分析器.產生對齊字('公', 'kong1'),
             self.分析器.建立字物件('所'),
-            ]
+        ]
         公分詞答案 = '鄉-公-所｜-kong1-'
         self.assertEqual(self.譀鏡.看分詞(公詞物件), 公分詞答案)
 
@@ -175,7 +175,7 @@ class 物件譀鏡單元試驗(unittest.TestCase):
             self.分析器.產生對齊字('鄉', 'hiang1'),
             self.分析器.建立字物件('公'),
             self.分析器.產生對齊字('所', 'soo2'),
-            ]
+        ]
         鄉所分詞答案 = '鄉-公-所｜hiang1--soo2'
         self.assertEqual(self.譀鏡.看分詞(鄉所詞物件), 鄉所分詞答案)
 

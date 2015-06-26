@@ -99,7 +99,7 @@ class 詞物件網仔單元試驗(unittest.TestCase):
     def test_網集濟組(self):
         原來語句 = '我有一張椅仔！'
         組陣列 = [self.分析器.建立組物件(原來語句),
-                self.分析器.建立組物件(原來語句), ]
+               self.分析器.建立組物件(原來語句), ]
         self.assertRaises(解析錯誤, self.網仔.網出詞物件, 集(組陣列))
 
     def test_網章濟句(self):

@@ -32,12 +32,12 @@ class 語音標仔轉換:
                                      self.免知, self.免知, self.免知,
                                      self.免知, self.免知, self.免知,
                                      self.免知, self.免知, self.免知,
-                )
+                                     )
         self.短恬標仔 = self._用全部資訊產生合成標仔(self.免知, self.短恬, self.免知,
                                       self.免知, self.免知, self.免知,
                                       self.免知, self.免知, self.免知,
                                       self.免知, self.免知, self.免知,
-                )
+                                      )
 
     def 物件轉完整合成標仔(self, 物件, 加短恬=False):
         if isinstance(物件, 章):
@@ -150,7 +150,7 @@ class 語音標仔轉換:
                 後壁聲韻 = self.恬音
 
             這馬字調, 詞中第幾字, 攏總字數量, 這馬詞所在 = \
-                    全部字資料[這馬字所在]
+                全部字資料[這馬字所在]
             if 這馬字所在 - 1 >= 0:
                 頭前字調 = 全部字資料[這馬字所在 - 1][0]
             else:

@@ -88,8 +88,8 @@ class 阿拉伯數字():
                 return 數量[1:-3] + self.一二三[1] + 數量[-1]
             return 數量[1:-2] + 數量[-1]
         if len(數量) >= 4 and \
-                 (數量[-3] in self.細位 or 數量[-3] in self.大位) and \
-                 數量[-1] in self.細位:
+                (數量[-3] in self.細位 or 數量[-3] in self.大位) and \
+                數量[-1] in self.細位:
             if 數量[:-1].endswith(self.兩):
                 結果 = 數量[:-2] + self.一二三[1]
             else:
@@ -108,8 +108,8 @@ class 阿拉伯數字():
                 return 數量[1] + self.一二三[1]
             return 數量[1:-1]
         if len(數量) >= 4 and \
-                 (數量[-3] in self.細位 or 數量[-3] in self.大位) and \
-                 數量[-1] in self.細位:
+                (數量[-3] in self.細位 or 數量[-3] in self.大位) and \
+                數量[-1] in self.細位:
             return 數量[:-1]
         return 數量
 

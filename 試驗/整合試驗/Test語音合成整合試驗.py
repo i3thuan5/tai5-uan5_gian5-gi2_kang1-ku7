@@ -59,7 +59,7 @@ class 語音合成整合單元試驗(unittest.TestCase):
         標仔陣列 = self.語音標仔轉換.物件轉完整合成標仔(變調物件)
         愛合成標仔 = self.語音標仔轉換.跳脫標仔陣列(標仔陣列)
         一點幾位元組, 一秒幾點, 幾个聲道, 原始取樣 = \
-                htsengine.synthesize(self.閩南語模型, 愛合成標仔)
+            htsengine.synthesize(self.閩南語模型, 愛合成標仔)
         聲音檔 = self.音檔頭前表 .加起哩(原始取樣, 一點幾位元組, 一秒幾點, 幾个聲道)
         self.assertIsInstance(聲音檔, bytes)
 
@@ -71,7 +71,7 @@ class 語音合成整合單元試驗(unittest.TestCase):
         閩南語辭典.加詞(self.分析器.產生對齊詞('我', 'ngoo2'))
         閩南語連詞 = KenLM語言模型(os.path.join(  # '我｜gua2 愛｜ai3 阿-媠｜a1-sui2'
             os.path.dirname(os.path.abspath(__file__)), '語言模型', '我愛阿媠.arpa')
-            )
+        )
 
         閩南語語句 = '我愛阿媠'
 
@@ -85,6 +85,6 @@ class 語音合成整合單元試驗(unittest.TestCase):
         標仔陣列 = self.語音標仔轉換.物件轉完整合成標仔(變調物件)
         愛合成標仔 = self.語音標仔轉換.跳脫標仔陣列(標仔陣列)
         一點幾位元組, 一秒幾點, 幾个聲道, 原始取樣 = \
-                htsengine.synthesize(self.閩南語模型, 愛合成標仔)
+            htsengine.synthesize(self.閩南語模型, 愛合成標仔)
         聲音檔 = self.音檔頭前表 .加起哩(原始取樣, 一點幾位元組, 一秒幾點, 幾个聲道)
         self.assertIsInstance(聲音檔, bytes)

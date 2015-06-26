@@ -13,17 +13,17 @@ class 摩西翻譯模型訓練(程式腳本):
     _外部程式 = 外部程式()
 
     def 訓練(self, 來源語言平行語料, 目標語言平行語料, 目標語言語料,
-                            暫存資料夾,
-                            連紲詞長度=3,
-                            編碼器=無編碼器(),
-                            刣掉暫存檔=True,
-                            giza多執行緒=False,
-                            moses路徑=_外部程式.moses預設目錄(),
-                            # 愛有 mkcls, GIZA++/mgiza, & snt2cooc.out/snt2cooc
-                            gizapp執行檔路徑=_外部程式.gizapp預設目錄(),
-                            # 愛有 mkcls, GIZA++/mgiza, & snt2cooc.out/snt2cooc
-                            mgiza執行檔路徑=_外部程式.mgiza預設目錄(),
-                    ):
+           暫存資料夾,
+           連紲詞長度=3,
+           編碼器=無編碼器(),
+           刣掉暫存檔=True,
+           giza多執行緒=False,
+           moses路徑=_外部程式.moses預設目錄(),
+           # 愛有 mkcls, GIZA++/mgiza, & snt2cooc.out/snt2cooc
+           gizapp執行檔路徑=_外部程式.gizapp預設目錄(),
+           # 愛有 mkcls, GIZA++/mgiza, & snt2cooc.out/snt2cooc
+           mgiza執行檔路徑=_外部程式.mgiza預設目錄(),
+           ):
         語言模型訓練 = KenLM語言模型訓練(moses路徑)
         os.makedirs(暫存資料夾, exist_ok=True)
         語言模型檔 = 語言模型訓練.訓練(目標語言語料, 暫存資料夾, 連紲詞長度, 編碼器, 使用記憶體量='20%',)
@@ -55,18 +55,18 @@ class 摩西翻譯模型訓練(程式腳本):
             '-alignment', 'grow-diag-final-and',
             '-reordering', 'msd-bidirectional-fe',
             '-lm', '0:{0}:{1}:9'.format(連紲詞長度, 語言模型檔),
-            ]
+        ]
         if not giza多執行緒:
             指令.append(
                 '-external-bin-dir={0}'.format(
                     self._執行檔路徑加尾(os.path.join(gizapp執行檔路徑, 'bin')))
-                )
+            )
         else:
             指令.append('--mgiza')
             指令.append(
                 '-external-bin-dir={0}'.format(
                     self._執行檔路徑加尾(os.path.join(mgiza執行檔路徑, 'bin')))
-                )
+            )
         self._走指令(指令)
         if 刣掉暫存檔:
             shutil.rmtree(os.path.join(暫存資料夾, 'corpus'))
@@ -77,10 +77,10 @@ class 摩西翻譯模型訓練(程式腳本):
             os.remove(os.path.join(暫存資料夾, '語言模型.txt'))
             model資料夾 = os.path.join(暫存資料夾, 'model')
             for 檔名 in ['aligned.grow-diag-final-and',
-                                    'extract.inv.sorted.gz',
-                                    'extract.o.sorted.gz',
-                                    'extract.sorted.gz',
-                                    'lex.e2f',
-                                    'lex.f2e',
-                            ]:
+                       'extract.inv.sorted.gz',
+                       'extract.o.sorted.gz',
+                       'extract.sorted.gz',
+                       'lex.e2f',
+                       'lex.f2e',
+                       ]:
                 os.remove(os.path.join(model資料夾, 檔名))

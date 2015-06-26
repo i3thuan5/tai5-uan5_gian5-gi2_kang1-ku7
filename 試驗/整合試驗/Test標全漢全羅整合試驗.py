@@ -34,7 +34,7 @@ class 標全漢全羅整合單元試驗(unittest.TestCase):
         閩南語辭典.加詞(self.分析器.產生對齊詞('我', 'ngoo2'))
         閩南語連詞 = KenLM語言模型(os.path.join(  # '我｜gua2 愛｜ai3 阿-媠｜a1-sui2'
             os.path.dirname(os.path.abspath(__file__)), '語言模型', '我愛阿媠.arpa')
-            )
+        )
 
         閩南語語句 = '我愛阿媠'
 

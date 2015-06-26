@@ -16,7 +16,7 @@ class 章:
                 self.內底句.append(句(句物件.內底集))
         except TypeError as 問題:
             raise 型態錯誤('傳入來的句陣列毋法度疊代：{0}，問題：{1}'
-                            .format(str(句陣列), 問題))
+                       .format(str(句陣列), 問題))
 
     def __eq__(self, 別个):
         return isinstance(別个, 章) and self.內底句 == 別个.內底句

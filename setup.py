@@ -34,7 +34,7 @@ setup(
                 'Text to Speech', 'TTS',
                 'Machine Translateion',
                 'Word Segmentation',
-        ],
+    ],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Operating System :: POSIX :: Other',
@@ -45,5 +45,5 @@ setup(
         'Topic :: Scientific/Engineering :: Information Analysis',
         'Topic :: Text Processing',
         'Topic :: Text Processing :: Linguistic',
-        ],
+    ],
 )

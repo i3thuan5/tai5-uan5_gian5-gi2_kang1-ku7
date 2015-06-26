@@ -35,7 +35,7 @@ class KenLM語言模型訓練整合試驗(TestCase):
                            連紲詞長度=2,
                            編碼器=無編碼器(),
                            使用記憶體量='20%',
-                )
+                           )
         self.assertTrue(os.path.isfile(模型檔))
 
         # 刣掉訓練出來的模型

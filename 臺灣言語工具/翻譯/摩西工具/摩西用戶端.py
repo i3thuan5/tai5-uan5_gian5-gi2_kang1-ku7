@@ -47,7 +47,7 @@ class 摩西用戶端():
             "align": "true",
             "report-all-factors": "true",
             'nbest': 1,
-            }
+        }
         翻譯結果 = self.主機.translate(參數)
         翻譯結果物件 = 翻譯結果['nbest'][0]
 

@@ -6,7 +6,7 @@
     'k': 'k', 'kh': 'kʰ', 'ng': 'ŋ', 'g': 'g',
     'ts': 'ts', 'tsh': 'tsʰ', 's': 's', 'j': 'dz',
     'h': 'h', '': 'ʔ',
-    }
+}
 
 臺灣閩南語羅馬字拼音對照音值韻母表 = {
     'a': 'a', 'ah': 'aʔ', 'ap': 'ap', 'at': 'at', 'ak': 'ak',
@@ -53,7 +53,7 @@
     'ie': 'ie',
     'or': 'ə', 'orh': 'əʔ', 'ior': 'iə', 'iorh': 'iəʔ',
     'uang': 'uaŋ',
-    }
+}
 
 
 class 臺灣閩南語羅馬字拼音轉音值模組():
@@ -69,6 +69,6 @@ class 臺灣閩南語羅馬字拼音轉音值模組():
         if 音值調 == '0' or 輕 == '0':
             音值調 = '0'
             if 音值韻.endswith('ʔ') or 音值韻.endswith('p')\
-                            or 音值韻.endswith('t') or 音值韻.endswith('k'):
+                    or 音值韻.endswith('t') or 音值韻.endswith('k'):
                 音值韻 = 音值韻[:-1]
         return (音值聲, 音值韻, 音值調)
