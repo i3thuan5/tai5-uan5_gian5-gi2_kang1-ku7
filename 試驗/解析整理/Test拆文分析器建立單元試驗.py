@@ -165,7 +165,8 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
 
     def test_建立組濟字佮符號(self):
         原來語句 = '枋寮漁港「大條巷」上闊兩公尺。'
-        切好語句 = ['枋', '寮', '漁', '港', '「', '大', '條', '巷', '」', '上', '闊', '兩', '公', '尺', '。']
+        切好語句 = ['枋', '寮', '漁', '港', '「', '大', '條',
+            '巷', '」', '上', '闊', '兩', '公', '尺', '。']
         組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
         self.assertEqual(詞陣列, 組物件.內底詞)
 
@@ -394,8 +395,10 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
 
     def test_拆句做字標點符號(self):
         self.assertEqual(self.分析器.拆句做字('腹肚枵。'), ['腹', '肚', '枵', '。'])
-        self.assertEqual(self.分析器.拆句做字('！！。。，。'), ['！', '！', '。', '。', '，', '。'])
-        self.assertEqual(self.分析器.拆句做字('!!..,.'), ['!', '!', '.', '.', ',', '.'])
+        self.assertEqual(
+            self.分析器.拆句做字('！！。。，。'), ['！', '！', '。', '。', '，', '。'])
+        self.assertEqual(
+            self.分析器.拆句做字('!!..,.'), ['!', '!', '.', '.', ',', '.'])
 
     def test_拆句做字無愛空白(self):
         self.assertEqual(self.分析器.拆句做字('腹 肚枵矣'), ['腹', '肚', '枵', '矣'])
@@ -403,7 +406,8 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
 
     def test_拆句做字摻組字式(self):
         self.assertEqual(self.分析器.拆句做字('⿰因腹肚枵'), ['⿰因', '腹', '肚', '枵'])
-        self.assertEqual(self.分析器.拆句做字('你同⿰厓去睡目。'), ['你', '同', '⿰厓', '去', '睡', '目', '。'])
+        self.assertEqual(
+            self.分析器.拆句做字('你同⿰厓去睡目。'), ['你', '同', '⿰厓', '去', '睡', '目', '。'])
         self.assertEqual(self.分析器.拆句做字('⿰22腹肚枵'), ['⿰2', '2', '腹', '肚', '枵'])
         self.assertRaises(解析錯誤, self.分析器.拆句做字, '腹肚枵⿰')
         self.assertRaises(解析錯誤, self.分析器.拆句做字, '腹肚枵⿰⿰')
@@ -411,43 +415,63 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
 
     def test_拆句做字摻漢羅佮數字(self):
         self.assertEqual(self.分析器.拆句做字('腹肚枵ah'), ['腹', '肚', '枵', 'ah'])
-        self.assertEqual(self.分析器.拆句做字('我e腹肚枵ah'), ['我', 'e', '腹', '肚', '枵', 'ah'])
-        self.assertEqual(self.分析器.拆句做字('我ê腹肚枵ah'), ['我', 'ê', '腹', '肚', '枵', 'ah'])
-        self.assertEqual(self.分析器.拆句做字('我ê pak tóo枵ah'), ['我', 'ê', 'pak', 'tóo', '枵', 'ah'])
-        self.assertEqual(self.分析器.拆句做字('我ê pak-tóo枵ah'), ['我', 'ê', 'pak', 'tóo', '枵', 'ah'])
-        self.assertEqual(self.分析器.拆句做字('我ê pak - tóo枵ah'), ['我', 'ê', 'pak', '-', 'tóo', '枵', 'ah'])
-        self.assertEqual(self.分析器.拆句做字('我ê pak-tóo枵ah.'), ['我', 'ê', 'pak', 'tóo', '枵', 'ah', '.'])
-        self.assertEqual(self.分析器.拆句做字('我ê pak-tóo枵ah,.'), ['我', 'ê', 'pak', 'tóo', '枵', 'ah', ',', '.'])
+        self.assertEqual(
+            self.分析器.拆句做字('我e腹肚枵ah'), ['我', 'e', '腹', '肚', '枵', 'ah'])
+        self.assertEqual(
+            self.分析器.拆句做字('我ê腹肚枵ah'), ['我', 'ê', '腹', '肚', '枵', 'ah'])
+        self.assertEqual(
+            self.分析器.拆句做字('我ê pak tóo枵ah'), ['我', 'ê', 'pak', 'tóo', '枵', 'ah'])
+        self.assertEqual(
+            self.分析器.拆句做字('我ê pak-tóo枵ah'), ['我', 'ê', 'pak', 'tóo', '枵', 'ah'])
+        self.assertEqual(
+            self.分析器.拆句做字('我ê pak - tóo枵ah'), ['我', 'ê', 'pak', '-', 'tóo', '枵', 'ah'])
+        self.assertEqual(
+            self.分析器.拆句做字('我ê pak-tóo枵ah.'), ['我', 'ê', 'pak', 'tóo', '枵', 'ah', '.'])
+        self.assertEqual(
+            self.分析器.拆句做字('我ê pak-tóo枵ah,.'), ['我', 'ê', 'pak', 'tóo', '枵', 'ah', ',', '.'])
         self.assertEqual(self.分析器.拆句做字('我有100箍'), ['我', '有', '100', '箍', ])
-        self.assertEqual(self.分析器.拆句做字('這馬時間12:20，'), ['這', '馬', '時', '間', '12', ':', '20', '，'])
-        self.assertEqual(self.分析器.拆句做字('物件tsin1 ho2食。'), ['物', '件', 'tsin1', 'ho2', '食', '。'])
+        self.assertEqual(
+            self.分析器.拆句做字('這馬時間12:20，'), ['這', '馬', '時', '間', '12', ':', '20', '，'])
+        self.assertEqual(
+            self.分析器.拆句做字('物件tsin1 ho2食。'), ['物', '件', 'tsin1', 'ho2', '食', '。'])
 
     def test_拆句做巢狀詞摻漢羅佮數字(self):
-        self.assertEqual(self.分析器.拆句做巢狀詞('腹肚枵ah'), [['腹'], ['肚'], ['枵'], ['ah']])
-        self.assertEqual(self.分析器.拆句做巢狀詞('我ê腹肚枵ah'), [['我'], ['ê'], ['腹'], ['肚'], ['枵'], ['ah']])
-        self.assertEqual(self.分析器.拆句做巢狀詞('我ê pak tóo枵ah'), [['我'], ['ê'], ['pak'], ['tóo'], ['枵'], ['ah']])
-        self.assertEqual(self.分析器.拆句做巢狀詞('我ê pak-tóo枵ah'), [['我'], ['ê'], ['pak', 'tóo'], ['枵'], ['ah']])
-        self.assertEqual(self.分析器.拆句做巢狀詞('我ê pak - tóo枵ah'), [['我'], ['ê'], ['pak'], ['-'], ['tóo'], ['枵'], ['ah']])
+        self.assertEqual(
+            self.分析器.拆句做巢狀詞('腹肚枵ah'), [['腹'], ['肚'], ['枵'], ['ah']])
+        self.assertEqual(
+            self.分析器.拆句做巢狀詞('我ê腹肚枵ah'), [['我'], ['ê'], ['腹'], ['肚'], ['枵'], ['ah']])
+        self.assertEqual(self.分析器.拆句做巢狀詞('我ê pak tóo枵ah'),
+                         [['我'], ['ê'], ['pak'], ['tóo'], ['枵'], ['ah']])
+        self.assertEqual(
+            self.分析器.拆句做巢狀詞('我ê pak-tóo枵ah'), [['我'], ['ê'], ['pak', 'tóo'], ['枵'], ['ah']])
+        self.assertEqual(self.分析器.拆句做巢狀詞(
+            '我ê pak - tóo枵ah'), [['我'], ['ê'], ['pak'], ['-'], ['tóo'], ['枵'], ['ah']])
 
     def test_拆句做巢狀詞摻組字式(self):
         原本語句 = '⿰---⿰-- - ⿱--,⿰-,⿱⿰-,--⿱--'
-        斷詞後巢狀陣列 = [['⿰--', '⿰--'], ['-'], ['⿱--'], [','], ['⿰-,'], ['⿱⿰-,-', '⿱--']]
+        斷詞後巢狀陣列 = [['⿰--', '⿰--'], ['-'], ['⿱--'],
+            [','], ['⿰-,'], ['⿱⿰-,-', '⿱--']]
         self.assertEqual(self.分析器.拆句做巢狀詞(原本語句), 斷詞後巢狀陣列)
 
     def test_拆章做句(self):
         self.assertEqual(self.分析器.拆章做句('我腹肚枵，欲來去食飯。'), ['我腹肚枵，', '欲來去食飯。'])
-        self.assertEqual(self.分析器.拆章做句('伊講：我腹肚枵，欲來去食飯。'), ['伊講：我腹肚枵，', '欲來去食飯。'])
-        self.assertEqual(self.分析器.拆章做句('伊講:我腹肚枵，欲來去食飯。'), ['伊講:我腹肚枵，', '欲來去食飯。'])
+        self.assertEqual(
+            self.分析器.拆章做句('伊講：我腹肚枵，欲來去食飯。'), ['伊講：我腹肚枵，', '欲來去食飯。'])
+        self.assertEqual(
+            self.分析器.拆章做句('伊講:我腹肚枵，欲來去食飯。'), ['伊講:我腹肚枵，', '欲來去食飯。'])
         self.assertEqual(self.分析器.拆章做句('這馬分數1:2，誠緊張。'), ['這馬分數1:2，', '誠緊張。'])
         self.assertEqual(self.分析器.拆章做句('今日8/30。'), ['今日8/30。'])
         self.assertEqual(self.分析器.拆章做句('啥物！！？你轉去矣？'), ['啥物！！？', '你轉去矣？'])
         self.assertEqual(self.分析器.拆章做句('！！？你轉去？矣'), ['！！？', '你轉去？', '矣'])
         self.assertEqual(self.分析器.拆章做句('你！！？轉去？矣'), ['你！！？', '轉去？', '矣'])
         self.assertEqual(self.分析器.拆章做句('！你！？轉去？矣'), ['！', '你！？', '轉去？', '矣'])
-        self.assertEqual(self.分析器.拆章做句('！你！？轉去？矣？？'), ['！', '你！？', '轉去？', '矣？？'])
+        self.assertEqual(
+            self.分析器.拆章做句('！你！？轉去？矣？？'), ['！', '你！？', '轉去？', '矣？？'])
         self.assertEqual(self.分析器.拆章做句('！！。。，。你好？'), ['！！。。，。', '你好？'])
-        self.assertEqual(self.分析器.拆章做句('!!..,.li2 ho2?'), ['!!..,.', 'li2 ho2?'])
-        self.assertEqual(self.分析器.拆章做句('!!..,. li2 ho2?'), ['!!..,. ', 'li2 ho2?'])
+        self.assertEqual(
+            self.分析器.拆章做句('!!..,.li2 ho2?'), ['!!..,.', 'li2 ho2?'])
+        self.assertEqual(
+            self.分析器.拆章做句('!!..,. li2 ho2?'), ['!!..,. ', 'li2 ho2?'])
 
     def test_拆章做句配分詞符號(self):
         原來 = '!!..,.li2-ho2?'

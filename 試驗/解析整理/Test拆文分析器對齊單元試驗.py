@@ -353,7 +353,8 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
             self.分析器.產生對齊詞('椅仔', 'i2-a2'),
             self.分析器.產生對齊詞('！', '!'),
             ])
-        self.assertEqual(組物件, self.分析器.產生對齊組(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 型), 處理好詞音))
+        self.assertEqual(
+            組物件, self.分析器.產生對齊組(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 型), 處理好詞音))
 
     def test_對齊組一般符號(self):
         型 = '。'

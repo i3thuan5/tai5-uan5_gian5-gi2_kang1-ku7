@@ -117,7 +117,8 @@ class 物件譀鏡單元試驗(unittest.TestCase):
             self.譀鏡.看音(章物件, 物件分字符號='_', 物件分詞符號='|', 物件分句符號='^'), 答音)
         分詞 = '恁@lin1^老_母@lau3_bu2^ti3@ti3^佗@to1^位@ui7^！@!|恁@lin1^老_母_ti3@lau3_bu2_ti3^佗_位@to1_ui7^！@!'
         self.assertEqual(self.譀鏡.看分詞(章物件, '@', '_', '^', '|'), 分詞)
-        self.assertEqual(self.譀鏡.看分詞(章物件, 物件分型音符號='@', 物件分字符號='_', 物件分詞符號='^', 物件分句符號='|'), 分詞)
+        self.assertEqual(
+            self.譀鏡.看分詞(章物件, 物件分型音符號='@', 物件分字符號='_', 物件分詞符號='^', 物件分句符號='|'), 分詞)
 
     def test_參數烏白傳(self):
         self.assertRaises(型態錯誤, self.譀鏡.看型, 790830)

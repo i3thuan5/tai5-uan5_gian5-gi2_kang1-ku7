@@ -171,7 +171,8 @@ class 閩南語決策樹仔(公家決策樹仔):
             for 名, 內容 in 原本題目:
                 佇頭題目.append(('韻頭' + 名, list(map((lambda 內容: 內容 + '*'), 內容))))
                 佇尾題目.append(('韻尾' + 名, list(map((lambda 內容: '*' + 內容), 內容))))
-                喉塞題目.append(('喉塞' + 名, list(map((lambda 內容: '*' + 內容 + 'ʔ'), 內容))))
+                喉塞題目.append(
+                    ('喉塞' + 名, list(map((lambda 內容: '*' + 內容 + 'ʔ'), 內容))))
         鼻化韻 = set()
         for 改好題目 in [佇頭題目, 佇尾題目, 喉塞題目]:
             鼻化韻 |= self._生問題.問題集(改好題目, self.聲韻符號, '孤條')
@@ -264,14 +265,18 @@ class 閩南語決策樹仔(公家決策樹仔):
         for 調號 in range(0, 11):  # 有輕聲到第十調
             孤調題目.append(('第{}調'.format(調號), ['{}'.format(調號)]))
         調懸低題目 = [
-            ('音頭前低調', ['{}'.format(0), '{}'.format(3), '{}'.format(5), '{}'.format(10), ]),
+            ('音頭前低調', [
+             '{}'.format(0), '{}'.format(3), '{}'.format(5), '{}'.format(10), ]),
             ('音中央低調', ['{}'.format(0), '{}'.format(3), '{}'.format(10), ]),
-            ('音後壁低調', ['{}'.format(0), '{}'.format(2), '{}'.format(3), '{}'.format(6), '{}'.format(10), ]),
+            ('音後壁低調', ['{}'.format(0), '{}'.format(2),
+             '{}'.format(3), '{}'.format(6), '{}'.format(10), ]),
             ('音頭前中調', ['{}'.format(4), '{}'.format(7), '{}'.format(9), ]),
             ('音中央中調', ['{}'.format(4), '{}'.format(7), ]),
-            ('音中央有中調', ['{}'.format(2), '{}'.format(4), '{}'.format(6), '{}'.format(7), ]),
+            ('音中央有中調', [
+             '{}'.format(2), '{}'.format(4), '{}'.format(6), '{}'.format(7), ]),
             ('音後壁中調', ['{}'.format(4), '{}'.format(5), '{}'.format(7), ]),
-            ('音頭前懸調', ['{}'.format(1), '{}'.format(2), '{}'.format(6), '{}'.format(8), ]),
+            ('音頭前懸調', [
+             '{}'.format(1), '{}'.format(2), '{}'.format(6), '{}'.format(8), ]),
             ('音中央懸調', ['{}'.format(1), '{}'.format(8), ]),
             ('音後壁懸調', ['{}'.format(1), '{}'.format(8), '{}'.format(9), ]),
             ('音入聲', ['{}'.format(4), '{}'.format(8), '{}'.format(10), ]),

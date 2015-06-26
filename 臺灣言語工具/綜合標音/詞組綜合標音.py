@@ -16,7 +16,8 @@ class 詞組綜合標音():
         self.連字音 = ''
         if not isinstance(字綜合標音型態, type) or \
                 not issubclass(字綜合標音型態, 字綜合標音):
-            raise 型態錯誤('傳入來的字綜合標音有問題！{0}，{1}'.format(type(字綜合標音型態), str(字綜合標音型態)))
+            raise 型態錯誤(
+                '傳入來的字綜合標音有問題！{0}，{1}'.format(type(字綜合標音型態), str(字綜合標音型態)))
         if isinstance(詞或組物件, 詞):
             詞物件 = 詞或組物件
             for 一字 in 詞物件.內底字:

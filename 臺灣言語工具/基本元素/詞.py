@@ -11,7 +11,8 @@ class 詞:
             self.內底字 = []
             for 字物件 in 字陣列:
                 if not isinstance(字物件, 字):
-                    raise 型態錯誤('字陣列內底有毋是字的：字陣列＝{0}，字物件＝{1}'.format(str(字陣列), str(字物件)))
+                    raise 型態錯誤(
+                        '字陣列內底有毋是字的：字陣列＝{0}，字物件＝{1}'.format(str(字陣列), str(字物件)))
                 self.內底字.append(字(字物件.型, 字物件.音))
         except TypeError as 問題:
             raise 型態錯誤('傳入來的字陣列毋法度疊代：{0}，問題：{1}'

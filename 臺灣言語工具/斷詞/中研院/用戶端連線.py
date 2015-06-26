@@ -37,7 +37,8 @@ class 用戶端連線:
                 continue
             while True:
                 try:
-                    逐逝 = self._連線(愛做, 等待, self.編碼, self.主機, self.連接埠, self.帳號, self.密碼)
+                    逐逝 = self._連線(
+                        愛做, 等待, self.編碼, self.主機, self.連接埠, self.帳號, self.密碼)
                     結果.append(逐逝)
                 except Exception as 問題:
                     if 一定愛成功:

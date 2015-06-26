@@ -19,8 +19,10 @@ class 摩西翻譯模型訓練(程式腳本):
                             刣掉暫存檔=True,
                             giza多執行緒=False,
                             moses路徑=_外部程式.moses預設目錄(),
-                            gizapp執行檔路徑=_外部程式.gizapp預設目錄(),  # 愛有 mkcls, GIZA++/mgiza, & snt2cooc.out/snt2cooc
-                            mgiza執行檔路徑=_外部程式.mgiza預設目錄(),  # 愛有 mkcls, GIZA++/mgiza, & snt2cooc.out/snt2cooc
+                            # 愛有 mkcls, GIZA++/mgiza, & snt2cooc.out/snt2cooc
+                            gizapp執行檔路徑=_外部程式.gizapp預設目錄(),
+                            # 愛有 mkcls, GIZA++/mgiza, & snt2cooc.out/snt2cooc
+                            mgiza執行檔路徑=_外部程式.mgiza預設目錄(),
                     ):
         語言模型訓練 = KenLM語言模型訓練(moses路徑)
         os.makedirs(暫存資料夾, exist_ok=True)

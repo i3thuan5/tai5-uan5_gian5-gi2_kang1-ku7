@@ -31,18 +31,23 @@ class 辭典單元試驗:
 
     def test_漢字加詞成功無(self):
         self.字典.加詞(self.詞物件)
-        self.assertEqual(self.字典.查詞(self.詞物件), [set(), set(), set(), {self.詞物件}])
+        self.assertEqual(
+            self.字典.查詞(self.詞物件), [set(), set(), set(), {self.詞物件}])
 
     def test_多對齊加詞成功無(self):
         self.字典.加詞(self.對齊詞)
         self.字典.加詞(self.對齊詞)
-        self.assertEqual(self.字典.查詞(self.對齊詞), [set(), set(), set(), {self.對齊詞}])
+        self.assertEqual(
+            self.字典.查詞(self.對齊詞), [set(), set(), set(), {self.對齊詞}])
 
     def test_查對齊詞成功無(self):
         self.字典.加詞(self.對齊詞)
-        self.assertEqual(self.字典.查詞(self.詞物件), [set(), set(), set(), {self.對齊詞}])
-        self.assertEqual(self.字典.查詞(self.詞音標), [set(), set(), set(), {self.對齊詞}])
-        self.assertEqual(self.字典.查詞(self.對齊詞), [set(), set(), set(), {self.對齊詞}])
+        self.assertEqual(
+            self.字典.查詞(self.詞物件), [set(), set(), set(), {self.對齊詞}])
+        self.assertEqual(
+            self.字典.查詞(self.詞音標), [set(), set(), set(), {self.對齊詞}])
+        self.assertEqual(
+            self.字典.查詞(self.對齊詞), [set(), set(), set(), {self.對齊詞}])
         self.assertEqual(self.字典.查詞(self.無仝詞), [set(), set(), set(), set()])
 
     def test_相近詞無使查著(self):
@@ -51,15 +56,20 @@ class 辭典單元試驗:
         self.assertEqual(len(self.詞音標.內底字), 4)
         self.assertEqual(self.字典.查詞(self.詞音標), [set(), set(), set(), set()])
         self.assertEqual(self.字典.查詞(self.對齊詞), [set(), set(), set(), set()])
-        self.assertEqual(self.字典.查詞(self.無仝詞), [set(), set(), set(), {self.無仝詞}])
+        self.assertEqual(
+            self.字典.查詞(self.無仝詞), [set(), set(), set(), {self.無仝詞}])
 
     def test_傷長詞無使查著(self):
         self.字典.加詞(self.對齊詞)
         self.字典.加詞(self.傷長詞)
-        self.assertEqual(self.字典.查詞(self.詞物件), [set(), set(), set(), {self.對齊詞}])
-        self.assertEqual(self.字典.查詞(self.詞音標), [set(), set(), set(), {self.對齊詞}])
-        self.assertEqual(self.字典.查詞(self.對齊詞), [set(), set(), set(), {self.對齊詞}])
-        self.assertEqual(self.字典.查詞(self.傷長詞), [set(), set(), set(), set(), set()])
+        self.assertEqual(
+            self.字典.查詞(self.詞物件), [set(), set(), set(), {self.對齊詞}])
+        self.assertEqual(
+            self.字典.查詞(self.詞音標), [set(), set(), set(), {self.對齊詞}])
+        self.assertEqual(
+            self.字典.查詞(self.對齊詞), [set(), set(), set(), {self.對齊詞}])
+        self.assertEqual(
+            self.字典.查詞(self.傷長詞), [set(), set(), set(), set(), set()])
 
     def test_長短詞攏愛揣出來(self):
         self.字典.加詞(self.孤詞物)

@@ -80,7 +80,8 @@ class 辭典連詞斷詞單元試驗(TestCase):
         self.連詞.看(self.分析器.產生對齊句('我的冊佇你遐。', 'gua2 e5 tsheh4 ti7 li2 hia1.'))
         self.試斷我的鞋仔(self.我鞋鞋仔)
 
-        self.連詞.看(self.分析器.產生對齊句('我的故鄉佇花蓮。', 'gua2 e5 koo3-hiong1 ti7 hua1-lian1.'))
+        self.連詞.看(
+            self.分析器.產生對齊句('我的故鄉佇花蓮。', 'gua2 e5 koo3-hiong1 ti7 hua1-lian1.'))
         self.試斷我的鞋仔(self.我的鞋仔)
 
         self.的.內底詞[0].屬性 = {'機率': self.連詞.對數(0.01)}
@@ -301,7 +302,8 @@ class 辭典連詞斷詞單元試驗(TestCase):
         答案結果, 答案分數, 答案詞數 = self.斷詞.斷詞(self.字典, self.連詞, 答案)
         鞋的結果, 鞋的分數, 鞋的詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.我_e5_e5_仔_鞋的)
         的鞋結果, 的鞋分數, 的鞋詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.我_e5_e5_仔_的鞋)
-        e5_e5_結果, e5_e5_分數, e5_e5_詞數 = self.斷詞.斷詞(self.字典, self.連詞, self.我_e5_e5_仔)
+        e5_e5_結果, e5_e5_分數, e5_e5_詞數 = self.斷詞.斷詞(
+            self.字典, self.連詞, self.我_e5_e5_仔)
         self.assertEqual(答案結果, 答案,)
         self.assertEqual(鞋的結果, 答案,)
         self.assertEqual(的鞋結果, 答案,)

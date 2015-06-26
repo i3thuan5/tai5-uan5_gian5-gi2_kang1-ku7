@@ -26,7 +26,8 @@ setup(
     author='薛丞宏',
     author_email='ihcaoe@gmail.com',
     url='http://意傳.台灣/',
-    download_url='https://github.com/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7',  # I'll explain this in a second
+    # I'll explain this in a second
+    download_url='https://github.com/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7',
     keywords=[
         '臺灣', '語料庫', '語言合成', '機器翻譯', '斷詞',
         'Taiwan', 'Taiwanese', 'Natural Language', 'Corpus',

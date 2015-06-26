@@ -11,7 +11,8 @@ class 章:
             self.內底句 = []
             for 句物件 in 句陣列:
                 if not isinstance(句物件, 句):
-                    raise 型態錯誤('句陣列內底有毋是句的：句陣列＝{0}，句物件＝{1}'.format(str(句陣列), str(句物件)))
+                    raise 型態錯誤(
+                        '句陣列內底有毋是句的：句陣列＝{0}，句物件＝{1}'.format(str(句陣列), str(句物件)))
                 self.內底句.append(句(句物件.內底集))
         except TypeError as 問題:
             raise 型態錯誤('傳入來的句陣列毋法度疊代：{0}，問題：{1}'

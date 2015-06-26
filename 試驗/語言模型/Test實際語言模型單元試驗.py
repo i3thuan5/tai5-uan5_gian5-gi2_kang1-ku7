@@ -85,7 +85,8 @@ class 實際語言模型單元試驗(TestCase):
         self.assertEqual(連詞.數量([連詞.結束()]), [3])
         連詞.看(self.我請你物件)
         self.assertEqual(連詞.總數(), [16, 12, 8])
-        self.assertEqual(連詞.數量([連詞.開始()] + self.我請你物件.內底詞 + [連詞.結束()]), [4, 3, 2])
+        self.assertEqual(
+            連詞.數量([連詞.開始()] + self.我請你物件.內底詞 + [連詞.結束()]), [4, 3, 2])
         self.assertEqual(連詞.機率([連詞.開始()] + self.我請你物件.內底詞 + [連詞.結束()]),
                          [log10(4 / 16), log10(3 / 12), log10(2 / 8)])
         self.assertEqual(連詞.條件([連詞.開始()] + self.我請你物件.內底詞 + [連詞.結束()]),
@@ -99,7 +100,8 @@ class 實際語言模型單元試驗(TestCase):
                          [log10(4 / 21), log10(2 / 16), log10(2 / 11)])
         self.assertEqual(連詞.條件(self.我請你物件.內底詞),
                          [log10(4 / 21), log10(2 / 3), log10(2 / 2)])
-        self.assertEqual(連詞.數量([連詞.開始()] + self.我請你物件.內底詞 + [連詞.結束()]), [5, 3, 2])
+        self.assertEqual(
+            連詞.數量([連詞.開始()] + self.我請你物件.內底詞 + [連詞.結束()]), [5, 3, 2])
         self.assertEqual(連詞.機率([連詞.開始()] + self.我請你物件.內底詞 + [連詞.結束()]),
                          [log10(5 / 21), log10(3 / 16), log10(2 / 11)])
         self.assertEqual(連詞.條件([連詞.開始()] + self.我請你物件.內底詞 + [連詞.結束()]),

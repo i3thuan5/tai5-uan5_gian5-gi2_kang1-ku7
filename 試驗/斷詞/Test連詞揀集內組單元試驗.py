@@ -100,7 +100,8 @@ class 連詞揀集內組單元試驗(TestCase):
         self.assertEqual(鞋的詞數, 6)
         self.assertEqual(鞋的詞數, 的鞋詞數)
         頂擺分數 = 鞋的分數
-        self.連詞.看(self.分析器.產生對齊句('我的故鄉佇花蓮。', 'gua2 e5 koo3-hiong1 ti7 hua1-lian1.'))
+        self.連詞.看(
+            self.分析器.產生對齊句('我的故鄉佇花蓮。', 'gua2 e5 koo3-hiong1 ti7 hua1-lian1.'))
         鞋的結果, 鞋的分數, 鞋的詞數 = self.用連詞揀.揀(self.連詞, 我_e5_e5_仔_鞋的)
         的鞋結果, 的鞋分數, 的鞋詞數 = self.用連詞揀.揀(self.連詞, 我_e5_e5_仔_的鞋)
         self.assertEqual(鞋的結果, 我的鞋仔)
@@ -129,7 +130,8 @@ class 連詞揀集內組單元試驗(TestCase):
         組物件 = self.分析器.產生對齊組('媠姑娘', 'sui2 koo1-niu5')
         集物件 = self.分析器.產生對齊集('媠姑娘', 'sui2 koo1-niu5')
         句物件 = self.分析器.產生對齊句('我佮意媠姑娘', 'gua2 kah4 i3 sui2 koo1-niu5')
-        章物件 = self.分析器.產生對齊章('我佮意媠姑娘。我愛媠姑娘。', 'gua2 kah4 i3 sui2 koo1-niu5. gua2 ai3 sui2 koo1-niu5.')
+        章物件 = self.分析器.產生對齊章(
+            '我佮意媠姑娘。我愛媠姑娘。', 'gua2 kah4 i3 sui2 koo1-niu5. gua2 ai3 sui2 koo1-niu5.')
         for 物件 in [字物件, 詞物件, 組物件, 集物件, 句物件, 章物件]:
             self.assertEqual(self.用連詞揀.揀(self.連詞, 物件)[0], 物件)
 

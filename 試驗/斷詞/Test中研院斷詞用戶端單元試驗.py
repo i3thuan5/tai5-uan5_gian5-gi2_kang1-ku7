@@ -218,7 +218,8 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
             ]]
         self.assertEqual(self.用戶端.語句斷詞後結構化('我想吃飯。我想吃很多飯。'), [[
             [('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
-            [('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
+            [('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'),
+              ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
             ]])
 
     def test_結構斷兩逝字(self, 語句斷詞做語句mock):
@@ -232,11 +233,14 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
             ]
         self.assertEqual(self.用戶端.語句斷詞後結構化('我想吃飯。我想吃很多飯。\n我吃飽了。'), [
             [
-                [('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'), ('。', 'PERIODCATEGORY')],
-                [('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'), ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
+                [('我', 'N'), ('想', 'Vt'), ('吃飯', 'Vi'),
+                  ('。', 'PERIODCATEGORY')],
+                [('我', 'N'), ('想', 'Vt'), ('吃', 'Vt'),
+                  ('很多', 'DET'), ('飯', 'N'), ('。', 'PERIODCATEGORY')]
                 ],
             [
-                [('我', 'N'), ('吃飽', 'Vi'), ('了', 'T'), ('。', 'PERIODCATEGORY')],
+                [('我', 'N'), ('吃飽', 'Vi'), ('了', 'T'),
+                  ('。', 'PERIODCATEGORY')],
                 ],
             ])
 
@@ -245,7 +249,8 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
             '\u3000我(N)\u3000想(Vt)\u3000)(PARENTHESISCATEGORY)\u3000:(COLONCATEGORY)\u3000&gt;(PARENTHESISCATEGORY)'
             ]]
         self.assertEqual(self.用戶端.語句斷詞後結構化('我想) :>'), [[
-            [('我', 'N'), ('想', 'Vt'), (')', 'PARENTHESISCATEGORY'), (':', 'COLONCATEGORY'), ('&gt;', 'PARENTHESISCATEGORY')],
+            [('我', 'N'), ('想', 'Vt'), (')', 'PARENTHESISCATEGORY'),
+              (':', 'COLONCATEGORY'), ('&gt;', 'PARENTHESISCATEGORY')],
             ]])
 
     def test_結構斷小於符號的空白結果(self, 語句斷詞做語句mock):

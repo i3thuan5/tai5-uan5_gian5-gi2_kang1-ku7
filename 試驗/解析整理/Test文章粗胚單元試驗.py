@@ -190,32 +190,46 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
         self.assertEqual(self.粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
 
     def test_建立物件語句前處理奇怪組合(self):
-        self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1- niu5'), 'sui2 koo1 - niu5')
-        self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1 -niu5'), 'sui2 koo1 - niu5')
-        self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1-- niu5'), 'sui2 koo1 - - niu5')
-        self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1--   niu5'), 'sui2 koo1 - - niu5')
-        self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1--niu5'), 'sui2 koo1-0niu5')
-        self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1 - -niu5'), 'sui2 koo1 - - niu5')
-        self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1 --niu5'), 'sui2 koo1 0niu5')
-        self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1  --niu5'), 'sui2 koo1 0niu5')
+        self.assertEqual(
+            self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1- niu5'), 'sui2 koo1 - niu5')
+        self.assertEqual(
+            self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1 -niu5'), 'sui2 koo1 - niu5')
+        self.assertEqual(
+            self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1-- niu5'), 'sui2 koo1 - - niu5')
+        self.assertEqual(
+            self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1--   niu5'), 'sui2 koo1 - - niu5')
+        self.assertEqual(
+            self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1--niu5'), 'sui2 koo1-0niu5')
+        self.assertEqual(
+            self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1 - -niu5'), 'sui2 koo1 - - niu5')
+        self.assertEqual(
+            self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1 --niu5'), 'sui2 koo1 0niu5')
+        self.assertEqual(
+            self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1  --niu5'), 'sui2 koo1 0niu5')
 
     def test_符號邊仔加空白(self):
         self.assertEqual(self.粗胚.符號邊仔加空白('腹肚枵'), '腹肚枵')
         self.assertEqual(self.粗胚.符號邊仔加空白('腹肚枵,'), '腹肚枵 , ')
-        self.assertEqual(self.粗胚.符號邊仔加空白(':sui2,koo1,niu5...'), ' : sui2 , koo1 , niu5 . . . ')
-        self.assertEqual(self.粗胚.符號邊仔加空白(' :sui2,   koo1 ,niu5 .  .  .  '), ' : sui2 , koo1 , niu5 . . . ')
-        self.assertEqual(self.粗胚.符號邊仔加空白(':sui2,koo1,niu5...'), ' : sui2 , koo1 , niu5 . . . ')
-        self.assertEqual(self.粗胚.符號邊仔加空白(':sui2,koo1,niu5..a.'), ' : sui2 , koo1 , niu5 . . a . ')
+        self.assertEqual(
+            self.粗胚.符號邊仔加空白(':sui2,koo1,niu5...'), ' : sui2 , koo1 , niu5 . . . ')
+        self.assertEqual(self.粗胚.符號邊仔加空白(
+            ' :sui2,   koo1 ,niu5 .  .  .  '), ' : sui2 , koo1 , niu5 . . . ')
+        self.assertEqual(
+            self.粗胚.符號邊仔加空白(':sui2,koo1,niu5...'), ' : sui2 , koo1 , niu5 . . . ')
+        self.assertEqual(
+            self.粗胚.符號邊仔加空白(':sui2,koo1,niu5..a.'), ' : sui2 , koo1 , niu5 . . a . ')
         self.assertEqual(self.粗胚.符號邊仔加空白('我有100箍'), '我有100箍')
         self.assertEqual(self.粗胚.符號邊仔加空白('這馬時間12:20，'), '這馬時間12 : 20 ， ')
 
     def test_符號邊仔加空白分字符號問題(self):
         self.assertEqual(self.粗胚.符號邊仔加空白('sui2 koo1-niu5'), 'sui2 koo1-niu5')
-        self.assertEqual(self.粗胚.符號邊仔加空白('sui2 koo1  -  niu5'), 'sui2 koo1 - niu5')
+        self.assertEqual(
+            self.粗胚.符號邊仔加空白('sui2 koo1  -  niu5'), 'sui2 koo1 - niu5')
         self.assertEqual(self.粗胚.符號邊仔加空白('sui2 koo1-0niu5'), 'sui2 koo1-0niu5')
         self.assertEqual(self.粗胚.符號邊仔加空白('sui2 koo1-0niu5'), 'sui2 koo1-0niu5')
         self.assertEqual(self.粗胚.符號邊仔加空白('這馬分數12 - 20，'), '這馬分數12 - 20 ， ')
-        self.assertEqual(self.粗胚.符號邊仔加空白('因為12  - 20= - 8，'), '因為12 - 20 = - 8 ， ')
+        self.assertEqual(
+            self.粗胚.符號邊仔加空白('因為12  - 20= - 8，'), '因為12 - 20 = - 8 ， ')
 
     def test_符號邊仔加空白分字符號無應該處理著的(self):
         self.assertRaises(解析錯誤, self.粗胚.符號邊仔加空白, 'sui2 koo1- niu5')

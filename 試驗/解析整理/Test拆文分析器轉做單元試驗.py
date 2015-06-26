@@ -160,7 +160,8 @@ class 拆文分析器轉做單元試驗(unittest.TestCase):
         self.assertEqual(組物件.內底詞[1], self.分析器.轉做詞物件('兩｜nng7'))
         self.assertEqual(組物件.內底詞[2], self.分析器.轉做詞物件('个｜e5'))
         self.assertEqual(組物件.內底詞[3], self.分析器.轉做詞物件('生-做｜senn1-tso3'))
-        self.assertEqual(組物件.內底詞[4], self.分析器.轉做詞物件('一-模-一-樣｜it4-boo5-it4-iunn7'))
+        self.assertEqual(
+            組物件.內底詞[4], self.分析器.轉做詞物件('一-模-一-樣｜it4-boo5-it4-iunn7'))
         self.assertEqual(組物件.內底詞[5], self.分析器.轉做詞物件('。｜.'))
         集物件 = self.分析器.轉做集物件(分詞)
         self.assertEqual(len(集物件.內底組), 1)
@@ -180,7 +181,8 @@ class 拆文分析器轉做單元試驗(unittest.TestCase):
         self.assertEqual(組物件.內底詞[1], self.分析器.轉做詞物件('个｜e5'))
         self.assertEqual(組物件.內底詞[2], self.分析器.轉做詞物件('-｜-'))
         self.assertEqual(組物件.內底詞[3], self.分析器.轉做詞物件('-｜-'))
-        self.assertEqual(組物件.內底詞[4], self.分析器.轉做詞物件('一-模-一-樣｜it4-boo5-it4-iunn7'))
+        self.assertEqual(
+            組物件.內底詞[4], self.分析器.轉做詞物件('一-模-一-樣｜it4-boo5-it4-iunn7'))
         self.assertEqual(組物件.內底詞[5], self.分析器.轉做詞物件('。｜.'))
         集物件 = self.分析器.轉做集物件(分詞)
         self.assertEqual(len(集物件.內底組), 1)
@@ -201,7 +203,8 @@ class 拆文分析器轉做單元試驗(unittest.TestCase):
         self.assertEqual(組物件.內底詞[1], self.分析器.轉做詞物件('兩｜nng7'))
         self.assertEqual(組物件.內底詞[2], self.分析器.轉做詞物件('个｜e5'))
         self.assertEqual(組物件.內底詞[3], self.分析器.轉做詞物件('生-做｜senn1-tso3'))
-        self.assertEqual(組物件.內底詞[4], self.分析器.轉做詞物件('一-模-一-樣｜it4-boo5-it4-iunn7'))
+        self.assertEqual(
+            組物件.內底詞[4], self.分析器.轉做詞物件('一-模-一-樣｜it4-boo5-it4-iunn7'))
         self.assertEqual(組物件.內底詞[5], self.分析器.轉做詞物件('。｜.'))
         集物件 = self.分析器.轉做集物件(分詞)
         self.assertEqual(len(集物件.內底組), 1)

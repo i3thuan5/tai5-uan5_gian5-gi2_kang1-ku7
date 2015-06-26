@@ -188,29 +188,37 @@ class 基本元素單元試驗(unittest.TestCase):
         self.assertEqual(self.詞物件.內底字[0], 字(self.型, self.音))
         self.assertEqual(self.組物件.內底詞[0].內底字[0], 字(self.型, self.音))
         self.assertEqual(self.集物件.內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
-        self.assertEqual(self.句物件.內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
-        self.assertEqual(self.章物件.內底句[0].內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
+        self.assertEqual(
+            self.句物件.內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
+        self.assertEqual(
+            self.章物件.內底句[0].內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
         self.字物件.型 = 新型
         self.字物件.音 = 新音
         self.assertEqual(self.詞物件.內底字[0], 字(self.型, self.音))
         self.assertEqual(self.組物件.內底詞[0].內底字[0], 字(self.型, self.音))
         self.assertEqual(self.集物件.內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
-        self.assertEqual(self.句物件.內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
-        self.assertEqual(self.章物件.內底句[0].內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
+        self.assertEqual(
+            self.句物件.內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
+        self.assertEqual(
+            self.章物件.內底句[0].內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
 
     def test_字結構檢查(self):
         新字物件 = 字(self.型, self.音)
         self.assertEqual(self.詞物件.內底字[0], 字(self.型, self.音))
         self.assertEqual(self.組物件.內底詞[0].內底字[0], 字(self.型, self.音))
         self.assertEqual(self.集物件.內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
-        self.assertEqual(self.句物件.內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
-        self.assertEqual(self.章物件.內底句[0].內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
+        self.assertEqual(
+            self.句物件.內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
+        self.assertEqual(
+            self.章物件.內底句[0].內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
         self.詞物件.內底字[0] = 新字物件
         self.assertEqual(self.詞物件.內底字[0], 字(self.型, self.音))
         self.assertEqual(self.組物件.內底詞[0].內底字[0], 字(self.型, self.音))
         self.assertEqual(self.集物件.內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
-        self.assertEqual(self.句物件.內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
-        self.assertEqual(self.章物件.內底句[0].內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
+        self.assertEqual(
+            self.句物件.內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
+        self.assertEqual(
+            self.章物件.內底句[0].內底集[0].內底組[0].內底詞[0].內底字[0], 字(self.型, self.音))
 
     def test_詞獨立缺失(self):
         新型 = '文'
