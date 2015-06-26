@@ -25,7 +25,10 @@ if __name__ == '__main__':
         安裝程式 = 安裝摩西翻譯佮相關程式()
         核心數 = 8
         for _ in range(10):
-            安裝程式.安裝moses(編譯CPU數=核心數)
+            try:
+                安裝程式.安裝moses(編譯CPU數=核心數)
+            except RuntimeError:
+                pass
             核心數 //= 2
             if 核心數 < 1:
                 核心數 = 1
