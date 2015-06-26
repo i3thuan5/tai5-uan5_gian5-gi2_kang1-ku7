@@ -27,4 +27,4 @@ after_success:
   - pip install --quiet python-coveralls
   - coveralls
 after_script:
- - flake8 . --exclude=venv,外部程式 --count --show-source -ignore=E251,E101,W191,W291,W293,E501
+ - flake8 . --exclude=venv,外部程式 --count --show-source --ignore=E251,E101,W191,W291,W293,E501
