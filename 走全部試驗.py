@@ -23,7 +23,12 @@ if __name__ == '__main__':
             unittest.defaultTestLoader.discover('試驗', pattern='Test*整合試驗.py')
         )
         安裝程式 = 安裝摩西翻譯佮相關程式()
-        安裝程式.安裝moses(編譯CPU數=4)
+        核心數 = 8
+        for _ in range(10):
+            安裝程式.安裝moses(編譯CPU數=核心數)
+            核心數 //= 2
+            if 核心數 < 1:
+                核心數 = 1
         安裝程式.安裝gizapp()
         安裝程式.安裝mgiza()
     試驗結果 = unittest.TextTestRunner().run(試驗包)
