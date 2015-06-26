@@ -62,15 +62,15 @@ class 文章粗胚:
                 elif 語句[位置:].startswith(self.雙分字符號):
                     if self.頭前有音標無(音標工具, 語句[位置 + 2:]):
                         if 前回一開始狀態 == self._組字 or \
-                            len(字元陣列) > 0 and unicodedata.category(字元陣列[-1][-1]) in 統一碼漢字佮組字式類 or\
-                            self.後壁有音標無(音標工具, 語句[:位置]):
+                                len(字元陣列) > 0 and unicodedata.category(字元陣列[-1][-1]) in 統一碼漢字佮組字式類 or\
+                                self.後壁有音標無(音標工具, 語句[:位置]):
                             字元陣列.append('-0')
                         else:
                             字元陣列.append('0')
                     elif (位置 + 2 < len(語句) and unicodedata.category(語句[位置 + 2]) in 統一碼漢字佮組字式類):
                         if 前回一開始狀態 == self._組字 or \
-                            len(字元陣列) > 0 and unicodedata.category(字元陣列[-1][-1]) in 統一碼漢字佮組字式類 or\
-                            self.後壁有音標無(音標工具, 語句[:位置]):
+                                len(字元陣列) > 0 and unicodedata.category(字元陣列[-1][-1]) in 統一碼漢字佮組字式類 or\
+                                self.後壁有音標無(音標工具, 語句[:位置]):
                             字元陣列.append(分字符號)
                     else:
                         字元陣列.append(self.兩分字符號代表字)

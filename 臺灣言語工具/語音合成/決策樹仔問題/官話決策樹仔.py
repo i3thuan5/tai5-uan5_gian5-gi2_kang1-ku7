@@ -46,9 +46,9 @@ class 官話決策樹仔(公家決策樹仔):
         '''
         聲韻 = []
         for 實際音 in itertools.chain(
-            ['sil', 'sp'],
-            官話注音符號對照音值聲母表.values(),
-            官話韻母實際音值表.values()):
+                ['sil', 'sp'],
+                官話注音符號對照音值聲母表.values(),
+                官話韻母實際音值表.values()):
             聲韻.append(('{0}'.format(實際音), [實際音]))
         return self._生問題.問題集(聲韻, self.聲韻符號, '孤條')
 

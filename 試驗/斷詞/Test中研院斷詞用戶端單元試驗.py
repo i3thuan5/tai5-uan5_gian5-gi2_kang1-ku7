@@ -51,9 +51,9 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
             ]]
         斷詞後章物件 = self.用戶端.斷詞(輸入句物件)
         for 詞物件, 詞性 in zip_longest(
-            self.網仔.網出詞物件(斷詞後章物件),
-            ['N', 'Vt', 'Vi', 'PERIODCATEGORY']
-            ):
+                self.網仔.網出詞物件(斷詞後章物件),
+                ['N', 'Vt', 'Vi', 'PERIODCATEGORY']
+                ):
             self.assertEqual(詞物件.屬性['詞性'], 詞性)
 
     def test_物件斷一句話章物件內容(self, 語句斷詞做語句mock):
@@ -84,9 +84,9 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
             ]]
         斷詞後章物件 = self.用戶端.斷詞(輸入章物件)
         for 詞物件, 詞性 in zip_longest(
-            self.網仔.網出詞物件(斷詞後章物件),
-            ['N', 'Vt', 'Vi', 'PERIODCATEGORY']
-            ):
+                self.網仔.網出詞物件(斷詞後章物件),
+                ['N', 'Vt', 'Vi', 'PERIODCATEGORY']
+                ):
             self.assertEqual(詞物件.屬性['詞性'], 詞性)
 
     @patch('臺灣言語工具.斷詞.中研院.斷詞用戶端.斷詞用戶端._斷句物件詞')
@@ -142,9 +142,9 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
             ]]
         斷詞後章物件 = self.用戶端.斷詞(輸入章物件)
         for 詞物件, 詞性 in zip_longest(
-            self.網仔.網出詞物件(斷詞後章物件),
-            ['N', 'Vt', 'Vi', 'PERIODCATEGORY', '']
-            ):
+                self.網仔.網出詞物件(斷詞後章物件),
+                ['N', 'Vt', 'Vi', 'PERIODCATEGORY', '']
+                ):
             self.assertEqual(詞物件.屬性['詞性'], 詞性)
 
     def test_物件空白逝句物件詞數檢查(self, 語句斷詞做語句mock):
@@ -178,9 +178,9 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
         語句斷詞做語句mock.return_value = []
         斷詞後章物件 = self.用戶端.斷詞(輸入章物件)
         for 詞物件, 詞性 in zip_longest(
-            self.網仔.網出詞物件(斷詞後章物件),
-            ['', '']
-            ):
+                self.網仔.網出詞物件(斷詞後章物件),
+                ['', '']
+                ):
             self.assertEqual(詞物件.屬性['詞性'], 詞性)
 
     def test_物件斷小於符號的空白結果(self, 語句斷詞做語句mock):
@@ -188,9 +188,9 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
         語句斷詞做語句mock.return_value = []
         斷詞後章物件 = self.用戶端.斷詞(輸入章物件)
         for 詞物件, 詞性 in zip_longest(
-            self.網仔.網出詞物件(斷詞後章物件),
-            ['', '', '', '', '', ]
-            ):
+                self.網仔.網出詞物件(斷詞後章物件),
+                ['', '', '', '', '', ]
+                ):
             self.assertEqual(詞物件.屬性['詞性'], 詞性)
 
     def test_物件英文字(self, 語句斷詞做語句mock):
@@ -198,9 +198,9 @@ class 中研院斷詞用戶端單元試驗(unittest.TestCase):
         語句斷詞做語句mock.return_value = [['\u3000sui2(FW)']]
         斷詞後章物件 = self.用戶端.斷詞(輸入章物件)
         for 詞物件, 詞性 in zip_longest(
-            self.網仔.網出詞物件(斷詞後章物件),
-            ['FW']
-            ):
+                self.網仔.網出詞物件(斷詞後章物件),
+                ['FW']
+                ):
             self.assertEqual(詞物件.屬性['詞性'], 詞性)
 
     def test_結構斷一句話(self, 語句斷詞做語句mock):

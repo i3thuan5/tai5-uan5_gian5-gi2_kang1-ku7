@@ -230,7 +230,7 @@ class 模型訓練(程式腳本, 語料處理):
 
     def 是有音標仔(self, 標仔):
         if 標仔 == '#!MLF!#' or 標仔 == self.音檔結束符號 or\
-            標仔.startswith('"') or 標仔 == self.恬音:
+                標仔.startswith('"') or 標仔 == self.恬音:
             return False
         return True
 
