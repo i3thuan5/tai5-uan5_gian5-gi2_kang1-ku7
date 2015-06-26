@@ -23,10 +23,10 @@ class SRILM語句連詞訓練(程式腳本):
         語言模型指令版 = \
                 '{0} -order {1} -interpolate -wbdiscount -unk -text {2} -lm {3}'
         語言模型指令 = 語言模型指令版.format(
-                self.訓練指令,
-                連紲詞長度,
-                目標語言檔名,
-                語言模型檔
-                )
+            self.訓練指令,
+            連紲詞長度,
+            目標語言檔名,
+            語言模型檔
+            )
         self._走指令(語言模型指令)
         return 語言模型檔

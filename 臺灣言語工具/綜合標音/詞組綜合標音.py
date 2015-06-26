@@ -53,4 +53,4 @@ class 詞組綜合標音():
 
     def __eq__(self, 別个):
         return isinstance(別个, 詞組綜合標音) and \
-                self.綜合字 == 別个.綜合字 and self.連字音 == 別个.連字音
+            self.綜合字 == 別个.綜合字 and self.連字音 == 別个.連字音

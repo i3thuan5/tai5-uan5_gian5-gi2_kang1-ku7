@@ -17,19 +17,19 @@ class 連詞揀集內組單元試驗(TestCase):
         self.用連詞揀 = 連詞揀集內組()
 
         self.我有一張桌仔 = self.分析器.產生對齊句(
-                '我有一張桌仔！', 'gua2 u7 tsit8-tiunn1 toh4-a2!')
+            '我有一張桌仔！', 'gua2 u7 tsit8-tiunn1 toh4-a2!')
         self.桌仔垃圾 = self.分析器.產生對齊句(
-                '桌仔垃圾！？', 'toh4-a2 lap4-sap4!?')
+            '桌仔垃圾！？', 'toh4-a2 lap4-sap4!?')
         self.我有一張椅仔 = self.分析器.產生對齊句(
-                '我有一張椅仔！', 'gua2 u7 tsit8-tiunn1 i2-a2!')
+            '我有一張椅仔！', 'gua2 u7 tsit8-tiunn1 i2-a2!')
         self.椅仔 = self.分析器.產生對齊句(
-                '椅仔。', 'i2-a2.')
+            '椅仔。', 'i2-a2.')
         self.桌仔 = self.分析器.產生對齊句(
-                '桌仔。', 'toh4-a2.')
+            '桌仔。', 'toh4-a2.')
         self.柴 = self.分析器.產生對齊句(
-                '柴！', 'tsha5!')
+            '柴！', 'tsha5!')
         self.我 = self.分析器.產生對齊句(
-                '我', 'gua2')
+            '我', 'gua2')
 
     def tearDown(self):
         pass

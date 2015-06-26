@@ -57,5 +57,5 @@ class 閩南語字綜合標音(字綜合標音):
 
     def __eq__(self, 別个):
         return isinstance(別个, 閩南語字綜合標音) and self.型體 == 別个.型體 and \
-                self.臺羅數字調 == 別个.臺羅數字調 and self.臺羅閏號調 == 別个.臺羅閏號調 and \
-                self.通用數字調 == 別个.通用數字調 and self.吳守禮方音 == 別个.吳守禮方音
+            self.臺羅數字調 == 別个.臺羅數字調 and self.臺羅閏號調 == 別个.臺羅閏號調 and \
+            self.通用數字調 == 別个.通用數字調 and self.吳守禮方音 == 別个.吳守禮方音

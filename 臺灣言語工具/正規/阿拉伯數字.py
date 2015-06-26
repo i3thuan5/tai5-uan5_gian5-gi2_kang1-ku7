@@ -118,8 +118,8 @@ class 阿拉伯數字():
 
     def 轉官話數量(self, 數量):
         if len(數量) >= 4 and \
-                 (數量[-3] in self.細位 or 數量[-3] in self.大位) and \
-                 數量[-1] in self.細位:
+            (數量[-3] in self.細位 or 數量[-3] in self.大位) and \
+            數量[-1] in self.細位:
             if 數量[-2] == self.兩:
                 return 數量[:-2] + self.一二三[1]
             return 數量[:-1]

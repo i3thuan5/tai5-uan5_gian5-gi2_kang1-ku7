@@ -45,26 +45,26 @@ class 摩西翻譯模型訓練(程式腳本):
 # 				連紲詞長度,
 # 			)
         指令 = [
-                        os.path.join(moses路徑, 'scripts', 'training', 'train-model.perl'),
-                        '-root-dir', 暫存資料夾,
-                        '-corpus', 平行檔名,
-                        '-f', '源',
-                        '-e', '目',
-                        '-alignment', 'grow-diag-final-and',
-                        '-reordering', 'msd-bidirectional-fe',
-                        '-lm', '0:{0}:{1}:9'.format(連紲詞長度, 語言模型檔),
-                ]
+            os.path.join(moses路徑, 'scripts', 'training', 'train-model.perl'),
+            '-root-dir', 暫存資料夾,
+            '-corpus', 平行檔名,
+            '-f', '源',
+            '-e', '目',
+            '-alignment', 'grow-diag-final-and',
+            '-reordering', 'msd-bidirectional-fe',
+            '-lm', '0:{0}:{1}:9'.format(連紲詞長度, 語言模型檔),
+            ]
         if not giza多執行緒:
             指令.append(
-                            '-external-bin-dir={0}'.format(
-                                    self._執行檔路徑加尾(os.path.join(gizapp執行檔路徑, 'bin')))
-                    )
+                '-external-bin-dir={0}'.format(
+                    self._執行檔路徑加尾(os.path.join(gizapp執行檔路徑, 'bin')))
+                )
         else:
             指令.append('--mgiza')
             指令.append(
-                            '-external-bin-dir={0}'.format(
-                                    self._執行檔路徑加尾(os.path.join(mgiza執行檔路徑, 'bin')))
-                    )
+                '-external-bin-dir={0}'.format(
+                    self._執行檔路徑加尾(os.path.join(mgiza執行檔路徑, 'bin')))
+                )
         self._走指令(指令)
         if 刣掉暫存檔:
             shutil.rmtree(os.path.join(暫存資料夾, 'corpus'))

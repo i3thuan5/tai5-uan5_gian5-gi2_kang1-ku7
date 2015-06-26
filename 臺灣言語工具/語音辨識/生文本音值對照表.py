@@ -25,10 +25,10 @@ class 生文本音值對照表:
         資料 = []
         格式 = '{0}\t{1}'
         for 音 in itertools.chain.from_iterable([
-                        [self._轉合成標仔.恬音, self._轉合成標仔.短恬],
-                        對照音值聲母表.values(),
-                        對照音值韻母表.values(),
-                        ]):
+            [self._轉合成標仔.恬音, self._轉合成標仔.短恬],
+            對照音值聲母表.values(),
+            對照音值韻母表.values(),
+            ]):
             標仔 = self._轉合成標仔.提出標仔主要音值(音)
             資料.append(格式.format(標仔, 標仔))
         資料.sort()

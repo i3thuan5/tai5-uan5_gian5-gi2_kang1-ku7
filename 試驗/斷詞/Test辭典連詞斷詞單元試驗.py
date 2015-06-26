@@ -217,7 +217,7 @@ class 辭典連詞斷詞單元試驗(TestCase):
         self.文我有對齊組 = self.分析器.產生對齊組('我有', 'ngoo2 iu2')
 
         self.對齊句 = self.分析器.產生對齊句(
-                '我有一張椅仔！！', 'gua2 u7 tsit8-tiunn1 i2-a2!!')
+            '我有一張椅仔！！', 'gua2 u7 tsit8-tiunn1 i2-a2!!')
         self.型句 = self.分析器.建立句物件('我有一張椅仔！！')
         self.音句 = self.分析器.建立句物件('gua2 u7 tsit8-tiunn1 i2-a2!!')
         self.有詞漢羅 = self.分析器.建立句物件('我 u7 一張 i2-a2!!')
@@ -324,11 +324,11 @@ class 辭典連詞斷詞單元試驗(TestCase):
 
         self.予伊出去耍全羅 = self.分析器.建立句物件('hoo7 i1 tsut4 khi3 sng2')
         self.予伊對齊句 = self.分析器.產生對齊句(
-                '予伊出去耍', 'hoo7 i1 tsut4-khi3 sng2')
+            '予伊出去耍', 'hoo7 i1 tsut4-khi3 sng2')
         self.雨衣對齊句 = self.分析器.產生對齊句(
-                '雨衣出去耍', 'hoo7-i1 tsut4-khi3 sng2')
+            '雨衣出去耍', 'hoo7-i1 tsut4-khi3 sng2')
         self.予伊耍對齊句 = self.分析器.產生對齊句(
-                '予伊耍雨衣', 'hoo7 i1 sng2 hoo7-i1')
+            '予伊耍雨衣', 'hoo7 i1 sng2 hoo7-i1')
 
     def 檢查分數詞數(self, 分數, 詞數, 分數上限, 詞數答案):
         self.assertLess(分數, 分數上限)

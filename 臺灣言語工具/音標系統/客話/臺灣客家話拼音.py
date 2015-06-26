@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from 臺灣言語工具.音標系統.客話.臺灣客家話拼音轉音值模組 import 臺灣客家話拼音轉音值模組
 臺灣客家話拼音聲母對照表 = {
-                'b', 'p', 'm', 'f', 'v', 'd', 't', 'n', 'l', 'g',
-                'k', 'ng', 'h', 'j', 'q', 'x', 'z', 'c', 's',
-                'zh', 'ch', 'sh', 'rh', '', 'bb', 'r'
+    'b', 'p', 'm', 'f', 'v', 'd', 't', 'n', 'l', 'g',
+    'k', 'ng', 'h', 'j', 'q', 'x', 'z', 'c', 's',
+    'zh', 'ch', 'sh', 'rh', '', 'bb', 'r'
                 # 'ngi','zi', 'ci', 'si',
 }
 臺灣客家話拼音韻母對照表 = {
-                'ii', 'i', 'e', 'a', 'o', 'u', 'ie', 'eu', 'ieu', 'ia',
-                'ua', 'ai', 'iai', 'uai', 'au', 'iau', 'io', 'oi', 'ioi', 'iu',
+    'ii', 'i', 'e', 'a', 'o', 'u', 'ie', 'eu', 'ieu', 'ia',
+    'ua', 'ai', 'iai', 'uai', 'au', 'iau', 'io', 'oi', 'ioi', 'iu',
                 'ui', 'iui', 'ue', 'iim', 'im', 'em', 'iem', 'am', 'iam',
                 'iin', 'in', 'en', 'ien', 'uen', 'an', 'ian', 'uan', 'on', 'ion',
                 'un', 'iun', 'ang', 'iang', 'uang', 'ong', 'iong', 'ung',
@@ -18,9 +18,9 @@ from 臺灣言語工具.音標系統.客話.臺灣客家話拼音轉音值模組
                 'm', 'n', 'ng',
                 'oo', 'ee', 'eeb', 'eed', 'eem', 'een', 'eeu',
                 'ainn', 'ann', 'iann', 'inn', 'onn', 'uainn',
-                }
+    }
 臺灣客家話拼音調類對照表 = {
-                '', 'ˊ', 'ˋ', 'ˇ', '+', '^'
+    '', 'ˊ', 'ˋ', 'ˇ', '+', '^'
 }
 
 #########################################

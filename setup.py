@@ -17,32 +17,32 @@ def 揣工具包(頭='.'):
     return 工具包
 
 setup(
-        # 臺灣言語工具 tai5_uan5_gian5_gi2_kang1_ku7
-        name='tai5_uan5_gian5_gi2_kang1_ku7',
-        packages=揣工具包('臺灣言語工具'),
-        version=版本,
-        description='臺灣語言資訊系統（Toolkit for Languages in Taiwan）',
-        long_description='臺灣語言資訊系統函式庫，支援語音辨識、合成、翻譯、…等技術',
-        author='薛丞宏',
-        author_email='ihcaoe@gmail.com',
-        url='http://意傳.台灣/',
-        download_url='https://github.com/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7',  # I'll explain this in a second
-        keywords=[
-                '臺灣', '語料庫', '語言合成', '機器翻譯', '斷詞',
-                'Taiwan', 'Taiwanese', 'Natural Language', 'Corpus',
+    # 臺灣言語工具 tai5_uan5_gian5_gi2_kang1_ku7
+    name='tai5_uan5_gian5_gi2_kang1_ku7',
+    packages=揣工具包('臺灣言語工具'),
+    version=版本,
+    description='臺灣語言資訊系統（Toolkit for Languages in Taiwan）',
+    long_description='臺灣語言資訊系統函式庫，支援語音辨識、合成、翻譯、…等技術',
+    author='薛丞宏',
+    author_email='ihcaoe@gmail.com',
+    url='http://意傳.台灣/',
+    download_url='https://github.com/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7',  # I'll explain this in a second
+    keywords=[
+        '臺灣', '語料庫', '語言合成', '機器翻譯', '斷詞',
+        'Taiwan', 'Taiwanese', 'Natural Language', 'Corpus',
                 'Text to Speech', 'TTS',
                 'Machine Translateion',
                 'Word Segmentation',
         ],
-        classifiers=[
-                'Development Status :: 3 - Alpha',
-                'Operating System :: POSIX :: Other',
-                'Programming Language :: Python :: 3.3',
-                'Programming Language :: Python :: 3.4',
-                'Natural Language :: Chinese (Traditional)',
-                'Topic :: Scientific/Engineering',
-                'Topic :: Scientific/Engineering :: Information Analysis',
-                'Topic :: Text Processing',
-                'Topic :: Text Processing :: Linguistic',
+    classifiers=[
+        'Development Status :: 3 - Alpha',
+        'Operating System :: POSIX :: Other',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
+        'Natural Language :: Chinese (Traditional)',
+        'Topic :: Scientific/Engineering',
+        'Topic :: Scientific/Engineering :: Information Analysis',
+        'Topic :: Text Processing',
+        'Topic :: Text Processing :: Linguistic',
         ],
 )

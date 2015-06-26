@@ -26,8 +26,8 @@ class 摩西服務端():
     def 走(self):
         if not self.程序:
             self.程序 = Popen(
-                            [self.執行程式, '-f', self.模型路徑, '--server-port', str(self.埠)],
-                    )
+                [self.執行程式, '-f', self.模型路徑, '--server-port', str(self.埠)],
+                )
 
     def 狀態(self):
         return self.程序.poll()

@@ -50,7 +50,7 @@ class KenLM語言模型單元試驗(TestCase):
 		\end\
 		'''
         self.媠媠巧靚連詞 = KenLM語言模型(
-                os.path.join(os.path.dirname(os.path.abspath(__file__)), '語料', 'sui2.lm'))
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), '語料', 'sui2.lm'))
         self.媠媠巧靚組物件 = self.分析器.建立組物件('sui2 sui2 khiau2 tsiang5')
 
     def tearDown(self):

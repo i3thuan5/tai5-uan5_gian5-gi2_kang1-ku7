@@ -34,20 +34,20 @@ class 詞物件網仔單元試驗(unittest.TestCase):
     def test_網詞濟字漢字(self):
         語句 = '椅仔！'
         self.assertEqual(
-                self.網仔.網出詞物件(self.分析器.建立詞物件(語句)),
-                [self.分析器.建立詞物件(語句)])
+            self.網仔.網出詞物件(self.分析器.建立詞物件(語句)),
+            [self.分析器.建立詞物件(語句)])
 
     def test_網詞濟字音標(self):
         語句 = 'tsit8-tiunn1 !'
         self.assertEqual(
-                self.網仔.網出詞物件(self.分析器.建立詞物件(語句)),
-                [self.分析器.建立詞物件(語句)])
+            self.網仔.網出詞物件(self.分析器.建立詞物件(語句)),
+            [self.分析器.建立詞物件(語句)])
 
     def test_網詞濟字漢羅(self):
         語句 = 'tsit8-張!'
         self.assertEqual(
-                self.網仔.網出詞物件(self.分析器.建立詞物件(語句)),
-                [self.分析器.建立詞物件(語句)])
+            self.網仔.網出詞物件(self.分析器.建立詞物件(語句)),
+            [self.分析器.建立詞物件(語句)])
 
     def test_網組孤字(self):
         語句 = '媠'
@@ -84,17 +84,17 @@ class 詞物件網仔單元試驗(unittest.TestCase):
         for 語詞 in 切好語句:
             切好詞陣列.append(self.分析器.建立詞物件(語詞))
         self.assertEqual(
-                self.網仔.網出詞物件(self.分析器.建立組物件(語句)),
-                切好詞陣列)
+            self.網仔.網出詞物件(self.分析器.建立組物件(語句)),
+            切好詞陣列)
         self.assertEqual(
-                self.網仔.網出詞物件(self.分析器.建立集物件(語句)),
-                切好詞陣列)
+            self.網仔.網出詞物件(self.分析器.建立集物件(語句)),
+            切好詞陣列)
         self.assertEqual(
-                self.網仔.網出詞物件(self.分析器.建立句物件(語句)),
-                切好詞陣列)
+            self.網仔.網出詞物件(self.分析器.建立句物件(語句)),
+            切好詞陣列)
         self.assertEqual(
-                self.網仔.網出詞物件(self.分析器.建立章物件(語句)),
-                切好詞陣列)
+            self.網仔.網出詞物件(self.分析器.建立章物件(語句)),
+            切好詞陣列)
 
     def test_網集濟組(self):
         原來語句 = '我有一張椅仔！'

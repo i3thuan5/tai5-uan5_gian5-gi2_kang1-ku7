@@ -7,39 +7,39 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 im
                 'k', 'kh', 'ng', 'g', 'h', 'ch', 'chh', 's', 'j', ''
                 } | 臺灣閩南語羅馬字拼音聲母表
 教會羅馬字音標韻母表 = {
-        'a', 'ah', 'ap', 'at', 'ak', 'ann', 'annh',
-        'am', 'an', 'ang',
-        'e', 'eh', 'enn', 'ennh',
-        'i', 'ih', 'ip', 'it', 'ek', 'inn', 'innh',
-        'im', 'in', 'eng',
-        'o', 'oh',
-        'oo', 'ooh', 'op', 'ok', 'om', 'ong', 'onn', 'onnh',
-        'ou', 'ouh',
-        'oi', 'oih',  # 硩⿰落去
-        'u', 'uh', 'ut', 'un',
-        'ai', 'aih', 'ainn', 'ainnh',
-        'au', 'auh', 'aunn', 'aunnh',
-        'ia', 'iah', 'iap', 'iat', 'iak', 'iam', 'ian', 'iang', 'iann', 'iannh',
-        'io', 'ioh',
-        'iok', 'iong', 'ionn',
-        'iu', 'iuh', 'iut', 'iunn', 'iunnh',
-        'oa', 'oah', 'oat', 'oak', 'oan', 'oann', 'oannh',
-        'oe', 'oeh', 'oenn', 'oennh',
-        'ui', 'uih', 'uinn', 'uinnh',
-        'iau', 'iauh', 'iaunn', 'iaunnh',
-        'oai', 'oaih', 'oainn', 'oainnh',
-        'm', 'mh', 'ng', 'ngh',
-        'ioo', 'iooh',
-        'iou', 'iouh',
-        } | 臺灣閩南語羅馬字拼音韻母表
+    'a', 'ah', 'ap', 'at', 'ak', 'ann', 'annh',
+    'am', 'an', 'ang',
+    'e', 'eh', 'enn', 'ennh',
+    'i', 'ih', 'ip', 'it', 'ek', 'inn', 'innh',
+    'im', 'in', 'eng',
+    'o', 'oh',
+    'oo', 'ooh', 'op', 'ok', 'om', 'ong', 'onn', 'onnh',
+    'ou', 'ouh',
+    'oi', 'oih',  # 硩⿰落去
+    'u', 'uh', 'ut', 'un',
+    'ai', 'aih', 'ainn', 'ainnh',
+    'au', 'auh', 'aunn', 'aunnh',
+    'ia', 'iah', 'iap', 'iat', 'iak', 'iam', 'ian', 'iang', 'iann', 'iannh',
+    'io', 'ioh',
+    'iok', 'iong', 'ionn',
+    'iu', 'iuh', 'iut', 'iunn', 'iunnh',
+    'oa', 'oah', 'oat', 'oak', 'oan', 'oann', 'oannh',
+    'oe', 'oeh', 'oenn', 'oennh',
+    'ui', 'uih', 'uinn', 'uinnh',
+    'iau', 'iauh', 'iaunn', 'iaunnh',
+    'oai', 'oaih', 'oainn', 'oainnh',
+    'm', 'mh', 'ng', 'ngh',
+    'ioo', 'iooh',
+    'iou', 'iouh',
+    } | 臺灣閩南語羅馬字拼音韻母表
 教會羅馬字音標聲調符號表 = dict(
-        á=('a', 2), à=('a', 3), â=('a', 5), ǎ=('a', 6), ā=('a', 7), a̍=('a', 8), a̋=('a', 9),
-        é=('e', 2), è=('e', 3), ê=('e', 5), ě=('e', 6), ē=('e', 7), e̍=('e', 8), e̋=('e', 9),
-        í=('i', 2), ì=('i', 3), î=('i', 5), ǐ=('i', 6), ī=('i', 7), i̍=('i', 8), i̋=('i', 9),
-        ó=('o', 2), ò=('o', 3), ô=('o', 5), ǒ=('o', 6), ō=('o', 7), o̍=('o', 8), ő=('o', 9),
-        ú=('u', 2), ù=('u', 3), û=('u', 5), ǔ=('u', 6), ū=('u', 7), u̍=('u', 8), ű=('u', 9),
-        ḿ=('m', 2), m̀=('m', 3), m̂=('m', 5), m̌=('m', 6), m̄=('m', 7), m̍=('m', 8), m̋=('m', 9),
-        ń=('n', 2), ǹ=('n', 3), n̂=('n', 5), ň=('n', 6), n̄=('n', 7), n̍=('n', 8), n̋=('n', 9),)
+    á=('a', 2), à=('a', 3), â=('a', 5), ǎ=('a', 6), ā=('a', 7), a̍=('a', 8), a̋=('a', 9),
+    é=('e', 2), è=('e', 3), ê=('e', 5), ě=('e', 6), ē=('e', 7), e̍=('e', 8), e̋=('e', 9),
+    í=('i', 2), ì=('i', 3), î=('i', 5), ǐ=('i', 6), ī=('i', 7), i̍=('i', 8), i̋=('i', 9),
+    ó=('o', 2), ò=('o', 3), ô=('o', 5), ǒ=('o', 6), ō=('o', 7), o̍=('o', 8), ő=('o', 9),
+    ú=('u', 2), ù=('u', 3), û=('u', 5), ǔ=('u', 6), ū=('u', 7), u̍=('u', 8), ű=('u', 9),
+    ḿ=('m', 2), m̀=('m', 3), m̂=('m', 5), m̌=('m', 6), m̄=('m', 7), m̍=('m', 8), m̋=('m', 9),
+    ń=('n', 2), ǹ=('n', 3), n̂=('n', 5), ň=('n', 6), n̄=('n', 7), n̍=('n', 8), n̋=('n', 9),)
 
 
 class 教會羅馬字音標(教會系羅馬音標):

@@ -19,7 +19,7 @@ class KenLM語言模型(語言模型):
         for 詞物件 in 詞陣列: 
             字串.append(self._譀鏡.看分詞(詞物件))
         for 所在, 結果 in enumerate(
-                        self._語言模型.full_scores(分詞符號.join(字串), bos=False, eos=False)):
+            self._語言模型.full_scores(分詞符號.join(字串), bos=False, eos=False)):
             if 所在 >= 開始的所在:
                 分數 = 結果[0]
 # 				長度 = 結果[1] #這个機率連詞長度

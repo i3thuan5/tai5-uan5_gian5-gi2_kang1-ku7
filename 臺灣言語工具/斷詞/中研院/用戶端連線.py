@@ -52,7 +52,7 @@ class 用戶端連線:
 
     def _連線(self, 語句, 等待, 編碼, 主機, 連接埠, 帳號, 密碼):
         連線 = socket(
-                AF_INET, SOCK_STREAM)
+            AF_INET, SOCK_STREAM)
         連線.settimeout(等待)
         try:
             連線.connect((主機, 連接埠))

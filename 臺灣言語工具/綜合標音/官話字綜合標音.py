@@ -50,4 +50,4 @@ class 官話字綜合標音(字綜合標音):
 
     def __eq__(self, 別个):
         return isinstance(別个, 官話字綜合標音) and self.型體 == 別个.型體 and \
-                self.注音符號 == 別个.注音符號
+            self.注音符號 == 別个.注音符號

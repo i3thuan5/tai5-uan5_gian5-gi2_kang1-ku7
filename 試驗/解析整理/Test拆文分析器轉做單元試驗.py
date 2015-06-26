@@ -194,7 +194,7 @@ class 拆文分析器轉做單元試驗(unittest.TestCase):
 
     def test_轉做組集句濟字有加的空白佮換逝符號(self):
         分詞 = '  𪜶｜in1    兩｜nng7     个｜e5 \n'\
-                '  生-做｜senn1-tso3 一-模-一-樣｜it4-boo5-it4-iunn7 。｜.    '
+            '  生-做｜senn1-tso3 一-模-一-樣｜it4-boo5-it4-iunn7 。｜.    '
         組物件 = self.分析器.轉做組物件(分詞)
         self.assertEqual(len(組物件.內底詞), 6)
         self.assertEqual(組物件.內底詞[0], self.分析器.轉做詞物件('𪜶｜in1'))
@@ -253,7 +253,7 @@ class 拆文分析器轉做單元試驗(unittest.TestCase):
 
     def test_轉做章濟句(self):
         分詞一 = '𪜶｜in1 兩｜nng7 个｜e5 兄-弟-仔｜hiann1-ti7-a2 '\
-                '為-著｜ui7-tioh8 拚｜piann3 生-理｜sing1-li2 ，｜, '
+            '為-著｜ui7-tioh8 拚｜piann3 生-理｜sing1-li2 ，｜, '
         分詞二 = '就｜to7 按-呢｜an2-ne1 一-刀-兩-斷｜it4-to1-liong2-tuan7 '\
                 '無｜bo5 來-去｜lai5-khi3 。｜.'
         分詞 = 分詞一 + 分詞二
@@ -311,13 +311,13 @@ class 拆文分析器轉做單元試驗(unittest.TestCase):
 
     def test_轉做章分詞濟句用換逝符號隔開(self):
         語句 = '𪜶｜in1 兩｜nng7 个｜e5 兄-弟-仔｜hiann1-ti7-a2\n'\
-                '為-著｜ui7-tioh8 拚｜piann3 生-理｜sing1-li2 ，｜, 。｜. '
+            '為-著｜ui7-tioh8 拚｜piann3 生-理｜sing1-li2 ，｜, 。｜. '
         章物件 = self.分析器.轉做章物件(語句)
         self.assertEqual(len(章物件.內底句), 2)
 
     def test_轉做章分詞濟句用換逝符號隔開詞數(self):
         語句 = '𪜶｜in1 兩｜nng7 个｜e5 兄-弟-仔｜hiann1-ti7-a2\n'\
-                '為-著｜ui7-tioh8 拚｜piann3 生-理｜sing1-li2 ，｜, 。｜. '
+            '為-著｜ui7-tioh8 拚｜piann3 生-理｜sing1-li2 ，｜, 。｜. '
         章物件 = self.分析器.轉做章物件(語句)
         網仔 = 詞物件網仔()
         self.assertEqual(len(網仔.網出詞物件(章物件.內底句[0])), 5)
@@ -325,19 +325,19 @@ class 拆文分析器轉做單元試驗(unittest.TestCase):
 
     def test_轉做章分詞濟句用換逝分詞隔開(self):
         語句 = '𪜶｜in1 兩｜nng7 个｜e5 兄-弟-仔｜hiann1-ti7-a2 \n｜\n '\
-                '為-著｜ui7-tioh8 拚｜piann3 生-理｜sing1-li2 ，｜, 。｜. '
+            '為-著｜ui7-tioh8 拚｜piann3 生-理｜sing1-li2 ，｜, 。｜. '
         章物件 = self.分析器.轉做章物件(語句)
         self.assertEqual(len(章物件.內底句), 2)
 
     def test_轉做章有加的空白佮換逝符號(self):
         分詞 = '  𪜶｜in1    兩｜nng7     个｜e5 \n'\
-                '  生-做｜senn1-tso3 一-模-一-樣｜it4-boo5-it4-iunn7 。｜.    '
+            '  生-做｜senn1-tso3 一-模-一-樣｜it4-boo5-it4-iunn7 。｜.    '
         章物件 = self.分析器.轉做章物件(分詞)
         self.assertEqual(len(章物件.內底句), 2)
 
     def test_轉做章有加的空白佮換逝符號詞數(self):
         分詞 = '  𪜶｜in1    兩｜nng7     个｜e5 \n'\
-                '  生-做｜senn1-tso3 一-模-一-樣｜it4-boo5-it4-iunn7 。｜.    '
+            '  生-做｜senn1-tso3 一-模-一-樣｜it4-boo5-it4-iunn7 。｜.    '
         章物件 = self.分析器.轉做章物件(分詞)
         網仔 = 詞物件網仔()
         self.assertEqual(len(網仔.網出詞物件(章物件.內底句[0])), 4)
@@ -384,42 +384,42 @@ class 拆文分析器轉做單元試驗(unittest.TestCase):
         分詞 = '梅山 猴-災 鄉-公所｜hiong1-kong1-soo2 tshiann2-lang5 趕-走｜kuann2-tsau2 猴山｜kau5-san1'
         組物件 = self.分析器.轉做組物件(分詞)
         答案詞陣列 = [
-                self.分析器.建立詞物件('梅山'),
-                self.分析器.建立詞物件('猴-災'),
-                self.分析器.產生對齊詞('鄉-公所', 'hiong1-kong1-soo2'),
-                self.分析器.建立詞物件('tshiann2-lang5'),
-                self.分析器.產生對齊詞('趕-走', 'kuann2-tsau2'),
-                self.分析器.產生對齊詞('猴山', 'kau5-san1'),
-                ]
+            self.分析器.建立詞物件('梅山'),
+            self.分析器.建立詞物件('猴-災'),
+            self.分析器.產生對齊詞('鄉-公所', 'hiong1-kong1-soo2'),
+            self.分析器.建立詞物件('tshiann2-lang5'),
+            self.分析器.產生對齊詞('趕-走', 'kuann2-tsau2'),
+            self.分析器.產生對齊詞('猴山', 'kau5-san1'),
+            ]
         self.assertEqual(組物件.內底詞, 答案詞陣列)
 
     def test_接受詞內底無一定全部攏愛有音(self):
         分詞 = '梅-山｜mui5- 鄉-公-所｜-kong1- tshiann2-lang5 梅-山｜-san1 鄉-公-所｜hiang1--soo2 猴山｜kau5-san1'
         梅詞物件 = self.分析器.建立詞物件('')
         梅詞物件.內底字 = [
-                self.分析器.產生對齊字('梅', 'mui5'),
-                self.分析器.建立字物件('山'),
-                ]
+            self.分析器.產生對齊字('梅', 'mui5'),
+            self.分析器.建立字物件('山'),
+            ]
         山詞物件 = self.分析器.建立詞物件('')
         山詞物件.內底字 = [
-                self.分析器.建立字物件('梅'),
-                self.分析器.產生對齊字('山', 'san1'),
-                ]
+            self.分析器.建立字物件('梅'),
+            self.分析器.產生對齊字('山', 'san1'),
+            ]
         公詞物件 = self.分析器.建立詞物件('')
         公詞物件.內底字 = [
-                self.分析器.建立字物件('鄉'),
-                self.分析器.產生對齊字('公', 'kong1'),
-                self.分析器.建立字物件('所'),
-                ]
+            self.分析器.建立字物件('鄉'),
+            self.分析器.產生對齊字('公', 'kong1'),
+            self.分析器.建立字物件('所'),
+            ]
         鄉所詞物件 = self.分析器.建立詞物件('')
         鄉所詞物件.內底字 = [
-                self.分析器.產生對齊字('鄉', 'hiang1'),
-                self.分析器.建立字物件('公'),
-                self.分析器.產生對齊字('所', 'soo2'),
-                ]
+            self.分析器.產生對齊字('鄉', 'hiang1'),
+            self.分析器.建立字物件('公'),
+            self.分析器.產生對齊字('所', 'soo2'),
+            ]
         組物件 = self.分析器.轉做組物件(分詞)
         答案詞陣列 = [
-                梅詞物件, 公詞物件, self.分析器.建立詞物件('tshiann2-lang5'),
-                山詞物件, 鄉所詞物件, self.分析器.產生對齊詞('猴山', 'kau5-san1'),
-                ]
+            梅詞物件, 公詞物件, self.分析器.建立詞物件('tshiann2-lang5'),
+            山詞物件, 鄉所詞物件, self.分析器.產生對齊詞('猴山', 'kau5-san1'),
+            ]
         self.assertEqual(組物件.內底詞, 答案詞陣列)

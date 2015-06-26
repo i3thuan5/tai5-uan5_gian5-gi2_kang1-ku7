@@ -24,8 +24,8 @@ class 程式腳本單元試驗(TestCase):
 
     def test_一般資料夾執行檔路徑加尾(self):
         self.assertEqual(
-                self.腳本._執行檔路徑加尾('/home/git/mgiza/mgizapp/bin'),
-                '/home/git/mgiza/mgizapp/bin/')
+            self.腳本._執行檔路徑加尾('/home/git/mgiza/mgizapp/bin'),
+            '/home/git/mgiza/mgizapp/bin/')
 
     def test_走正常指令(self):
         self.腳本._走指令('/bin/echo')

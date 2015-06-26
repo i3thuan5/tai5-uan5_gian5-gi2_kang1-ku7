@@ -19,7 +19,7 @@ class 音檔頭前表單元試驗(unittest.TestCase):
         音 = open(self.音檔, 'rb')
         原始 = open(self.原始檔, 'rb')
         self.assertEqual(
-                self.音檔頭前表.提掉(音.read()), 原始.read())
+            self.音檔頭前表.提掉(音.read()), 原始.read())
         音.close()
         原始.close()
 
@@ -27,7 +27,7 @@ class 音檔頭前表單元試驗(unittest.TestCase):
         音 = open(self.音檔, 'rb')
         原始 = open(self.原始檔, 'rb')
         self.assertEqual(
-                self.音檔頭前表.加起哩(原始.read(), 2, 16000, 1),
-                音.read())
+            self.音檔頭前表.加起哩(原始.read(), 2, 16000, 1),
+            音.read())
         音.close()
         原始.close()

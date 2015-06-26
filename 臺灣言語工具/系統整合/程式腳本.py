@@ -28,9 +28,9 @@ class 程式腳本:
                     self._走指令錯誤(指令, 輸出資訊, 錯誤輸出資訊)
         except FileNotFoundError:
             raise RuntimeError(
-                            '檔案無存在，抑是指令參數愛用陣列的形式！！指令：{0}'
-                                    .format(指令)
-                    )
+                '檔案無存在，抑是指令參數愛用陣列的形式！！指令：{0}'
+                .format(指令)
+                )
 
     def _走指令錯誤(self, 指令, 輸出資訊=None, 錯誤輸出資訊=None):
         if 輸出資訊:
@@ -42,9 +42,9 @@ class 程式腳本:
         else:
             錯誤輸出 = ''
         raise RuntimeError(
-                        '指令走到一半發生問題！！指令：{0}\n{1}{2}'
-                                .format(指令, 輸出, 錯誤輸出)
-                )
+            '指令走到一半發生問題！！指令：{0}\n{1}{2}'
+            .format(指令, 輸出, 錯誤輸出)
+            )
 
     def _細項目錄(self, 資料目錄, 細項名):
         細項目錄 = os.path.join(資料目錄, 細項名)

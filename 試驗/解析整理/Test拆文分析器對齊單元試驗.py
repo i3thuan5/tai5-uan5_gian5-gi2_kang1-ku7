@@ -168,12 +168,12 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         組物件 = self.分析器.產生對齊組(型, 音)
         self.assertEqual(len(組物件.內底詞), 5)
         self.assertEqual(組物件.內底詞, [
-                self.分析器.產生對齊詞('我', 'gua2'),
-                self.分析器.產生對齊詞('有', 'u7'),
-                self.分析器.產生對齊詞('一張', 'tsit8-tiunn1'),
-                self.分析器.產生對齊詞('椅仔', 'i2-a2'),
-                self.分析器.產生對齊詞('！', '!'),
-                ])
+            self.分析器.產生對齊詞('我', 'gua2'),
+            self.分析器.產生對齊詞('有', 'u7'),
+            self.分析器.產生對齊詞('一張', 'tsit8-tiunn1'),
+            self.分析器.產生對齊詞('椅仔', 'i2-a2'),
+            self.分析器.產生對齊詞('！', '!'),
+            ])
 
     def test_對齊組濟字輕聲(self):
         型 = '物件無去矣！'
@@ -185,11 +185,11 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         組物件 = self.分析器.產生對齊組(型, 加空白後音)
         self.assertEqual(len(組物件.內底詞), 4)
         self.assertEqual(組物件.內底詞, [
-                self.分析器.產生對齊詞('物件', 'mi2-kiann7'),
-                self.分析器.產生對齊詞('無去', 'boo5-0ki3'),
-                self.分析器.產生對齊詞('矣', 'ah'),
-                self.分析器.產生對齊詞('！', '!'),
-                ])
+            self.分析器.產生對齊詞('物件', 'mi2-kiann7'),
+            self.分析器.產生對齊詞('無去', 'boo5-0ki3'),
+            self.分析器.產生對齊詞('矣', 'ah'),
+            self.分析器.產生對齊詞('！', '!'),
+            ])
 
     def test_對齊組濟字注音(self):
         詞型 = '媠姑娘'
@@ -297,15 +297,15 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         組物件 = self.分析器.產生對齊組(詞型, 加空白後詞音)
         self.assertEqual(len(組物件.內底詞), 8)
         self.assertEqual(組物件.內底詞, [
-                self.分析器.產生對齊詞('枋寮', 'Pang-liau5'),
-                self.分析器.產生對齊詞('漁港', 'hi5-kang2'),
-                self.分析器.產生對齊詞('「', '「'),
-                self.分析器.產生對齊詞('大條巷', 'Tua7-tiau5-hang7'),
-                self.分析器.產生對齊詞('」', '」'),
-                self.分析器.產生對齊詞('上闊', 'siang7-khoah'),
-                self.分析器.產生對齊詞('兩公尺', 'nng7-kong-tshioh'),
-                self.分析器.產生對齊詞('。', '.'),
-                ])
+            self.分析器.產生對齊詞('枋寮', 'Pang-liau5'),
+            self.分析器.產生對齊詞('漁港', 'hi5-kang2'),
+            self.分析器.產生對齊詞('「', '「'),
+            self.分析器.產生對齊詞('大條巷', 'Tua7-tiau5-hang7'),
+            self.分析器.產生對齊詞('」', '」'),
+            self.分析器.產生對齊詞('上闊', 'siang7-khoah'),
+            self.分析器.產生對齊詞('兩公尺', 'nng7-kong-tshioh'),
+            self.分析器.產生對齊詞('。', '.'),
+            ])
 
     def test_對齊組濟字標點錯(self):
         詞型 = '枋寮漁港「大條巷」上闊兩。公尺'
@@ -326,12 +326,12 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         組物件 = self.分析器.產生對齊組(型, 處理好詞音)
         self.assertEqual(len(組物件.內底詞), 5)
         self.assertEqual(組物件.內底詞, [
-                self.分析器.產生對齊詞('gua', 'gua2'),
-                self.分析器.產生對齊詞('有', 'u7'),
-                self.分析器.產生對齊詞('tsit8-tiunn1', 'tsit8-tiunn1'),
-                self.分析器.產生對齊詞('椅仔', 'i2-a2'),
-                self.分析器.產生對齊詞('！', '!'),
-                ])
+            self.分析器.產生對齊詞('gua', 'gua2'),
+            self.分析器.產生對齊詞('有', 'u7'),
+            self.分析器.產生對齊詞('tsit8-tiunn1', 'tsit8-tiunn1'),
+            self.分析器.產生對齊詞('椅仔', 'i2-a2'),
+            self.分析器.產生對齊詞('！', '!'),
+            ])
         self.assertEqual(組物件, self.分析器.產生對齊組(型, 加空白後詞音))
         減號後型 = self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 型)
         self.assertEqual(組物件, self.分析器.產生對齊組(減號後型, 處理好詞音))
@@ -347,12 +347,12 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         組物件 = self.分析器.產生對齊組(型, 處理好詞音)
         self.assertEqual(len(組物件.內底詞), 5)
         self.assertEqual(組物件.內底詞, [
-                self.分析器.產生對齊詞('gua', 'gua2'),
-                self.分析器.產生對齊詞('有', 'u7'),
-                self.分析器.產生對齊詞('tsit tiunn', 'tsit8-tiunn1'),
-                self.分析器.產生對齊詞('椅仔', 'i2-a2'),
-                self.分析器.產生對齊詞('！', '!'),
-                ])
+            self.分析器.產生對齊詞('gua', 'gua2'),
+            self.分析器.產生對齊詞('有', 'u7'),
+            self.分析器.產生對齊詞('tsit tiunn', 'tsit8-tiunn1'),
+            self.分析器.產生對齊詞('椅仔', 'i2-a2'),
+            self.分析器.產生對齊詞('！', '!'),
+            ])
         self.assertEqual(組物件, self.分析器.產生對齊組(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 型), 處理好詞音))
 
     def test_對齊組一般符號(self):
@@ -435,8 +435,8 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         集物件 = self.分析器.產生對齊集(型, 處理好詞音)
         self.assertEqual(len(集物件.內底組), 1)
         self.assertEqual(集物件.內底組, [
-                self.分析器.產生對齊組(型, 處理好詞音),
-                ])
+            self.分析器.產生對齊組(型, 處理好詞音),
+            ])
         self.assertEqual(集物件,
                          self.分析器.產生對齊集(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 型), 加空白後詞音))
 
@@ -446,8 +446,8 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         集物件 = self.分析器.產生對齊集(詞型, 詞音)
         self.assertEqual(len(集物件.內底組), 1)
         self.assertEqual(集物件.內底組, [
-                self.分析器.產生對齊組(詞型, 詞音),
-                ])
+            self.分析器.產生對齊組(詞型, 詞音),
+            ])
 
     def test_對齊集濟字佮符號(self):
         詞型 = '枋寮漁港「大條巷」上闊兩公尺。'
@@ -459,8 +459,8 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         集物件 = self.分析器.產生對齊集(詞型, 處理好詞音)
         self.assertEqual(len(集物件.內底組), 1)
         self.assertEqual(集物件.內底組, [
-                self.分析器.產生對齊組(詞型, 處理好詞音),
-                ])
+            self.分析器.產生對齊組(詞型, 處理好詞音),
+            ])
 
     def test_對齊句濟字(self):
         型 = '我有一張椅仔！'
@@ -469,8 +469,8 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         句物件 = self.分析器.產生對齊句(型, 音)
         self.assertEqual(len(句物件.內底集), 1)
         self.assertEqual(句物件.內底集, [
-                self.分析器.產生對齊集(型, 音),
-                ])
+            self.分析器.產生對齊集(型, 音),
+            ])
 
     def test_對齊句濟字注音(self):
         詞型 = '人生若有媠姑娘。'
@@ -478,8 +478,8 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         句物件 = self.分析器.產生對齊句(詞型, 詞音)
         self.assertEqual(len(句物件.內底集), 1)
         self.assertEqual(句物件.內底集, [
-                self.分析器.產生對齊集(詞型, 詞音),
-                ])
+            self.分析器.產生對齊集(詞型, 詞音),
+            ])
 
     def test_對齊句濟字佮符號(self):
         詞型 = '枋寮漁港「大條巷」上闊兩公尺。'
@@ -491,8 +491,8 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         句物件 = self.分析器.產生對齊句(詞型, 處理好詞音)
         self.assertEqual(len(句物件.內底集), 1)
         self.assertEqual(句物件.內底集, [
-                self.分析器.產生對齊集(詞型, 處理好詞音),
-                ])
+            self.分析器.產生對齊集(詞型, 處理好詞音),
+            ])
         self.assertEqual(句物件, self.分析器.產生對齊句(詞型, 加空白後詞音))
 
     def test_對齊章濟字(self):
@@ -504,24 +504,24 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         self.assertEqual(self.粗胚.符號邊仔加空白(處理好詞音), 加空白後詞音)
         章物件 = self.分析器.產生對齊章(詞型, 原來詞音)
         self.assertEqual(章物件.內底句, [
-                self.分析器.產生對齊句('點仔膠，', 'tiam2-a2-ka1,'),
-                self.分析器.產生對齊句('黏著跤，', 'liam5-tioh8 kha1,'),
-                self.分析器.產生對齊句('叫阿爸，', 'kio3 a1-pah4,'),
-                self.分析器.產生對齊句('買豬跤，', 'be2 ti1-kha1,'),
-                self.分析器.產生對齊句('豬跤箍仔焄爛爛，', 'ti1-kha1 khoo1-a2 kun5 nua7-nua7,'),
-                self.分析器.產生對齊句('枵鬼囡仔流水瀾。', 'iau1-kui2 gin2-a2 lau5 tsui2-nua7.'),
-                ])
+            self.分析器.產生對齊句('點仔膠，', 'tiam2-a2-ka1,'),
+            self.分析器.產生對齊句('黏著跤，', 'liam5-tioh8 kha1,'),
+            self.分析器.產生對齊句('叫阿爸，', 'kio3 a1-pah4,'),
+            self.分析器.產生對齊句('買豬跤，', 'be2 ti1-kha1,'),
+            self.分析器.產生對齊句('豬跤箍仔焄爛爛，', 'ti1-kha1 khoo1-a2 kun5 nua7-nua7,'),
+            self.分析器.產生對齊句('枵鬼囡仔流水瀾。', 'iau1-kui2 gin2-a2 lau5 tsui2-nua7.'),
+            ])
         self.assertEqual(章物件, self.分析器.產生對齊章(詞型, 處理好詞音))
         self.assertEqual(章物件, self.分析器.產生對齊章(詞型, 加空白後詞音))
 
     def test_對齊章頭尾分詞(self):
         答案 = self.分析器.產生對齊句('點仔膠，', 'tiam2-a2-ka1,')
         self.assertEqual(
-                self.分析器.產生對齊句(' 點仔膠，', 'tiam2-a2-ka1,'), 答案)
+            self.分析器.產生對齊句(' 點仔膠，', 'tiam2-a2-ka1,'), 答案)
         self.assertEqual(
-                self.分析器.產生對齊句(' 點仔膠， ', 'tiam2-a2-ka1, '), 答案)
+            self.分析器.產生對齊句(' 點仔膠， ', 'tiam2-a2-ka1, '), 答案)
         self.assertEqual(
-                self.分析器.產生對齊句(' 點 仔膠， ', ' tiam2-a2-ka1  ,'), 答案)
+            self.分析器.產生對齊句(' 點 仔膠， ', ' tiam2-a2-ka1  ,'), 答案)
 
     def test_對齊章濟符號(self):
         詞型 = '！！。。，。你好？'
@@ -530,18 +530,18 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         self.assertEqual(self.粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來詞音), 處理好詞音)
         章物件 = self.分析器.產生對齊章(詞型, 處理好詞音)
         self.assertEqual(章物件.內底句, [
-                self.分析器.產生對齊句('！！。。，。', '!!..,.'),
-                self.分析器.產生對齊句('你好？', 'li2 ho2?'),
-                ])
+            self.分析器.產生對齊句('！！。。，。', '!!..,.'),
+            self.分析器.產生對齊句('你好？', 'li2 ho2?'),
+            ])
         加空白後詞型 = ' ！ ！ 。 。 ， 。 你好 ？ '
         加空白後詞音 = ' ! ! . . , . li2 ho2 ? '
         self.assertEqual(self.粗胚.符號邊仔加空白(詞型), 加空白後詞型)
         self.assertEqual(self.粗胚.符號邊仔加空白(處理好詞音), 加空白後詞音)
         章物件 = self.分析器.產生對齊章(加空白後詞型, 加空白後詞音)
         self.assertEqual(章物件.內底句, [
-                self.分析器.產生對齊句('！！。。，。', ' ! ! . . , .'),
-                self.分析器.產生對齊句(' 你好？', ' li2 ho2?'),
-                ])
+            self.分析器.產生對齊句('！！。。，。', ' ! ! . . , .'),
+            self.分析器.產生對齊句(' 你好？', ' li2 ho2?'),
+            ])
 
     def test_對齊詞傳無仝濟字(self):
         型 = '姑娘'
@@ -569,9 +569,9 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
 # 			self.分析器.產生對齊句(' 恁老母ti3佗位 ！', ' lin1 lau3 bu2 ti3 to1 ui7 !'),
 # 			][0])
         self.assertEqual(章物件.內底句, [
-                self.分析器.產生對齊句('恁老母ti3佗位 ！ \n', 'lin1 lau3 bu2 ti3 to1 ui7 ! \n'),
-                self.分析器.產生對齊句(' 恁老母ti3佗位 ！', ' lin1 lau3 bu2 ti3 to1 ui7 !'),
-                ])
+            self.分析器.產生對齊句('恁老母ti3佗位 ！ \n', 'lin1 lau3 bu2 ti3 to1 ui7 ! \n'),
+            self.分析器.產生對齊句(' 恁老母ti3佗位 ！', ' lin1 lau3 bu2 ti3 to1 ui7 !'),
+            ])
 
     def test_拆好陣列產生對齊詞傳無仝濟字(self):
         型一 = '媠'

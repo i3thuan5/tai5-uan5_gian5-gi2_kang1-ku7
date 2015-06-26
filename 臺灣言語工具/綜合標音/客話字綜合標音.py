@@ -41,4 +41,4 @@ class 客話字綜合標音(字綜合標音):
 
     def __eq__(self, 別个):
         return isinstance(別个, 客話字綜合標音) and self.型體 == 別个.型體 and \
-                self.臺灣客話 == 別个.臺灣客話
+            self.臺灣客話 == 別个.臺灣客話
