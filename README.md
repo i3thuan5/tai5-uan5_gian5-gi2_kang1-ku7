@@ -60,6 +60,11 @@ virtualenv venv --python python3 # 設置環境檔
 . venv/bin/activate # 載入環境
 pip install https://github.com/rsennrich/Bleualign/archive/master.zip pip install https://github.com/kpu/kenlm/archive/master.zip
 ```
+程式碼自動排版
+```
+pip install autopep8
+autopep8  --exclude=venv,外部程式 --ignore=E251,E101,W191,W291,W293,E501 -r --in-place .
+```
 
 ##詳細安裝
 
