@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 from sys import exit
 import sys
+from time import sleep
 import unittest
 from unittest.suite import TestSuite
+
+
 from 臺灣言語工具.翻譯.摩西工具.安裝摩西翻譯佮相關程式 import 安裝摩西翻譯佮相關程式
 
 
@@ -28,7 +31,9 @@ if __name__ == '__main__':
             try:
                 安裝程式.安裝moses(編譯CPU數=核心數)
             except RuntimeError:
-                pass
+                sleep(10)
+            else:
+                break
             核心數 //= 2
             if 核心數 < 1:
                 核心數 = 1
