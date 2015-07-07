@@ -696,6 +696,6 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
 
     def test_分號愛斷句(self):
         self.分析器.產生對齊章(
-           '僥倖錢，失德了；冤枉錢，跋輸筊。',
+            '僥倖錢，失德了；冤枉錢，跋輸筊。',
             'Hiau-hīng-tsînn, sit-tik liáu, uan-óng tsînn, pua̍h-su kiáu. '
         )
