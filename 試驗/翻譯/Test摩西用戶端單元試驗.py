@@ -237,7 +237,7 @@ class 摩西用戶端單元試驗(TestCase):
         )
 
     def test_翻譯實際例(self):
-        華語章 = '大-約 六-千 兩-百 九-十-六-萬-票 的 普-選-票 ； 贏-過 共-和-黨 候-選-人 麥-肯 的 百-分-之 四-十-六 ，'
+        華語章 = '大-約 六-千 兩-百 九-十-六-萬-票 的 普-選-票 ；'
         self.xmlrpcMock.return_value.translate.return_value = {'nbest': [{
             'align': [
                 {'src-end': 0, 'src-start': 0, 'tgt-start': 0},
@@ -247,18 +247,10 @@ class 摩西用戶端單元試驗(TestCase):
                 {'src-end': 4, 'src-start': 4, 'tgt-start': 4},
                 {'src-end': 5, 'src-start': 5, 'tgt-start': 5},
                 {'src-end': 6, 'src-start': 6, 'tgt-start': 6},
-                {'src-end': 10, 'src-start': 7, 'tgt-start': 7},
-                {'src-end': 11, 'src-start': 11, 'tgt-start': 14},
-                {'src-end': 12, 'src-start': 12, 'tgt-start': 15},
-                {'src-end': 13, 'src-start': 13, 'tgt-start': 16}
             ],
             'hyp': ' \\uff0c  '
             '\\u516d-\\u5343-\\u5169-\\u767e-\\u4e5d-\\u5341-\\u516d-\\u842c|UNK|UNK|UNK  '
-            '\\u7968|UNK|UNK|UNK  e5  \\u666e|UNK|UNK|UNK  \\uff0c  e5  '
-            'iann5-ke3 Kiong7-ho5-tong2 hau7-soan2-jin5 McCain e5 pah-hun-chi '
-            'si3-chap8-lak8  e5  '
-            '\\u767e-\\u5206-\\u4e4b-\\u56db-\\u5341-\\u516d|UNK|UNK|UNK  '
-            '\\uff0c  ',
+            '\\u7968|UNK|UNK|UNK  e5  \\u666e|UNK|UNK|UNK  \\uff0c  e5  ',
             'totalScore': -458.9802856445312,
             'word-align': [
                 {'source-word': 0, 'target-word': 0},
@@ -268,17 +260,6 @@ class 摩西用戶端單元試驗(TestCase):
                 {'source-word': 4, 'target-word': 4},
                 {'source-word': 5, 'target-word': 5},
                 {'source-word': 6, 'target-word': 6},
-                {'source-word': 7, 'target-word': 7},
-                {'source-word': 8, 'target-word': 7},
-                {'source-word': 8, 'target-word': 8},
-                {'source-word': 8, 'target-word': 9},
-                {'source-word': 8, 'target-word': 10},
-                {'source-word': 8, 'target-word': 12},
-                {'source-word': 8, 'target-word': 13},
-                {'source-word': 9, 'target-word': 11},
-                {'source-word': 11, 'target-word': 14},
-                {'source-word': 12, 'target-word': 15},
-                {'source-word': 13, 'target-word': 16}
             ]
         }]}
         用戶端 = 摩西用戶端(編碼器=語句編碼器())
