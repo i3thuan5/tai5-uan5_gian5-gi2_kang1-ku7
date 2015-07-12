@@ -21,10 +21,10 @@ class 用戶端連線:
 </wordsegmentation>
 '''
 
-    def __init__(self, 主機, 連接埠, 編碼, 帳號, 密碼):
+    def __init__(self, 主機, 埠, 編碼, 帳號, 密碼):
         self.編碼 = 編碼
         self.主機 = 主機
-        self.連接埠 = 連接埠
+        self.埠 = 埠
         self.帳號 = 帳號
         self.密碼 = 密碼
 
@@ -38,7 +38,7 @@ class 用戶端連線:
             while True:
                 try:
                     逐逝 = self._連線(
-                        愛做, 等待, self.編碼, self.主機, self.連接埠, self.帳號, self.密碼)
+                        愛做, 等待, self.編碼, self.主機, self.埠, self.帳號, self.密碼)
                     結果.append(逐逝)
                 except Exception as 問題:
                     if 一定愛成功:
@@ -51,12 +51,12 @@ class 用戶端連線:
                     break
         return 結果
 
-    def _連線(self, 語句, 等待, 編碼, 主機, 連接埠, 帳號, 密碼):
+    def _連線(self, 語句, 等待, 編碼, 主機, 埠, 帳號, 密碼):
         連線 = socket(
             AF_INET, SOCK_STREAM)
         連線.settimeout(等待)
         try:
-            連線.connect((主機, 連接埠))
+            連線.connect((主機, 埠))
         except:
             raise RuntimeError("連線逾時")
         資料 = self.傳去格式.format(編碼, 帳號, 密碼, 語句).encode(編碼)
