@@ -23,13 +23,15 @@ import unicodedata
 class 教會系羅馬音標(閩南語音標介面):
     # 0 tsh iaunnh 10
     音標上長長度 = 1 + 3 + 6 + 2
-    聲 = None
-    韻 = None
-    調 = 1
-    輕 = ''
-    日本話 = ''
-    音標 = None
     正規法 = lambda self, 音標: unicodedata.normalize('NFC', 音標)
+
+    def __init__(self):
+        self.聲 = None
+        self.韻 = None
+        self.調 = None
+        self.輕 = ''
+        self.日本話 = ''
+        self.音標 = None
 
     def 分析聲韻調(self, 音標):
         self.聲調符號表 = 教會系羅馬音標聲調符號表
@@ -47,10 +49,22 @@ class 教會系羅馬音標(閩南語音標介面):
         if not 聲韻符合:
             音標是著的 = False
         elif self.韻.endswith('p') or self.韻.endswith('t') or self.韻.endswith('k') or self.韻.endswith('h'):
-            if self.調 == 1:
+            if self.調 == None:
                 self.調 = 4
-            elif self.調 != 0 and self.調 != 4 and self.調 != 8 and self.調 != 10:
+            elif self.調 in {4, 8, 10, 0}:  # 中高低調入聲、輕聲
+                pass
+            elif self.調 in {1, 3, 5}:
+                self.日本話 = '1'
+                if self.調 == 1:
+                    self.調 = 10
+                elif self.調 == 3:
+                    self.調 = 4
+                else:
+                    self.調 = 8
+            else:
                 音標是著的 = False
+        if self.調 == None:
+            self.調 = 1
         if self.聲 == 'm' or self.聲 == 'ng':
             if self.韻 != 'ng' and self.韻 != 'ngh' and ('n' in self.韻 or 'm' in self.韻):
                 音標是著的 = False
@@ -95,7 +109,7 @@ class 教會系羅馬音標(閩南語音標介面):
                 self.調 = 10
                 愛結束矣 = True
             elif 字元.isdigit():
-                if self.調 == 1:
+                if self.調 == None:
                     self.調 = int(字元)
                 else:
                     音標是著的 = False
