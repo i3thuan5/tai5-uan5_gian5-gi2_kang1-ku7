@@ -116,14 +116,6 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
     聲母表 = 臺灣閩南語羅馬字拼音聲母表
     韻母表 = 臺灣閩南語羅馬字拼音韻母表
     聲調符號表 = None
-    聲 = None
-    韻 = None
-    調 = 1
-    輕 = ''
-    韻頭 = None
-    韻腹 = None
-    韻尾 = None
-    音標 = None
 
     數字調轉閏號調表 = 臺灣閩南語羅馬字拼音數字調轉閏號調表
 
@@ -133,6 +125,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
     轉音值模組 = 臺灣閩南語羅馬字拼音轉音值模組()
 
     def __init__(self, 音標):
+        super(臺灣閩南語羅馬字拼音, self).__init__()
         self.分析聲韻調(音標)
         if self.聲 == 'm' or self.聲 == 'n' or self.聲 == 'ng':
             if self.韻 == 'o':
@@ -154,7 +147,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
             if 符號 in self.音標:
                 替代符號 = 符號
                 break
-        return self.輕 + self.日本話\
+        return self.輕 + self.外來語\
             + self.聲 + self.韻.replace(替代符號, self.數字調轉閏號調表[(替代符號, self.調)])
 # 	def 轉吳守禮方音(self):
 # 		return 方音符號吳守禮改良式(self.音標).音標

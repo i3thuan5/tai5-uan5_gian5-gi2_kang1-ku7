@@ -9,6 +9,7 @@ from 臺灣言語工具.基本元素.公用變數 import 無音
 
 
 class 拆文分析器建立單元試驗(unittest.TestCase):
+
     def setUp(self):
         self.分析器 = 拆文分析器()
         self.粗胚 = 文章粗胚()
@@ -498,3 +499,9 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
                          self.分析器.建立句物件(空白答案[0]))
         self.assertEqual(self.分析器.建立章物件(加空白).內底句[1],
                          self.分析器.建立句物件(空白答案[1]))
+
+    def test_外來語拉鍊(self):
+        self.分析器.產生對齊組(
+            '拉鍊',
+            'la55-lian51'
+        )
