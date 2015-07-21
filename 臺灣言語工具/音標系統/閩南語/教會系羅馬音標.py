@@ -20,13 +20,14 @@ import unicodedata
     'ḿ': ('m', '2'), 'm̀': ('m', '3'), 'm̂': ('m', '5'), 'm̌': ('m', '6'), 'm̄': ('m', '7'), 'm̍': ('m', '8'), 'm̋': ('m', '9'),
     'ń': ('n', '2'), 'ǹ': ('n', '3'), 'n̂': ('n', '5'), 'ň': ('n', '6'), 'n̄': ('n', '7'), 'n̍': ('n', '8'), 'n̋': ('n', '9'), 'ň': ('n', '6'),
 }
-實際調值對應調號={
-        '11': '3',
-                '33': '7',
-        '55': '1',
-        '51': '2',
-        '35': '5',
-        }
+實際調值對應調號 = {
+    '11': '3',
+    '33': '7',
+    '55': '1',
+    '51': '2',
+    '35': '5',
+}
+
 
 class 教會系羅馬音標(閩南語音標介面):
     # 0 tsh iaunnh 10
@@ -57,7 +58,7 @@ class 教會系羅馬音標(閩南語音標介面):
         if not 聲韻符合:
             音標是著的 = False
         elif self.韻[-1] in ['p', 't', 'k', 'h']:
-            if self.調 == None:
+            if self.調 is None:
                 self.調 = '4'
             elif self.調 in {'4', '8', '10', '0'}:  # 中高低調入聲、輕聲
                 pass
@@ -72,12 +73,12 @@ class 教會系羅馬音標(閩南語音標介面):
             else:
                 音標是著的 = False
         else:
-            if self.調 == None:
+            if self.調 is None:
                 self.調 = '1'
             elif self.調 in 實際調值對應調號:
                 self.外來語 = '1'
-                self.調=實際調值對應調號[self.調]
-            elif len(self.調)==1:
+                self.調 = 實際調值對應調號[self.調]
+            elif len(self.調) == 1:
                 pass
             else:
                 音標是著的 = False
@@ -125,7 +126,7 @@ class 教會系羅馬音標(閩南語音標介面):
                 self.調 = '10'
                 愛結束矣 = True
             elif 字元.isdigit():
-                if self.調 == None:
+                if self.調 is None:
                     self.調 = 字元
                 else:
                     self.調 += 字元
