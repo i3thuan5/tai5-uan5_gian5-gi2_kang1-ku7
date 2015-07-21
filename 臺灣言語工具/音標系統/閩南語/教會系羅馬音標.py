@@ -38,7 +38,7 @@ class 教會系羅馬音標(閩南語音標介面):
         self.韻 = None
         self.調 = None
         self.輕 = ''
-        self.日本話 = ''
+        self.外來語 = ''
         self.音標 = None
 
     def 分析聲韻調(self, 音標):
@@ -49,7 +49,7 @@ class 教會系羅馬音標(閩南語音標介面):
             self.輕 = '0'
             音標 = 音標[1:]
         elif 音標.startswith('1'):
-            self.日本話 = '1'
+            self.外來語 = '1'
             音標 = 音標[1:]
         self.音標 = self._轉教羅韻符號(音標)
         音標是著的, 無調號音標 = self._分離閏號聲調(self.音標)
@@ -62,7 +62,7 @@ class 教會系羅馬音標(閩南語音標介面):
             elif self.調 in {'4', '8', '10', '0'}:  # 中高低調入聲、輕聲
                 pass
             elif self.調 in {'1', '3', '5'}:
-                self.日本話 = '1'
+                self.外來語 = '1'
                 if self.調 == '1':
                     self.調 = '10'
                 elif self.調 == '3':
@@ -75,7 +75,7 @@ class 教會系羅馬音標(閩南語音標介面):
             if self.調 == None:
                 self.調 = '1'
             elif self.調 in 實際調值對應調號:
-                self.日本話 = '1'
+                self.外來語 = '1'
                 self.調=實際調值對應調號[self.調]
             elif len(self.調)==1:
                 pass
@@ -92,7 +92,7 @@ class 教會系羅馬音標(閩南語音標介面):
         return self.音標
 
     def 做音標(self):
-        self.音標 = ''.join([self.輕, self.日本話, self.聲, self.韻, self.調])
+        self.音標 = ''.join([self.輕, self.外來語, self.聲, self.韻, self.調])
 
     def _轉教羅韻符號(self, 音標):
         一開始 = True

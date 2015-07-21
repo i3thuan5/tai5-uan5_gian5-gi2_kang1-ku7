@@ -147,7 +147,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
             if 符號 in self.音標:
                 替代符號 = 符號
                 break
-        return self.輕 + self.日本話\
+        return self.輕 + self.外來語\
             + self.聲 + self.韻.replace(替代符號, self.數字調轉閏號調表[(替代符號, self.調)])
 # 	def 轉吳守禮方音(self):
 # 		return 方音符號吳守禮改良式(self.音標).音標
