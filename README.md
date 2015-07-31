@@ -1,10 +1,7 @@
 #臺灣言語工具
 
-[![Supported Python versions](https://pypip.in/py_versions/tai5_uan5_gian5_gi2_kang1_ku7/badge.svg)](https://pypi.python.org/pypi/tai5_uan5_gian5_gi2_kang1_ku7/)
-[![Development Status](https://pypip.in/status/tai5_uan5_gian5_gi2_kang1_ku7/badge.svg)](https://pypi.python.org/pypi/tai5_uan5_gian5_gi2_kang1_ku7/)
-[![Latest Version](https://pypip.in/version/tai5_uan5_gian5_gi2_kang1_ku7/badge.svg)](https://pypi.python.org/pypi/tai5_uan5_gian5_gi2_kang1_ku7/)
-[![Build Status](https://travis-ci.org/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7.svg?branch=master)](https://travis-ci.org/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7)
-[![Coverage Status](https://coveralls.io/repos/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7/badge.svg)](https://coveralls.io/r/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7)
+[![Build Status](https://travis-ci.org/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7.svg?branch=master)](https://travis-ci.org/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7)
+[![Coverage Status](https://coveralls.io/repos/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7/badge.svg)](https://coveralls.io/r/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7)
 
 臺灣語言資訊函式庫，文本處理、語音辨識、合成、斷詞、翻譯、…等功能。
 
@@ -14,7 +11,7 @@ sudo apt-get install -y g++ libboost-all-dev python3 python-virtualenv
 virtualenv venv --python python3 # 設置環境檔
 . venv/bin/activate # 載入環境
 pip install https://github.com/rsennrich/Bleualign/archive/master.zip pip install https://github.com/kpu/kenlm/archive/master.zip
-pip install tai5_uan5_gian5_gi2_kang1_ku7
+pip install tai5-uan5_gian5-gi2_kang1-ku7
 ```
 
 ##使用說明
@@ -53,7 +50,7 @@ from 臺灣言語工具.翻譯.摩西工具.安裝摩西翻譯佮相關程式 im
 ```
 
 ##開發
-上面的pip不要裝`tai5_uan5_gian5_gi2_kang1_ku7`
+上面的pip不要裝`tai5-uan5_gian5-gi2_kang1-ku7`
 ```bash
 sudo apt-get install -y g++ libboost-all-dev python3 python-virtualenv
 virtualenv venv --python python3 # 設置環境檔
@@ -92,12 +89,12 @@ virtualenv venv --python python3 # 設置環境檔
 
 ####PYPI發行版本
 ```bash
-pip install tai5_uan5_gian5_gi2_kang1_ku7
+pip install tai5-uan5_gian5-gi2_kang1-ku7
 ```
 
 ####徙掉
 ```bash
-pip uninstall tai5_uan5_gian5_gi2_kang1_ku7
+pip uninstall tai5-uan5_gian5-gi2_kang1-ku7
 ```
 
 ###相關套件
