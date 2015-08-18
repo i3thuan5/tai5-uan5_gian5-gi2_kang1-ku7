@@ -41,3 +41,7 @@ class 尾字辭典單元試驗(辭典單元試驗, TestCase):
         self.assertEqual(self.字典.查詞(self.對齊詞),
                          [{問號對齊物件}, set(),
                           set(), {self.對齊詞}])
+
+    def test_加檔案的詞(self):
+        # 無法度mock到`臺灣言語工具.辭典.尾字辭典._加詞`。因為伊是用家己的指標，mocka無到
+        pass

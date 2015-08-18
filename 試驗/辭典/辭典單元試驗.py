@@ -4,6 +4,9 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.基本元素.詞 import 詞
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
+from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
+from os import remove
+from unittest.mock import patch, call
 
 
 class 辭典單元試驗:
@@ -13,6 +16,7 @@ class 辭典單元試驗:
         self.字典 = self.辭典型態(4)
         self.粗胚 = 文章粗胚()
         self.分析器 = 拆文分析器()
+        self.譀鏡 = 物件譀鏡()
         self.孤詞物 = self.分析器.建立詞物件('你')
         self.孤詞音 = self.分析器.建立詞物件('li2')
         self.二詞物 = self.分析器.建立詞物件('好')
@@ -104,3 +108,17 @@ class 辭典單元試驗:
     def test_字數(self):
         for 長度 in range(1, 100):
             self.assertEqual(self.辭典型態(長度).上濟字數(), 長度)
+
+    def test_加檔案的詞(self):
+        檔名 = '暫存檔'
+        詞陣列 = [self.對齊詞, self.詞音標]
+        with open(檔名, 'w') as 檔案:
+            for 詞物件 in 詞陣列:
+                print(self.譀鏡.看分詞(詞物件), file=檔案)
+        with patch('臺灣言語工具.辭典.{0}.{0}.加詞'.format(self.辭典型態.__name__)) as 加詞mock:
+            self.字典.加檔案的詞(檔名)
+            call陣列 = []
+            for 詞物件 in 詞陣列:
+                call陣列.append(call(詞物件))
+            加詞mock.assert_has_calls(call陣列)
+        remove(檔名)
