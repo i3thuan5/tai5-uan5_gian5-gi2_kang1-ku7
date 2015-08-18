@@ -1,0 +1,9 @@
+[submodule "外部程式/mosesdecoder"]
+	path = 外部程式/mosesdecoder
+	url = https://github.com/moses-smt/mosesdecoder.git
+[submodule "外部程式/giza-pp"]
+	path = 外部程式/giza-pp
+	url = https://github.com/sih4sing5hong5/giza-pp.git
+[submodule "外部程式/mgiza"]
+	path = 外部程式/mgiza
+	url = https://github.com/moses-smt/mgiza.git
