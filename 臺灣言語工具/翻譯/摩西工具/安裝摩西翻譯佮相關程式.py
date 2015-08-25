@@ -10,6 +10,8 @@ _外部程式目錄 = 外部程式().目錄()
 
 
 class 安裝摩西翻譯佮相關程式(程式腳本):
+    pull深度 = '100'
+
     def 安裝moses(self, moses安裝路徑=_外部程式目錄, 編譯CPU數=4):
         os.makedirs(moses安裝路徑, exist_ok=True)
         moses程式碼目錄 = os.path.join(moses安裝路徑, 'mosesdecoder')
@@ -21,7 +23,7 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
                     'https://github.com/sih4sing5hong5/mosesdecoder.git'
                 ])
         with self._換目錄(moses程式碼目錄):
-            self._走指令(['git', 'pull', '--depth', '1'], 愛直接顯示輸出=True)
+            self._走指令(['git', 'pull', '--depth', self.pull深度], 愛直接顯示輸出=True)
             self._走指令(['./bjam', '-j{0}'.format(編譯CPU數)], 愛直接顯示輸出=True)
 
     def 安裝gizapp(self, gizapp安裝路徑=_外部程式目錄):
@@ -35,7 +37,7 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
                     'https://github.com/sih4sing5hong5/giza-pp.git'
                 ])
         with self._換目錄(gizapp程式碼目錄):
-            self._走指令(['git', 'pull', '--depth', '1'], 愛直接顯示輸出=True)
+            self._走指令(['git', 'pull', '--depth', self.pull深度], 愛直接顯示輸出=True)
             self._走指令('make', 愛直接顯示輸出=True)
         執行檔目錄 = self._細項目錄(gizapp程式碼目錄, 'bin')
         move(os.path.join(gizapp程式碼目錄, 'GIZA++-v2', 'GIZA++'), 執行檔目錄)
@@ -53,7 +55,7 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
                     'https://github.com/moses-smt/mgiza.git'
                 ])
         with self._換目錄(mgiza程式碼目錄):
-            self._走指令(['git', 'pull', '--depth', '1'], 愛直接顯示輸出=True)
+            self._走指令(['git', 'pull', '--depth', self.pull深度], 愛直接顯示輸出=True)
             self._走指令(['cmake', '.'])
             self._走指令('make', 愛直接顯示輸出=True)
             self._走指令(['make', 'install'], 愛直接顯示輸出=True)
