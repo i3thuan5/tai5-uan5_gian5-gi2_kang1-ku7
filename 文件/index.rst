@@ -11,7 +11,12 @@ Contents:
 .. toctree::
    :maxdepth: 2
    
+   安裝
    基本元素
+   常見情境
+   機器翻譯
+   開發
+   授權聲明
 
 
 
