@@ -115,6 +115,18 @@ pip install https://github.com/kpu/kenlm/archive/master.zip
 pip install https://github.com/sih4sing5hong5/hts_engine_python/archive/master.zip
 ```
 
+### 文件整理
+環境設定
+```bash
+pip install sphinx sphinx-autobuild recommonmark
+cd 文件
+sphinx-quickstart # 建立一開始的專案
+```
+編譯
+```
+make html
+```
+
 ##聲明
 本程式乃自由軟體，您必須遵照SocialCalc設計的通用公共授權（Common Public Attribution License, CPAL)來修改和重新發佈這一程式，詳情請參閱條文。授權大略如下，若有歧異，以`LICENSE`授權原文為主：
 	１．得使用、修改、複製並發佈此程式碼，且必須以通用公共授權發行；
