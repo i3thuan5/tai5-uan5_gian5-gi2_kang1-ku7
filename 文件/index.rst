@@ -3,10 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to 臺灣言語工具's documentation!
+臺灣言語工具說明文件
 ========================================
 
-Contents:
+目錄:
 
 .. toctree::
    :maxdepth: 2
@@ -20,7 +20,7 @@ Contents:
 
 
 
-Indices and tables
+索引
 ==================
 
 * :ref:`genindex`
