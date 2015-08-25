@@ -21,9 +21,9 @@ script:
  - python 範例/斷詞範例.py
  - python 範例/轉拼音系統.py
  - python 走全部試驗.py 單元試驗
+ - coverage run 走全部試驗.py
  - flake8 . --exclude=venv,外部程式 --count --show-source --ignore=E251,E101,W191,W291,W293,E501
 after_success:
- - coverage run 走全部試驗.py
  - coverage report
  - pip install --quiet python-coveralls
  - coveralls

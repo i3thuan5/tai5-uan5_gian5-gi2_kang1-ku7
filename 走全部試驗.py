@@ -45,5 +45,5 @@ if __name__ == '__main__':
     if len(試驗結果.errors) > 錯誤狀況 or 試驗結果.failures != []:
         exit(1)
     if len(試驗結果.errors) != []:
-        print('因為無編譯摩西程式試驗，有{}个試驗發生錯誤，的。程式猶原回傳0'.format(錯誤狀況), file=stderr)
+        print('因為無編譯摩西程式試驗，有{}个試驗發生錯誤。\n程式猶原回傳0'.format(錯誤狀況), file=stderr)
     exit(0)
