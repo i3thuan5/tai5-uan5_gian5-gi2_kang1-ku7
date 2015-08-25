@@ -15,9 +15,11 @@ from 臺灣言語工具.斷詞.中研院.斷詞用戶端 import 斷詞用戶端
 from 臺灣言語工具.翻譯.斷詞斷字翻譯 import 斷詞斷字翻譯
 from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+from os.path import isdir
 
 
 class 摩西模型訓練佮翻譯整合試驗(TestCase):
+
     def setUp(self):
         self.這馬目錄 = os.path.dirname(os.path.abspath(__file__))
         資料目錄 = os.path.join(self.這馬目錄, '翻譯語料')
@@ -27,7 +29,9 @@ class 摩西模型訓練佮翻譯整合試驗(TestCase):
 
     def tearDown(self):
         # 刣掉訓練出來的模型
-        rmtree(os.path.join(self.這馬目錄, '暫存資料夾'))
+        暫存資料夾 = os.path.join(self.這馬目錄, '暫存資料夾')
+        if isdir(暫存資料夾):
+            rmtree(暫存資料夾)
 
     def test_單一模型訓練(self):
         翻譯編碼器 = 語句編碼器()  # 若用著Unicdoe擴充就需要
