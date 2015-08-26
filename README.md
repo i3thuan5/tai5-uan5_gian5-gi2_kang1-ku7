@@ -21,6 +21,16 @@ pip install tai5-uan5_gian5-gi2_kang1-ku7 # 安裝套件
 [說明文件](http://tai5-uan5-gian5-gi2-kang1-ku7.readthedocs.org/zh_TW/latest/index.html)整理中。
 
 
+## 相關專案
+* [臺灣言語資料庫](https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_tsu1-liau7-khoo3)
+  * 母語資料存放規範
+* [臺灣言語服務](https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_hok8-bu7)
+  * `臺灣言語資料庫`的套件
+  * 結果`臺灣言語工具`，做好自動化翻譯、語音合成等功能
+  * 提供Web-based的服務
+* [臺灣言語平臺](https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_phing5-thai5)。
+  * 修改`臺灣言語資料庫`的網頁介面
+
 ## 授權聲明
 本程式乃自由軟體，您必須遵照SocialCalc設計的通用公共授權（Common Public Attribution License, CPAL)來修改和重新發佈這一程式，詳情請參閱條文。授權大略如下，若有歧異，以`LICENSE`授權原文為主：
 	１．得使用、修改、複製並發佈此程式碼，且必須以通用公共授權發行；
