@@ -26,9 +26,9 @@ pip install tai5-uan5_gian5-gi2_kang1-ku7 # 安裝套件
   * 母語資料存放規範
 * [臺灣言語服務](https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_hok8-bu7)
   * `臺灣言語資料庫`的套件
-  * 結果`臺灣言語工具`，做好自動化翻譯、語音合成等功能
+  * 結果`臺灣言語工具`，做好翻譯、語音合成等自動化模型訓練功能
   * 提供Web-based的服務
-* [臺灣言語平臺](https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_phing5-thai5)。
+* [臺灣言語平臺](https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_phing5-thai5)
   * 修改`臺灣言語資料庫`的網頁介面
 
 ## 授權聲明
