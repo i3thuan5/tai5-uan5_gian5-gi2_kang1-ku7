@@ -6,12 +6,6 @@ from unittest.case import TestCase
 from 臺灣言語工具.語言模型.KenLM語言模型訓練 import KenLM語言模型訓練
 from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
 from shutil import rmtree
-'''
-甲乙丙
-數量=C(丙), C(乙丙), C(甲乙丙)
-機率=P(丙), P(乙丙), P(甲乙丙)
-條件=P(丙), P(乙丙)/P(乙), P(甲乙丙)/P(甲乙)
-'''
 
 
 class KenLM語言模型訓練整合試驗(TestCase):

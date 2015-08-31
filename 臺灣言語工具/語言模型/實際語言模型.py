@@ -17,7 +17,7 @@ class 實際語言模型(語言模型):
             raise 參數錯誤('詞數愛是正整數，傳入來的是{0}'.format(上濟詞數))
         self._上濟詞數 = 上濟詞數
         self.總數表 = [0] * self.上濟詞數()
-        self.連詞表 = {}
+        self.語言模型表 = {}
 
     def 上濟詞數(self):
         return self._上濟詞數
@@ -41,18 +41,18 @@ class 實際語言模型(語言模型):
     def 總數(self):
         return self.總數表
 
-    def 數量(self, 連詞):
+    def 數量(self, 語言模型):
         數量表 = []
-        for 長度 in range(min(self.上濟詞數(), len(連詞))):
-            組合 = tuple(連詞[-1 - 長度:])
-            if 組合 in self.連詞表:
-                數量表.append(self.連詞表[組合])
+        for 長度 in range(min(self.上濟詞數(), len(語言模型))):
+            組合 = tuple(語言模型[-1 - 長度:])
+            if 組合 in self.語言模型表:
+                數量表.append(self.語言模型表[組合])
             else:
                 數量表.append(0)
         return 數量表
 
-    def 機率(self, 連詞):
-        數量表 = self.數量(連詞)
+    def 機率(self, 語言模型):
+        數量表 = self.數量(語言模型)
         機率表 = []
         for 數, 總 in zip(數量表, self.總數表):
             if 數 == 0:
@@ -61,12 +61,12 @@ class 實際語言模型(語言模型):
                 機率表.append(self.對數(數 / 總))
         return 機率表
 
-    def 條件(self, 連詞):
+    def 條件(self, 語言模型):
         '''條件機率'''
-        if 連詞 == [self.開始()]:
+        if 語言模型 == [self.開始()]:
             return [self.對數(1.0)]
-        數量表 = self.數量(連詞)
-        前數量表 = self.數量(連詞[:-1])
+        數量表 = self.數量(語言模型)
+        前數量表 = self.數量(語言模型[:-1])
         條件表 = []
 # 		print('數量表', 數量表)
 # 		print('前數量表', 前數量表, self.總數表[:1],)
@@ -87,10 +87,10 @@ class 實際語言模型(語言模型):
             for 所在 in range(len(詞陣列) - 長度 + 1):
                 self.總數表[長度 - 1] += 1
                 組合 = tuple(詞陣列[所在:所在 + 長度])
-                if 組合 not in self.連詞表:
-                    self.連詞表[組合] = 1
+                if 組合 not in self.語言模型表:
+                    self.語言模型表[組合] = 1
                 else:
-                    self.連詞表[組合] += 1
+                    self.語言模型表[組合] += 1
         return
 
     def 看章物件(self, 章物件):
