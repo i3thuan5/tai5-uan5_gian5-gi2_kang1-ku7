@@ -21,8 +21,7 @@ class KenLM語言模型(語言模型):
         for 所在, 結果 in enumerate(
                 self._語言模型.full_scores(分詞符號.join(字串), bos=False, eos=False)):
             if 所在 >= 開始的所在:
-                機率 = 結果[0]
-                _連紲詞長度 = 結果[1]
+                機率, _連紲詞長度, _是未知詞 = 結果
                 try:
                     機率 += 詞陣列[所在].屬性['機率']
                 except:
