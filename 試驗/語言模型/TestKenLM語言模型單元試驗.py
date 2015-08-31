@@ -7,12 +7,6 @@ from unittest.case import TestCase
 
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.語言模型.KenLM語言模型 import KenLM語言模型
-'''
-甲乙丙
-數量=C(丙), C(乙丙), C(甲乙丙)
-機率=P(丙), P(乙丙), P(甲乙丙)
-條件=P(丙), P(乙丙)/P(乙), P(甲乙丙)/P(甲乙)
-'''
 
 
 class KenLM語言模型單元試驗(TestCase):
