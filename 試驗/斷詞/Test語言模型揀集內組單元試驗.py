@@ -35,23 +35,42 @@ class 語言模型揀集內組單元試驗(TestCase):
         pass
 
     def test_標音的分數愛佮評分仝款(self):
-        '「分數 * (詞數 - 1)」因為頭一个開始的機率是1'
         self.語言模型.看(self.我有一張桌仔)
         標好, 分數, 詞數 = self.用語言模型揀.揀(self.語言模型, self.我)
         self.assertEqual(標好, self.我)
         self.assertEqual(3, 詞數)
-        self.assertAlmostEqual(分數 * (詞數 - 1),
-                               sum(self.語言模型.評分(self.我)), delta=self.忍受)
+        self.assertAlmostEqual(
+            分數,
+            sum(self.語言模型.評分(self.我)),
+            delta=self.忍受
+        )
         標好, 分數, 詞數 = self.用語言模型揀.揀(self.語言模型, self.桌仔)
         self.assertEqual(標好, self.桌仔)
         self.assertEqual(4, 詞數)
-        self.assertAlmostEqual(分數 * (詞數 - 1),
-                               sum(self.語言模型.評分(self.桌仔)), delta=self.忍受)
+        self.assertAlmostEqual(
+            分數,
+            sum(self.語言模型.評分(self.桌仔)),
+            delta=self.忍受
+        )
         標好, 分數, 詞數 = self.用語言模型揀.揀(self.語言模型, self.我有一張桌仔)
         self.assertEqual(標好, self.我有一張桌仔)
         self.assertEqual(7, 詞數)
-        self.assertAlmostEqual(分數 * (詞數 - 1),
-                               sum(self.語言模型.評分(self.我有一張桌仔)), delta=self.忍受)
+        self.assertAlmostEqual(
+            分數,
+            sum(self.語言模型.評分(self.我有一張桌仔)),
+            delta=self.忍受
+        )
+
+    def test_攏無看過的機率分數(self):
+        '「分數 * (詞數 - 1)」因為頭一个開始的機率是1'
+        標好, 分數, 詞數 = self.用語言模型揀.揀(self.語言模型, self.我)
+        self.assertEqual(標好, self.我)
+        self.assertEqual(3, 詞數)
+        self.assertAlmostEqual(
+            self.語言模型.無看過 * (詞數 - 1),
+            分數,
+            delta=self.忍受
+        )
 
     def test_看機率選詞(self):
         我 = self.分析器.產生對齊集('我', 'gua2')
