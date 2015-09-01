@@ -20,7 +20,7 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
             with self._換目錄(moses安裝路徑):
                 self._走指令([
                     'git', 'clone',
-                    '--depth', '1',
+                    '--depth', self.pull深度,
                     'https://github.com/sih4sing5hong5/mosesdecoder.git'
                 ])
         with self._換目錄(moses程式碼目錄):
@@ -34,7 +34,7 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
             with self._換目錄(gizapp安裝路徑):
                 self._走指令([
                     'git', 'clone',
-                    '--depth', '1',
+                    '--depth', self.pull深度,
                     'https://github.com/sih4sing5hong5/giza-pp.git'
                 ])
         with self._換目錄(gizapp程式碼目錄):
@@ -55,7 +55,7 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
             with self._換目錄(mgiza安裝路徑):
                 self._走指令([
                     'git', 'clone',
-                    '--depth', '1',
+                    '--depth', self.pull深度,
                     'https://github.com/moses-smt/mgiza.git'
                 ])
         with self._換目錄(mgiza程式碼目錄):
