@@ -101,7 +101,7 @@ class 語言模型揀集內組單元試驗(TestCase):
         self.assertEqual(鞋的結果, 我的鞋仔)
         self.assertEqual(的鞋結果, 鞋的結果)
         self.assertLess(鞋的分數, 0.0)
-        self.assertGreater(鞋的分數, 頂擺分數)
+        self.assertEqual(鞋的分數, 頂擺分數, '攏是0.0+1/2+-99+99+1/2')
         self.assertEqual(鞋的分數, 的鞋分數)
         self.assertEqual(鞋的詞數, 6)
         self.assertEqual(鞋的詞數, 的鞋詞數)
