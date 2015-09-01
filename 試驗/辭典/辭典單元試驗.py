@@ -101,7 +101,7 @@ class 辭典單元試驗:
     def test_長度零的詞愛錯誤(self):
         self.assertRaises(解析錯誤, self.字典.加詞, 詞())
 
-    def test_零連詞(self):
+    def test_上限長度零(self):
         self.assertRaises(參數錯誤, self.辭典型態, 0)
         self.assertRaises(參數錯誤, self.辭典型態, -10)
 
