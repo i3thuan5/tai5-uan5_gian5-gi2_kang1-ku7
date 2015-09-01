@@ -263,10 +263,14 @@ class 實際語言模型單元試驗(TestCase):
         self.語言模型.看(self.我有一張桌仔)
         self.語言模型.看(self.桌仔垃圾)
         self.assertLess(sum(self.語言模型.評分(self.桌仔)), 0.0)
-        self.assertLess(sum(self.語言模型.評分(self.椅仔)),
-                        sum(self.語言模型.評分(self.桌仔)))
-        self.assertAlmostEqual(sum(self.語言模型.評分(self.柴)),
-                               sum(self.語言模型.評分(self.桌仔)), delta=self.忍受)
+        self.assertLess(
+            sum(self.語言模型.評分(self.椅仔)),
+            sum(self.語言模型.評分(self.桌仔))
+        )
+        self.assertLess(
+            sum(self.語言模型.評分(self.柴)), # 有 無 有（看過）
+            sum(self.語言模型.評分(self.桌仔)) # 有 有 無（看過）
+        )
 
     def test_長的好句袂使輸短的爛句(self):
         self.語言模型 = self.型態(3)
