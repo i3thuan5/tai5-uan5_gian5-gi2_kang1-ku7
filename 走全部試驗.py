@@ -33,13 +33,13 @@ if __name__ == '__main__':
     試驗包 = TestSuite()
     if 單元試驗:
         試驗包.addTest(
-            unittest.defaultTestLoader.discover('試驗', pattern='Test*單元試驗.py')
+            unittest.defaultTestLoader.discover('.', pattern='Test*單元試驗.py')
         )
     if 整合試驗:
         if not 編譯摩西程式:
             錯誤狀況 = 5  # 無編譯摩西會出現5个錯誤
         試驗包.addTest(
-            unittest.defaultTestLoader.discover('試驗', pattern='Test*整合試驗.py')
+            unittest.defaultTestLoader.discover('.', pattern='Test*整合試驗.py')
         )
     試驗結果 = unittest.TextTestRunner().run(試驗包)
     if len(試驗結果.errors) > 錯誤狀況 or 試驗結果.failures != []:
