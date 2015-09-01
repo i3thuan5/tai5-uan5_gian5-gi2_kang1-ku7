@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 import unittest
-from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
+
+from 臺灣言語工具.基本元素.公用變數 import 無音
 from 臺灣言語工具.基本元素.字 import 字
 from 臺灣言語工具.基本元素.集 import 集
+from 臺灣言語工具.綜合標音.詞組綜合標音 import 詞組綜合標音
 from 臺灣言語工具.綜合標音.閩南語字綜合標音 import 閩南語字綜合標音
 from 臺灣言語工具.綜合標音.集綜合標音 import 集綜合標音
-from 臺灣言語工具.綜合標音.詞組綜合標音 import 詞組綜合標音
-from 臺灣言語工具.基本元素.公用變數 import 無音
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 
 
 class 集綜合標音單元試驗(unittest.TestCase):

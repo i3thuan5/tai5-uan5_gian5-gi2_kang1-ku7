@@ -2,13 +2,12 @@
 import gzip
 import io
 import os
+from itertools import zip_longest
 from unittest.case import TestCase
-from unittest.mock import patch, call
-
+from unittest.mock import call, patch
 
 from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
-from itertools import zip_longest
 
 
 class 程式腳本單元試驗(TestCase):

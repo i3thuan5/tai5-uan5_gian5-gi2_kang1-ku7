@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-
 from 臺灣言語工具.斷詞.中研院.斷詞用戶端 import 斷詞用戶端
 
 

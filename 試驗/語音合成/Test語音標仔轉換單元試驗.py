@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 import unittest
-from unittest.mock import patch, call
+from unittest.mock import call, patch
 
-
-from 臺灣言語工具.語音合成.語音標仔轉換 import 語音標仔轉換
-from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
-from 臺灣言語工具.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.解析整理.轉物件音家私 import 轉物件音家私
+from 臺灣言語工具.語音合成.語音標仔轉換 import 語音標仔轉換
+from 臺灣言語工具.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
+from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 
 
 class 語音標仔轉換單元試驗(unittest.TestCase):

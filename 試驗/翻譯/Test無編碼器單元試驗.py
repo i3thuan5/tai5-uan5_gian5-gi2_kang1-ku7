@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
+
 from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
 
 

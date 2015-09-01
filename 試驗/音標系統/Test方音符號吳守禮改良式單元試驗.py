@@ -2,7 +2,6 @@
 import unittest
 from unittest.mock import patch
 
-
 from 臺灣言語工具.音標系統.閩南語.方音符號吳守禮改良式 import 方音符號吳守禮改良式
 
 

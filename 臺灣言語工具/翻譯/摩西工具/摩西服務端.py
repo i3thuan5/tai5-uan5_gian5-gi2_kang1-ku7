@@ -2,7 +2,6 @@
 import os
 from subprocess import Popen
 
-
 from 臺灣言語工具.系統整合.外部程式 import 外部程式
 
 

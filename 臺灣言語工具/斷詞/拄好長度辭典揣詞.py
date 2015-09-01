@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.基本元素.詞 import 詞
-from 臺灣言語工具.基本元素.組 import 組
-from 臺灣言語工具.基本元素.集 import 集
 from 臺灣言語工具.基本元素.句 import 句
 from 臺灣言語工具.基本元素.章 import 章
+from 臺灣言語工具.基本元素.組 import 組
+from 臺灣言語工具.基本元素.詞 import 詞
+from 臺灣言語工具.基本元素.集 import 集
+from 臺灣言語工具.正規.阿拉伯數字 import 阿拉伯數字
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.字物件篩仔 import 字物件篩仔
-from 臺灣言語工具.正規.阿拉伯數字 import 阿拉伯數字
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 
 

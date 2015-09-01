@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
-from 臺灣言語工具.語音合成.語音標仔轉換 import 語音標仔轉換
+
 from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
+from 臺灣言語工具.語音合成.語音標仔轉換 import 語音標仔轉換
 from 臺灣言語工具.語音辨識.語料處理 import 語料處理
 
 

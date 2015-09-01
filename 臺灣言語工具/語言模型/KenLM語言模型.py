@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import kenlm
-from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.基本元素.公用變數 import 分詞符號
+from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.語言模型.語言模型 import 語言模型
 
 

@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-from socket import socket
-from socket import AF_INET
-from socket import SOCK_STREAM
 import re
 import sys
 import time
+from socket import AF_INET, SOCK_STREAM, socket
 
 
 class 用戶端連線:

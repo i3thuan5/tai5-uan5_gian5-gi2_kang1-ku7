@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.解析整理.字物件篩仔 import 字物件篩仔
-from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
-from 臺灣言語工具.基本元素.公用變數 import 標點符號
 import curses.ascii
 import itertools
 
-
+from 臺灣言語工具.基本元素.公用變數 import 標點符號
 from 臺灣言語工具.基本元素.章 import 章
+from 臺灣言語工具.解析整理.字物件篩仔 import 字物件篩仔
+from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
+
+
 """
 變調
 處理無音的字物件

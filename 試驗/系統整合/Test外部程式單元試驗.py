@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from unittest.case import TestCase
+
 from 臺灣言語工具.系統整合.外部程式 import 外部程式
 
 

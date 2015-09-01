@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.斷詞.上長詞優先辭典揣詞 import 上長詞優先辭典揣詞
-from 臺灣言語工具.基本元素.句 import 句
-from 試驗.斷詞.辭典揣詞單元試驗 import 辭典揣詞單元試驗
 from unittest.case import TestCase
+
+from 臺灣言語工具.基本元素.句 import 句
+from 臺灣言語工具.斷詞.上長詞優先辭典揣詞 import 上長詞優先辭典揣詞
+from 試驗.斷詞.辭典揣詞單元試驗 import 辭典揣詞單元試驗
 
 
 class 上長詞優先辭典揣詞單元試驗(辭典揣詞單元試驗, TestCase):

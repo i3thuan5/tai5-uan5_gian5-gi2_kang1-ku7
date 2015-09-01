@@ -2,8 +2,8 @@
 import gzip
 import io
 import os
-from subprocess import Popen, PIPE
 from contextlib import contextmanager
+from subprocess import PIPE, Popen
 
 
 class 程式腳本:

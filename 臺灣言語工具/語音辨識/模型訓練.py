@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-import os
 import itertools
-import shutil
+import os
 import re
-from 臺灣言語工具.語音合成.語音標仔轉換 import 語音標仔轉換
+import shutil
+
 from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
-from 臺灣言語工具.語音辨識.辨識模型 import 辨識模型
+from 臺灣言語工具.語音合成.語音標仔轉換 import 語音標仔轉換
 from 臺灣言語工具.語音辨識.語料處理 import 語料處理
+from 臺灣言語工具.語音辨識.辨識模型 import 辨識模型
 
 
 class 模型訓練(程式腳本, 語料處理):

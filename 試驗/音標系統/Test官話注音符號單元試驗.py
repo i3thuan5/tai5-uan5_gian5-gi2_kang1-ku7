@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase
+
 from 臺灣言語工具.音標系統.官話.官話注音符號 import 官話注音符號
 
 

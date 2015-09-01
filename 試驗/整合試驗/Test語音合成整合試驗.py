@@ -1,21 +1,19 @@
-from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
-from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 import os
 import unittest
 from urllib.request import urlopen
 
 import htsengine
-
-
-from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.語音合成.語音標仔轉換 import 語音標仔轉換
-from 臺灣言語工具.語音合成.音檔頭前表 import 音檔頭前表
 from 臺灣言語工具.斷詞.拄好長度辭典揣詞 import 拄好長度辭典揣詞
 from 臺灣言語工具.斷詞.語言模型揀集內組 import 語言模型揀集內組
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.解析整理.轉物件音家私 import 轉物件音家私
-from 臺灣言語工具.語音合成.閩南語變調 import 閩南語變調
 from 臺灣言語工具.語言模型.KenLM語言模型 import KenLM語言模型
+from 臺灣言語工具.語音合成.語音標仔轉換 import 語音標仔轉換
+from 臺灣言語工具.語音合成.閩南語變調 import 閩南語變調
+from 臺灣言語工具.語音合成.音檔頭前表 import 音檔頭前表
 from 臺灣言語工具.辭典.型音辭典 import 型音辭典
+from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 
 
 class 語音合成整合單元試驗(unittest.TestCase):

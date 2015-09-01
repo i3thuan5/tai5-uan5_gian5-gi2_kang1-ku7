@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
-import unittest
-from 臺灣言語工具.基本元素.字 import 字
-from 臺灣言語工具.基本元素.詞 import 詞
-from 臺灣言語工具.基本元素.組 import 組
-from 臺灣言語工具.基本元素.集 import 集
-from 臺灣言語工具.基本元素.句 import 句
-from 臺灣言語工具.基本元素.章 import 章
-from 臺灣言語工具.基本元素.公用變數 import 無音
-from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 import itertools
+import unittest
+
+from 臺灣言語工具.基本元素.公用變數 import 無音
+from 臺灣言語工具.基本元素.句 import 句
+from 臺灣言語工具.基本元素.字 import 字
+from 臺灣言語工具.基本元素.章 import 章
+from 臺灣言語工具.基本元素.組 import 組
+from 臺灣言語工具.基本元素.詞 import 詞
+from 臺灣言語工具.基本元素.集 import 集
+from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 
 
 class 基本元素單元試驗(unittest.TestCase):

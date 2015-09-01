@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 import itertools
+
+from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 
 
 class 生決策樹仔問題:

@@ -2,7 +2,6 @@
 import unittest
 from unittest.mock import patch
 
-
 from 臺灣言語工具.剖析.中研院.自設剖析用戶端 import 自設剖析用戶端
 
 

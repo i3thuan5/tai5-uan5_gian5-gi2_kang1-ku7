@@ -1,21 +1,20 @@
 # -*- coding: utf-8 -*-
 import os
+from os.path import isdir
 from shutil import rmtree
 from time import sleep
 from unittest.case import TestCase
 from unittest.mock import patch
 
-
-from 臺灣言語工具.翻譯.摩西工具.摩西翻譯模型訓練 import 摩西翻譯模型訓練
-from 臺灣言語工具.翻譯.摩西工具.語句編碼器 import 語句編碼器
-from 臺灣言語工具.翻譯.摩西工具.斷詞轉斷字的編碼器 import 斷詞轉斷字編碼器
+from 臺灣言語工具.斷詞.中研院.斷詞用戶端 import 斷詞用戶端
 from 臺灣言語工具.翻譯.摩西工具.摩西服務端 import 摩西服務端
 from 臺灣言語工具.翻譯.摩西工具.摩西用戶端 import 摩西用戶端
-from 臺灣言語工具.斷詞.中研院.斷詞用戶端 import 斷詞用戶端
+from 臺灣言語工具.翻譯.摩西工具.摩西翻譯模型訓練 import 摩西翻譯模型訓練
+from 臺灣言語工具.翻譯.摩西工具.斷詞轉斷字的編碼器 import 斷詞轉斷字編碼器
+from 臺灣言語工具.翻譯.摩西工具.語句編碼器 import 語句編碼器
 from 臺灣言語工具.翻譯.斷詞斷字翻譯 import 斷詞斷字翻譯
-from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from os.path import isdir
+from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 
 
 class 摩西模型訓練佮翻譯整合試驗(TestCase):

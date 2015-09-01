@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import unittest
+
 from 臺灣言語工具.解析整理.羅馬音仕上げ import 羅馬音仕上げ
+
 
 # 仕上げ
 # しあげ

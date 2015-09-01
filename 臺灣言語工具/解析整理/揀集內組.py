@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from 臺灣言語工具.基本元素.集 import 集
 from 臺灣言語工具.基本元素.句 import 句
 from 臺灣言語工具.基本元素.章 import 章
+from 臺灣言語工具.基本元素.集 import 集
 
 
 class 揀集內組:
