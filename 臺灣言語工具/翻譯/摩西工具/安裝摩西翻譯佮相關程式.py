@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
-import os
+from os import makedirs
+from os.path import join, isdir
+from shutil import move
 
 
 from 臺灣言語工具.系統整合.外部程式 import 外部程式
-from shutil import move
 
 _外部程式目錄 = 外部程式().目錄()
 
@@ -13,9 +14,9 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
     pull深度 = '100'
 
     def 安裝moses(self, moses安裝路徑=_外部程式目錄, 編譯CPU數=4):
-        os.makedirs(moses安裝路徑, exist_ok=True)
-        moses程式碼目錄 = os.path.join(moses安裝路徑, 'mosesdecoder')
-        if not os.path.isdir(moses程式碼目錄):
+        makedirs(moses安裝路徑, exist_ok=True)
+        moses程式碼目錄 = join(moses安裝路徑, 'mosesdecoder')
+        if not isdir(moses程式碼目錄):
             with self._換目錄(moses安裝路徑):
                 self._走指令([
                     'git', 'clone',
@@ -27,9 +28,9 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
             self._走指令(['./bjam', '-j{0}'.format(編譯CPU數)], 愛直接顯示輸出=True)
 
     def 安裝gizapp(self, gizapp安裝路徑=_外部程式目錄):
-        os.makedirs(gizapp安裝路徑, exist_ok=True)
-        gizapp程式碼目錄 = os.path.join(gizapp安裝路徑, 'giza-pp')
-        if not os.path.isdir(gizapp程式碼目錄):
+        makedirs(gizapp安裝路徑, exist_ok=True)
+        gizapp程式碼目錄 = join(gizapp安裝路徑, 'giza-pp')
+        if not isdir(gizapp程式碼目錄):
             with self._換目錄(gizapp安裝路徑):
                 self._走指令([
                     'git', 'clone',
@@ -40,14 +41,17 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
             self._走指令(['git', 'pull', '--depth', self.pull深度], 愛直接顯示輸出=True)
             self._走指令('make', 愛直接顯示輸出=True)
         執行檔目錄 = self._細項目錄(gizapp程式碼目錄, 'bin')
-        move(os.path.join(gizapp程式碼目錄, 'GIZA++-v2', 'GIZA++'), 執行檔目錄)
-        move(os.path.join(gizapp程式碼目錄, 'GIZA++-v2', 'snt2cooc.out'), 執行檔目錄)
-        move(os.path.join(gizapp程式碼目錄, 'mkcls-v2', 'mkcls'), 執行檔目錄)
+        for 資料夾, 檔名 in [
+            ('GIZA++-v2', 'GIZA++'),
+            ('GIZA++-v2', 'snt2cooc.out'),
+            ('mkcls-v2', 'mkcls'),
+        ]:
+            move(join(gizapp程式碼目錄, 資料夾, 檔名), join(執行檔目錄, 檔名))
 
     def 安裝mgiza(self, mgiza安裝路徑=_外部程式目錄):
-        os.makedirs(mgiza安裝路徑, exist_ok=True)
-        mgiza程式碼目錄 = os.path.join(mgiza安裝路徑, 'mgiza', 'mgizapp')
-        if not os.path.isdir(mgiza程式碼目錄):
+        makedirs(mgiza安裝路徑, exist_ok=True)
+        mgiza程式碼目錄 = join(mgiza安裝路徑, 'mgiza', 'mgizapp')
+        if not isdir(mgiza程式碼目錄):
             with self._換目錄(mgiza安裝路徑):
                 self._走指令([
                     'git', 'clone',
