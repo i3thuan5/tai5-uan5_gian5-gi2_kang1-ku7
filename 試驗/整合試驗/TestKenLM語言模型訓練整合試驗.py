@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
+from shutil import rmtree
 from unittest.case import TestCase
 
-
-from 臺灣言語工具.語言模型.KenLM語言模型訓練 import KenLM語言模型訓練
 from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
-from shutil import rmtree
+from 臺灣言語工具.語言模型.KenLM語言模型訓練 import KenLM語言模型訓練
 
 
 class KenLM語言模型訓練整合試驗(TestCase):

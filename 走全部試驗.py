@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
-from sys import exit, stderr
 import sys
 import unittest
+from sys import exit, stderr
 from unittest.suite import TestSuite
 
-
 from 臺灣言語工具.翻譯.摩西工具.安裝摩西翻譯佮相關程式 import 安裝摩西翻譯佮相關程式
-
 
 '''預設做單元試驗佮整合試驗'
 python 走全部試驗.py # 試驗全做

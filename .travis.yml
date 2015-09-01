@@ -9,7 +9,7 @@ install:
  - pip install https://github.com/rsennrich/Bleualign/archive/master.zip
  - pip install https://github.com/kpu/kenlm/archive/master.zip
  - pip install https://github.com/sih4sing5hong5/hts_engine_python/archive/master.zip
- - pip install flake8
+ - pip install flake8 isort
  - pip install coverage
 branches:
  only:
@@ -21,6 +21,7 @@ script:
  - python 範例/轉拼音系統.py
  - coverage run 走全部試驗.py
  - flake8 . --exclude=venv,文件,外部程式 --count --show-source --ignore=E251,E101,W191,W291,W293,E501
+ - isort --recursive --check-only --diff -s venv -s 外部程式 .
 after_success:
  - coverage report
  - pip install --quiet python-coveralls

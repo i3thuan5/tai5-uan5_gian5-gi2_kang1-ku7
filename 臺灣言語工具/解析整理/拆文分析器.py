@@ -1,33 +1,21 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.基本元素.公用變數 import 分字符號
-from 臺灣言語工具.基本元素.公用變數 import 分詞符號
-from 臺灣言語工具.基本元素.字 import 字
-from 臺灣言語工具.基本元素.詞 import 詞
-from 臺灣言語工具.基本元素.組 import 組
-from 臺灣言語工具.基本元素.集 import 集
-from 臺灣言語工具.基本元素.句 import 句
-from 臺灣言語工具.基本元素.章 import 章
-from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
-from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
-from 臺灣言語工具.基本元素.公用變數 import 無音
-from 臺灣言語工具.基本元素.公用變數 import 組字式符號
-from 臺灣言語工具.基本元素.公用變數 import 斷句標點符號
-from 臺灣言語工具.基本元素.公用變數 import 標點符號
-from itertools import chain
 import re
 import unicodedata
+from itertools import chain
 
-
+from 臺灣言語工具.基本元素.公用變數 import (分型音符號, 分字符號, 分詞符號, 斷句標點符號, 是拼音字元無, 是注音符號無, 標點符號,
+                              無音, 組字式符號, 統一碼數字類, 統一碼注音聲調符號, 統一碼羅馬字類, 統一碼聲調符號)
+from 臺灣言語工具.基本元素.句 import 句
+from 臺灣言語工具.基本元素.字 import 字
+from 臺灣言語工具.基本元素.章 import 章
+from 臺灣言語工具.基本元素.組 import 組
+from 臺灣言語工具.基本元素.詞 import 詞
+from 臺灣言語工具.基本元素.集 import 集
+from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
-from 臺灣言語工具.基本元素.公用變數 import 分型音符號
 from 臺灣言語工具.解析整理.程式掠漏 import 程式掠漏
+from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
-from 臺灣言語工具.基本元素.公用變數 import 統一碼羅馬字類
-from 臺灣言語工具.基本元素.公用變數 import 統一碼聲調符號
-from 臺灣言語工具.基本元素.公用變數 import 統一碼注音聲調符號
-from 臺灣言語工具.基本元素.公用變數 import 是拼音字元無
-from 臺灣言語工具.基本元素.公用變數 import 是注音符號無
-from 臺灣言語工具.基本元素.公用變數 import 統一碼數字類
 
 
 class 拆文分析器:

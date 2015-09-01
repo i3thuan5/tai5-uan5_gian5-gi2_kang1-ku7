@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 import unittest
-from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
-from 臺灣言語工具.基本元素.集 import 集
-from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
-from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
+
 from 臺灣言語工具.基本元素.公用變數 import 分字符號
+from 臺灣言語工具.基本元素.集 import 集
+from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
+from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 
 
 class 物件譀鏡單元試驗(unittest.TestCase):

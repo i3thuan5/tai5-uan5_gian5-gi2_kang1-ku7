@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 import itertools
-from math import log10
 import os
+from math import log10
 from unittest.case import TestCase
-
 
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.語言模型.KenLM語言模型 import KenLM語言模型

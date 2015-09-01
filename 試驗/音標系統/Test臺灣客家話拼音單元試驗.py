@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase
+
 from 臺灣言語工具.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
 
 

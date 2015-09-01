@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from unittest.case import TestCase
 import os
+from unittest.case import TestCase
+
 from 臺灣言語工具.語音辨識.模型訓練 import 模型訓練
 
 

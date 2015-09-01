@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import unittest
-from 臺灣言語工具.語音合成.生決策樹仔問題 import 生決策樹仔問題
+
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
+from 臺灣言語工具.語音合成.生決策樹仔問題 import 生決策樹仔問題
 
 
 class 生決策樹仔問題單元試驗(unittest.TestCase):

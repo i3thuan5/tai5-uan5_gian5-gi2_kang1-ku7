@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 from os import makedirs
-from os.path import join, isdir
-from shutil import move, copyfile
-
+from os.path import isdir, join
+from shutil import copyfile, move
 
 from 臺灣言語工具.系統整合.外部程式 import 外部程式
+from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 
 _外部程式目錄 = 外部程式().目錄()
 

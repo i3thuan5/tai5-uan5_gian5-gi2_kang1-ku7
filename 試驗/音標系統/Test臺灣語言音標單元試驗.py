@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
+
 from 臺灣言語工具.音標系統.閩南語.臺灣語言音標 import 臺灣語言音標
 
 

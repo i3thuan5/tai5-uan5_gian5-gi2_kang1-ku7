@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
+from math import log10, pow
+
 from 臺灣言語工具.基本元素.章 import 章
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
-from math import log10
-from math import pow
-
-
 from 臺灣言語工具.語言模型.語言模型 import 語言模型
+
+
 '''
 甲乙丙
 數量=C(丙), C(乙丙), C(甲乙丙)

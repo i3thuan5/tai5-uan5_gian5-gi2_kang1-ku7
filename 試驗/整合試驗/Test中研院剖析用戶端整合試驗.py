@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-
 from 臺灣言語工具.剖析.中研院.剖析用戶端 import 剖析用戶端
 
 

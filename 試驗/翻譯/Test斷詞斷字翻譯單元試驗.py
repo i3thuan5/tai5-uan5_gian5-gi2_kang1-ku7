@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase
-from unittest.mock import patch, call
+from unittest.mock import call, patch
 
-
-from 臺灣言語工具.翻譯.摩西工具.摩西用戶端 import 摩西用戶端
-from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.基本元素.章 import 章
-from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.基本元素.句 import 句
+from 臺灣言語工具.基本元素.章 import 章
 from 臺灣言語工具.基本元素.組 import 組
 from 臺灣言語工具.基本元素.集 import 集
+from 臺灣言語工具.翻譯.摩西工具.摩西用戶端 import 摩西用戶端
 from 臺灣言語工具.翻譯.斷詞斷字翻譯 import 斷詞斷字翻譯
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 
 
 class 斷詞斷字翻譯單元試驗(TestCase):

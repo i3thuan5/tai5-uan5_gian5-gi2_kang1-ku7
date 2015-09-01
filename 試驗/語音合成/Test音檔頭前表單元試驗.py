@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-import unittest
 import os
+import unittest
+
 from 臺灣言語工具.語音合成.音檔頭前表 import 音檔頭前表
 
 

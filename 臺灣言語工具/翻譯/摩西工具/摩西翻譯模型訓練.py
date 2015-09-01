@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 import os
 import shutil
 
-
+from 臺灣言語工具.系統整合.外部程式 import 外部程式
+from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
 from 臺灣言語工具.語言模型.KenLM語言模型訓練 import KenLM語言模型訓練
-from 臺灣言語工具.系統整合.外部程式 import 外部程式
 
 
 class 摩西翻譯模型訓練(程式腳本):

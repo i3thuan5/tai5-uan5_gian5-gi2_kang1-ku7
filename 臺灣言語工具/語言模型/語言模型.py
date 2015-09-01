@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from math import log10
-from math import pow
-from abc import ABCMeta
-from abc import abstractmethod
+from abc import ABCMeta, abstractmethod
+from math import log10, pow
+
 from 臺灣言語工具.基本元素.詞 import 詞
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔

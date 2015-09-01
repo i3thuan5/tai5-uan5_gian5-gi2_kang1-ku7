@@ -14,7 +14,10 @@
 # serve to show the default.
 
 # import sys
-# import os
+import os
+
+from recommonmark.parser import CommonMarkParser
+
 # import shlex
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -22,7 +25,6 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.insert(0, os.path.abspath('.'))
 
-from recommonmark.parser import CommonMarkParser
 
 source_parsers = {
     '.md': CommonMarkParser,
@@ -116,7 +118,6 @@ todo_include_todos = False
 # a list of builtin themes.
 # html_theme = 'default'
 
-import os
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
 # readthedocs.org uses their theme by default, so no need to specify it

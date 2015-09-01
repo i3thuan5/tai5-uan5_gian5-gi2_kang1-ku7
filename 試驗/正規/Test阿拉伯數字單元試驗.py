@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase
+
 from 臺灣言語工具.正規.阿拉伯數字 import 阿拉伯數字
 
 
