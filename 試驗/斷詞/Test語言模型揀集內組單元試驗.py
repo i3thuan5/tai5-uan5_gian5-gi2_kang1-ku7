@@ -13,7 +13,7 @@ class 語言模型揀集內組單元試驗(TestCase):
 
     def setUp(self):
         self.分析器 = 拆文分析器()
-        self.語言模型 = 實際語言模型(3)
+        self.語言模型 = 實際語言模型(2)
         self.用語言模型揀 = 語言模型揀集內組()
 
         self.我有一張桌仔 = self.分析器.產生對齊句(
@@ -35,23 +35,42 @@ class 語言模型揀集內組單元試驗(TestCase):
         pass
 
     def test_標音的分數愛佮評分仝款(self):
-        '「分數 * (詞數 - 1)」因為頭一个開始的機率是1'
         self.語言模型.看(self.我有一張桌仔)
         標好, 分數, 詞數 = self.用語言模型揀.揀(self.語言模型, self.我)
         self.assertEqual(標好, self.我)
         self.assertEqual(3, 詞數)
-        self.assertAlmostEqual(分數 * (詞數 - 1),
-                               sum(self.語言模型.評分(self.我)), delta=self.忍受)
+        self.assertAlmostEqual(
+            分數,
+            sum(self.語言模型.評分(self.我)),
+            delta=self.忍受
+        )
         標好, 分數, 詞數 = self.用語言模型揀.揀(self.語言模型, self.桌仔)
         self.assertEqual(標好, self.桌仔)
         self.assertEqual(4, 詞數)
-        self.assertAlmostEqual(分數 * (詞數 - 1),
-                               sum(self.語言模型.評分(self.桌仔)), delta=self.忍受)
+        self.assertAlmostEqual(
+            分數,
+            sum(self.語言模型.評分(self.桌仔)),
+            delta=self.忍受
+        )
         標好, 分數, 詞數 = self.用語言模型揀.揀(self.語言模型, self.我有一張桌仔)
         self.assertEqual(標好, self.我有一張桌仔)
         self.assertEqual(7, 詞數)
-        self.assertAlmostEqual(分數 * (詞數 - 1),
-                               sum(self.語言模型.評分(self.我有一張桌仔)), delta=self.忍受)
+        self.assertAlmostEqual(
+            分數,
+            sum(self.語言模型.評分(self.我有一張桌仔)),
+            delta=self.忍受
+        )
+
+    def test_攏無看過的機率分數(self):
+        '「分數 * (詞數 - 1)」因為頭一个開始的機率是1'
+        標好, 分數, 詞數 = self.用語言模型揀.揀(self.語言模型, self.我)
+        self.assertEqual(標好, self.我)
+        self.assertEqual(3, 詞數)
+        self.assertAlmostEqual(
+            self.語言模型.無看過 * (詞數 - 1),
+            分數,
+            delta=self.忍受
+        )
 
     def test_看機率選詞(self):
         我 = self.分析器.產生對齊集('我', 'gua2')
@@ -75,7 +94,8 @@ class 語言模型揀集內組單元試驗(TestCase):
         我的鞋仔 = 句()
         我的鞋仔.內底集 = [我, 的集, 鞋集, 仔]
         self.語言模型.看(self.分析器.產生對齊句('我穿布鞋。', 'gua2 tshng1 poo3 e5.'))
-        self.語言模型.看(self.分析器.產生對齊句('我鞋仔歹去矣。', 'gua2 e5 a2 phainn2-0khi3 0ah4.'))
+        self.語言模型.看(
+            self.分析器.產生對齊句('我鞋仔歹去矣。', 'gua2 e5 a2 phainn2-0khi3 0ah4.'))
         我的 = [self.分析器.產生對齊詞('我', 'gua2'), self.分析器.產生對齊詞('的', 'e5')]
         self.assertEqual(self.語言模型.數量(我的), [0, 0])
         我鞋 = [self.分析器.產生對齊詞('我', 'gua2'), self.分析器.產生對齊詞('鞋', 'e5')]
@@ -89,25 +109,18 @@ class 語言模型揀集內組單元試驗(TestCase):
         self.assertEqual(鞋的詞數, 6)
         self.assertEqual(鞋的詞數, 的鞋詞數)
         頂擺分數 = 鞋的分數
-        self.語言模型.看(self.分析器.產生對齊句('我的冊佇你遐。', 'gua2 e5 tsheh4 ti7 li2 hia1.'))
-        鞋的結果, 鞋的分數, 鞋的詞數 = self.用語言模型揀.揀(self.語言模型, 我_e5_e5_仔_鞋的)
-        的鞋結果, 的鞋分數, 的鞋詞數 = self.用語言模型揀.揀(self.語言模型, 我_e5_e5_仔_的鞋)
-        self.assertEqual(鞋的結果, 我鞋鞋仔)
-        self.assertEqual(的鞋結果, 鞋的結果)
-        self.assertLess(鞋的分數, 0.0)
-        self.assertLess(鞋的分數, 頂擺分數)
-        self.assertEqual(鞋的分數, 的鞋分數)
-        self.assertEqual(鞋的詞數, 6)
-        self.assertEqual(鞋的詞數, 的鞋詞數)
-        頂擺分數 = 鞋的分數
         self.語言模型.看(
-            self.分析器.產生對齊句('我的故鄉佇花蓮。', 'gua2 e5 koo3-hiong1 ti7 hua1-lian1.'))
+            self.分析器.產生對齊句('我的冊佇你遐。', 'gua2 e5 tsheh4 ti7 li2 hia1.')
+        )
+        self.語言模型.看(
+            self.分析器.產生對齊句('我的故鄉佇花蓮。', 'gua2 e5 koo3-hiong1 ti7 hua1-lian1.')
+        )
         鞋的結果, 鞋的分數, 鞋的詞數 = self.用語言模型揀.揀(self.語言模型, 我_e5_e5_仔_鞋的)
         的鞋結果, 的鞋分數, 的鞋詞數 = self.用語言模型揀.揀(self.語言模型, 我_e5_e5_仔_的鞋)
         self.assertEqual(鞋的結果, 我的鞋仔)
         self.assertEqual(的鞋結果, 鞋的結果)
         self.assertLess(鞋的分數, 0.0)
-        self.assertGreater(鞋的分數, 頂擺分數)
+        self.assertEqual(鞋的分數, 頂擺分數, '攏是0.0+1/2+-99+99+1/2')
         self.assertEqual(鞋的分數, 的鞋分數)
         self.assertEqual(鞋的詞數, 6)
         self.assertEqual(鞋的詞數, 的鞋詞數)
@@ -136,6 +149,7 @@ class 語言模型揀集內組單元試驗(TestCase):
             self.assertEqual(self.用語言模型揀.揀(self.語言模型, 物件)[0], 物件)
 
     def test_選無仝長度的集(self):
+        self.語言模型 = 實際語言模型(3)
         媠姑娘 = self.分析器.產生對齊組('媠姑娘', 'sui2 koo1-niu5')
         靚細妹 = self.分析器.產生對齊組('靚細妹', 'jiangˊ-se-moi')
         大美女 = self.分析器.產生對齊組('世界大大美女', 'se3-kai3 tua7 tua7 mi2-lu2')
@@ -147,20 +161,21 @@ class 語言模型揀集內組單元試驗(TestCase):
         媠姑娘句物件 = 句([我, 愛, 集([媠姑娘, ]), 呀])
         靚細妹句物件 = 句([我, 愛, 集([靚細妹, ]), 呀])
         大美女句物件 = 句([我, 愛, 集([大美女, ]), 呀])
+
         self.語言模型.看(媠姑娘句物件)
         結果, 分數, 詞數 = self.用語言模型揀.揀(self.語言模型, 問題句物件)
         self.assertEqual(結果, 媠姑娘句物件)
-        self.assertLess(分數, 0.0)
+        self.assertEqual(分數, 0.0)
         self.assertEqual(詞數, 7)
+
         self.語言模型.看(靚細妹句物件)
         self.語言模型.看(靚細妹句物件)
         self.語言模型.看(靚細妹句物件)
         結果, 分數, 詞數 = self.用語言模型揀.揀(self.語言模型, 問題句物件)
-        # 因為詞組干焦一个詞，所以會靚細妹輸媠姑娘？
         self.assertEqual(結果, 靚細妹句物件)
         self.assertLess(分數, 0.0)
         self.assertEqual(詞數, 6)
-        # 詞組較長，所以應該愛搶贏別人？
+
         self.語言模型.看(大美女句物件)
         self.語言模型.看(大美女句物件)
         self.語言模型.看(大美女句物件)

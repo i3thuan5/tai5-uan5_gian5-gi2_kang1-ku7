@@ -6,11 +6,15 @@ from math import pow
 
 
 from 臺灣言語工具.語言模型.語言模型 import 語言模型
+'''
+甲乙丙
+數量=C(丙), C(乙丙), C(甲乙丙)
+機率=P(丙), P(乙丙), P(甲乙丙)
+條件=P(丙), P(乙丙)/P(乙), P(甲乙丙)/P(甲乙)
+'''
 
 
 class 實際語言模型(語言模型):
-    基本 = 0.02
-    權重 = [0.08, 0.2, 0.7]
 
     def __init__(self, 上濟詞數):
         if 上濟詞數 <= 0:
@@ -24,19 +28,12 @@ class 實際語言模型(語言模型):
 
     def 評詞陣列分(self, 詞陣列, 開始的所在=0):
         for 所在 in range(開始的所在, len(詞陣列)):
-            分數 = self.感覺(詞陣列[max(0, 所在 + 1 - self.上濟詞數()):所在 + 1])
+            分數 = self.條件(詞陣列[max(0, 所在 + 1 - self.上濟詞數()):所在 + 1])[-1]
             try:
                 分數 += 詞陣列[所在].屬性['機率']
             except:
                 pass
             yield 分數
-
-    def 感覺(self, 語句):
-        條件 = self.條件(語句)
-        分數 = self.基本
-        for 分, 權 in zip(條件, self.權重):
-            分數 += self.指數(分) * 權
-        return self.對數(分數)
 
     def 總數(self):
         return self.總數表
