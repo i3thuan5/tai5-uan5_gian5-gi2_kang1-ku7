@@ -149,6 +149,7 @@ class 語言模型揀集內組單元試驗(TestCase):
             self.assertEqual(self.用語言模型揀.揀(self.語言模型, 物件)[0], 物件)
 
     def test_選無仝長度的集(self):
+        self.語言模型 = 實際語言模型(3)
         媠姑娘 = self.分析器.產生對齊組('媠姑娘', 'sui2 koo1-niu5')
         靚細妹 = self.分析器.產生對齊組('靚細妹', 'jiangˊ-se-moi')
         大美女 = self.分析器.產生對齊組('世界大大美女', 'se3-kai3 tua7 tua7 mi2-lu2')
@@ -160,20 +161,21 @@ class 語言模型揀集內組單元試驗(TestCase):
         媠姑娘句物件 = 句([我, 愛, 集([媠姑娘, ]), 呀])
         靚細妹句物件 = 句([我, 愛, 集([靚細妹, ]), 呀])
         大美女句物件 = 句([我, 愛, 集([大美女, ]), 呀])
+
         self.語言模型.看(媠姑娘句物件)
         結果, 分數, 詞數 = self.用語言模型揀.揀(self.語言模型, 問題句物件)
         self.assertEqual(結果, 媠姑娘句物件)
         self.assertEqual(分數, 0.0)
         self.assertEqual(詞數, 7)
+
         self.語言模型.看(靚細妹句物件)
         self.語言模型.看(靚細妹句物件)
         self.語言模型.看(靚細妹句物件)
         結果, 分數, 詞數 = self.用語言模型揀.揀(self.語言模型, 問題句物件)
-        # 因為詞組干焦一个詞，所以會靚細妹輸媠姑娘？
         self.assertEqual(結果, 靚細妹句物件)
         self.assertLess(分數, 0.0)
         self.assertEqual(詞數, 6)
-        # 詞組較長，所以應該愛搶贏別人？
+
         self.語言模型.看(大美女句物件)
         self.語言模型.看(大美女句物件)
         self.語言模型.看(大美女句物件)
