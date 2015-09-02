@@ -154,11 +154,8 @@ class 教會系羅馬音標(閩南語音標介面):
         return 音標是著的, 無調號音標
 
     def _揣聲韻(self, 無調號音標):
-        for 所在 in range(len(無調號音標)):
-            聲母 = 無調號音標[:所在]
-            if 聲母 in self.聲母表:
-                韻母 = 無調號音標[所在:]
-                if 韻母 in self.韻母表:
-                    return True, 聲母, 韻母
+        結果 = self.聲韻分類.match(無調號音標)
+        if 結果:
+            return True, 結果.group(1), 結果.group(2)
         return False, None, None
 # 聲 介 韻 調，韻含元音跟韻尾
