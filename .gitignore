@@ -6,3 +6,4 @@ __pycache__/
 /venv
 /外部程式/*
 /文件/_*
+/.settings
