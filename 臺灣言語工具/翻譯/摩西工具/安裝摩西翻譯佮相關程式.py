@@ -26,7 +26,9 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
         else:
             with self._換目錄(moses程式碼目錄):
                 self._走指令(
-                    ['git', 'pull', '--depth', self.pull深度], 愛直接顯示輸出=True)
+                    ['git', 'pull', '--depth', self.pull深度],
+                    愛直接顯示輸出=True
+                )
         with self._換目錄(moses程式碼目錄):
             self._走指令(['./bjam', '-j{0}'.format(編譯CPU數)], 愛直接顯示輸出=True)
 
@@ -43,7 +45,9 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
         else:
             with self._換目錄(gizapp程式碼目錄):
                 self._走指令(
-                    ['git', 'pull', '--depth', self.pull深度], 愛直接顯示輸出=True)
+                    ['git', 'pull', '--depth', self.pull深度],
+                    愛直接顯示輸出=True
+                )
         with self._換目錄(gizapp程式碼目錄):
             self._走指令('make', 愛直接顯示輸出=True)
         執行檔目錄 = self._細項目錄(gizapp程式碼目錄, 'bin')
@@ -67,7 +71,9 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
         else:
             with self._換目錄(mgiza程式碼目錄):
                 self._走指令(
-                    ['git', 'pull', '--depth', self.pull深度], 愛直接顯示輸出=True)
+                    ['git', 'pull', '--depth', self.pull深度],
+                    愛直接顯示輸出=True
+                )
         with self._換目錄(mgiza程式碼目錄):
             self._走指令(['cmake', '.'])
             self._走指令('make', 愛直接顯示輸出=True)
