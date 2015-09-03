@@ -21,7 +21,7 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
                 self._走指令([
                     'git', 'clone',
                     '--depth', self.pull深度,
-                    'https://github.com/sih4sing5hong5/mosesdecoder.git'
+                    'https://github.com/moses-smt/mosesdecoder.git'
                 ])
         else:
             with self._換目錄(moses程式碼目錄):
