@@ -2,7 +2,7 @@
 from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 from os import makedirs
 from os.path import join, isdir
-from shutil import copyfile
+from shutil import copy
 
 
 from 臺灣言語工具.系統整合.外部程式 import 外部程式
@@ -56,7 +56,7 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
             ('GIZA++-v2', 'snt2cooc.out'),
             ('mkcls-v2', 'mkcls'),
         ]:
-            copyfile(join(gizapp程式碼目錄, 資料夾, 檔名), join(執行檔目錄, 檔名))
+            copy(join(gizapp程式碼目錄, 資料夾, 檔名), join(執行檔目錄, 檔名))
 
     def 安裝mgiza(self, mgiza安裝路徑=_外部程式目錄):
         makedirs(mgiza安裝路徑, exist_ok=True)
@@ -78,7 +78,7 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
             self._走指令(['cmake', '.'])
             self._走指令('make', 愛直接顯示輸出=True)
             self._走指令(['make', 'install'], 愛直接顯示輸出=True)
-            copyfile(
+            copy(
                 join('scripts', 'merge_alignment.py'),
                 join('bin', 'merge_alignment.py')
             )
