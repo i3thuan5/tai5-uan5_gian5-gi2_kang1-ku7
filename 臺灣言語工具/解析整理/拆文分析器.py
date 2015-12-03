@@ -36,6 +36,7 @@ class 拆文分析器:
     _切組物件分詞 = re.compile('([^ ]*.｜.[^ ]*|\S+)')
     _切章分詞 = re.compile('(\n｜.|.｜\n|\n)', re.DOTALL)
     _掠漏 = 程式掠漏()
+
     @classmethod
     def __init__(cls):
         粗胚 = 文章粗胚()
