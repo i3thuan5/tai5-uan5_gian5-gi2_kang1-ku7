@@ -15,7 +15,8 @@ class 調音盒:
              + 單指令 + ' noisered')
     程式工具 = 外部程式()
 
-    def 用指令調(self, 音, 指令):
+    @classmethod
+    def 用指令調(cls, 音, 指令):
         舊音 = NamedTemporaryFile(mode='wb', suffix='.wav',
                                 delete=False)
         舊音.write(音)
@@ -28,14 +29,18 @@ class 調音盒:
         os.unlink(新音.name)
         return 調好音
 
-    def 改大細聲(self, 音, 大細聲):
-        return self.用指令調(音, self.大細聲指令.format(大細聲))
+    @classmethod
+    def 改大細聲(cls, 音, 大細聲):
+        return cls.用指令調(音, cls.大細聲指令.format(大細聲))
 
-    def 改音懸(self, 音, 音懸):
-        return self.用指令調(音, self.音懸指令.format(音懸))
+    @classmethod
+    def 改音懸(cls, 音, 音懸):
+        return cls.用指令調(音, cls.音懸指令.format(音懸))
 
-    def 篩雜訊(self, 音, 雜訊=程式工具.目錄() + '/Sox/雜訊.wav'):
-        return self.用指令調(音, self.篩雜訊指令.format(雜訊))
+    @classmethod
+    def 篩雜訊(cls, 音, 雜訊=程式工具.目錄() + '/Sox/雜訊.wav'):
+        return cls.用指令調(音, cls.篩雜訊指令.format(雜訊))
 
-    def 篩懸音(self, 音, 懸音):
-        return self.用指令調(音, self.篩懸音指令.format(懸音))
+    @classmethod
+    def 篩懸音(cls, 音, 懸音):
+        return cls.用指令調(音, cls.篩懸音指令.format(懸音))
