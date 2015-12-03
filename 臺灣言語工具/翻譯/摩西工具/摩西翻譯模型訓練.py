@@ -12,7 +12,8 @@ from 臺灣言語工具.系統整合.外部程式 import 外部程式
 class 摩西翻譯模型訓練(程式腳本):
     _外部程式 = 外部程式()
 
-    def 訓練(self, 來源語言平行語料, 目標語言平行語料, 目標語言語料,
+    @classmethod
+    def 訓練(cls, 來源語言平行語料, 目標語言平行語料, 目標語言語料,
            暫存資料夾,
            連紲詞長度=3,
            編碼器=無編碼器(),
@@ -30,15 +31,15 @@ class 摩西翻譯模型訓練(程式腳本):
 
         平行檔名 = os.path.join(暫存資料夾, '翻')
         來源平行檔名 = os.path.join(暫存資料夾, '翻.源')
-        self._檔案合做一个(來源平行檔名, 來源語言平行語料, 編碼器)
+        cls._檔案合做一个(來源平行檔名, 來源語言平行語料, 編碼器)
         目標平行檔名 = os.path.join(暫存資料夾, '翻.目')
-        self._檔案合做一个(目標平行檔名, 目標語言平行語料, 編碼器)
+        cls._檔案合做一个(目標平行檔名, 目標語言平行語料, 編碼器)
 
 # 		翻譯模型指令版 = \
 # 			'SCRIPTS_ROOTDIR={1} {1}/training/train-model.perl -root-dir {2} -corpus {3} -f {4} -e {5} -alignment grow-diag-final-and -reordering msd-bidirectional-fe -lm 0:{7}:{6} --mgiza -external-bin-dir={0}'
 # 		翻譯模型指令 = 翻譯模型指令版.format(
-# 				self._執行檔路徑加尾(os.path.join(mgiza執行檔路徑, 'bin')),
-# 				self._執行檔路徑加尾(os.path.join(moses路徑, 'scripts')),
+# 				cls._執行檔路徑加尾(os.path.join(mgiza執行檔路徑, 'bin')),
+# 				cls._執行檔路徑加尾(os.path.join(moses路徑, 'scripts')),
 # 				暫存資料夾,
 # 				平行檔名,
 # 				'源',
@@ -59,15 +60,15 @@ class 摩西翻譯模型訓練(程式腳本):
         if not giza多執行緒:
             指令.append(
                 '-external-bin-dir={0}'.format(
-                    self._執行檔路徑加尾(os.path.join(gizapp執行檔路徑, 'bin')))
+                    cls._執行檔路徑加尾(os.path.join(gizapp執行檔路徑, 'bin')))
             )
         else:
             指令.append('--mgiza')
             指令.append(
                 '-external-bin-dir={0}'.format(
-                    self._執行檔路徑加尾(os.path.join(mgiza執行檔路徑, 'bin')))
+                    cls._執行檔路徑加尾(os.path.join(mgiza執行檔路徑, 'bin')))
             )
-        self._走指令(指令)
+        cls._走指令(指令)
         if 刣掉暫存檔:
             shutil.rmtree(os.path.join(暫存資料夾, 'corpus'))
             shutil.rmtree(os.path.join(暫存資料夾, 'giza.源-目'))
