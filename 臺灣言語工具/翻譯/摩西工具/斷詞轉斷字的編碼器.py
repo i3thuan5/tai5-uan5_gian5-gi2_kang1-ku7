@@ -10,12 +10,12 @@ def 斷詞轉斷字編碼器():
     class 斷詞轉斷字編碼器型態(語句編碼器):
 
         @classmethod
-        def _斷詞轉斷字編碼(cls, 斷詞語句):
+        def 編碼(cls, 斷詞語句):
             句物件 = 拆文分析器.轉做句物件(斷詞語句)
             字陣列 = 字物件篩仔.篩出字物件(句物件)
             孤字 = []
             for 字物件 in 字陣列:
                 孤字.append(物件譀鏡.看分詞(字物件))
             斷字語句 = 分詞符號.join(孤字)
-            return super(cls.__class__, cls).編碼(斷字語句)
+            return super(cls, cls).編碼(斷字語句)
     return 斷詞轉斷字編碼器型態
