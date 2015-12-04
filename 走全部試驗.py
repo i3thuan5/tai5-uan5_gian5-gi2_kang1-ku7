@@ -23,11 +23,10 @@ if __name__ == '__main__':
         單元試驗 = True
         整合試驗 = True
 
-    安裝程式 = 安裝摩西翻譯佮相關程式()
-    安裝程式.安裝gizapp()
+    安裝摩西翻譯佮相關程式.安裝gizapp()
     if 編譯摩西程式:
-        安裝程式.安裝moses(編譯CPU數=4)
-        安裝程式.安裝mgiza()  # 愛libboost
+        安裝摩西翻譯佮相關程式.安裝moses(編譯CPU數=4)
+        安裝摩西翻譯佮相關程式.安裝mgiza()  # 愛libboost
 
     錯誤狀況 = 0
     試驗包 = TestSuite()
