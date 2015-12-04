@@ -6,6 +6,7 @@ from unittest.suite import TestSuite
 
 
 from 臺灣言語工具.翻譯.摩西工具.安裝摩西翻譯佮相關程式 import 安裝摩西翻譯佮相關程式
+from 臺灣言語工具.語音辨識.HTK工具.安裝HTK語音辨識程式 import 安裝HTK語音辨識程式
 
 
 '''預設做單元試驗佮整合試驗'
@@ -27,6 +28,7 @@ if __name__ == '__main__':
     if 編譯摩西程式:
         安裝摩西翻譯佮相關程式.安裝moses(編譯CPU數=4)
         安裝摩西翻譯佮相關程式.安裝mgiza()  # 愛libboost
+    安裝HTK語音辨識程式.安裝htk()
 
     錯誤狀況 = 0
     試驗包 = TestSuite()
