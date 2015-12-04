@@ -1,4 +1,4 @@
-sudo: false
+sudo: true
 language: python
 python:
 - '3.3'
@@ -6,6 +6,7 @@ python:
 env:
   matrix: 
 install:
+- sudo apt-get install -y libc6-dev-i386 linux-libc-dev gcc-multilib libx11-dev libx11-dev:i386
 - pip install https://github.com/rsennrich/Bleualign/archive/master.zip
 - pip install https://github.com/kpu/kenlm/archive/master.zip
 - pip install https://github.com/sih4sing5hong5/hts_engine_python/archive/master.zip
