@@ -1,26 +1,35 @@
 sudo: false
 language: python
 python:
- - "3.3"
- - "3.4"
+- '3.3'
+- '3.4'
 env:
-  matrix:
+  matrix: 
 install:
- - pip install https://github.com/rsennrich/Bleualign/archive/master.zip
- - pip install https://github.com/kpu/kenlm/archive/master.zip
- - pip install https://github.com/sih4sing5hong5/hts_engine_python/archive/master.zip
- - pip install flake8
- - pip install python-coveralls
+- pip install https://github.com/rsennrich/Bleualign/archive/master.zip
+- pip install https://github.com/kpu/kenlm/archive/master.zip
+- pip install https://github.com/sih4sing5hong5/hts_engine_python/archive/master.zip
+- pip install flake8
+- pip install python-coveralls
 branches:
- only:
+  only:
   - master
+  - /\d+\.\d+\.\d+/
 script:
- - pip install .
- - python 範例/基本元素.py
- - python 範例/斷詞範例.py
- - python 範例/轉拼音系統.py
- - coverage run 走全部試驗.py
- - flake8 . --exclude=venv,文件,外部程式 --count --show-source --ignore=E251,E101,W191,W291,W293,E501
+- pip install .
+- python 範例/基本元素.py
+- python 範例/斷詞範例.py
+- python 範例/轉拼音系統.py
+- coverage run 走全部試驗.py
+- flake8 . --exclude=venv,文件,外部程式 --count --show-source --ignore=E251,E101,W191,W291,W293,E501
 after_success:
- - coverage report
- - coveralls
+- coverage report
+- coveralls
+deploy:
+  provider: pypi
+  user: sih4sing5hong5
+  password:
+    secure: QRLD6yPZ92b//ylVExoFZO+BGlHGZ/6ktu8nYIcnZTdE3zJsHR5fAlEkvELpT1yCHr//LU4ovcZ5O/R28YY/+naj/8cRqv4K5yvV70Wq5Sbj+TtQBuaNkMb3Vnif7GlLro9PZK2l224mBJsqFvykg9OLm+TBcRUB0fJMeS4x4gMQiOvWWDPyWAq/toJ6qknQqO199r8sbwu5BJtC0wo6nly048a46RcpTb9bkOil/i6gcA/X8TNDMmc1ah7XHp1zBwnUA6TQ0BfBu+COanwLykIG1Q8CsCp2+bH7CdPDZDZk0qTKlMSZFT5wWD0a3ABnPbXKcynUeCORgKpIW2JrHzTbQT4RW1OfDJ4LKXK+IS9H6qEgECkPPXcbySYDJabpz0bAy6JkkMB9q8PuHTII8vluwwgKT3Ws2LyqseE/tY6lZbF+dQRylEfzCGYOV+ICWYHsA3Nx2tDaxmHJFTKpLkK8yTxpJd0o6NJffIsIFIBEMQehXPyBELRxkJ1OMVMK3wE5u5nb7hlMoOpzG4KgxhBQi79/Iz1V9scC2Jp1vrwFJF/zNZIID1aMWHYBWBkytfjo9GnaUV3jADPbXhCy+K6Igbn8QRVjRXhxDEow844KvPxQ7NzCU1JDP2nNup1+NKNcWCAExs5wSw0wYTyYxizi6BXhepvYeWzV4gMzAZQ=
+  on:
+    tags: true
+    repo: sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7
