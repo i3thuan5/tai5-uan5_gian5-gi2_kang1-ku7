@@ -7,14 +7,12 @@ from shutil import copy
 
 from 臺灣言語工具.系統整合.外部程式 import 外部程式
 
-_外部程式目錄 = 外部程式().目錄()
-
 
 class 安裝摩西翻譯佮相關程式(程式腳本):
     pull深度 = '100'
 
     @classmethod
-    def 安裝moses(cls, moses安裝路徑=_外部程式目錄, 編譯CPU數=4):
+    def 安裝moses(cls, moses安裝路徑=外部程式.目錄(), 編譯CPU數=4):
         makedirs(moses安裝路徑, exist_ok=True)
         moses程式碼目錄 = join(moses安裝路徑, 'mosesdecoder')
         if not isdir(moses程式碼目錄):
@@ -34,7 +32,7 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
             cls._走指令(['./bjam', '-j{0}'.format(編譯CPU數)], 愛直接顯示輸出=True)
 
     @classmethod
-    def 安裝gizapp(cls, gizapp安裝路徑=_外部程式目錄):
+    def 安裝gizapp(cls, gizapp安裝路徑=外部程式.目錄()):
         makedirs(gizapp安裝路徑, exist_ok=True)
         gizapp程式碼目錄 = join(gizapp安裝路徑, 'giza-pp')
         if not isdir(gizapp程式碼目錄):
@@ -61,7 +59,7 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
             copy(join(gizapp程式碼目錄, 資料夾, 檔名), join(執行檔目錄, 檔名))
 
     @classmethod
-    def 安裝mgiza(cls, mgiza安裝路徑=_外部程式目錄):
+    def 安裝mgiza(cls, mgiza安裝路徑=外部程式.目錄()):
         makedirs(mgiza安裝路徑, exist_ok=True)
         mgiza程式碼目錄 = join(mgiza安裝路徑, 'mgiza', 'mgizapp')
         if not isdir(mgiza程式碼目錄):

@@ -10,7 +10,6 @@ from 臺灣言語工具.系統整合.外部程式 import 外部程式
 
 
 class 摩西翻譯模型訓練(程式腳本):
-    _外部程式 = 外部程式()
 
     @classmethod
     def 訓練(cls, 來源語言平行語料, 目標語言平行語料, 目標語言語料,
@@ -19,11 +18,11 @@ class 摩西翻譯模型訓練(程式腳本):
            編碼器=無編碼器(),
            刣掉暫存檔=True,
            giza多執行緒=False,
-           moses路徑=_外部程式.moses預設目錄(),
+           moses路徑=外部程式.moses預設目錄(),
            # 愛有 mkcls, GIZA++/mgiza, & snt2cooc.out/snt2cooc
-           gizapp執行檔路徑=_外部程式.gizapp預設目錄(),
+           gizapp執行檔路徑=外部程式.gizapp預設目錄(),
            # 愛有 mkcls, GIZA++/mgiza, & snt2cooc.out/snt2cooc
-           mgiza執行檔路徑=_外部程式.mgiza預設目錄(),
+           mgiza執行檔路徑=外部程式.mgiza預設目錄(),
            ):
         語言模型訓練 = KenLM語言模型訓練(moses路徑)
         os.makedirs(暫存資料夾, exist_ok=True)

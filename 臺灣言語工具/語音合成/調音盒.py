@@ -13,7 +13,6 @@ class 調音盒:
              + 單指令 + ' noisered')
     篩懸音指令 = (指令 + '{{0}} -n highpass {0} noiseprof |'
              + 單指令 + ' noisered')
-    程式工具 = 外部程式()
 
     @classmethod
     def 用指令調(cls, 音, 指令):
@@ -38,7 +37,7 @@ class 調音盒:
         return cls.用指令調(音, cls.音懸指令.format(音懸))
 
     @classmethod
-    def 篩雜訊(cls, 音, 雜訊=程式工具.目錄() + '/Sox/雜訊.wav'):
+    def 篩雜訊(cls, 音, 雜訊=外部程式.目錄() + '/Sox/雜訊.wav'):
         return cls.用指令調(音, cls.篩雜訊指令.format(雜訊))
 
     @classmethod
