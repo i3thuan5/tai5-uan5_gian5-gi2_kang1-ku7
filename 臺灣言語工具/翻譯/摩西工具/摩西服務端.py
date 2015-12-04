@@ -7,12 +7,11 @@ from 臺灣言語工具.系統整合.外部程式 import 外部程式
 
 
 class 摩西服務端():
-    _外部程式 = 外部程式()
 
     def __init__(self,
                  moses模型資料夾路徑,
                  埠='8080',
-                 moses資料夾路徑=_外部程式.moses預設目錄(),
+                 moses資料夾路徑=外部程式.moses預設目錄(),
                  ):
         self.執行程式 = os.path.join(moses資料夾路徑, 'bin', 'mosesserver')
         if not os.path.isfile(self.執行程式):

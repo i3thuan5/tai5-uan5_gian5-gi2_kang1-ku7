@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase
-from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from math import log10
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
@@ -17,23 +16,21 @@ class 實際語言模型單元試驗(TestCase):
     忍受 = 1e-10
 
     def setUp(self):
-        self.粗胚 = 文章粗胚()
-        self.分析器 = 拆文分析器()
         self.你型 = '你'
         self.你音 = 'li2'
-        self.你物件 = self.分析器.產生對齊詞(self.你型, self.你音)
+        self.你物件 = 拆文分析器.產生對齊詞(self.你型, self.你音)
         self.今仔日型 = '今仔日'
         self.今仔日音 = 'kin1-a2-jit8'
-        self.今仔日物件 = self.分析器.產生對齊詞(self.今仔日型, self.今仔日音)
+        self.今仔日物件 = 拆文分析器.產生對齊詞(self.今仔日型, self.今仔日音)
         self.我請你型 = '我請你'
         self.我請你音 = 'gua2 tshiann2 li2'
-        self.我請你物件 = self.分析器.產生對齊組(self.我請你型, self.我請你音)
+        self.我請你物件 = 拆文分析器.產生對齊組(self.我請你型, self.我請你音)
         self.你請我型 = '你請我'
         self.你請我音 = 'li2 tshiann2 gua2'
-        self.你請我物件 = self.分析器.產生對齊組(self.你請我型, self.你請我音)
+        self.你請我物件 = 拆文分析器.產生對齊組(self.你請我型, self.你請我音)
         self.出去型 = '出去'
         self.出去音 = 'tshut4-0khi3'
-        self.出去物件 = self.分析器.產生對齊詞(self.出去型, self.出去音)
+        self.出去物件 = 拆文分析器.產生對齊詞(self.出去型, self.出去音)
         self.型態 = 實際語言模型
 
     def tearDown(self):
@@ -111,13 +108,13 @@ class 實際語言模型單元試驗(TestCase):
 
     def test_長句(self):
         語言模型 = self.型態(3)
-        語言模型.看(self.分析器.產生對齊句('你好無？', 'li2 ho2 0bo5 ?'))
+        語言模型.看(拆文分析器.產生對齊句('你好無？', 'li2 ho2 0bo5 ?'))
         self.assertEqual(語言模型.總數(), [6, 5, 4])
-        語言模型.看(self.分析器.產生對齊句('你好出去矣！', 'li2 ho2 tshut4-0khi3 0ah4 !'))
+        語言模型.看(拆文分析器.產生對齊句('你好出去矣！', 'li2 ho2 tshut4-0khi3 0ah4 !'))
         self.assertEqual(語言模型.總數(), [13, 11, 9])
-        語言模型.看(self.分析器.產生對齊句('你敢有欲出去？', 'li2 kann2-u7 beh4 tshut4-0khi3 ?'))
+        語言模型.看(拆文分析器.產生對齊句('你敢有欲出去？', 'li2 kann2-u7 beh4 tshut4-0khi3 ?'))
         self.assertEqual(語言模型.總數(), [20, 17, 14])
-        語言模型.看(self.分析器.產生對齊句('你欲來去無？', 'li2 beh4 lai5-khi3 bo5 ?'))
+        語言模型.看(拆文分析器.產生對齊句('你欲來去無？', 'li2 beh4 lai5-khi3 bo5 ?'))
         self.assertEqual(語言模型.總數(), [27, 23, 19])
         self.assertEqual(語言模型.數量([語言模型.開始(), self.你物件, 語言模型.結束()]), [4, 0, 0])
         self.assertEqual(語言模型.機率([語言模型.開始(), self.你物件, 語言模型.結束()]),
@@ -178,7 +175,7 @@ class 實際語言模型單元試驗(TestCase):
         \end\
         '''
         語言模型 = self.型態(3)
-        媠媠巧靚 = self.分析器.建立組物件('sui2 sui2 khiau2 tsiang5')
+        媠媠巧靚 = 拆文分析器.建立組物件('sui2 sui2 khiau2 tsiang5')
         語言模型.看(媠媠巧靚)
         self.assertEqual(語言模型.條件(媠媠巧靚.內底詞),
                          [log10(1 / 6), log10(1 / 1), log10(1 / 1), ])
@@ -195,10 +192,10 @@ class 實際語言模型單元試驗(TestCase):
         音一 = 'kin1-a2-jit8 gua2 tshiann2 li2 tsiah8 png7 .'
         型二 = '請你來鬥相共好無？'
         音二 = 'tshiann2 li2 lai5 tau3-sann1-kang7 hoo2-bo5 ?'
-        兩句語言模型.看(self.分析器.產生對齊章(型一, 音一))
+        兩句語言模型.看(拆文分析器.產生對齊章(型一, 音一))
         self.assertEqual(兩句語言模型.總數(), [9, 8, 7])
         self.assertEqual(兩句語言模型.數量([self.你物件]), [1])
-        兩句語言模型.看(self.分析器.產生對齊章(型二, 音二))
+        兩句語言模型.看(拆文分析器.產生對齊章(型二, 音二))
         self.assertEqual(兩句語言模型.總數(), [17, 15, 13])
         self.assertEqual(兩句語言模型.數量([self.你物件]), [2])
         self.assertEqual(兩句語言模型.數量(self.我請你物件.內底詞), [2, 2, 1])
@@ -207,7 +204,7 @@ class 實際語言模型單元試驗(TestCase):
         self.assertEqual(兩句語言模型.條件(self.我請你物件.內底詞),
                          [log10(2 / 17), log10(2 / 2), log10(1 / 1), ])
         孤句語言模型 = self.型態(3)
-        孤句語言模型.看(self.分析器.產生對齊章(型一 + 型二, 音一 + 音二))
+        孤句語言模型.看(拆文分析器.產生對齊章(型一 + 型二, 音一 + 音二))
         self.assertEqual(孤句語言模型.總數(), 兩句語言模型.總數())
         self.assertEqual(孤句語言模型.機率(self.我請你物件.內底詞),
                          兩句語言模型.機率(self.我請你物件.內底詞))
@@ -242,19 +239,19 @@ class 實際語言模型單元試驗(TestCase):
         self.assertEqual(語言模型.條件([]), [])
 
     def 定椅桌(self):
-        self.我有一張桌仔 = self.分析器.產生對齊句(
+        self.我有一張桌仔 = 拆文分析器.產生對齊句(
             '我有一張桌仔！', 'gua2 u7 tsit8-tiunn1 toh4-a2!')
-        self.桌仔垃圾 = self.分析器.產生對齊句(
+        self.桌仔垃圾 = 拆文分析器.產生對齊句(
             '桌仔垃圾！？', 'toh4-a2 lap4-sap4!?')
-        self.我有一張椅仔 = self.分析器.產生對齊句(
+        self.我有一張椅仔 = 拆文分析器.產生對齊句(
             '我有一張椅仔！', 'gua2 u7 tsit8-tiunn1 i2-a2!')
-        self.椅仔 = self.分析器.產生對齊句(
+        self.椅仔 = 拆文分析器.產生對齊句(
             '椅仔。', 'i2-a2.')
-        self.桌仔 = self.分析器.產生對齊句(
+        self.桌仔 = 拆文分析器.產生對齊句(
             '桌仔。', 'toh4-a2.')
-        self.柴 = self.分析器.產生對齊句(
+        self.柴 = 拆文分析器.產生對齊句(
             '柴！', 'tsha5!')
-        self.我 = self.分析器.產生對齊句(
+        self.我 = 拆文分析器.產生對齊句(
             '我', 'gua2')
 
     def test_頭中尾詞比較(self):

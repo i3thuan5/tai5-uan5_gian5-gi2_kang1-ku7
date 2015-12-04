@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.基本元素.字 import 字
 from 臺灣言語工具.基本元素.集 import 集
 from 臺灣言語工具.綜合標音.閩南語字綜合標音 import 閩南語字綜合標音
@@ -11,16 +10,10 @@ from 臺灣言語工具.基本元素.公用變數 import 無音
 
 
 class 集綜合標音單元試驗(unittest.TestCase):
-    def setUp(self):
-        self.分析器 = 拆文分析器()
-        self.粗胚 = 文章粗胚()
-
-    def tearDown(self):
-        pass
 
     def test_基本單元試驗(self):
-        媠某 = self.分析器.產生對齊組('美女', 'sui2-boo2')
-        美女 = self.分析器.產生對齊組('美女', 'mi2-lu2')
+        媠某 = 拆文分析器.產生對齊組('美女', 'sui2-boo2')
+        美女 = 拆文分析器.產生對齊組('美女', 'mi2-lu2')
         集物件 = 集([媠某, 美女])
         標音集 = 集綜合標音(閩南語字綜合標音, 集物件)
         self.assertEqual(len(標音集.綜合詞組), 2)
@@ -28,10 +21,10 @@ class 集綜合標音單元試驗(unittest.TestCase):
         self.assertEqual(標音集.綜合詞組[1], 詞組綜合標音(閩南語字綜合標音, 美女))
 
     def test_有無音字(self):
-        集物件 = 集([self.分析器.產生對齊組('點仔膠', 'tiam2-a2-ka1'),
-                 self.分析器.建立組物件('，'),
-                 self.分析器.產生對齊組('黏著跤', 'liam5-tioh8 kha1'),
-                 self.分析器.建立組物件('，'),
+        集物件 = 集([拆文分析器.產生對齊組('點仔膠', 'tiam2-a2-ka1'),
+                 拆文分析器.建立組物件('，'),
+                 拆文分析器.產生對齊組('黏著跤', 'liam5-tioh8 kha1'),
+                 拆文分析器.建立組物件('，'),
                  ])
         標音集 = 集綜合標音(閩南語字綜合標音, 集物件)
         self.assertEqual(len(標音集.綜合詞組), 4)
@@ -53,8 +46,8 @@ class 集綜合標音單元試驗(unittest.TestCase):
         self.assertEqual(標音集.綜合詞組[3].連字音, '')
 
     def test_孤字轉json格式(self):
-        白組物件 = self.分析器.產生對齊組('一', 'tsit8')
-        文組物件 = self.分析器.產生對齊組('一', 'it4')
+        白組物件 = 拆文分析器.產生對齊組('一', 'tsit8')
+        文組物件 = 拆文分析器.產生對齊組('一', 'it4')
         集物件 = 集([白組物件, 文組物件])
         標音集 = 集綜合標音(閩南語字綜合標音, 集物件)
         self.assertEqual(標音集.轉json格式(), [
@@ -68,7 +61,7 @@ class 集綜合標音單元試驗(unittest.TestCase):
         self.assertEqual(標音集.轉json格式(), 組的標音詞組)
 
     def test_一詞轉json格式(self):
-        集物件 = self.分析器.產生對齊集('椅仔', 'i2-a2')
+        集物件 = 拆文分析器.產生對齊集('椅仔', 'i2-a2')
         標音集 = 集綜合標音(閩南語字綜合標音, 集物件)
         self.assertEqual(標音集.轉json格式(), [
             {"詞組綜合標音": [
@@ -80,8 +73,8 @@ class 集綜合標音單元試驗(unittest.TestCase):
         ])
 
     def test_文白一詞轉json格式(self):
-        白組物件 = self.分析器.產生對齊組('大人', 'tua7-lang5')
-        文組物件 = self.分析器.產生對齊組('大人', 'tai7-jin5')
+        白組物件 = 拆文分析器.產生對齊組('大人', 'tua7-lang5')
+        文組物件 = 拆文分析器.產生對齊組('大人', 'tai7-jin5')
         集物件 = 集([白組物件, 文組物件])
         標音集 = 集綜合標音(閩南語字綜合標音, 集物件)
         self.assertEqual(標音集.轉json格式(), [

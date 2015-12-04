@@ -3,6 +3,7 @@ from 臺灣言語工具.斷詞.拄好長度辭典揣詞 import 拄好長度辭�
 from 臺灣言語工具.基本元素.句 import 句
 from 試驗.斷詞.辭典揣詞單元試驗 import 辭典揣詞單元試驗
 from unittest.case import TestCase
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 
 
 class 拄好長度辭典揣詞單元試驗(辭典揣詞單元試驗, TestCase):
@@ -12,9 +13,9 @@ class 拄好長度辭典揣詞單元試驗(辭典揣詞單元試驗, TestCase):
         self.test_基本揣詞()
 
         一四分數 = []
-        self.一張椅仔對齊詞 = self.分析器.產生對齊詞('一張椅仔', 'tsit8-tiunn1-i2-a2')
+        self.一張椅仔對齊詞 = 拆文分析器.產生對齊詞('一張椅仔', 'tsit8-tiunn1-i2-a2')
         self.辭典.加詞(self.一張椅仔對齊詞)
-        self.一張椅仔集 = self.分析器.產生對齊集('一張椅仔', 'tsit8-tiunn1-i2-a2')
+        self.一張椅仔集 = 拆文分析器.產生對齊集('一張椅仔', 'tsit8-tiunn1-i2-a2')
         新句物件 = 句([self.我對齊集, self.有對齊集,
                   self.一張椅仔集, self.驚對齊集, self.驚對齊集])
         揣詞結果, 分數, 詞數 = self.揣詞.揣詞(self.辭典, self.對齊句)
@@ -39,9 +40,9 @@ class 拄好長度辭典揣詞單元試驗(辭典揣詞單元試驗, TestCase):
         一四分數.append(分數)
 
         兩三分數 = []
-        self.有一張對齊詞 = self.分析器.產生對齊詞('有一張', 'u7-tsit8-tiunn1')
+        self.有一張對齊詞 = 拆文分析器.產生對齊詞('有一張', 'u7-tsit8-tiunn1')
         self.辭典.加詞(self.有一張對齊詞)
-        self.有一張集 = self.分析器.產生對齊集('有一張', 'u7-tsit8-tiunn1')
+        self.有一張集 = 拆文分析器.產生對齊集('有一張', 'u7-tsit8-tiunn1')
         新句物件 = 句([self.我對齊集, self.有一張集,
                   self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
         揣詞結果, 分數, 詞數 = self.揣詞.揣詞(self.辭典, self.對齊句)

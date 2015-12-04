@@ -7,7 +7,8 @@
 
 
 class 羅馬音仕上げ:
-    def しあげ(self, 原來語句):
+    @classmethod
+    def しあげ(cls, 原來語句):
         第一字大寫 = 原來語句[0].upper() + 原來語句[1:]
         無輕聲 = 第一字大寫.replace('-0', '--')\
             .replace(' 0', '--')\

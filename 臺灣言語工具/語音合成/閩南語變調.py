@@ -12,20 +12,23 @@ class 閩南語變調:
     實詞變調規則 = {'1': '7', '2': '1', '3': '2', '5': '7',
               '7': '3', '0': '0', '6': '3'}  # 6聲愛查
 
-    def 變調(self, 物件):
+    @classmethod
+    def 變調(cls, 物件):
         if isinstance(物件, 章):
-            return self._變章物件調(物件)
-        return self._變句物件調(物件)
+            return cls._變章物件調(物件)
+        return cls._變句物件調(物件)
 
-    def _變章物件調(self, 章物件):
+    @classmethod
+    def _變章物件調(cls, 章物件):
         結果章物件 = 章()
         for 句物件 in 章物件.內底句:
-            結果章物件.內底句.append(self._變句物件調(句物件))
+            結果章物件.內底句.append(cls._變句物件調(句物件))
         return 結果章物件
 
-    def _變句物件調(self, 句物件):
+    @classmethod
+    def _變句物件調(cls, 句物件):
         結果句物件 = 句(句物件.內底集)
-        字陣列 = self.篩仔.篩出字物件(結果句物件)
+        字陣列 = cls.篩仔.篩出字物件(結果句物件)
         尾本調 = []
         有出現上尾字無 = False
         頂一个是本調記號 = False
@@ -43,16 +46,17 @@ class 閩南語變調:
                 尾本調.append(False)
             頂一个是本調記號 = False
             頂一个是斷詞點 = False
-            if 字物件.型 == 本調符號:  # and 字物件.音==self.本調記號:
+            if 字物件.型 == 本調符號:  # and 字物件.音==cls.本調記號:
                 頂一个是本調記號 = True
-            if 字物件.型 in ['的', '是']:  # and 字物件.音==self.本調記號:
+            if 字物件.型 in ['的', '是']:  # and 字物件.音==cls.本調記號:
                 頂一个是斷詞點 = True
         for 字物件, 愛變調無 in zip(字陣列, 尾本調[::-1]):
             if 愛變調無:
-                字物件.音 = self.實詞變調(*字物件.音)
+                字物件.音 = cls.實詞變調(*字物件.音)
         return 結果句物件
 
-    def 實詞變調(self, 聲, 韻, 調):
+    @classmethod
+    def 實詞變調(cls, 聲, 韻, 調):
         if 韻.endswith('ʔ') or 韻.endswith('h'):
             if 調 == '4':
                 調 = '2'
@@ -69,8 +73,8 @@ class 閩南語變調:
             else:
                 raise 解析錯誤('入尾調錯誤！！{0}'.format((聲, 韻, 調)))
         else:
-            if 調 in self.實詞變調規則:
-                調 = self.實詞變調規則[調]
+            if 調 in cls.實詞變調規則:
+                調 = cls.實詞變調規則[調]
             else:
                 raise 解析錯誤('非入調錯誤！！{0}'.format((聲, 韻, 調)))
         return (聲, 韻, 調)
