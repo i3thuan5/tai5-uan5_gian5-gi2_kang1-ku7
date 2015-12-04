@@ -9,13 +9,15 @@ from 臺灣言語工具.解析整理.羅馬音仕上げ import 羅馬音仕上�
 
 
 class 羅馬音仕上げ單元試驗(unittest.TestCase):
+
     def setUp(self):
         pass
 
     def tearDown(self):
         self.羅馬音仕上げ = 羅馬音仕上げ()
         self.assertEqual(
-            self.羅馬音仕上げ.しあげ(self.原來語句), self.處理好語句)
+            self.羅馬音仕上げ.しあげ(self.原來語句), self.處理好語句
+        )
 
     def test_轉大寫字(self):
         self.原來語句 = 'gua2 ai2 sui2 koo1-niu5!'

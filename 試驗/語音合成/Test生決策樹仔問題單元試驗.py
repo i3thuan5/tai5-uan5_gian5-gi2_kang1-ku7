@@ -5,11 +5,6 @@ from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 
 
 class 生決策樹仔問題單元試驗(unittest.TestCase):
-    def setUp(self):
-        self.生問題 = 生決策樹仔問題()
-
-    def tearDown(self):
-        pass
 
     def test_前後有物件(self):
         資料 = [('i', ['i']), ('e', ['e']), ]
@@ -22,7 +17,7 @@ class 生決策樹仔問題單元試驗(unittest.TestCase):
             'QS "後壁是e" { "*+e＠＠*" }',
         }
         self.assertEqual(
-            self.生問題.問題集(
+            生決策樹仔問題.問題集(
                 資料, ('ZZ', 'X', '+', '＠＠'), '孤條',),
             答案)
 
@@ -37,7 +32,7 @@ class 生決策樹仔問題單元試驗(unittest.TestCase):
             'QS "後壁是e" { "*+e其他*" }',
         }
         self.assertEqual(
-            self.生問題.問題集(
+            生決策樹仔問題.問題集(
                 資料, ('', '-', '+', '其他'), '孤條',),
             答案)
 
@@ -52,7 +47,7 @@ class 生決策樹仔問題單元試驗(unittest.TestCase):
             'QS "後壁是e" { "*+e" }',
         }
         self.assertEqual(
-            self.生問題.問題集(
+            生決策樹仔問題.問題集(
                 資料, ('音：', '-', '+', ''), '孤條',),
             答案)
 
@@ -70,49 +65,49 @@ class 生決策樹仔問題單元試驗(unittest.TestCase):
             'QS "後壁是a類" { "*+*a*/*" }',
         }
         self.assertEqual(
-            self.生問題.問題集(
+            生決策樹仔問題.問題集(
                 資料, ('$', '-', '+', '/'), '孤條',),
             答案)
 
     def test_種類毋著(self):
         '''1 2 3'''
-        self.assertRaises(解析錯誤, self.生問題.問題集,
+        self.assertRaises(解析錯誤, 生決策樹仔問題.問題集,
                           self.看排法資料, ('', '-', '+', '/'), '攏愛',)
 
     def test_孤條(self):
         '''1 2 3'''
         self.assertEqual(
-            self.生問題.問題集(
+            生決策樹仔問題.問題集(
                 self.看排法資料, ('', '-', '+', '/'), '孤條',),
             self.孤條答案)
 
     def test_連紲(self):
         '''1 12 123 123 2 23 3'''
         self.assertEqual(
-            self.生問題.問題集(
+            生決策樹仔問題.問題集(
                 self.看排法資料, ('', '-', '+', '/'), '連紲',),
             self.連紲答案)
 
     def test_組合(self):
         ''' 1 12 123 13 2 23 3'''
         self.assertEqual(
-            self.生問題.問題集(
+            生決策樹仔問題.問題集(
                 self.看排法資料, ('', '-', '+', '/'), '組合',),
             self.組合答案)
 
     def test_檢查正常(self):
-        self.生問題.檢查({
+        生決策樹仔問題.檢查({
             'QS "後壁是e類" { "*+e/*" }',
             'QS "後壁是a類" { "*+*a*/*" }'})
 
     def test_檢查內容仝款(self):
-        self.生問題.檢查({
+        生決策樹仔問題.檢查({
             'QS "後壁是e類" { "*+*a*/*" }',
             'QS "後壁是a類" { "*+*a*/*" }'})
 
     def test_檢查問題名仝款(self):
         self.assertRaises(解析錯誤,
-                          self.生問題.檢查,
+                          生決策樹仔問題.檢查,
                           {
                               'QS "後壁是a類" { "*+e/*" }',
                               'QS "後壁是a類" { "*+*a*/*" }'},

@@ -6,7 +6,9 @@ from 臺灣言語工具.基本元素.章 import 章
 
 
 class 揀集內組:
-    def 揀(self, 章物件, 集選擇):
+
+    @classmethod
+    def 揀(cls, 章物件, 集選擇):
         揀出來的章物件 = 章()
         所在 = 0
         for 句物件 in 章物件.內底句:
