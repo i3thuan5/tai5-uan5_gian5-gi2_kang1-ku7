@@ -22,3 +22,7 @@ class 外部程式:
     @classmethod
     def mgiza預設目錄(cls):
         return os.path.join(cls.目錄(), 'mgiza', 'mgizapp')
+
+    @classmethod
+    def htk預設目錄(cls):
+        return os.path.join(cls.目錄(), 'HTK_HTS', 'bin')
