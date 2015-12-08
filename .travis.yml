@@ -1,12 +1,23 @@
-sudo: true
+sudo: false
 language: python
 python:
 - '3.3'
 - '3.4'
 env:
   matrix: 
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-4.9
+      - g++-4.9
+      - libc6-dev-i386
+      - linux-libc-dev
+      - gcc-multilib
+      - libx11-dev
+      - libx11-dev:i386
 install:
-- sudo apt-get install -y libc6-dev-i386 linux-libc-dev gcc-multilib libx11-dev libx11-dev:i386
 - pip install https://github.com/rsennrich/Bleualign/archive/master.zip
 - pip install https://github.com/kpu/kenlm/archive/master.zip
 - pip install https://github.com/sih4sing5hong5/hts_engine_python/archive/master.zip
