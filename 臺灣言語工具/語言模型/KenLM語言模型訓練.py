@@ -10,7 +10,7 @@ from 臺灣言語工具.系統整合.外部程式 import 外部程式
 class KenLM語言模型訓練(程式腳本):
 
     def __init__(self, moses資料夾路徑=外部程式.moses預設目錄()):
-        self.訓練指令 = '{0}bin/lmplz'.format(self._執行檔路徑加尾(moses資料夾路徑))
+        self.訓練指令 = os.path.join(moses資料夾路徑, 'bin', 'lmplz')
         if not os.path.isfile(self.訓練指令):
             raise FileNotFoundError('佇{0}揣無KenLM執行檔！！'.format(self.訓練指令))
 
