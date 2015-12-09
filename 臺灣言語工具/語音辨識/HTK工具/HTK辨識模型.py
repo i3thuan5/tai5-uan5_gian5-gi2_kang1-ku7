@@ -3,11 +3,11 @@ import os
 from os.path import join, isfile
 from shutil import copy
 from 臺灣言語工具.語音合成.語音標仔轉換 import 語音標仔轉換
-from 臺灣言語工具.語音辨識.語料處理 import 語料處理
 from 臺灣言語工具.系統整合.外部程式 import 外部程式
+from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 
 
-class HTK辨識模型(語料處理):
+class HTK辨識模型(程式腳本):
     _轉合成標仔 = 語音標仔轉換()
     恬音 = _轉合成標仔.提出標仔主要音值(_轉合成標仔.恬音)
     短恬 = _轉合成標仔.提出標仔主要音值(_轉合成標仔.短恬)
