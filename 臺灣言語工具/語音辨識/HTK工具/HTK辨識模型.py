@@ -1,15 +1,48 @@
 # -*- coding: utf-8 -*-
 import os
-from os.path import join
+from os.path import join, isfile
+from shutil import copy
 from 臺灣言語工具.語音合成.語音標仔轉換 import 語音標仔轉換
 from 臺灣言語工具.語音辨識.語料處理 import 語料處理
 from 臺灣言語工具.系統整合.外部程式 import 外部程式
 
 
-class 辨識模型(語料處理):
+class HTK辨識模型(語料處理):
     _轉合成標仔 = 語音標仔轉換()
     恬音 = _轉合成標仔.提出標仔主要音值(_轉合成標仔.恬音)
     短恬 = _轉合成標仔.提出標仔主要音值(_轉合成標仔.短恬)
+
+    def __init__(self, 資料目錄=None,
+                 音節聲韻對照檔=None, 聲韻類檔=None, 模型參數檔=None):
+        if 音節聲韻對照檔:
+            self._音節聲韻對照檔 = 音節聲韻對照檔
+        else:
+            self._音節聲韻對照檔 = join(資料目錄, '音節聲韻對照檔.dict')
+        if 聲韻類檔:
+            self._聲韻類檔 = 聲韻類檔
+        else:
+            self._聲韻類檔 = join(資料目錄, '聲韻類檔.list')
+        if 模型參數檔:
+            self._模型參數檔 = 模型參數檔
+        else:
+            self._模型參數檔 = join(資料目錄, '模型參數檔.macro')
+        for 檔名 in [self._音節聲韻對照檔, self._聲韻類檔, self._模型參數檔]:
+            if not isfile(檔名):
+                raise OSError('"{0}"無存在！！'.format(檔名))
+
+    def 音節聲韻對照檔所在(self):
+        return self._音節聲韻對照檔
+
+    def 聲韻類檔所在(self):
+        return self._聲韻類檔
+
+    def 模型參數檔所在(self):
+        return self._模型參數檔
+
+    def 存資料佇(self, 目標目錄):
+        copy(self.音節聲韻對照檔所在(), 目標目錄)
+        copy(self.聲韻類檔所在(), 目標目錄)
+        copy(self.模型參數檔所在(), 目標目錄)
 
     def 對齊(self, 參數檔, 聲韻類檔, 對照檔, 模型檔,
            標仔檔, 特徵檔, 結果夾, 執行檔路徑=外部程式.htk預設目錄()):
