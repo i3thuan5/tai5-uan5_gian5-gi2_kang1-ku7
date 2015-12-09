@@ -6,7 +6,7 @@ from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 from 臺灣言語工具.系統整合.外部程式 import 外部程式
 
 
-class 語料處理(程式腳本):
+class HTK語料處理(程式腳本):
     wav副檔名 = '.wav'
     音檔副檔名 = wav副檔名
     標仔副檔名 = '.lab'
