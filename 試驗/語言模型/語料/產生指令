@@ -1,0 +1,1 @@
+ngram-count -order 3 -text sui2.txt -lm sui.lm
