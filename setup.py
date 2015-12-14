@@ -37,10 +37,9 @@ setup(
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
-        'Operating System :: POSIX :: Other',
-        'Programming Language :: Python :: 3.3',
+        'Operating System :: Unix',
         'Programming Language :: Python :: 3.4',
-        'Natural Language :: Chinese (Traditional)',
+        'Programming Language :: Python :: 3.5',
         'Topic :: Scientific/Engineering',
         'Topic :: Scientific/Engineering :: Information Analysis',
         'Topic :: Text Processing',
