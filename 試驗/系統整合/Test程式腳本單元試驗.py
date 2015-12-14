@@ -15,17 +15,6 @@ class 程式腳本單元試驗(TestCase):
     def setUp(self):
         self.這馬目錄 = os.path.dirname(os.path.abspath(__file__))
 
-    def test_空執行檔路徑加尾(self):
-        self.assertEqual(程式腳本._執行檔路徑加尾(''), '')
-
-    def test_根目錄執行檔路徑加尾(self):
-        self.assertEqual(程式腳本._執行檔路徑加尾('/'), '/')
-
-    def test_一般資料夾執行檔路徑加尾(self):
-        self.assertEqual(
-            程式腳本._執行檔路徑加尾('/home/git/mgiza/mgizapp/bin'),
-            '/home/git/mgiza/mgizapp/bin/')
-
     def test_走正常指令(self):
         程式腳本._走指令('/bin/echo')
 

@@ -1,10 +1,22 @@
 sudo: false
 language: python
 python:
-- '3.3'
 - '3.4'
+- '3.5'
 env:
   matrix: 
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-4.9
+      - g++-4.9
+      - libc6-dev-i386
+      - linux-libc-dev
+      - gcc-multilib
+      - libx11-dev
+      - libx11-dev:i386
 install:
 - pip install https://github.com/rsennrich/Bleualign/archive/master.zip
 - pip install https://github.com/kpu/kenlm/archive/master.zip
@@ -21,7 +33,7 @@ script:
 - python 範例/斷詞範例.py
 - python 範例/轉拼音系統.py
 - coverage run 走全部試驗.py
-- flake8 . --exclude=venv,文件,外部程式 --count --show-source --ignore=E251,E101,W191,W291,W293,E501
+- flake8 . --exclude=venv,文件,外部程式 --count --show-source --ignore=E501
 after_success:
 - coverage report
 - coveralls

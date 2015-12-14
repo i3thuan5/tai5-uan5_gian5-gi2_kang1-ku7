@@ -9,12 +9,6 @@ from contextlib import contextmanager
 class 程式腳本:
 
     @classmethod
-    def _執行檔路徑加尾(cls, 執行檔路徑):
-        if 執行檔路徑 != '' and not 執行檔路徑.endswith('/'):
-            return 執行檔路徑 + '/'
-        return 執行檔路徑
-
-    @classmethod
     def _走指令(cls, 指令, 愛直接顯示輸出=False,
              stdin=None, stdout=PIPE, stderr=PIPE):
         try:

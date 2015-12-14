@@ -84,3 +84,9 @@ class 摩西翻譯模型訓練(程式腳本):
                        'lex.f2e',
                        ]:
                 os.remove(os.path.join(model資料夾, 檔名))
+
+    @classmethod
+    def _執行檔路徑加尾(cls, 執行檔路徑):
+        if 執行檔路徑 != '' and not 執行檔路徑.endswith('/'):
+            return 執行檔路徑 + '/'
+        return 執行檔路徑

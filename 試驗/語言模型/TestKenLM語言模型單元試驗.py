@@ -13,35 +13,6 @@ class KenLM語言模型單元試驗(TestCase):
     忍受 = 1e-7
 
     def setUp(self):
-        '''
-		srilm的結果
-		原本檔案sui2：
-		sui2 sui2 khiau2 tsiang5
-		走ngram-count -order 3 -text sui2 -lm sui.lm：
-		結果sui.lm：
-		\data\
-		ngram 1=5
-		ngram 2=5
-		ngram 3=0
-		
-		\1-grams:
-		-0.69897	</s>
-		-99	<s>	-99
-		-0.69897	khiau2	-99
-		-0.39794	sui2	-7.083871
-		-0.69897	tsiang5	-99
-		
-		\2-grams:
-		0	<s> sui2
-		0	khiau2 tsiang5
-		-0.30103	sui2 khiau2
-		-0.30103	sui2 sui2
-		0	tsiang5 </s>
-		
-		\3-grams:
-		
-		\end\
-		'''
         self.媠媠巧靚語言模型 = KenLM語言模型(
             os.path.join(os.path.dirname(os.path.abspath(__file__)), '語料', 'sui2.lm'))
         self.媠媠巧靚組物件 = 拆文分析器.建立組物件('sui2 sui2 khiau2 tsiang5')
