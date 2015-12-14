@@ -21,11 +21,11 @@ class HTK辨識整合試驗(TestCase):
         cls.期待模型檔資料夾 = os.path.join(語料目錄, '期待模型檔')
         cls.試驗語料暫存目錄 = mkdtemp()
 
-        cls.特徵檔, cls.音節檔, cls.聲韻檔 = HTK語料處理.處理試驗語料(
+        cls.特徵檔, cls.音節檔, cls.聲韻檔 = HTK語料處理.產生特徵佮音節佮聲韻檔(
             cls.音檔目錄,
-            cls.試驗語料暫存目錄,
             cls.標仔目錄,
-            cls.音節聲韻對照檔
+            cls.音節聲韻對照檔,
+            cls.試驗語料暫存目錄,
         )
 
     @classmethod
