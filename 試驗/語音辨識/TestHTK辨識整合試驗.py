@@ -1,5 +1,4 @@
-import os
-from os.path import join, isdir, isfile
+from os.path import isdir, isfile, join, dirname, abspath
 from posix import listdir
 from shutil import rmtree
 from tempfile import mkdtemp
@@ -12,13 +11,10 @@ class HTK辨識整合試驗(TestCase):
 
     @classmethod
     def setUpClass(cls):
-        語料目錄 = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), '語音語料'
-        )
-        cls.音檔目錄 = os.path.join(語料目錄, 'wav')
-        cls.標仔目錄 = os.path.join(語料目錄, 'labels')
-        cls.音節聲韻對照檔 = os.path.join(語料目錄, '聲韻對照.dict')
-        cls.期待模型檔資料夾 = os.path.join(語料目錄, '期待模型檔')
+        語料目錄 = join(dirname(abspath(__file__)), '語音語料')
+        cls.音檔目錄 = join(語料目錄, 'wav')
+        cls.標仔目錄 = join(語料目錄, 'labels')
+        cls.音節聲韻對照檔 = join(語料目錄, '聲韻對照.dict')
         cls.試驗語料暫存目錄 = mkdtemp()
 
         cls.特徵檔, cls.音節檔, cls.聲韻檔 = HTK語料處理.產生特徵佮音節佮聲韻檔(
@@ -44,11 +40,6 @@ class HTK辨識整合試驗(TestCase):
         原本標音辨識模型 = HTK辨識模型訓練.訓練原本標音辨識模型(
             self.音檔目錄, self.標仔目錄, self.音節聲韻對照檔, self.模型暫存目錄
         )
-        期待模型檔 = join(self.期待模型檔資料夾, '原始標音模型.macro')
-        with open(原本標音辨識模型.模型參數檔所在()) as 結果:
-            with open(期待模型檔) as 答案:
-                self.assertEqual(結果.read(), 答案.read(), self.模型暫存目錄)
-
         self.檢查資料夾有辨識出來的檔案(原本標音辨識模型.對齊聲韻(self.聲韻檔, self.特徵檔, self.結果暫存目錄))
         self.檢查資料夾有辨識出來的檔案(原本標音辨識模型.對齊音節(self.音節檔, self.特徵檔, self.結果暫存目錄))
         self.檢查辨識結果(原本標音辨識模型.辨識聲韻(self.特徵檔, self.結果暫存目錄, 3))
@@ -58,11 +49,6 @@ class HTK辨識整合試驗(TestCase):
         拄好短恬辨識模型 = HTK辨識模型訓練.訓練拄好短恬辨識模型(
             self.音檔目錄, self.標仔目錄, self.音節聲韻對照檔, self.模型暫存目錄
         )
-        期待模型檔 = join(self.期待模型檔資料夾, '加短恬模型.macro')
-        with open(拄好短恬辨識模型.模型參數檔所在()) as 結果:
-            with open(期待模型檔) as 答案:
-                self.assertEqual(結果.read(), 答案.read())
-
         self.檢查資料夾有辨識出來的檔案(拄好短恬辨識模型.對齊聲韻(self.聲韻檔, self.特徵檔, self.結果暫存目錄))
         self.檢查資料夾有辨識出來的檔案(拄好短恬辨識模型.對齊音節(self.音節檔, self.特徵檔, self.結果暫存目錄))
         self.檢查辨識結果(拄好短恬辨識模型.辨識聲韻(self.特徵檔, self.結果暫存目錄, 3))
@@ -79,11 +65,6 @@ class HTK辨識整合試驗(TestCase):
         三連音辨識模型 = HTK辨識模型訓練.訓練三連音辨識模型(
             self.音檔目錄, self.標仔目錄, self.音節聲韻對照檔, self.模型暫存目錄
         )
-        期待模型檔 = join(self.期待模型檔資料夾, '三連音全部縛做伙模型.macro')
-        with open(三連音辨識模型.模型參數檔所在()) as 結果:
-            with open(期待模型檔) as 答案:
-                self.assertEqual(結果.read(), 答案.read())
-
         self.檢查資料夾有辨識出來的檔案(三連音辨識模型.對齊聲韻(self.聲韻檔, self.特徵檔, self.結果暫存目錄))
         self.檢查資料夾有辨識出來的檔案(三連音辨識模型.對齊音節(self.音節檔, self.特徵檔, self.結果暫存目錄))
         '若愛辨識聲韻，聲韻類檔會傷大，所以無支援'
