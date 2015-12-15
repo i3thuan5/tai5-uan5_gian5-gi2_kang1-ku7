@@ -15,7 +15,11 @@ def 揣工具包(頭='.'):
 
 # tar無法度下傷長的檔案名，所以愛用zip
 # python setup.py sdist --format=zip upload
-sys.argv.insert(sys.argv.index('upload'), '--format=zip')
+try:
+    sys.argv.insert(sys.argv.index('upload'), '--format=zip')
+except ValueError:
+    # 無upload
+    pass
 
 setup(
     # 臺灣言語工具 tai5_uan5_gian5_gi2_kang1_ku7
