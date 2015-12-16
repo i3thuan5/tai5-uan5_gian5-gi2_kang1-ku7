@@ -694,7 +694,12 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
             'Hiau-hīng-tsînn, sit-tik liáu, uan-óng tsînn, pua̍h-su kiáu. '
         )
 
-    def test_kaxabu辭典的oo寫法(self):
+    def test_kaxabu辭典的oo音標(self):
         型 = '頭的全部'
+        音 = 'thâu ê tsoân-pō•'
+        拆文分析器.產生對齊句(型, 音)
+
+    def test_kaxabu辭典的oo型(self):
+        型 = 'thâu ê tsoân-pō•'
         音 = 'thâu ê tsoân-pō•'
         拆文分析器.產生對齊句(型, 音)

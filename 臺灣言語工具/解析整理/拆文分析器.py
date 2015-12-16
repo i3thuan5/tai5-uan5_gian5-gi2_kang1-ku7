@@ -366,12 +366,15 @@ class 拆文分析器:
                     一个字 += 字
 
                 elif 字 in 標點符號:
-                    if 一个字 != '':
-                        字陣列.append(一个字)
+                    if 字 == '•' and 文章粗胚._o結尾(一个字):
+                        一个字 += 字
+                    else:
+                        if 一个字 != '':
+                            字陣列.append(一个字)
+                            佮後一个字是佇仝一个詞.append(False)
+                            一个字 = ''
+                        字陣列.append(字)
                         佮後一个字是佇仝一个詞.append(False)
-                        一个字 = ''
-                    字陣列.append(字)
-                    佮後一个字是佇仝一个詞.append(False)
                 else:
                     if 一个字 != '':
                         字陣列.append(一个字)
