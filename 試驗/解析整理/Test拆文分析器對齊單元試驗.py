@@ -693,3 +693,8 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
             '僥倖錢，失德了；冤枉錢，跋輸筊。',
             'Hiau-hīng-tsînn, sit-tik liáu, uan-óng tsînn, pua̍h-su kiáu. '
         )
+
+    def test_kaxabu辭典的oo寫法(self):
+        型 = '頭的全部'
+        音 = 'thâu ê tsoân-pō•'
+        拆文分析器.產生對齊句(型, 音)
