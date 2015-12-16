@@ -4,6 +4,7 @@ from 臺灣言語工具.音標系統.閩南語.教會羅馬字音標 import 教�
 
 
 class 教會羅馬字音標單元試驗(unittest.TestCase):
+
     def setUp(self):
         pass
 
@@ -113,6 +114,7 @@ class 教會羅馬字音標單元試驗(unittest.TestCase):
         self.assertEqual(教會羅馬字音標('ô͘').音標, 'oo5')
         self.assertEqual(教會羅馬字音標('hō͘').音標, 'hoo7')
         self.assertEqual(教會羅馬字音標('hó͘ⁿ').音標, None)
+        self.assertEqual(教會羅馬字音標('pō•').音標, 'poo7')
 
     def test_違法音標(self):
         self.assertEqual(教會羅馬字音標('@@').音標, None)
