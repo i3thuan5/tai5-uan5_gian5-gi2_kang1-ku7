@@ -126,6 +126,8 @@ class 文章粗胚:
                 if 語句[位置] in 聲調符號 \
                         and 位置 - 1 >= 0 and unicodedata.category(語句[位置 - 1]) in 統一碼羅馬字類:
                     pass
+                elif 語句[位置] == '•' and cls._o結尾(語句[:位置]):
+                    pass
                 elif 語句[位置] != 分字符號 and 語句[位置] != 分詞符號 and 語句[位置] in 標點符號:
                     語句 = 語句[:位置] + \
                         '{0}{1}{0}'.format(分詞符號, 語句[位置]) + 語句[位置 + 1:]
@@ -217,3 +219,10 @@ class 文章粗胚:
             else:
                 結果.append(部份語句)
         return ''.join(結果)
+
+    @classmethod
+    def _o結尾(cls, 語句):
+        for o in ['o', 'ó', 'ò', 'ô', 'ǒ', 'ō', 'o̍', 'ő']:
+            if 語句.endswith(o):
+                return True
+        return False
