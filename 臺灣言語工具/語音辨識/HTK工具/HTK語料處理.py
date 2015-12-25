@@ -62,7 +62,7 @@ class HTK語料處理(程式腳本):
     @classmethod
     def _揣全部語料(cls, 音檔目錄, 標仔目錄):
         全部語料 = []
-        for 音檔檔名 in os.listdir(音檔目錄):
+        for 音檔檔名 in sorted(os.listdir(音檔目錄)):
             if 音檔檔名.endswith(cls.音檔副檔名):
                 語料名 = 音檔檔名[:-len(cls.音檔副檔名)]
                 音檔所在 = os.path.join(音檔目錄, 音檔檔名)
