@@ -56,7 +56,14 @@ class HTK辨識整合試驗(TestCase):
 
     def test_新拄好短恬聲韻檔對齊(self):
         self.檢查資料夾有辨識出來的檔案(
-            HTK辨識模型訓練.加短恬閣對齊(
+            HTK辨識模型訓練.對齊聲韻閣加短恬(
+                self.音檔目錄, self.標仔目錄, self.音節聲韻對照檔, self.模型暫存目錄
+            )
+        )
+
+    def test_新拄好短恬音節檔對齊(self):
+        self.檢查資料夾有辨識出來的檔案(
+            HTK辨識模型訓練.對齊音節閣加短恬(
                 self.音檔目錄, self.標仔目錄, self.音節聲韻對照檔, self.模型暫存目錄
             )
         )
