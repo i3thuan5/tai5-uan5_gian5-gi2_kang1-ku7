@@ -10,6 +10,12 @@ from unittest.mock import patch
 
 class HTK辨識模型訓練單元試驗(TestCase):
 
+    def test_混合數重估數愛仝(self):
+        self.assertEqual(
+            HTK辨識模型訓練.混合數重估擺 + HTK辨識模型訓練.混合數上尾重估擺,
+            HTK辨識模型訓練.上尾重估擺
+        )
+
     def test_音節標仔加短恬(self):
         結果 = HTK辨識模型訓練._音節標仔加短恬(
             ['sil', 'sui2', 'sui2', 'sil']
