@@ -10,11 +10,67 @@ from unittest.mock import patch
 
 class HTK辨識模型訓練單元試驗(TestCase):
 
-    def setUp(self):
-        pass
+    def test_音節標仔加短恬(self):
+        結果 = HTK辨識模型訓練._音節標仔加短恬(
+            ['sil', 'sui2', 'sui2', 'sil']
+        )
+        self.assertEqual(
+            結果,
+            ['sil', 'sui2', 'sp', 'sui2', 'sil']
+        )
 
-    def tearDown(self):
-        pass
+    def test_檔案前後愛加短恬(self):
+        結果 = HTK辨識模型訓練._音節標仔加短恬(
+            ['sui2']
+        )
+        self.assertEqual(
+            結果,
+            ['sp', 'sui2', 'sp']
+        )
+
+    def test_短恬愛加佇標仔內(self):
+        結果 = HTK辨識模型訓練._音節標仔加短恬(
+            [
+                '#!MLF!#',
+                '"*/01.lab"', 'sui2', '.',
+                '"*/02.lab"', 'sil', '.'
+            ]
+        )
+        self.assertEqual(
+            結果,
+            [
+                '#!MLF!#',
+                '"*/01.lab"', 'sp', 'sui2', 'sp', '.',
+                '"*/02.lab"', 'sil', '.'
+            ]
+        )
+
+    def test_恬音節標仔加短恬(self):
+        結果 = HTK辨識模型訓練._音節標仔加短恬(
+            ['sil']
+        )
+        self.assertEqual(
+            結果,
+            ['sil']
+        )
+
+    def test_恬音節邊仔莫加短恬(self):
+        結果 = HTK辨識模型訓練._音節標仔加短恬(
+            ['sil', 'sui2', 'sil', 'sui2', 'sui2', 'sil']
+        )
+        self.assertEqual(
+            結果,
+            ['sil', 'sui2', 'sil', 'sui2', 'sp', 'sui2', 'sil']
+        )
+
+    def test_短恬音節邊仔莫加短恬(self):
+        結果 = HTK辨識模型訓練._音節標仔加短恬(
+            ['sil', 'sui2', 'sp', 'sui2', 'sui2', 'sil']
+        )
+        self.assertEqual(
+            結果,
+            ['sil', 'sui2', 'sp', 'sui2', 'sp', 'sui2', 'sil']
+        )
 
     def test_加短恬(self):
         這馬目錄 = os.path.dirname(os.path.abspath(__file__))
@@ -30,7 +86,7 @@ class HTK辨識模型訓練單元試驗(TestCase):
 
     @patch('shutil.copy')
     @patch('臺灣言語工具.系統整合.程式腳本.程式腳本._走指令')
-    def test_模型重估調整參數失敗一擺了成功(self, 走指令mock,複製檔案mock):
+    def test_模型重估調整參數失敗一擺了成功(self, 走指令mock, 複製檔案mock):
         暫時資料夾 = mkdtemp()
         暫時檔案 = join(暫時資料夾, '暫時檔案')
         模型所在 = join(暫時資料夾, '模型.macro')
@@ -43,7 +99,7 @@ class HTK辨識模型訓練單元試驗(TestCase):
 
     @patch('shutil.copy')
     @patch('臺灣言語工具.系統整合.程式腳本.程式腳本._走指令')
-    def test_模型重估調整參數失敗兩擺了成功(self, 走指令mock,複製檔案mock):
+    def test_模型重估調整參數失敗兩擺了成功(self, 走指令mock, 複製檔案mock):
         暫時資料夾 = mkdtemp()
         暫時檔案 = join(暫時資料夾, '暫時檔案')
         模型所在 = join(暫時資料夾, '模型.macro')
@@ -56,7 +112,7 @@ class HTK辨識模型訓練單元試驗(TestCase):
 
     @patch('shutil.copy')
     @patch('臺灣言語工具.系統整合.程式腳本.程式腳本._走指令')
-    def test_模型重估調整參數無效三擺攏失敗(self, 走指令mock,複製檔案mock):
+    def test_模型重估調整參數無效三擺攏失敗(self, 走指令mock, 複製檔案mock):
         暫時資料夾 = mkdtemp()
         暫時檔案 = join(暫時資料夾, '暫時檔案')
         模型所在 = join(暫時資料夾, '模型.macro')

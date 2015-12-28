@@ -11,7 +11,8 @@ from 臺灣言語工具.語音辨識.HTK工具.HTK語料處理 import HTK語料�
 
 
 class HTK辨識模型訓練(HTK語料處理):
-    音檔結束符號 = '.'
+    MLF檔開始符號 = '#!MLF!#'
+    MLF檔逐音檔結束符號 = '.'
     恬音 = 語音標仔轉換.提出標仔主要音值(語音標仔轉換.恬音)
     短恬 = 語音標仔轉換.提出標仔主要音值(語音標仔轉換.短恬)
     孤音混合數 = [1, 2, 4, 8, 12, 16, 24, 32]
@@ -293,15 +294,31 @@ class HTK辨識模型訓練(HTK語料處理):
         return 原本有短恬無
 
     @classmethod
-    def _音節標仔加短恬(cls, 原來音節檔, 加恬音節檔):
-        頂一逝, *後壁資料 = cls._讀檔案(原來音節檔)
-        加短恬音節 = [頂一逝]
-        for 一逝 in 後壁資料:
-            if cls._是有音標仔(頂一逝) and cls._是有音標仔(一逝):
-                加短恬音節.append(cls.短恬)
-            加短恬音節.append(一逝)
-            頂一逝 = 一逝
+    def _音節標仔檔加短恬(cls, 原來音節檔, 加恬音節檔):
+        加短恬音節 = cls._音節標仔加短恬(cls._讀檔案(原來音節檔))
         cls._陣列寫入檔案(加恬音節檔, 加短恬音節)
+
+    @classmethod
+    def _音節標仔加短恬(cls, 原來標仔):
+        頂一逝, *後壁資料 = 原來標仔
+        if not cls._是有音標仔(頂一逝):
+            加短恬音節 = [頂一逝]
+        else:
+            加短恬音節 = [cls.短恬,頂一逝]
+        for 後一逝 in 後壁資料:
+            頭前是音標= cls._是有音標仔(頂一逝) 
+            後壁是音標=cls._是有音標仔(後一逝)
+            if 頭前是音標 and 後壁是音標:
+                加短恬音節.append(cls.短恬)
+            elif cls.是MLF檔逐音檔開始符號(頂一逝) and 後壁是音標:
+                加短恬音節.append(cls.短恬)
+            elif 頭前是音標 and 後一逝==cls.MLF檔逐音檔結束符號:
+                加短恬音節.append(cls.短恬)                
+            加短恬音節.append(後一逝)
+            頂一逝 = 後一逝
+        if cls._是有音標仔(加短恬音節[-1]):    
+            加短恬音節.append(cls.短恬)
+        return 加短恬音節
 
     @classmethod
     def _音節標仔逐字中央加短恬(cls, 原來音節檔, 加恬音節檔):
@@ -309,7 +326,7 @@ class HTK辨識模型訓練(HTK語料處理):
         加短恬音節 = []
         目前短恬數量 = 0
         for 一逝 in cls._讀檔案(加恬音節檔):
-            if 一逝 == cls.音檔結束符號:
+            if 一逝 == cls.MLF檔逐音檔結束符號:
                 目前短恬數量 = 0
             這逝_是有音標仔無 = (一逝 == cls.短恬)
             if 這逝_是有音標仔無:
@@ -320,10 +337,13 @@ class HTK辨識模型訓練(HTK語料處理):
 
     @classmethod
     def _是有音標仔(cls, 標仔):
-        if 標仔 == '#!MLF!#' or 標仔 == cls.音檔結束符號 or\
-                標仔.startswith('"') or 標仔 == cls.恬音:
+        if 標仔 in (cls.MLF檔開始符號, cls.MLF檔逐音檔結束符號) or\
+                cls.是MLF檔逐音檔開始符號(標仔) or cls._是恬(標仔):
             return False
         return True
+    @classmethod
+    def 是MLF檔逐音檔開始符號(cls,標仔):
+        return 標仔.startswith('"')
 
     @classmethod
     def _提掉傷短的短恬(cls, 對齊加恬聲韻檔, 新拄好短恬聲韻檔):
@@ -499,7 +519,7 @@ SH
             尾一音.add(tuple(聲韻組[-1:]))
             if len(聲韻組) == 1:
                 '予因莫食著邊仔的音'
-                if 聲韻組[0] not in [cls.恬音, cls.短恬]:
+                if not cls._是恬(聲韻組[0]):
                     家己一音.add(tuple(聲韻組))
             else:
                 頭兩音.add(tuple(聲韻組[:2]))
