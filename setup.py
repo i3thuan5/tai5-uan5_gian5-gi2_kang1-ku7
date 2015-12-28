@@ -16,7 +16,8 @@ def 揣工具包(頭='.'):
 # tar無法度下傷長的檔案名，所以愛用zip
 # python setup.py sdist --format=zip upload
 try:
-    sys.argv.insert(sys.argv.index('upload'), '--format=zip')
+    # travis攏先`python setup.py sdist`才閣上傳
+    sys.argv.insert(sys.argv.index('sdist') + 1, '--format=zip')
 except ValueError:
     # 無upload
     pass
