@@ -546,7 +546,7 @@ SH
               原來模型, 混合數, 估幾擺, 上尾估幾擺):
         頂一个模型 = 原來模型
         for 擺, 混合 in enumerate(混合數):
-            這擺資料夾 = os.path.join(資料目錄, '_加混合數', '{0:02}'.format(擺))
+            這擺資料夾 = os.path.join(資料目錄, '加混合數', '{0:02}'.format(擺))
             os.makedirs(這擺資料夾, exist_ok=True)
             設定檔 = os.path.join(這擺資料夾, '設定檔.hed')
             加混合模型 = os.path.join(這擺資料夾, '加混合模型.macro')
