@@ -17,7 +17,7 @@ def 揣工具包(頭='.'):
 # python setup.py sdist --format=zip upload
 print('sys.argv', sys.argv)
 try:
-    sys.argv.insert(sys.argv.index('upload'), '--format=zip')
+    sys.argv.insert(sys.argv.index('sdist') + 1, '--format=zip')
 except ValueError:
     # 無upload
     pass
