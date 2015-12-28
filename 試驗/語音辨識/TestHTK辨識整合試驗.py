@@ -5,6 +5,7 @@ from tempfile import mkdtemp
 from unittest.case import TestCase
 from 臺灣言語工具.語音辨識.HTK工具.HTK語料處理 import HTK語料處理
 from 臺灣言語工具.語音辨識.HTK工具.HTK辨識模型訓練 import HTK辨識模型訓練
+from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 
 
 class HTK辨識整合試驗(TestCase):
@@ -55,14 +56,14 @@ class HTK辨識整合試驗(TestCase):
         self.檢查辨識結果(拄好短恬辨識模型.辨識音節(self.特徵檔, self.結果暫存目錄, 3))
 
     def test_新拄好短恬聲韻檔對齊(self):
-        self.檢查資料夾有辨識出來的檔案(
+        self.檢查資料夾有短恬的檔案(
             HTK辨識模型訓練.對齊聲韻閣加短恬(
                 self.音檔目錄, self.標仔目錄, self.音節聲韻對照檔, self.模型暫存目錄
             )
         )
 
     def test_新拄好短恬音節檔對齊(self):
-        self.檢查資料夾有辨識出來的檔案(
+        self.檢查資料夾有短恬的檔案(
             HTK辨識模型訓練.對齊音節閣加短恬(
                 self.音檔目錄, self.標仔目錄, self.音節聲韻對照檔, self.模型暫存目錄
             )
@@ -77,6 +78,25 @@ class HTK辨識整合試驗(TestCase):
         '若愛辨識聲韻，聲韻類檔會傷大，所以無支援'
     #     三連音辨識模型.辨識聲韻(特徵檔, self.結果暫存目錄, 3)
         self.檢查辨識結果(三連音辨識模型.辨識音節(self.特徵檔, self.結果暫存目錄, 3))
+
+    def 檢查資料夾有短恬的檔案(self, 資料夾):
+        self.檢查資料夾有辨識出來的檔案(資料夾)
+        短恬量 = self._資料夾的短恬量(資料夾)
+        self.assertGreaterEqual(
+            短恬量, 5, '上無愛有5个sp短恬' + 資料夾
+        )
+        self.assertLessEqual(
+            短恬量, 50, '上濟50个sp短恬，超過代表無提無效的sp短恬完整' + 資料夾
+        )
+
+    def _資料夾的短恬量(self, 資料夾):
+        self.檢查資料夾有辨識出來的檔案(資料夾)
+        短恬數量 = 0
+        for 檔名 in listdir(資料夾):
+            for 一逝 in 程式腳本._讀檔案(join(資料夾, 檔名)):
+                if 一逝.endswith('sp'):
+                    短恬數量 += 1
+        return 短恬數量
 
     def 檢查資料夾有辨識出來的檔案(self, 資料夾):
         self.assertTrue(isdir(資料夾))
