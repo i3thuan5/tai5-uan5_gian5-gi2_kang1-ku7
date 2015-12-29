@@ -18,9 +18,9 @@ class 辭典語言模型斷詞單元試驗(TestCase):
 
     def setUp(self):
         self.字典 = 型音辭典(4)
-        self.語言模型 = 實際語言模型(2)
 
     def test_一集一詞(self):
+        self.語言模型 = 實際語言模型(2)
         self.加鞋仔的資料()
         self.字典.加詞(self.鞋仔詞)
         斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, self.鞋仔一集句物件)
@@ -29,6 +29,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.assertEqual(詞數, 1)
 
     def test_一集兩詞(self):
+        self.語言模型 = 實際語言模型(2)
         self.加鞋仔的資料()
         self.字典.加詞(self.鞋詞)
         self.字典.加詞(self.仔詞)
@@ -38,6 +39,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.assertEqual(詞數, 2)
 
     def test_兩集一詞(self):
+        self.語言模型 = 實際語言模型(2)
         self.加鞋仔的資料()
         self.字典.加詞(self.鞋仔詞)
         斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, self.鞋仔一集句物件)
@@ -46,6 +48,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.assertEqual(詞數, 1)
 
     def test_兩集兩詞(self):
+        self.語言模型 = 實際語言模型(2)
         self.加鞋仔的資料()
         self.字典.加詞(self.鞋詞)
         self.字典.加詞(self.仔詞)
@@ -55,6 +58,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.assertEqual(詞數, 2)
 
     def test_看機率選詞(self):
+        self.語言模型 = 實際語言模型(2)
         self.加我的鞋仔的資料()
         self.字典.加詞(self.我詞)
         self.字典.加詞(self.的詞)
@@ -78,6 +82,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.試斷我的鞋仔(self.我的鞋仔)
 
     def test_多詞斷詞(self):
+        self.語言模型 = 實際語言模型(2)
         self.加我有一張椅仔的資料()
         self.字典.加詞(self.白我對齊詞)
         self.字典.加詞(self.文我對齊詞)
@@ -94,6 +99,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.斷逐種我有一張椅仔(self.對齊句, 0, 6)
 
     def test_句無語言模型(self):
+        self.語言模型 = 實際語言模型(2)
         self.加我有一張椅仔的資料()
         self.字典.加詞(self.白我對齊詞)
         self.字典.加詞(self.有對齊詞)
@@ -103,6 +109,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.斷逐種我有一張椅仔(self.對齊句, 0, 6)
 
     def test_句毋是愈長愈好(self):
+        self.語言模型 = 實際語言模型(2)
         self.加予伊出去耍的資料()
         self.字典.加詞(self.予對齊詞)
         self.字典.加詞(self.伊對齊詞)
@@ -125,7 +132,8 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.assertEqual(斷詞結果, self.予伊對齊句)
         self.檢查分數詞數(分數, 詞數, 0, 4)
 
-    def test_兩三切比一四切閣較好(self):
+    def test_兩三切佮一四切嘛是看機率(self):
+        self.語言模型 = 實際語言模型(1)
         self.加我有一張椅仔的資料()
         self.字典.加詞(self.白我對齊詞)
         self.字典.加詞(self.有對齊詞)
@@ -161,6 +169,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.assertLess(一四分數[0], 兩三分數[0])
 
     def test_雙長詞斷詞格式檢查(self):
+        self.語言模型 = 實際語言模型(2)
         self.加我有一張椅仔的資料()
         self.字典.加詞(self.白我對齊詞)
         self.字典.加詞(self.文我對齊詞)
@@ -171,7 +180,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.加我有一張椅仔的集資料()
         斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(
             self.字典, self.語言模型, 句([
-                self.一張對齊集,self.椅仔對齊集,
+                self.一張對齊集, self.椅仔對齊集,
             ])
         )
         self.assertEqual(
@@ -182,6 +191,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.檢查分數詞數(分數, 詞數, 0, 2)
 
     def test_長句斷詞格式檢查(self):
+        self.語言模型 = 實際語言模型(2)
         self.加我有一張椅仔的資料()
         self.字典.加詞(self.白我對齊詞)
         self.字典.加詞(self.文我對齊詞)
@@ -197,6 +207,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.檢查分數詞數(分數, 詞數, 0, 6)
 
     def test_章斷詞格式檢查(self):
+        self.語言模型 = 實際語言模型(2)
         self.加我有一張椅仔的資料()
         self.字典.加詞(self.白我對齊詞)
         self.字典.加詞(self.文我對齊詞)
@@ -214,6 +225,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.檢查分數詞數(分數, 詞數, 0, 12)
 
     def test_標空的物件(self):
+        self.語言模型 = 實際語言模型(2)
         # 字物件有限制，無可能是空的
         詞物件 = 拆文分析器.建立詞物件('')
         組物件 = 拆文分析器.建立組物件('')
