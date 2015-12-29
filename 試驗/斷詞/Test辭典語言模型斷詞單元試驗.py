@@ -160,7 +160,28 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.assertLess(原本分數[0], 一四分數[0])
         self.assertLess(一四分數[0], 兩三分數[0])
 
-    def test_句斷詞格式檢查(self):
+    def test_雙長詞斷詞格式檢查(self):
+        self.加我有一張椅仔的資料()
+        self.字典.加詞(self.白我對齊詞)
+        self.字典.加詞(self.文我對齊詞)
+        self.字典.加詞(self.有對齊詞)
+        self.字典.加詞(self.一張對齊詞)
+        self.字典.加詞(self.椅仔對齊詞)
+        self.字典.加詞(self.驚對齊詞)
+        self.加我有一張椅仔的集資料()
+        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(
+            self.字典, self.語言模型, 句([
+                self.一張對齊集,self.椅仔對齊集,
+            ])
+        )
+        self.assertEqual(
+            斷詞結果,
+            拆文分析器.產生對齊句(
+                '一張椅仔', 'tsit8-tiunn1 i2-a2')
+        )
+        self.檢查分數詞數(分數, 詞數, 0, 2)
+
+    def test_長句斷詞格式檢查(self):
         self.加我有一張椅仔的資料()
         self.字典.加詞(self.白我對齊詞)
         self.字典.加詞(self.文我對齊詞)
