@@ -17,6 +17,19 @@ addons:
       - gcc-multilib
       - libx11-dev
       - libx11-dev:i386
+      - git
+      - subversion
+      - automake
+      - libtool
+      - automake
+      - zlib1g-dev
+      - libboost-all-dev
+      - libbz2-dev
+      - liblzma-dev
+      - python3-dev
+      - libgoogle-perftools-dev
+      - libxmlrpc-c++.*-dev
+      - cmake
 install:
 - pip install https://github.com/rsennrich/Bleualign/archive/master.zip
 - pip install https://github.com/kpu/kenlm/archive/master.zip
