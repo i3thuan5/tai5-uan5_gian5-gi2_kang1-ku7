@@ -27,9 +27,9 @@ if __name__ == '__main__':
 
     if not 莫編譯程式:
         安裝摩西翻譯佮相關程式.安裝gizapp()
+        安裝摩西翻譯佮相關程式.安裝mgiza()  # 愛libboost
         if 編譯摩西程式:
             安裝摩西翻譯佮相關程式.安裝moses(編譯CPU數=4)
-            安裝摩西翻譯佮相關程式.安裝mgiza()  # 愛libboost
         安裝HTK語音辨識程式.安裝htk()
 
     錯誤狀況 = 0
