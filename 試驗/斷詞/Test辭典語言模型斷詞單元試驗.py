@@ -8,9 +8,9 @@ from 臺灣言語工具.基本元素.組 import 組
 from 臺灣言語工具.基本元素.集 import 集
 from 臺灣言語工具.基本元素.句 import 句
 from 臺灣言語工具.基本元素.章 import 章
-from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.斷詞.辭典語言模型斷詞 import 辭典語言模型斷詞
 from 臺灣言語工具.語言模型.實際語言模型 import 實際語言模型
+from 臺灣言語工具.語言模型.語言模型 import 語言模型
 
 
 class 辭典語言模型斷詞單元試驗(TestCase):
@@ -89,6 +89,8 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.語言模型.看(self.文我有對齊組)
         白我有錢對齊組 = 拆文分析器.產生對齊組('我有錢', 'gua2 u7 tsinn5')
         self.語言模型.看(白我有錢對齊組)
+        文我有錢對齊組 = 拆文分析器.產生對齊組('我有錢', 'ngoo2 iu2 tsian5')
+        self.語言模型.看(文我有錢對齊組)
         self.斷逐種我有一張椅仔(self.對齊句, 0, 6)
 
     def test_句無語言模型(self):
@@ -158,7 +160,22 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.assertLess(原本分數[0], 一四分數[0])
         self.assertLess(一四分數[0], 兩三分數[0])
 
-    def test_章斷詞(self):
+    def test_句斷詞格式檢查(self):
+        self.加我有一張椅仔的資料()
+        self.字典.加詞(self.白我對齊詞)
+        self.字典.加詞(self.文我對齊詞)
+        self.字典.加詞(self.有對齊詞)
+        self.字典.加詞(self.一張對齊詞)
+        self.字典.加詞(self.椅仔對齊詞)
+        self.字典.加詞(self.驚對齊詞)
+        self.加我有一張椅仔的集資料()
+        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(
+            self.字典, self.語言模型, self.句物件
+        )
+        self.assertEqual(斷詞結果, self.對齊句)
+        self.檢查分數詞數(分數, 詞數, 0, 6)
+
+    def test_章斷詞格式檢查(self):
         self.加我有一張椅仔的資料()
         self.字典.加詞(self.白我對齊詞)
         self.字典.加詞(self.文我對齊詞)
@@ -169,7 +186,9 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.加我有一張椅仔的集資料()
         章物件 = 章([self.對齊句, self.句物件])
         結果章 = 章([self.對齊句, self.對齊句])
-        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, 章物件)
+        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(
+            self.字典, self.語言模型, 章物件
+        )
         self.assertEqual(斷詞結果, 結果章)
         self.檢查分數詞數(分數, 詞數, 0, 12)
 
@@ -181,21 +200,18 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         句物件 = 拆文分析器.建立句物件('')
         章物件 = 拆文分析器.建立章物件('')
         空句物件 = 句([集([組()])])
-        結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, 詞物件)
-        全部分數 = {}
-        for 物件, 結果物件, 詞數答案 in [
-            (詞物件, 空句物件, 0),
-            (組物件, 空句物件, 0),
-            (句物件, 空句物件, 0),
+        for 物件, 結果物件, 結果分數 in [
+            (詞物件, 空句物件, 語言模型.無看過),
+            (組物件, 空句物件, 語言模型.無看過),
+            (句物件, 空句物件, 語言模型.無看過),
             (章物件, 章物件, 0),
         ]:
-            結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, 物件)
-            self.assertEqual(結果, 結果物件)
-            self.assertEqual(詞數, 詞數答案)
-            if 詞數 not in 全部分數:
-                全部分數[詞數] = 分數
-            self.assertEqual(分數, 全部分數[詞數], 物件)
-        self.assertRaises(解析錯誤, 辭典語言模型斷詞.斷詞, self.字典, self.語言模型, 集物件,)
+            斷詞, 分數, 詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, 物件)
+            self.assertEqual(斷詞, 結果物件, 物件)
+            self.assertEqual(詞數, 0, 物件)
+            self.assertEqual(分數, 結果分數, 物件)
+        with self.assertRaises(RuntimeError):
+            辭典語言模型斷詞.斷詞(self.字典, self.語言模型, 集物件)
 
     def test_一詞辭典嘛愛正常(self):
         辭典 = 型音辭典(1)
@@ -253,10 +269,12 @@ class 辭典語言模型斷詞單元試驗(TestCase):
 
     def 斷逐種我有一張椅仔(self, 答案, 答案分數, 答案詞數):
         全部分數 = []
-        for 題目 in [self.對齊句, self.型句, self.音句,
-                   self.有詞漢羅, self.無詞漢羅, ]:
+        for 題目 in [
+            self.對齊句, self.型句, self.音句,
+            self.有詞漢羅, self.無詞漢羅,
+        ]:
             斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, 題目)
-            self.assertEqual(斷詞結果, 答案)
+            self.assertEqual(斷詞結果, 答案, '題目是：{}'.format(題目))
             self.檢查分數詞數(分數, 詞數, 答案分數, 答案詞數)
             全部分數.append(分數)
         for 分數 in 全部分數[1:]:
