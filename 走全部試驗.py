@@ -19,16 +19,18 @@ python -m unittest 試驗.整合試驗.Test摩西模型訓練佮翻譯整合試�
 if __name__ == '__main__':
     單元試驗 = '單元試驗' in sys.argv
     整合試驗 = '整合試驗' in sys.argv
+    莫編譯程式 = '莫編譯程式' in sys.argv
     編譯摩西程式 = '編譯摩西程式' in sys.argv
     if not 單元試驗 and not 整合試驗:
         單元試驗 = True
         整合試驗 = True
 
-    安裝摩西翻譯佮相關程式.安裝gizapp()
-    if 編譯摩西程式:
-        安裝摩西翻譯佮相關程式.安裝moses(編譯CPU數=4)
-        安裝摩西翻譯佮相關程式.安裝mgiza()  # 愛libboost
-    安裝HTK語音辨識程式.安裝htk()
+    if not 莫編譯程式:
+        安裝摩西翻譯佮相關程式.安裝gizapp()
+        if 編譯摩西程式:
+            安裝摩西翻譯佮相關程式.安裝moses(編譯CPU數=4)
+            安裝摩西翻譯佮相關程式.安裝mgiza()  # 愛libboost
+        安裝HTK語音辨識程式.安裝htk()
 
     錯誤狀況 = 0
     試驗包 = TestSuite()
