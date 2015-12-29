@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import os
+from os import makedirs
 from os.path import join, isfile
 from shutil import copy
 from 臺灣言語工具.語音合成.語音標仔轉換 import 語音標仔轉換
@@ -41,13 +41,14 @@ class HTK辨識模型(程式腳本):
         return self._模型參數檔
 
     def 存資料佇(self, 目標目錄):
+        makedirs(目標目錄, exist_ok=True)
         copy(self.音節聲韻對照檔所在(), 目標目錄)
         copy(self.聲韻類檔所在(), 目標目錄)
         copy(self.模型參數檔所在(), 目標目錄)
 
     def _對齊(self, 參數檔, 對照檔,
             標仔檔, 特徵檔, 結果夾, 執行檔路徑=外部程式.htk預設目錄()):
-        os.makedirs(結果夾, exist_ok=True)
+        makedirs(結果夾, exist_ok=True)
         對齊指令 = [
             join(執行檔路徑, 'HVite'), '-A',
             '-C', 參數檔, '-p', '-20', '-t', '10000.0', '15000.0', '100000.1',
@@ -58,24 +59,26 @@ class HTK辨識模型(程式腳本):
         return
 
     def 對齊聲韻(self, 聲韻檔, 特徵檔, 資料目錄, 執行檔路徑=外部程式.htk預設目錄()):
-        參數檔 = os.path.join(資料目錄, '參數檔.cfg')
+        makedirs(資料目錄, exist_ok=True)
+        參數檔 = join(資料目錄, '參數檔.cfg')
         self._設定指定參數檔(參數檔)
-        聲韻對照檔 = os.path.join(資料目錄, '聲韻對照檔.dict')
+        聲韻對照檔 = join(資料目錄, '聲韻對照檔.dict')
         self._設定聲韻對照聲韻檔(聲韻對照檔)
-        對齊結果檔 = os.path.join(資料目錄, '對齊聲韻結果')
+        對齊結果檔 = join(資料目錄, '對齊聲韻結果')
         self._對齊(參數檔, 聲韻對照檔, 聲韻檔, 特徵檔, 對齊結果檔, 執行檔路徑)
         return 對齊結果檔
 
     def 對齊音節(self, 音節檔, 特徵檔, 資料目錄, 執行檔路徑=外部程式.htk預設目錄()):
-        參數檔 = os.path.join(資料目錄, '參數檔.cfg')
+        makedirs(資料目錄, exist_ok=True)
+        參數檔 = join(資料目錄, '參數檔.cfg')
         self._設定指定參數檔(參數檔)
-        對齊結果檔 = os.path.join(資料目錄, '對齊音節結果')
+        對齊結果檔 = join(資料目錄, '對齊音節結果')
         self._對齊(參數檔, self.音節聲韻對照檔所在(), 音節檔, 特徵檔, 對齊結果檔, 執行檔路徑)
         return 對齊結果檔
 
     def _辨識(self, 設定檔, 對照檔, 網路檔, 幾條網路, 特徵檔, 結果檔, 結果網路資料夾, 執行檔路徑=外部程式.htk預設目錄()):
         if int(幾條網路) > 0:
-            os.makedirs(結果網路資料夾, exist_ok=True)
+            makedirs(結果網路資料夾, exist_ok=True)
             幾條網路設定 = ['-n', str(幾條網路)]
         else:
             結果網路資料夾 = '*'
@@ -93,25 +96,27 @@ class HTK辨識模型(程式腳本):
         return
 
     def 辨識聲韻(self, 特徵檔, 資料目錄, 幾條網路, 執行檔路徑=外部程式.htk預設目錄()):
-        參數檔 = os.path.join(資料目錄, '參數檔.cfg')
+        makedirs(資料目錄, exist_ok=True)
+        參數檔 = join(資料目錄, '參數檔.cfg')
         self._設定指定參數檔(參數檔)
-        網路檔 = os.path.join(資料目錄, '聲韻網路檔.lat')
+        網路檔 = join(資料目錄, '聲韻網路檔.lat')
         self._生辨識網路(執行檔路徑, 資料目錄, self._聲韻類檔資料, 網路檔)
-        結果檔 = os.path.join(資料目錄, '辨識聲韻結果檔.mlf')
-        聲韻對照檔 = os.path.join(資料目錄, '聲韻對照檔.dict')
+        結果檔 = join(資料目錄, '辨識聲韻結果檔.mlf')
+        聲韻對照檔 = join(資料目錄, '聲韻對照檔.dict')
         self._設定聲韻對照聲韻檔(聲韻對照檔)
-        結果網路資料夾 = os.path.join(資料目錄, '辨識聲韻網路')
+        結果網路資料夾 = join(資料目錄, '辨識聲韻網路')
         self._辨識(參數檔, 聲韻對照檔, 網路檔, 幾條網路,
                  特徵檔, 結果檔, 結果網路資料夾, 執行檔路徑)
         return 結果檔, 結果網路資料夾
 
     def 辨識音節(self, 特徵檔, 資料目錄, 幾條網路, 執行檔路徑=外部程式.htk預設目錄()):
-        參數檔 = os.path.join(資料目錄, '參數檔.cfg')
+        makedirs(資料目錄, exist_ok=True)
+        參數檔 = join(資料目錄, '參數檔.cfg')
         self._設定指定參數檔(參數檔)
-        網路檔 = os.path.join(資料目錄, '音節網路檔.lat')
+        網路檔 = join(資料目錄, '音節網路檔.lat')
         self._生辨識網路(執行檔路徑, 資料目錄, self._看聲韻類檔設定辨識音節的音節類檔資料(), 網路檔)
-        結果檔 = os.path.join(資料目錄, '辨識音節結果檔.mlf')
-        結果網路資料夾 = os.path.join(資料目錄, '辨識音節網路')
+        結果檔 = join(資料目錄, '辨識音節結果檔.mlf')
+        結果網路資料夾 = join(資料目錄, '辨識音節網路')
         self._辨識(參數檔, self.音節聲韻對照檔所在(), 網路檔, 幾條網路,
                  特徵檔, 結果檔, 結果網路資料夾, 執行檔路徑)
         return 結果檔, 結果網路資料夾
@@ -130,7 +135,7 @@ class HTK辨識模型(程式腳本):
         語法 = '{2}={3};\n({0} < {2} {1} > {0})'.format(
             self.恬音, 短恬語法,
             '$SYL', '|'.join(辨識的可能))
-        語法檔 = os.path.join(資料目錄, '語法檔.syntax')
+        語法檔 = join(資料目錄, '語法檔.syntax')
         self._字串寫入檔案(語法檔, 語法)
         產生網路指令 = [
             join(執行檔路徑, 'HParse'),
