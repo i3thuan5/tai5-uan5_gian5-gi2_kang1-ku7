@@ -29,7 +29,20 @@ class 聲音檔:
         self.一點幾位元組 = wave音檔.getsampwidth()
         self.一秒幾點 = wave音檔.getframerate()
         self.幾个聲道 = wave音檔.getnchannels()
-        self.資料 = wave音檔.readframes(wave音檔.getnframes())
+        self._資料 = wave音檔.readframes(wave音檔.getnframes())
+
+    def wav音值資料(self):
+        return self._資料
+
+    def wav格式資料(self):
+        with io.BytesIO() as 結果音檔:
+            音物件 = wave.open(結果音檔, mode='wb')
+            音物件.setsampwidth(self.一點幾位元組)
+            音物件.setframerate(self.一秒幾點)
+            音物件.setnchannels(self.幾个聲道)
+            音物件.writeframesraw(self.wav音值資料())
+            音物件.close()
+            return 結果音檔.getvalue()
 
     def 全部音框(self, 音框秒數=0.2):
         頂一个音框所在 = 0
@@ -44,9 +57,9 @@ class 聲音檔:
                 停 = True
             yield 資料
             頂一个音框所在 = 後一個音个所在
-            if 停 or 頂一个音框所在 > len(self.資料):
+            if 停 or 頂一个音框所在 > len(self._資料):
                 break
 
     def _提著音值(self, 第幾个音值, 頻道=0):
         開始所在 = self.一點幾位元組 * (第幾个音值 * self.幾个聲道 + 頻道)
-        return struct.unpack('h', self.資料[開始所在:開始所在 + self.一點幾位元組])[0]
+        return struct.unpack('h', self._資料[開始所在:開始所在 + self.一點幾位元組])[0]
