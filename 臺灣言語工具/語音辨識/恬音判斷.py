@@ -2,7 +2,7 @@ from math import sqrt
 
 
 # 參考http://practicalcryptography.com/miscellaneous/machine-learning/voice-activity-detection-vad-tutorial/
-class 無音判斷:
+class 恬音判斷:
 
     @classmethod
     def 算特徵參數(cls, 音框):
