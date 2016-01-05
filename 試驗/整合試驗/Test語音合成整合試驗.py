@@ -9,13 +9,13 @@ import htsengine
 
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.語音合成.語音標仔轉換 import 語音標仔轉換
-from 臺灣言語工具.語音合成.音檔頭前表 import 音檔頭前表
 from 臺灣言語工具.斷詞.拄好長度辭典揣詞 import 拄好長度辭典揣詞
 from 臺灣言語工具.斷詞.語言模型揀集內組 import 語言模型揀集內組
 from 臺灣言語工具.解析整理.轉物件音家私 import 轉物件音家私
 from 臺灣言語工具.語音合成.閩南語變調 import 閩南語變調
 from 臺灣言語工具.語言模型.KenLM語言模型 import KenLM語言模型
 from 臺灣言語工具.辭典.型音辭典 import 型音辭典
+from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
 
 
 class 語音合成整合單元試驗(unittest.TestCase):
@@ -39,7 +39,6 @@ class 語音合成整合單元試驗(unittest.TestCase):
         self.閩南語變調 = 閩南語變調()
 
         self.語音標仔轉換 = 語音標仔轉換()
-        self.音檔頭前表 = 音檔頭前表()
 
     def tearDown(self):
         pass
@@ -56,8 +55,8 @@ class 語音合成整合單元試驗(unittest.TestCase):
         愛合成標仔 = self.語音標仔轉換.跳脫標仔陣列(標仔陣列)
         一點幾位元組, 一秒幾點, 幾个聲道, 原始取樣 = \
             htsengine.synthesize(self.閩南語模型, 愛合成標仔)
-        聲音檔 = self.音檔頭前表 .加起哩(原始取樣, 一點幾位元組, 一秒幾點, 幾个聲道)
-        self.assertIsInstance(聲音檔, bytes)
+        音檔 = 聲音檔.從參數轉(一點幾位元組, 一秒幾點, 幾个聲道, 原始取樣)
+        self.assertIsInstance(音檔.wav格式資料(), bytes)
 
     def test_字串斷詞後轉聲音檔(self):
         閩南語辭典 = 型音辭典(2)
@@ -82,5 +81,5 @@ class 語音合成整合單元試驗(unittest.TestCase):
         愛合成標仔 = self.語音標仔轉換.跳脫標仔陣列(標仔陣列)
         一點幾位元組, 一秒幾點, 幾个聲道, 原始取樣 = \
             htsengine.synthesize(self.閩南語模型, 愛合成標仔)
-        聲音檔 = self.音檔頭前表 .加起哩(原始取樣, 一點幾位元組, 一秒幾點, 幾个聲道)
-        self.assertIsInstance(聲音檔, bytes)
+        音檔 = 聲音檔.從參數轉(一點幾位元組, 一秒幾點, 幾个聲道, 原始取樣)
+        self.assertIsInstance(音檔.wav格式資料(), bytes)
