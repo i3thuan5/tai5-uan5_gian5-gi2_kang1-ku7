@@ -44,7 +44,7 @@ class 聲音檔:
             音物件.close()
             return 結果音檔.getvalue()
 
-    def 全部音框(self, 音框秒數=0.2):
+    def 全部音框(self, 音框秒數=0.02):
         頂一个音框所在 = 0
         停 = False
         for 第幾个音框 in itertools.count(1):

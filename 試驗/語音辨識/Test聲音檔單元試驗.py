@@ -29,4 +29,4 @@ class 聲音檔單元試驗(TestCase):
     def test_音框(self):
         # 1.615秒
         音檔 = 聲音檔.從檔案讀(self.音檔)
-        self.assertEqual(len(list(音檔.全部音框())), 9)
+        self.assertEqual(len(list(音檔.全部音框(音框秒數=0.02))), 81)
