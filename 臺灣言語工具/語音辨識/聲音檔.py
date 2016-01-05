@@ -2,9 +2,17 @@ import io
 import itertools
 import struct
 import wave
+from builtins import range
+
+
+def 結果轉做陣列(函式, *無名參數, **有名參數):
+    def 新函式(*無名參數, **有名參數):
+        return list(函式(*無名參數, **有名參數))
+    return 新函式
 
 
 class 聲音檔:
+    音框秒數 = 0.02
 
     @classmethod
     def 從檔案讀(cls, 音檔所在):
@@ -44,7 +52,11 @@ class 聲音檔:
             音物件.close()
             return 結果音檔.getvalue()
 
-    def 全部音框(self, 音框秒數=0.02):
+    def 時間長度(self):
+        return len(self._資料) / self._一秒位元數()
+
+    @結果轉做陣列
+    def 全部音框(self, 音框秒數=音框秒數):
         頂一个音框所在 = 0
         停 = False
         for 第幾个音框 in itertools.count(1):
@@ -60,6 +72,37 @@ class 聲音檔:
             if 停 or 頂一个音框所在 > len(self._資料):
                 break
 
+    @結果轉做陣列
+    def 照函式切音(self, 判斷函式, 音框秒數=音框秒數):
+        開始時間 = 0
+        有資料矣 = False
+        先停時間 = None
+        for 第幾个音框, 音框 in enumerate(self.全部音框(音框秒數)):
+            if 判斷函式(音框):
+                有資料矣 = True
+                if 先停時間 is not None:
+                    後尾時間 = (先停時間 + 第幾个音框) / 2
+                    yield self._照秒數切出音檔(開始時間 * 音框秒數, 後尾時間 * 音框秒數)
+                    開始時間 = 後尾時間
+                    先停時間 = None
+            else:
+                if 有資料矣 and 先停時間 is None:
+                    先停時間 = 第幾个音框
+        後尾時間 = 第幾个音框 + 1
+        yield self._照秒數切出音檔(開始時間 * 音框秒數, 後尾時間 * 音框秒數)
+
     def _提著音值(self, 第幾个音值, 頻道=0):
         開始所在 = self.一點幾位元組 * (第幾个音值 * self.幾个聲道 + 頻道)
         return struct.unpack('h', self._資料[開始所在:開始所在 + self.一點幾位元組])[0]
+
+    def _照秒數切出音檔(self, 開始秒數, 結束秒數):
+        一秒位元數 = self._一秒位元數()
+        開始所在 = int(一秒位元數 * 開始秒數)
+        結束所在 = int(一秒位元數 * 結束秒數)
+        return 聲音檔.從參數轉(
+            self.一點幾位元組, self.一秒幾點, self.幾个聲道,
+            self._資料[開始所在:結束所在]
+        )
+
+    def _一秒位元數(self):
+        return self.一點幾位元組 * self.一秒幾點 * self.幾个聲道
