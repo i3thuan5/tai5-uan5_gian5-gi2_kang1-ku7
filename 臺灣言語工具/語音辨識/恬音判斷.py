@@ -40,4 +40,8 @@ class 恬音判斷:
         分母前 = 平方合 - 音框[0] * 音框[0]
         分母後 = 平方合 - 音框[-1] * 音框[-1]
         分母 = sqrt(分母前 * 分母後)
-        return 分子 / 分母
+        try:
+            結果 = 分子 / 分母
+        except ZeroDivisionError:
+            結果 = None
+        return 結果

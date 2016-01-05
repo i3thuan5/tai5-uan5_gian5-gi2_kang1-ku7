@@ -34,3 +34,6 @@ class 恬音判斷單元試驗(TestCase):
             相關係數 = 恬音判斷.相關係數(音框)
             self.assertGreaterEqual(相關係數, -1)
             self.assertLessEqual(相關係數, 1)
+
+    def test_攏零算相關係數(self):
+        self.assertEqual(恬音判斷.相關係數([0, 0, 0, 0, 0, 0]), None)
