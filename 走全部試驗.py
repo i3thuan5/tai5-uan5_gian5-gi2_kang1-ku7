@@ -13,7 +13,7 @@ from 臺灣言語工具.語音辨識.HTK工具.安裝HTK語音辨識程式 impor
 python 走全部試驗.py # 試驗全做
 python 走全部試驗.py 編譯摩西程式 # 試驗全做，而且編譯摩西程式
 python 走全部試驗.py 單元試驗 # 只做單元試驗
-python -m unittest 試驗.整合試驗.Test摩西模型訓練佮翻譯整合試驗 # 走單一試驗
+python -m unittest 試驗.翻譯.Test摩西模型訓練佮翻譯整合試驗 # 走單一試驗
 '''
 
 if __name__ == '__main__':

@@ -13,7 +13,7 @@ from 臺灣言語工具.語言模型.KenLM語言模型 import KenLM語言模型
 from 臺灣言語工具.辭典.型音辭典 import 型音辭典
 
 
-class 標全漢全羅整合單元試驗(unittest.TestCase):
+class 標全漢全羅整合試驗(unittest.TestCase):
 
     def setUp(self):
         self.揣詞 = 拄好長度辭典揣詞()

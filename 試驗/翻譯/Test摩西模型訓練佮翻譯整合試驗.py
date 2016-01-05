@@ -34,7 +34,7 @@ class 摩西模型訓練佮翻譯整合試驗(TestCase):
             rmtree(暫存資料夾)
 
     def test_單一模型訓練(self):
-        翻譯編碼器 = 語句編碼器()  # 若用著Unicdoe擴充就需要
+        翻譯編碼器 = 語句編碼器()  # 若用著Unicode擴充就需要
 
         moses模型資料夾路徑 = os.path.join(self.這馬目錄, '暫存資料夾', '翻譯模型')
         模型訓練 = 摩西翻譯模型訓練()
