@@ -15,23 +15,23 @@ class 聲音檔:
     音框秒數 = 0.02
 
     @classmethod
-    def 從檔案讀(cls, 音檔所在):
+    def 對檔案讀(cls, 音檔所在):
         with wave.open(音檔所在, 'rb') as wave音檔:
             return cls(wave音檔)
 
     @classmethod
-    def 從資料轉(cls, 音檔資料):
-        return cls.從檔案讀(io.BytesIO(音檔資料))
+    def 對資料轉(cls, 音檔資料):
+        return cls.對檔案讀(io.BytesIO(音檔資料))
 
     @classmethod
-    def 從參數轉(cls, 一點幾位元組, 一秒幾點, 幾个聲道, 原始資料):
+    def 對參數轉(cls, 一點幾位元組, 一秒幾點, 幾个聲道, 原始資料):
         with io.BytesIO() as 音檔:
             with wave.open(音檔, mode='wb') as 音物件:
                 音物件.setsampwidth(一點幾位元組)
                 音物件.setframerate(一秒幾點)
                 音物件.setnchannels(幾个聲道)
                 音物件.writeframesraw(原始資料)
-            return cls.從資料轉(音檔.getvalue())
+            return cls.對資料轉(音檔.getvalue())
 
     def __init__(self, wave音檔):
         self.一點幾位元組 = wave音檔.getsampwidth()
@@ -99,7 +99,7 @@ class 聲音檔:
         一秒位元數 = self._一秒位元數()
         開始所在 = int(一秒位元數 * 開始秒數)
         結束所在 = int(一秒位元數 * 結束秒數)
-        return 聲音檔.從參數轉(
+        return 聲音檔.對參數轉(
             self.一點幾位元組, self.一秒幾點, self.幾个聲道,
             self._資料[開始所在:結束所在]
         )

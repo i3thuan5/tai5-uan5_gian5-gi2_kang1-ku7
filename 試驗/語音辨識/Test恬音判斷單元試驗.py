@@ -9,7 +9,7 @@ class 恬音判斷單元試驗(TestCase):
     def setUp(self):
         這馬所在 = dirname(abspath(__file__))
         音檔目錄 = join(這馬所在, '音檔')
-        self.音檔 = 聲音檔.從檔案讀(join(音檔目錄, '我.wav'))
+        self.音檔 = 聲音檔.對檔案讀(join(音檔目錄, '我.wav'))
 
     def test_特徵(self):
         for 音框 in self.音檔.全部音框():
