@@ -28,6 +28,20 @@ class 聲音檔單元試驗(TestCase):
         with open(self.音檔所在, 'rb') as 音:
             self.assertEqual(音檔.wav格式資料(), 音.read())
 
+    def test_一般位元組數(self):
+        with open(self.原始檔所在, 'rb') as 原始:
+            音檔 = 聲音檔.對參數轉(2, 16000, 1, 原始.read())
+        self.assertEqual(音檔.一秒位元組數(), 32000)
+
+    def test_錄音位元組數(self):
+        with open(self.原始檔所在, 'rb') as 原始:
+            音檔 = 聲音檔.對參數轉(2, 44100, 2, 原始.read())
+        self.assertEqual(音檔.一秒位元組數(), 176400)
+
+    def test_時間長度(self):
+        音檔 = 聲音檔.對參數轉(2, 16000, 1, b'0' * 48000)
+        self.assertEqual(音檔.時間長度(), 1.5)
+
     def test_音框(self):
         # 1.615秒
         音檔 = 聲音檔.對檔案讀(self.音檔所在)
