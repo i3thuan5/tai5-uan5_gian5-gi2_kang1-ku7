@@ -47,6 +47,10 @@ class 聲音檔單元試驗(TestCase):
         音檔 = 聲音檔.對檔案讀(self.音檔所在)
         self.assertEqual(len(list(音檔.全部音框(音框秒數=0.02))), 81)
 
+    def test_音框拄仔好(self):
+        音檔 = 聲音檔.對參數轉(2, 16000, 1, b'0' * 32000)
+        self.assertEqual(len(list(音檔.全部音框(音框秒數=0.02))), 50)
+
     def test_切音檔愛切佇中央(self):
         音檔 = 聲音檔.對檔案讀(self.音檔所在)
         回傳結果 = MagicMock()
