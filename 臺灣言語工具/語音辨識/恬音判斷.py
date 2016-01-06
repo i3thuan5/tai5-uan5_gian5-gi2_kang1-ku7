@@ -2,7 +2,7 @@ from math import sqrt
 
 
 # 參考http://practicalcryptography.com/miscellaneous/machine-learning/voice-activity-detection-vad-tutorial/
-class 無音判斷:
+class 恬音判斷:
 
     @classmethod
     def 算特徵參數(cls, 音框):
@@ -40,4 +40,8 @@ class 無音判斷:
         分母前 = 平方合 - 音框[0] * 音框[0]
         分母後 = 平方合 - 音框[-1] * 音框[-1]
         分母 = sqrt(分母前 * 分母後)
-        return 分子 / 分母
+        try:
+            結果 = 分子 / 分母
+        except ZeroDivisionError:
+            結果 = None
+        return 結果
