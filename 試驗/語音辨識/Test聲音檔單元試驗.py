@@ -57,7 +57,7 @@ class 聲音檔單元試驗(TestCase):
         self.assertEqual(合音檔.一點幾位元組, 2)
         self.assertEqual(合音檔.一秒幾點, 16000)
         self.assertEqual(合音檔.幾个聲道, 1)
-        self.assertEqual(合音檔.wav音值資料(),  b'0' * 1600 + b'1' * 1600)
+        self.assertEqual(合音檔.wav音值資料(), b'0' * 1600 + b'1' * 1600)
 
     def test_接三音檔(self):
         頭音檔 = 聲音檔.對參數轉(2, 16000, 1, b'5' * 1600)
@@ -68,7 +68,7 @@ class 聲音檔單元試驗(TestCase):
         self.assertEqual(合音檔.一秒幾點, 16000)
         self.assertEqual(合音檔.幾个聲道, 1)
         self.assertEqual(
-            合音檔.wav音值資料(),  b'5' * 1600 + b'9' * 1600 + b'3' * 1600
+            合音檔.wav音值資料(), b'5' * 1600 + b'9' * 1600 + b'3' * 1600
         )
 
     def test_接音檔參數無仝(self):
@@ -81,8 +81,8 @@ class 聲音檔單元試驗(TestCase):
         頭音檔 = 聲音檔.對參數轉(2, 16000, 1, b'0' * 1600)
         尾音檔 = 聲音檔.對參數轉(2, 16000, 1, b'1' * 1600)
         頭音檔.接(尾音檔)
-        self.assertEqual(頭音檔.wav音值資料(),  b'0' * 1600)
-        self.assertEqual(尾音檔.wav音值資料(),  b'1' * 1600)
+        self.assertEqual(頭音檔.wav音值資料(), b'0' * 1600)
+        self.assertEqual(尾音檔.wav音值資料(), b'1' * 1600)
 
     def test_音框(self):
         # 1.615秒
