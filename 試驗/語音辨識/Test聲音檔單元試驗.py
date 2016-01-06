@@ -45,11 +45,23 @@ class 聲音檔單元試驗(TestCase):
     def test_音框(self):
         # 1.615秒
         音檔 = 聲音檔.對檔案讀(self.音檔所在)
-        self.assertEqual(len(list(音檔.全部音框(音框秒數=0.02))), 81)
+        self.assertEqual(len(音檔.全部音框(音框秒數=0.02)), 81)
+
+    def test_音框孤聲道拄仔好(self):
+        音檔 = 聲音檔.對參數轉(2, 16000, 1, b'0' * 32000)
+        self.assertEqual(len(音檔.全部音框(音框秒數=0.02)), 50)
+
+    def test_音框減一個(self):
+        音檔 = 聲音檔.對參數轉(2, 48000, 2, b'0' * 72956)
+        self.assertEqual(len(音檔.全部音框()), 19)
 
     def test_音框拄仔好(self):
-        音檔 = 聲音檔.對參數轉(2, 16000, 1, b'0' * 32000)
-        self.assertEqual(len(list(音檔.全部音框(音框秒數=0.02))), 50)
+        音檔 = 聲音檔.對參數轉(2, 48000, 2, b'0' * 72960)
+        self.assertEqual(len(音檔.全部音框()), 19)
+
+    def test_音框加一個(self):
+        音檔 = 聲音檔.對參數轉(2, 48000, 2, b'0' * 72964)
+        self.assertEqual(len(音檔.全部音框()), 20)
 
     def test_切音檔愛切佇中央(self):
         音檔 = 聲音檔.對檔案讀(self.音檔所在)

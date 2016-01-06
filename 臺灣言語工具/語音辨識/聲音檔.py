@@ -61,8 +61,7 @@ class 聲音檔:
     @結果轉做陣列
     def 全部音框(self, 音框秒數=音框秒數):
         頂一个音框所在 = 0
-        停 = False
-        資料數量 = len(self._資料) / self.一點幾位元組
+        資料數量 = len(self._資料) / (self.一點幾位元組 * self.幾个聲道)
         for 第幾个音框 in itertools.count(1):
             後一個音个所在 = int(self.一秒幾點 * 音框秒數 * 第幾个音框)
             資料 = []
@@ -70,10 +69,10 @@ class 聲音檔:
                 for 第幾个音值 in range(頂一个音框所在, 後一個音个所在):
                     資料.append(self._提著音值(第幾个音值))
             except struct.error:
-                停 = True
+                pass
             yield 資料
             頂一个音框所在 = 後一個音个所在
-            if 停 or 頂一个音框所在 >= 資料數量:
+            if 頂一个音框所在 >= 資料數量:
                 break
 
     @結果轉做陣列
