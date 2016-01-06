@@ -58,6 +58,22 @@ class 聲音檔:
     def 一秒位元組數(self):
         return self.一點幾位元組 * self.一秒幾點 * self.幾个聲道
 
+    def 產生仝參數空聲音檔(self):
+        return self.對參數轉(self.一點幾位元組, self.一秒幾點, self.幾个聲道, b'')
+
+    def 接(self, 尾音檔):
+        if (self.一點幾位元組 != 尾音檔.一點幾位元組
+                or self.一秒幾點 != 尾音檔.一秒幾點
+                or self.幾个聲道 != 尾音檔.幾个聲道):
+            raise ValueError('頭尾聲音檔參數愛仝款！！({},{},{})!=({},{},{})'.format(
+                self.一點幾位元組, self.一秒幾點, self.幾个聲道,
+                尾音檔.一點幾位元組, 尾音檔.一秒幾點, 尾音檔.幾个聲道,
+            ))
+        return self.對參數轉(
+            self.一點幾位元組, self.一秒幾點, self.幾个聲道,
+            self.wav音值資料() + 尾音檔.wav音值資料()
+        )
+
     @結果轉做陣列
     def 全部音框(self, 音框秒數=音框秒數):
         頂一个音框所在 = 0
