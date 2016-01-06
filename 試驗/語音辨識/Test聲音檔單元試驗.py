@@ -77,6 +77,13 @@ class 聲音檔單元試驗(TestCase):
         with self.assertRaises(ValueError):
             頭音檔.接(尾音檔)
 
+    def test_接音檔無改著原本音檔(self):
+        頭音檔 = 聲音檔.對參數轉(2, 16000, 1, b'0' * 1600)
+        尾音檔 = 聲音檔.對參數轉(2, 16000, 1, b'1' * 1600)
+        頭音檔.接(尾音檔)
+        self.assertEqual(頭音檔.wav音值資料(),  b'0' * 1600)
+        self.assertEqual(尾音檔.wav音值資料(),  b'1' * 1600)
+
     def test_音框(self):
         # 1.615秒
         音檔 = 聲音檔.對檔案讀(self.音檔所在)
