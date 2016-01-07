@@ -23,8 +23,7 @@ except ValueError:
     pass
 
 setup(
-    # 臺灣言語工具 tai5_uan5_gian5_gi2_kang1_ku7
-    name='tai5_uan5_gian5_gi2_kang1_ku7',
+    name='tai5-uan5_gian5-gi2_kang1-ku7',
     packages=揣工具包('臺灣言語工具'),
     version=版本,
     description='臺灣語言資訊系統（Toolkit for Languages in Taiwan）',
@@ -32,14 +31,14 @@ setup(
     author='薛丞宏',
     author_email='ihcaoe@gmail.com',
     url='http://意傳.台灣/',
-    # I'll explain this in a second
     download_url='https://github.com/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7',
     keywords=[
-        '臺灣', '語料庫', '語言合成', '機器翻譯', '斷詞',
-        'Taiwan', 'Taiwanese', 'Natural Language', 'Corpus',
-                'Text to Speech', 'TTS',
-                'Machine Translateion',
-                'Word Segmentation',
+        '臺灣', '臺語', '客家話', '自然語言', '語料庫',
+        '語音合成', '語音辨識', '機器翻譯', '斷詞',
+        'Taiwan', 'Taiwanese', 'Hakka', 'Natural Language', 'Corpus',
+        'Text to Speech', 'TTS',
+        'Machine Translateion',
+        'Word Segmentation',
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
