@@ -26,15 +26,18 @@ class 摩西模型訓練佮翻譯整合試驗(TestCase):
         self.平行華語 = [os.path.join(資料目錄, '華'), ]
         self.平行閩南語 = [os.path.join(資料目錄, '閩'), ]
         self.閩南語語料 = [os.path.join(資料目錄, '閩'), ]
+        self.愛停的服務 = []
 
     def tearDown(self):
         # 刣掉訓練出來的模型
         暫存資料夾 = os.path.join(self.這馬目錄, '暫存資料夾')
         if isdir(暫存資料夾):
             rmtree(暫存資料夾)
+        for 服務 in self.愛停的服務:
+            服務.停()
 
     def test_單一模型訓練(self):
-        翻譯編碼器 = 語句編碼器()  # 若用著Unicdoe擴充就需要
+        翻譯編碼器 = 語句編碼器()  # 若用著Unicode擴充就需要
 
         moses模型資料夾路徑 = os.path.join(self.這馬目錄, '暫存資料夾', '翻譯模型')
         模型訓練 = 摩西翻譯模型訓練()
@@ -48,6 +51,7 @@ class 摩西模型訓練佮翻譯整合試驗(TestCase):
 
         服務 = 摩西服務端(moses模型資料夾路徑, 埠=8500)
         服務.走()
+        self.愛停的服務 = [服務]
 
         sleep(1)
 
@@ -69,7 +73,8 @@ class 摩西模型訓練佮翻譯整合試驗(TestCase):
         self.assertIn('套 在', 譀鏡.看分詞(翻譯結構華語章物件))
         self.assertLess(分數, 0)
 
-        服務.停()
+        # 予「self.愛停的服務」佇tearDown處理
+        # 服務.停()
 
     def test_訓練摩西斷詞佮斷字模型(self):
         翻譯編碼器 = 語句編碼器()  # 若用著Unicdoe擴充就需要
@@ -99,6 +104,7 @@ class 摩西模型訓練佮翻譯整合試驗(TestCase):
         斷字服務 = 摩西服務端(斷字暫存資料夾, 埠=8502)
         斷詞服務.走()
         斷字服務.走()
+        self.愛停的服務 = [斷詞服務, 斷字服務]
 
         sleep(1)
 
@@ -124,8 +130,9 @@ class 摩西模型訓練佮翻譯整合試驗(TestCase):
         self.assertIn('套 在', 譀鏡.看分詞(翻譯結構華語章物件))
         self.assertLess(分數, 0)
 
-        斷詞服務.停()
-        斷字服務.停()
+        # 予「self.愛停的服務」佇tearDown處理
+        # 斷詞服務.停()
+        # 斷字服務.停()
 
     def test_無完整的模型袂使用(self):
         模型訓練 = 摩西翻譯模型訓練()

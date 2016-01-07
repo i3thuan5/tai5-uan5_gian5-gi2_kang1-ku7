@@ -5,7 +5,7 @@ import unittest
 from 臺灣言語工具.剖析.中研院.剖析用戶端 import 剖析用戶端
 
 
-class 中研院剖析用戶端整合單元試驗(unittest.TestCase):
+class 中研院剖析用戶端整合試驗(unittest.TestCase):
     def setUp(self):
         self.用戶端 = 剖析用戶端()
 

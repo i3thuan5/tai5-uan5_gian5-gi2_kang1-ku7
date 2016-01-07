@@ -5,7 +5,7 @@ import unittest
 from 臺灣言語工具.斷詞.中研院.斷詞用戶端 import 斷詞用戶端
 
 
-class 中研院斷詞用戶端整合單元試驗(unittest.TestCase):
+class 中研院斷詞用戶端整合試驗(unittest.TestCase):
     def setUp(self):
         self.用戶端 = 斷詞用戶端()
 
