@@ -7,3 +7,4 @@ __pycache__/
 /外部程式/*
 /文件/_*
 /.settings
+/node_modules
