@@ -2,14 +2,13 @@
 
 [![Build Status](https://travis-ci.org/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7.svg?branch=master)](https://travis-ci.org/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7)
 [![Coverage Status](https://coveralls.io/repos/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7/badge.svg)](https://coveralls.io/r/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7)
-[![Documentation Status](https://readthedocs.org/projects/tai5-uan5-gian5-gi2-kang1-ku7/badge/?version=latest)](https://readthedocs.org/projects/tai5-uan5-gian5-gi2-kang1-ku7/?badge=latest)
 
 
 臺灣語言資訊函式庫，文本處理、語音辨識、合成、斷詞、翻譯、…等功能。
 
 目前支援臺語/閩南語、客話，南島語需要大家的幫忙！！
 
-說明文件：[Read the Docs](http://tai5-uan5-gian5-gi2-kang1-ku7.readthedocs.org/zh_TW/latest/index.html)
+用法請看[說明文件](http://sih4sing5hong5.github.io/tai5-uan5_gian5-gi2_kang1-ku7)
 
 
 ## 快速安裝

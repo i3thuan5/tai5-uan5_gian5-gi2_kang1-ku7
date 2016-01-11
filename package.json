@@ -1,0 +1,30 @@
+{
+  "name": "tai5-uan5_gian5-gi2_kang1-ku7",
+  "version": "0.0.1",
+  "description": "臺灣言語工具",
+  "scripts": {
+    "build": ". venv/bin/activate && rm -rf 文件/_build && cd 文件 && make html && touch _build/html/.nojekyll",
+    "deploy": "npm run build && node 編文件.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7.git"
+  },
+  "keywords": [
+    "臺語"
+  ],
+  "author": "薛丞宏",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7/issues"
+  },
+  "homepage": "https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "gh-pages": "^0.3.1"
+  },
+  "engines": {
+    "node": "^4.2.1"
+  }
+}
