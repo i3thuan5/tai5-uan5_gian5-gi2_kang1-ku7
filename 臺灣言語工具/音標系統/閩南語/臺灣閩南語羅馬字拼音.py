@@ -130,8 +130,8 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
         if self.音標 is None:
             return None
 
-        if (self.調 != '2' and self.調 != '3' and self.調 != '5' and self.調 != '6'
-                and self.調 != '7' and self.調 != '8' and self.調 != '9'):  # or 調!=10:
+        if (self.調 != '2' and self.調 != '3' and self.調 != '5' and self.調 != '6' and
+                self.調 != '7' and self.調 != '8' and self.調 != '9'):  # or 調!=10:
             return self.聲 + self.韻
 
         for 符號 in ['a', 'oo', 'o', 'ee', 'ere', 'e', 'iri', 'ui', 'iu', 'u', 'i', 'ng', 'm']:
