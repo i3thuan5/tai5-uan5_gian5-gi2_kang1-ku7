@@ -25,7 +25,6 @@ import unicodedata
 class 教會系羅馬音標(閩南語音標介面):
     # 0 tsh iaunnh 10
     音標上長長度 = 1 + 3 + 6 + 2
-    正規法 = lambda self, 音標: unicodedata.normalize('NFC', 音標)
 
     def __init__(self):
         self.聲 = None
@@ -87,6 +86,9 @@ class 教會系羅馬音標(閩南語音標介面):
 
     def 做音標(self):
         self.音標 = ''.join([self.輕, self.外來語, self.聲, self.韻, self.調])
+
+    def 正規法(self, 音標):
+        return unicodedata.normalize('NFC', 音標)
 
     def _轉教羅韻符號(self, 音標):
         一開始 = True
