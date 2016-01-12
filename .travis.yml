@@ -33,7 +33,6 @@ addons:
 install:
 - pip install https://github.com/rsennrich/Bleualign/archive/master.zip
 - pip install https://github.com/kpu/kenlm/archive/master.zip
-- pip install https://github.com/sih4sing5hong5/hts_engine_python/archive/master.zip
 - pip install flake8
 - pip install python-coveralls
 branches:
