@@ -3,8 +3,6 @@ from os.path import join, dirname, abspath
 from unittest.case import TestCase
 from urllib.request import urlopen
 
-import htsengine
-
 
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
@@ -16,7 +14,7 @@ from 臺灣言語工具.解析整理.轉物件音家私 import 轉物件音家�
 from 臺灣言語工具.語音合成.閩南語變調 import 閩南語變調
 from 臺灣言語工具.語言模型.KenLM語言模型 import KenLM語言模型
 from 臺灣言語工具.辭典.型音辭典 import 型音辭典
-from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
+from 臺灣言語工具.語音合成.HTS工具.HTS合成模型 import HTS合成模型
 
 
 class 語音合成整合試驗(TestCase):
@@ -34,6 +32,7 @@ class 語音合成整合試驗(TestCase):
         remove(cls.閩南語模型)
 
     def test_字串轉聲音檔(self):
+        合成模型 = HTS合成模型(self.閩南語模型)
         閩南語語句 = 'gua2 ai3 a1-sui2'
 
         處理減號 = 文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 閩南語語句)
@@ -43,9 +42,7 @@ class 語音合成整合試驗(TestCase):
         變調物件 = 閩南語變調.變調(音值物件)
         標仔陣列 = 語音標仔轉換.物件轉完整合成標仔(變調物件)
         愛合成標仔 = 語音標仔轉換.跳脫標仔陣列(標仔陣列)
-        一點幾位元組, 一秒幾點, 幾个聲道, 原始取樣 = \
-            htsengine.synthesize(self.閩南語模型, 愛合成標仔)
-        音檔 = 聲音檔.對參數轉(一點幾位元組, 一秒幾點, 幾个聲道, 原始取樣)
+        音檔 = 合成模型.合成(愛合成標仔)
         self.assertIsInstance(音檔.wav格式資料(), bytes)
 
     def test_字串斷詞後轉聲音檔(self):
@@ -57,6 +54,7 @@ class 語音合成整合試驗(TestCase):
         閩南語語言模型 = KenLM語言模型(join(  # '我｜gua2 愛｜ai3 阿-媠｜a1-sui2'
             dirname(abspath(__file__)), '語言模型', '我愛阿媠.arpa')
         )
+        合成模型 = HTS合成模型(self.閩南語模型)
 
         閩南語語句 = '我愛阿媠'
 
@@ -69,7 +67,5 @@ class 語音合成整合試驗(TestCase):
         變調物件 = 閩南語變調.變調(音值物件)
         標仔陣列 = 語音標仔轉換.物件轉完整合成標仔(變調物件)
         愛合成標仔 = 語音標仔轉換.跳脫標仔陣列(標仔陣列)
-        一點幾位元組, 一秒幾點, 幾个聲道, 原始取樣 = \
-            htsengine.synthesize(self.閩南語模型, 愛合成標仔)
-        音檔 = 聲音檔.對參數轉(一點幾位元組, 一秒幾點, 幾个聲道, 原始取樣)
+        音檔 = 合成模型.合成(愛合成標仔)
         self.assertIsInstance(音檔.wav格式資料(), bytes)

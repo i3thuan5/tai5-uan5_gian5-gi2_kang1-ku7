@@ -50,4 +50,7 @@ setup(
         'Topic :: Text Processing',
         'Topic :: Text Processing :: Linguistic',
     ],
+    install_requires=[
+        'htsengine',
+    ],
 )
