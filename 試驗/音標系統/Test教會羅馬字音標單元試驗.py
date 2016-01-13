@@ -47,6 +47,13 @@ class 教會羅馬字音標單元試驗(TestCase):
         self.assertEqual(教會羅馬字音標('Pih10').音標, 'pih10')
         self.assertEqual(教會羅馬字音標('tı̍t').音標, 'tit8')
 
+    def test_次方言音標(self):
+        self.assertEqual(教會羅馬字音標('tor').音標, 'tor1')
+        self.assertEqual(教會羅馬字音標('kee5').音標, 'kee5')
+        self.assertEqual(教會羅馬字音標('ter5').音標, 'ter5')
+        self.assertEqual(教會羅馬字音標('tere5').音標, 'tere5')
+        self.assertEqual(教會羅馬字音標('tir5').音標, 'tir5')
+
     def test_輕聲(self):
         self.assertEqual(教會羅馬字音標('ta0').音標, 'ta0')
         self.assertEqual(教會羅馬字音標('pih0').音標, 'pih0')

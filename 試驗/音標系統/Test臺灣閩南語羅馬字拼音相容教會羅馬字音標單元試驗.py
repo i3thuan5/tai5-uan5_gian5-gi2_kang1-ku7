@@ -47,6 +47,13 @@ class 臺灣閩南語羅馬字拼音相容臺灣閩南語羅馬字拼音相容�
         self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('Pih10').音標, 'pih10')
         self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('tı̍t').音標, 'tit8')
 
+    def test_次方言音標(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('tor').音標, 'tor1')
+        self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('kee5').音標, 'kee5')
+        self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('ter5').音標, 'ter5')
+        self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('tere5').音標, 'tere5')
+        self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('tir5').音標, 'tir5')
+
     def test_輕聲(self):
         self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('ta0').音標, 'ta0')
         self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('pih0').音標, 'pih0')
@@ -121,7 +128,8 @@ class 臺灣閩南語羅馬字拼音相容臺灣閩南語羅馬字拼音相容�
 
     def test_專用韻(self):
         self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('chhou1').音標, 'chhoo1')
-        self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('chhou1').轉換到臺灣閩南語羅馬字拼音(), 'tshoo1')
+        self.assertEqual(
+            臺灣閩南語羅馬字拼音相容教會羅馬字音標('chhou1').轉換到臺灣閩南語羅馬字拼音(), 'tshoo1')
         self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('houN3').音標, 'honn3')
         self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('houN3').轉換到臺灣閩南語羅馬字拼音(), 'honn3')
         self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('poah4').音標, 'poah4')
