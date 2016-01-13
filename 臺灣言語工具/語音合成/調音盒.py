@@ -9,10 +9,10 @@ class 調音盒:
     單指令 = 指令 + '{{0}} {{1}} '
     大細聲指令 = 單指令 + 'vol {0}'
     音懸指令 = 單指令 + 'pitch {0}'
-    篩雜訊指令 = (指令 + '-c 1 -t s16 -r 16000 {0} -n noiseprof |'
-             + 單指令 + ' noisered')
-    篩懸音指令 = (指令 + '{{0}} -n highpass {0} noiseprof |'
-             + 單指令 + ' noisered')
+    篩雜訊指令 = (指令 + '-c 1 -t s16 -r 16000 {0} -n noiseprof |' +
+             單指令 + ' noisered')
+    篩懸音指令 = (指令 + '{{0}} -n highpass {0} noiseprof |' +
+             單指令 + ' noisered')
 
     @classmethod
     def 用指令調(cls, 音, 指令):
