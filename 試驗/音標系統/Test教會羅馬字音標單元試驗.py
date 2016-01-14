@@ -1,15 +1,9 @@
 # -*- coding: utf-8 -*-
-import unittest
+from unittest.case import TestCase
 from 臺灣言語工具.音標系統.閩南語.教會羅馬字音標 import 教會羅馬字音標
 
 
-class 教會羅馬字音標單元試驗(unittest.TestCase):
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
+class 教會羅馬字音標單元試驗(TestCase):
 
     def test_零聲母聲韻調輕(self):
         教羅音標 = 教會羅馬字音標('ainn7')
@@ -52,6 +46,13 @@ class 教會羅馬字音標單元試驗(unittest.TestCase):
         self.assertEqual(教會羅馬字音標('Pih8').音標, 'pih8')
         self.assertEqual(教會羅馬字音標('Pih10').音標, 'pih10')
         self.assertEqual(教會羅馬字音標('tı̍t').音標, 'tit8')
+
+    def test_次方言音標(self):
+        self.assertEqual(教會羅馬字音標('tor').音標, 'tor1')
+        self.assertEqual(教會羅馬字音標('kee5').音標, 'kee5')
+        self.assertEqual(教會羅馬字音標('ter5').音標, 'ter5')
+        self.assertEqual(教會羅馬字音標('tere5').音標, 'tere5')
+        self.assertEqual(教會羅馬字音標('tir5').音標, 'tir5')
 
     def test_輕聲(self):
         self.assertEqual(教會羅馬字音標('ta0').音標, 'ta0')
@@ -139,6 +140,12 @@ class 教會羅馬字音標單元試驗(unittest.TestCase):
         self.assertEqual(教會羅馬字音標('eng5').音標, 'eng5')
         self.assertEqual(教會羅馬字音標('eng5').轉換到臺灣閩南語羅馬字拼音(), 'ing5')
 
-    def test_相容臺羅(self):
+    def test_相容臺羅的毋閣無是臺羅(self):
         self.assertEqual(教會羅馬字音標('tsoe3').音標, 'tsoe3')
         self.assertEqual(教會羅馬字音標('tsoe3').轉換到臺灣閩南語羅馬字拼音(), 'tsue3')
+
+    def test_無支援臺羅(self):
+        self.assertEqual(教會羅馬字音標('tsing1').音標, None)
+        self.assertEqual(教會羅馬字音標('tsiik4').音標, None)
+        self.assertEqual(教會羅馬字音標('uan2').音標, None)
+        self.assertEqual(教會羅馬字音標('tshue1').音標, None)
