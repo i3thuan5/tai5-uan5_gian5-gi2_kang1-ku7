@@ -12,6 +12,7 @@ addons:
     packages:
       - gcc-4.9
       - g++-4.9
+      - python3-dev
       - libc6-dev-i386
       - linux-libc-dev
       - gcc-multilib
@@ -21,18 +22,14 @@ addons:
       - subversion
       - automake
       - libtool
-      - automake
       - zlib1g-dev
-      - libboost-all-dev
       - libbz2-dev
       - liblzma-dev
-      - python3-dev
+      - libboost-all-dev
       - libgoogle-perftools-dev
       - libxmlrpc-c++.*-dev
       - cmake
 install:
-- pip install https://github.com/rsennrich/Bleualign/archive/master.zip
-- pip install https://github.com/kpu/kenlm/archive/master.zip
 - pip install flake8
 - pip install python-coveralls
 branches:
