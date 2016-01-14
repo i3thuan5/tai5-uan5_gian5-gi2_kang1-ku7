@@ -23,9 +23,9 @@ addons:
       - automake
       - libtool
       - zlib1g-dev
-      - libboost-all-dev
       - libbz2-dev
       - liblzma-dev
+      - libboost-all-dev
       - libgoogle-perftools-dev
       - libxmlrpc-c++.*-dev
       - cmake
