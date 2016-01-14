@@ -30,8 +30,6 @@ addons:
       - libxmlrpc-c++.*-dev
       - cmake
 install:
-- pip install https://github.com/rsennrich/Bleualign/archive/master.zip
-- pip install https://github.com/kpu/kenlm/archive/master.zip
 - pip install flake8
 - pip install python-coveralls
 branches:

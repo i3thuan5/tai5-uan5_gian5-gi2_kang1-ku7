@@ -52,5 +52,7 @@ setup(
     ],
     install_requires=[
         'htsengine',
+        'pypi-kenlm',
+        'pypi-bleualign',
     ],
 )
