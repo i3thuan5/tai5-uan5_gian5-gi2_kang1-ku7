@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.基本元素.集 import 集
+from 臺灣言語工具.基本元素.功能 import 功能
 
 
-class 句:
+class 句(功能):
     內底集 = None
 
     def __init__(self, 集陣列=[]):
