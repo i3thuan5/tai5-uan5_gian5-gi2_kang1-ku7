@@ -13,7 +13,7 @@ from 臺灣言語工具.解析整理.字物件篩仔 import 字物件篩仔
 class 字物件篩仔單元試驗(unittest.TestCase):
 
     @patch('臺灣言語工具.基本元素.句.句.篩出字物件')
-    def test_篩出字物件(self,篩出字物件mock):
+    def test_篩出字物件(self, 篩出字物件mock):
         物件 = 拆文分析器.轉做句物件('頭-家｜thau5-ke1 員-工｜uan5-kang1')
         字物件篩仔.篩出字物件(物件)
         篩出字物件mock.assert_called_once_with()
@@ -142,5 +142,5 @@ class 字物件篩仔單元試驗(unittest.TestCase):
 
     def test_烏白擲物件(self):
         self.assertRaises(型態錯誤, 字物件篩仔.篩出字物件, 2123)
-        self.assertRaises(型態錯誤, 字物件篩仔.篩出字物件, 字物件篩仔)
+        self.assertRaises(型態錯誤, 字物件篩仔.篩出字物件, '字物件篩仔')
         self.assertRaises(型態錯誤, 字物件篩仔.篩出字物件, None)

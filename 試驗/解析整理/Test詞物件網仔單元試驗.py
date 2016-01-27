@@ -17,11 +17,15 @@ class 詞物件網仔單元試驗(unittest.TestCase):
         詞物件網仔.網出詞物件(物件)
         網出詞物件mock.assert_called_once_with()
 
-    def test_網字詞(self):
+    def test_網字(self):
         型 = '媠'
         字物件 = 拆文分析器.建立字物件(型)
+        with self.assertRaises(解析錯誤):
+            詞物件網仔.網出詞物件(字物件)
+
+    def test_網詞(self):
+        型 = '媠'
         詞物件 = 拆文分析器.建立詞物件(型)
-        self.assertEqual(詞物件網仔.網出詞物件(字物件), [詞物件])
         self.assertEqual(詞物件網仔.網出詞物件(詞物件), [詞物件])
 
     def test_網詞無字(self):
@@ -108,5 +112,5 @@ class 詞物件網仔單元試驗(unittest.TestCase):
 
     def test_烏白擲物件(self):
         self.assertRaises(型態錯誤, 詞物件網仔.網出詞物件, 2123)
-        self.assertRaises(型態錯誤, 詞物件網仔.網出詞物件, 詞物件網仔)
+        self.assertRaises(型態錯誤, 詞物件網仔.網出詞物件, '詞物件網仔')
         self.assertRaises(型態錯誤, 詞物件網仔.網出詞物件, None)
