@@ -5,9 +5,10 @@ from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.基本元素.公用變數 import 分字符號
 from 臺灣言語工具.基本元素.公用變數 import 分詞符號
 from 臺灣言語工具.基本元素.公用變數 import 分型音符號
+from 臺灣言語工具.基本元素.功能 import 功能
 
 
-class 集:
+class 集(功能):
     內底組 = None
 
     def __init__(self, 組陣列=[]):

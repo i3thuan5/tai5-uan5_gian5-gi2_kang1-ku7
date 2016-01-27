@@ -6,9 +6,10 @@ from 臺灣言語工具.基本元素.公用變數 import 標點符號
 from 臺灣言語工具.基本元素.公用變數 import 分字符號
 from 臺灣言語工具.基本元素.公用變數 import 分詞符號
 from 臺灣言語工具.基本元素.公用變數 import 分型音符號
+from 臺灣言語工具.基本元素.功能 import 功能
 
 
-class 字:
+class 字(功能):
     型 = None
     音 = None
 
