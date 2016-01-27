@@ -7,7 +7,7 @@ from itertools import repeat
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 
 
-class 揀集內組:
+class 座標揀集內組:
 
     @classmethod
     def 揀(cls, 物件, 集選擇=repeat(0)):
