@@ -11,6 +11,7 @@ class 章:
     內底句 = None
 
     def __init__(self, 句陣列=[]):
+        # 愛產生新的物件
         try:
             self.內底句 = []
             for 句物件 in 句陣列:
@@ -65,3 +66,10 @@ class 章:
         for 句物件 in self.內底句:
             詞陣列.extend(句物件.網出詞物件())
         return 詞陣列
+
+    def 轉音(self, 音標工具, 函式='預設音標'):
+        # 逐个函式攏愛產生新的物件
+        新章物件 = 章()
+        for 句物件 in self.內底句:
+            新章物件.內底句.append(句物件.轉音(音標工具,函式))
+        return 新章物件

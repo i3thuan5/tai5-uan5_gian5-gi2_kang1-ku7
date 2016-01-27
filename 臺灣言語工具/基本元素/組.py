@@ -11,6 +11,7 @@ class 組:
     內底詞 = None
 
     def __init__(self, 詞陣列=[]):
+        # 愛產生新的物件
         try:
             self.內底詞 = []
             for 詞物件 in 詞陣列:
@@ -65,3 +66,10 @@ class 組:
 
     def 網出詞物件(self):
         return self.內底詞
+
+    def 轉音(self, 音標工具, 函式='預設音標'):
+        # 逐个函式攏愛產生新的物件
+        新組物件 = 組()
+        for 詞物件 in self.內底詞:
+            新組物件.內底詞.append(詞物件.轉音(音標工具, 函式))
+        return 新組物件

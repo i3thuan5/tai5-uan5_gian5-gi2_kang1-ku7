@@ -11,6 +11,7 @@ class 句:
     內底集 = None
 
     def __init__(self, 集陣列=[]):
+        # 愛產生新的物件
         try:
             self.內底集 = []
             for 集物件 in 集陣列:
@@ -65,3 +66,11 @@ class 句:
         for 集物件 in self.內底集:
             詞陣列.extend(集物件.網出詞物件())
         return 詞陣列
+
+    def 轉音(self, 音標工具, 函式='預設音標'):
+        # 逐个函式攏愛產生新的物件
+        新句物件 = 句()
+        for 集物件 in self.內底集:
+            新句物件.內底集.append(集物件.轉音(音標工具, 函式))
+        return 新句物件
+    

@@ -11,6 +11,7 @@ class 集:
     內底組 = None
 
     def __init__(self, 組陣列=[]):
+        # 愛產生新的物件
         try:
             self.內底組 = []
             for 組物件 in 組陣列:
@@ -66,3 +67,10 @@ class 集:
         if len(self.內底組) > 1:
             raise 解析錯誤('內底組毋焦一个！！{0}'.format(str(self)))
         return self.內底組[0].網出詞物件()
+
+    def 轉音(self, 音標工具, 函式='預設音標'):
+        # 逐个函式攏愛產生新的物件
+        新集物件 = 集()
+        for 組物件 in self.內底組:
+            新集物件.內底組.append(組物件.轉音(音標工具, 函式))
+        return 新集物件
