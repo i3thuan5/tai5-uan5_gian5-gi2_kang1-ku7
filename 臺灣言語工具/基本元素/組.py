@@ -59,6 +59,16 @@ class 組(功能):
                 詞的音.append(音標)
         return 物件分詞符號.join(詞的音)
 
+    def 綜合標音(self, 字綜合標音型態):
+        詞組綜合標音 = []
+        for 詞物件 in self.內底詞:
+            for 一字 in 詞物件.內底字:
+                詞組綜合標音.append(一字.綜合標音(字綜合標音型態))
+        return {
+            "詞組綜合標音": 詞組綜合標音,
+            "連字音": self.看音()
+        }
+
     def 篩出字物件(self):
         字陣列 = []
         for 詞物件 in self.內底詞:

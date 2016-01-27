@@ -54,6 +54,9 @@ class 字(功能):
         return self.看型( 物件分字符號, 物件分詞符號) + 物件分型音符號\
             + self.看音(物件分字符號, 物件分詞符號)
 
+    def 綜合標音(self, 字綜合標音型態):
+        return 字綜合標音型態(self).轉json格式()
+
     def 篩出字物件(self):
         return [self]
 

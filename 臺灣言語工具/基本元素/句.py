@@ -56,6 +56,12 @@ class 句(功能):
                 集的音.append(音標)
         return 物件分詞符號.join(集的音)
 
+    def 綜合標音(self, 字綜合標音型態):
+        綜合集 = []
+        for 集物件 in self.內底集:
+            綜合集.append(集物件.綜合標音(字綜合標音型態))
+        return 綜合集
+
     def 篩出字物件(self):
         字陣列 = []
         for 集物件 in self.內底集:

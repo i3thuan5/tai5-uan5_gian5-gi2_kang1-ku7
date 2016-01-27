@@ -4,11 +4,10 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 im
 from 臺灣言語工具.基本元素.字 import 字
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
-from 臺灣言語工具.綜合標音.字綜合標音 import 字綜合標音
 from 臺灣言語工具.基本元素.公用變數 import 標點符號
 
 
-class 閩南語字綜合標音(字綜合標音):
+class 閩南語字綜合標音:
     型體 = None
     臺羅數字調 = None
     臺羅閏號調 = None
