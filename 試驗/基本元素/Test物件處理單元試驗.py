@@ -11,32 +11,6 @@ class 物件導向單元試驗(TestCase):
     def setUp(self):
         self.物件 = 拆文分析器.轉做句物件('頭-家｜thau5-ke1 員-工｜uan5-kang1')
 
-    @patch('臺灣言語工具.解析整理.物件譀鏡.物件譀鏡.看型')
-    def test_看型(self, 看型mock):
-        self.物件.看型()
-        看型mock.assert_called_once_with(self.物件)
-
-    def test_看音(self):
-        self.物件.看音()
-
-    def test_看分詞(self):
-        self.物件.看分詞()
-
-    def test_看音有參數(self):
-        self.物件.看音()
-
-    def test_轉音(self):
-        self.物件.轉音()
-
-    def test_轉音有參數(self):
-        self.物件.轉音()
-
-    def test_篩出字物件(self):
-        self.物件.篩出字物件()
-
-    def test_網出詞物件(self):
-        self.物件.網出詞物件()
-
     def test_辭典揣詞(self):
         self.物件.辭典揣詞()
 # │   ├── 上長詞優先辭典揣詞.py
@@ -85,10 +59,3 @@ class 物件導向單元試驗(TestCase):
 # │   ├── KenLM語言模型.py
 # │   ├── KenLM語言模型訓練.py
 # │   ├── 實際語言模型.py
-
-    def test_綜合標音(self):
-        self.物件.綜合標音(閩南語字綜合標音)
-# │   ├── 句綜合標音.py
-# │   ├── 字綜合標音.py
-# │   ├── 詞組綜合標音.py
-# │   └── 集綜合標音.py
