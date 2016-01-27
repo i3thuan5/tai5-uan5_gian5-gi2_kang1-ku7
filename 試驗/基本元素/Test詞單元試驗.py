@@ -1,9 +1,21 @@
 from unittest.case import TestCase
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.基本元素.公用變數 import 分字符號
+from 臺灣言語工具.基本元素.字 import 字
+from 臺灣言語工具.基本元素.詞 import 詞
+from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 
 
 class 詞單元試驗(TestCase):
+
+    def test_詞(self):
+        型 = '媠'
+        音 = 'ㄙㄨㄧˋ'
+        字物件 = 字(型, 音)
+        字陣列 = [字物件, 字物件]
+        詞物件 = 詞(字陣列)
+        另外字陣列 = [字(型, 音), 字(型, 音)]
+        self.assertEqual(詞物件.內底字, 另外字陣列)
 
     def test_看詞(self):
         型 = '姑-娘'
@@ -14,6 +26,11 @@ class 詞單元試驗(TestCase):
         self.assertEqual(詞物件.看音(), 音)
         分詞 = 型 + '｜' + 音
         self.assertEqual(詞物件.看分詞(), 分詞)
+
+    def test_詞烏白傳(self):
+        self.assertRaises(型態錯誤, 詞, None)
+        self.assertRaises(型態錯誤, 詞, [None])
+        self.assertRaises(型態錯誤, 詞, ['sui2'])
 
     def test_兩字詞有字無音(self):
         梅詞物件 = 拆文分析器.建立詞物件('')

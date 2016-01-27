@@ -2,9 +2,14 @@ from unittest.case import TestCase
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.基本元素.集 import 集
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
+from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 
 class 集單元試驗(TestCase):
     
+    def test_集烏白傳(self):
+        self.assertRaises(型態錯誤, 集, None)
+        self.assertRaises(型態錯誤, 集, [None])
+        self.assertRaises(型態錯誤, 集, ['sui2'])
     def test_看集(self):
         型 = '恁老母ti3佗位'
         音 = 'lin1 lau3 bu2 ti3 to1 ui7'
