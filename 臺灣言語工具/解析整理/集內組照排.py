@@ -8,7 +8,7 @@ from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 class 集內組照排:
 
     @classmethod
-    def 排好(cls, 排法, 物件):
+    def 排(cls, 排法, 物件):
         if isinstance(物件, 集):
             return cls._排好集物件(排法, 物件)
         if isinstance(物件, 句):
