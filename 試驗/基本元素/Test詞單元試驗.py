@@ -88,7 +88,10 @@ class 詞單元試驗(TestCase):
         self.assertEqual(綜合標音['詞組綜合標音'][2], 字('女', 'boo2').綜合標音(閩南語字綜合標音))
         self.assertEqual(綜合標音['連字音'], 'tua7-sui2-boo2')
 
-    def test_綜合標音空詞(self):
+    def test_綜合標音空詞莫例外(self):
+        # 因為攏用佇輸出，愛檢查空愛佇程式別位檢查
         詞物件 = 拆文分析器.建立詞物件('')
-        with self.assertRaises(解析錯誤):
-            詞物件.綜合標音(閩南語字綜合標音)
+        self.assertEqual(詞物件.綜合標音(閩南語字綜合標音), {
+            "詞組綜合標音": [],
+            "連字音": ""
+        })
