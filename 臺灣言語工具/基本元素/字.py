@@ -51,3 +51,5 @@ class 字:
             return self.看型(物件分字符號, 物件分詞符號)
         return self.看型( 物件分字符號, 物件分詞符號) + 物件分型音符號\
             + self.看音(物件分字符號, 物件分詞符號)
+    def 篩出字物件(self):
+        return [self]

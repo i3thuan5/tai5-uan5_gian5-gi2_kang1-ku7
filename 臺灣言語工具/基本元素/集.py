@@ -52,3 +52,10 @@ class 集:
         if len(self.內底組) > 1:
             raise 解析錯誤('內底組毋焦一个！！{0}'.format(str(self)))
         return self.內底組[0].看分詞(物件分型音符號, 物件分字符號, 物件分詞符號)
+
+    def 篩出字物件(self):
+        if len(self.內底組) == 0:
+            return []
+        if len(self.內底組) > 1:
+            raise 解析錯誤('內底組毋焦一个！！{0}'.format(str(self)))
+        return self.內底組[0].篩出字物件()

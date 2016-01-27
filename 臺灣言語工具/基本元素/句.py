@@ -53,3 +53,9 @@ class 句:
             if 音標 != 無音:
                 集的音.append(音標)
         return 物件分詞符號.join(集的音)
+
+    def 篩出字物件(self):
+        字陣列 = []
+        for 集物件 in self.內底集:
+            字陣列.extend(集物件.篩出字物件())
+        return 字陣列

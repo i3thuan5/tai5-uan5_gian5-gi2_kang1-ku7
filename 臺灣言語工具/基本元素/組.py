@@ -56,3 +56,9 @@ class 組:
             if 音標 != '':
                 詞的音.append(音標)
         return 物件分詞符號.join(詞的音)
+
+    def 篩出字物件(self):
+        字陣列 = []
+        for 詞物件 in self.內底詞:
+            字陣列.extend(詞物件.篩出字物件())
+        return 字陣列
