@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.基本元素.組 import 組
+from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
+from 臺灣言語工具.基本元素.公用變數 import 分字符號
+from 臺灣言語工具.基本元素.公用變數 import 分詞符號
+from 臺灣言語工具.基本元素.公用變數 import 分型音符號
 
 
 class 集:
@@ -26,3 +30,25 @@ class 集:
 
     def __repr__(self):
         return self.__str__()
+
+    def 看型(self, 物件分字符號='', 物件分詞符號='', 物件分句符號=''):
+        if len(self.內底組) == 0:
+            raise 解析錯誤('內底組是空的！！')
+        if len(self.內底組) > 1:
+            raise 解析錯誤('內底組毋焦一个！！{0}'.format(str(self)))
+        return self.內底組[0].看型(物件分字符號, 物件分詞符號)
+
+    def 看音(self, 物件分字符號=分字符號, 物件分詞符號=分詞符號, 物件分句符號=分詞符號):
+        if len(self.內底組) == 0:
+            raise 解析錯誤('內底組是空的！！')
+        if len(self.內底組) > 1:
+            raise 解析錯誤('內底組毋焦一个！！{0}'.format(str(self)))
+        return self.內底組[0].看音(物件分字符號, 物件分詞符號)
+
+    def 看分詞(self, 物件分型音符號=分型音符號,
+            物件分字符號=分字符號, 物件分詞符號=分詞符號, 物件分句符號=分詞符號):
+        if len(self.內底組) == 0:
+            raise 解析錯誤('內底組是空的！！')
+        if len(self.內底組) > 1:
+            raise 解析錯誤('內底組毋焦一个！！{0}'.format(str(self)))
+        return self.內底組[0].看分詞(物件分型音符號, 物件分字符號, 物件分詞符號)
