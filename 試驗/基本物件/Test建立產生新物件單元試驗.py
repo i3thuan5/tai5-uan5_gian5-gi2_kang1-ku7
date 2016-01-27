@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import itertools
 from unittest.case import TestCase
-from 臺灣言語工具.基本元素.字 import 字
-from 臺灣言語工具.基本元素.詞 import 詞
-from 臺灣言語工具.基本元素.組 import 組
-from 臺灣言語工具.基本元素.集 import 集
-from 臺灣言語工具.基本元素.句 import 句
-from 臺灣言語工具.基本元素.章 import 章
+from 臺灣言語工具.基本物件.字 import 字
+from 臺灣言語工具.基本物件.詞 import 詞
+from 臺灣言語工具.基本物件.組 import 組
+from 臺灣言語工具.基本物件.集 import 集
+from 臺灣言語工具.基本物件.句 import 句
+from 臺灣言語工具.基本物件.章 import 章
 
 
 class 建立產生新物件單元試驗(TestCase):

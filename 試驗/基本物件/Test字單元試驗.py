@@ -1,7 +1,7 @@
 from unittest.case import TestCase
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.基本元素.字 import 字
-from 臺灣言語工具.基本元素.公用變數 import 無音
+from 臺灣言語工具.基本物件.字 import 字
+from 臺灣言語工具.基本物件.公用變數 import 無音
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.綜合標音.閩南語字綜合標音 import 閩南語字綜合標音
 

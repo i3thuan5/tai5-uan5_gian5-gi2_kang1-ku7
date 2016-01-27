@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.基本元素.詞 import 詞
+from 臺灣言語工具.基本物件.詞 import 詞
 from 臺灣言語工具.斷詞.拄好長度辭典揣詞 import 拄好長度辭典揣詞
 
 

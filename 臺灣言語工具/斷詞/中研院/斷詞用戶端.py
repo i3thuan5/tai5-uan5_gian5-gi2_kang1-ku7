@@ -3,13 +3,13 @@ import re
 
 
 from 臺灣言語工具.斷詞.中研院.用戶端連線 import 用戶端連線
-from 臺灣言語工具.基本元素.章 import 章
-from 臺灣言語工具.基本元素.句 import 句
+from 臺灣言語工具.基本物件.章 import 章
+from 臺灣言語工具.基本物件.句 import 句
 from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.解析整理.字物件篩仔 import 字物件篩仔
-from 臺灣言語工具.基本元素.詞 import 詞
-from 臺灣言語工具.基本元素.組 import 組
-from 臺灣言語工具.基本元素.集 import 集
+from 臺灣言語工具.基本物件.詞 import 詞
+from 臺灣言語工具.基本物件.組 import 組
+from 臺灣言語工具.基本物件.集 import 集
 
 
 class 斷詞用戶端(用戶端連線):

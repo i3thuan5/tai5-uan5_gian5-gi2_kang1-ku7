@@ -3,7 +3,7 @@ from 臺灣言語工具.斷詞.上長詞優先辭典揣詞 import 上長詞優�
 from 臺灣言語工具.斷詞.尾字辭典揣詞 import 尾字辭典揣詞
 from 臺灣言語工具.辭典.型音辭典 import 型音辭典
 from 臺灣言語工具.辭典.尾字辭典 import 尾字辭典
-from 臺灣言語工具.基本元素.句 import 句
+from 臺灣言語工具.基本物件.句 import 句
 from 試驗.斷詞.辭典揣詞單元試驗 import 辭典揣詞單元試驗
 from unittest.case import TestCase
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器

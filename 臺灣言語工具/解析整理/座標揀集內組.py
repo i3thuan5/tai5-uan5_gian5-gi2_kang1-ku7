@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from 臺灣言語工具.基本元素.集 import 集
-from 臺灣言語工具.基本元素.句 import 句
-from 臺灣言語工具.基本元素.章 import 章
+from 臺灣言語工具.基本物件.集 import 集
+from 臺灣言語工具.基本物件.句 import 句
+from 臺灣言語工具.基本物件.章 import 章
 from itertools import repeat
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 

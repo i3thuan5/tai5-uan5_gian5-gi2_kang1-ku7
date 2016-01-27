@@ -2,7 +2,7 @@
 import unittest
 from unittest.mock import patch
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.基本元素.集 import 集
+from 臺灣言語工具.基本物件.集 import 集
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
@@ -12,7 +12,7 @@ from 臺灣言語工具.解析整理.字物件篩仔 import 字物件篩仔
 
 class 字物件篩仔單元試驗(unittest.TestCase):
 
-    @patch('臺灣言語工具.基本元素.句.句.篩出字物件')
+    @patch('臺灣言語工具.基本物件.句.句.篩出字物件')
     def test_篩出字物件(self, 篩出字物件mock):
         物件 = 拆文分析器.轉做句物件('頭-家｜thau5-ke1 員-工｜uan5-kang1')
         字物件篩仔.篩出字物件(物件)
