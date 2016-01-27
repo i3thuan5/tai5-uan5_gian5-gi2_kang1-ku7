@@ -23,11 +23,21 @@ class 物件處理單元試驗(TestCase):
     def setUp(self):
         self.物件 = 拆文分析器.轉做句物件('頭-家｜thau5-ke1 員-工｜uan5-kang1')
 
-    @patch('臺灣言語工具.解析整理.集內組照排.集內組照排.排好')
-    def test_集內組照排(self, 排好mock):
+    @patch('臺灣言語工具.解析整理.集內組照排.集內組照排.排')
+    def test_集內組照排無名參數(self, 排mock):
+        def 比字串(物件):
+            return 物件
         # 這功能無定用，先用做的
-        self.物件.做(集內組照排, '排好', lambda 物件: str(物件))
-        排好mock.assert_called_once_with(self.物件, lambda 物件: str(物件))
+        self.物件.做(集內組照排, '排', 比字串)
+        排mock.assert_called_once_with(比字串, 物件=self.物件)
+
+    @patch('臺灣言語工具.解析整理.集內組照排.集內組照排.排')
+    def test_集內組照排有名參數(self, 排mock):
+        def 比字串(物件):
+            return 物件
+        # 這功能無定用，先用做的
+        self.物件.做(集內組照排, '排', 排法=比字串)
+        排mock.assert_called_once_with(排法=比字串, 物件=self.物件)
 
     @patch('臺灣言語工具.解析整理.座標揀集內組.座標揀集內組.揀')
     def test_座標揀集內組(self, 揀mock):
