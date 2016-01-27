@@ -30,16 +30,16 @@ class 物件處理單元試驗(TestCase):
         排好mock.assert_called_once_with(self.物件, lambda 物件: str(物件))
 
     @patch('臺灣言語工具.解析整理.揀集內組.揀集內組.揀')
-    def test_號碼揀集內組(self, 揀mock):
+    def test_座標揀集內組(self, 揀mock):
         #         self.物件.揀(座標揀集內組)
-        self.物件.揀(揀集內組, [0])
-        揀mock.assert_called_once_with(self.物件, [0])
+        self.物件.揀(揀集內組, 集選擇=[0])
+        揀mock.assert_called_once_with(集選擇=[0], 物件=self.物件)
 
     @patch('臺灣言語工具.斷詞.語言模型揀集內組.語言模型揀集內組.揀')
     def test_實際語言模型揀集內組(self, 揀mock):
         語言模型 = 實際語言模型(1)
-        self.物件.揀(語言模型揀集內組, 語言模型)
-        揀mock.assert_called_once_with(語言模型, 物件=self.物件)
+        self.物件.揀(語言模型揀集內組, 語言模型=語言模型)
+        揀mock.assert_called_once_with(語言模型=語言模型, 物件=self.物件)
 
 #     @patch('臺灣言語工具.斷詞.語言模型揀集內組.語言模型揀集內組.揀')
 #     def test_KenLM語言模型揀集內組(self, 揀mock):

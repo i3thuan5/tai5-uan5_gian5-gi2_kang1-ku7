@@ -83,6 +83,4 @@ class 揀集內組單元試驗(unittest.TestCase):
             揀集內組.揀(
                 拆文分析器.建立集物件(''),
             )
-
-# 	def test_章句集物件(self):
 # 	def test_組詞字物件(self):
