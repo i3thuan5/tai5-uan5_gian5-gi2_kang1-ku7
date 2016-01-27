@@ -62,3 +62,6 @@ class 組:
         for 詞物件 in self.內底詞:
             字陣列.extend(詞物件.篩出字物件())
         return 字陣列
+
+    def 網出詞物件(self):
+        return self.內底詞

@@ -59,3 +59,10 @@ class 集:
         if len(self.內底組) > 1:
             raise 解析錯誤('內底組毋焦一个！！{0}'.format(str(self)))
         return self.內底組[0].篩出字物件()
+
+    def 網出詞物件(self):
+        if len(self.內底組) == 0:
+            return []
+        if len(self.內底組) > 1:
+            raise 解析錯誤('內底組毋焦一个！！{0}'.format(str(self)))
+        return self.內底組[0].網出詞物件()

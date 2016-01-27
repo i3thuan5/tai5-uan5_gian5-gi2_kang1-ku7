@@ -59,3 +59,9 @@ class 章:
         for 句物件 in self.內底句:
             字陣列.extend(句物件.篩出字物件())
         return 字陣列
+
+    def 網出詞物件(self):
+        詞陣列 = []
+        for 句物件 in self.內底句:
+            詞陣列.extend(句物件.網出詞物件())
+        return 詞陣列

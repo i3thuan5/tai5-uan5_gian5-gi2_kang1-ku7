@@ -72,3 +72,6 @@ class 詞:
 
     def 篩出字物件(self):
         return self.內底字
+
+    def 網出詞物件(self):
+        return [self]
