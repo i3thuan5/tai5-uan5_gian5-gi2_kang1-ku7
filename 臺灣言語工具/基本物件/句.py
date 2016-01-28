@@ -80,4 +80,3 @@ class 句(功能):
         for 集物件 in self.內底集:
             新句物件.內底集.append(集物件.轉音(音標工具, 函式))
         return 新句物件
-    
