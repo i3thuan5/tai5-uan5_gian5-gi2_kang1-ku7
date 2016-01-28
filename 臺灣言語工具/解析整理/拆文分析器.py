@@ -454,7 +454,7 @@ class 拆文分析器:
         return 詞音.split(分字符號)
 
     @classmethod
-    def 轉做字物件(cls, 分詞):
+    def 分詞字物件(cls, 分詞):
         cls._掠漏.毋是字串都毋著(分詞)
         切開結果 = 分詞.split(分型音符號)
         if len(切開結果) == 2:
@@ -464,7 +464,7 @@ class 拆文分析器:
         raise 解析錯誤('毋是拄仔好有一个抑是兩个部份：{0}'.format(分詞))
 
     @classmethod
-    def 轉做詞物件(cls, 分詞):
+    def 分詞詞物件(cls, 分詞):
         cls._掠漏.毋是字串都毋著(分詞)
         if 分詞 == '':
             return cls.建立詞物件(分詞)
@@ -482,7 +482,7 @@ class 拆文分析器:
         raise 解析錯誤('毋是拄仔好有一个抑是兩个部份：{0}'.format(分詞))
 
     @classmethod
-    def 轉做組物件(cls, 分詞):
+    def 分詞組物件(cls, 分詞):
         cls._掠漏.毋是字串都毋著(分詞)
         if 分詞 == '':
             return 組()
@@ -492,27 +492,27 @@ class 拆文分析器:
             raise 解析錯誤('分詞無合法！！分詞加的：{0}。原來：{1}'
                        .format(切開[::2], 分詞))
         for 分 in 切開[1::2]:
-            組物件.內底詞.append(cls.轉做詞物件(分))
+            組物件.內底詞.append(cls.分詞詞物件(分))
         return 組物件
 
     @classmethod
-    def 轉做集物件(cls, 分詞):
+    def 分詞集物件(cls, 分詞):
         if 分詞 == '':
             return 集()
         集物件 = cls.建立集物件('')
-        集物件.內底組.append(cls.轉做組物件(分詞))
+        集物件.內底組.append(cls.分詞組物件(分詞))
         return 集物件
 
     @classmethod
-    def 轉做句物件(cls, 分詞):
+    def 分詞句物件(cls, 分詞):
         if 分詞 == '':
             return 句()
         句物件 = cls.建立句物件('')
-        句物件.內底集.append(cls.轉做集物件(分詞))
+        句物件.內底集.append(cls.分詞集物件(分詞))
         return 句物件
 
     @classmethod
-    def 轉做章物件(cls, 分詞):
+    def 分詞章物件(cls, 分詞):
         if 分詞 == '':
             return 章()
         全部斷句詞陣列 = []
@@ -520,12 +520,12 @@ class 拆文分析器:
             for 第幾个, 句分詞 in enumerate(cls._切章分詞.split(分詞)):
                 if 第幾个 % 2 == 0:
                     if 句分詞.strip() != '':
-                        原來句物件 = cls.轉做句物件(句分詞)
+                        原來句物件 = cls.分詞句物件(句分詞)
                         原來詞陣列 = 原來句物件.網出詞物件()
                         斷句詞陣列 = cls.詞陣列分一句一句(原來詞陣列)
                         全部斷句詞陣列.append(斷句詞陣列)
                 else:
-                    全部斷句詞陣列[-1][-1].append(cls.轉做詞物件(句分詞))
+                    全部斷句詞陣列[-1][-1].append(cls.分詞詞物件(句分詞))
         except TypeError:
             raise 型態錯誤('分詞型態有問題，分詞：{}' .format(分詞))
         章物件 = 章()

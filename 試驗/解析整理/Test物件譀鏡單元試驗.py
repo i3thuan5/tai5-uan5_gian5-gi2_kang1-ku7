@@ -9,7 +9,7 @@ from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 class 物件譀鏡單元試驗(unittest.TestCase):
 
     def setUp(self):
-        self.物件 = 拆文分析器.轉做句物件('頭-家｜thau5-ke1 員-工｜uan5-kang1')
+        self.物件 = 拆文分析器.分詞句物件('頭-家｜thau5-ke1 員-工｜uan5-kang1')
 
     @patch('臺灣言語工具.基本物件.句.句.看型')
     def test_看型(self, 看型mock):

@@ -59,7 +59,7 @@ class 章單元試驗(TestCase):
 
     def test_預設分句符號(self):
         原本語句 = '食-飽｜tsiah8-pa2 未｜0bue7 ？｜? 食-飽｜tsiah8-pa2 矣｜0ah4 ！｜!'
-        章物件 = 拆文分析器.轉做章物件(原本語句)
+        章物件 = 拆文分析器.分詞章物件(原本語句)
         self.assertEqual(章物件.看型(),
                          '食飽未？食飽矣！')
         self.assertEqual(章物件.看音(),
@@ -69,7 +69,7 @@ class 章單元試驗(TestCase):
 
     def test_換句分句符號(self):
         原本語句 = '食-飽｜tsiah8-pa2 未｜0bue7 ？｜? 食-飽｜tsiah8-pa2 矣｜0ah4 ！｜!'
-        章物件 = 拆文分析器.轉做章物件(原本語句)
+        章物件 = 拆文分析器.分詞章物件(原本語句)
         self.assertEqual(章物件.看型(物件分句符號='\n'),
                          '食飽未？\n食飽矣！')
         self.assertEqual(章物件.看音(物件分句符號='\n'),
