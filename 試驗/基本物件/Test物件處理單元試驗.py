@@ -21,7 +21,7 @@ from 臺灣言語工具.解析整理.集內組照排 import 集內組照排
 class 物件處理單元試驗(TestCase):
 
     def setUp(self):
-        self.物件 = 拆文分析器.轉做句物件('頭-家｜thau5-ke1 員-工｜uan5-kang1')
+        self.物件 = 拆文分析器.分詞句物件('頭-家｜thau5-ke1 員-工｜uan5-kang1')
 
     @patch('臺灣言語工具.解析整理.集內組照排.集內組照排.排')
     def test_集內組照排無名參數(self, 排mock):
