@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.基本元素.章 import 章
+from 臺灣言語工具.基本物件.章 import 章
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 from math import log10
 from math import pow

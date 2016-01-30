@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 import unicodedata
-from 臺灣言語工具.基本元素.公用變數 import 標點符號
-from 臺灣言語工具.基本元素.公用變數 import 分字符號
-from 臺灣言語工具.基本元素.公用變數 import 分詞符號
+from 臺灣言語工具.基本物件.公用變數 import 標點符號
+from 臺灣言語工具.基本物件.公用變數 import 分字符號
+from 臺灣言語工具.基本物件.公用變數 import 分詞符號
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
-from 臺灣言語工具.基本元素.公用變數 import 組字式符號
-from 臺灣言語工具.基本元素.公用變數 import 統一碼漢字佮組字式類
-from 臺灣言語工具.基本元素.公用變數 import 統一碼羅馬字類
-from 臺灣言語工具.基本元素.公用變數 import 統一碼數字類
-from 臺灣言語工具.基本元素.公用變數 import 聲調符號
+from 臺灣言語工具.基本物件.公用變數 import 組字式符號
+from 臺灣言語工具.基本物件.公用變數 import 統一碼漢字佮組字式類
+from 臺灣言語工具.基本物件.公用變數 import 統一碼羅馬字類
+from 臺灣言語工具.基本物件.公用變數 import 統一碼數字類
+from 臺灣言語工具.基本物件.公用變數 import 聲調符號
 import re
 
 

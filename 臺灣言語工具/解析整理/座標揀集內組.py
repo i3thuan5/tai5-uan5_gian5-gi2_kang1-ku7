@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from 臺灣言語工具.基本元素.集 import 集
-from 臺灣言語工具.基本元素.句 import 句
-from 臺灣言語工具.基本元素.章 import 章
+from 臺灣言語工具.基本物件.集 import 集
+from 臺灣言語工具.基本物件.句 import 句
+from 臺灣言語工具.基本物件.章 import 章
 from itertools import repeat
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 
 
-class 揀集內組:
+class 座標揀集內組:
 
     @classmethod
     def 揀(cls, 物件, 集選擇=repeat(0)):
@@ -36,7 +36,10 @@ class 揀集內組:
 
     @classmethod
     def _揀集物件(cls, 集物件, 集選擇指標):
-        選擇 = next(集選擇指標)
+        try:
+            選擇 = next(集選擇指標)
+        except StopIteration:
+            raise 解析錯誤('選擇無夠濟！！')
         try:
             組物件 = 集物件.內底組[選擇]
         except IndexError:

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.基本元素.詞 import 詞
+from 臺灣言語工具.基本物件.詞 import 詞
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡

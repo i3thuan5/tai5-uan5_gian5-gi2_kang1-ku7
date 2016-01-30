@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.基本元素.集 import 集
-from 臺灣言語工具.基本元素.句 import 句
-from 臺灣言語工具.基本元素.章 import 章
+from 臺灣言語工具.基本物件.集 import 集
+from 臺灣言語工具.基本物件.句 import 句
+from 臺灣言語工具.基本物件.章 import 章
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 
 
 class 集內組照排:
 
     @classmethod
-    def 排好(cls, 排法, 物件):
+    def 排(cls, 排法, 物件):
         if isinstance(物件, 集):
             return cls._排好集物件(排法, 物件)
         if isinstance(物件, 句):

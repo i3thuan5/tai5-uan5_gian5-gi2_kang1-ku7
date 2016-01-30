@@ -3,14 +3,14 @@ import xmlrpc.client
 
 
 from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
-from 臺灣言語工具.基本元素.章 import 章
+from 臺灣言語工具.基本物件.章 import 章
 from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
-from 臺灣言語工具.基本元素.組 import 組
-from 臺灣言語工具.基本元素.集 import 集
-from 臺灣言語工具.基本元素.句 import 句
-from 臺灣言語工具.基本元素.詞 import 詞
+from 臺灣言語工具.基本物件.組 import 組
+from 臺灣言語工具.基本物件.集 import 集
+from 臺灣言語工具.基本物件.句 import 句
+from 臺灣言語工具.基本物件.詞 import 詞
 
 
 class 摩西用戶端():
@@ -69,10 +69,10 @@ class 摩西用戶端():
         for 分詞 in 翻譯結果語句.split(' ')[:-1]:
             if 分詞 != '':
                 if 分詞.endswith(self.未知詞記號):
-                    詞物件 = 拆文分析器.轉做詞物件(分詞[:-len(self.未知詞記號)])
+                    詞物件 = 拆文分析器.分詞詞物件(分詞[:-len(self.未知詞記號)])
                     詞物件.屬性 = {'未知詞': True}
                 else:
-                    詞物件 = 拆文分析器.轉做詞物件(分詞)
+                    詞物件 = 拆文分析器.分詞詞物件(分詞)
                     詞物件.屬性 = {'未知詞': False}
                 結果詞物件陣列.append(詞物件)
         return 結果詞物件陣列

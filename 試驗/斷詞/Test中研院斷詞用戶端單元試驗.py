@@ -6,12 +6,12 @@ from unittest.mock import patch, call
 
 from 臺灣言語工具.斷詞.中研院.斷詞用戶端 import 斷詞用戶端
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.基本元素.組 import 組
-from 臺灣言語工具.基本元素.集 import 集
-from 臺灣言語工具.基本元素.句 import 句
-from 臺灣言語工具.基本元素.章 import 章
+from 臺灣言語工具.基本物件.組 import 組
+from 臺灣言語工具.基本物件.集 import 集
+from 臺灣言語工具.基本物件.句 import 句
+from 臺灣言語工具.基本物件.章 import 章
 from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
-from 臺灣言語工具.基本元素.詞 import 詞
+from 臺灣言語工具.基本物件.詞 import 詞
 
 
 @patch('臺灣言語工具.斷詞.中研院.斷詞用戶端.斷詞用戶端.語句斷詞做語句')

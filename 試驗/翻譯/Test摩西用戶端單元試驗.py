@@ -5,10 +5,10 @@ from unittest.mock import patch, call
 
 from 臺灣言語工具.翻譯.摩西工具.摩西用戶端 import 摩西用戶端
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.基本元素.章 import 章
+from 臺灣言語工具.基本物件.章 import 章
 from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
-from 臺灣言語工具.基本元素.句 import 句
-from 臺灣言語工具.基本元素.集 import 集
+from 臺灣言語工具.基本物件.句 import 句
+from 臺灣言語工具.基本物件.集 import 集
 from 臺灣言語工具.翻譯.摩西工具.語句編碼器 import 語句編碼器
 
 
@@ -142,11 +142,11 @@ class 摩西用戶端單元試驗(TestCase):
         self.xmlrpcMock.return_value.translate.return_value = self.全漢全羅分詞翻譯結果
         結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
         閩南語組陣列 = [
-            拆文分析器.轉做組物件('阮｜gun2'),
-            拆文分析器.轉做組物件('欲｜beh4'),
-            拆文分析器.轉做組物件('去｜khi3'),
-            拆文分析器.轉做組物件('食｜tsiah8  飯｜png7'),
-            拆文分析器.轉做組物件('。｜.'),
+            拆文分析器.分詞組物件('阮｜gun2'),
+            拆文分析器.分詞組物件('欲｜beh4'),
+            拆文分析器.分詞組物件('去｜khi3'),
+            拆文分析器.分詞組物件('食｜tsiah8  飯｜png7'),
+            拆文分析器.分詞組物件('。｜.'),
         ]
         閩南語句物件 = self._組陣列分開包做句物件(閩南語組陣列)
         self.assertEqual(結果句物件, 閩南語句物件)
@@ -155,11 +155,11 @@ class 摩西用戶端單元試驗(TestCase):
         self.xmlrpcMock.return_value.translate.return_value = self.全漢全羅分詞含詞翻譯結果
         結果句物件, _, _ = self.用戶端.翻譯(self.華語句物件)
         閩南語組陣列 = [
-            拆文分析器.轉做組物件('阮｜gun2'),
-            拆文分析器.轉做組物件('欲｜beh4'),
-            拆文分析器.轉做組物件('去｜khi3'),
-            拆文分析器.轉做組物件('食｜tsiah8 炒-飯｜tsha2-png7'),
-            拆文分析器.轉做組物件('。｜.'),
+            拆文分析器.分詞組物件('阮｜gun2'),
+            拆文分析器.分詞組物件('欲｜beh4'),
+            拆文分析器.分詞組物件('去｜khi3'),
+            拆文分析器.分詞組物件('食｜tsiah8 炒-飯｜tsha2-png7'),
+            拆文分析器.分詞組物件('。｜.'),
         ]
         閩南語句物件 = self._組陣列分開包做句物件(閩南語組陣列)
         self.assertEqual(結果句物件, 閩南語句物件)
@@ -261,11 +261,11 @@ class 摩西用戶端單元試驗(TestCase):
             ]
         }]}
         用戶端 = 摩西用戶端(編碼器=語句編碼器())
-        用戶端.翻譯(拆文分析器.轉做章物件(華語章))
+        用戶端.翻譯(拆文分析器.分詞章物件(華語章))
 
     def test_翻譯語句換逝應該先提掉(self):
         self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
-        章物件 = 拆文分析器.轉做章物件('我 們 要 去 吃 飯 。\n\n')
+        章物件 = 拆文分析器.分詞章物件('我 們 要 去 吃 飯 。\n\n')
         self.用戶端.翻譯(章物件)
         self.xmlrpcMock.return_value.translate.assert_called_once_with({
             'text': '我 們 要 去 吃 飯 。',
@@ -277,7 +277,7 @@ class 摩西用戶端單元試驗(TestCase):
 
     def test_翻譯語句換逝分詞應該先提掉(self):
         self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
-        章物件 = 拆文分析器.轉做章物件('我 們 要 去 吃 飯 。\n｜\n')
+        章物件 = 拆文分析器.分詞章物件('我 們 要 去 吃 飯 。\n｜\n')
         self.用戶端.翻譯(章物件)
         self.xmlrpcMock.return_value.translate.assert_called_once_with({
             'text': '我 們 要 去 吃 飯 。',
@@ -289,7 +289,7 @@ class 摩西用戶端單元試驗(TestCase):
 
     def test_翻譯語句上尾換逝結果物件應該閣愛有(self):
         self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
-        章物件 = 拆文分析器.轉做章物件('我 們 要 去 吃 飯 。\n\n')
+        章物件 = 拆文分析器.分詞章物件('我 們 要 去 吃 飯 。\n\n')
         結果章物件, _, _ = self.用戶端.翻譯(章物件)
         閩南語組陣列 = [
             拆文分析器.建立組物件('阮'),
@@ -305,7 +305,7 @@ class 摩西用戶端單元試驗(TestCase):
 
     def test_翻譯語句上尾換逝新結構應該閣愛有(self):
         self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
-        章物件 = 拆文分析器.轉做章物件('我 們 要 去 吃 飯 。 \n \n')
+        章物件 = 拆文分析器.分詞章物件('我 們 要 去 吃 飯 。 \n \n')
         _, 華語新結構章物件, _ = self.用戶端.翻譯(章物件)
         華語組陣列 = [
             拆文分析器.建立組物件('我們'),
