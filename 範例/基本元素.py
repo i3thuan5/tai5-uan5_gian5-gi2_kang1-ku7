@@ -23,7 +23,7 @@ print(結果)
 print(結果)
 
 hap = '𪜶｜in1 兩｜nng7 个｜e5 生-做｜senn1-tso3 一-模-一-樣｜it4-boo5-it4-iunn7 。｜.'
-結果 = _分析器.轉做句物件(hap)
+結果 = _分析器.分詞句物件(hap)
 print(結果)
 
 譀鏡 = 物件譀鏡()
