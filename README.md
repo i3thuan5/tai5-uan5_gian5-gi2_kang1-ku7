@@ -13,10 +13,9 @@
 
 ## 快速安裝
 ```bash
-sudo apt-get install -y g++ libboost-all-dev python3 python-virtualenv # Ubuntu/Mint 安裝指令
-virtualenv venv --python python3 # 設定虛擬環境檔
-. venv/bin/activate # 載入虛擬環境
-pip install tai5-uan5_gian5-gi2_kang1-ku7 # 安裝套件
+sudo apt-get install -y python3 python-virtualenv g++ python3-dev zlib1g-dev libbz2-dev liblzma-dev libboost-all-dev # Ubuntu/Mint 安裝指令
+virtualenv --python=python3 venv; . venv/bin/activate; pip install --upgrade pip # 設置環境檔
+pip install tai5-uan5_gian5-gi2_kang1-ku7 # 安裝臺灣言語工具
 ```
 
 ## 相關專案
