@@ -48,7 +48,7 @@ class 拆文分析器:
             raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
         if 語句 == '':
             return 詞()
-        拆好的字 = cls.拆句做字(語句)
+        拆好的字 = cls._拆句做字(語句)
         字陣列 = []
         for 孤詞 in 拆好的字:
             字陣列.append(cls.建立字物件(孤詞))
@@ -65,7 +65,7 @@ class 拆文分析器:
             raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
         if 語句 == '':
             return 組()
-        巢狀詞陣列 = cls.拆句做巢狀詞(語句)
+        巢狀詞陣列 = cls._拆句做巢狀詞(語句)
         詞陣列 = []
         for 孤詞 in 巢狀詞陣列:
             字陣列 = []
@@ -104,7 +104,7 @@ class 拆文分析器:
             raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
         if 語句 == '':
             return 章()
-        語句陣列 = cls.拆章做句(語句)
+        語句陣列 = cls._拆章做句(語句)
         句陣列 = []
         for 一句 in 語句陣列:
             句陣列.append(cls.建立句物件(一句))
@@ -113,7 +113,7 @@ class 拆文分析器:
         return 章物件
 
     @classmethod
-    def 產生對齊字(cls, 型, 音):
+    def 對齊字物件(cls, 型, 音):
         if not isinstance(型, str):
             raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
         if not isinstance(音, str):
@@ -125,25 +125,25 @@ class 拆文分析器:
         return 字(型, 音)
 
     @classmethod
-    def 產生對齊詞(cls, 型, 音):
+    def 對齊詞物件(cls, 型, 音):
         if not isinstance(型, str):
             raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
         if not isinstance(音, str):
             raise 型態錯誤('傳入來的音毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
         if 型 == '' and 音 == 無音:
             return 詞()
-        型陣列 = cls.拆句做字(型)
-        音陣列 = cls.詞音拆字(音)
+        型陣列 = cls._拆句做字(型)
+        音陣列 = cls._詞音拆字(音)
         if len(型陣列) < len(音陣列):
             raise 解析錯誤('詞內底的型「{0}」比音「{1}」少！{2}：{3}'.format(
                 str(型), str(音), len(型陣列), len(音陣列)))
         if len(型陣列) > len(音陣列):
             raise 解析錯誤('詞內底的型「{0}」比音「{1}」濟！{2}：{3}'.format(
                 str(型), str(音), len(型陣列), len(音陣列)))
-        return cls.拆好陣列產生對齊詞(型陣列, 音陣列)
+        return cls._拆好陣列對齊詞物件(型陣列, 音陣列)
 
     @classmethod
-    def 拆好陣列產生對齊詞(cls, 型陣列, 音陣列):
+    def _拆好陣列對齊詞物件(cls, 型陣列, 音陣列):
         if not isinstance(型陣列, list):
             raise 型態錯誤('傳入來的型毋是陣列：型陣列＝{}'.format(str(型陣列)))
         if not isinstance(音陣列, list):
@@ -164,12 +164,12 @@ class 拆文分析器:
                 raise 型態錯誤('型陣列[{1}]毋是字串：型陣列＝{0}'.format(str(型陣列), 型陣列[位置]))
             if not isinstance(音陣列[位置], str):
                 raise 型態錯誤('音陣列[{1}]毋是字串：音陣列＝{0}'.format(str(音陣列), 音陣列[位置]))
-            字陣列.append(cls.產生對齊字(型陣列[位置], 音陣列[位置]))
+            字陣列.append(cls.對齊字物件(型陣列[位置], 音陣列[位置]))
         return 詞物件
 
     # 斷詞會照音來斷，型的連字符攏無算
     @classmethod
-    def 產生對齊組(cls, 型, 音):
+    def 對齊組物件(cls, 型, 音):
         if not isinstance(型, str):
             raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
         if not isinstance(音, str):
@@ -177,18 +177,18 @@ class 拆文分析器:
         if 型 == '' and 音 == 無音:
             return 組()
         # #
-# 		型陣列 = cls.拆句做字(文章粗胚.符號邊仔加空白(型))
-        型陣列 = cls.拆句做字(型)
+# 		型陣列 = cls._拆句做字(文章粗胚.符號邊仔加空白(型))
+        型陣列 = cls._拆句做字(型)
 
         詞陣列 = []
         第幾字 = 0
         for 詞音 in 文章粗胚.符號邊仔加空白(音).strip(分詞符號).split(分詞符號):
-            字音陣列 = cls.詞音拆字(詞音)
+            字音陣列 = cls._詞音拆字(詞音)
             if 第幾字 + len(字音陣列) > len(型陣列):
                 raise 解析錯誤('詞組內底的型「{0}」比音「{1}」少！配對結果：{2}'.format(
                     str(型), str(音), str(詞陣列)))
             詞陣列.append(
-                cls.拆好陣列產生對齊詞(型陣列[第幾字:第幾字 + len(字音陣列)], 字音陣列))
+                cls._拆好陣列對齊詞物件(型陣列[第幾字:第幾字 + len(字音陣列)], 字音陣列))
             第幾字 += len(字音陣列)
         if 第幾字 < len(型陣列):
             raise 解析錯誤('詞組內底的型「{0}」比音「{1}」濟！配對結果：{2}'.format(
@@ -198,7 +198,7 @@ class 拆文分析器:
         return 組物件
 
     @classmethod
-    def 產生對齊集(cls, 型, 音):
+    def 對齊集物件(cls, 型, 音):
         if not isinstance(型, str):
             raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
         if not isinstance(音, str):
@@ -206,11 +206,11 @@ class 拆文分析器:
         if 型 == '' and 音 == 無音:
             return 集()
         集物件 = 集()
-        集物件.內底組 = [cls.產生對齊組(型, 音)]
+        集物件.內底組 = [cls.對齊組物件(型, 音)]
         return 集物件
 
     @classmethod
-    def 產生對齊句(cls, 型, 音):
+    def 對齊句物件(cls, 型, 音):
         if not isinstance(型, str):
             raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
         if not isinstance(音, str):
@@ -218,11 +218,11 @@ class 拆文分析器:
         if 型 == '' and 音 == 無音:
             return 句()
         句物件 = 句()
-        句物件.內底集 = [cls.產生對齊集(型, 音)]
+        句物件.內底集 = [cls.對齊集物件(型, 音)]
         return 句物件
 
     @classmethod
-    def 產生對齊章(cls, 型, 音):
+    def 對齊章物件(cls, 型, 音):
         if not isinstance(型, str):
             raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
         if not isinstance(音, str):
@@ -230,8 +230,8 @@ class 拆文分析器:
         if 型 == '' and 音 == 無音:
             return 章()
 #  		raise 型態錯誤('QQ型＝{0}，音＝{1}'.format(str(型), str(音)))
-        型陣列 = cls.拆章做句(型)
-        音陣列 = cls.拆章做句(音)
+        型陣列 = cls._拆章做句(型)
+        音陣列 = cls._拆章做句(音)
         if len(型陣列) > len(音陣列):
             raise 解析錯誤('詞內底的型「{0}」比音「{1}」少！'.format(
                 str(型), str(音)))
@@ -240,18 +240,18 @@ class 拆文分析器:
                 str(型), str(音)))
         句陣列 = []
         for 型物件, 音物件 in zip(型陣列, 音陣列):
-            句陣列.append(cls.產生對齊句(型物件, 音物件))
+            句陣列.append(cls.對齊句物件(型物件, 音物件))
         章物件 = 章()
         章物件.內底句 = 句陣列
         return 章物件
 
     @classmethod
-    def 拆句做字(cls, 語句):
-        return cls.句解析(語句)[0]
+    def _拆句做字(cls, 語句):
+        return cls._句解析(語句)[0]
 
     @classmethod
-    def 拆句做巢狀詞(cls, 語句):
-        字陣列, 佮後一个字是佇仝一个詞 = cls.句解析(語句)
+    def _拆句做巢狀詞(cls, 語句):
+        字陣列, 佮後一个字是佇仝一个詞 = cls._句解析(語句)
         巢狀詞陣列 = []
         位置 = 0
         while 位置 < len(字陣列):
@@ -264,12 +264,11 @@ class 拆文分析器:
         return 巢狀詞陣列
 
     @classmethod
-    def 句解析(cls, 語句):
+    def _句解析(cls, 語句):
         if not isinstance(語句, str):
             raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
         if 語句 == 分詞符號:
             return ([分詞符號], [False])
-        文章粗胚.減號有照規則無(語句)
         字陣列 = []
         佮後一个字是佇仝一个詞 = []
         # 一般　組字
@@ -411,7 +410,7 @@ class 拆文分析器:
         return (字陣列, 佮後一个字是佇仝一个詞)
 
     @classmethod
-    def 拆章做句(cls, 語句):
+    def _拆章做句(cls, 語句):
         # 敢有需要做
         # 枋寮漁港「大條巷」上闊兩公尺。=> 枋寮漁港  「  大條巷  」  上闊兩公尺  。
         # =>無，下佇仝詞組，予斷詞處理
@@ -448,9 +447,9 @@ class 拆文分析器:
         return 處理了頭前的句陣列
 
     @classmethod
-    def 詞音拆字(cls, 詞音):
+    def _詞音拆字(cls, 詞音):
         if 詞音 == 分字符號:
-            return[分字符號]
+            return [分字符號]
         return 詞音.split(分字符號)
 
     @classmethod
@@ -458,7 +457,7 @@ class 拆文分析器:
         cls._掠漏.毋是字串都毋著(分詞)
         切開結果 = 分詞.split(分型音符號)
         if len(切開結果) == 2:
-            return cls.產生對齊字(*切開結果)
+            return cls.對齊字物件(*切開結果)
         if len(切開結果) == 1:
             return cls.建立字物件(*切開結果)
         raise 解析錯誤('毋是拄仔好有一个抑是兩个部份：{0}'.format(分詞))
@@ -473,7 +472,7 @@ class 拆文分析器:
             型, 音 = 切開結果
             if 型 == '':
                 raise 解析錯誤('型是空的：{0}'.format(分詞))
-            return cls.產生對齊詞(型, 音)
+            return cls.對齊詞物件(型, 音)
         if len(切開結果) == 1:
             型 = 切開結果[0]
             if 型 == '':
@@ -522,7 +521,7 @@ class 拆文分析器:
                     if 句分詞.strip() != '':
                         原來句物件 = cls.分詞句物件(句分詞)
                         原來詞陣列 = 原來句物件.網出詞物件()
-                        斷句詞陣列 = cls.詞陣列分一句一句(原來詞陣列)
+                        斷句詞陣列 = cls._詞陣列分一句一句(原來詞陣列)
                         全部斷句詞陣列.append(斷句詞陣列)
                 else:
                     全部斷句詞陣列[-1][-1].append(cls.分詞詞物件(句分詞))
@@ -540,7 +539,7 @@ class 拆文分析器:
         return 章物件
 
     @classmethod
-    def 詞陣列分一句一句(cls, 詞陣列):
+    def _詞陣列分一句一句(cls, 詞陣列):
         有一般字無 = False
         愛換的所在 = []
         for 詞物件 in 詞陣列[::-1]:
