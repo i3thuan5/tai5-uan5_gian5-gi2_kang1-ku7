@@ -34,7 +34,7 @@ class 文章粗胚:
         if 語句 == 分字符號:
             return cls.分字符號代表字
         if 語句.startswith(分字符號 + 分字符號):
-            if cls.後壁有音標無(音標工具, 語句[2:]):
+            if cls._後壁有音標無(音標工具, 語句[2:]):
                 語句 = '0' + 語句[2:]
             elif(2 < len(語句) and unicodedata.category(語句[2]) in 統一碼漢字佮組字式類):
                 語句 = 語句[2:]
@@ -62,25 +62,25 @@ class 文章粗胚:
                         位置 += 1
                     位置 -= 1
                 elif 語句[位置:].startswith(cls.雙分字符號):
-                    if cls.頭前有音標無(音標工具, 語句[位置 + 2:]):
+                    if cls._頭前有音標無(音標工具, 語句[位置 + 2:]):
                         if 前回一開始狀態 == cls._組字 or \
                                 len(字元陣列) > 0 and unicodedata.category(字元陣列[-1][-1]) in 統一碼漢字佮組字式類 or\
-                                cls.後壁有音標無(音標工具, 語句[:位置]):
+                                cls._後壁有音標無(音標工具, 語句[:位置]):
                             字元陣列.append('-0')
                         else:
                             字元陣列.append('0')
                     elif (位置 + 2 < len(語句) and unicodedata.category(語句[位置 + 2]) in 統一碼漢字佮組字式類):
                         if 前回一開始狀態 == cls._組字 or \
                                 len(字元陣列) > 0 and unicodedata.category(字元陣列[-1][-1]) in 統一碼漢字佮組字式類 or\
-                                cls.後壁有音標無(音標工具, 語句[:位置]):
+                                cls._後壁有音標無(音標工具, 語句[:位置]):
                             字元陣列.append(分字符號)
                     else:
                         字元陣列.append(cls.兩分字符號代表字)
                     位置 += 1
     # 				print('後來', 語句)
                 elif 語句[位置] == 分字符號:
-                    頭節 = cls.後壁有音標無(音標工具, 語句[:位置])
-                    後節 = cls.頭前有音標無(音標工具, 語句[位置 + 1:])
+                    頭節 = cls._後壁有音標無(音標工具, 語句[:位置])
+                    後節 = cls._頭前有音標無(音標工具, 語句[位置 + 1:])
                     頭前漢字抑是組字式 = (
                         位置 - 1 >= 0 and unicodedata.category(語句[位置 - 1]) in 統一碼漢字佮組字式類)
                     後壁漢字抑是組字式 = (
@@ -103,13 +103,13 @@ class 文章粗胚:
             位置 += 1
         if 前回一開始狀態 == cls._一般 and 語句.endswith(分字符號):
             字元陣列.append(分詞符號)
-        return cls.除掉重覆的空白(''.join(字元陣列))
+        return cls._除掉重覆的空白(''.join(字元陣列))
 
     @classmethod
     def 符號邊仔加空白(cls, 語句):
         if not isinstance(語句, str):
             raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
-        cls.減號有照規則無(語句)
+        cls._減號有照規則無(語句)
 # 		for 符號 in 標點符號:
 # 			if 符號 != 分字符號 and 符號 != 分詞符號:
 # 				語句 = 語句.replace(符號, '{0}{1}{0}'.format(分詞符號, 符號))
@@ -137,10 +137,10 @@ class 文章粗胚:
                 狀態 = cls._一般
                 組字式長度 = 0
             位置 += 1
-        return cls.除掉重覆的空白(語句)
+        return cls._除掉重覆的空白(語句)
 
     @classmethod
-    def 減號有照規則無(cls, 語句):
+    def _減號有照規則無(cls, 語句):
         分字符號合法 = True
         狀態 = cls._一般
         組字式長度 = 0
@@ -153,7 +153,13 @@ class 文章粗胚:
             if 狀態 == cls._一般 and 組字式長度 == 1:
                 if 語句[位置] == 分字符號:
                     if 位置 + 1 < len(語句) and 語句[位置 + 1] == 分字符號:
-                        raise 解析錯誤('語句內底袂使有連紲兩个減號，愛用空白隔開：{0}'.format(str(語句)))
+                        raise 解析錯誤(
+                            '語句內底袂使有連紲兩个減號，愛用空白隔開：{0}。請先用「{1}」抑是「{2}」'.format(
+                                str(語句),
+                                '文章粗胚.建立物件語句前處理減號()',
+                                '文章粗胚.建立物件語句前減號變標點符號()',
+                            )
+                        )
                     if 分字符號合法:
                         上尾會使位置 = 位置
                     if 位置 == 0:
@@ -175,21 +181,21 @@ class 文章粗胚:
                 '語句內底減號，兩邊袂使干焦一邊是空白：位置＝{1}，語句＝{0}'.format(str(語句), 上尾會使位置))
 
     @classmethod
-    def 頭前有音標無(cls, 音標工具, 語句):
+    def _頭前有音標無(cls, 音標工具, 語句):
         for 長度 in range(1, min(len(語句), 音標工具.音標上長長度) + 1):
             if 音標工具(語句[:長度]).音標 is not None:
                 return True
         return False
 
     @classmethod
-    def 後壁有音標無(cls, 音標工具, 語句):
+    def _後壁有音標無(cls, 音標工具, 語句):
         for 長度 in range(1, min(len(語句), 音標工具.音標上長長度) + 1):
             if 音標工具(語句[-長度:]).音標 is not None:
                 return True
         return False
 
     @classmethod
-    def 除掉重覆的空白(cls, 語句):
+    def _除掉重覆的空白(cls, 語句):
         新語句 = []
         for 字 in 語句:
             if len(新語句) == 0 or 新語句[-1] != 分詞符號 or 字 != 分詞符號:
@@ -206,7 +212,7 @@ class 文章粗胚:
                 新語句.append(分字符號)
             新語句.append(字)
             舊字 = 字
-        return cls.除掉重覆的空白(''.join(新語句))
+        return cls._除掉重覆的空白(''.join(新語句))
 
     @classmethod
     def 數字英文中央看情形加分字符號(cls, 語句, 專有名詞):
