@@ -14,7 +14,7 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 class 辭典語言模型斷詞:
 
     @classmethod
-    def 斷詞(cls, 辭典, 語言模型, 物件):
+    def 斷詞分析(cls, 辭典, 語言模型, 物件):
         # 字詞組集句=>句
         # 章=>章
         if isinstance(物件, 章):

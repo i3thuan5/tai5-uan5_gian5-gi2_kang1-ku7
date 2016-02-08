@@ -22,7 +22,7 @@ class 摩西用戶端():
         self.主機 = xmlrpc.client.ServerProxy(網址)
         self.編碼器 = 編碼器
 
-    def 翻譯(self, 物件):
+    def 翻譯分析(self, 物件):
         if isinstance(物件, 章):
             return self._翻譯章物件(物件)
         return self._翻譯句物件(物件)
