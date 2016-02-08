@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase
+from unittest.mock import patch
 
 
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
@@ -23,7 +24,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.語言模型 = 實際語言模型(2)
         self.加鞋仔的資料()
         self.字典.加詞(self.鞋仔詞)
-        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, self.鞋仔一集句物件)
+        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞分析(self.字典, self.語言模型, self.鞋仔一集句物件)
         self.assertEqual(斷詞結果, self.孤詞鞋仔句)
         self.assertLess(分數, 0)
         self.assertEqual(詞數, 1)
@@ -33,7 +34,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.加鞋仔的資料()
         self.字典.加詞(self.鞋詞)
         self.字典.加詞(self.仔詞)
-        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, self.鞋仔兩集句物件)
+        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞分析(self.字典, self.語言模型, self.鞋仔兩集句物件)
         self.assertEqual(斷詞結果, self.兩詞鞋仔句)
         self.assertLess(分數, 0)
         self.assertEqual(詞數, 2)
@@ -42,7 +43,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.語言模型 = 實際語言模型(2)
         self.加鞋仔的資料()
         self.字典.加詞(self.鞋仔詞)
-        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, self.鞋仔一集句物件)
+        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞分析(self.字典, self.語言模型, self.鞋仔一集句物件)
         self.assertEqual(斷詞結果, self.孤詞鞋仔句)
         self.assertLess(分數, 0)
         self.assertEqual(詞數, 1)
@@ -52,7 +53,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.加鞋仔的資料()
         self.字典.加詞(self.鞋詞)
         self.字典.加詞(self.仔詞)
-        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, self.鞋仔兩集句物件)
+        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞分析(self.字典, self.語言模型, self.鞋仔兩集句物件)
         self.assertEqual(斷詞結果, self.兩詞鞋仔句)
         self.assertLess(分數, 0)
         self.assertEqual(詞數, 2)
@@ -115,12 +116,12 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.字典.加詞(self.伊對齊詞)
         self.字典.加詞(self.出去對齊詞)
         self.字典.加詞(self.耍對齊詞)
-        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, self.予伊出去耍全羅)
+        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞分析(self.字典, self.語言模型, self.予伊出去耍全羅)
         self.assertEqual(斷詞結果, self.予伊對齊句)
         self.檢查分數詞數(分數, 詞數, 0, 4)
 
         self.字典.加詞(self.雨衣對齊詞)
-        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, self.予伊出去耍全羅)
+        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞分析(self.字典, self.語言模型, self.予伊出去耍全羅)
         self.assertEqual(斷詞結果, self.雨衣對齊句)
         self.檢查分數詞數(分數, 詞數, 0, 3)
 
@@ -128,7 +129,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.語言模型.看(
             拆文分析器.對齊句物件('予伊出去', 'hoo7 i1 tsut4-khi3')
         )
-        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, self.予伊出去耍全羅)
+        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞分析(self.字典, self.語言模型, self.予伊出去耍全羅)
         self.assertEqual(斷詞結果, self.予伊對齊句)
         self.檢查分數詞數(分數, 詞數, 0, 4)
 
@@ -178,7 +179,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.字典.加詞(self.椅仔對齊詞)
         self.字典.加詞(self.驚對齊詞)
         self.加我有一張椅仔的集資料()
-        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(
+        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞分析(
             self.字典, self.語言模型, 句([
                 self.一張對齊集, self.椅仔對齊集,
             ])
@@ -200,7 +201,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.字典.加詞(self.椅仔對齊詞)
         self.字典.加詞(self.驚對齊詞)
         self.加我有一張椅仔的集資料()
-        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(
+        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞分析(
             self.字典, self.語言模型, self.句物件
         )
         self.assertEqual(斷詞結果, self.對齊句)
@@ -218,7 +219,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.加我有一張椅仔的集資料()
         章物件 = 章([self.對齊句, self.句物件])
         結果章 = 章([self.對齊句, self.對齊句])
-        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(
+        斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞分析(
             self.字典, self.語言模型, 章物件
         )
         self.assertEqual(斷詞結果, 結果章)
@@ -239,12 +240,12 @@ class 辭典語言模型斷詞單元試驗(TestCase):
             (句物件, 空句物件, 語言模型.無看過),
             (章物件, 章物件, 0),
         ]:
-            斷詞, 分數, 詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, 物件)
+            斷詞, 分數, 詞數 = 辭典語言模型斷詞.斷詞分析(self.字典, self.語言模型, 物件)
             self.assertEqual(斷詞, 結果物件, 物件)
             self.assertEqual(詞數, 0, 物件)
             self.assertEqual(分數, 結果分數, 物件)
         with self.assertRaises(RuntimeError):
-            辭典語言模型斷詞.斷詞(self.字典, self.語言模型, 集物件)
+            辭典語言模型斷詞.斷詞分析(self.字典, self.語言模型, 集物件)
 
     def test_一詞辭典嘛愛正常(self):
         辭典 = 型音辭典(1)
@@ -254,7 +255,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         辭典.加詞(self.文我對齊詞)
         辭典.加詞(self.有對齊詞)
         辭典.加詞(拆文分析器.對齊詞物件('有', 'iu2'))
-        辭典語言模型斷詞.斷詞(辭典, 語言模型, self.型句)
+        辭典語言模型斷詞.斷詞分析(辭典, 語言模型, self.型句)
 
     def 加我有一張椅仔的資料(self):
         self.白我對齊詞 = 拆文分析器.對齊詞物件('我', 'gua2')
@@ -306,7 +307,7 @@ class 辭典語言模型斷詞單元試驗(TestCase):
             self.對齊句, self.型句, self.音句,
             self.有詞漢羅, self.無詞漢羅,
         ]:
-            斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, 題目)
+            斷詞結果, 分數, 詞數 = 辭典語言模型斷詞.斷詞分析(self.字典, self.語言模型, 題目)
             self.assertEqual(斷詞結果, 答案, '題目是：{}'.format(題目))
             self.檢查分數詞數(分數, 詞數, 答案分數, 答案詞數)
             全部分數.append(分數)
@@ -351,10 +352,10 @@ class 辭典語言模型斷詞單元試驗(TestCase):
         self.兩詞鞋仔句 = 拆文分析器.對齊句物件('鞋仔', 'e5 a2')
 
     def 試斷我的鞋仔(self, 答案):
-        答案結果, 答案分數, 答案詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, 答案)
-        鞋的結果, 鞋的分數, 鞋的詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, self.我_e5_e5_仔_鞋的)
-        的鞋結果, 的鞋分數, 的鞋詞數 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, self.我_e5_e5_仔_的鞋)
-        e5_e5_結果, e5_e5_分數, e5_e5_詞數 = 辭典語言模型斷詞.斷詞(
+        答案結果, 答案分數, 答案詞數 = 辭典語言模型斷詞.斷詞分析(self.字典, self.語言模型, 答案)
+        鞋的結果, 鞋的分數, 鞋的詞數 = 辭典語言模型斷詞.斷詞分析(self.字典, self.語言模型, self.我_e5_e5_仔_鞋的)
+        的鞋結果, 的鞋分數, 的鞋詞數 = 辭典語言模型斷詞.斷詞分析(self.字典, self.語言模型, self.我_e5_e5_仔_的鞋)
+        e5_e5_結果, e5_e5_分數, e5_e5_詞數 = 辭典語言模型斷詞.斷詞分析(
             self.字典, self.語言模型, self.我_e5_e5_仔)
         self.assertEqual(答案結果, 答案,)
         self.assertEqual(鞋的結果, 答案,)
@@ -387,3 +388,10 @@ class 辭典語言模型斷詞單元試驗(TestCase):
     def 檢查分數詞數(self, 分數, 詞數, 分數上限, 詞數答案):
         self.assertLess(分數, 分數上限)
         self.assertEqual(詞數, 詞數答案)
+
+    @patch('臺灣言語工具.斷詞.辭典語言模型斷詞.辭典語言模型斷詞.斷詞分析')
+    def test_物件揣詞(self, 斷詞分析mock):
+        self.語言模型 = 實際語言模型(2)
+        self.加鞋仔的資料()
+        斷詞句物件 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, self.鞋仔一集句物件)
+        self.assertEqual(斷詞句物件, 斷詞分析mock.return_value[0])
