@@ -326,3 +326,9 @@ class 摩西用戶端單元試驗(TestCase):
             集物件.內底組 = [組物件]
             句物件.內底集.append(集物件)
         return 句物件
+
+    @patch('臺灣言語工具.翻譯.摩西工具.摩西用戶端.摩西用戶端.翻譯分析')
+    def test_翻譯物件(self, 翻譯分析mock):
+        章物件 = 拆文分析器.分詞章物件('我 們 要 去 吃 飯 。 \n \n')
+        翻譯章物件 = self.用戶端.翻譯(章物件)
+        self.assertEqual(翻譯章物件, 翻譯分析mock.return_value[0])

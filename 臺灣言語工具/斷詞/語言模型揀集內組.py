@@ -18,6 +18,10 @@ class 語言模型揀集內組:
     _譀鏡 = 物件譀鏡()
 
     @classmethod
+    def 揀(cls, 語言模型, 物件):
+        return cls.揀分析(語言模型, 物件)[0]
+
+    @classmethod
     def 揀分析(cls, 語言模型, 物件):
         if isinstance(物件, 字):
             return (物件,) + cls._揀字詞組物件音(語言模型, 詞([物件]))[1:]

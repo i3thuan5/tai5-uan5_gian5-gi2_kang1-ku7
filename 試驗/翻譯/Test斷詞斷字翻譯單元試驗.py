@@ -14,6 +14,7 @@ from 臺灣言語工具.翻譯.斷詞斷字翻譯 import 斷詞斷字翻譯
 
 
 class 斷詞斷字翻譯單元試驗(TestCase):
+
     def setUp(self):
         self.xmlrpcPatcher = patch('xmlrpc.client.ServerProxy')
         self.xmlrpcMock = self.xmlrpcPatcher.start()
@@ -411,3 +412,8 @@ class 斷詞斷字翻譯單元試驗(TestCase):
             集物件.內底組 = [組物件]
             句物件.內底集.append(集物件)
         return 句物件
+
+    @patch('臺灣言語工具.翻譯.斷詞斷字翻譯.斷詞斷字翻譯.翻譯分析')
+    def test_翻譯物件(self, 翻譯分析mock):
+        翻譯章物件 = self.翻譯工具.翻譯(self.華語章物件)
+        self.assertEqual(翻譯章物件, 翻譯分析mock.return_value[0])

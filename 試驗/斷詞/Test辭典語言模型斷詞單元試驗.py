@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase
+from unittest.mock import patch
 
 
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
@@ -387,3 +388,10 @@ class 辭典語言模型斷詞單元試驗(TestCase):
     def 檢查分數詞數(self, 分數, 詞數, 分數上限, 詞數答案):
         self.assertLess(分數, 分數上限)
         self.assertEqual(詞數, 詞數答案)
+
+    @patch('臺灣言語工具.斷詞.辭典語言模型斷詞.辭典語言模型斷詞.斷詞分析')
+    def test_物件揣詞(self, 斷詞分析mock):
+        self.語言模型 = 實際語言模型(2)
+        self.加鞋仔的資料()
+        斷詞句物件 = 辭典語言模型斷詞.斷詞(self.字典, self.語言模型, self.鞋仔一集句物件)
+        self.assertEqual(斷詞句物件, 斷詞分析mock.return_value[0])

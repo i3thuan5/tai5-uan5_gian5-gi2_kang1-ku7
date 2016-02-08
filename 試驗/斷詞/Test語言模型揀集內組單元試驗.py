@@ -6,6 +6,7 @@ from 臺灣言語工具.基本物件.句 import 句
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.斷詞.語言模型揀集內組 import 語言模型揀集內組
 from 臺灣言語工具.語言模型.實際語言模型 import 實際語言模型
+from unittest.mock import patch
 
 
 class 語言模型揀集內組單元試驗(TestCase):
@@ -205,3 +206,8 @@ class 語言模型揀集內組單元試驗(TestCase):
     def test_標有空的集合(self):
         我_你 = 句([拆文分析器.建立集物件('我'), 拆文分析器.建立集物件(''), 拆文分析器.建立集物件('你')])
         self.assertRaises(解析錯誤, 語言模型揀集內組.揀分析, self.語言模型, 我_你)
+
+    @patch('臺灣言語工具.斷詞.語言模型揀集內組.語言模型揀集內組.揀分析')
+    def test_揀物件(self, 揀分析mock):
+        揀好 = 語言模型揀集內組.揀(self.語言模型, self.我)
+        self.assertEqual(揀好, 揀分析mock.return_value[0])

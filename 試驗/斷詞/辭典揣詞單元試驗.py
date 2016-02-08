@@ -6,6 +6,7 @@ from 臺灣言語工具.基本物件.集 import 集
 from 臺灣言語工具.基本物件.句 import 句
 from 臺灣言語工具.基本物件.章 import 章
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
+from unittest.mock import patch
 
 
 class 辭典揣詞單元試驗():
@@ -283,3 +284,8 @@ class 辭典揣詞單元試驗():
     def 檢查分數詞數(self, 分數, 詞數, 分數上限, 詞數答案):
         self.assertLessEqual(分數, 分數上限)
         self.assertEqual(詞數, 詞數答案)
+
+    @patch('臺灣言語工具.斷詞.拄好長度辭典揣詞.拄好長度辭典揣詞.揣詞分析')
+    def test_物件揣詞(self, 揣詞分析mock):
+        揣詞句物件 = self.揣詞.揣詞(self.辭典, self.對齊句)
+        self.assertEqual(揣詞句物件, 揣詞分析mock.return_value[0])

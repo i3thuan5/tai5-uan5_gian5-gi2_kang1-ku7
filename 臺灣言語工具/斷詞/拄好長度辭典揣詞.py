@@ -67,6 +67,12 @@ class 拄好長度辭典揣詞:
     # 字詞組集句=>句
     # 章=>章
     @classmethod
+    def 揣詞(cls, 辭典, 物件):
+        return cls.揣詞分析(辭典, 物件)[0]
+
+    # 字詞組集句=>句
+    # 章=>章
+    @classmethod
     def 揣詞分析(cls, 辭典, 物件):
         if isinstance(物件, 章):
             return cls.章揣詞(辭典, 物件)

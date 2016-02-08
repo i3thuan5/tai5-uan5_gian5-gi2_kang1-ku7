@@ -13,6 +13,9 @@ class 斷詞斷字翻譯:
         self.斷詞用戶端 = 斷詞用戶端
         self.斷字用戶端 = 斷字用戶端
 
+    def 翻譯(self, 物件):
+        return self.翻譯分析(物件)[0]
+
     def 翻譯分析(self, 物件):
         if isinstance(物件, 章):
             return self._翻譯章物件(物件)
