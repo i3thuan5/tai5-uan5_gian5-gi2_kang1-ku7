@@ -15,7 +15,7 @@ class 詞物件網仔:
             if isinstance(物件, 字):
                 詞物件 = 詞()
                 詞物件.內底字 = [物件]
-                return 詞物件
+                return [詞物件]
             raise
         except AttributeError:
             程式掠漏.毋是字詞組集句章的毋著(物件)
