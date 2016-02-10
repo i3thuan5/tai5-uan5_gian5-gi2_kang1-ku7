@@ -6,6 +6,7 @@ from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 臺灣言語工具.基本物件.公用變數 import 無音
+from 臺灣言語工具.基本物件.字 import 字
 
 
 class 拆文分析器建立單元試驗(unittest.TestCase):
@@ -497,4 +498,27 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         拆文分析器.對齊組物件(
             '拉鍊',
             'la55-lian51'
+        )
+
+    def test_南島用字物件(self):
+        字物件 = 拆文分析器.建立字物件("Nga'ay")
+        self.assertEqual(字物件.型, "Nga'ay")
+        self.assertEqual(字物件.音, 無音)
+
+    def test_南島詞袂切開(self):
+        詞物件 = 拆文分析器.建立詞物件("Nga'ay")
+        self.assertEqual(詞物件.內底字, [拆文分析器.建立字物件("Nga'ay")])
+
+    def test_南島組有照切(self):
+        組物件 = 拆文分析器.建立組物件("Nga'ay ho?")
+        self.assertEqual(組物件.內底詞, [
+            拆文分析器.建立詞物件("Nga'ay"),
+            拆文分析器.建立詞物件("ho"),
+            拆文分析器.建立詞物件("?"),
+        ])
+
+    def test_南島語句(self):
+        self.assertEqual(
+            拆文分析器.建立句物件("Nga'ay ho?").網出詞物件(),
+            拆文分析器.建立組物件("Nga'ay ho?").網出詞物件(),
         )
