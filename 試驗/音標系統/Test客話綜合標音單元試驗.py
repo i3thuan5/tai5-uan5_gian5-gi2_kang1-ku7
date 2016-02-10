@@ -7,7 +7,7 @@ from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 
 
-class 客話字綜合標音單元試驗(unittest.TestCase):
+class 客話綜合標音單元試驗(unittest.TestCase):
     def setUp(self):
         self.我型 = '⿰厓'
         self.我音 = 'ngaiˇ'
