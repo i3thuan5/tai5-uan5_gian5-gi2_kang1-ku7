@@ -6,22 +6,19 @@ from 臺灣言語工具.基本物件.集 import 集
 from 臺灣言語工具.基本物件.句 import 句
 from 臺灣言語工具.基本物件.章 import 章
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
-from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
 from 臺灣言語工具.解析整理.程式掠漏 import 程式掠漏
-from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.基本物件.公用變數 import 分詞符號
 
 
 class 語言模型揀集內組:
-    _掠漏 = 程式掠漏()
-    _網仔 = 詞物件網仔()
-    _譀鏡 = 物件譀鏡()
 
     @classmethod
     def 揀(cls, 語言模型, 物件):
-        if isinstance(物件, 字):
-            return (物件,) + cls._揀字詞組物件音(語言模型, 詞([物件]))[1:]
-        if isinstance(物件, 詞) or isinstance(物件, 組):
+        return cls.揀分析(語言模型, 物件)[0]
+
+    @classmethod
+    def 揀分析(cls, 語言模型, 物件):
+        if isinstance(物件, 字) or isinstance(物件, 詞) or isinstance(物件, 組):
             return cls._揀字詞組物件音(語言模型, 物件)
         if isinstance(物件, 集):
             句物件 = 句()
@@ -32,7 +29,7 @@ class 語言模型揀集內組:
             return cls._揀句物件音(語言模型, 物件)
         if isinstance(物件, 章):
             return cls._揀章物件音(語言模型, 物件)
-        cls._掠漏.毋是字詞組集句章的毋著(物件)
+        程式掠漏.毋是字詞組集句章的毋著(物件)
 
     @classmethod
     def _揀字詞組物件音(cls, 語言模型, 物件):
@@ -116,7 +113,7 @@ class 語言模型揀集內組:
         分數, 詞數 = 分數佮來源[:2]
         字串 = []
         for 一个詞 in 組合:
-            字串.append(cls._譀鏡.看分詞(一个詞))
+            字串.append(一个詞.看分詞())
         return (-分數, 詞數, 分詞符號.join(字串))
 
     @classmethod

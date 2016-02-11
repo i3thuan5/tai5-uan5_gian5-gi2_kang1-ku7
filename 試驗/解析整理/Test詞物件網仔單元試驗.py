@@ -20,8 +20,7 @@ class 詞物件網仔單元試驗(unittest.TestCase):
     def test_網字(self):
         型 = '媠'
         字物件 = 拆文分析器.建立字物件(型)
-        with self.assertRaises(解析錯誤):
-            詞物件網仔.網出詞物件(字物件)
+        self.assertEqual(詞物件網仔.網出詞物件(字物件), [拆文分析器.建立詞物件(型)])
 
     def test_網詞(self):
         型 = '媠'

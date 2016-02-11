@@ -18,7 +18,7 @@ class 章單元試驗(TestCase):
     def test_看章(self):
         型 = '恁老母ti3佗位！恁老母ti3佗位！'
         音 = 'lin1 lau3 bu2 ti3 to1 ui7 ! lin1 lau3 bu2 ti3 to1 ui7 !'
-        章物件 = 拆文分析器.產生對齊章(型, 音)
+        章物件 = 拆文分析器.對齊章物件(型, 音)
         self.assertEqual(章物件.看型(), 型)
         self.assertEqual(章物件.看音(), 音)
         分詞 = '恁｜lin1 老｜lau3 母｜bu2 ti3｜ti3 佗｜to1 位｜ui7 ！｜! 恁｜lin1 老｜lau3 母｜bu2 ti3｜ti3 佗｜to1 位｜ui7 ！｜!'
@@ -30,7 +30,7 @@ class 章單元試驗(TestCase):
     def test_看章加連字符(self):
         型 = '恁老母ti3佗位！恁lau3-bu2-ti3佗位！'
         音 = 'lin1 lau3-bu2 ti3 to1 ui7 ! lin1 lau3-bu2-ti3 to1-ui7 !'
-        章物件 = 拆文分析器.產生對齊章(型, 音)
+        章物件 = 拆文分析器.對齊章物件(型, 音)
         無分字型 = 型.replace(分字符號, '')
         self.assertEqual(章物件.看型(), 無分字型)
         self.assertEqual(章物件.看音(), 音)
@@ -44,7 +44,7 @@ class 章單元試驗(TestCase):
         音 = 'lin1 lau3-bu2 ti3 to1 ui7 ! lin1 lau3-bu2-ti3 to1-ui7 !'
         答型 = '恁|老_母|ti3|佗|位|！^恁|老_母_ti3|佗_位|！'
         答音 = 'lin1|lau3_bu2|ti3|to1|ui7|!^lin1|lau3_bu2_ti3|to1_ui7|!'
-        章物件 = 拆文分析器.產生對齊章(型, 音)
+        章物件 = 拆文分析器.對齊章物件(型, 音)
         self.assertEqual(章物件.看型('_', '|', '^'), 答型)
         self.assertEqual(章物件.看音('_', '|', '^'), 答音)
         self.assertEqual(
@@ -78,7 +78,7 @@ class 章單元試驗(TestCase):
                          '食-飽｜tsiah8-pa2 未｜0bue7 ？｜?\n食-飽｜tsiah8-pa2 矣｜0ah4 ！｜!')
 
     def test_綜合標音章物件(self):
-        章物件 = 拆文分析器.產生對齊章('點仔膠，黏著跤，', 'tiam2-a2-ka1, liam5-tioh8 kha1,')
+        章物件 = 拆文分析器.對齊章物件('點仔膠，黏著跤，', 'tiam2-a2-ka1, liam5-tioh8 kha1,')
         self.assertEqual(章物件.綜合標音(閩南語字綜合標音), [
             [{'詞組綜合標音': [
                 {'通用數字調': 'diam4', '吳守禮方音': '⿿⿿⿿ㄉㄧㆰˋ',
@@ -102,10 +102,10 @@ class 章單元試驗(TestCase):
             ], '連字音': 'liam5-tioh8 kha1 ,'}]])
 
     def test_綜合標音複雜章物件(self):
-        我 = 拆文分析器.產生對齊集('我', 'gua2')
-        愛 = 拆文分析器.產生對齊集('愛', 'ai3')
-        媠某 = 拆文分析器.產生對齊組('美女', 'sui2-boo2')
-        美女 = 拆文分析器.產生對齊組('美女', 'mi2-lu2')
+        我 = 拆文分析器.對齊集物件('我', 'gua2')
+        愛 = 拆文分析器.對齊集物件('愛', 'ai3')
+        媠某 = 拆文分析器.對齊組物件('美女', 'sui2-boo2')
+        美女 = 拆文分析器.對齊組物件('美女', 'mi2-lu2')
         莉 = 集([媠某, 美女])
         句物件 = 句([我, 愛, 莉])
         章物件 = 章([句物件, 句物件])

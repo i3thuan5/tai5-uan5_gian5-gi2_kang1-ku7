@@ -1,3 +1,0 @@
--e git+https://github.com/rsennrich/Bleualign.git#egg=bleualign
--e git+https://github.com/kpu/kenlm.git#egg=kenlm
--e git+https://github.com/sih4sing5hong5/hts_engine_python.git#egg=htsengine
