@@ -7,7 +7,7 @@ from 臺灣言語工具.基本物件.公用變數 import 標點符號
 from 臺灣言語工具.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音
 
 
-class 客話字綜合標音:
+class 客話綜合標音:
     型體 = None
     臺灣客話 = None
 

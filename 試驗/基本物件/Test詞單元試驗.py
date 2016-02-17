@@ -4,7 +4,7 @@ from 臺灣言語工具.基本物件.公用變數 import 分字符號
 from 臺灣言語工具.基本物件.字 import 字
 from 臺灣言語工具.基本物件.詞 import 詞
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
-from 臺灣言語工具.綜合標音.閩南語字綜合標音 import 閩南語字綜合標音
+from 臺灣言語工具.音標系統.閩南語綜合標音 import 閩南語綜合標音
 
 
 class 詞單元試驗(TestCase):
@@ -70,7 +70,7 @@ class 詞單元試驗(TestCase):
 
     def test_綜合標音json格式(self):
         詞物件 = 拆文分析器.對齊詞物件('椅仔', 'i2-a2')
-        self.assertEqual(詞物件.綜合標音(閩南語字綜合標音), [{
+        self.assertEqual(詞物件.綜合標音(閩南語綜合標音), [{
             "漢字": "椅仔", "臺羅數字調": "i2-a2", "臺羅閏號調": "í-á",
             "通用數字調": "i4-a4", "吳守禮方音": "ㄧˋ-ㄚˋ"
         }])
@@ -78,6 +78,6 @@ class 詞單元試驗(TestCase):
     def test_綜合標音空詞莫例外(self):
         # 因為攏用佇輸出，愛檢查空愛佇程式別位檢查
         詞物件 = 拆文分析器.建立詞物件('')
-        self.assertEqual(詞物件.綜合標音(閩南語字綜合標音), [
+        self.assertEqual(詞物件.綜合標音(閩南語綜合標音), [
             {}
         ])

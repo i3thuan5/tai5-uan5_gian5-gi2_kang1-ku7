@@ -7,7 +7,7 @@ from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.基本物件.公用變數 import 標點符號
 
 
-class 閩南語字綜合標音:
+class 閩南語綜合標音:
     型體 = None
     臺羅數字調 = None
     臺羅閏號調 = None

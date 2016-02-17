@@ -4,7 +4,7 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.基本物件.句 import 句
 from 臺灣言語工具.基本物件.集 import 集
-from 臺灣言語工具.綜合標音.閩南語字綜合標音 import 閩南語字綜合標音
+from 臺灣言語工具.音標系統.閩南語綜合標音 import 閩南語綜合標音
 
 
 class 句單元試驗(TestCase):
@@ -25,7 +25,7 @@ class 句單元試驗(TestCase):
 
     def test_一句無連字綜合標音(self):
         句物件 = 拆文分析器.對齊句物件('點仔膠，黏著跤，', 'tiam2 a2 ka1, liam5 tioh8 kha1,')
-        self.assertEqual(句物件.綜合標音(閩南語字綜合標音), [{
+        self.assertEqual(句物件.綜合標音(閩南語綜合標音), [{
             '漢字': '點仔膠，黏著跤，',
             '通用數字調': 'diam4 a4 ga1 , liam5 diorh6 ka1 ,',
             '吳守禮方音': 'ㄉㄧㆰˋ ㄚˋ ㄍㄚ , ㄌㄧㆰˊ ㄉㄧㄜ㆐ㆷ ㄎㄚ ,',
@@ -35,7 +35,7 @@ class 句單元試驗(TestCase):
 
     def test_一句連字綜合標音(self):
         句物件 = 拆文分析器.對齊句物件('點仔膠，黏著跤，', 'tiam2-a2-ka1, liam5-tioh8 kha1,')
-        self.assertEqual(句物件.綜合標音(閩南語字綜合標音), [{
+        self.assertEqual(句物件.綜合標音(閩南語綜合標音), [{
             '漢字': '點仔膠，黏著跤，',
             '通用數字調': 'diam4-a4-ga1 , liam5-diorh6-ka1 ,',
             '吳守禮方音': 'ㄉㄧㆰˋ-ㄚˋ-ㄍㄚ , ㄌㄧㆰˊ-ㄉㄧㄜ㆐ㆷ-ㄎㄚ ,',
@@ -45,7 +45,7 @@ class 句單元試驗(TestCase):
 
     def test_混合連詞綜合標音(self):
         句物件 = 拆文分析器.對齊句物件('點仔膠，黏著跤，', 'tiam2-a2-ka1, liam5-tioh8 kha1,')
-        self.assertEqual(句物件.綜合標音(閩南語字綜合標音), [{
+        self.assertEqual(句物件.綜合標音(閩南語綜合標音), [{
             '漢字': '點仔膠，黏著跤，',
             '通用數字調': 'diam4-a4-ga1 , liam5-diorh6 ka1 ,',
             '吳守禮方音': 'ㄉㄧㆰˋ-ㄚˋ-ㄍㄚ , ㄌㄧㆰˊ-ㄉㄧㄜ㆐ㆷ ㄎㄚ ,',
@@ -62,7 +62,7 @@ class 句單元試驗(TestCase):
             拆文分析器.對齊集物件('跤', 'kha1'),
             拆文分析器.對齊集物件('，', ','),
         ])
-        句物件.綜合標音(閩南語字綜合標音)
+        句物件.綜合標音(閩南語綜合標音)
         self.assertEqual(集綜合標音mock.call_count, 5)
 
     def test_綜合標音集內底組濟個嘛袂例外(self):
@@ -74,10 +74,10 @@ class 句單元試驗(TestCase):
         莉 = 集([媠某, 美女])
         句物件 = 句([我, 愛, 莉])
 
-        句物件.綜合標音(閩南語字綜合標音)
+        句物件.綜合標音(閩南語綜合標音)
 
     def test_空句綜合標音袂例外(self):
         # 因為攏用佇輸出，愛檢查就佇程式別位檢查
-        self.assertEqual(句().綜合標音(閩南語字綜合標音), [
+        self.assertEqual(句().綜合標音(閩南語綜合標音), [
             {}
         ])

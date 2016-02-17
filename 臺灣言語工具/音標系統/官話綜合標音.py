@@ -7,7 +7,7 @@ from 臺灣言語工具.基本物件.公用變數 import 標點符號
 from 臺灣言語工具.音標系統.官話.官話注音符號 import 官話注音符號
 
 
-class 官話字綜合標音:
+class 官話綜合標音:
     型體 = None
     注音符號 = None
 

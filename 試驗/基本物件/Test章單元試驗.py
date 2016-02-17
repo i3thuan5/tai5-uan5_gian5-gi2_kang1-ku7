@@ -3,7 +3,7 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.基本物件.公用變數 import 分字符號
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.基本物件.章 import 章
-from 臺灣言語工具.綜合標音.閩南語字綜合標音 import 閩南語字綜合標音
+from 臺灣言語工具.音標系統.閩南語綜合標音 import 閩南語綜合標音
 from unittest.mock import patch
 
 
@@ -78,7 +78,7 @@ class 章單元試驗(TestCase):
 
     def test_綜合標音章物件(self):
         章物件 = 拆文分析器.對齊章物件('點仔膠，黏著跤，', 'tiam2-a2-ka1, liam5-tioh8 kha1,')
-        self.assertEqual(章物件.綜合標音(閩南語字綜合標音), [
+        self.assertEqual(章物件.綜合標音(閩南語綜合標音), [
             {
                 '漢字': '點仔膠，',
                 '通用數字調': 'diam4-a4-ga1 ,',
@@ -98,7 +98,7 @@ class 章單元試驗(TestCase):
     @patch('臺灣言語工具.基本物件.句.句.綜合標音')
     def test_綜合標音用句的來鬥(self, 句綜合標音mock):
         章物件 = 拆文分析器.對齊章物件('點仔膠，黏著跤，', 'tiam2-a2-ka1, liam5-tioh8 kha1,')
-        self.assertEqual(章物件.綜合標音(閩南語字綜合標音), [
+        self.assertEqual(章物件.綜合標音(閩南語綜合標音), [
             句綜合標音mock.return_value,
             句綜合標音mock.return_value,
         ])
