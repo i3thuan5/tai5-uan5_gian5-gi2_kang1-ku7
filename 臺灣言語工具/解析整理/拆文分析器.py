@@ -144,10 +144,6 @@ class 拆文分析器:
 
     @classmethod
     def _拆好陣列對齊詞物件(cls, 型陣列, 音陣列):
-        if not isinstance(型陣列, list):
-            raise 型態錯誤('傳入來的型毋是陣列：型陣列＝{}'.format(str(型陣列)))
-        if not isinstance(音陣列, list):
-            raise 型態錯誤('傳入來的音毋是陣列：音陣列＝{}'.format(str(音陣列)))
         if len(型陣列) < len(音陣列):
             raise 解析錯誤('詞內底的型「{0}」比音「{1}」少！{2}：{3}'.format(
                 str(型陣列), str(音陣列), len(型陣列), len(音陣列)))
@@ -160,10 +156,6 @@ class 拆文分析器:
         詞物件 = 詞()
         字陣列 = 詞物件.內底字
         for 位置 in range(長度):
-            if not isinstance(型陣列[位置], str):
-                raise 型態錯誤('型陣列[{1}]毋是字串：型陣列＝{0}'.format(str(型陣列), 型陣列[位置]))
-            if not isinstance(音陣列[位置], str):
-                raise 型態錯誤('音陣列[{1}]毋是字串：音陣列＝{0}'.format(str(音陣列), 音陣列[位置]))
             字陣列.append(cls.對齊字物件(型陣列[位置], 音陣列[位置]))
         return 詞物件
 
@@ -298,8 +290,6 @@ class 拆文分析器:
                     一个字 = ''
                     長度 = 0
             elif 狀態 == '一般':
-                if 長度 != 0:
-                    raise RuntimeError('程式發生內部錯誤，語句＝{0}'.format(str(語句)))
                 if 字 in 分字符號:
                     if 一个字 != '':
                         字陣列.append(一个字)
@@ -312,7 +302,10 @@ class 拆文分析器:
                         if len(佮後一个字是佇仝一个詞) == 0:
                             if len(語句) > 1:
                                 raise 解析錯誤(
-                                    '一開始的減號是代表啥物？請用「文章粗胚.建立物件語句前處理減號」：語句{0}'.format(str(語句)))
+                                    '一開始的減號是代表啥物？請用「文章粗胚.建立物件語句前處理減號」。語句：「{0}」'.format(
+                                        str(語句)
+                                    )
+                                )
                             else:
                                 字陣列.append(字)
                                 佮後一个字是佇仝一个詞.append(False)
@@ -389,8 +382,6 @@ class 拆文分析器:
                         佮後一个字是佇仝一个詞.append(False)
                         一个字 = ''
                         長度 = 0
-            else:
-                raise RuntimeError('程式發生內部錯誤，語句＝{0}'.format(str(語句)))
             位置 += 1
             頂一个字 = 字
             頂一个字種類 = 字種類
@@ -401,8 +392,6 @@ class 拆文分析器:
                 佮後一个字是佇仝一个詞.append(False)
             elif 狀態 == '組字':
                 raise 解析錯誤('語句組字式無完整，語句＝{0}'.format(str(語句)))
-            else:
-                raise RuntimeError('程式發生內部錯誤，語句＝{0}'.format(str(語句)))
         if len(字陣列) != len(佮後一个字是佇仝一个詞):
             raise RuntimeError('程式發生內部錯誤，語句＝{0}'.format(str(語句)))
         if [] in 字陣列:
@@ -414,9 +403,6 @@ class 拆文分析器:
         # 敢有需要做
         # 枋寮漁港「大條巷」上闊兩公尺。=> 枋寮漁港  「  大條巷  」  上闊兩公尺  。
         # =>無，下佇仝詞組，予斷詞處理
-        if not isinstance(語句, str):
-            raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
-# 		語句 = 語句.strip(分詞符號)
         有一般字無 = False
         愛換的所在 = []
         for 第幾字 in range(len(語句))[::-1]:
@@ -474,10 +460,7 @@ class 拆文分析器:
                 raise 解析錯誤('型是空的：{0}'.format(分詞))
             return cls.對齊詞物件(型, 音)
         if len(切開結果) == 1:
-            型 = 切開結果[0]
-            if 型 == '':
-                raise 解析錯誤('型是空的：{0}'.format(分詞))
-            return cls.建立詞物件(型)
+            return cls.建立詞物件(分詞)
         raise 解析錯誤('毋是拄仔好有一个抑是兩个部份：{0}'.format(分詞))
 
     @classmethod
@@ -487,9 +470,6 @@ class 拆文分析器:
             return 組()
         組物件 = cls.建立組物件('')
         切開 = cls._切組物件分詞.split(分詞)
-        if ''.join(切開[::2]).strip() != '':
-            raise 解析錯誤('分詞無合法！！分詞加的：{0}。原來：{1}'
-                       .format(切開[::2], 分詞))
         for 分 in 切開[1::2]:
             組物件.內底詞.append(cls.分詞詞物件(分))
         return 組物件
