@@ -391,10 +391,6 @@ class 拆文分析器:
                 佮後一个字是佇仝一个詞.append(False)
             elif 狀態 == '組字':
                 raise 解析錯誤('語句組字式無完整，語句＝{0}'.format(str(語句)))
-        if len(字陣列) != len(佮後一个字是佇仝一个詞):
-            raise RuntimeError('程式發生內部錯誤，語句＝{0}'.format(str(語句)))
-        if [] in 字陣列:
-            raise RuntimeError('程式發生內部錯誤，語句＝{0}'.format(str(語句)))
         return (字陣列, 佮後一个字是佇仝一个詞)
 
     @classmethod
