@@ -57,11 +57,10 @@ class 章(功能):
         return 物件分句符號.join(句的音)
 
     def 綜合標音(self, 語言綜合標音):
-        綜合集 = []
+        綜合句 = []
         for 句物件 in self.內底句:
-            for 集物件 in 句物件.內底集:
-                綜合集.append(集物件.綜合標音(語言綜合標音))
-        return 綜合集
+            綜合句.append(句物件.綜合標音(語言綜合標音)[0])
+        return 綜合句
 
     def 篩出字物件(self):
         字陣列 = []

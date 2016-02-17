@@ -26,7 +26,7 @@ class 句單元試驗(TestCase):
     def test_一句無連字綜合標音(self):
         句物件 = 拆文分析器.對齊句物件('點仔膠，黏著跤，', 'tiam2 a2 ka1, liam5 tioh8 kha1,')
         self.assertEqual(句物件.綜合標音(閩南語綜合標音), [{
-            '漢字': '點仔膠，黏著跤，',
+            '漢字': '點 仔 膠 ， 黏 著 跤 ，',
             '通用數字調': 'diam4 a4 ga1 , liam5 diorh6 ka1 ,',
             '吳守禮方音': 'ㄉㄧㆰˋ ㄚˋ ㄍㄚ , ㄌㄧㆰˊ ㄉㄧㄜ㆐ㆷ ㄎㄚ ,',
             '臺羅閏號調': 'tiám á ka , liâm tio̍h kha ,',
@@ -34,9 +34,9 @@ class 句單元試驗(TestCase):
         }])
 
     def test_一句連字綜合標音(self):
-        句物件 = 拆文分析器.對齊句物件('點仔膠，黏著跤，', 'tiam2-a2-ka1, liam5-tioh8 kha1,')
+        句物件 = 拆文分析器.對齊句物件('點仔膠，黏著跤，', 'tiam2-a2-ka1, liam5-tioh8-kha1,')
         self.assertEqual(句物件.綜合標音(閩南語綜合標音), [{
-            '漢字': '點仔膠，黏著跤，',
+            '漢字': '點仔膠 ， 黏著跤 ，',
             '通用數字調': 'diam4-a4-ga1 , liam5-diorh6-ka1 ,',
             '吳守禮方音': 'ㄉㄧㆰˋ-ㄚˋ-ㄍㄚ , ㄌㄧㆰˊ-ㄉㄧㄜ㆐ㆷ-ㄎㄚ ,',
             '臺羅閏號調': 'tiám-á-ka , liâm-tio̍h-kha ,',
@@ -46,7 +46,7 @@ class 句單元試驗(TestCase):
     def test_混合連詞綜合標音(self):
         句物件 = 拆文分析器.對齊句物件('點仔膠，黏著跤，', 'tiam2-a2-ka1, liam5-tioh8 kha1,')
         self.assertEqual(句物件.綜合標音(閩南語綜合標音), [{
-            '漢字': '點仔膠，黏著跤，',
+            '漢字': '點仔膠 ， 黏著 跤 ，',
             '通用數字調': 'diam4-a4-ga1 , liam5-diorh6 ka1 ,',
             '吳守禮方音': 'ㄉㄧㆰˋ-ㄚˋ-ㄍㄚ , ㄌㄧㆰˊ-ㄉㄧㄜ㆐ㆷ ㄎㄚ ,',
             '臺羅閏號調': 'tiám-á-ka , liâm-tio̍h kha ,',

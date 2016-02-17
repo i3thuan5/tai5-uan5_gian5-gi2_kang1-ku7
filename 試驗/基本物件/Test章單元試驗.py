@@ -80,14 +80,14 @@ class 章單元試驗(TestCase):
         章物件 = 拆文分析器.對齊章物件('點仔膠，黏著跤，', 'tiam2-a2-ka1, liam5-tioh8 kha1,')
         self.assertEqual(章物件.綜合標音(閩南語綜合標音), [
             {
-                '漢字': '點仔膠，',
+                '漢字': '點仔膠 ，',
                 '通用數字調': 'diam4-a4-ga1 ,',
                 '吳守禮方音': 'ㄉㄧㆰˋ-ㄚˋ-ㄍㄚ ,',
                 '臺羅閏號調': 'tiám-á-ka ,',
                 '臺羅數字調': 'tiam2-a2-ka1 ,',
             },
             {
-                '漢字': '黏著跤，',
+                '漢字': '黏著 跤 ，',
                 '通用數字調': 'liam5-diorh6 ka1 ,',
                 '吳守禮方音': 'ㄌㄧㆰˊ-ㄉㄧㄜ㆐ㆷ ㄎㄚ ,',
                 '臺羅閏號調': 'liâm-tio̍h kha ,',
@@ -99,6 +99,6 @@ class 章單元試驗(TestCase):
     def test_綜合標音用句的來鬥(self, 句綜合標音mock):
         章物件 = 拆文分析器.對齊章物件('點仔膠，黏著跤，', 'tiam2-a2-ka1, liam5-tioh8 kha1,')
         self.assertEqual(章物件.綜合標音(閩南語綜合標音), [
-            句綜合標音mock.return_value,
-            句綜合標音mock.return_value,
+            句綜合標音mock.return_value[0],
+            句綜合標音mock.return_value[0],
         ])
