@@ -50,7 +50,7 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
 
     def test_建立組聲調符號接音標(self):
         詞物件 = 拆文分析器.建立詞物件('suiˋsuiˋ')
-        self.assertEqual(詞物件.內底字,[
+        self.assertEqual(詞物件.內底字, [
             拆文分析器.建立字物件('suiˋ'), 拆文分析器.建立字物件('suiˋ')
         ])
 
