@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from 臺灣言語工具.基本物件.公用變數 import 無音
 from 臺灣言語工具.基本物件.字 import 字
-from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
-from 臺灣言語工具.基本物件.公用變數 import 標點符號
 from 臺灣言語工具.音標系統.官話.官話注音符號 import 官話注音符號
 
 
@@ -26,15 +24,8 @@ class 官話綜合標音:
     def 轉json格式(self):
         return [{"漢字": self.漢字, "注音符號": self.注音符號}]
 
-    def 標音完整無(self):
-        return (self.漢字 is not None and self.注音符號 is not None)
-
     def __repr__(self):
         return self.轉json格式()
 
     def __str__(self):
         return self.轉json格式()
-
-    def __eq__(self, 別个):
-        return isinstance(別个, 官話字綜合標音) and self.漢字 == 別个.漢字 and \
-            self.注音符號 == 別个.注音符號
