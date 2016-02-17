@@ -56,10 +56,17 @@ class 集(功能):
         return self.內底組[0].看分詞(物件分型音符號, 物件分字符號, 物件分詞符號)
 
     def 綜合標音(self, 語言綜合標音):
-        綜合詞組 = []
-        for 組物件 in self.內底組:
-            綜合詞組.append(組物件.綜合標音(語言綜合標音))
-        return 綜合詞組
+        集綜合標音 = {}
+        for 一組 in self.內底組:
+            for 欄位, 內容 in 一組.綜合標音(語言綜合標音)[0].items():
+                try:
+                    集綜合標音[欄位].append(內容)
+                except:
+                    集綜合標音[欄位] = [內容]
+        結果 = {}
+        for 欄位, 內容 in 集綜合標音.items():
+            結果[欄位] = ' '.join(內容)
+        return [結果]
 
     def 篩出字物件(self):
         if len(self.內底組) == 0:
