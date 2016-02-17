@@ -32,7 +32,6 @@ from 臺灣言語工具.基本物件.公用變數 import 統一碼數字類
 class 拆文分析器:
     _切組物件分詞 = re.compile('([^ ]*.｜.[^ ]*|\S+)')
     _切章分詞 = re.compile('(\n｜.|.｜\n|\n)', re.DOTALL)
-    _掠漏 = 程式掠漏()
 
     @classmethod
     def 建立字物件(cls, 語句):
@@ -440,7 +439,7 @@ class 拆文分析器:
 
     @classmethod
     def 分詞字物件(cls, 分詞):
-        cls._掠漏.毋是字串都毋著(分詞)
+        程式掠漏.毋是字串都毋著(分詞)
         切開結果 = 分詞.split(分型音符號)
         if len(切開結果) == 2:
             return cls.對齊字物件(*切開結果)
@@ -450,7 +449,7 @@ class 拆文分析器:
 
     @classmethod
     def 分詞詞物件(cls, 分詞):
-        cls._掠漏.毋是字串都毋著(分詞)
+        程式掠漏.毋是字串都毋著(分詞)
         if 分詞 == '':
             return cls.建立詞物件(分詞)
         切開結果 = 分詞.split(分型音符號)
@@ -465,7 +464,7 @@ class 拆文分析器:
 
     @classmethod
     def 分詞組物件(cls, 分詞):
-        cls._掠漏.毋是字串都毋著(分詞)
+        程式掠漏.毋是字串都毋著(分詞)
         if 分詞 == '':
             return 組()
         組物件 = cls.建立組物件('')
