@@ -41,7 +41,7 @@ script:
 - python 範例/基本物件.py
 - python 範例/斷詞範例.py
 - python 範例/通用拼音轉臺羅拼音.py
-- coverage run 走全部試驗.py
+- coverage run 走全部試驗.py travis
 - flake8 . --exclude=venv,外部程式 --count --show-source --ignore=E501
 after_success:
 - coverage report
