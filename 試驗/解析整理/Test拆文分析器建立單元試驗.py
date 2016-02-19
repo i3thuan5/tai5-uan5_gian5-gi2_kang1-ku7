@@ -48,6 +48,12 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         self.assertEqual(拆文分析器.建立詞物件(語句).內底字,
                          [拆文分析器.建立字物件('tsit8'), 拆文分析器.建立字物件('張'), 拆文分析器.建立字物件('!')])
 
+    def test_建立組聲調符號接音標(self):
+        詞物件 = 拆文分析器.建立詞物件('suiˋsuiˋ')
+        self.assertEqual(詞物件.內底字, [
+            拆文分析器.建立字物件('suiˋ'), 拆文分析器.建立字物件('suiˋ')
+        ])
+
     def test_建立組孤字(self):
         型 = '媠'
         組物件 = 拆文分析器.建立組物件(型)
@@ -218,6 +224,10 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         切好語句 = ['伊', '18', ':', '30', '會', '來']
         組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
         self.assertEqual(詞陣列, 組物件.內底詞)
+
+    def test_建立組減號(self):
+        with self.assertRaises(解析錯誤):
+            拆文分析器.建立組物件('--')
 
     def test_雙數字音標(self):
         原來語句 = 'gua51 ai51 li51'
@@ -498,3 +508,27 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
             '拉鍊',
             'la55-lian51'
         )
+
+    def test_字物件語句毋是字串(self):
+        with self.assertRaises(型態錯誤):
+            拆文分析器.建立字物件(['k', 'o', 'n', 'n'])
+
+    def test_詞物件語句毋是字串(self):
+        with self.assertRaises(型態錯誤):
+            拆文分析器.建立詞物件(['k', 'o', 'n', 'n'])
+
+    def test_組物件語句毋是字串(self):
+        with self.assertRaises(型態錯誤):
+            拆文分析器.建立組物件(['k', 'o', 'n', 'n'])
+
+    def test_集物件語句毋是字串(self):
+        with self.assertRaises(型態錯誤):
+            拆文分析器.建立集物件(['k', 'o', 'n', 'n'])
+
+    def test_句物件語句毋是字串(self):
+        with self.assertRaises(型態錯誤):
+            拆文分析器.建立句物件(['k', 'o', 'n', 'n'])
+
+    def test_章物件語句毋是字串(self):
+        with self.assertRaises(型態錯誤):
+            拆文分析器.建立章物件(['k', 'o', 'n', 'n'])

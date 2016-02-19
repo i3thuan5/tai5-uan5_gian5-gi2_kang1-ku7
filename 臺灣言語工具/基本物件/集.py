@@ -55,11 +55,11 @@ class 集(功能):
             raise 解析錯誤('內底組毋焦一个！！{0}'.format(str(self)))
         return self.內底組[0].看分詞(物件分型音符號, 物件分字符號, 物件分詞符號)
 
-    def 綜合標音(self, 字綜合標音型態):
-        綜合詞組 = []
-        for 組物件 in self.內底組:
-            綜合詞組.append(組物件.綜合標音(字綜合標音型態))
-        return 綜合詞組
+    def 綜合標音(self, 語言綜合標音):
+        try:
+            return self.內底組[0].綜合標音(語言綜合標音)
+        except:
+            return [{}]
 
     def 篩出字物件(self):
         if len(self.內底組) == 0:
