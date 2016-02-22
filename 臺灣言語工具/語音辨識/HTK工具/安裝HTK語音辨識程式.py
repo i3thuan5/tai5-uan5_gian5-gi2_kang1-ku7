@@ -16,17 +16,29 @@ class 安裝HTK語音辨識程式(程式腳本):
         htk程式碼目錄 = join(htk安裝路徑, 'HTK_HTS')
         if not isdir(htk程式碼目錄):
             with cls._換目錄(htk安裝路徑):
-                cls._走指令([
-                    'git', 'clone',
-                    '--depth', cls.pull深度,
-                    'https://github.com/a8568730/HTK_HTS.git'
-                ])
+                try:
+                    cls._走指令([
+                        'git', 'clone',
+                        '--depth', cls.pull深度,
+                        'https://github.com/a8568730/HTK_HTS.git'
+                    ])
+                except:
+                    cls._走指令([
+                        'git', 'clone',
+                        'https://github.com/a8568730/HTK_HTS.git'
+                    ])
         else:
             with cls._換目錄(htk程式碼目錄):
-                cls._走指令(
-                    ['git', 'pull', '--depth', cls.pull深度],
-                    愛直接顯示輸出=True
-                )
+                try:
+                    cls._走指令(
+                        ['git', 'pull', '--depth', cls.pull深度],
+                        愛直接顯示輸出=True
+                    )
+                except:
+                    cls._走指令(
+                        ['git', 'pull'],
+                        愛直接顯示輸出=True
+                    )
         with cls._換目錄(htk程式碼目錄):
             try:
                 cls._走指令(['make', 'all', 'install'])

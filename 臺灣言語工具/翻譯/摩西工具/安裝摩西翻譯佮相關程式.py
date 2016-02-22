@@ -17,17 +17,12 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
         moses程式碼目錄 = join(moses安裝路徑, 'mosesdecoder')
         if not isdir(moses程式碼目錄):
             with cls._換目錄(moses安裝路徑):
-                cls._走指令([
-                    'git', 'clone',
-                    '--depth', cls.pull深度,
+                cls._下載專案(
                     'https://github.com/moses-smt/mosesdecoder.git'
-                ])
+                )
         else:
             with cls._換目錄(moses程式碼目錄):
-                cls._走指令(
-                    ['git', 'pull', '--depth', cls.pull深度],
-                    愛直接顯示輸出=True
-                )
+                cls._更新專案()
         with cls._換目錄(moses程式碼目錄):
             cls._走指令(['./bjam', '-j{0}'.format(編譯CPU數)], 愛直接顯示輸出=True)
 
@@ -37,17 +32,12 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
         gizapp程式碼目錄 = join(gizapp安裝路徑, 'giza-pp')
         if not isdir(gizapp程式碼目錄):
             with cls._換目錄(gizapp安裝路徑):
-                cls._走指令([
-                    'git', 'clone',
-                    '--depth', cls.pull深度,
+                cls._下載專案(
                     'https://github.com/sih4sing5hong5/giza-pp.git'
-                ])
+                )
         else:
             with cls._換目錄(gizapp程式碼目錄):
-                cls._走指令(
-                    ['git', 'pull', '--depth', cls.pull深度],
-                    愛直接顯示輸出=True
-                )
+                cls._更新專案()
         with cls._換目錄(gizapp程式碼目錄):
             cls._走指令('make', 愛直接顯示輸出=True)
         執行檔目錄 = cls._細項目錄(gizapp程式碼目錄, 'bin')
@@ -64,17 +54,12 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
         mgiza程式碼目錄 = join(mgiza安裝路徑, 'mgiza', 'mgizapp')
         if not isdir(mgiza程式碼目錄):
             with cls._換目錄(mgiza安裝路徑):
-                cls._走指令([
-                    'git', 'clone',
-                    '--depth', cls.pull深度,
+                cls._下載專案(
                     'https://github.com/moses-smt/mgiza.git'
-                ])
+                )
         else:
             with cls._換目錄(mgiza程式碼目錄):
-                cls._走指令(
-                    ['git', 'pull', '--depth', cls.pull深度],
-                    愛直接顯示輸出=True
-                )
+                cls._更新專案()
         with cls._換目錄(mgiza程式碼目錄):
             cls._走指令(['cmake', '.'])
             cls._走指令('make', 愛直接顯示輸出=True)
@@ -82,4 +67,31 @@ class 安裝摩西翻譯佮相關程式(程式腳本):
             copy(
                 join('scripts', 'merge_alignment.py'),
                 join('bin', 'merge_alignment.py')
+            )
+
+    @classmethod
+    def _下載專案(cls, 專案git路徑):
+        try:
+            cls._走指令([
+                'git', 'clone',
+                '--depth', cls.pull深度,
+                專案git路徑
+            ])
+        except:
+            cls._走指令([
+                'git', 'clone',
+                專案git路徑
+            ])
+
+    @classmethod
+    def _更新專案(cls):
+        try:
+            cls._走指令(
+                ['git', 'pull', '--depth', cls.pull深度],
+                愛直接顯示輸出=True
+            )
+        except:
+            cls._走指令(
+                ['git', 'pull'],
+                愛直接顯示輸出=True
             )
