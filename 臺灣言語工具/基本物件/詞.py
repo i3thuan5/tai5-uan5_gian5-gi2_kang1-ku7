@@ -92,6 +92,7 @@ class 詞(功能):
                 結果[欄位] = ''.join(內容)
             else:
                 結果[欄位] = '-'.join(內容)
+        結果['分詞'] = self.看分詞()
         return [結果]
 
     def 篩出字物件(self):

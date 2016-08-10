@@ -4,6 +4,7 @@ from 臺灣言語工具.基本物件.字 import 字
 from 臺灣言語工具.音標系統.閩南語綜合標音 import 閩南語綜合標音
 from 臺灣言語工具.基本物件.公用變數 import 無音
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 
 
 class 閩南語綜合標音單元試驗(TestCase):
@@ -64,6 +65,10 @@ class 閩南語綜合標音單元試驗(TestCase):
             "通用數字調": "uo3",
             "吳守禮方音": "uo3"
         }])
+
+    def test_有分詞(self):
+        綜合標音 = 拆文分析器.對齊句物件('我', 'uo3').綜合標音(閩南語綜合標音)
+        self.assertIn('分詞', 綜合標音[0])
 
     def test_烏白傳(self):
         self.assertRaises(型態錯誤, 閩南語綜合標音, '我')
