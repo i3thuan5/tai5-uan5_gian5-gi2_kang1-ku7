@@ -78,22 +78,19 @@ class 章單元試驗(TestCase):
 
     def test_綜合標音章物件(self):
         章物件 = 拆文分析器.對齊章物件('點仔膠，黏著跤，', 'tiam2-a2-ka1, liam5-tioh8 kha1,')
-        self.assertEqual(章物件.綜合標音(閩南語綜合標音), [
-            {
-                '漢字': '點仔膠 ，',
-                '通用數字調': 'diam4-a4-ga1 ,',
-                '吳守禮方音': 'ㄉㄧㆰˋ-ㄚˋ-ㄍㄚ ,',
-                '臺羅閏號調': 'tiám-á-ka ,',
-                '臺羅數字調': 'tiam2-a2-ka1 ,',
-            },
-            {
-                '漢字': '黏著 跤 ，',
-                '通用數字調': 'liam5-diorh6 ka1 ,',
-                '吳守禮方音': 'ㄌㄧㆰˊ-ㄉㄧㄜ㆐ㆷ ㄎㄚ ,',
-                '臺羅閏號調': 'liâm-tio̍h kha ,',
-                '臺羅數字調': 'liam5-tioh8 kha1 ,',
-            },
-        ])
+        頭一句, 上尾句 = 章物件.綜合標音(閩南語綜合標音)
+        self.assertIn('漢字', 頭一句)
+        self.assertIn('臺羅數字調', 頭一句)
+        self.assertIn('臺羅閏號調', 頭一句)
+        self.assertIn('通用數字調', 頭一句)
+        self.assertIn('吳守禮方音', 頭一句)
+        self.assertIn('分詞', 頭一句)
+        self.assertIn('漢字', 上尾句)
+        self.assertIn('臺羅數字調', 上尾句)
+        self.assertIn('臺羅閏號調', 上尾句)
+        self.assertIn('通用數字調', 上尾句)
+        self.assertIn('吳守禮方音', 上尾句)
+        self.assertIn('分詞', 上尾句)
 
     @patch('臺灣言語工具.基本物件.句.句.綜合標音')
     def test_綜合標音用句的來鬥(self, 句綜合標音mock):
