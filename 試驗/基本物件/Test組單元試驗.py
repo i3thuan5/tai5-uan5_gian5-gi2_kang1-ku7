@@ -65,17 +65,23 @@ class 組單元試驗(TestCase):
 
     def test_一組綜合標音json格式(self):
         組物件 = 拆文分析器.對齊組物件('椅仔', 'i2-a2')
-        self.assertEqual(組物件.綜合標音(閩南語綜合標音), [{
-            "漢字": "椅仔", "臺羅數字調": "i2-a2", "臺羅閏號調": "í-á",
-            "通用數字調": "i4-a4", "吳守禮方音": "ㄧˋ-ㄚˋ"
-        }])
+        頭一个詞, = 組物件.綜合標音(閩南語綜合標音)
+        self.assertIn('漢字', 頭一个詞)
+        self.assertIn('臺羅數字調', 頭一个詞)
+        self.assertIn('臺羅閏號調', 頭一个詞)
+        self.assertIn('通用數字調', 頭一个詞)
+        self.assertIn('吳守禮方音', 頭一个詞)
+        self.assertIn('分詞', 頭一个詞)
 
     def test_一組兩詞綜合標音json格式(self):
         組物件 = 拆文分析器.對齊組物件('椅仔', 'i2 a2')
-        self.assertEqual(組物件.綜合標音(閩南語綜合標音), [{
-            "漢字": "椅 仔", "臺羅數字調": "i2 a2", "臺羅閏號調": "í á",
-            "通用數字調": "i4 a4", "吳守禮方音": "ㄧˋ ㄚˋ"
-        }])
+        頭一个詞, = 組物件.綜合標音(閩南語綜合標音)
+        self.assertIn('漢字', 頭一个詞)
+        self.assertIn('臺羅數字調', 頭一个詞)
+        self.assertIn('臺羅閏號調', 頭一个詞)
+        self.assertIn('通用數字調', 頭一个詞)
+        self.assertIn('吳守禮方音', 頭一个詞)
+        self.assertIn('分詞', 頭一个詞)
 
     def test_空組綜合標音莫例外(self):
         # 因為攏用佇輸出，愛檢查空愛佇程式別位檢查
