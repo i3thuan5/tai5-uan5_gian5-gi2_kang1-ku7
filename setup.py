@@ -30,7 +30,7 @@ setup(
     long_description='臺灣語言資訊系統函式庫，支援語音辨識、合成、翻譯、…等技術',
     author='薛丞宏',
     author_email='ihcaoe@gmail.com',
-    url='http://意傳.台灣/',
+    url='https://xn--v0qr21b.xn--kpry57d/',
     download_url='https://github.com/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7',
     keywords=[
         '臺灣', '臺語', '客家話', '自然語言', '語料庫',
