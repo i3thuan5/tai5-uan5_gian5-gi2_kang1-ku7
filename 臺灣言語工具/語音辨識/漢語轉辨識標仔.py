@@ -26,7 +26,7 @@ class 漢語轉辨識標仔:
         全部標仔 = [cls.恬音]
         for 字物件 in 句物件.篩出字物件():
             if 音標系統(字物件.音).音標 is not None:
-                音節 = 字物件.音.rstrip(cls.全部聲調符號)
+                音節 = 字物件.音.strip(cls.全部聲調符號)
                 全部標仔.append(音節)
             else:
                 if 全部標仔[-1] != cls.恬音:

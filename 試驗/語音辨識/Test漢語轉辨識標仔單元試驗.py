@@ -73,3 +73,21 @@ class 漢語轉辨識標仔單元試驗(TestCase):
                 'sil',
             ]
         )
+    def test_輕聲佮外來語(self):
+        分詞 = '騎｜khia5 1oo7-1too1-1bai2｜1oo7-1too1-1bai2 出-去｜tshut8-khi3 矣｜ah0'
+        句物件 = 拆文分析器.分詞句物件(分詞)
+        標仔 = 漢語轉辨識標仔.物件轉音節標仔(句物件, 臺灣閩南語羅馬字拼音)
+        self.assertEqual(
+            標仔,
+            [
+                'sil',
+                'khia',
+                'oo',
+                'too',
+                'bai',
+                'tshut',
+                'khi',
+                'ah',
+                'sil',
+            ]
+        )
