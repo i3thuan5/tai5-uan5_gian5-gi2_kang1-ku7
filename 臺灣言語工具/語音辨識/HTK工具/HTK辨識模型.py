@@ -42,9 +42,9 @@ class HTK辨識模型(程式腳本):
 
     def 存資料佇(self, 目標目錄):
         makedirs(目標目錄, exist_ok=True)
-        copy(self.音節聲韻對照檔所在(), 目標目錄)
-        copy(self.聲韻類檔所在(), 目標目錄)
-        copy(self.模型參數檔所在(), 目標目錄)
+        copy(self.音節聲韻對照檔所在(), join(目標目錄, '音節聲韻對照檔.dict'))
+        copy(self.聲韻類檔所在(), join(目標目錄, '聲韻類檔.list'))
+        copy(self.模型參數檔所在(), join(目標目錄, '模型參數檔.macro'))
 
     def _對齊(self, 參數檔, 對照檔,
             標仔檔, 特徵檔, 結果夾, 執行檔路徑=外部程式.htk預設目錄()):
