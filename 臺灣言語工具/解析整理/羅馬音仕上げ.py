@@ -7,10 +7,15 @@
 
 
 class 羅馬音仕上げ:
+
     @classmethod
     def しあげ(cls, 原來語句):
-        第一字大寫 = 原來語句[0].upper() + 原來語句[1:]
-        無輕聲 = 第一字大寫.replace('-0', '--')\
+        頭一字大寫 = 原來語句[0].upper() + 原來語句[1:]
+        return cls.輕聲佮外來語(頭一字大寫)
+
+    @classmethod
+    def 輕聲佮外來語(cls, 原來語句):
+        無輕聲 = 原來語句.replace('-0', '--')\
             .replace(' 0', '--')\
             .replace('0', '--')
         無外來語 = 無輕聲.replace('-1', '-*')\
