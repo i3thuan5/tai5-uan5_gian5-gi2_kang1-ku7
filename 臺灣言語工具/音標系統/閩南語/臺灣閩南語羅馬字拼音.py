@@ -148,8 +148,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
                 break
         else:
             韻 = self.韻
-        return self.輕 + self.外來語\
-            + self.聲 + 韻
+        return self.輕 + self.外來語 + self.聲 + 韻
 
     def 轉通用拼音(self):
         if self.音標 is None:
