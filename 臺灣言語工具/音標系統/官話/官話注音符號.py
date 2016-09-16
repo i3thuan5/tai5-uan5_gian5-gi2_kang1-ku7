@@ -59,8 +59,6 @@ class 官話注音符號:
         return self.音標
 
     def 音值(self):
-        if self.音標 is None:
-            return None
         return self.轉音值模組.轉(self.聲, self.韻, self.調)
     # -------成員變數-------- #
     音標上長長度 = 5
