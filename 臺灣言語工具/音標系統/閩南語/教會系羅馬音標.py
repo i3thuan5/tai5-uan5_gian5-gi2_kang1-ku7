@@ -67,6 +67,8 @@ class 教會系羅馬音標(閩南語音標介面):
         else:
             if self.調 is None:
                 self.調 = '1'
+            elif self.調 in {'4', '8', '10'}:
+                音標是著的 = False
             elif self.調 in 實際調值對應調號:
                 self.外來語 = '1'
                 self.調 = 實際調值對應調號[self.調]

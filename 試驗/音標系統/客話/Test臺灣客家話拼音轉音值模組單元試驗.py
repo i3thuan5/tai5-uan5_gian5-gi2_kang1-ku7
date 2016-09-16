@@ -8,6 +8,7 @@ from 臺灣言語工具.音標系統.客話.臺灣客家話拼音 import 臺灣�
 
 
 class 臺灣客家話拼音轉音值模組單元試驗(unittest.TestCase):
+
     def setUp(self):
         pass
 
@@ -35,6 +36,9 @@ class 臺灣客家話拼音轉音值模組單元試驗(unittest.TestCase):
         self.assertEqual(臺灣客家話拼音('Jiangˊ').音值(), ('tɕ', 'iaŋ', 'ˊ'))
 
     def test_違法音標(self):
+        self.assertEqual(臺灣客家話拼音('nged^').音值(), (None,))
+
+    def test_其他違法音標(self):
         self.assertEqual(臺灣客家話拼音('@@').音值(), (None,))
         self.assertEqual(臺灣客家話拼音('pe̍m').音值(), (None,))
         self.assertEqual(臺灣客家話拼音('xxtsé--á').音值(), (None,))

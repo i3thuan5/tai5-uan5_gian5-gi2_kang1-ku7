@@ -164,4 +164,6 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
         return 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組(self.聲, self.韻, self.調, self.輕)
 
     def 音值(self):
+        if self.音標 is None:
+            return self.轉音值模組.轉(None, None, None, None)
         return self.轉音值模組.轉(self.聲, self.韻, self.調, self.輕)

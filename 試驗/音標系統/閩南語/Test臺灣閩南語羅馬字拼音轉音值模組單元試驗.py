@@ -8,6 +8,7 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
 
 
 class 臺灣閩南語羅馬字拼音轉音值模組單元試驗(unittest.TestCase):
+
     def setUp(self):
         pass
 
@@ -60,7 +61,13 @@ class 臺灣閩南語羅馬字拼音轉音值模組單元試驗(unittest.TestCas
         self.assertEqual(臺灣閩南語羅馬字拼音('tere5').音值(), ('t', 'əe', '5'))
         self.assertEqual(臺灣閩南語羅馬字拼音('tir5').音值(), ('t', 'ɨ', '5'))
 
-    def test_違法音標(self):
+    def test_用著入聲調音標(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('ha8').音值(), (None,))
+
+    def test_入聲調用著其他調音標(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('hak7').音值(), (None,))
+
+    def test_其他違法音標(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('@@').音值(), (None,))
         self.assertEqual(臺灣閩南語羅馬字拼音('pe̍m').音值(), (None,))
         self.assertEqual(臺灣閩南語羅馬字拼音('xxtsé--á').音值(), (None,))
