@@ -66,6 +66,8 @@ class 臺灣客家話拼音:
         return self.音標
 
     def 音值(self):
+        if self.音標 is None:
+            return None
         return self.轉音值模組.轉(self.聲, self.韻, self.調)
 
     def 通用音值(self):
