@@ -96,7 +96,7 @@ class 臺灣閩南語羅馬字拼音單元試驗(TestCase):
 
     def test_輸入閏號音標(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('pI̋m').音標, 'pim9')
-        self.assertEqual(臺灣閩南語羅馬字拼音('pi̍m').音標, 'pim8')
+        self.assertEqual(臺灣閩南語羅馬字拼音('pi̍k').音標, 'pik8')
         self.assertEqual(臺灣閩南語羅馬字拼音('pîm').音標, 'pim5')
         self.assertEqual(臺灣閩南語羅馬字拼音('phǐN').音標, 'phinn6')
         self.assertEqual(臺灣閩南語羅馬字拼音('pih').音標, 'pih4')

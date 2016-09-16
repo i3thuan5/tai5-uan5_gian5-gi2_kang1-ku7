@@ -88,7 +88,7 @@ class 教會羅馬字音標單元試驗(TestCase):
 
     def test_輸入閏號音標(self):
         self.assertEqual(教會羅馬字音標('pI̋m').音標, 'pim9')
-        self.assertEqual(教會羅馬字音標('pi̍m').音標, 'pim8')
+        self.assertEqual(教會羅馬字音標('pi̍t').音標, 'pit8')
         self.assertEqual(教會羅馬字音標('pîm').音標, 'pim5')
         self.assertEqual(教會羅馬字音標('pih').音標, 'pih4')
         self.assertEqual(教會羅馬字音標('nňg').音標, 'nng6')

@@ -39,7 +39,7 @@ class 臺灣語言音標單元試驗(unittest.TestCase):
 
     def test_輸入閏號音標(self):
         self.assertEqual(臺灣語言音標('pI̋m').音標, 'pim9')
-        self.assertEqual(臺灣語言音標('pi̍m').音標, 'pim8')
+        self.assertEqual(臺灣語言音標('pi̍k').音標, 'pik8')
         self.assertEqual(臺灣語言音標('pîm').音標, 'pim5')
         self.assertEqual(臺灣語言音標('phǐN').音標, 'phinn6')
         self.assertEqual(臺灣語言音標('pih').音標, 'pih4')
