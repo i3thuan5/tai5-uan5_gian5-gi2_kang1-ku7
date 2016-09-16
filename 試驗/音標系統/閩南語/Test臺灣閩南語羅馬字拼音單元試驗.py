@@ -142,6 +142,12 @@ class 臺灣閩南語羅馬字拼音單元試驗(TestCase):
     def test_外來語拉鍊的鍊(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('lian51').音標, '1lian2')
 
+    def test_用著入聲調音標(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('ha8').音標, None)
+
+    def test_入聲調用著其他調音標(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('hak7').音標, None)
+
     def test_違法音標(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('@@').音標, None)
         self.assertEqual(臺灣閩南語羅馬字拼音('pe̍m').音標, None)
