@@ -30,6 +30,7 @@ addons:
       - libxmlrpc-c++.*-dev
       - cmake
       - csh
+      - libX11-dev
 install:
 - pip install flake8
 - pip install python-coveralls

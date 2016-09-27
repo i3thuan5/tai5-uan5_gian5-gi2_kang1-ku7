@@ -44,12 +44,16 @@ class 安裝HTS語音辨識程式(安裝HTK語音辨識程式):
     @classmethod
     def 安裝hts(cls, hts安裝路徑=外部程式.目錄()):
         makedirs(hts安裝路徑, exist_ok=True)
-        hts程式碼目錄 = join(hts安裝路徑, 'HTK_HTS')
+        hts程式碼目錄 = join(hts安裝路徑, 'HTS')
         if not isdir(hts程式碼目錄):
             with cls._換目錄(hts安裝路徑):
-                cls._下載專案(
-                    'https://github.com/a8568730/HTK_HTS.git'
-                )
+                cls._走指令([
+                    'git', 'clone',
+                    '--branch', 'hts',
+                    '--single-branch',
+                    'https://github.com/a8568730/HTK_HTS.git',
+                    'HTS',
+                ])
         else:
             with cls._換目錄(hts程式碼目錄):
                 cls._更新專案()
