@@ -29,6 +29,7 @@ addons:
       - libgoogle-perftools-dev
       - libxmlrpc-c++.*-dev
       - cmake
+      - csh
 install:
 - pip install flake8
 - pip install python-coveralls
