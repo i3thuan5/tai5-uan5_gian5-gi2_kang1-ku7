@@ -7,6 +7,7 @@ from unittest.suite import TestSuite
 
 from 臺灣言語工具.翻譯.摩西工具.安裝摩西翻譯佮相關程式 import 安裝摩西翻譯佮相關程式
 from 臺灣言語工具.語音辨識.HTK工具.安裝HTK語音辨識程式 import 安裝HTK語音辨識程式
+from 臺灣言語工具.語音合成.HTS工具.安裝HTS語音辨識程式 import 安裝HTS語音辨識程式
 
 
 '''
@@ -33,6 +34,7 @@ if __name__ == '__main__':
         if not travis:
             安裝摩西翻譯佮相關程式.安裝moses(編譯CPU數=4)
         安裝HTK語音辨識程式.安裝htk()
+        安裝HTS語音辨識程式.安裝sptk()
 
     試驗包 = TestSuite()
     if 單元試驗:
