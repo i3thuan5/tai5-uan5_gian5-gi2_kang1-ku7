@@ -2,7 +2,6 @@ from os.path import isdir, join, isfile, exists
 from posix import listdir, chmod
 from shutil import copytree, copyfile, rmtree
 from stat import S_IRUSR, S_IXUSR, S_IWUSR
-import stat
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 from 臺灣言語工具.語音合成.HTS工具.安裝HTS語音辨識程式 import 安裝HTS語音辨識程式
 from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
@@ -49,9 +48,10 @@ class 訓練HTSEngine模型(程式腳本):
                 'FRAMELEN={}' .format(音框長度),
                 'FRAMESHIFT={}'.format(音框移動),
             ]
-            cls._走指令(HTS設定指令, env={'LANG': 'C'})
+            cls._走指令(HTS設定指令, env={'LANG': 'C'}, 愛直接顯示輸出=True)
             HTS走指令 = ['make', 'all']
-            cls._走指令(HTS走指令, env={'LANG': 'C'})
+            cls._走指令(HTS走指令, env={'LANG': 'C'}, 愛直接顯示輸出=True)
+        return join(訓練資料夾, 'voices', 'qst001', 'ver1', 'ver1.htsvoice')
 
     @classmethod
     def _扣demo的資料到訓練資料夾(cls, htsDemo目錄, 訓練資料夾):

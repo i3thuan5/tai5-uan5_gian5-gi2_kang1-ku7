@@ -15,6 +15,10 @@ class 安裝HTS語音辨識程式(安裝HTK語音辨識程式):
 
     @classmethod
     def sptk執行檔目錄(cls, sptk安裝路徑=外部程式.目錄()):
+        return join(cls._sptk安裝目錄(sptk安裝路徑), 'bin')
+
+    @classmethod
+    def _sptk安裝目錄(cls, sptk安裝路徑=外部程式.目錄()):
         return join(sptk安裝路徑, cls._SPTK檔名, 'compiled')
 
     @classmethod
@@ -45,7 +49,7 @@ class 安裝HTS語音辨識程式(安裝HTK語音辨識程式):
                 cls._走指令(['chmod', 'u+x', 'configure'])
                 cls._走指令([
                     './configure',
-                    '--prefix={}'.format(cls.sptk執行檔目錄(sptk安裝路徑))
+                    '--prefix={}'.format(cls._sptk安裝目錄(sptk安裝路徑))
                 ], 愛直接顯示輸出=True)
                 cls._走指令(['make', 'all', 'install'], 愛直接顯示輸出=True)
 
