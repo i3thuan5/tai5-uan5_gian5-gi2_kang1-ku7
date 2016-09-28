@@ -36,6 +36,7 @@ if __name__ == '__main__':
         安裝HTK語音辨識程式.安裝htk()
         安裝HTS語音辨識程式.安裝sptk()
         安裝HTS語音辨識程式.安裝hts()
+        安裝HTS語音辨識程式.掠htsDemoScript()
 
     試驗包 = TestSuite()
     if 單元試驗:
