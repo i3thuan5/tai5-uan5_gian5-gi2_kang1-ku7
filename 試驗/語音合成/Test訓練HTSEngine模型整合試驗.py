@@ -11,7 +11,7 @@ class 訓練HTSEngine模型整合試驗 (TestCase):
 
     @classmethod
     def setUpClass(cls):
-        super(訓練HTSEngine模型整合試驗,cls).setUpClass()
+        super(訓練HTSEngine模型整合試驗, cls).setUpClass()
         安裝HTS語音辨識程式.安裝sptk()
         安裝HTS語音辨識程式.安裝hts()
         安裝HTS語音辨識程式.掠htsDemoScript()
