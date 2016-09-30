@@ -25,4 +25,4 @@ class 外部程式:
 
     @classmethod
     def htk預設目錄(cls):
-        return os.path.join(cls.目錄(), 'HTK_HTS', 'bin')
+        return os.path.join(cls.目錄(), 'HTK', 'bin')

@@ -10,7 +10,7 @@ class 程式腳本:
 
     @classmethod
     def _走指令(cls, 指令, 愛直接顯示輸出=False,
-             stdin=None, stdout=PIPE, stderr=PIPE):
+             stdin=None, stdout=PIPE, stderr=PIPE, env=None):
         try:
             if 愛直接顯示輸出:
                 程序 = Popen(指令, stdin=stdin)

@@ -6,12 +6,15 @@ from unittest.case import TestCase
 from 臺灣言語工具.語音辨識.HTK工具.HTK語料處理 import HTK語料處理
 from 臺灣言語工具.語音辨識.HTK工具.HTK辨識模型訓練 import HTK辨識模型訓練
 from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
+from 臺灣言語工具.語音辨識.HTK工具.安裝HTK語音辨識程式 import 安裝HTK語音辨識程式
 
 
 class HTK辨識整合試驗(TestCase):
 
     @classmethod
     def setUpClass(cls):
+        安裝HTK語音辨識程式.安裝htk()
+
         語料目錄 = join(dirname(abspath(__file__)), '語音語料')
         cls.音檔目錄 = join(語料目錄, 'wav')
         cls.標仔目錄 = join(語料目錄, 'labels')
@@ -54,6 +57,12 @@ class HTK辨識整合試驗(TestCase):
         self.檢查資料夾有辨識出來的檔案(拄好短恬辨識模型.對齊音節(self.音節檔, self.特徵檔, self.結果暫存目錄))
         self.檢查辨識結果(拄好短恬辨識模型.辨識聲韻(self.特徵檔, self.結果暫存目錄, 3))
         self.檢查辨識結果(拄好短恬辨識模型.辨識音節(self.特徵檔, self.結果暫存目錄, 3))
+
+    def test_快速對齊聲韻(self):
+        辨識結果資料夾 = HTK辨識模型訓練.快速對齊聲韻(
+            self.音檔目錄, self.標仔目錄, self.音節聲韻對照檔, self.模型暫存目錄
+        )
+        self.檢查資料夾有辨識出來的檔案(辨識結果資料夾)
 
     def test_新拄好短恬聲韻檔對齊(self):
         self.檢查資料夾有短恬的檔案(
