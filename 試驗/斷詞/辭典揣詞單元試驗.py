@@ -32,8 +32,9 @@ class 辭典揣詞單元試驗():
         self.驚對齊組 = 組([self.驚對齊詞])
 
         self.我對齊集 = 集([self.我對齊組])
-        self.白文我對齊集 = 集([組([self.我對齊詞]), 組([self.文我對齊詞])])
-        self.文白我對齊集 = 集([組([self.文我對齊詞]), 組([self.我對齊詞])])
+        self.文白我混合對齊集 = 集(
+            sorted([組([self.文我對齊詞]), 組([self.我對齊詞])], key=str)
+        )
         self.有對齊集 = 集([self.有對齊組])
         self.一張對齊集 = 集([self.一張對齊組])
         self.椅仔對齊集 = 集([self.椅仔對齊組])
@@ -41,10 +42,8 @@ class 辭典揣詞單元試驗():
 
         self.句物件 = 句([self.我對齊集, self.有對齊集, self.一張對齊集,
                       self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
-        self.文白我句物件 = 句([self.文白我對齊集, self.有對齊集, self.一張對齊集,
-                         self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
-        self.白文我句物件 = 句([self.白文我對齊集, self.有對齊集, self.一張對齊集,
-                         self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
+        self.文白我混合句物件 = 句([self.文白我混合對齊集, self.有對齊集, self.一張對齊集,
+                           self.椅仔對齊集, self.驚對齊集, self.驚對齊集])
 
         self.對齊句 = 拆文分析器.對齊句物件(
             '我有一張椅仔！！', 'gua2 u7 tsit8-tiunn1 i2-a2!!')
@@ -110,13 +109,13 @@ class 辭典揣詞單元試驗():
         self.檢查分數詞數(分數, 詞數, 0, 6)
         揣詞結果, 分數, 詞數 = self.揣詞.揣詞分析(self.辭典, self.型句)
 # 		raise RuntimeError('這个無穩定')
-        self.assertIn(揣詞結果, [self.文白我句物件, self.白文我句物件])
+        self.assertEqual(揣詞結果, self.文白我混合句物件)
         self.檢查分數詞數(分數, 詞數, 0, 6)
         揣詞結果, 分數, 詞數 = self.揣詞.揣詞分析(self.辭典, self.音句)
         self.assertEqual(揣詞結果, self.句物件)
         self.檢查分數詞數(分數, 詞數, 0, 6)
         揣詞結果, 分數, 詞數 = self.揣詞.揣詞分析(self.辭典, self.有詞漢羅)
-        self.assertIn(揣詞結果, [self.文白我句物件, self.白文我句物件])
+        self.assertEqual(揣詞結果, self.文白我混合句物件)
         self.檢查分數詞數(分數, 詞數, 0, 6)
         揣詞結果, 分數, 詞數 = self.揣詞.揣詞分析(self.辭典, self.無詞漢羅)
         self.assertEqual(揣詞結果, self.句物件)
@@ -129,7 +128,7 @@ class 辭典揣詞單元試驗():
         self.辭典.加詞(self.椅仔對齊詞)
         self.辭典.加詞(self.驚對齊詞)
         with self.assertRaises(解析錯誤):
-            self.揣詞.揣詞分析(self.辭典, self.文白我句物件)
+            self.揣詞.揣詞分析(self.辭典, self.文白我混合句物件)
 
     def test_章揣詞(self):
         self.辭典.加詞(self.我對齊詞)
