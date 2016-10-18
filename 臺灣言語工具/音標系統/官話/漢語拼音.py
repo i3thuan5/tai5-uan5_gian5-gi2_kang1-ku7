@@ -77,7 +77,7 @@ class 漢語拼音:
         return self.轉換到注音符號()
 
     def 轉換到注音符號(self):
-        if self.音標 != None:
+        if self.音標 is not None:
             if self.聲韻 in _特例:
                 return _特例[self.聲韻] + _調[self.調]
             if self.聲 == '':
