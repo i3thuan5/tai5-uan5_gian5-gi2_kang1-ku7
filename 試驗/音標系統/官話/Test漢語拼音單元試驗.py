@@ -22,6 +22,14 @@ class 漢語拼音單元試驗(TestCase):
         self.assertEqual(注音.調, 'ˊ')
         self.assertEqual(注音.聲韻, 'ㄔㄨㄢ')
 
+    def test_音位(self):
+        注音 = 官話注音符號(漢語拼音('quan4').轉換到注音符號())
+        self.assertEqual(注音.音標, 'ㄑㄩㄢˋ')
+        self.assertEqual(注音.聲, 'ㄑ')
+        self.assertEqual(注音.韻, 'ㄩㄢ')
+        self.assertEqual(注音.調, 'ˋ')
+        self.assertEqual(注音.聲韻, 'ㄑㄩㄢ')
+
     def test_一聲(self):
         注音 = 官話注音符號(漢語拼音('xue1').轉換到注音符號())
         self.assertEqual(注音.音標, 'ㄒㄩㄝ')
@@ -47,20 +55,15 @@ class 漢語拼音單元試驗(TestCase):
         self.assertEqual(注音.聲韻, 'ㄌㄩ')
 
     def test_輕聲(self):
-        注音 = 官話注音符號(漢語拼音('ㄉㄜ˙').轉換到注音符號())
-        self.assertEqual(注音.音標, 'ㄉㄜ˙')
-        self.assertEqual(注音.聲, 'ㄉ')
-        self.assertEqual(注音.韻, 'ㄜ')
+        注音 = 官話注音符號(漢語拼音('zuo5').轉換到注音符號())
+        self.assertEqual(注音.音標, 'ㄗㄨㄛ˙')
+        self.assertEqual(注音.聲, 'ㄗ')
+        self.assertEqual(注音.韻, 'ㄨㄛ')
         self.assertEqual(注音.調, '˙')
-        self.assertEqual(注音.聲韻, 'ㄉㄜ')
+        self.assertEqual(注音.聲韻, 'ㄗㄨㄛ')
 
     def test_空韻(self):
-        注音 = 官話注音符號(漢語拼音('zi4').轉換到注音符號())
-        self.assertEqual(注音.音標, 'ㄗ')
-        self.assertEqual(注音.聲, 'ㄗ')
-        self.assertEqual(注音.韻, '')
-        self.assertEqual(注音.調, '')
-        self.assertEqual(注音.聲韻, 'ㄗ')
+        self.assertEqual(漢語拼音('zi3').轉換到注音符號(), 'ㄗˇ')
 
     def test_無合法(self):
         self.assertEqual(漢語拼音('i4').轉換到注音符號(), None)
