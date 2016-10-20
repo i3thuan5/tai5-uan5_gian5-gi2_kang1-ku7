@@ -10,7 +10,7 @@ from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 class 訓練HTSEngine模型(程式腳本):
 
     @classmethod
-    def 訓練(cls, 訓練資料夾, 頻率,
+    def 訓練(cls, 訓練資料夾, 頻率, 顯示訓練過程=True,
            SPTK執行檔路徑=安裝HTS語音辨識程式.sptk執行檔目錄(),
            HTS執行檔路徑=安裝HTS語音辨識程式.hts執行檔目錄(),
            htsDemo目錄=安裝HTS語音辨識程式.htsDemo目錄()):
@@ -48,9 +48,9 @@ class 訓練HTSEngine模型(程式腳本):
                 'FRAMELEN={}' .format(音框長度),
                 'FRAMESHIFT={}'.format(音框移動),
             ]
-            cls._走指令(HTS設定指令, env={'LANG': 'C'}, 愛直接顯示輸出=True)
+            cls._走指令(HTS設定指令, env={'LANG': 'C'}, 愛直接顯示輸出=顯示訓練過程)
             HTS走指令 = ['make', 'all']
-            cls._走指令(HTS走指令, env={'LANG': 'C'}, 愛直接顯示輸出=True)
+            cls._走指令(HTS走指令, env={'LANG': 'C'}, 愛直接顯示輸出=顯示訓練過程)
         return join(訓練資料夾, 'voices', 'qst001', 'ver1', 'ver1.htsvoice')
 
     @classmethod
