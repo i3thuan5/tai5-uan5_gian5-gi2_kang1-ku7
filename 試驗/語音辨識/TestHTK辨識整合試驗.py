@@ -6,12 +6,15 @@ from unittest.case import TestCase
 from 臺灣言語工具.語音辨識.HTK工具.HTK語料處理 import HTK語料處理
 from 臺灣言語工具.語音辨識.HTK工具.HTK辨識模型訓練 import HTK辨識模型訓練
 from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
+from 臺灣言語工具.語音辨識.HTK工具.安裝HTK語音辨識程式 import 安裝HTK語音辨識程式
 
 
 class HTK辨識整合試驗(TestCase):
 
     @classmethod
     def setUpClass(cls):
+        安裝HTK語音辨識程式.安裝htk()
+
         語料目錄 = join(dirname(abspath(__file__)), '語音語料')
         cls.音檔目錄 = join(語料目錄, 'wav')
         cls.標仔目錄 = join(語料目錄, 'labels')
