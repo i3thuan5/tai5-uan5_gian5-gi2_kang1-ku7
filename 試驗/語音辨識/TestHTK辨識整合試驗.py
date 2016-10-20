@@ -28,6 +28,14 @@ class HTK辨識整合試驗(TestCase):
             cls.試驗語料暫存目錄,
         )
 
+        # 加速試驗
+        HTK辨識模型訓練.孤音混合數 = [1, 2]
+        HTK辨識模型訓練.三連音混合數 = [1, 2]
+        HTK辨識模型訓練.調整參數重估擺 = 3
+        HTK辨識模型訓練.混合數重估擺 = 3
+        HTK辨識模型訓練.混合數上尾重估擺 = 3
+        HTK辨識模型訓練.上尾重估擺 = 3
+
     @classmethod
     def tearDownClass(cls):
         rmtree(cls.試驗語料暫存目錄)
