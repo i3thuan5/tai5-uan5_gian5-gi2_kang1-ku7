@@ -13,11 +13,8 @@ class KenLM語言模型訓練整合試驗(TestCase):
 
     def setUp(self):
         self.這馬目錄 = os.path.dirname(os.path.abspath(__file__))
-        資料目錄 = os.path.join(self.這馬目錄, '翻譯語料')
-        self.閩南語語料陣列 = [os.path.join(資料目錄, '閩'), ]
-
-    def tearDown(self):
-        pass
+        資料目錄 = os.path.join(self.這馬目錄, '語料')
+        self.閩南語語料陣列 = [os.path.join(資料目錄, '文本.txt'), ]
 
     def test_路徑設定毋著(self):
         self.assertRaises(FileNotFoundError, KenLM語言模型訓練, '/')
@@ -27,7 +24,7 @@ class KenLM語言模型訓練整合試驗(TestCase):
         模型檔 = self.模型訓練.訓練(
             self.閩南語語料陣列,
             os.path.join(self.這馬目錄, '暫存資料夾'),
-            連紲詞長度=2,
+            連紲詞長度=1,
             編碼器=無編碼器(),
             使用記憶體量='20%',
         )
