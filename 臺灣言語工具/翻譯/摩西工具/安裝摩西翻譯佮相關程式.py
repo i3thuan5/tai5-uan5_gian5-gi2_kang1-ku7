@@ -17,7 +17,7 @@ class 安裝摩西翻譯佮相關程式(安裝程式腳本):
         if not isdir(moses程式碼目錄):
             with cls._換目錄(moses安裝路徑):
                 cls._下載專案(
-                    'https://github.com/moses-smt/mosesdecoder.git'
+                    'https://github.com/sih4sing5hong5/mosesdecoder.git'
                 )
         else:
             with cls._換目錄(moses程式碼目錄):
