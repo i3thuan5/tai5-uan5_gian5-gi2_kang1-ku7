@@ -7,7 +7,7 @@ from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 from 臺灣言語工具.語音合成.HTS工具.安裝HTS語音辨識程式 import 安裝HTS語音辨識程式
 
 
-class 訓練HTSEngine模型整合試驗 (TestCase):
+class 訓練HTSEngine模型整合試驗(TestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -19,17 +19,17 @@ class 訓練HTSEngine模型整合試驗 (TestCase):
     def test_無data資料夾(self):
         with self.assertRaises(參數錯誤):
             with TemporaryDirectory() as 資料夾:
-                訓練HTSEngine模型.訓練(資料夾, 44100)
+                訓練HTSEngine模型.訓練(資料夾, 44100, 顯示訓練過程=False)
 
     def test_data有欠物件(self):
         with self.assertRaises(參數錯誤):
             with TemporaryDirectory() as 資料夾:
                 makedirs(join(資料夾, 'raw'))
                 makedirs(join(資料夾, 'label'))
-                訓練HTSEngine模型.訓練(資料夾, 44100)
+                訓練HTSEngine模型.訓練(資料夾, 44100, 顯示訓練過程=False)
 
     def test_一般訓練(self):
         htsengine模型 = 訓練HTSEngine模型.訓練(
-            join(dirname(__file__), 'HTS訓練語料'), 44100
+            join(dirname(__file__), 'HTS訓練語料'), 44100, 顯示訓練過程=False
         )
         self.assertTrue(isfile(htsengine模型))

@@ -30,7 +30,7 @@ from 臺灣言語工具.基本物件.公用變數 import 統一碼數字類
 
 
 class 拆文分析器:
-    _切組物件分詞 = re.compile('([^ ]*.｜.[^ ]*|\S+)')
+    _切組物件分詞 = re.compile('(([^ ｜]*.｜.[^ ｜]*) ?|\S+)')
     _切章分詞 = re.compile('(\n｜.|.｜\n|\n)', re.DOTALL)
 
     @classmethod
@@ -456,6 +456,13 @@ class 拆文分析器:
             return cls.對齊詞物件(型, 音)
         if len(切開結果) == 1:
             return cls.建立詞物件(分詞)
+        if 切開結果 == [''] * 4:
+            return cls.對齊詞物件(分型音符號, 分型音符號)
+        if len(切開結果) == 3:
+            if 切開結果[:2] == [''] * 2:
+                return cls.對齊詞物件(分型音符號, 切開結果[2])
+            if 切開結果[-2:] == [''] * 2:
+                return cls.對齊詞物件(切開結果[0], 分型音符號)
         raise 解析錯誤('毋是拄仔好有一个抑是兩个部份：{0}'.format(分詞))
 
     @classmethod
@@ -465,8 +472,11 @@ class 拆文分析器:
             return 組()
         組物件 = cls.建立組物件('')
         切開 = cls._切組物件分詞.split(分詞)
-        for 分 in 切開[1::2]:
-            組物件.內底詞.append(cls.分詞詞物件(分))
+        for 分, 細 in zip(切開[1::3], 切開[2::3]):
+            if 細 is not None:
+                組物件.內底詞.append(cls.分詞詞物件(細))
+            else:
+                組物件.內底詞.append(cls.分詞詞物件(分))
         return 組物件
 
     @classmethod

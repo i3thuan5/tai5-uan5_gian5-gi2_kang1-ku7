@@ -13,6 +13,7 @@ def 揣工具包(頭='.'):
             工具包.append(目錄.replace('/', '.'))
     return 工具包
 
+
 # tar無法度下傷長的檔案名，所以愛用zip
 # python setup.py sdist --format=zip upload
 try:
@@ -21,6 +22,7 @@ try:
 except ValueError:
     # 無upload
     pass
+
 
 setup(
     name='tai5-uan5_gian5-gi2_kang1-ku7',
