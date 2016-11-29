@@ -20,6 +20,7 @@ class 文章粗胚:
     三分字符號 = 分字符號 * 3
     _一般 = '_一般'
     _組字 = '_組字'
+    _數字英文中央 = re.compile('([a-zA-z]+\d+)([a-z]+\d)')
 
     @classmethod
     def 建立物件語句前減號變標點符號(cls, 語句):
@@ -204,15 +205,12 @@ class 文章粗胚:
 
     @classmethod
     def 數字英文中央全加分字符號(cls, 語句):
-        新語句 = []
-        舊字 = '字'
-        for 字 in 語句:
-            if unicodedata.category(舊字) in 統一碼數字類 and \
-                    unicodedata.category(字) in 統一碼羅馬字類:
-                新語句.append(分字符號)
-            新語句.append(字)
-            舊字 = 字
-        return cls._除掉重覆的空白(''.join(新語句))
+        for _ in range(2):
+            語句 = cls._數字英文中央.sub(
+                lambda 配對: 配對.group(1) + '-' + 配對.group(2),
+                語句
+            )
+        return cls._除掉重覆的空白(語句)
 
     @classmethod
     def 數字英文中央看情形加分字符號(cls, 語句, 專有名詞):
