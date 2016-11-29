@@ -28,4 +28,3 @@ class 羅馬音仕上げ:
     @classmethod
     def 換外來語(cls, 配對):
         return 配對.group(1) + '*' + 配對.group(2)
-    
