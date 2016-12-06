@@ -42,9 +42,9 @@ class HTK辨識模型(程式腳本):
 
     def 存資料佇(self, 目標目錄):
         makedirs(目標目錄, exist_ok=True)
-        copy(self.音節聲韻對照檔所在(), 目標目錄)
-        copy(self.聲韻類檔所在(), 目標目錄)
-        copy(self.模型參數檔所在(), 目標目錄)
+        copy(self.音節聲韻對照檔所在(), join(目標目錄, '音節聲韻對照檔.dict'))
+        copy(self.聲韻類檔所在(), join(目標目錄, '聲韻類檔.list'))
+        copy(self.模型參數檔所在(), join(目標目錄, '模型參數檔.macro'))
 
     def _對齊(self, 參數檔, 對照檔,
             標仔檔, 特徵檔, 結果夾, 執行檔路徑=外部程式.htk預設目錄()):
@@ -99,7 +99,7 @@ class HTK辨識模型(程式腳本):
         makedirs(資料目錄, exist_ok=True)
         參數檔 = join(資料目錄, '參數檔.cfg')
         self._設定指定參數檔(參數檔)
-        網路檔 = join(資料目錄, '聲韻網路檔.lat')
+        網路檔 = join(資料目錄, '聲韻網路檔.slf')  # HTK Standard Lattice Format
         self._生辨識網路(執行檔路徑, 資料目錄, self._聲韻類檔資料, 網路檔)
         結果檔 = join(資料目錄, '辨識聲韻結果檔.mlf')
         聲韻對照檔 = join(資料目錄, '聲韻對照檔.dict')
@@ -113,7 +113,7 @@ class HTK辨識模型(程式腳本):
         makedirs(資料目錄, exist_ok=True)
         參數檔 = join(資料目錄, '參數檔.cfg')
         self._設定指定參數檔(參數檔)
-        網路檔 = join(資料目錄, '音節網路檔.lat')
+        網路檔 = join(資料目錄, '音節網路檔.slf')
         self._生辨識網路(執行檔路徑, 資料目錄, self._看聲韻類檔設定辨識音節的音節類檔資料(), 網路檔)
         結果檔 = join(資料目錄, '辨識音節結果檔.mlf')
         結果網路資料夾 = join(資料目錄, '辨識音節網路')
@@ -135,7 +135,7 @@ class HTK辨識模型(程式腳本):
         語法 = '{2}={3};\n({0} < {2} {1} > {0})'.format(
             self.恬音, 短恬語法,
             '$SYL', '|'.join(辨識的可能))
-        語法檔 = join(資料目錄, '語法檔.syntax')
+        語法檔 = join(資料目錄, '語法檔.ebnf')  # extended Backus-Naur Form
         self._字串寫入檔案(語法檔, 語法)
         產生網路指令 = [
             join(執行檔路徑, 'HParse'),

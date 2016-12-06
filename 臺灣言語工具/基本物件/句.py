@@ -6,6 +6,7 @@ from 臺灣言語工具.基本物件.公用變數 import 分詞符號
 from 臺灣言語工具.基本物件.公用變數 import 無音
 from 臺灣言語工具.基本物件.公用變數 import 分型音符號
 from 臺灣言語工具.基本物件.功能 import 功能
+from 臺灣言語工具.解析整理.羅馬音仕上げ import 羅馬音仕上げ
 
 
 class 句(功能):
@@ -56,11 +57,21 @@ class 句(功能):
                 集的音.append(音標)
         return 物件分詞符號.join(集的音)
 
-    def 綜合標音(self, 字綜合標音型態):
-        綜合集 = []
-        for 集物件 in self.內底集:
-            綜合集.append(集物件.綜合標音(字綜合標音型態))
-        return 綜合集
+    def 綜合標音(self, 語言綜合標音):
+        集綜合標音 = {}
+        for 一集 in self.內底集:
+            for 欄位, 內容 in 一集.綜合標音(語言綜合標音)[0].items():
+                try:
+                    集綜合標音[欄位].append(內容)
+                except:
+                    集綜合標音[欄位] = [內容]
+        結果 = {}
+        for 欄位, 內容 in 集綜合標音.items():
+            if 欄位 == '分詞':
+                結果[欄位] = ' '.join(內容)
+            else:
+                結果[欄位] = 羅馬音仕上げ.しあげ(' '.join(內容))
+        return [結果]
 
     def 篩出字物件(self):
         字陣列 = []

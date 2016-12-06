@@ -580,13 +580,17 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         self.assertRaises(解析錯誤, 拆文分析器._拆好陣列對齊詞物件, [型一, 型二, 型三], [])
         self.assertRaises(解析錯誤, 拆文分析器._拆好陣列對齊詞物件, [], [音一, 音二, 音三])
 
-    def test_對齊組傳無仝濟字(self):
-        型 = '我有一張媠椅仔！'
-        音 = 'gua2 u7 tsit8-tiunn1 i2-a2 !'
-        self.assertRaises(解析錯誤, 拆文分析器.對齊組物件, 型, 音)
-        型 = '有一張椅仔！'
-        音 = 'gua2 u7 tsit8-tiunn1 i2-a2 !'
-        self.assertRaises(解析錯誤, 拆文分析器.對齊組物件, 型, 音)
+    def test_對齊組型較濟(self):
+        型 = '我有一張媠椅仔'
+        音 = 'gua2 u7 tsit8-tiunn1 i2-a2'
+        with self.assertRaises(解析錯誤):
+            拆文分析器.對齊組物件(型, 音)
+
+    def test_對齊組音較濟(self):
+        型 = '有一張椅仔'
+        音 = 'gua2 u7 tsit8-tiunn1 i2-a2'
+        with self.assertRaises(解析錯誤):
+            拆文分析器.對齊組物件(型, 音)
 
     def test_對齊集傳無仝濟字(self):
         型 = '我有一張媠椅仔！'
@@ -609,7 +613,7 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         音 = 'gua2 u7 tsit8-tiunn1 i2-a2 !'
         self.assertRaises(解析錯誤, 拆文分析器.對齊章物件, 型, 音)
         型 = '有一張椅仔！'
-        音 = 'gua2 u7 tsit8-tiunn1 i2-a2 !'
+        音 = 'gua2 u7 tsit8-tiunn1 i2-a2 ! sui2 !'
         self.assertRaises(解析錯誤, 拆文分析器.對齊章物件, 型, 音)
 
     def test_對齊字無字(self):
@@ -670,8 +674,8 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
 
     def test_對齊組烏白傳(self):
         self.assertRaises(型態錯誤, 拆文分析器.對齊組物件, None, None)
-        self.assertRaises(型態錯誤, 拆文分析器.對齊組物件, None, None)
-        self.assertRaises(型態錯誤, 拆文分析器.對齊組物件, None, None)
+        self.assertRaises(型態錯誤, 拆文分析器.對齊組物件, 'None', None)
+        self.assertRaises(型態錯誤, 拆文分析器.對齊組物件, None, 'None')
 
     def test_對齊集烏白傳(self):
         self.assertRaises(型態錯誤, 拆文分析器.對齊集物件, None, None)
@@ -703,3 +707,21 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         型 = 'thâu ê tsoân-pō•'
         音 = 'thâu ê tsoân-pō•'
         拆文分析器.對齊句物件(型, 音)
+
+    def test_字物件參數毋是字串(self):
+        with self.assertRaises(型態錯誤):
+            拆文分析器.對齊字物件('konn', ['k', 'o', 'n', 'n'])
+        with self.assertRaises(型態錯誤):
+            拆文分析器.對齊字物件(['k', 'o', 'n', 'n'], 'konn')
+
+    def test_詞物件參數毋是字串(self):
+        with self.assertRaises(型態錯誤):
+            拆文分析器.對齊詞物件('konn', ['k', 'o', 'n', 'n'])
+        with self.assertRaises(型態錯誤):
+            拆文分析器.對齊詞物件(['k', 'o', 'n', 'n'], 'konn')
+
+    def test_組物件參數毋是字串(self):
+        with self.assertRaises(型態錯誤):
+            拆文分析器.對齊組物件('konn', ['k', 'o', 'n', 'n'])
+        with self.assertRaises(型態錯誤):
+            拆文分析器.對齊組物件(['k', 'o', 'n', 'n'], 'konn')
