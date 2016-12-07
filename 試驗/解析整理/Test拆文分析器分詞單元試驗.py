@@ -329,6 +329,12 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         self.assertEqual(len(網仔.網出詞物件(章物件.內底句[0])), 3)
         self.assertEqual(len(網仔.網出詞物件(章物件.內底句[1])), 7)
 
+    def test_分詞章分詞濟句用斷句符號隔開(self):
+        語句 = '𪜶｜in1 兩｜nng7 个｜e5 兄-弟-仔｜hiann1-ti7-a2 ，｜, '\
+            '為-著｜ui7-tioh8 拚｜piann3 生-理｜sing1-li2 。｜. '
+        章物件 = 拆文分析器.分詞章物件(語句)
+        self.assertEqual(len(章物件.內底句), 2)
+
     def test_分詞章分詞濟句用換逝符號隔開(self):
         語句 = '𪜶｜in1 兩｜nng7 个｜e5 兄-弟-仔｜hiann1-ti7-a2\n'\
             '為-著｜ui7-tioh8 拚｜piann3 生-理｜sing1-li2 ，｜, 。｜. '
