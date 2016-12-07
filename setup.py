@@ -13,6 +13,7 @@ def 揣工具包(頭='.'):
             工具包.append(目錄.replace('/', '.'))
     return 工具包
 
+
 # tar無法度下傷長的檔案名，所以愛用zip
 # python setup.py sdist --format=zip upload
 try:
@@ -22,6 +23,7 @@ except ValueError:
     # 無upload
     pass
 
+
 setup(
     name='tai5-uan5_gian5-gi2_kang1-ku7',
     packages=揣工具包('臺灣言語工具'),
@@ -30,7 +32,7 @@ setup(
     long_description='臺灣語言資訊系統函式庫，支援語音辨識、合成、翻譯、…等技術',
     author='薛丞宏',
     author_email='ihcaoe@gmail.com',
-    url='http://意傳.台灣/',
+    url='https://xn--v0qr21b.xn--kpry57d/',
     download_url='https://github.com/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7',
     keywords=[
         '臺灣', '臺語', '客家話', '自然語言', '語料庫',

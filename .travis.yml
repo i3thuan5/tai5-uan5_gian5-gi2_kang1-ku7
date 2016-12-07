@@ -29,6 +29,8 @@ addons:
       - libgoogle-perftools-dev
       - libxmlrpc-c++.*-dev
       - cmake
+      - csh
+      - libX11-dev
 install:
 - pip install flake8
 - pip install python-coveralls
@@ -38,10 +40,7 @@ branches:
   - /\d+\.\d+\.\d+/
 script:
 - pip install .
-- python 範例/基本物件.py
-- python 範例/斷詞範例.py
-- python 範例/通用拼音轉臺羅拼音.py
-- coverage run 走全部試驗.py
+- coverage run 走全部試驗.py travis
 - flake8 . --exclude=venv,外部程式 --count --show-source --ignore=E501
 after_success:
 - coverage report

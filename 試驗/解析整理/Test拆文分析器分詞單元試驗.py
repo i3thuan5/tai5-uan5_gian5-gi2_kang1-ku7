@@ -130,6 +130,30 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         self.assertEqual(詞物件.內底字[0].型, 型)
         self.assertEqual(詞物件.內底字[0].音, 音)
 
+    def test_分詞全是分詞符號(self):
+        詞物件 = 拆文分析器.分詞詞物件('｜｜｜')
+        self.assertEqual(len(詞物件.內底字), 1)
+        self.assertEqual(詞物件.內底字[0].型, '｜')
+        self.assertEqual(詞物件.內底字[0].音, '｜')
+
+    def test_分詞型是分詞符號(self):
+        詞物件 = 拆文分析器.分詞詞物件('｜｜=')
+        self.assertEqual(len(詞物件.內底字), 1)
+        self.assertEqual(詞物件.內底字[0].型, '｜')
+        self.assertEqual(詞物件.內底字[0].音, '=')
+
+    def test_分詞音是分詞符號(self):
+        詞物件 = 拆文分析器.分詞詞物件('-｜｜')
+        self.assertEqual(len(詞物件.內底字), 1)
+        self.assertEqual(詞物件.內底字[0].型, '-')
+        self.assertEqual(詞物件.內底字[0].音, '｜')
+
+    def test_分詞內有一个全是分詞符號(self):
+        組物件 = 拆文分析器.分詞組物件('＝｜＝ ｜｜｜')
+        self.assertEqual(len(組物件.內底詞), 2)
+        self.assertEqual(組物件.內底詞[1].內底字[0].型, '｜')
+        self.assertEqual(組物件.內底詞[1].內底字[0].音, '｜')
+
     def test_分詞組集句章孤字(self):
         分詞 = '𪜶｜in1'
         組物件 = 拆文分析器.分詞組物件(分詞)
