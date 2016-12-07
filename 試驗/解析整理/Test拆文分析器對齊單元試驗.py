@@ -715,8 +715,8 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         self.assertEqual(len(章物件.內底句), 1)
 
     def test_對齊章漢字標點符號斷開(self):
-        型 = '生理人初二，十六攏有拜土地公。'
-        音 = 'Sing-lí-lâng tshe-jī、 tsa̍p-la̍k lóng ū pài Thóo-tī-kong.'
+        型 = '生理人初二、十六攏有拜土地公。'
+        音 = 'Sing-lí-lâng tshe-jī、tsa̍p-la̍k lóng ū pài Thóo-tī-kong.'
         章物件 = 拆文分析器.對齊章物件(型, 音)
         self.assertEqual(len(章物件.內底句), 1)
 
