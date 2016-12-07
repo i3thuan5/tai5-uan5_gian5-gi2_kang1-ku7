@@ -400,13 +400,13 @@ class 拆文分析器:
         # =>無，下佇仝詞組，予斷詞處理
         有一般字無 = False
         愛換的所在 = []
-        for 第幾字 in range(len(語句))[::-1]:
-            if 語句[第幾字] in 斷句標點符號 and 有一般字無:
+        for 語句字 in 語句[::-1]:
+            if 語句字 in 斷句標點符號 and 有一般字無:
                 愛換的所在.append(True)
                 有一般字無 = False
             else:
                 愛換的所在.append(False)
-                if 語句[第幾字] not in 斷句標點符號 and 語句[第幾字] != 分詞符號:
+                if 語句字 not in 斷句標點符號 and 語句字 != 分詞符號:
                     有一般字無 = True
         愛換的所在 = 愛換的所在[::-1]
         句陣列 = []
