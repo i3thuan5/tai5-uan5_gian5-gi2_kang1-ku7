@@ -519,23 +519,14 @@ class 拆文分析器:
         except TypeError:
             raise 型態錯誤('分詞型態有問題，分詞：{}' .format(分詞))
         斷句詞陣列 = cls._詞陣列分一句一句(list(chain(*斷出來的詞陣列)))
-        章物件 = 章()
-        for 詞陣列 in 斷句詞陣列:
-            組物件 = 組()
-            組物件.內底詞 = 詞陣列
-            集物件 = 集()
-            集物件.內底組 = [組物件]
-            句物件 = 句()
-            句物件.內底集 = [集物件]
-            章物件.內底句.append(句物件)
-        return 章物件
+        return cls._斷句詞陣列轉章物件(斷句詞陣列)
 
     @classmethod
     def _詞陣列分一句一句(cls, 詞陣列):
         有一般字無 = False
         愛換的所在 = []
         for 詞物件 in 詞陣列[::-1]:
-            是斷句,是換逝 = cls._詞物件敢是斷句符號抑是換逝(詞物件)
+            是斷句, 是換逝 = cls._詞物件敢是斷句符號抑是換逝(詞物件)
             if (有一般字無 and 是斷句) or 是換逝:
                 愛換的所在.append(True)
                 有一般字無 = False
@@ -550,17 +541,30 @@ class 拆文分析器:
             if 愛換的所在[第幾字]:
                 斷句詞陣列.append(詞陣列[頭前:第幾字 + 1])
                 頭前 = 第幾字 + 1
-        if 頭前<len(詞陣列):
+        if 頭前 < len(詞陣列):
             斷句詞陣列.append(詞陣列[頭前:])
         return 斷句詞陣列
+
+    @classmethod
+    def _斷句詞陣列轉章物件(cls, 斷句詞陣列):
+        章物件 = 章()
+        for 詞陣列 in 斷句詞陣列:
+            組物件 = 組()
+            組物件.內底詞 = 詞陣列
+            集物件 = 集()
+            集物件.內底組 = [組物件]
+            句物件 = 句()
+            句物件.內底集 = [集物件]
+            章物件.內底句.append(句物件)
+        return 章物件
 
     @classmethod
     def _詞物件敢是斷句符號抑是換逝(cls, 詞物件):
         if len(詞物件.內底字) == 1:
             字物件 = 詞物件.內底字[0]
-            if 字物件.型 =='\n' or 字物件.音 == '\n':
-                return False,True
+            if 字物件.型 == '\n' or 字物件.音 == '\n':
+                return False, True
             if 字物件.型 in 斷句標點符號 and\
                     (字物件.音 == 無音 or 字物件.音 in 斷句標點符號):
-                return True,False
-        return False,False
+                return True, False
+        return False, False
