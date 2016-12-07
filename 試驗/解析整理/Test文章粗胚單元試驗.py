@@ -257,3 +257,6 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
         加空白後語句 = 'lai5 tsing2-phoo7 khia7-kua3 - - - - tsit8 kua3 u7 sann-tsiah gu5 , kiong7 tioh8 tsiann5-tsap8 kua3 . '
         self.assertEqual(文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
         self.assertEqual(文章粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
+
+    def test_南島的喉塞音(self):
+        self.assertEqual(文章粗胚.符號邊仔加空白("Nga'ay ho?"), "Nga'ay ho ? ")
