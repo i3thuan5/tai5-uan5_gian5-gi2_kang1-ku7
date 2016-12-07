@@ -374,6 +374,11 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         章物件 = 拆文分析器.分詞章物件(分詞)
         self.assertEqual(len(章物件.內底句), 2)
 
+    def test_分詞章干焦有換逝(self):
+        分詞 = '\n\n'
+        章物件 = 拆文分析器.分詞章物件(分詞)
+        self.assertEqual(len(章物件.內底句), 2)
+
     def test_烏白傳參數(self):
         self.assertRaises(型態錯誤, 拆文分析器.分詞字物件, None)
         self.assertRaises(型態錯誤, 拆文分析器.分詞詞物件, 333)
