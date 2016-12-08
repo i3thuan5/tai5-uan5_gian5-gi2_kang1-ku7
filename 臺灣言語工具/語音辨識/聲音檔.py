@@ -2,7 +2,6 @@ import io
 import itertools
 import struct
 import wave
-from builtins import range
 from math import floor
 
 
@@ -81,13 +80,7 @@ class 聲音檔:
         資料數量 = len(self._資料) / (self.一點幾位元組 * self.幾个聲道)
         for 第幾个音框 in itertools.count(1):
             後一個音个所在 = int(self.一秒幾點 * 音框秒數 * 第幾个音框)
-            資料 = []
-            try:
-                for 第幾个音值 in range(頂一个音框所在, 後一個音个所在):
-                    資料.append(self._提著音值(第幾个音值))
-            except struct.error:
-                pass
-            yield 資料
+            yield self._照點所在切出音檔(頂一个音框所在, 後一個音个所在)
             頂一个音框所在 = 後一個音个所在
             if 頂一个音框所在 >= 資料數量:
                 break
