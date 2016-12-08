@@ -1,15 +1,7 @@
 import io
-import itertools
 import struct
 import wave
-from builtins import range
 from math import floor
-
-
-def 結果轉做陣列(函式, *無名參數, **有名參數):
-    def 新函式(*無名參數, **有名參數):
-        return list(函式(*無名參數, **有名參數))
-    return 新函式
 
 
 class 聲音檔:
@@ -74,23 +66,6 @@ class 聲音檔:
             self.一點幾位元組, self.一秒幾點, self.幾个聲道,
             self.wav音值資料() + 尾音檔.wav音值資料()
         )
-
-    @結果轉做陣列
-    def 全部音框(self, 音框秒數=音框秒數):
-        頂一个音框所在 = 0
-        資料數量 = len(self._資料) / (self.一點幾位元組 * self.幾个聲道)
-        for 第幾个音框 in itertools.count(1):
-            後一個音个所在 = int(self.一秒幾點 * 音框秒數 * 第幾个音框)
-            資料 = []
-            try:
-                for 第幾个音值 in range(頂一个音框所在, 後一個音个所在):
-                    資料.append(self._提著音值(第幾个音值))
-            except struct.error:
-                pass
-            yield 資料
-            頂一个音框所在 = 後一個音个所在
-            if 頂一个音框所在 >= 資料數量:
-                break
 
     def 照秒數切出音檔(self, 開始秒數, 結束秒數):
         開始點所在 = floor(self.一秒幾點 * 開始秒數)
