@@ -32,7 +32,6 @@ class 閩南語決策樹仔(公家決策樹仔):
         print(len(問題), file=輸出目的)
         問題 |= cls.輔音()
         print(len(問題), file=輸出目的)
-# 		問題 |= cls.全部調()
         問題 |= cls.指定調()
         print(len(問題), file=輸出目的)
         問題 |= cls.詞句長度(10, 20)
@@ -274,34 +273,7 @@ class 閩南語決策樹仔(公家決策樹仔):
         孤調題目 = []
         for 調號 in range(0, 11):  # 有輕聲到第十調
             孤調題目.append(('第{}調'.format(調號), ['{}'.format(調號)]))
-        調懸低題目 = [
-            ('音頭前低調', [
-             '{}'.format(0), '{}'.format(3), '{}'.format(5), '{}'.format(10), ]),
-            ('音中央低調', ['{}'.format(0), '{}'.format(3), '{}'.format(10), ]),
-            ('音後壁低調', ['{}'.format(0), '{}'.format(2),
-                       '{}'.format(3), '{}'.format(6), '{}'.format(10), ]),
-            ('音頭前中調', ['{}'.format(4), '{}'.format(7), '{}'.format(9), ]),
-            ('音中央中調', ['{}'.format(4), '{}'.format(7), ]),
-            ('音中央有中調', [
-             '{}'.format(2), '{}'.format(4), '{}'.format(6), '{}'.format(7), ]),
-            ('音後壁中調', ['{}'.format(4), '{}'.format(5), '{}'.format(7), ]),
-            ('音頭前懸調', [
-             '{}'.format(1), '{}'.format(2), '{}'.format(6), '{}'.format(8), ]),
-            ('音中央懸調', ['{}'.format(1), '{}'.format(8), ]),
-            ('音後壁懸調', ['{}'.format(1), '{}'.format(8), '{}'.format(9), ]),
-            ('音入聲', ['{}'.format(4), '{}'.format(8), '{}'.format(10), ]),
-        ]
-        return cls._生問題.問題集(孤調題目, cls.調符號, '孤條') | \
-            cls._生問題.問題集(調懸低題目, cls.調符號, '孤條')
-
-    @classmethod
-    def 全部調(cls):
-        '''孤，組合'''
-        題目 = []
-        # for 調號 in range(0, 11):  # 有輕聲到第十調
-        for 調號 in [1, 2, 3, 4, 5, 7, 8, 9, 10]:  # 輕聲配去第三調佮別的，第六調本調佮第二調仝款
-            題目.append(('第{}調'.format(調號), ['{}'.format(調號)]))
-        return cls._生問題.問題集(題目, cls.調符號, '組合')
+        return cls._生問題.問題集(孤調題目, cls.調符號, '孤條')
 
 
 if __name__ == '__main__':

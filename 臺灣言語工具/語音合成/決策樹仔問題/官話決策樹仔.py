@@ -188,7 +188,7 @@ class 官話決策樹仔(公家決策樹仔):
         題目 = []
         for 調號 in 官話注音符號調:
             題目.append(('第{}調'.format(調號), ['{}'.format(調號)]))
-        return cls._生問題.問題集(題目, cls.調符號, '組合')
+        return cls._生問題.問題集(題目, cls.調符號, '孤條')
 
 
 if __name__ == '__main__':
