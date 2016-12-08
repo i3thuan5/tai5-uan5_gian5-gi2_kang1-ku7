@@ -1,8 +1,6 @@
 from os.path import dirname, abspath, join
 from unittest.case import TestCase
-from unittest.mock import MagicMock
 from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
-from 臺灣言語工具.語音辨識.恬音判斷 import 恬音判斷
 
 
 class 聲音檔單元試驗(TestCase):
@@ -128,57 +126,3 @@ class 聲音檔單元試驗(TestCase):
                 全部資料[0:20], 全部資料[第幾組 * 20:第幾組 * 20 + 20],
                 '第{}組無仝款'.format(第幾組)
             )
-
-    def test_切音檔愛切佇中央(self):
-        音檔 = 聲音檔.對檔案讀(self.音檔所在)
-        回傳結果 = MagicMock()
-        回傳結果.side_effect = [
-            False, False, True, True, True, False, False, True, False
-        ]
-        細音檔陣列 = 音檔.照函式切音(回傳結果, 音框秒數=0.2)
-        self.assertEqual(len(細音檔陣列), 2)
-        # 0.0 1.2
-        self.assertEqual(細音檔陣列[0].時間長度(), 1.2)
-        # 1.2 1.615
-        self.assertEqual(細音檔陣列[1].時間長度(), 0.415)
-
-    def test_切音檔愛切佇三個中央(self):
-        音檔 = 聲音檔.對檔案讀(self.音檔所在)
-        回傳結果 = MagicMock()
-        回傳結果.side_effect = [
-            False, True, True, False, False, False, True, True, False
-        ]
-        細音檔陣列 = 音檔.照函式切音(回傳結果, 音框秒數=0.2)
-        self.assertEqual(len(細音檔陣列), 2)
-        # 0.0, 0.9
-        self.assertEqual(細音檔陣列[0].時間長度(), 0.9)
-        # 0.9, 1.1
-        self.assertEqual(細音檔陣列[1].時間長度(), 0.715)
-
-    def test_切音檔頭尾嘛愛愛切(self):
-        音檔 = 聲音檔.對檔案讀(self.音檔所在)
-        回傳結果 = MagicMock()
-        回傳結果.side_effect = [
-            True, True, True, False, False, True, True, True, True
-        ]
-        細音檔陣列 = 音檔.照函式切音(回傳結果, 音框秒數=0.2)
-        self.assertEqual(len(細音檔陣列), 2)
-        # 0.0, 0.8
-        self.assertEqual(細音檔陣列[0].時間長度(), 0.8)
-        # 0.8, 1.1
-        self.assertEqual(細音檔陣列[1].時間長度(), 0.815)
-
-    def test_恬音判斷切音檔(self):
-        音檔 = 聲音檔.對檔案讀(self.音檔所在)
-
-        def 有音無(音框):
-            特徵 = 恬音判斷.算特徵參數(音框)
-            return 特徵['平方平均'] >= 1200000.0 and 特徵['過零機率'] < 0.25 and 特徵['相關係數'] > 0.90
-
-        細音檔陣列 = 音檔.照函式切音(有音無)
-        self.assertEqual(len(細音檔陣列), 5)
-
-    def test_照秒數切出音檔(self):
-        音檔 = 聲音檔.對參數轉(2, 16000, 1, b'0' * 1600 + b'1' * 1600)
-        wav音值資料 = 音檔.照秒數切出音檔(0.025, 0.075).wav音值資料()
-        self.assertEqual(wav音值資料, b'0' * 800 + b'1' * 800)
