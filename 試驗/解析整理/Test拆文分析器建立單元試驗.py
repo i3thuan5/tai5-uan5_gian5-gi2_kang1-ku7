@@ -76,9 +76,9 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
 
     def 建立組的切字檢查(self, 原來語句, 切好語句):
         切好詞陣列 = []
-        for 字 in 切好語句:
+        for 一字 in 切好語句:
             詞物件 = 拆文分析器.建立詞物件('')
-            詞物件.內底字.append(拆文分析器.建立字物件(字))
+            詞物件.內底字.append(拆文分析器.建立字物件(一字))
             切好詞陣列.append(詞物件)
         return (拆文分析器.建立組物件(原來語句), 切好詞陣列)
 
@@ -532,3 +532,26 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
     def test_章物件語句毋是字串(self):
         with self.assertRaises(型態錯誤):
             拆文分析器.建立章物件(['k', 'o', 'n', 'n'])
+
+    def test_南島用字物件(self):
+        字物件 = 拆文分析器.建立字物件("Nga'ay")
+        self.assertEqual(字物件.型, "Nga'ay")
+        self.assertEqual(字物件.音, 無音)
+
+    def test_南島詞袂切開(self):
+        詞物件 = 拆文分析器.建立詞物件("Nga'ay")
+        self.assertEqual(詞物件.內底字, [拆文分析器.建立字物件("Nga'ay")])
+
+    def test_南島組有照切(self):
+        組物件 = 拆文分析器.建立組物件("Nga'ay ho?")
+        self.assertEqual(組物件.內底詞, [
+            拆文分析器.建立詞物件("Nga'ay"),
+            拆文分析器.建立詞物件("ho"),
+            拆文分析器.建立詞物件("?"),
+        ])
+
+    def test_南島語句(self):
+        self.assertEqual(
+            拆文分析器.建立句物件("Nga'ay ho?").網出詞物件(),
+            拆文分析器.建立組物件("Nga'ay ho?").網出詞物件(),
+        )
