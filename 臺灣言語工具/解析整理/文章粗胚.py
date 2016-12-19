@@ -22,13 +22,16 @@ class 文章粗胚:
     _數字英文中央 = re.compile('([a-zA-z]+\d+)([a-z]+\d)')
 
     @classmethod
-    def 建立物件語句前減號變標點符號(cls, 語句):
-        return 語句.replace(分字符號, cls.分字符號代表字)
+    def 建立物件語句前減號變標點符號(cls, 語句, 別的符號邊仔順紲加空白=True):
+        結果語句 = 語句.replace(分字符號, cls.分字符號代表字)
+        if 別的符號邊仔順紲加空白:
+            return cls.符號邊仔加空白(結果語句)
+        return cls._除掉重覆的空白(結果語句)
 
     # 輕聲連字符會擲掉，但是會留一个連字符做斷詞
     # 若減號兩邊毋是漢字、組字號，就是合法的音標，伊就當作連字符來斷詞
     @classmethod
-    def 建立物件語句前處理減號(cls, 音標工具, 語句):
+    def 建立物件語句前處理減號(cls, 音標工具, 語句, 別的符號邊仔順紲加空白=True):
         if not isinstance(語句, str):
             raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
         if 語句 == 分字符號:
@@ -103,7 +106,11 @@ class 文章粗胚:
             位置 += 1
         if 前回一開始狀態 == cls._一般 and 語句.endswith(分字符號):
             字元陣列.append(分詞符號)
-        return cls._除掉重覆的空白(''.join(字元陣列))
+
+        結果語句 = ''.join(字元陣列)
+        if 別的符號邊仔順紲加空白:
+            return cls.符號邊仔加空白(結果語句)
+        return cls._除掉重覆的空白(結果語句)
 
     @classmethod
     def 符號邊仔加空白(cls, 語句):
