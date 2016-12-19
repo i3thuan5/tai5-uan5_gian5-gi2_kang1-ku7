@@ -562,3 +562,6 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
             拆文分析器.建立句物件("Nga'ay ho?").網出詞物件(),
             拆文分析器.建立組物件("Nga'ay ho?").網出詞物件(),
         )
+
+    def test_客話聲調(self):
+        self.assertEqual(len(拆文分析器.建立句物件('ngaiˇ dong+-ho^ ！').篩出字物件()), 4)
