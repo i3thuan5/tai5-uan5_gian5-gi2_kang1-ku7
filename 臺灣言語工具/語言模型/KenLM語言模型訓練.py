@@ -39,6 +39,7 @@ class KenLM語言模型訓練(程式腳本):
                     [
                         self.訓練指令,
                         '-o', str(連紲詞長度),
+                        '--discount_fallback',
                         '-S', 使用記憶體量,
                         '-T', '/tmp',
                     ],
