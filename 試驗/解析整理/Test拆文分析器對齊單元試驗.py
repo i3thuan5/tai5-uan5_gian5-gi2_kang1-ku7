@@ -743,3 +743,7 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
             拆文分析器.對齊組物件('konn', ['k', 'o', 'n', 'n'])
         with self.assertRaises(型態錯誤):
             拆文分析器.對齊組物件(['k', 'o', 'n', 'n'], 'konn')
+
+    def test_客話聲調(self):
+        組物件 = 拆文分析器.對齊組物件('𠊎當好！', 'ngaiˇ dong+-ho^ ！')
+        self.assertEqual(len(組物件.篩出字物件()), 4)
