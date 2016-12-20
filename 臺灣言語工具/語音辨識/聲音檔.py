@@ -1,5 +1,4 @@
 import io
-import struct
 import wave
 from math import floor
 
@@ -71,10 +70,6 @@ class 聲音檔:
         開始點所在 = floor(self.一秒幾點 * 開始秒數)
         結束點所在 = floor(self.一秒幾點 * 結束秒數)
         return self._照點所在切出音檔(開始點所在, 結束點所在)
-
-    def _提著音值(self, 第幾个音值, 頻道=0):
-        開始所在 = self.一點幾位元組 * (第幾个音值 * self.幾个聲道 + 頻道)
-        return struct.unpack('h', self._資料[開始所在:開始所在 + self.一點幾位元組])[0]
 
     def _照點所在切出音檔(self, 開始點所在, 結束點所在):
         一秒的點數 = self.一點幾位元組 * self.幾个聲道
