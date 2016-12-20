@@ -81,3 +81,8 @@ class 聲音檔單元試驗(TestCase):
         頭音檔.接(尾音檔)
         self.assertEqual(頭音檔.wav音值資料(), b'0' * 1600)
         self.assertEqual(尾音檔.wav音值資料(), b'1' * 1600)
+
+    def test_照秒數切出音檔(self):
+        音檔 = 聲音檔.對參數轉(2, 16000, 1, b'0' * 1600 + b'1' * 1600)
+        wav音值資料 = 音檔.照秒數切出音檔(0.025, 0.075).wav音值資料()
+        self.assertEqual(wav音值資料, b'0' * 800 + b'1' * 800)
