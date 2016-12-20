@@ -5,8 +5,6 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.基本物件.集 import 集
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
-from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
-from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 臺灣言語工具.解析整理.字物件篩仔 import 字物件篩仔
 
 
@@ -83,23 +81,15 @@ class 字物件篩仔單元試驗(unittest.TestCase):
         self.assertEqual(字物件篩仔.篩出字物件(組物件), 詞陣列)
 
     def test_篩組濟音標(self):
-        原來語句 = 'gua2 u7 tsit8-tiunn1 i2-a2'
-        處理好語句 = 'gua2 u7 tsit8-tiunn1 i2-a2'
         加空白後語句 = 'gua2 u7 tsit8-tiunn1 i2-a2'
-        self.assertEqual(文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
-        self.assertEqual(文章粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
         切好語句 = ['gua2', 'u7', 'tsit8-tiunn1', 'i2-a2']
-        組物件, 詞陣列 = self.建立組檢查(處理好語句, 切好語句)
+        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
         self.assertEqual(字物件篩仔.篩出字物件(組物件), 詞陣列)
 
     def test_篩組濟字輕聲(self):
-        原來語句 = 'mi2-kiann7 boo5-0ki3 ah!'
-        處理好語句 = 'mi2-kiann7 boo5-0ki3 ah!'
         加空白後語句 = 'mi2-kiann7 boo5-0ki3 ah ! '
-        self.assertEqual(文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
-        self.assertEqual(文章粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
         切好語句 = ['mi2-kiann7', 'boo5-0ki3', 'ah', '!']
-        組物件, 詞陣列 = self.建立組檢查(處理好語句, 切好語句)
+        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
         self.assertEqual(字物件篩仔.篩出字物件(組物件), 詞陣列)
 
     def test_篩句濟字佮符號(self):

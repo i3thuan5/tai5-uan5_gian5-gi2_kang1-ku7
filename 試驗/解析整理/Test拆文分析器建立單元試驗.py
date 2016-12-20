@@ -3,8 +3,6 @@ import unittest
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
-from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
-from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 臺灣言語工具.基本物件.公用變數 import 無音
 
 
@@ -108,23 +106,15 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         self.assertEqual(詞陣列, 組物件.內底詞)
 
     def test_建立組濟音標(self):
-        原來語句 = 'gua2 u7 tsit8-tiunn1 i2-a2'
-        處理好語句 = 'gua2 u7 tsit8-tiunn1 i2-a2'
         加空白後語句 = 'gua2 u7 tsit8-tiunn1 i2-a2'
-        self.assertEqual(文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
-        self.assertEqual(文章粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
         切好語句 = ['gua2', 'u7', 'tsit8-tiunn1', 'i2-a2']
-        組物件, 詞陣列 = self.建立組檢查(處理好語句, 切好語句)
+        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
         self.assertEqual(詞陣列, 組物件.內底詞)
 
     def test_建立組濟字輕聲(self):
-        原來語句 = 'mi2-kiann7 boo5-0ki3 ah!'
-        處理好語句 = 'mi2-kiann7 boo5-0ki3 ah!'
         加空白後語句 = 'mi2-kiann7 boo5-0ki3 ah ! '
-        self.assertEqual(文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
-        self.assertEqual(文章粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
         切好語句 = ['mi2-kiann7', 'boo5-0ki3', 'ah', '!']
-        組物件, 詞陣列 = self.建立組檢查(處理好語句, 切好語句)
+        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
         self.assertEqual(詞陣列, 組物件.內底詞)
 
     def test_建立組的組字式注音(self):
@@ -183,24 +173,16 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         self.assertEqual(詞陣列, 組物件.內底詞)
 
     def test_建立組音標佮符號(self):
-        原來語句 = 'Pang-liau5 hi5-kang2 「 Tua7-tiau5-hang7 」 siang7-khoah nng7-kong-tshioh.'
-        處理好語句 = 'Pang-liau5 hi5-kang2 「 Tua7-tiau5-hang7 」 siang7-khoah nng7-kong-tshioh.'
         加空白後語句 = 'Pang-liau5 hi5-kang2 「 Tua7-tiau5-hang7 」 siang7-khoah nng7-kong-tshioh . '
-        self.assertEqual(文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
-        self.assertEqual(文章粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
         切好語句 = ['Pang-liau5', 'hi5-kang2', '「', 'Tua7-tiau5-hang7', '」',
                 'siang7-khoah', 'nng7-kong-tshioh', '.']
-        組物件, 詞陣列 = self.建立組檢查(處理好語句, 切好語句)
+        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
         self.assertEqual(詞陣列, 組物件.內底詞)
 
     def test_建立組濟字漢羅連字(self):
-        原來語句 = 'gua有tsit8-tiunn1椅仔！'
-        處理好語句 = 'gua有tsit8-tiunn1椅仔！'
         加空白後語句 = 'gua有tsit8-tiunn1椅仔 ！ '
-        self.assertEqual(文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
-        self.assertEqual(文章粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
         切好語句 = ['gua', '有', 'tsit8-tiunn1', '椅', '仔', '！']
-        組物件, 詞陣列 = self.建立組檢查(處理好語句, 切好語句)
+        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
         self.assertEqual(詞陣列, 組物件.內底詞)
 
     def test_建立組濟字漢羅空白(self):
@@ -210,13 +192,9 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         self.assertEqual(詞陣列, 組物件.內底詞)
 
     def test_建立組濟字算式(self):
-        原來語句 = '所以是5-3=2!!'
-        處理好語句 = '所以是5 - 3=2!!'
         加空白後語句 = '所以是5 - 3 = 2 ! ! '
-        self.assertEqual(文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
-        self.assertEqual(文章粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
         切好語句 = ['所', '以', '是', '5', '-', '3', '=', '2', '!', '!']
-        組物件, 詞陣列 = self.建立組檢查(處理好語句, 切好語句)
+        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
         self.assertEqual(詞陣列, 組物件.內底詞)
 
     def test_建立組濟字其他符號(self):
@@ -236,73 +214,61 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         self.assertEqual(詞陣列, 組物件.內底詞)
 
     def test_建立組濟字算式佮連字號(self):
-        原來語句 = '食-0tsit8-kua5才來，阮hak8-hau7佇大學路1001-1號，儂莫走boo5-0ki3。'
-        處理好語句 = '食-0tsit8-kua5才來，阮hak8-hau7佇大學路1001 - 1號，儂莫走boo5-0ki3。'
         加空白後語句 = '食-0tsit8-kua5才來 ， 阮hak8-hau7佇大學路1001 - 1號 ， 儂莫走boo5-0ki3 。 '
-        self.assertEqual(文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
-        self.assertEqual(文章粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
-        切好語句 = ['食-0tsit8-kua5', '才', '來', '，',
-                '阮', 'hak8-hau7', '佇', '大', '學', '路', '1001', '-', '1', '號', '，',
-                '儂', '莫', '走', 'boo5-0ki3', '。']
-        組物件, 詞陣列 = self.建立組檢查(處理好語句, 切好語句)
+        切好語句 = [
+            '食-0tsit8-kua5', '才', '來', '，',
+            '阮', 'hak8-hau7', '佇', '大', '學', '路', '1001', '-', '1', '號', '，',
+            '儂', '莫', '走', 'boo5-0ki3', '。'
+        ]
+        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
         self.assertEqual(詞陣列, 組物件.內底詞)
 
     def test_建立組濟字連字號尾(self):
-        原來語句 = 'king2-tshat4 tsioh4-ue7 tsio1 sian3 -'
-        處理好語句 = 'king2-tshat4 tsioh4-ue7 tsio1 sian3 - '
         加空白後語句 = 'king2-tshat4 tsioh4-ue7 tsio1 sian3 - '
-        self.assertEqual(文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句), 處理好語句)
-        self.assertEqual(文章粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
-        切好語句 = ['king2-tshat4', 'tsioh4-ue7',
-                'tsio1', 'sian3', '-']
-        組物件, 詞陣列 = self.建立組檢查(處理好語句, 切好語句)
+        切好語句 = [
+            'king2-tshat4', 'tsioh4-ue7',
+            'tsio1', 'sian3', '-'
+        ]
+        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
         self.assertEqual(詞陣列, 組物件.內底詞)
 
     def test_無空白分開的閩南語音標(self):
         有空白 = 'sui2 sui2 e5 koo1 niu5'
         無空白 = 有空白.replace(' ', '')
-        self.assertNotEqual(拆文分析器.建立組物件(有空白),
-                            拆文分析器.建立組物件(無空白))
+        self.assertNotEqual(拆文分析器.建立組物件(有空白), 拆文分析器.建立組物件(無空白))
 
     def test_無空白分開的音調音標(self):
         有空白 = 'sui55 sui51 e13 koo33 niu13'
         無空白 = 有空白.replace(' ', '')
-        self.assertNotEqual(拆文分析器.建立組物件(有空白),
-                            拆文分析器.建立組物件(無空白))
+        self.assertNotEqual(拆文分析器.建立組物件(有空白), 拆文分析器.建立組物件(無空白))
 
     def test_大寫專有符號袂寫拆開(self):
         無空白 = 'H1N1 新型 流感 包含 四種 病毒'
         有空白 = 'H1 N1 新型 流感 包含 四種 病毒'
-        self.assertEqual(len(拆文分析器.建立組物件(無空白).內底詞),
-                         11)
-        self.assertNotEqual(拆文分析器.建立組物件(有空白),
-                            拆文分析器.建立組物件(無空白))
+        self.assertEqual(len(拆文分析器.建立組物件(無空白).內底詞), 11)
+        self.assertNotEqual(拆文分析器.建立組物件(有空白), 拆文分析器.建立組物件(無空白))
 
     def test_小寫專有符號袂使拆開(self):
         無空白 = 'g0v 是 咱 的 好 厝邊'
         有空白 = 'g0 v 是 咱 的 好 厝邊'
         self.assertEqual(len(拆文分析器.建立組物件(無空白).內底詞),
                          7)
-        self.assertNotEqual(拆文分析器.建立組物件(有空白),
-                            拆文分析器.建立組物件(無空白))
+        self.assertNotEqual(
+            拆文分析器.建立組物件(有空白), 拆文分析器.建立組物件(無空白))
 
     def test_大寫音標袂使拆開(self):
         # 愛予粗胚處理
         無空白 = 'Sui2sui2 是 咱 的 好 厝邊'
         有空白 = 'Sui2 sui2 是 咱 的 好 厝邊'
-        self.assertEqual(len(拆文分析器.建立組物件(無空白).內底詞),
-                         7)
-        self.assertNotEqual(拆文分析器.建立組物件(有空白),
-                            拆文分析器.建立組物件(無空白))
+        self.assertEqual(len(拆文分析器.建立組物件(無空白).內底詞), 7)
+        self.assertNotEqual(拆文分析器.建立組物件(有空白), 拆文分析器.建立組物件(無空白))
 
     def test_小寫音標袂使拆開(self):
         # 愛予粗胚處理
         無空白 = 'sui2sui2 是 咱 的 好 厝邊'
         有空白 = 'sui2 sui2 是 咱 的 好 厝邊'
-        self.assertEqual(len(拆文分析器.建立組物件(無空白).內底詞),
-                         7)
-        self.assertNotEqual(拆文分析器.建立組物件(有空白),
-                            拆文分析器.建立組物件(無空白))
+        self.assertEqual(len(拆文分析器.建立組物件(無空白).內底詞), 7)
+        self.assertNotEqual(拆文分析器.建立組物件(有空白), 拆文分析器.建立組物件(無空白))
 
     def test_建立集孤字(self):
         型 = '媠'
@@ -480,7 +446,6 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         原來 = '!!..,.li2-ho2?'
         加空白 = ' ! ! . . , . li2-ho2 ? '
         答案 = ['! ! . . , .', 'li2-ho2 ?']
-        self.assertEqual(文章粗胚.符號邊仔加空白(原來), 加空白)
         self.assertEqual(
             [
                 拆文分析器.建立章物件(原來).內底句[0].看分詞(),
@@ -497,12 +462,8 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         )
 
     def test__拆章做句有分字符號配分詞符號(self):
-        原來 = 'tsong-biau7 bo5 tse3” , --- tsiah e5 ue7 ,'
-        處理減號 = 'tsong-biau7 bo5 tse3” , - - - tsiah e5 ue7 ,'
         加空白 = 'tsong-biau7 bo5 tse3 ” , - - - tsiah e5 ue7 , '
         空白答案 = ['tsong-biau7 bo5 tse3 ” , ', ' - - - tsiah e5 ue7 , ']
-        self.assertEqual(文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來), 處理減號)
-        self.assertEqual(文章粗胚.符號邊仔加空白(處理減號), 加空白)
         self.assertEqual(len(拆文分析器.建立章物件(加空白).內底句),
                          2)
         self.assertEqual(拆文分析器.建立章物件(加空白).內底句[0],
