@@ -395,8 +395,11 @@ class 拆文分析器:
 
     @classmethod
     def 分詞詞物件(cls, 分詞):
+        print('xx',分詞)
         程式掠漏.毋是字串都毋著(分詞)
         if 分詞 == '':
+            return cls.建立詞物件(分詞)
+        if 分詞 == 分型音符號:
             return cls.建立詞物件(分詞)
         切開結果 = 分詞.split(分型音符號)
         if len(切開結果) == 2:
