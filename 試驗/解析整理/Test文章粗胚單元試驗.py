@@ -18,8 +18,8 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
 
     def test_建立物件語句前處理減號濟輕聲(self):
         原來語句 = '儂莫走boo5--ki3。'
-        處理好語句 = '儂莫走boo5-0ki3。'
-        加空白後語句 = '儂莫走boo5-0ki3 。 '
+        處理好語句 = '儂莫走boo5 0ki3。'
+        加空白後語句 = '儂莫走boo5 0ki3 。 '
         self.assertEqual(
             文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句, 別的符號邊仔順紲加空白=False), 處理好語句
         )
@@ -72,8 +72,8 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
 
     def test_建立物件語句前處理減號連字號前漢後羅(self):
         原來語句 = '食--tsit8-kua5才來'
-        處理好語句 = '食-0tsit8-kua5才來'
-        加空白後語句 = '食-0tsit8-kua5才來'
+        處理好語句 = '食 0tsit8-kua5才來'
+        加空白後語句 = '食 0tsit8-kua5才來'
         self.assertEqual(
             文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句, 別的符號邊仔順紲加空白=False), 處理好語句
         )
@@ -99,8 +99,8 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
 
     def test_建立物件語句前處理減號長連字符(self):
         原來語句 = '欲khuànn--tsit-ē--bô？'
-        處理好語句 = '欲khuànn-0tsit-ē-0bô？'
-        加空白後語句 = '欲khuànn-0tsit-ē-0bô ？ '
+        處理好語句 = '欲khuànn 0tsit-ē 0bô？'
+        加空白後語句 = '欲khuànn 0tsit-ē 0bô ？ '
         self.assertEqual(
             文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句, 別的符號邊仔順紲加空白=False), 處理好語句
         )
@@ -206,8 +206,8 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
 
     def test_建立物件語句前處理減號綜合(self):
         原來語句 = '食--tsit8-kua5才來，阮hak8-hau7佇大學路1001-1號，儂莫走boo5--ki3。'
-        處理好語句 = '食-0tsit8-kua5才來，阮hak8-hau7佇大學路1001 - 1號，儂莫走boo5-0ki3。'
-        加空白後語句 = '食-0tsit8-kua5才來 ， 阮hak8-hau7佇大學路1001 - 1號 ， 儂莫走boo5-0ki3 。 '
+        處理好語句 = '食 0tsit8-kua5才來，阮hak8-hau7佇大學路1001 - 1號，儂莫走boo5 0ki3。'
+        加空白後語句 = '食 0tsit8-kua5才來 ， 阮hak8-hau7佇大學路1001 - 1號 ， 儂莫走boo5 0ki3 。 '
         self.assertEqual(
             文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句, 別的符號邊仔順紲加空白=False), 處理好語句
         )
@@ -241,7 +241,7 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
         self.assertEqual(
             文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1--   niu5'), 'sui2 koo1 - - niu5')
         self.assertEqual(
-            文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1--niu5'), 'sui2 koo1-0niu5')
+            文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1--niu5'), 'sui2 koo1 0niu5')
         self.assertEqual(
             文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 'sui2 koo1 - -niu5'), 'sui2 koo1 - - niu5')
         self.assertEqual(
