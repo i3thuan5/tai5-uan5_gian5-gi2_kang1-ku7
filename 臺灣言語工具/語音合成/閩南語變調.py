@@ -8,6 +8,8 @@ from 臺灣言語工具.基本物件.句 import 句
 class 閩南語變調:
     實詞變調規則 = {'1': '7', '2': '1', '3': '2', '5': '7',
               '7': '3', '0': '0', '6': '3'}  # 6聲愛查
+    實詞一般入聲變調規則 = {'4': '8', '8': '10'}
+    實詞喉入聲變調規則 = {'4': '2', '8': '3'}
 
     @classmethod
     def 變調(cls, 物件):
@@ -63,19 +65,15 @@ class 閩南語變調:
     @classmethod
     def 實詞變調(cls, 聲, 韻, 調):
         if 韻.endswith('ʔ') or 韻.endswith('h'):
-            if 調 == '4':
-                調 = '2'
-            elif 調 == '8':
-                調 = '3'
-            else:
+            try:
+                調 = cls.實詞喉入聲變調規則[調]
+            except:
                 raise 解析錯誤('喉塞尾調錯誤！！{0}'.format((聲, 韻, 調)))
             韻 = 韻[:-1]
         elif 韻.endswith('p') or 韻.endswith('t') or 韻.endswith('k'):
-            if 調 == '4':
-                調 = '8'
-            elif 調 == '8':
-                調 = '10'
-            else:
+            try:
+                調 = cls.實詞一般入聲變調規則[調]
+            except:
                 raise 解析錯誤('入尾調錯誤！！{0}'.format((聲, 韻, 調)))
         else:
             if 調 in cls.實詞變調規則:
