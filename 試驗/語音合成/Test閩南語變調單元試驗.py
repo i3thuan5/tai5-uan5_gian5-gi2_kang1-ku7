@@ -7,6 +7,7 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.解析整理.字物件篩仔 import 字物件篩仔
 from 臺灣言語工具.基本物件.句 import 句
 from 臺灣言語工具.基本物件.章 import 章
+from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 
 
 class 閩南語變調單元試驗(unittest.TestCase):
@@ -56,6 +57,14 @@ class 閩南語變調單元試驗(unittest.TestCase):
         self._設定音值(變調了,
                    [('g', 'ua', '1'), ('ʔ', 'ai', '2'), ('s', 'ui', '0'), ('s', 'ui', '0')])
         self.assertEqual(閩南語變調.變調(原本), 變調了)
+
+    def test_無合法的音標愛錯誤(self):
+        with self.assertRaises(解析錯誤):
+            閩南語變調.實詞變調('g', 'ua', '4')
+        with self.assertRaises(解析錯誤):
+            閩南語變調.實詞變調('g', 'uah', '2')
+        with self.assertRaises(解析錯誤):
+            閩南語變調.實詞變調('g', 'uat', '2')
 
     def test_的前無變調(self):
         原本 = 拆文分析器.建立句物件('我上愛媠媠的姑娘')
