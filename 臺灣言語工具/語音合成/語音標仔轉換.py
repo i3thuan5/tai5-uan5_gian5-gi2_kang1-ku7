@@ -96,7 +96,10 @@ class 語音標仔轉換:
         全部標仔 = []
         for 句物件 in 章物件.內底句:
             全部標仔.append(cls._句物件轉完整合成標仔(句物件, 加短恬))
-        return itertools.chain.from_iterable(全部標仔)
+        結果 = list(itertools.chain.from_iterable(全部標仔))
+        if len(結果) > 0:
+            return 結果
+        return [cls.恬標仔()]
 
     @classmethod
     def _句物件轉完整合成標仔(cls, 句物件, 加短恬):
