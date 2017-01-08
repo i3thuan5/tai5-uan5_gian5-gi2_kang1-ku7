@@ -1,20 +1,27 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase
+from 臺灣言語工具.音標系統.Pangcah.原住民族語言書寫系統秀姑巒阿美語 import 原住民族語言書寫系統秀姑巒阿美語
 
 
-class 秀姑巒阿美轉音值單元試驗(TestCase):
+class 原住民族語言書寫系統秀姑巒阿美語轉音值單元試驗(TestCase):
 
     def test_一般(self):
-        self.assertEqual(秀姑巒阿美("kako").音值(), [['k', 'a'], ['k', 'u']])
+        self.assertEqual(
+            原住民族語言書寫系統秀姑巒阿美語("kako").音值(),
+            [['k', 'a'], ['k', 'o']]
+        )
 
     def test_一个符號(self):
-        self.assertEqual(秀姑巒阿美("o").音值(), [['o']])
+        self.assertEqual(原住民族語言書寫系統秀姑巒阿美語("o").音值(), [['o']])
 
     def test_ng(self):
-        self.assertEqual(秀姑巒阿美("nga'ay").音值(), [['ŋ', 'a'], ['ʔ', 'a', 'y']])
+        self.assertEqual(
+            原住民族語言書寫系統秀姑巒阿美語("nga'ay").音值(),
+            [['ŋ', 'a'], ['ʔ', 'a', 'j']]
+        )
 
     def test_大寫(self):
-        self.assertEqual(秀姑巒阿美("O").音值(), [['o']])
+        self.assertEqual(原住民族語言書寫系統秀姑巒阿美語("O").音值(), [['o']])
 
     def test_無合法(self):
-        self.assertEqual(秀姑巒阿美("！").音值(), None)
+        self.assertEqual(原住民族語言書寫系統秀姑巒阿美語("！").音值(), None)
