@@ -15,3 +15,6 @@ class 秀姑巒阿美轉音值單元試驗(TestCase):
 
     def test_大寫(self):
         self.assertEqual(秀姑巒阿美("O").音值(), [['o']])
+
+    def test_無合法(self):
+        self.assertEqual(秀姑巒阿美("！").音值(), None)
