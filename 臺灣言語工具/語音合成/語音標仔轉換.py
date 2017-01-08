@@ -40,10 +40,10 @@ class 語音標仔轉換:
                                 )
 
     @classmethod
-    def 物件轉完整合成標仔(cls, 物件, 加短恬=False):
+    def 物件轉完整合成標仔(cls, 物件):
         if isinstance(物件, 章):
-            return cls._章物件轉完整合成標仔(物件, 加短恬)
-        return cls._句物件轉完整合成標仔(物件, 加短恬)
+            return cls._章物件轉完整合成標仔(物件)
+        return cls._句物件轉完整合成標仔(物件)
 
     @classmethod
     def 提出標仔陣列主要音值(cls, 完整標仔陣列):
@@ -91,17 +91,17 @@ class 語音標仔轉換:
         return ''.join(處理了)
 
     @classmethod
-    def _章物件轉完整合成標仔(cls, 章物件, 加短恬):
+    def _章物件轉完整合成標仔(cls, 章物件):
         全部標仔 = []
         for 句物件 in 章物件.內底句:
-            全部標仔.append(cls._句物件轉完整合成標仔(句物件, 加短恬))
+            全部標仔.append(cls._句物件轉完整合成標仔(句物件))
         結果 = list(itertools.chain.from_iterable(全部標仔))
         if len(結果) > 0:
             return 結果
         return [cls.恬標仔()]
 
     @classmethod
-    def _句物件轉完整合成標仔(cls, 句物件, 加短恬):
+    def _句物件轉完整合成標仔(cls, 句物件):
         詞陣列 = 詞物件網仔.網出詞物件(句物件)
         攏總詞數量 = len(詞陣列)
         if 攏總詞數量 == 0:
@@ -115,10 +115,6 @@ class 語音標仔轉換:
             for 詞中第幾字, 字物件 in enumerate(字陣列):
                 try:
                     聲, 韻, 調 = 字物件.音
-                    if 加短恬 and len(全部聲韻資料) > 0:
-                        頂一个聲韻 = 全部聲韻資料[-1][0]
-                        if 頂一个聲韻 != cls.恬音 and 頂一个聲韻 != cls.短恬:
-                            全部聲韻資料.append((cls.短恬, len(全部字資料)))
                     全部聲韻資料.append((聲, len(全部字資料)))
                     全部聲韻資料.append((韻, len(全部字資料)))
                 except:
