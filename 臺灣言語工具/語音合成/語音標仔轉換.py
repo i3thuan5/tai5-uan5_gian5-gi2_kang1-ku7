@@ -24,11 +24,13 @@ class 語音標仔轉換:
 
     @classmethod
     def 恬標仔(cls):
-        return cls._用全部資訊產生合成標仔(cls.免知, cls.恬音, cls.免知,
-                                cls.免知, cls.免知, cls.免知,
-                                cls.免知, cls.免知, cls.免知,
-                                cls.免知, cls.免知, cls.免知,
-                                )
+        return cls._用全部資訊產生合成標仔(
+            cls.免知, cls.恬音, cls.免知,
+            cls.免知, cls.免知, cls.免知,
+            cls.免知, cls.免知, cls.免知,
+            cls.免知, cls.免知, cls.免知,
+        )
+
     @classmethod
     def 物件轉完整合成標仔(cls, 物件):
         if isinstance(物件, 章):
