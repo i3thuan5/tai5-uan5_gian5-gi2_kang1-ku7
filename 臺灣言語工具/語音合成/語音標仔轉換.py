@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from 臺灣言語工具.解析整理.字物件篩仔 import 字物件篩仔
 from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
-from 臺灣言語工具.基本物件.公用變數 import 標點符號
 import curses.ascii
 import itertools
 
@@ -103,13 +102,6 @@ class 語音標仔轉換:
 
     @classmethod
     def _句物件轉完整合成標仔(cls, 句物件, 加短恬):
-        for 集物件 in 句物件.內底集:
-            新組陣列 = []
-            for 詞物件 in 集物件.內底組[0].內底詞:
-                if len(詞物件.內底字) > 1 or\
-                        詞物件.內底字[0].型 not in 標點符號:
-                    新組陣列.append(詞物件)
-            集物件.內底組[0].內底詞 = 新組陣列
         詞陣列 = 詞物件網仔.網出詞物件(句物件)
         攏總詞數量 = len(詞陣列)
         if 攏總詞數量 == 0:
