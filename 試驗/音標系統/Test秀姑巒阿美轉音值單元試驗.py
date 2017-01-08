@@ -17,7 +17,13 @@ class 原住民族語言書寫系統秀姑巒阿美語轉音值單元試驗(Test
     def test_ng(self):
         self.assertEqual(
             原住民族語言書寫系統秀姑巒阿美語("nga'ay").音值(),
-            [['ŋ', 'a'], ['ʔ', 'a', 'j']]
+            [['ŋ', 'a'], ['ʡ', 'a', 'j']]
+        )
+
+    def test_VCCV(self):
+        self.assertEqual(
+            原住民族語言書寫系統秀姑巒阿美語("mimetmet").音值(),
+            [['m', 'i'], ['m', 'ə', 't'], ['m', 'ə', 't']]
         )
 
     def test_大寫(self):
