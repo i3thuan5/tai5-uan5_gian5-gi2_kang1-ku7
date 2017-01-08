@@ -43,4 +43,5 @@ class 南島語語音標仔轉換單元試驗(TestCase):
             'y-h+u/調:x<x>x/詞:0!1@/句:1^1_3',
             'h-u+sil/調:x<x>x/詞:1!0@/句:1^1_3',
             'x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x',
+            'x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x',
         ])
