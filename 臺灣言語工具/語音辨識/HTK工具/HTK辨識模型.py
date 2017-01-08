@@ -5,6 +5,7 @@ from shutil import copy
 from 臺灣言語工具.語音合成.語音標仔轉換 import 語音標仔轉換
 from 臺灣言語工具.系統整合.外部程式 import 外部程式
 from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
+from 臺灣言語工具.語音辨識.HTK工具.HTK語料處理 import HTK語料處理
 
 
 class HTK辨識模型(程式腳本):
@@ -123,8 +124,8 @@ class HTK辨識模型(程式腳本):
         短恬語法 = ''
         for 聲韻 in 辨識類檔資料:
             主要音值 = 語音標仔轉換.提出標仔主要音值(聲韻)
-            if 主要音值 == self.短恬:
-                短恬語法 = '[{0}]'.format(self.短恬)
+            if 主要音值 == HTK語料處理.短恬:
+                短恬語法 = '[{0}]'.format(HTK語料處理.短恬)
             elif 主要音值 == self.恬音:
                 pass
             else:
