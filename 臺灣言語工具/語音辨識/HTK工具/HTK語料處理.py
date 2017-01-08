@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 from os.path import join, isfile, basename
-from 臺灣言語工具.語音合成.語音標仔轉換 import 語音標仔轉換
 from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 from 臺灣言語工具.系統整合.外部程式 import 外部程式
 
@@ -12,9 +11,7 @@ class HTK語料處理(程式腳本):
     標仔副檔名 = '.lab'
     特徵 = 'mfcc'
     特徵副檔名 = '.' + 特徵
-    _轉合成標仔 = 語音標仔轉換()
-    恬音 = _轉合成標仔.提出標仔主要音值(_轉合成標仔.恬音)
-    短恬 = _轉合成標仔.提出標仔主要音值(_轉合成標仔.短恬)
+    短恬 = 'sp'
 
     @classmethod
     def 產生特徵檔(cls, 音檔所在, 資料目錄, 執行檔路徑=外部程式.htk預設目錄()):
