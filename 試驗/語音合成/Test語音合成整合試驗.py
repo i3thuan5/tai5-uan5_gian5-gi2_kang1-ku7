@@ -31,7 +31,7 @@ class 語音合成整合試驗(TestCase):
     def tearDownClass(cls):
         remove(cls.閩南語模型)
 
-    def test_字串轉聲音檔(self):
+    def test_閩南語字串轉聲音檔(self):
         合成模型 = HTS合成模型(self.閩南語模型)
         閩南語語句 = 'gua2 ai3 a1-sui2'
 
@@ -45,7 +45,7 @@ class 語音合成整合試驗(TestCase):
         音檔 = 合成模型.合成(愛合成標仔)
         self.assertIsInstance(音檔.wav格式資料(), bytes)
 
-    def test_字串斷詞後轉聲音檔(self):
+    def test_閩南語字串斷詞後轉聲音檔(self):
         閩南語辭典 = 型音辭典(2)
         閩南語辭典.加詞(拆文分析器.對齊詞物件('阿媠', 'a1-sui2'))
         閩南語辭典.加詞(拆文分析器.對齊詞物件('愛 ', 'ai3'))
