@@ -52,3 +52,12 @@ class 南島語語音標仔轉換單元試驗(TestCase):
                 'x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x',
             ]
         )
+
+    def test_空的(self):
+        句物件 = 拆文分析器.建立句物件("")
+        self.assertEqual(
+            南島語語音標仔轉換.物件轉完整合成標仔(句物件),
+            [
+                'x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x',
+            ]
+        )
