@@ -52,7 +52,7 @@ class 原住民族語言書寫系統秀姑巒阿美語:
 
     def 音值(self):
         if self.音標 is None:
-            return None
+            return []
         音素陣列 = self.拆音節檢查.findall(self.音標.lower())
         是音節上尾一个 = []
         有元音矣 = False
