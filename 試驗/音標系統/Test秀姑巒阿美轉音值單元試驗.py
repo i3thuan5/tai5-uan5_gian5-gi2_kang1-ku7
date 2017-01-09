@@ -26,8 +26,17 @@ class 原住民族語言書寫系統秀姑巒阿美語轉音值單元試驗(Test
             [['m', 'i'], ['m', 'ə', 't'], ['m', 'ə', 't']]
         )
 
+    def test_VGGV(self):
+        self.assertEqual(
+            原住民族語言書寫系統秀姑巒阿美語("wayya").音值(),
+            [['w', 'a', 'j'], ['j', 'a']]
+        )
+
     def test_大寫(self):
         self.assertEqual(原住民族語言書寫系統秀姑巒阿美語("O").音值(), [['o']])
+
+    def test_預設音標就是家己(self):
+        self.assertEqual(原住民族語言書寫系統秀姑巒阿美語("O").預設音標(), 'O')
 
     def test_無合法(self):
         self.assertEqual(原住民族語言書寫系統秀姑巒阿美語("！").音標, None)

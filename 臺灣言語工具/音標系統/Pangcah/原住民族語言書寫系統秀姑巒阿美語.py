@@ -76,7 +76,7 @@ class 原住民族語言書寫系統秀姑巒阿美語:
                     有元音矣 = False
                     有滑音矣 = False
                     有輔音矣 = False
-                elif 有滑音矣:  # onset
+                elif 有元音矣:  # onset
                     是音節上尾一个.append(False)
                     有滑音矣 = True
                 else:  # coda
