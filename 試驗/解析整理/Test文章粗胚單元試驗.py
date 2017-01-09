@@ -70,6 +70,13 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
         )
         self.assertEqual(文章粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
 
+    def test_建立物件語句前處理減號連做伙做符號閣有正常符號(self):
+        原來語句 = '---呵 li2-ho2'
+        處理好語句 = ' - - - 呵 li2-ho2'
+        self.assertEqual(
+            文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句, 別的符號邊仔順紲加空白=False), 處理好語句
+        )
+
     def test_建立物件語句前處理減號連字號前漢後羅(self):
         原來語句 = '食--tsit8-kua5才來'
         處理好語句 = '食 0tsit8-kua5才來'
