@@ -13,12 +13,15 @@ class 程式腳本:
              stdin=None, stdout=PIPE, stderr=PIPE, env=None):
         try:
             if 愛直接顯示輸出:
-                程序 = Popen(指令, stdin=stdin)
+                程序 = Popen(指令, env=env, stdin=stdin)
                 回傳值 = 程序.wait()
                 if 回傳值 != 0:
                     cls._走指令錯誤(指令)
             else:
-                程序 = Popen(指令, stdin=stdin, stdout=stdout, stderr=stderr)
+                程序 = Popen(
+                    指令, env=env,
+                    stdin=stdin, stdout=stdout, stderr=stderr
+                )
                 輸出資訊, 錯誤輸出資訊 = 程序.communicate()
                 回傳值 = 程序.wait()
                 if 回傳值 != 0:
