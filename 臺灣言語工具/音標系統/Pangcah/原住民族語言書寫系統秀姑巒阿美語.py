@@ -47,6 +47,9 @@ class 原住民族語言書寫系統秀姑巒阿美語:
         else:
             self.音標 = None
 
+    def 預設音標(self):
+        return self.音標
+
     def 音值(self):
         if self.音標 is None:
             return None
