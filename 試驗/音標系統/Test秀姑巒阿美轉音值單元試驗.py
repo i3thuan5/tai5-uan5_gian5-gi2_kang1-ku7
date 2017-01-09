@@ -30,4 +30,5 @@ class 原住民族語言書寫系統秀姑巒阿美語轉音值單元試驗(Test
         self.assertEqual(原住民族語言書寫系統秀姑巒阿美語("O").音值(), [['o']])
 
     def test_無合法(self):
-        self.assertEqual(原住民族語言書寫系統秀姑巒阿美語("！").音值(), None)
+        self.assertEqual(原住民族語言書寫系統秀姑巒阿美語("！").音標, None)
+        self.assertEqual(原住民族語言書寫系統秀姑巒阿美語("！").音值(), [])
