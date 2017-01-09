@@ -37,7 +37,7 @@ class 文章粗胚:
         if 語句 == 分字符號:
             return cls.分字符號代表字
         if 語句.startswith(分字符號 + 分字符號):
-            if cls._後壁有音標無(音標工具, 語句[2:]):
+            if cls._頭前有音標無(音標工具, 語句[2:]):
                 語句 = '0' + 語句[2:]
             elif(2 < len(語句) and unicodedata.category(語句[2]) in 統一碼漢字佮組字式類):
                 語句 = 語句[2:]
