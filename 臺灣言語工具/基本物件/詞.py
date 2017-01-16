@@ -97,7 +97,7 @@ class 詞(功能):
         return [結果]
 
     def 篩出字物件(self):
-        return self.內底字
+        return list(self.內底字)
 
     def 網出詞物件(self):
         return [self]

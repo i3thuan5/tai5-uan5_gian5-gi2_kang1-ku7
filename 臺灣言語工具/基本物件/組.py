@@ -79,7 +79,7 @@ class 組(功能):
         return 字陣列
 
     def 網出詞物件(self):
-        return self.內底詞
+        return list(self.內底詞)
 
     def 轉音(self, 音標工具, 函式='預設音標'):
         # 逐个函式攏愛產生新的物件
