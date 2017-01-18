@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.解析整理.字物件篩仔 import 字物件篩仔
-from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
 import curses.ascii
 import itertools
 from 臺灣言語工具.基本物件.章 import 章
@@ -87,7 +85,7 @@ class 語音標仔轉換:
 
     @classmethod
     def _句物件轉完整合成標仔(cls, 句物件):
-        詞陣列 = 詞物件網仔.網出詞物件(句物件)
+        詞陣列 = 句物件.網出詞物件()
         攏總詞數量 = len(詞陣列)
         if 攏總詞數量 == 0:
             return [cls.恬標仔()]
@@ -96,26 +94,7 @@ class 語音標仔轉換:
 
     @classmethod
     def _句物件轉合成前置資料(cls, 句物件):
-        詞陣列 = 詞物件網仔.網出詞物件(句物件)
-        攏總詞數量 = len(詞陣列)
-        全部詞資料 = []
-        全部字資料 = []
-        全部聲韻資料 = []
-        for 句中第幾詞, 詞物件 in enumerate(詞陣列):
-            字陣列 = 字物件篩仔.篩出字物件(詞物件)
-            攏總字數量 = len(字陣列)
-            for 詞中第幾字, 字物件 in enumerate(字陣列):
-                try:
-                    聲, 韻, 調 = 字物件.音
-                    全部聲韻資料.append((聲, len(全部字資料)))
-                    全部聲韻資料.append((韻, len(全部字資料)))
-                except:
-                    調 = cls.免知
-                    全部聲韻資料.append((cls.恬音, len(全部字資料)))
-                全部字資料.append((調, 詞中第幾字, 攏總字數量, len(全部詞資料)))
-            全部詞資料.append((句中第幾詞, 攏總詞數量))
-        return 全部聲韻資料, 全部字資料, 全部詞資料
-
+        raise NotImplementedError('愛定義「_句物件轉合成前置資料()」函式')
     @classmethod
     def _資料轉做合成標仔(cls, 全部聲韻資料, 全部字資料, 全部詞資料):
         合成標仔 = [cls.恬標仔()]
