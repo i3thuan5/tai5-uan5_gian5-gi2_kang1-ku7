@@ -231,6 +231,21 @@ class 文章粗胚:
         return ''.join(結果)
 
     @classmethod
+    def 漢字中央加分字符號(cls, 語句):
+        結果 = []
+        for 字 in 語句:
+            try:
+                if (
+                    unicodedata.category(字) in 統一碼漢字佮組字式類 and
+                    unicodedata.category(結果[-1]) in 統一碼漢字佮組字式類
+                ):
+                    結果.append(分字符號)
+            except:
+                pass
+            結果.append(字)
+        return ''.join(結果)
+
+    @classmethod
     def _o結尾(cls, 語句):
         for o in ['o', 'ó', 'ò', 'ô', 'ǒ', 'ō', 'o̍', 'ő']:
             if 語句.endswith(o):
