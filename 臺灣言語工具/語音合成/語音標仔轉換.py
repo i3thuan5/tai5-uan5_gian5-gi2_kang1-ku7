@@ -95,6 +95,7 @@ class 語音標仔轉換:
     @classmethod
     def _句物件轉合成前置資料(cls, 句物件):
         raise NotImplementedError('愛定義「_句物件轉合成前置資料()」函式')
+
     @classmethod
     def _資料轉做合成標仔(cls, 全部聲韻資料, 全部字資料, 全部詞資料):
         合成標仔 = [cls.恬標仔()]
