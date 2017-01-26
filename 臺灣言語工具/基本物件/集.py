@@ -30,9 +30,6 @@ class 集(功能):
     def __str__(self):
         return '集：{0}'.format(self.內底組)
 
-    def __repr__(self):
-        return self.__str__()
-
     def 看型(self, 物件分字符號='', 物件分詞符號='', 物件分句符號=''):
         if len(self.內底組) == 0:
             raise 解析錯誤('內底組是空的！！')

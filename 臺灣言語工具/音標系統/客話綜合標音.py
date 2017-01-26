@@ -24,8 +24,5 @@ class 客話綜合標音:
     def 轉json格式(self):
         return [{"漢字": self.漢字, "臺灣客話": self.臺灣客話}]
 
-    def __repr__(self):
-        return self.轉json格式()
-
     def __str__(self):
         return self.轉json格式()
