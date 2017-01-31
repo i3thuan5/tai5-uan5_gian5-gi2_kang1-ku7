@@ -89,3 +89,13 @@ class 字(功能):
         else:
             新型 = self.型
         return 字(新型, 新音)
+
+    def 音標敢著無(self, 音標工具):
+        if self.型 in 標點符號 and self.音 in 標點符號:
+            return True
+        if self.音 == 無音:
+            return True
+        新音物件 = 音標工具(self.音)
+        if 新音物件 is None:
+            return False
+        return True

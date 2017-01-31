@@ -15,6 +15,10 @@ class 音標敢著無單元試驗(TestCase):
         字物件 = 字('媠', 'sui4')
         self.assertFalse(字物件.音標敢著無(臺灣閩南語羅馬字拼音))
 
+    def test_無音(self):
+        字物件 = 字('媠', '')
+        self.assertTrue(字物件.音標敢著無(臺灣閩南語羅馬字拼音))
+
     def test_注音符號(self):
         字物件 = 字('！', '!')
         self.assertTrue(字物件.音標敢著無(臺灣閩南語羅馬字拼音))
