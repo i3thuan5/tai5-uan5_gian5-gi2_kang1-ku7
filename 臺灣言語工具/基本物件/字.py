@@ -96,6 +96,6 @@ class 字(功能):
         if self.音 == 無音:
             return True
         新音物件 = 音標工具(self.音)
-        if 新音物件 is None:
+        if 新音物件.音標 is None:
             return False
         return True

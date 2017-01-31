@@ -21,3 +21,9 @@ class 功能:
     def 翻譯(self, 翻譯方法, *參數陣列, **參數物件):
         參數物件['物件'] = self
         return 翻譯方法.翻譯(*參數陣列, **參數物件)
+
+    def 音標敢著無(self, 音標工具):
+        for 字物件 in self.篩出字物件():
+            if not 字物件.音標敢著無(音標工具):
+                return False
+        return True
