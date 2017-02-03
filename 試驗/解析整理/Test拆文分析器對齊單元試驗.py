@@ -662,6 +662,12 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         章物件 = 拆文分析器.對齊章物件(型, 音)
         self.assertEqual(len(章物件.內底句), 2)
 
+    def test_音標有華語而且華語當作一个詞(self):
+        型 = '是華語叫做『陀螺』的「干樂」。'
+        音 = 'sī huâ-gí kiò-tsò “陀螺” ê “kan-lo̍k”.'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(len(組物件.內底詞), 11)
+
     def test_字物件參數毋是字串(self):
         with self.assertRaises(型態錯誤):
             拆文分析器.對齊字物件('konn', ['k', 'o', 'n', 'n'])
