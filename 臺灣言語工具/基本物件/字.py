@@ -72,12 +72,9 @@ class 字(功能):
             新音 = self.音
         elif self.音 != 無音:
             新音物件 = 音標工具(self.音)
-            if 新音物件 is None:
+            新音 = getattr(新音物件, 函式)()
+            if 新音 is None:
                 新音 = self.音
-            else:
-                新音 = getattr(新音物件, 函式)()
-                if 新音 is None:
-                    新音 = self.音
         else:
             新音 = 無音
         新型物件 = 音標工具(self.型)
