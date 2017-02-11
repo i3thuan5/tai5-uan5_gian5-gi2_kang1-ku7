@@ -73,19 +73,21 @@ class 字(功能):
         elif self.音 != 無音:
             新音物件 = 音標工具(self.音)
             if 新音物件 is None:
-                新音=self.音
+                新音 = self.音
             else:
                 新音 = getattr(新音物件, 函式)()
                 if 新音 is None:
-                    新音=self.音
+                    新音 = self.音
         else:
             新音 = 無音
         新型物件 = 音標工具(self.型)
         新型預設音標 = getattr(新型物件, 函式)()
         if self.音.startswith(self.型) and isinstance(新音, str):
             新型 = 新音
-        elif 新型物件 is not None\
-                and 新型預設音標 is not None and isinstance(新型預設音標, str):
+        elif (
+            新型物件 is not None and 新型預設音標 is not None and
+            isinstance(新型預設音標, str)
+        ):
             新型 = 新型預設音標
         else:
             新型 = self.型
