@@ -31,6 +31,9 @@ class 句(功能):
     def __str__(self):
         return '句：{0}'.format(self.內底集)
 
+    def __repr__(self):
+        return self.__str__()
+
     def 看型(self, 物件分字符號='', 物件分詞符號='', 物件分句符號=''):
         集的型 = []
         for 一集 in self.內底集:

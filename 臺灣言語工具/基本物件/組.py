@@ -33,6 +33,9 @@ class 組(功能):
     def __str__(self):
         return '組：{0}'.format(self.內底詞)
 
+    def __repr__(self):
+        return self.__str__()
+
     def 看型(self, 物件分字符號='', 物件分詞符號='', 物件分句符號=''):
         詞的型 = []
         for 一詞 in self.內底詞:

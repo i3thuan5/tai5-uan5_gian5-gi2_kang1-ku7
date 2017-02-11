@@ -30,6 +30,9 @@ class 章(功能):
     def __str__(self):
         return '章：{0}'.format(self.內底句)
 
+    def __repr__(self):
+        return self.__str__()
+
     def 看型(self, 物件分字符號='', 物件分詞符號='', 物件分句符號=''):
         句的型 = []
         for 一句 in self.內底句:
