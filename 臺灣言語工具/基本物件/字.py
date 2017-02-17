@@ -72,20 +72,30 @@ class 字(功能):
             新音 = self.音
         elif self.音 != 無音:
             新音物件 = 音標工具(self.音)
-            if 新音物件 is None:
-                raise 解析錯誤('音標無合法：{0}'.format(str(self)))
             新音 = getattr(新音物件, 函式)()
             if 新音 is None:
-                raise 解析錯誤('音標無法度轉：{0}'.format(str(self)))
+                新音 = self.音
         else:
             新音 = 無音
         新型物件 = 音標工具(self.型)
         新型預設音標 = getattr(新型物件, 函式)()
         if self.音.startswith(self.型) and isinstance(新音, str):
             新型 = 新音
-        elif 新型物件 is not None\
-                and 新型預設音標 is not None and isinstance(新型預設音標, str):
+        elif (
+            新型物件 is not None and 新型預設音標 is not None and
+            isinstance(新型預設音標, str)
+        ):
             新型 = 新型預設音標
         else:
             新型 = self.型
         return 字(新型, 新音)
+
+    def 音標敢著(self, 音標工具):
+        if self.型 in 標點符號 and self.音 in 標點符號:
+            return True
+        if self.音 == 無音:
+            return True
+        新音物件 = 音標工具(self.音)
+        if 新音物件.音標 is None:
+            return False
+        return True
