@@ -52,14 +52,12 @@ if __name__ == '__main__':
                 )
             )
         else:
-            # travis無法度編摩西，中研院的服務嘛袂穩
-            # ./翻譯/Test摩西模型訓練佮翻譯整合試驗.py
+            # 中研院的服務嘛袂穩，莫影響試驗成功無成功
             # ./斷詞/Test中研院斷詞用戶端整合試驗.py
             # ./剖析/Test中研院剖析用戶端整合試驗.py
-            # ./語言模型/TestKenLM語言模型訓練整合試驗.py
             試驗包.addTest(
                 unittest.defaultTestLoader.discover(
-                    '.', pattern='Test[!摩中K]*整合試驗.py'
+                    '.', pattern='Test[!中]*整合試驗.py'
                 )
             )
     試驗結果 = unittest.TextTestRunner().run(試驗包)
