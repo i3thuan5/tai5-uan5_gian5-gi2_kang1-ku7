@@ -1,4 +1,5 @@
-sudo: false
+sudo: true
+dist: trusty
 language: python
 python:
 - '3.4'
@@ -16,8 +17,6 @@ addons:
       - libc6-dev-i386
       - linux-libc-dev
       - gcc-multilib
-      - libx11-dev
-      - libx11-dev:i386
       - git
       - subversion
       - automake
@@ -30,8 +29,10 @@ addons:
       - libxmlrpc-c++.*-dev
       - cmake
       - csh
-      - libX11-dev
 install:
+- sudo dpkg --add-architecture i386
+- sudo apt-get update
+- sudo apt-get install libx11-dev libx11-dev:i386
 - pip install flake8
 - pip install python-coveralls
 branches:
