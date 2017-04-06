@@ -442,7 +442,10 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
 
     def test_對齊章濟字(self):
         詞型 = '點仔膠，黏著跤，叫阿爸，買豬跤，豬跤箍仔焄爛爛，枵鬼囡仔流水瀾。'
-        加空白後詞音 = 'tiam2-a2-ka1 , liam5-tioh8 kha1 , kio3 a1-pah4 , be2 ti1-kha1 , ti1-kha1 khoo1-a2 kun5 nua7-nua7 , iau1-kui2 gin2-a2 lau5 tsui2-nua7 . '
+        加空白後詞音 = (
+            'tiam2-a2-ka1 , liam5-tioh8 kha1 , kio3 a1-pah4 , be2 ti1-kha1 , '
+            'ti1-kha1 khoo1-a2 kun5 nua7-nua7 , iau1-kui2 gin2-a2 lau5 tsui2-nua7 . '
+        )
         章物件 = 拆文分析器.對齊章物件(詞型, 加空白後詞音)
         self.assertEqual(章物件.內底句, [
             拆文分析器.對齊句物件('點仔膠，', 'tiam2-a2-ka1,'),
