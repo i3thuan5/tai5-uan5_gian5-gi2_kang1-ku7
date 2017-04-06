@@ -16,7 +16,7 @@ python 走全部試驗.py # 試驗全做
 python 走全部試驗.py 單元試驗 # 只做單元試驗
 python 走全部試驗.py 單元試驗 莫編譯程式 # 程式編譯過，需要快速走單元試驗
 python -m unittest 試驗.斷詞.Test拄好長度辭典揣詞單元試驗 # 走單一試驗檔案
-python 走全部試驗.py travis # travis無法度編了摩西程式，除了需要摩西檔案以外的試驗。會走中研院服務，毋過失敗袂影響程式結果
+python 走全部試驗.py travis # 會走中研院服務，毋過失敗袂影響程式結果
 '''
 
 if __name__ == '__main__':
