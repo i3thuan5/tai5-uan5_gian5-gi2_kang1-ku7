@@ -6,7 +6,12 @@ from 臺灣言語工具.基本物件.公用變數 import 分詞符號
 from 臺灣言語工具.基本物件.公用變數 import 無音
 from 臺灣言語工具.基本物件.公用變數 import 分型音符號
 from 臺灣言語工具.基本物件.功能 import 功能
-from 臺灣言語工具.解析整理.羅馬音仕上げ import 羅馬音仕上げ
+from sys import stderr
+try:
+    from 臺灣言語工具.解析整理.羅馬音仕上げ import 羅馬音仕上げ
+except ImportError:
+    print('MacOS無法度import日文濁音的檔名，會影響著閩南語部份功能', file=stderr)
+    print('http://stackoverflow.com/questions/43244210', file=stderr)
 
 
 class 句(功能):
