@@ -42,7 +42,7 @@ branches:
 script:
 - pip install .
 - coverage run 走全部試驗.py travis
-- flake8 . --exclude=venv,外部程式 --count --show-source --ignore=E501
+- flake8 . --exclude=venv,外部程式 --count --show-source --max-line-length=100
 after_success:
 - coverage report
 - coveralls
