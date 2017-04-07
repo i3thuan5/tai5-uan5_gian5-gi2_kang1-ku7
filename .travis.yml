@@ -43,7 +43,7 @@ script:
 - pip install .
 - coverage run 走全部試驗.py travis
 - flake8 . --exclude=venv,外部程式,試驗 --count --show-source --max-line-length=100
-- flake8 . 試驗 --count --show-source --max-line-length=120
+- flake8 試驗 --count --show-source --max-line-length=130
 after_success:
 - coverage report
 - coveralls
