@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.語音合成.閩南語變調 import 閩南語變調
-from 臺灣言語工具.基本物件.句 import 句
-from 臺灣言語工具.基本物件.公用變數 import 標點符號
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
+from 臺灣言語工具.語音合成.閩南語音韻.變調判斷 import 變調判斷
+from 臺灣言語工具.語音合成.閩南語音韻.實詞變調 import 實詞變調
+from 臺灣言語工具.語音合成.閩南語音韻.維持本調 import 維持本調
 
 
 class 變調判斷單元試驗(TestCase):
@@ -53,7 +53,7 @@ class 變調判斷單元試驗(TestCase):
         章物件 = self.產生套用前物件('我愛媠媠。', 'gua2 ai3 sui2-sui2 .')
         self.assertEqual(
             變調判斷.判斷(章物件),
-            [維持本調, 實詞變調, 實詞變調, 維持本調, 標點符號]
+            [維持本調, 實詞變調, 實詞變調, 維持本調, 無調符號]
         )
 
     def 產生套用前物件(self, 漢字, 臺羅):

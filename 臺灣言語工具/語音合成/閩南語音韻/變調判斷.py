@@ -1,30 +1,28 @@
 # -*- coding: utf-8 -*-
 from 臺灣言語工具.基本物件.公用變數 import 本調符號
-from 臺灣言語工具.基本物件.章 import 章
+from 臺灣言語工具.語音合成.閩南語音韻.實詞變調 import 實詞變調
+from 臺灣言語工具.語音合成.閩南語音韻.維持本調 import 維持本調
 from 臺灣言語工具.基本物件.句 import 句
+from 臺灣言語工具.基本物件.章 import 章
 
 
-class 閩南語變調:
-    實詞變調規則 = {'1': '7', '2': '1', '3': '2', '5': '7',
-              '7': '3', '0': '0', '6': '3'}  # 6聲愛查
-    實詞一般入聲變調規則 = {'4': '8', '8': '10'}
-    實詞喉入聲變調規則 = {'4': '2', '8': '3'}
+class 變調判斷:
 
     @classmethod
-    def 變調(cls, 物件):
+    def 判斷(cls, 物件):
         if isinstance(物件, 章):
-            return cls._變章物件調(物件)
-        return cls._變句物件調(物件)
+            return cls._章物件調(物件)
+        return cls._句物件調(物件)
 
     @classmethod
-    def _變章物件調(cls, 章物件):
-        結果章物件 = 章()
+    def _章物件調(cls, 章物件):
+        結果 = []
         for 句物件 in 章物件.內底句:
-            結果章物件.內底句.append(cls._變句物件調(句物件))
-        return 結果章物件
+            結果.extend(cls._句物件調(句物件))
+        return 結果
 
     @classmethod
-    def _變句物件調(cls, 句物件):
+    def _句物件調(cls, 句物件):
         結果句物件 = 句(句物件.內底集)
         for 詞物件 in 結果句物件.網出詞物件():
             一詞的字陣列 = 詞物件.篩出字物件()
@@ -56,7 +54,10 @@ class 閩南語變調:
                 頂一个是本調記號 = True
             if 字物件.型 in ['的', '是']:  # and 字物件.音==cls.本調記號:
                 頂一个是斷詞點 = True
+        結果 = []
         for 字物件, 愛變調無 in zip(字陣列, 尾本調[::-1]):
             if 愛變調無:
-                字物件.音 = cls.實詞變調(*字物件.音)
-        return 結果句物件
+                結果.append(實詞變調)
+            else:
+                結果.append(維持本調)
+        return 結果
