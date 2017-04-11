@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase
-from 臺灣言語工具.語音合成.實詞變調 import 實詞變調
+from 臺灣言語工具.語音合成.閩南語音韻.實詞變調 import 實詞變調
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 
 
@@ -28,8 +28,8 @@ class 實詞變調單元試驗(TestCase):
 
     def test_無合法的音標愛錯誤(self):
         with self.assertRaises(解析錯誤):
-            實詞變調.變調('g', 'ua', '4')
+            實詞變調.變調(('g', 'ua', '4'))
         with self.assertRaises(解析錯誤):
-            實詞變調.變調('g', 'uah', '2')
+            實詞變調.變調(('g', 'uah', '2'))
         with self.assertRaises(解析錯誤):
-            實詞變調.變調('g', 'uat', '2')
+            實詞變調.變調(('g', 'uat', '2'))

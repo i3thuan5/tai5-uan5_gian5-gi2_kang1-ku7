@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from 臺灣言語工具.基本物件.公用變數 import 本調符號
-from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.基本物件.章 import 章
 from 臺灣言語工具.基本物件.句 import 句
 
@@ -61,23 +60,3 @@ class 閩南語變調:
             if 愛變調無:
                 字物件.音 = cls.實詞變調(*字物件.音)
         return 結果句物件
-
-    @classmethod
-    def 實詞變調(cls, 聲, 韻, 調):
-        if 韻.endswith('ʔ') or 韻.endswith('h'):
-            try:
-                調 = cls.實詞喉入聲變調規則[調]
-            except:
-                raise 解析錯誤('喉塞尾調錯誤！！{0}'.format((聲, 韻, 調)))
-            韻 = 韻[:-1]
-        elif 韻.endswith('p') or 韻.endswith('t') or 韻.endswith('k'):
-            try:
-                調 = cls.實詞一般入聲變調規則[調]
-            except:
-                raise 解析錯誤('入尾調錯誤！！{0}'.format((聲, 韻, 調)))
-        else:
-            if 調 in cls.實詞變調規則:
-                調 = cls.實詞變調規則[調]
-            else:
-                raise 解析錯誤('非入調錯誤！！{0}'.format((聲, 韻, 調)))
-        return (聲, 韻, 調)
