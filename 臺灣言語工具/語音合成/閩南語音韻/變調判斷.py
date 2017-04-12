@@ -9,6 +9,7 @@ from 臺灣言語工具.語音合成.閩南語音韻.變調.輕聲 import 輕聲
 
 
 class 變調判斷:
+    愛提掉的 = '愛提掉的'
 
     @classmethod
     def 判斷(cls, 物件):
@@ -42,7 +43,7 @@ class 變調判斷:
         for 字物件 in 字陣列[::-1]:
             if cls.是井號無(字物件):
                 頂一个是本調記號 = True
-                尾結果.append('愛提掉的')
+                尾結果.append(cls.愛提掉的)
             elif len(字物件.音) == 3:
                 _聲, _韻, 調 = 字物件.音
                 if 調 == '0':
