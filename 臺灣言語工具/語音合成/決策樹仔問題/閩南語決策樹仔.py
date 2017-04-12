@@ -42,9 +42,6 @@ class 閩南語決策樹仔(公家決策樹仔):
 
     @classmethod
     def 孤聲韻(cls):
-        '''
-        孤聲韻
-        '''
         聲韻 = []
         for 實際音 in itertools.chain(
                 ['sil', 'sp'],
@@ -185,14 +182,6 @@ class 閩南語決策樹仔(公家決策樹仔):
 
     @classmethod
     def 韻尾(cls):
-        '''
-                QS "Si7_Tsiap4_Tshun5_Im1" {*-*?p+*,*-*?m+*}
-                QS "Si7_Tsiap4_Ki2_Im1" {*-*?t+*,*-*?n+*}
-                QS "Si7_Tsiap4_Kin1_Im1" {*-*?k+*,*-*?ng+*}
-                QS "Si7_Tsiap4_Phinn5_Im1"    {*-*?m+*,*-*?n+*,*-*?ng+*}
-                QS "Si7_Un7_Hua3_Phinn5_Im1"    {*-xm+*,*-xng+*}
-                QS "Si7_Tsu2_Im1_Phinn5_Im1"    {*-m+*,*-ng+*,*-*am+*,*-*em+*,*-*um+*,*-*em+*,*-*om+*,*-*ang+*,*-*eng+*,*-*ung+*,*-*eng+*,*-*ong+*}
-        '''
         韻尾題目 = [
             ('陽聲韻', ['*?m', '*?n', '*?ŋ']),
             ('入聲韻', ['*?p', '*?t', '*?k', '*?ʔ']),
@@ -206,23 +195,6 @@ class 閩南語決策樹仔(公家決策樹仔):
 
     @classmethod
     def 輔音(cls):
-        '''
-        QS "Si7_Tsing1_Im1"   {*-p+*,*-t+*,*-k+*,*-ts+*}
-        QS "Si7_Song2_Ki3_Im1"      {*-ph+*,*-th+*,*-kh+*,*-tsh+*}
-        QS "Si7_Lo5_Im1"    {*-b+*,*-l+*,*-g+*,*-j+*}
-        QS "Si7_Lo5_Sail3_Im1"    {*-b+*,*-g+*,*-j+*}
-        QS "Si7_Phinn5_Im1"    {*-m+*,*-n+*,*-ng+*}
-
-        QS "Si7_Sun5_Sai3_Im1"      {*-p+*,*-ph+*,*-b+*,*-t+*,*-th+*,*-k+*,*-kh+*,*-g+*}
-        QS "Si7_Sai3_Im1"           {*-p+*,*-ph+*,*-b+*,*-t+*,*-th+*,*-k+*,*-kh+*,*-g+*,*-ts+*,*-tsh+*,*-j+*}
-        QS "Si7_Sai3_Tshat4_Im1"    {*-ts+*,*-tsh+*,*-j+*}
-        QS "Si7_Tshat4_Im1"         {*-s+*,*-h+*,*-ts+*,*-tsh+*,*-j+*}
-        QS "Si7_Sun5_Tshat4_Im1"    {*-s+*,*-h+*}
-
-        QS "Si7_Tshun5_Tsu2_Im1"   {*-p+*,*-ph+*,*-b+*,*-m+*}
-        QS "Si7_Ki2_Tsu2_Im1"      {*-t+*,*-th+*,*-n+*,*-l+*,*-ts+*,*-tsh+*,*-j+*,*-s+*}
-        QS "Si7_Kin1_Tsu2_Im1"    {*-k+*,*-kh+*,*-g+*,*-ng+*,*-h+*}
-        '''
         塞擦題目 = [
             ('塞音', ['p', 'pʰ', 'b', 't', 'tʰ', 'k', 'kʰ', 'g', 'ʔ', ]),
             ('塞擦音', ['ts', 'tsʰ', 'dz']),
