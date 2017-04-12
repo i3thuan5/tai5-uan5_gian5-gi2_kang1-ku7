@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from 臺灣言語工具.基本物件.公用變數 import 本調符號
-from 臺灣言語工具.語音合成.閩南語音韻.實詞變調 import 實詞變調
-from 臺灣言語工具.語音合成.閩南語音韻.維持本調 import 維持本調
 from 臺灣言語工具.基本物件.句 import 句
 from 臺灣言語工具.基本物件.章 import 章
+from 臺灣言語工具.語音合成.閩南語音韻.變調.實詞變調 import 實詞變調
+from 臺灣言語工具.語音合成.閩南語音韻.變調.維持本調 import 維持本調
 
 
 class 變調判斷:
