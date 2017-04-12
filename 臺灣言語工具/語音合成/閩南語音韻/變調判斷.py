@@ -4,6 +4,8 @@ from 臺灣言語工具.基本物件.句 import 句
 from 臺灣言語工具.基本物件.章 import 章
 from 臺灣言語工具.語音合成.閩南語音韻.變調.實詞變調 import 實詞變調
 from 臺灣言語工具.語音合成.閩南語音韻.變調.維持本調 import 維持本調
+from 臺灣言語工具.語音合成.閩南語音韻.變調.無調符號 import 無調符號
+from 臺灣言語工具.語音合成.閩南語音韻.變調.輕聲 import 輕聲
 
 
 class 變調判斷:
@@ -33,31 +35,35 @@ class 變調判斷:
             except:
                 pass
         字陣列 = 結果句物件.篩出字物件()
-        尾本調 = []
+        尾結果 = []
         有出現上尾字無 = False
         頂一个是本調記號 = False
         頂一个是斷詞點 = False
         for 字物件 in 字陣列[::-1]:
-            if len(字物件.音) == 3:
-                if not 有出現上尾字無 or\
+            if cls.是井號無(字物件):
+                頂一个是本調記號 = True
+                尾結果.append('愛提掉的')
+            elif len(字物件.音) == 3:
+                _聲, _韻, 調 = 字物件.音
+                if 調 == '0':
+                    尾結果.append(輕聲)
+                elif not 有出現上尾字無 or\
                         頂一个是本調記號 or\
                         (頂一个是斷詞點 and 字物件.型 not in ['我', '你', '伊', '咱', '阮', '恁', '𪜶', ]):
-                    尾本調.append(False)
+                    尾結果.append(維持本調)
                     有出現上尾字無 = True
                 else:
-                    尾本調.append(True)
+                    尾結果.append(實詞變調)
+                頂一个是斷詞點 = False
             else:
-                尾本調.append(False)
-            頂一个是本調記號 = False
-            頂一个是斷詞點 = False
-            if 字物件.型 == 本調符號:  # and 字物件.音==cls.本調記號:
-                頂一个是本調記號 = True
-            if 字物件.型 in ['的', '是']:  # and 字物件.音==cls.本調記號:
+                尾結果.append(無調符號)
+                頂一个是斷詞點 = False
+            if 字物件.型 in ['的', '是']:
                 頂一个是斷詞點 = True
-        結果 = []
-        for 字物件, 愛變調無 in zip(字陣列, 尾本調[::-1]):
-            if 愛變調無:
-                結果.append(實詞變調)
-            else:
-                結果.append(維持本調)
-        return 結果
+        return 尾結果[::-1]
+
+    @classmethod
+    def 是井號無(cls, 字物件):
+        if 字物件.型 == 本調符號:  # and 字物件.音==cls.本調記號:
+            return True
+        return False
