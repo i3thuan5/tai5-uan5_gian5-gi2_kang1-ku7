@@ -18,7 +18,8 @@ class 集(功能):
             for 組物件 in 組陣列:
                 if not isinstance(組物件, 組):
                     raise 型態錯誤(
-                        '組陣列內底有毋是組的：組陣列＝{0}，組物件＝{1}'.format(str(組陣列), str(組物件)))
+                        '組陣列內底有毋是組的：組陣列＝{0}，組物件＝{1}'.format(str(組陣列), str(組物件))
+                    )
                 self.內底組.append(組(組物件.內底詞))
         except TypeError as 問題:
             raise 型態錯誤('傳入來的組陣列毋法度疊代：{0}，問題：{1}'
