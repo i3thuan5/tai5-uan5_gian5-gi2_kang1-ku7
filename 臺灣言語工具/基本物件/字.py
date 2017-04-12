@@ -68,13 +68,14 @@ class 字(功能):
 
     def 轉音(self, 音標工具, 函式='預設音標'):
         # 逐个函式攏愛產生新的物件
-        if self.型 in 標點符號 and self.音 in 標點符號:
-            新音 = self.音
-        elif self.音 != 無音:
+        if self.音 != 無音:
             新音物件 = 音標工具(self.音)
             新音 = getattr(新音物件, 函式)()
             if 新音 is None:
-                新音 = self.音
+                if self.型 in 標點符號 and self.音 in 標點符號:
+                    新音 = self.音
+                else:
+                    新音 = self.音
         else:
             新音 = 無音
         新型物件 = 音標工具(self.型)
