@@ -48,23 +48,23 @@ class 變調判斷:
                 一詞的字陣列[-1].有仔 = True
         字陣列 = 結果句物件.篩出字物件()
         尾結果 = []
-        有出現上尾字無 = False
-        頂一个是本調記號 = False
+        紲落來是本調 = True
         頂一个是斷詞點 = False
         頂一个是仔 = False
         for 字物件 in 字陣列[::-1]:
-            這个是本調記號 = False
             這个是斷詞點 = False
             if hasattr(字物件, '是三連音'):
                 delattr(字物件, '是三連音')
                 尾結果.append(三連音變調)
+                紲落來是本調 = False
                 這个是斷詞點 = True
             elif hasattr(字物件, '有仔'):
                 delattr(字物件, '有仔')
                 尾結果.append(維持本調)
+                紲落來是本調 = False
             elif cls.是井號無(字物件):
                 尾結果.append(cls.愛提掉的)
-                這个是本調記號 = True
+                紲落來是本調 = True
             elif len(字物件.音) != 3:
                 尾結果.append(無調符號)
             else:
@@ -74,19 +74,22 @@ class 變調判斷:
                         尾結果.append(隨前變調)
                     else:
                         尾結果.append(輕聲)
+                    紲落來是本調 = True
                 elif 頂一个是仔:
                     尾結果.append(仔前變調)
-                elif not 有出現上尾字無 or\
-                        頂一个是本調記號 or\
-                        (頂一个是斷詞點 and not cls.是代名詞無(字物件)):
+                    紲落來是本調 = False
+                elif (
+                    紲落來是本調 or
+                    (頂一个是斷詞點 and not cls.是代名詞無(字物件))
+                ):
                     尾結果.append(維持本調)
-                    有出現上尾字無 = True
+                    紲落來是本調 = False
                 else:
                     尾結果.append(規則變調)
+                    紲落來是本調 = False
             if cls.會有斷詞點無(字物件):
                 這个是斷詞點 = True
             頂一个是仔 = cls.是仔無(字物件)
-            頂一个是本調記號 = 這个是本調記號
             頂一个是斷詞點 = 這个是斷詞點
         return 尾結果[::-1]
 
@@ -118,6 +121,6 @@ class 變調判斷:
 
     @classmethod
     def 會有斷詞點無(cls, 字物件):
-        if 字物件.型 in ['的', '是']:
+        if 字物件.型 in ['的']:
             return True
         return False
