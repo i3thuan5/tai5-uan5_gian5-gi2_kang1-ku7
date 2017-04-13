@@ -2,7 +2,7 @@
 from 臺灣言語工具.基本物件.公用變數 import 本調符號
 from 臺灣言語工具.基本物件.句 import 句
 from 臺灣言語工具.基本物件.章 import 章
-from 臺灣言語工具.語音合成.閩南語音韻.變調.實詞變調 import 實詞變調
+from 臺灣言語工具.語音合成.閩南語音韻.變調.規則變調 import 規則變調
 from 臺灣言語工具.語音合成.閩南語音韻.變調.維持本調 import 維持本調
 from 臺灣言語工具.語音合成.閩南語音韻.變調.無調符號 import 無調符號
 from 臺灣言語工具.語音合成.閩南語音韻.變調.輕聲 import 輕聲
@@ -54,7 +54,7 @@ class 變調判斷:
                     尾結果.append(維持本調)
                     有出現上尾字無 = True
                 else:
-                    尾結果.append(實詞變調)
+                    尾結果.append(規則變調)
                 頂一个是斷詞點 = False
             else:
                 尾結果.append(無調符號)
