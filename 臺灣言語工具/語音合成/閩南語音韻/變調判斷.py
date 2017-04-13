@@ -7,6 +7,7 @@ from 臺灣言語工具.語音合成.閩南語音韻.變調.維持本調 import 
 from 臺灣言語工具.語音合成.閩南語音韻.變調.無調符號 import 無調符號
 from 臺灣言語工具.語音合成.閩南語音韻.變調.輕聲 import 輕聲
 from 臺灣言語工具.語音合成.閩南語音韻.變調.三連音變調 import 三連音變調
+from 臺灣言語工具.語音合成.閩南語音韻.變調.仔前變調 import 仔前變調
 
 
 class 變調判斷:
@@ -39,11 +40,17 @@ class 變調判斷:
             if len(一詞的字陣列) == 3:
                 if 一詞的字陣列[0] == 一詞的字陣列[1] and 一詞的字陣列[0] == 一詞的字陣列[2]:
                     一詞的字陣列[0].是三連音 = True
+            有仔 = False
+            for 字物件 in 一詞的字陣列:
+                有仔 = 有仔 or cls.是仔無(字物件)
+            if 有仔:
+                一詞的字陣列[-1].有仔 = True
         字陣列 = 結果句物件.篩出字物件()
         尾結果 = []
         有出現上尾字無 = False
         頂一个是本調記號 = False
         頂一个是斷詞點 = False
+        頂一个是仔 = False
         for 字物件 in 字陣列[::-1]:
             這个是本調記號 = False
             這个是斷詞點 = False
@@ -51,6 +58,9 @@ class 變調判斷:
                 delattr(字物件, '是三連音')
                 尾結果.append(三連音變調)
                 這个是斷詞點 = True
+            elif hasattr(字物件, '有仔'):
+                delattr(字物件, '有仔')
+                尾結果.append(維持本調)
             elif cls.是井號無(字物件):
                 尾結果.append(cls.愛提掉的)
                 這个是本調記號 = True
@@ -60,6 +70,8 @@ class 變調判斷:
                 _聲, _韻, 調 = 字物件.音
                 if 調 == '0':
                     尾結果.append(輕聲)
+                elif 頂一个是仔:
+                    尾結果.append(仔前變調)
                 elif not 有出現上尾字無 or\
                         頂一个是本調記號 or\
                         (頂一个是斷詞點 and 字物件.型 not in ['我', '你', '伊', '咱', '阮', '恁', '𪜶', ]):
@@ -69,6 +81,7 @@ class 變調判斷:
                     尾結果.append(規則變調)
             if 字物件.型 in ['的', '是']:
                 這个是斷詞點 = True
+            頂一个是仔 = cls.是仔無(字物件)
             頂一个是本調記號 = 這个是本調記號
             頂一个是斷詞點 = 這个是斷詞點
         return 尾結果[::-1]
@@ -76,5 +89,11 @@ class 變調判斷:
     @classmethod
     def 是井號無(cls, 字物件):
         if 字物件.型 == 本調符號:  # and 字物件.音==cls.本調記號:
+            return True
+        return False
+
+    @classmethod
+    def 是仔無(cls, 字物件):
+        if 字物件.型 == '仔':  # and 字物件.音==cls.本調記號:
             return True
         return False
