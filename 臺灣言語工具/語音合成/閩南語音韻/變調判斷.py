@@ -8,6 +8,7 @@ from 臺灣言語工具.語音合成.閩南語音韻.變調.無調符號 import 
 from 臺灣言語工具.語音合成.閩南語音韻.變調.輕聲 import 輕聲
 from 臺灣言語工具.語音合成.閩南語音韻.變調.三連音變調 import 三連音變調
 from 臺灣言語工具.語音合成.閩南語音韻.變調.仔前變調 import 仔前變調
+from 臺灣言語工具.語音合成.閩南語音韻.變調.隨前變調 import 隨前變調
 
 
 class 變調判斷:
@@ -69,7 +70,10 @@ class 變調判斷:
             else:
                 _聲, _韻, 調 = 字物件.音
                 if 調 == '0':
-                    尾結果.append(輕聲)
+                    if cls.輕聲是隨前變調無(字物件):
+                        尾結果.append(隨前變調)
+                    else:
+                        尾結果.append(輕聲)
                 elif 頂一个是仔:
                     尾結果.append(仔前變調)
                 elif not 有出現上尾字無 or\
@@ -101,6 +105,14 @@ class 變調判斷:
     @classmethod
     def 是代名詞無(cls, 字物件):
         if 字物件.型 in ['我', '你', '伊', '咱', '阮', '恁', '𪜶', ]:
+            return True
+        return False
+
+    @classmethod
+    def 輕聲是隨前變調無(cls, 字物件):
+        if cls.是代名詞無(字物件):
+            return True
+        if 字物件.型 in ['的', '仔', '矣', '裡', ]:
             return True
         return False
 
