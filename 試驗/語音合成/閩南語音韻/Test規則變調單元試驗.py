@@ -21,12 +21,9 @@ class 規則變調單元試驗(TestCase):
         變調了 = ('k', 'ut', '10')
         self.assertEqual(規則變調.變調(原本), 變調了)
 
-    def test_輕聲(self):
-        原本 = ('s', 'ui', '0')
-        變調了 = ('s', 'ui', '0')
-        self.assertEqual(規則變調.變調(原本), 變調了)
-
     def test_無合法的音標愛錯誤(self):
+        with self.assertRaises(解析錯誤):
+            規則變調.變調(('g', 'ua', '0'))
         with self.assertRaises(解析錯誤):
             規則變調.變調(('g', 'ua', '4'))
         with self.assertRaises(解析錯誤):

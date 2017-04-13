@@ -23,6 +23,8 @@ class 仔前變調單元試驗(TestCase):
 
     def test_無合法的音標愛錯誤(self):
         with self.assertRaises(解析錯誤):
+            仔前變調.變調(('g', 'ua', '0'))
+        with self.assertRaises(解析錯誤):
             仔前變調.變調(('g', 'ua', '4'))
         with self.assertRaises(解析錯誤):
             仔前變調.變調(('g', 'uah', '2'))
