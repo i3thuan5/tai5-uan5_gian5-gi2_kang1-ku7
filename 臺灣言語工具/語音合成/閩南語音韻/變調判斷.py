@@ -74,12 +74,12 @@ class 變調判斷:
                     尾結果.append(仔前變調)
                 elif not 有出現上尾字無 or\
                         頂一个是本調記號 or\
-                        (頂一个是斷詞點 and 字物件.型 not in ['我', '你', '伊', '咱', '阮', '恁', '𪜶', ]):
+                        (頂一个是斷詞點 and not cls.是代名詞無(字物件)):
                     尾結果.append(維持本調)
                     有出現上尾字無 = True
                 else:
                     尾結果.append(規則變調)
-            if 字物件.型 in ['的', '是']:
+            if cls.會有斷詞點無(字物件):
                 這个是斷詞點 = True
             頂一个是仔 = cls.是仔無(字物件)
             頂一个是本調記號 = 這个是本調記號
@@ -95,5 +95,17 @@ class 變調判斷:
     @classmethod
     def 是仔無(cls, 字物件):
         if 字物件.型 == '仔':  # and 字物件.音==cls.本調記號:
+            return True
+        return False
+
+    @classmethod
+    def 是代名詞無(cls, 字物件):
+        if 字物件.型 in ['我', '你', '伊', '咱', '阮', '恁', '𪜶', ]:
+            return True
+        return False
+
+    @classmethod
+    def 會有斷詞點無(cls, 字物件):
+        if 字物件.型 in ['的', '是']:
             return True
         return False
