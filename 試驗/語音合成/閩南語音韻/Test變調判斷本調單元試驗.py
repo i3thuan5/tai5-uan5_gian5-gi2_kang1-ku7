@@ -21,13 +21,13 @@ class 變調判斷本調單元試驗(TestCase):
             這馬結果 = len(結果) - 1
             while 這馬答案 >= 0:
                 if 變調判斷.是井號無(答案字陣列[這馬答案]):
-                    self.assertEqual(結果[這馬結果], 維持本調)
+                    self.assertEqual(結果[這馬結果], 維持本調, 名)
                     這馬答案 -= 2
                 else:
-                    self.assertNotEqual(結果[這馬結果], 維持本調)
+                    self.assertNotEqual(結果[這馬結果], 維持本調, 名)
                     這馬答案 -= 1
                 這馬結果 -= 1
-            self.assertLess(這馬結果, 0)
+            self.assertLess(這馬結果, 0, 名)
 
     def 產生套用前物件(self, 漢字, 臺羅):
         return (
