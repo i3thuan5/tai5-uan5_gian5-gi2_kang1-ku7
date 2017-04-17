@@ -9,6 +9,7 @@ from 臺灣言語工具.語音合成.閩南語音韻.變調.輕聲 import 輕聲
 from 臺灣言語工具.語音合成.閩南語音韻.變調.三連音變調 import 三連音變調
 from 臺灣言語工具.語音合成.閩南語音韻.變調.仔前變調 import 仔前變調
 from 臺灣言語工具.語音合成.閩南語音韻.變調.隨前變調 import 隨前變調
+from 臺灣言語工具.語音合成.閩南語音韻.變調.再變調 import 再變調
 
 
 class 變調判斷:
@@ -84,6 +85,9 @@ class 變調判斷:
                 ):
                     尾結果.append(維持本調)
                     紲落來是本調 = False
+                elif cls.是再變調(字物件):
+                    尾結果.append(再變調)
+                    紲落來是本調 = False
                 else:
                     尾結果.append(規則變調)
                     紲落來是本調 = False
@@ -116,6 +120,12 @@ class 變調判斷:
         if cls.是代名詞無(字物件):
             return True
         if 字物件.型 in ['的', '仔', '矣', '裡', ]:
+            return True
+        return False
+
+    @classmethod
+    def 是再變調(cls, 字物件):
+        if 字物件.型 in ['欲', '去']:
             return True
         return False
 
