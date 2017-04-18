@@ -108,10 +108,6 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         詞物件 = 拆文分析器.分詞詞物件(分詞)
         self.assertEqual(len(詞物件.內底字), 0)
 
-    def test_分詞詞有分詞無半字(self):
-        分詞 = '｜'
-        self.assertRaises(解析錯誤, 拆文分析器.分詞詞物件, 分詞)
-
     def test_分詞詞無分型音(self):
         分詞 = '美麗'
         詞物件 = 拆文分析器.分詞詞物件(分詞)
@@ -129,6 +125,13 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         self.assertEqual(len(詞物件.內底字), 1)
         self.assertEqual(詞物件.內底字[0].型, 型)
         self.assertEqual(詞物件.內底字[0].音, 音)
+
+    def test_分詞詞有分詞無半字(self):
+        分詞 = '｜'
+        詞物件 = 拆文分析器.分詞詞物件(分詞)
+        self.assertEqual(len(詞物件.內底字), 1)
+        self.assertEqual(詞物件.內底字[0].型, '｜')
+        self.assertEqual(詞物件.內底字[0].音, 無音)
 
     def test_分詞全是分詞符號(self):
         詞物件 = 拆文分析器.分詞詞物件('｜｜｜')
@@ -153,6 +156,18 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         self.assertEqual(len(組物件.內底詞), 2)
         self.assertEqual(組物件.內底詞[1].內底字[0].型, '｜')
         self.assertEqual(組物件.內底詞[1].內底字[0].音, '｜')
+
+    def test_分詞內有獨立的分詞符號(self):
+        字物件陣列 = 拆文分析器.分詞組物件('｜ ＝ 安 姑 ＝ ｜ ＝ ＝ 表 小 弟').篩出字物件()
+        self.assertEqual(len(字物件陣列), 11)
+        self.assertEqual(字物件陣列[0].型, '｜')
+        self.assertEqual(字物件陣列[0].音, 無音)
+        self.assertEqual(字物件陣列[1].型, '＝')
+        self.assertEqual(字物件陣列[1].音, 無音)
+        self.assertEqual(字物件陣列[5].型, '｜')
+        self.assertEqual(字物件陣列[5].音, 無音)
+        self.assertEqual(字物件陣列[11].型, '弟')
+        self.assertEqual(字物件陣列[11].音, 無音)
 
     def test_分詞組集句章孤字(self):
         分詞 = '𪜶｜in1'
