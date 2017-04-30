@@ -6,85 +6,85 @@ class 賽考利克轉音值單元試驗(TestCase):
     def test_單音節(self):
         self.assertEqual(
             賽考利克("la").音值(),
-            [['ts', 'i'], ['ɬ', 'a', 'ɾ']]
+            [['l', 'a']]
         )
 
     def test_雙音節(self):
         self.assertEqual(
             賽考利克("yaqih").音值(),
-            [['ts', 'i'], ['ɬ', 'a', 'ɾ']]
+            [['j', 'a'], ['q', 'i', 'h']]
         )
+
     def test_喉塞尾(self):
         self.assertEqual(
             賽考利克("maya'").音值(),
-            [['ts', 'i'], ['ɬ', 'a', 'ɾ']]
+            [['m', 'a'], ['j', 'a', 'ʔ']]
         )
 
     def test_大寫(self):
         self.assertEqual(
             賽考利克("Maya'").音值(),
-            [['ts', 'i'], ['ɬ', 'a', 'ɾ']]
+            [['m', 'a'], ['j', 'a', 'ʔ']]
         )
-        
 
     def test_CGVG音節(self):
         self.assertEqual(
             賽考利克("myan").音值(),
-            [['ts', 'i'], ['ɬ', 'a', 'ɾ']]
+            [['m', 'j', 'a', 'n']]
         )
+
     def test_底線弱母音(self):
         self.assertEqual(
             賽考利克("m_yan").音值(),
-            [['ts', 'i'], ['ɬ', 'a', 'ɾ']]
+            [['m', 'ə'], ['j', 'a', 'n']]
         )
-
 
     def test_子音串和CGVG音節(self):
         self.assertEqual(
             賽考利克("'lwaw").音值(),
-            [['ts', 'i'], ['ɬ', 'a', 'ɾ']]
+            [['ʔ', 'ə'], ['l', 'w', 'a', 'w']]
         )
 
     def test_CGGVG音節(self):
         self.assertEqual(
             賽考利克("zywaw").音值(),
-            [['ts', 'i'], ['ɬ', 'a', 'ɾ']]
+            [['z', 'j', 'w', 'a', 'w']]
         )
 
     def test_hngawan加in中綴(self):
         self.assertEqual(
             賽考利克("hinngawan").音值(),
-            [['ts', 'i'], ['ɬ', 'a', 'ɾ']]
+            [['h', 'i', 'n'], ['ŋ', 'a'], ['w', 'a', 'n']]
         )
 
     def test_三子音串(self):
         self.assertEqual(
             賽考利克("mnbu'").音值(),
-            [['ts', 'i'], ['ɬ', 'a', 'ɾ']]
+            [['m', 'ə'], ['n', 'ə'], ['β', 'u', 'ʔ']]
         )
 
-    def test_表示詞源的VnnV(self):
+    def test_表示詞源的nnV(self):
         self.assertEqual(
             賽考利克("minnbu'").音值(),
-            [['ts', 'i'], ['ɬ', 'a', 'ɾ']]
+            [['m', 'i'], ['n', 'ə'], ['β', 'u', 'ʔ']]
         )
 
     def test_詞底層的uw(self):
         self.assertEqual(
             賽考利克("lpuw").音值(),
-            [['ts', 'i'], ['ɬ', 'a', 'ɾ']]
+            [['l', 'i'], ['p', 'u']]
         )
 
     def test_收i尾(self):
         self.assertEqual(
             賽考利克("qani").音值(),
-            [['ts', 'i'], ['ɬ', 'a', 'ɾ']]
+            [['q', 'a'], ['n', 'i']]
         )
 
     def test_詞底層的iy(self):
         self.assertEqual(
             賽考利克("bihiy").音值(),
-            [['ts', 'i'], ['ɬ', 'a', 'ɾ']]
+            [['b', 'i'], ['h', 'i']]
         )
 
     def test_預設音標就是家己(self):
