@@ -66,13 +66,13 @@ class 賽考利克轉音值單元試驗(TestCase):
     def test_表示詞源的nnV(self):
         self.assertEqual(
             賽考利克("minnbu'").音值(),
-            [['m', 'i'], ['n', 'ə'], ['β', 'u', 'ʔ']]
+            [['m', 'i', 'n'], ['n', 'ə'], ['β', 'u', 'ʔ']]
         )
 
     def test_詞底層的uw(self):
         self.assertEqual(
             賽考利克("lpuw").音值(),
-            [['l', 'i'], ['p', 'u']]
+            [['l', 'ə'], ['p', 'u']]
         )
 
     def test_收i尾(self):
