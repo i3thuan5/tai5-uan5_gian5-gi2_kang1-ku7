@@ -21,6 +21,8 @@ class 秀姑巒阿美語決策樹仔(公家決策樹仔):
         print(len(問題), file=輸出目的)
         問題 |= cls.詞句長度(10, 20)
         print(len(問題), file=輸出目的)
+        問題 |= cls.孤雙數音節()
+        print(len(問題), file=輸出目的)
 
         生決策樹仔問題.檢查(問題)
         return 問題
