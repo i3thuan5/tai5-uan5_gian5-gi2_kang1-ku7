@@ -9,3 +9,7 @@ _輔音 = {
     'm': 'm', 'n': 'n', 'ng': 'ŋ',
     'r': 'r', 'l': 'l',
 }
+
+
+class 賽夏:
+    書寫系統國際音標對應表 = set(_元音.values()) | set(_滑音.values()) | set(_輔音.values())
