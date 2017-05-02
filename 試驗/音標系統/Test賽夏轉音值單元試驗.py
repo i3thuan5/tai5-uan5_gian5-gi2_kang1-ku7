@@ -77,7 +77,7 @@ class 賽夏轉音值單元試驗(TestCase):
     def test_冒號後同元音代表同一音節_接滑音(self):
         self.assertEqual(
             賽夏("ka:ay").音值(),
-            [['k', 'a:'], ['a', 'j']]
+            [['k', 'a:', 'j']]
         )
 
     def test_冒號後同元音代表同一音節_接下一個音節的子音(self):
