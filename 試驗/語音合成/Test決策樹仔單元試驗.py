@@ -27,3 +27,6 @@ class 決策樹仔單元試驗(TestCase):
 
     def test_秀姑巒阿美生決策樹仔問題(self):
         self.assertGreater(len(秀姑巒阿美語決策樹仔.生()), 1000)
+
+    def test_秀姑巒阿美有孤雙數問題(self):
+        self.assertIn('孤數音節', '_Pangcah_'.join(秀姑巒阿美語決策樹仔.生()))
