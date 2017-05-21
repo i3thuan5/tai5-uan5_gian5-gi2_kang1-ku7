@@ -1,4 +1,5 @@
 from unittest.case import TestCase
+from 臺灣言語工具.音標系統.SaySiyat.賽夏 import 賽夏
 
 
 class 賽夏轉音值單元試驗(TestCase):
@@ -137,6 +138,6 @@ class 賽夏轉音值單元試驗(TestCase):
         self.assertEqual(賽夏("rowaSek").預設音標(), 'rowaSek')
 
     def test_無合法(self):
-        拼音 = 賽夏("！")
+        拼音 = 賽夏("a！")
         self.assertIsNone(拼音.音標)
         self.assertEqual(拼音.音值(), [])
