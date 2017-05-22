@@ -41,7 +41,10 @@ class 賽夏:
     def 音值(self):
         if self.音標 is None:
             return []
-        音素陣列 = self.拆音節檢查.findall(self.音標)
+        音素陣列 = self.拆音節檢查.findall(
+            self.音標.replace('iy', 'y')
+            .replace('ow', 'w')
+        )
         是音節上尾一个 = []
         有元音矣 = False
         有滑音矣 = False

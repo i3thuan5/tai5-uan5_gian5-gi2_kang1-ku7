@@ -31,7 +31,7 @@ class 賽夏轉音值單元試驗(TestCase):
     def test_書寫CiyV實際上是CyV(self):
         self.assertEqual(
             賽夏("ngiyaw").音值(),
-            [['ŋ', 'y', 'a', 'w']]
+            [['ŋ', 'j', 'a', 'w']]
         )
 
     def test_喉塞尾(self):
@@ -49,13 +49,13 @@ class 賽夏轉音值單元試驗(TestCase):
     def test_wow音節(self):
         self.assertEqual(
             賽夏("bawow").音值(),
-            [['b', 'a'], ['w', 'o', 'w']]
+            [['β', 'a'], ['w', 'o', 'w']]
         )
 
     def test_雙字母的母音(self):
         self.assertEqual(
             賽夏("kabotoe'an").音值(),
-            [['k', 'a'], ['b', 'o'], ['t', 'œ'], ['ʔ', 'a', 'n']]
+            [['k', 'a'], ['β', 'o'], ['t', 'œ'], ['ʔ', 'a', 'n']]
         )
 
     def test_大寫S開頭(self):
@@ -93,7 +93,7 @@ class 賽夏轉音值單元試驗(TestCase):
     def test_冒號後不同元音代表同一音節的滑音(self):
         self.assertEqual(
             賽夏("ka:i'").音值(),
-            [['k', 'a:', 'y', 'ʔ']]
+            [['k', 'a:', 'j', 'ʔ']]
         )
 
     def test_冒號後接子音代表和下一個音節中有停頓(self):
@@ -118,14 +118,14 @@ class 賽夏轉音值單元試驗(TestCase):
         '其他狀況下不會出現iy尾'
         self.assertEqual(
             賽夏("ra:iy").音值(),
-            [['r', 'a:', 'y']]
+            [['r', 'a:', 'j']]
         )
 
     def test_長音後的元音是下一個音節的滑音(self):
         'iy在長音後，也是代表一個滑音y'
         self.assertEqual(
             賽夏("rina:iyan").音值(),
-            [['r', 'i'], ['n', 'a:'], ['y', 'a', 'n']]
+            [['r', 'i'], ['n', 'a:'], ['j', 'a', 'n']]
         )
 
     def test_加拉灣(self):
