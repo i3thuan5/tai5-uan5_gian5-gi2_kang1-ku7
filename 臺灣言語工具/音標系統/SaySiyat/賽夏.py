@@ -10,6 +10,7 @@ _輔音 = {
     'b': 'β', 's': 's', 'z': 'z', 'S': 'ʃ', 'h': 'h',
     'm': 'm', 'n': 'n', 'ng': 'ŋ',
     'r': 'r', 'l': 'l',
+    ':': 'L',
 }
 
 _國際音標對照表 = {}
@@ -29,12 +30,13 @@ class 賽夏:
     def __init__(self, 音標):
         self.音標 = None
         try:
-            print(self.寫法檢查.match(音標), r'{}+\Z'.format(正規表示法(self.國際音標對照表)))
             if self.寫法檢查.match(音標).group(0) == 音標:
                 self.音標 = 音標
         except:
-            raise
             pass
+
+    def 預設音標(self):
+        return self.音標
 
     def 音值(self):
         if self.音標 is None:
