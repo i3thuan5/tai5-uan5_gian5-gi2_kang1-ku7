@@ -24,7 +24,7 @@ _輔音 = {
 def 正規表示法(對應表):
     一个 = []
     兩个以上 = []
-    for 書寫 in sorted(書寫系統國際音標對應表.keys(), key=lambda 素: (-len(素), 素)):
+    for 書寫 in sorted(對應表.keys(), key=lambda 素: (-len(素), 素)):
         if len(書寫) == 1:
             一个.append(書寫)
         else:

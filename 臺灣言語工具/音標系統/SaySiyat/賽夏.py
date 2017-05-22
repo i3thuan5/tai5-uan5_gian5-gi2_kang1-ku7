@@ -12,19 +12,28 @@ _輔音 = {
     'r': 'r', 'l': 'l',
 }
 
+_國際音標對照表 = {}
+_國際音標對照表.update(_元音)
+_國際音標對照表.update(_滑音)
+_國際音標對照表.update(_輔音)
+
 
 class 賽夏:
-    國際音標表 = set(_元音.values()) | set(_滑音.values()) | set(_輔音.values())
-    寫法檢查 = re.compile(r'{}+\Z'.format(正規表示法(國際音標表)))
-    拆音節檢查 = re.compile(正規表示法(國際音標表))
+    國際音標對照表 = _國際音標對照表
+    元音 = _元音
+    滑音 = _滑音
+    輔音 = _輔音
+    寫法檢查 = re.compile(r'{}+\Z'.format(正規表示法(國際音標對照表)))
+    拆音節檢查 = re.compile(正規表示法(國際音標對照表))
 
     def __init__(self, 音標):
         self.音標 = None
         try:
-            print(self.寫法檢查.match(音標).group(0))
+            print(self.寫法檢查.match(音標), r'{}+\Z'.format(正規表示法(self.國際音標對照表)))
             if self.寫法檢查.match(音標).group(0) == 音標:
                 self.音標 = 音標
         except:
+            raise
             pass
 
     def 音值(self):
