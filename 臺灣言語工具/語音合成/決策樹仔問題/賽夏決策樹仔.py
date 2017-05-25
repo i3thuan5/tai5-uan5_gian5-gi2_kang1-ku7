@@ -3,10 +3,6 @@ from 臺灣言語工具.語音合成.決策樹仔問題.公家決策樹仔 impor
 from 臺灣言語工具.語音合成.生決策樹仔問題 import 生決策樹仔問題
 import itertools
 import os
-from 臺灣言語工具.音標系統.Pangcah.原住民族語言書寫系統秀姑巒阿美語 import 書寫系統國際音標對應表
-from 臺灣言語工具.音標系統.SaySiyat.賽夏 import 賽夏元音
-from 臺灣言語工具.音標系統.SaySiyat.賽夏 import 賽夏滑音
-from 臺灣言語工具.音標系統.SaySiyat.賽夏 import 賽夏輔音
 from 臺灣言語工具.音標系統.SaySiyat.賽夏 import 賽夏
 
 
@@ -36,7 +32,7 @@ class 賽夏決策樹仔(公家決策樹仔):
         聲韻 = []
         for 實際音 in itertools.chain(
                 ['sil', 'sp'],
-                賽夏.書寫系統國際音標對應表,
+                賽夏.國際音標對照表.values(),
         ):
             聲韻.append(('{0}'.format(實際音), [實際音]))
         return 生決策樹仔問題.問題集(聲韻, cls.聲韻符號, '孤條')
