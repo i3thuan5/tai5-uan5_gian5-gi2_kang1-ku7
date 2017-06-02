@@ -7,8 +7,8 @@ import re
 # ㄒㄧ˫ ㄚ ㆣㆤㆷ
 # 1si7_1a1_1geh4
 class 羅馬音仕上げ:
-    輕聲標記 = re.compile('([- ]|\A)0([^\b0-9])')
-    外來語標記 = re.compile('(\W|\A)1([^\b0-9])')
+    輕聲標記 = re.compile('([- ]|\A)0([^\b0-9\W\s])')
+    外來語標記 = re.compile('(\W|\A)1([^\b0-9\W\s])')
 
     @classmethod
     def しあげ(cls, 原來語句):

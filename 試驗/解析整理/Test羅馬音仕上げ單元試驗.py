@@ -35,6 +35,10 @@ class 羅馬音仕上げ單元試驗(unittest.TestCase):
         self.原來語句 = 'āu-piah ê 1ōo-1too-1bái-tiàm bô-khì-0ah!'
         self.處理好語句 = 'Āu-piah ê *ōo-*too-*bái-tiàm bô-khì--ah!'
 
-    def test_一般數字(self):
+    def test_一佮空開頭(self):
         self.原來語句 = '100 ê 000!'
         self.處理好語句 = '100 ê 000!'
+
+    def test_孤一佮孤空(self):
+        self.原來語句 = '1 ê 0 !'
+        self.處理好語句 = '1 ê 0 !'
