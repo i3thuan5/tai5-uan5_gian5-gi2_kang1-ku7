@@ -25,7 +25,7 @@ from 臺灣言語工具.基本物件.公用變數 import 統一碼羅馬字類
 from 臺灣言語工具.基本物件.公用變數 import 統一碼聲調符號
 from 臺灣言語工具.基本物件.公用變數 import 統一碼注音聲調符號
 from 臺灣言語工具.基本物件.公用變數 import 敢是拼音字元
-from 臺灣言語工具.基本物件.公用變數 import 是注音符號無
+from 臺灣言語工具.基本物件.公用變數 import 敢是注音符號
 from 臺灣言語工具.基本物件.公用變數 import 統一碼數字類
 
 
@@ -258,7 +258,7 @@ class 拆文分析器:
         while 位置 < len(語句):
             字 = 語句[位置]
             字種類 = unicodedata.category(字)
-            是注音符號 = 是注音符號無(字)
+            是注音符號 = 敢是注音符號(字)
 # 			print(字種類, 字陣列, 是注音符號, unicodedata.name(字, 'QQ'))
             if 狀態 == '組字':
                 一个字 += 字
