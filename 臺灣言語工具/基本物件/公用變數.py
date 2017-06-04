@@ -48,7 +48,7 @@ import unicodedata
 統一碼音標類 = 統一碼羅馬字類 | 統一碼聲調符號
 
 
-def 是拼音字元無(字元, 種類):
+def 敢是拼音字元(字元, 種類):
     if 字元 is None:
         return False
     return 種類 in 統一碼羅馬字類 or 字元 in ['ⁿ', "'"]
