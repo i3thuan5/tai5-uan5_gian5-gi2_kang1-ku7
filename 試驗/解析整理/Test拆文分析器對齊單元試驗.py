@@ -692,3 +692,26 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
     def test_客話聲調(self):
         組物件 = 拆文分析器.對齊組物件('𠊎當好！', 'ngaiˇ dong+-ho^ ！')
         self.assertEqual(len(組物件.篩出字物件()), 4)
+
+    def test_標準刪節號(self):
+        型 = '枋寮漁港……'
+        音 = 'Pang-liau5 hi5-kang2...'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(len(組物件.網出詞物件()), 3)
+        self.assertEqual(組物件.篩出字物件()[-1], 拆文分析器.對齊字物件('……', '...'))
+
+    def test_刪節號佇句尾(self):
+        型 = '枋寮漁港……。'
+        音 = 'Pang-liau5 hi5-kang2....'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(len(組物件.網出詞物件()), 4)
+        self.assertEqual(組物件.篩出字物件()[-2], 拆文分析器.對齊字物件('……', '...'))
+        self.assertEqual(組物件.篩出字物件()[-1], 拆文分析器.對齊字物件('。', '.'))
+
+    def test_刪節號減一點就直接對齊(self):
+        型 = '枋寮漁港……'
+        音 = 'Pang-liau5 hi5-kang2..'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(len(組物件.網出詞物件()), 4)
+        self.assertEqual(組物件.篩出字物件()[-2], 拆文分析器.對齊字物件('…', '.'))
+        self.assertEqual(組物件.篩出字物件()[-1], 拆文分析器.對齊字物件('…', '.'))
