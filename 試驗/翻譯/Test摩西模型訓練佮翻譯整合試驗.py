@@ -66,7 +66,7 @@ class 摩西模型訓練佮翻譯整合試驗(TestCase):
         self.assertIn('Pin5-tong', 譀鏡.看分詞(閩南語章物件))
         self.assertIn('套', 譀鏡.看分詞(閩南語章物件))
         self.assertIn('水-果', 譀鏡.看分詞(閩南語章物件))
-        self.assertIn('套 在', 譀鏡.看分詞(翻譯結構華語章物件))
+        self.assertIn('套-在', 譀鏡.看分詞(翻譯結構華語章物件))
         self.assertLess(分數, 0)
 
         # 予「self.愛停的服務」佇tearDown處理
