@@ -386,6 +386,18 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         組物件 = 拆文分析器.對齊組物件(型音, 型音)
         self.assertEqual(組物件.內底詞, [詞物件])
 
+    def test_對齊空佮空白(self):
+        組物件 = 拆文分析器.對齊組物件('', '   ')
+        self.assertEqual(組物件.內底詞, [])
+
+    def test_對齊無仝數量空白(self):
+        組物件 = 拆文分析器.對齊組物件(' ', '   ')
+        self.assertEqual(組物件.內底詞, [])
+
+    def test_對齊物件對空白(self):
+        with self.assertRaises(解析錯誤):
+            拆文分析器.對齊組物件('sui2', '   ')
+
     def test_對齊集濟字(self):
         型 = '我有一張椅仔！'
         加空白後詞音 = 'gua2 u7 tsit8-tiunn1 i2-a2 ! '
