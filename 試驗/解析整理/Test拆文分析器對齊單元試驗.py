@@ -727,3 +727,9 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         self.assertEqual(len(組物件.網出詞物件()), 4)
         self.assertEqual(組物件.篩出字物件()[-2], 拆文分析器.對齊字物件('…', '.'))
         self.assertEqual(組物件.篩出字物件()[-1], 拆文分析器.對齊字物件('…', '.'))
+
+    def test_刪節號多標點(self):
+        型 = '針對講稿的內容、聲調、動作、表情、眼神……，'
+        音 = 'tsiam-tuì káng-kó ê luē-iông, siann-tiāu, tōng-tsok, piáu-tsîng, gán-sîn...,'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(len(組物件.網出詞物件()), 14)
