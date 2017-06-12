@@ -736,6 +736,6 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
 
     def test_濟刪節號(self):
         型 = '啥物代誌？……………………'
-        音 = 'Siánn-mih tāi-tsì?...........'
+        音 = 'Siánn-mih tāi-tsì?............'
         組物件 = 拆文分析器.對齊組物件(型, 音)
         self.assertEqual(len(組物件.網出詞物件()), 7)
