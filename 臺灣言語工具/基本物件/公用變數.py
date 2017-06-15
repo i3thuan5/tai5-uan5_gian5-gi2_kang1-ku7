@@ -49,9 +49,6 @@ import unicodedata
 統一碼聲調符號 = 統一碼數字類 | 統一碼注音聲調符號
 統一碼音標類 = 統一碼羅馬字類 | 統一碼聲調符號
 
-_hiragana範圍 = re.compile(r'[ぁ-ゟ]\Z')
-_katakana範圍 = re.compile(r'[゠-ヿ]\Z')
-
 
 def 敢是拼音字元(字元, 種類):
     if 字元 is None:
@@ -61,6 +58,10 @@ def 敢是拼音字元(字元, 種類):
 
 def 敢是注音符號(字元):
     return unicodedata.name(字元, '').startswith('BOPOMOFO LETTER')
+
+
+_hiragana範圍 = re.compile(r'[ぁ-ゟ]\Z')
+_katakana範圍 = re.compile(r'[゠-ヿ]\Z')
 
 
 def 敢是hiragana(字元):
