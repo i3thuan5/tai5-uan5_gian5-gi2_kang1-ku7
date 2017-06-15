@@ -49,8 +49,8 @@ import unicodedata
 統一碼聲調符號 = 統一碼數字類 | 統一碼注音聲調符號
 統一碼音標類 = 統一碼羅馬字類 | 統一碼聲調符號
 
-hiragana範圍 = re.compile(r'[ぁ-ゟ]\Z')
-katakana範圍 = re.compile(r'[゠-ヿ]\Z')
+_hiragana範圍 = re.compile(r'[ぁ-ゟ]\Z')
+_katakana範圍 = re.compile(r'[゠-ヿ]\Z')
 
 
 def 敢是拼音字元(字元, 種類):
@@ -64,8 +64,8 @@ def 敢是注音符號(字元):
 
 
 def 敢是hiragana(字元):
-    return hiragana範圍.match(字元)
+    return _hiragana範圍.match(字元)
 
 
 def 敢是katakana(字元):
-    return katakana範圍.match(字元)
+    return _katakana範圍.match(字元)
