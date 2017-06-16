@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # 瀏覽器希望無音愛有空白，但是處理標音時希望是佮好認的
 from 臺灣言語工具.音標系統.客話.臺灣客家話拼音 import 臺灣客家話拼音調類對照表
+import re
+
 import unicodedata
 無音 = ''  # '　'
 # sui1 koo1-niu5 =>　媠　姑娘
@@ -56,3 +58,15 @@ def 敢是拼音字元(字元, 種類):
 
 def 敢是注音符號(字元):
     return unicodedata.name(字元, '').startswith('BOPOMOFO LETTER')
+
+
+_hiragana範圍 = re.compile(r'[ぁ-ゟ]\Z')
+_katakana範圍 = re.compile(r'[゠-ヿ]\Z')
+
+
+def 敢是hiragana(字元):
+    return _hiragana範圍.match(字元)
+
+
+def 敢是katakana(字元):
+    return _katakana範圍.match(字元)
