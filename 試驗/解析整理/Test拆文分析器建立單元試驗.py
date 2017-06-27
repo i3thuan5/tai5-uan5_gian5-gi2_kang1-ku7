@@ -560,4 +560,8 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
                 拆文分析器.建立字物件('tsia2'),
             ]
         )
-        self.assertEqual(len(組物件.網出詞物件()), 2)
+
+    def test_干焦tab(self):
+        組物件 = 拆文分析器.建立組物件('\t\t')
+        self.assertEqual(len(組物件.網出詞物件()), 0)
+        self.assertEqual(len(組物件.篩出字物件()), 0)

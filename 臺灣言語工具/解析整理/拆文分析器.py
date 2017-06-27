@@ -34,6 +34,7 @@ from 臺灣言語工具.基本物件.公用變數 import 敢是katakana
 class 拆文分析器:
     _切組物件分詞 = re.compile('(([^ ｜]*.｜.[^ ｜]*) ?|\S+)')
     _切章分詞 = re.compile('(\n｜.|.｜\n|\n)', re.DOTALL)
+    _是空白 = re.compile('[\t]\Z')
 
     @classmethod
     def 建立字物件(cls, 語句):
@@ -287,7 +288,7 @@ class 拆文分析器:
     def _句解析(cls, 語句):
         if not isinstance(語句, str):
             raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
-        if 語句 == 分詞符號:
+        if 語句 == 分詞符號 or cls._是空白.fullmatch(語句):
             return ([分詞符號], [False])
         字陣列 = []
         佮後一个字是佇仝一个詞 = []
@@ -343,7 +344,7 @@ class 拆文分析器:
                                 佮後一个字是佇仝一个詞.append(False)
                         else:
                             佮後一个字是佇仝一个詞[-1] = True
-                elif 字 in 分詞符號:
+                elif 字 == 分詞符號 or cls._是空白.fullmatch(字):
                     if 一个字 != '':
                         字陣列.append(一个字)
                         佮後一个字是佇仝一个詞.append(False)
