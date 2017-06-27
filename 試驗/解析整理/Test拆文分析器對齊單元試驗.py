@@ -756,3 +756,27 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         音 = 'ta̍k kang ta̍h i ê #オートバイ# (oo-tóo-bái) khì Niau-khang suann-tíng tsìng tshài,'
         組物件 = 拆文分析器.對齊組物件(型, 音)
         self.assertEqual(len(組物件.網出詞物件()), 17)
+
+    def test_台語前tab(self):
+        型 = '千金小姐'
+        音 = '\ttshian1-kim1-sio2-tsia2'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(組物件.篩出字物件()[0].看分詞(), '千｜tshian1')
+
+    def test_漢字前tab(self):
+        型 = '\t千金小姐'
+        音 = 'tshian1-kim1-sio2-tsia2'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(組物件.篩出字物件()[0].看分詞(), '千｜tshian1')
+
+    def test_台語後tab(self):
+        型 = '千金小姐'
+        音 = 'tshian1-kim1-sio2-tsia2\t'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(組物件.篩出字物件()[-1].看分詞(), '姐｜tsia2')
+
+    def test_漢字後tab(self):
+        型 = '千金小姐\t'
+        音 = 'tshian1-kim1-sio2-tsia2'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(組物件.篩出字物件()[-1].看分詞(), '姐｜tsia2')
