@@ -39,6 +39,7 @@ install:
 - sudo dpkg --add-architecture i386
 - sudo apt-get update
 - sudo apt-get install libx11-dev libx11-dev:i386
+- pip install tox
 - pip install python-coveralls
 branches:
   only:
