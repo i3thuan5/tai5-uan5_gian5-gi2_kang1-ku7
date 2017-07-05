@@ -398,6 +398,10 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         with self.assertRaises(解析錯誤):
             拆文分析器.對齊組物件('sui2', '   ')
 
+    def test_一字對無音(self):
+        with self.assertRaises(解析錯誤):
+            拆文分析器.對齊組物件('sui2', '')
+
     def test_對齊集濟字(self):
         型 = '我有一張椅仔！'
         加空白後詞音 = 'gua2 u7 tsit8-tiunn1 i2-a2 ! '
