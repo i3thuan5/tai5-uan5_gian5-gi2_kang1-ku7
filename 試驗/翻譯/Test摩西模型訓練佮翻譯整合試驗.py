@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+from os.path import isdir
 from shutil import rmtree
 from time import sleep
 from unittest.case import TestCase
@@ -14,10 +15,15 @@ from 臺灣言語工具.翻譯.摩西工具.摩西用戶端 import 摩西用戶�
 from 臺灣言語工具.翻譯.斷詞斷字翻譯 import 斷詞斷字翻譯
 from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from os.path import isdir
+from 臺灣言語工具.翻譯.摩西工具.安裝摩西翻譯佮相關程式 import 安裝摩西翻譯佮相關程式
 
 
 class 摩西模型訓練佮翻譯整合試驗(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        安裝摩西翻譯佮相關程式.安裝gizapp()
+        安裝摩西翻譯佮相關程式.安裝mgiza()  # 愛libboost
+        安裝摩西翻譯佮相關程式.安裝moses(編譯CPU數=4)
 
     def setUp(self):
         self.這馬目錄 = os.path.dirname(os.path.abspath(__file__))
