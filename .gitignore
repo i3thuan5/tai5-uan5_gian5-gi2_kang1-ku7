@@ -8,3 +8,5 @@ __pycache__/
 /文件/_*
 /.settings
 /node_modules
+/.tox
+/.coverage

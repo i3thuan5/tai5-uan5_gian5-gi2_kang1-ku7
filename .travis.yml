@@ -5,7 +5,13 @@ python:
 - '3.4'
 - '3.5'
 env:
-  matrix: 
+- TOX_ENV=單元試驗
+- TOX_ENV=文本整合試驗
+- TOX_ENV=HTS整合試驗
+- TOX_ENV=HTK整合試驗
+- TOX_ENV=Moses整合試驗
+- TOX_ENV=中研院整合試驗
+- TOX_ENV=flake8
 addons:
   apt:
     sources:
@@ -33,17 +39,14 @@ install:
 - sudo dpkg --add-architecture i386
 - sudo apt-get update
 - sudo apt-get install libx11-dev libx11-dev:i386
-- pip install flake8
+- pip install tox
 - pip install python-coveralls
 branches:
   only:
   - master
   - /\d+\.\d+\.\d+/
 script:
-- pip install .
-- coverage run 走全部試驗.py travis
-- flake8 . --exclude=venv,外部程式,試驗 --count --show-source --max-line-length=100
-- flake8 試驗 --count --show-source --max-line-length=130
+- tox -e $TOX_ENV
 after_success:
 - coverage report
 - coveralls
