@@ -163,7 +163,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
         else:
             韻 = self.韻
         聲韻 = self.聲 + 韻
-        if self.原本音標[0].isupper():
+        if self.原本音標.strip('01')[0].isupper():
             聲韻 = 聲韻[0].upper() + 聲韻[1:]
         return self.輕 + self.外來語 + 聲韻
 
