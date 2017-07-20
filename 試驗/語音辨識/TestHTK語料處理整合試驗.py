@@ -4,9 +4,13 @@ from tempfile import mkdtemp
 from unittest.case import TestCase
 from 臺灣言語工具.語音辨識.HTK工具.HTK語料處理 import HTK語料處理
 from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
+from 臺灣言語工具.語音辨識.HTK工具.安裝HTK語音辨識程式 import 安裝HTK語音辨識程式
 
 
 class HTK語料處理整合試驗(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        安裝HTK語音辨識程式.安裝htk()
 
     def setUp(self):
         語料目錄 = join(dirname(abspath(__file__)), '語音語料')

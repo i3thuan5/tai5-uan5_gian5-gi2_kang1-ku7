@@ -144,6 +144,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
             if self.韻 == 'o':
                 self.韻 = 'oo'
                 self.做音標()
+        self.原本音標 = 音標
 
     def 轉換到臺灣閩南語羅馬字拼音(self):
         return self.音標
@@ -161,7 +162,10 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
                 break
         else:
             韻 = self.韻
-        return self.輕 + self.外來語 + self.聲 + 韻
+        聲韻 = self.聲 + 韻
+        if self.原本音標.strip('01')[0].isupper():
+            聲韻 = 聲韻[0].upper() + 聲韻[1:]
+        return self.輕 + self.外來語 + 聲韻
 
     def 轉通用拼音(self):
         if self.音標 is None:

@@ -386,6 +386,22 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         組物件 = 拆文分析器.對齊組物件(型音, 型音)
         self.assertEqual(組物件.內底詞, [詞物件])
 
+    def test_對齊空佮空白(self):
+        組物件 = 拆文分析器.對齊組物件('', '   ')
+        self.assertEqual(組物件.內底詞, [])
+
+    def test_對齊無仝數量空白(self):
+        組物件 = 拆文分析器.對齊組物件(' ', '   ')
+        self.assertEqual(組物件.內底詞, [])
+
+    def test_對齊物件對空白(self):
+        with self.assertRaises(解析錯誤):
+            拆文分析器.對齊組物件('sui2', '   ')
+
+    def test_一字對無音(self):
+        with self.assertRaises(解析錯誤):
+            拆文分析器.對齊組物件('sui2', '')
+
     def test_對齊集濟字(self):
         型 = '我有一張椅仔！'
         加空白後詞音 = 'gua2 u7 tsit8-tiunn1 i2-a2 ! '
@@ -692,3 +708,79 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
     def test_客話聲調(self):
         組物件 = 拆文分析器.對齊組物件('𠊎當好！', 'ngaiˇ dong+-ho^ ！')
         self.assertEqual(len(組物件.篩出字物件()), 4)
+
+    def test_標準刪節號(self):
+        型 = '枋寮漁港……'
+        音 = 'Pang-liau5 hi5-kang2...'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(len(組物件.網出詞物件()), 3)
+        self.assertEqual(組物件.篩出字物件()[-1], 拆文分析器.對齊字物件('……', '...'))
+
+    def test_刪節號佇句尾(self):
+        型 = '枋寮漁港……。'
+        音 = 'Pang-liau5 hi5-kang2....'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(len(組物件.網出詞物件()), 4)
+        self.assertEqual(組物件.篩出字物件()[-2], 拆文分析器.對齊字物件('……', '...'))
+        self.assertEqual(組物件.篩出字物件()[-1], 拆文分析器.對齊字物件('。', '.'))
+
+    def test_刪節號減一點就直接對齊(self):
+        型 = '枋寮漁港……'
+        音 = 'Pang-liau5 hi5-kang2..'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(len(組物件.網出詞物件()), 4)
+        self.assertEqual(組物件.篩出字物件()[-2], 拆文分析器.對齊字物件('…', '.'))
+        self.assertEqual(組物件.篩出字物件()[-1], 拆文分析器.對齊字物件('…', '.'))
+
+    def test_刪節號濟標點(self):
+        型 = '針對講稿的內容、聲調、動作、表情、眼神……，'
+        音 = 'tsiam-tuì káng-kó ê luē-iông, siann-tiāu, tōng-tsok, piáu-tsîng, gán-sîn...,'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(len(組物件.網出詞物件()), 14)
+
+    def test_濟刪節號(self):
+        型 = '啥物代誌？……………………'
+        音 = 'Siánn-mih tāi-tsì?............'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(len(組物件.網出詞物件()), 7)
+
+    def test_純注音(self):
+        注音 = 'ㄙㄨㄧˋ ㄍㆦ ㄋㄧㄨˊ'
+        組物件 = 拆文分析器.對齊組物件(注音, 注音)
+        self.assertEqual(len(組物件.網出詞物件()), 3)
+
+    def test_純日文(self):
+        日文 = "オートバイ"
+        組物件 = 拆文分析器.對齊組物件(日文, 日文)
+        self.assertEqual(len(組物件.網出詞物件()), 1)
+        self.assertEqual(len(組物件.篩出字物件()), 5)
+
+    def test_台語日文(self):
+        型 = '逐工踏伊的#オートバイ#（oo-tóo-bái）去貓空山頂種菜，'
+        音 = 'ta̍k kang ta̍h i ê #オートバイ# (oo-tóo-bái) khì Niau-khang suann-tíng tsìng tshài,'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(len(組物件.網出詞物件()), 17)
+
+    def test_台語前tab(self):
+        型 = '千金小姐'
+        音 = '\ttshian1-kim1-sio2-tsia2'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(組物件.篩出字物件()[0].看分詞(), '千｜tshian1')
+
+    def test_漢字前tab(self):
+        型 = '\t千金小姐'
+        音 = 'tshian1-kim1-sio2-tsia2'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(組物件.篩出字物件()[0].看分詞(), '千｜tshian1')
+
+    def test_台語後tab(self):
+        型 = '千金小姐'
+        音 = 'tshian1-kim1-sio2-tsia2\t'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(組物件.篩出字物件()[-1].看分詞(), '姐｜tsia2')
+
+    def test_漢字後tab(self):
+        型 = '千金小姐\t'
+        音 = 'tshian1-kim1-sio2-tsia2'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(組物件.篩出字物件()[-1].看分詞(), '姐｜tsia2')

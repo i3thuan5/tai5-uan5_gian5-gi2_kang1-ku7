@@ -460,3 +460,8 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
             山詞物件, 鄉所詞物件, 拆文分析器.對齊詞物件('猴山', 'kau5-san1'),
         ]
         self.assertEqual(組物件.內底詞, 答案詞陣列)
+
+    def test_標準刪節號(self):
+        組物件 = 拆文分析器.分詞組物件('枋寮｜Pang-liau5 漁港｜hi5-kang2 ……｜...')
+        self.assertEqual(len(組物件.網出詞物件()), 3)
+        self.assertEqual(組物件.篩出字物件()[-1], 拆文分析器.對齊字物件('……', '...'))

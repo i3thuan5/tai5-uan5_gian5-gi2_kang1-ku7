@@ -2,6 +2,8 @@
 import re
 
 import unicodedata
+
+
 from 臺灣言語工具.基本物件.公用變數 import 標點符號
 from 臺灣言語工具.基本物件.公用變數 import 分字符號
 from 臺灣言語工具.基本物件.公用變數 import 分詞符號
@@ -11,7 +13,9 @@ from 臺灣言語工具.基本物件.公用變數 import 組字式符號
 from 臺灣言語工具.基本物件.公用變數 import 統一碼漢字佮組字式類
 from 臺灣言語工具.基本物件.公用變數 import 統一碼羅馬字類
 from 臺灣言語工具.基本物件.公用變數 import 聲調符號
-from 臺灣言語工具.基本物件.公用變數 import 是注音符號無
+from 臺灣言語工具.基本物件.公用變數 import 敢是注音符號
+from 臺灣言語工具.基本物件.公用變數 import 敢是katakana
+from 臺灣言語工具.基本物件.公用變數 import 敢是hiragana
 
 
 class 文章粗胚:
@@ -242,9 +246,13 @@ class 文章粗胚:
         for 字 in 語句:
             try:
                 if (
-                    unicodedata.category(字) in 統一碼漢字佮組字式類 and
-                    unicodedata.category(結果[-1]) in 統一碼漢字佮組字式類 and
-                    (not 是注音符號無(字) or not 是注音符號無(結果[-1]))
+                    (
+                        unicodedata.category(字) in 統一碼漢字佮組字式類 and
+                        unicodedata.category(結果[-1]) in 統一碼漢字佮組字式類 and
+                        (not 敢是注音符號(結果[-1]) or not 敢是注音符號(字))
+                    ) or
+                    (敢是hiragana(結果[-1]) and 敢是hiragana(字)) or
+                    (敢是katakana(結果[-1]) and 敢是katakana(字))
                 ):
                     結果.append(分字符號)
             except:
