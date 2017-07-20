@@ -17,4 +17,4 @@ class 臺灣閩南語羅馬字拼音閏號整合試驗(TestCase):
                 for 字物件 in 組物件.篩出字物件():
                     拼音物件 = 臺灣閩南語羅馬字拼音(字物件.型)
                     if 拼音物件.音標 is not None:
-                        self.assertEqual(拼音物件.轉閏號調(), 字物件.型.lower(), 一逝['音讀'])
+                        self.assertEqual(拼音物件.轉閏號調(), 字物件.型, 一逝['音讀'])

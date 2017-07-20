@@ -8,7 +8,7 @@ from 臺灣言語工具.基本物件.公用變數 import 分型音符號
 from 臺灣言語工具.基本物件.功能 import 功能
 from sys import stderr
 try:
-    from 臺灣言語工具.解析整理.羅馬音仕上げ import 羅馬音仕上げ
+    from 臺灣言語工具.解析整理.羅馬字仕上げ import 羅馬字仕上げ
 except ImportError:
     print('MacOS無法度import日文濁音的檔名，會影響著閩南語部份功能', file=stderr)
     print('http://stackoverflow.com/questions/43244210', file=stderr)
@@ -79,7 +79,7 @@ class 句(功能):
             if 欄位 == '分詞':
                 結果[欄位] = ' '.join(內容)
             else:
-                結果[欄位] = 羅馬音仕上げ.しあげ(' '.join(內容))
+                結果[欄位] = 羅馬字仕上げ.しあげ(' '.join(內容))
         return [結果]
 
     def 篩出字物件(self):
