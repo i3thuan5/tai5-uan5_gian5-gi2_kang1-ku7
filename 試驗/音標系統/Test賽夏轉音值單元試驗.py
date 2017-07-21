@@ -137,6 +137,7 @@ class 賽夏轉音值單元試驗(TestCase):
             賽夏("rina:iyan").音值(),
             [['r', 'i'], ['n', 'a:'], ['j', 'a', 'n']]
         )
+
     @skip('長元音猶未揣著完整的規範')
     def test_加拉灣(self):
         self.assertEqual(
