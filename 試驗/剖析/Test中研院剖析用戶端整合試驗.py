@@ -1,16 +1,14 @@
 # -*- coding: utf-8 -*-
-import unittest
+from unittest.case import expectedFailure, TestCase
 
 
 from 臺灣言語工具.剖析.中研院.剖析用戶端 import 剖析用戶端
 
 
-class 中研院剖析用戶端整合試驗(unittest.TestCase):
+@expectedFailure
+class 中研院剖析用戶端整合試驗(TestCase):
     def setUp(self):
         self.用戶端 = 剖析用戶端()
-
-    def tearDown(self):
-        pass
 
     def test_語句剖一句(self):
         self.assertEqual(self.用戶端.語句剖析做語句('我想吃飯'), [[
