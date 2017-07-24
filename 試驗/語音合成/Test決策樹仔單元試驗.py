@@ -6,6 +6,7 @@ from 臺灣言語工具.語音合成.決策樹仔問題.閩南語決策樹仔 im
 from 臺灣言語工具.語音合成.決策樹仔問題.客家話決策樹仔 import 客家話決策樹仔
 from 臺灣言語工具.語音合成.決策樹仔問題.官話決策樹仔 import 官話決策樹仔
 from 臺灣言語工具.語音合成.決策樹仔問題.秀姑巒阿美語決策樹仔 import 秀姑巒阿美語決策樹仔
+from 臺灣言語工具.語音合成.決策樹仔問題.賽夏決策樹仔 import 賽夏決策樹仔
 
 
 class 決策樹仔單元試驗(TestCase):
@@ -30,3 +31,6 @@ class 決策樹仔單元試驗(TestCase):
 
     def test_秀姑巒阿美有孤雙數問題(self):
         self.assertIn('孤數音節', '_Pangcah_'.join(秀姑巒阿美語決策樹仔.生()))
+
+    def test_賽夏生決策樹仔問題(self):
+        self.assertGreater(len(賽夏決策樹仔.生()), 1000)
