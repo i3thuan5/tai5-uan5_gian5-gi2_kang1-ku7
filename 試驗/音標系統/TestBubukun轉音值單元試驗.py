@@ -7,7 +7,7 @@ class Bubukun轉音值單元試驗(TestCase):
     def test_單元音(self):
         self.assertEqual(
             Bubukun("baak").音值(),
-            [['b', 'a:', 'k']]
+            [['b', 'aː', 'k']]
         )
 
     def test_雙元音(self):
@@ -25,7 +25,7 @@ class Bubukun轉音值單元試驗(TestCase):
     def test_雙音節長元音(self):
         self.assertEqual(
             Bubukun("tuzaa").音值(),
-            [['t', 'u'], ['z', 'a:']]
+            [['t', 'u'], ['z', 'aː']]
         )
 
     def test_多音節(self):
@@ -43,7 +43,7 @@ class Bubukun轉音值單元試驗(TestCase):
     def test_音節分開(self):
         self.assertEqual(
             Bubukun("cinus-uvaazan").音值(),
-            [['c', 'i'], ['n', 'u', 's'], ['u'], ['v', 'a:'], ['z', 'a', 'n']]
+            [['c', 'i'], ['n', 'u', 's'], ['u'], ['v', 'aː'], ['z', 'a', 'n']]
         )
 
     def test_預設音標就是家己(self):
