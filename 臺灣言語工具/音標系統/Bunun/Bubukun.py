@@ -58,7 +58,6 @@ class Bubukun:
             else:  # 是元音
                 是音節上尾一个.append(False)
                 有元音矣 = True
-        print(音素陣列, 是音節上尾一个)
         結果 = [[]]
         for 音素, 音節上尾一个 in zip(音素陣列, 是音節上尾一个[::-1]):
             if 音節上尾一个:

@@ -32,7 +32,7 @@ class 南島語決策樹仔(公家決策樹仔):
         聲韻 = []
         for 實際音 in itertools.chain(
                 ['sil', 'sp'],
-                self.音標.國際音標對照表.values(),
+                self.音標系統.國際音標對照表.values(),
         ):
             聲韻.append(('{0}'.format(實際音), [實際音]))
         return 生決策樹仔問題.問題集(聲韻, self.聲韻符號, '孤條')

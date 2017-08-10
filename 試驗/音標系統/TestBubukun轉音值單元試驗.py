@@ -1,9 +1,10 @@
-from unittest.case import TestCase
+from unittest.case import TestCase, skip
 from 臺灣言語工具.音標系統.Bunun.Bubukun import Bubukun
 
 
 class Bubukun轉音值單元試驗(TestCase):
 
+    @skip('長元音的性質猶未確定')
     def test_單元音(self):
         self.assertEqual(
             Bubukun("baak").音值(),
@@ -22,6 +23,7 @@ class Bubukun轉音值單元試驗(TestCase):
             [['t', 'u'], ['ð', 'a']]
         )
 
+    @skip('長元音的性質猶未確定')
     def test_雙音節長元音(self):
         self.assertEqual(
             Bubukun("tuzaa").音值(),
@@ -40,10 +42,11 @@ class Bubukun轉音值單元試驗(TestCase):
             [['a'], ['a', 'p'], ['n', 'u', 'm']]
         )
 
+    @skip('長元音的性質猶未確定')
     def test_音節分開(self):
         self.assertEqual(
             Bubukun("cinus-uvaazan").音值(),
-            [['c', 'i'], ['n', 'u', 's'], ['u'], ['v', 'aː'], ['ð', 'a', 'n']]
+            [['ts', 'i'], ['n', 'u', 's'], ['u'], ['v', 'aː'], ['ð', 'a', 'n']]
         )
 
     def test_預設音標就是家己(self):
