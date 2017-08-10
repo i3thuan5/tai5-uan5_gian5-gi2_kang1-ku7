@@ -40,6 +40,12 @@ class 賽考利克轉音值單元試驗(TestCase):
             [['m', 'ə'], ['j', 'a', 'n']]
         )
 
+    def test_n佮g(self):
+        self.assertEqual(
+            賽考利克("n_gaw").音值(),
+            [['n', 'ə'], ['ɣ', 'a', 'w']]
+        )
+
     def test_子音串和CGVG音節(self):
         self.assertEqual(
             賽考利克("'lwaw").音值(),
