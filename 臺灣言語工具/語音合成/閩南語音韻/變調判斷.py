@@ -119,7 +119,7 @@ class 變調判斷:
     def 輕聲是隨前變調無(cls, 字物件):
         if cls.是代名詞無(字物件):
             return True
-        if 字物件.型 in ['的', '仔', '矣', '裡', ]:
+        if 字物件.型 in ['的', '仔', '裡', ]:
             return True
         return False
 
