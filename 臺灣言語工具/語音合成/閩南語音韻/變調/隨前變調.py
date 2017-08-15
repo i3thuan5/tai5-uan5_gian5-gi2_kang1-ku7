@@ -11,6 +11,9 @@ class 隨前變調:
     def __init__(self, 頂一个調):
         self._變調後輕聲音 = self.對應表[頂一个調]
 
+    def __eq__(self, 別的):
+        return self._變調後輕聲音 == 別的._變調後輕聲音
+
     def 變調(self, 音):
         聲, 韻, 調 = 音
         if 韻.endswith('p') or 韻.endswith('t') or 韻.endswith('k'):
