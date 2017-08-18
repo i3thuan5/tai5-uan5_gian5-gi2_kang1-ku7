@@ -9,7 +9,7 @@ from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
 from 臺灣言語工具.語言模型.安裝KenLM訓練程式 import 安裝KenLM訓練程式
 
 
-class 安裝KenLM訓練程式整合試驗(TestCase):
+class KenLM訓練程式kenlm整合試驗(TestCase):
     忍受 = 1e-7
 
     @classmethod

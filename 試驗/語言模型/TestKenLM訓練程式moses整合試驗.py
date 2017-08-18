@@ -9,7 +9,7 @@ from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
 from 臺灣言語工具.翻譯.摩西工具.安裝摩西翻譯佮相關程式 import 安裝摩西翻譯佮相關程式
 
 
-class KenLM語言模型訓練整合試驗(TestCase):
+class KenLM訓練程式moses整合試驗(TestCase):
     忍受 = 1e-7
 
     @classmethod
