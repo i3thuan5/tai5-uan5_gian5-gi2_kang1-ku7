@@ -42,4 +42,4 @@ class 安裝HTK語音辨識程式(安裝程式腳本):
 
     @classmethod
     def 執行檔目錄(cls, htk安裝路徑=外部程式.目錄()):
-        return join(cls.htk程式碼目錄(htk安裝路徑), 'bin')
+        return join(cls.程式碼目錄(htk安裝路徑), 'bin')
