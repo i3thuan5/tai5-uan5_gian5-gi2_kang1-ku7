@@ -24,8 +24,6 @@ class KenLM語言模型訓練(程式腳本):
             self.訓練指令 = moses訓練指令
         if self.訓練指令 is None:
             raise FileNotFoundError('佇{0}揣無KenLM執行檔！！'.format(self.訓練指令))
-        print(self.訓練指令)
-        self.訓練指令 = join(moses資料夾路徑, 'bin', 'lmplz')
 
     def 訓練(self, 語料陣列,
            暫存資料夾,

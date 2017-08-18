@@ -22,7 +22,8 @@ class KenLM訓練程式kenlm整合試驗(TestCase):
         self.閩南語語料陣列 = [os.path.join(資料目錄, '文本.txt'), ]
 
     def test_路徑設定毋著(self):
-        self.assertRaises(FileNotFoundError, KenLM語言模型訓練, '/')
+        with self.assertRaises(FileNotFoundError):
+            KenLM語言模型訓練('/', '/')
 
     def test_訓練模型(self):
         self.模型訓練 = KenLM語言模型訓練()
