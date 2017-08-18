@@ -28,7 +28,7 @@ class 摩西翻譯模型訓練(程式腳本):
         # 愛有 mkcls, GIZA++/mgiza, & snt2cooc.out/snt2cooc
         mgiza安裝路徑=外部程式.目錄(),
     ):
-        moses程式碼目錄 = cls.moses程式碼目錄(moses安裝路徑)
+        moses程式碼目錄 = 安裝摩西翻譯佮相關程式.moses程式碼目錄(moses安裝路徑)
         語言模型訓練 = KenLM語言模型訓練(moses程式碼目錄)
         os.makedirs(暫存資料夾, exist_ok=True)
         語言模型檔 = 語言模型訓練.訓練(目標語言語料, 暫存資料夾, 連紲詞長度, 編碼器, 使用記憶體量='20%',)
