@@ -4,8 +4,8 @@ from os.path import join
 from tempfile import mkdtemp
 from unittest.case import TestCase
 from 臺灣言語工具.語音辨識.HTK工具.HTK辨識模型訓練 import HTK辨識模型訓練
-from 臺灣言語工具.系統整合.外部程式 import 外部程式
 from unittest.mock import patch
+from 臺灣言語工具.語音辨識.HTK工具.安裝HTK語音辨識程式 import 安裝HTK語音辨識程式
 
 
 class HTK辨識模型訓練單元試驗(TestCase):
@@ -99,7 +99,7 @@ class HTK辨識模型訓練單元試驗(TestCase):
         走指令mock.side_effect = [RuntimeError(), None, None]
 
         HTK辨識模型訓練._模型重估(
-            外部程式.htk預設目錄(), 暫時資料夾, 暫時檔案, 暫時檔案, 暫時檔案, 模型所在, 1
+            安裝HTK語音辨識程式.htk執行檔目錄(), 暫時資料夾, 暫時檔案, 暫時檔案, 暫時檔案, 模型所在, 1
         )
         self.assertEqual(走指令mock.call_count, 2)
 
@@ -112,7 +112,7 @@ class HTK辨識模型訓練單元試驗(TestCase):
         走指令mock.side_effect = [RuntimeError(), RuntimeError(), None]
 
         HTK辨識模型訓練._模型重估(
-            外部程式.htk預設目錄(), 暫時資料夾, 暫時檔案, 暫時檔案, 暫時檔案, 模型所在, 1
+            安裝HTK語音辨識程式.htk執行檔目錄(), 暫時資料夾, 暫時檔案, 暫時檔案, 暫時檔案, 模型所在, 1
         )
         self.assertEqual(走指令mock.call_count, 3)
 
@@ -126,6 +126,6 @@ class HTK辨識模型訓練單元試驗(TestCase):
 
         with self.assertRaises(RuntimeError):
             HTK辨識模型訓練._模型重估(
-                外部程式.htk預設目錄(), 暫時資料夾, 暫時檔案, 暫時檔案, 暫時檔案, 模型所在, 1
+                安裝HTK語音辨識程式.htk執行檔目錄(), 暫時資料夾, 暫時檔案, 暫時檔案, 暫時檔案, 模型所在, 1
             )
         self.assertEqual(走指令mock.call_count, 3)
