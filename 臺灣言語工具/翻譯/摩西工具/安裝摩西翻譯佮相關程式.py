@@ -13,7 +13,7 @@ class 安裝摩西翻譯佮相關程式(安裝程式腳本):
     @classmethod
     def 安裝moses(cls, moses安裝路徑=外部程式.目錄(), 編譯CPU數=4):
         makedirs(moses安裝路徑, exist_ok=True)
-        moses程式碼目錄 = join(moses安裝路徑, 'mosesdecoder')
+        moses程式碼目錄 = cls.moses程式碼目錄(moses安裝路徑)
         if not isdir(moses程式碼目錄):
             with cls._換目錄(moses安裝路徑):
                 cls._下載專案(
@@ -28,7 +28,7 @@ class 安裝摩西翻譯佮相關程式(安裝程式腳本):
     @classmethod
     def 安裝gizapp(cls, gizapp安裝路徑=外部程式.目錄()):
         makedirs(gizapp安裝路徑, exist_ok=True)
-        gizapp程式碼目錄 = join(gizapp安裝路徑, 'giza-pp')
+        gizapp程式碼目錄 = cls.gizapp程式碼目錄(gizapp安裝路徑)
         if not isdir(gizapp程式碼目錄):
             with cls._換目錄(gizapp安裝路徑):
                 cls._下載專案(
@@ -50,7 +50,7 @@ class 安裝摩西翻譯佮相關程式(安裝程式腳本):
     @classmethod
     def 安裝mgiza(cls, mgiza安裝路徑=外部程式.目錄()):
         makedirs(mgiza安裝路徑, exist_ok=True)
-        mgiza程式碼目錄 = join(mgiza安裝路徑, 'mgiza', 'mgizapp')
+        mgiza程式碼目錄 = cls.mgiza程式碼目錄(mgiza安裝路徑)
         if not isdir(mgiza程式碼目錄):
             with cls._換目錄(mgiza安裝路徑):
                 cls._下載專案(
@@ -67,3 +67,15 @@ class 安裝摩西翻譯佮相關程式(安裝程式腳本):
                 join('scripts', 'merge_alignment.py'),
                 join('bin', 'merge_alignment.py')
             )
+
+    @classmethod
+    def moses程式碼目錄(cls, moses安裝路徑):
+        return join(moses安裝路徑, 'mosesdecoder')
+
+    @classmethod
+    def gizapp程式碼目錄(cls, moses安裝路徑):
+        return join(moses安裝路徑, 'giza-pp')
+
+    @classmethod
+    def mgiza程式碼目錄(cls, moses安裝路徑):
+        return join(moses安裝路徑, 'mgiza', 'mgizapp')

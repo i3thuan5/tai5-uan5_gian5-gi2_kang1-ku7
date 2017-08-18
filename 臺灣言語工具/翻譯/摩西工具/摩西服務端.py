@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-import os
+from os.path import join, isfile
 from subprocess import Popen
 
 
 from 臺灣言語工具.系統整合.外部程式 import 外部程式
+from 臺灣言語工具.翻譯.摩西工具.安裝摩西翻譯佮相關程式 import 安裝摩西翻譯佮相關程式
 
 
 class 摩西服務端():
@@ -11,13 +12,16 @@ class 摩西服務端():
     def __init__(self,
                  moses模型資料夾路徑,
                  埠='8080',
-                 moses資料夾路徑=外部程式.moses預設目錄(),
+                 moses安裝路徑=外部程式.目錄(),
                  ):
-        self.執行程式 = os.path.join(moses資料夾路徑, 'bin', 'mosesserver')
-        if not os.path.isfile(self.執行程式):
+        self.執行程式 = join(
+            安裝摩西翻譯佮相關程式.moses程式碼目錄(moses安裝路徑),
+            'bin', 'mosesserver'
+        )
+        if not isfile(self.執行程式):
             raise OSError('{0}程式無存在！！'.format(self.執行程式))
-        self.模型路徑 = os.path.join(moses模型資料夾路徑, 'model', 'moses.ini')
-        if not os.path.isfile(self.模型路徑):
+        self.模型路徑 = join(moses模型資料夾路徑, 'model', 'moses.ini')
+        if not isfile(self.模型路徑):
             raise OSError('{0}模型無存在！！'.format(self.模型路徑))
         self.埠 = 埠
         self.程序 = None

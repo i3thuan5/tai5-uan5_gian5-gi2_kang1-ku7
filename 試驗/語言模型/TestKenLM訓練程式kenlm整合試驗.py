@@ -6,17 +6,15 @@ from unittest.case import TestCase
 
 from 臺灣言語工具.語言模型.KenLM語言模型訓練 import KenLM語言模型訓練
 from 臺灣言語工具.翻譯.摩西工具.無編碼器 import 無編碼器
-from 臺灣言語工具.翻譯.摩西工具.安裝摩西翻譯佮相關程式 import 安裝摩西翻譯佮相關程式
+from 臺灣言語工具.語言模型.安裝KenLM訓練程式 import 安裝KenLM訓練程式
 
 
-class KenLM語言模型訓練整合試驗(TestCase):
+class KenLM訓練程式kenlm整合試驗(TestCase):
     忍受 = 1e-7
 
     @classmethod
     def setUpClass(cls):
-        安裝摩西翻譯佮相關程式.安裝gizapp()
-        安裝摩西翻譯佮相關程式.安裝mgiza()  # 愛libboost
-        安裝摩西翻譯佮相關程式.安裝moses(編譯CPU數=4)
+        安裝KenLM訓練程式.安裝kenlm()
 
     def setUp(self):
         self.這馬目錄 = os.path.dirname(os.path.abspath(__file__))
@@ -24,7 +22,8 @@ class KenLM語言模型訓練整合試驗(TestCase):
         self.閩南語語料陣列 = [os.path.join(資料目錄, '文本.txt'), ]
 
     def test_路徑設定毋著(self):
-        self.assertRaises(FileNotFoundError, KenLM語言模型訓練, '/')
+        with self.assertRaises(FileNotFoundError):
+            KenLM語言模型訓練('/', '/')
 
     def test_訓練模型(self):
         self.模型訓練 = KenLM語言模型訓練()
