@@ -42,6 +42,12 @@ class Bubukun轉音值單元試驗(TestCase):
             [['a'], ['a', 'p'], ['n', 'u', 'm']]
         )
 
+    def test_大寫(self):
+        self.assertEqual(
+            Bubukun("Mutmutanin").音值(),
+            [['m', 'u', 't'], ['m', 'u'], ['t', 'a'], ['n', 'i', 'n']]
+        )
+
     @skip('長元音的性質猶未確定')
     def test_音節分開(self):
         self.assertEqual(
