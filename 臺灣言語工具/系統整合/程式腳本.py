@@ -10,17 +10,18 @@ class 程式腳本:
 
     @classmethod
     def _走指令(cls, 指令, 愛直接顯示輸出=False,
-             stdin=None, stdout=PIPE, stderr=PIPE, env=None):
+             stdin=None, stdout=PIPE, stderr=PIPE, *args, **kwargs):
         try:
             if 愛直接顯示輸出:
-                程序 = Popen(指令, env=env, stdin=stdin)
+                程序 = Popen(指令,  stdin=stdin, *args, **kwargs)
                 回傳值 = 程序.wait()
                 if 回傳值 != 0:
                     cls._走指令錯誤(指令)
             else:
                 程序 = Popen(
-                    指令, env=env,
-                    stdin=stdin, stdout=stdout, stderr=stderr
+                    指令,
+                    stdin=stdin, stdout=stdout, stderr=stderr,
+                    *args, **kwargs,
                 )
                 輸出資訊, 錯誤輸出資訊 = 程序.communicate()
                 回傳值 = 程序.wait()
