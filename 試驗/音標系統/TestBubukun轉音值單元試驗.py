@@ -30,16 +30,16 @@ class Bubukun轉音值單元試驗(TestCase):
             [['t', 'u'], ['ð', 'aː']]
         )
 
-    def test_多音節(self):
+    def test_補喉入聲(self):
         self.assertEqual(
             Bubukun("adasun").音值(),
-            [['a'], ['d', 'a'], ['s', 'u', 'n']]
+            [['ʔ', 'a'], ['d', 'a'], ['s', 'u', 'n']]
         )
 
     def test_元音分開(self):
         self.assertEqual(
             Bubukun("a-apnum").音值(),
-            [['a'], ['a', 'p'], ['n', 'u', 'm']]
+            [['ʔ', 'a'], ['a', 'p'], ['n', 'u', 'm']]
         )
 
     @skip('長元音的性質猶未確定')
