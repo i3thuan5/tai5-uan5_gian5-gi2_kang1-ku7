@@ -38,7 +38,8 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
 }
 臺灣閩南語羅馬字拼音次方言韻母表 = {
     'er', 'erh', 'erm', 'ere', 'ereh',  # 泉　鍋
-    'ee', 'eeh', 'eng', 'uee',  # 漳　家
+    'ee', 'eeh', 'uee',  # 漳　家
+    'eng',
     'ir', 'irh', 'irp', 'irt', 'irk', 'irm', 'irn', 'irng', 'irinn',
     'ie',  # 鹿港偏泉腔
     'or', 'orh', 'ior', 'iorh',  # 蚵
@@ -114,7 +115,7 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
     # 下跤是次方言
     'or': 'or', 'orh': 'orh', 'ior': 'ior', 'iorh': 'iorh',
     'eng': 'ing',
-    'ee': 'e', 'eeh': 'eh',  'uee': 'ue',  # 有問題
+    'ee': 'e', 'eeh': 'eh', 'uee': 'ue',  # 有問題
     'ir': 'i', 'irh': 'ih', 'irp': 'ip', 'irt': 'it', 'irk': 'ik',  # 有問題
     'irm': 'im', 'irn': 'in', 'irng': 'ing', 'irinn': 'inn',  # 有問題
     'er': 'or', 'erh': 'orh', 'erm': 'orm', 'erm': 'orm',
