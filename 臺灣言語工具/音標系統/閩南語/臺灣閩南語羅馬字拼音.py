@@ -123,7 +123,8 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
 }
 臺羅對通用調對照表 = {
     '1': '1', '7': '2', '3': '3', '2': '4', '5': '5',
-    '8': '6', '4': '7', '10': '8', '9': '9', '6': '7'
+    '8': '6', '4': '7', '10': '8', '9': '9',
+    '6': '4', '0': '3',
 }
 
 
@@ -172,15 +173,11 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
     def 轉通用拼音(self):
         if self.音標 is None:
             return None
-        if self.聲 not in self.對通用聲對照表 or self.韻 not in self.對通用韻對照表 or self.調 not in self.對通用調對照表:
-            raise RuntimeError(
-                '轉通用拼音時對照表有問題！！{0}、{1}、{2}、{3}、{4}'
-                .format(
-                    self.聲, self.韻, self.調,
-                    self.韻 in self.對通用韻對照表, self.調 in self.對通用調對照表
-                )
-            )
-        return self.對通用聲對照表[self.聲] + self.對通用韻對照表[self.韻] + self.對通用調對照表[self.調]
+        return (
+            self.對通用聲對照表[self.聲] +
+            self.對通用韻對照表[self.韻] +
+            self.對通用調對照表[self.調]
+        )
 
     def 產生吳守禮方音物件(self):
         return 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組(self.聲, self.韻, self.調, self.輕)
