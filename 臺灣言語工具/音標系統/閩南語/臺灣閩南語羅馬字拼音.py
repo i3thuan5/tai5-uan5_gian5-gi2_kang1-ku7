@@ -113,10 +113,12 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
     'un': 'un',
     # 下跤是次方言
     'or': 'or', 'orh': 'orh', 'ior': 'ior', 'iorh': 'iorh',
-    'ee': 'e', 'eeh': 'eh', 'eng': 'ing', 'uee': 'ue',
-    'ir': 'i', 'irh': 'ih', 'irp': 'ip', 'irt': 'it', 'irk': 'ik',
-    'irm': 'im', 'irn': 'in', 'irng': 'ing', 'irinn': 'inn',  # 無確定
-    'er': 'or', 'erh': 'orh', 'erm': 'orm', 'erm': 'orm', 'ere': 'er', 'ereh': 'erh',
+    'eng': 'ing',
+    'ee': 'e', 'eeh': 'eh',  'uee': 'ue',  # 有問題
+    'ir': 'i', 'irh': 'ih', 'irp': 'ip', 'irt': 'it', 'irk': 'ik',  # 有問題
+    'irm': 'im', 'irn': 'in', 'irng': 'ing', 'irinn': 'inn',  # 有問題
+    'er': 'or', 'erh': 'orh', 'erm': 'orm', 'erm': 'orm',
+    'ere': 'er', 'ereh': 'erh',
     'ie': 'ie', 'uang': 'uang',
 }
 臺羅對通用調對照表 = {
@@ -172,9 +174,12 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
             return None
         if self.聲 not in self.對通用聲對照表 or self.韻 not in self.對通用韻對照表 or self.調 not in self.對通用調對照表:
             raise RuntimeError(
-                '轉通用拼音時對照表有問題！！{0}、{1}、{2}、{3}、{4}、{5}'
-                .format(self.聲, self.韻, self.調,
-                        self.韻 in self.對通用韻對照表, self.調 in self.對通用調對照表))
+                '轉通用拼音時對照表有問題！！{0}、{1}、{2}、{3}、{4}'
+                .format(
+                    self.聲, self.韻, self.調,
+                    self.韻 in self.對通用韻對照表, self.調 in self.對通用調對照表
+                )
+            )
         return self.對通用聲對照表[self.聲] + self.對通用韻對照表[self.韻] + self.對通用調對照表[self.調]
 
     def 產生吳守禮方音物件(self):
