@@ -72,7 +72,7 @@ class 句(功能):
             for 欄位, 內容 in 一集.綜合標音(語言綜合標音)[0].items():
                 try:
                     集綜合標音[欄位].append(內容)
-                except:
+                except KeyError:
                     集綜合標音[欄位] = [內容]
         結果 = {}
         for 欄位, 內容 in 集綜合標音.items():

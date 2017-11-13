@@ -35,7 +35,7 @@ class 斷詞用戶端(用戶端連線):
         結構化結果 = self.語句斷詞後結構化(語句, 等待, 一定愛成功)
         try:
             結構 = 結構化結果[0][0]
-        except:
+        except IndexError:
             結構 = []
         結果詞陣列 = []
         字陣列 = 字物件篩仔.篩出字物件(句物件)
@@ -84,7 +84,7 @@ class 斷詞用戶端(用戶端連線):
                         continue
                     try:
                         字, 性 = self.分詞性.split(詞文本)[1:3]
-                    except:
+                    except ValueError:
                         字, 性 = 詞文本, None
                     逝結果.append((字, 性))
                 一逝結構化.append(逝結果)

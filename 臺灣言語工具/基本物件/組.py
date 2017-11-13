@@ -66,7 +66,7 @@ class 組(功能):
             for 欄位, 內容 in 一詞.綜合標音(語言綜合標音)[0].items():
                 try:
                     詞組綜合標音[欄位].append(內容)
-                except:
+                except KeyError:
                     詞組綜合標音[欄位] = [內容]
         結果 = {}
         for 欄位, 內容 in 詞組綜合標音.items():

@@ -28,7 +28,7 @@ class 安裝HTK語音辨識程式(安裝程式腳本):
         with cls._換目錄(htk程式碼目錄):
             try:
                 cls._走指令(['make', 'all', 'install'])
-            except:
+            except OSError:
                 cls._走指令(['chmod', 'u+x', 'configure'])
                 cls._走指令([
                     './configure',
