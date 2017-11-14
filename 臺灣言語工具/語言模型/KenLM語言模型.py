@@ -22,6 +22,6 @@ class KenLM語言模型(語言模型):
                 機率, _連紲詞長度, _是未知詞 = 結果
                 try:
                     機率 += 詞陣列[所在].屬性['機率']
-                except:
+                except (AttributeError, KeyError):
                     pass
                 yield 機率

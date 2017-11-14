@@ -351,7 +351,7 @@ class HTK辨識模型訓練(HTK語料處理):
                 # 無到三个音框就提掉
                 if int(結束) - int(開始) >= 300000 or 標仔 != HTK語料處理.短恬:
                     新聲韻.append(標仔)
-            except:
+            except ValueError:
                 新聲韻.append(一逝)
         cls._陣列寫入檔案(新拄好短恬聲韻檔, 新聲韻)
 

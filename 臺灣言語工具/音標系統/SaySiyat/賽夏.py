@@ -32,7 +32,7 @@ class 賽夏:
         try:
             if self.寫法檢查.match(音標).group(0) == 音標:
                 self.音標 = 音標
-        except:
+        except AttributeError:
             pass
 
     def 預設音標(self):
