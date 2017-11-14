@@ -110,4 +110,9 @@ class 通用拼音音標(閩南語音標介面):
     def 轉ForPa(self):
         if self.音標 is None:
             return None
-        return self.音標.replace('or', 'er')
+        return (
+            self.音標
+            .replace('v', 'bh')
+            .replace('q', 'gh')
+            .replace('or', 'er')
+        )
