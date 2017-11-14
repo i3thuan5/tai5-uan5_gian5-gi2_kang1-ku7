@@ -21,7 +21,7 @@ class 漢語語音標仔轉換(語音標仔轉換):
                     聲, 韻, 調 = 字物件.音
                     全部聲韻資料.append((聲, len(全部字資料)))
                     全部聲韻資料.append((韻, len(全部字資料)))
-                except:
+                except ValueError:
                     調 = cls.免知
                     全部聲韻資料.append((cls.恬音, len(全部字資料)))
                 全部字資料.append((調, 詞中第幾字, 攏總字數量, len(全部詞資料)))

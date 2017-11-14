@@ -55,10 +55,7 @@ class 用戶端連線:
         連線 = socket(
             AF_INET, SOCK_STREAM)
         連線.settimeout(等待)
-        try:
-            連線.connect((主機, 埠))
-        except:
-            raise RuntimeError("連線逾時")
+        連線.connect((主機, 埠))
         資料 = self.傳去格式.format(編碼, 帳號, 密碼, 語句).encode(編碼)
 # 		print('送出', 資料)
         已經送出去 = 0

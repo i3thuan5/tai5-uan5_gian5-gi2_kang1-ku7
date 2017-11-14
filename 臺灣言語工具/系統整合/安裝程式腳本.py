@@ -13,7 +13,7 @@ class 安裝程式腳本(程式腳本):
                 '--depth', cls.pull深度,
                 專案git路徑
             ])
-        except:
+        except OSError:
             cls._走指令([
                 'git', 'clone',
                 專案git路徑
@@ -26,7 +26,7 @@ class 安裝程式腳本(程式腳本):
                 ['git', 'pull', '--depth', cls.pull深度],
                 愛直接顯示輸出=True
             )
-        except:
+        except OSError:
             cls._走指令(
                 ['git', 'pull'],
                 愛直接顯示輸出=True

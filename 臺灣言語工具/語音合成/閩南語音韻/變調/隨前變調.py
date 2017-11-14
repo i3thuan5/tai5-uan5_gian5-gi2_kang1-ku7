@@ -14,7 +14,7 @@ class 隨前變調:
     def __eq__(self, 別的):
         try:
             return self._變調後輕聲音 == 別的._變調後輕聲音
-        except:
+        except AttributeError:
             return False
 
     def 變調(self, 音):

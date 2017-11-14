@@ -161,7 +161,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
             if 符號 in self.音標:
                 try:
                     韻 = self.韻.replace(符號, self.數字調轉閏號調表[(符號, self.調)])
-                except:  # 第一調、第四調，免符號
+                except KeyError:  # 第一調、第四調，免符號
                     韻 = self.韻
                 break
         else:

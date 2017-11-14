@@ -13,13 +13,13 @@ class 規則變調:
         if 韻.endswith('ʔ') or 韻.endswith('h'):
             try:
                 調 = cls.喉入聲變調規則[調]
-            except:
+            except KeyError:
                 raise 解析錯誤('喉塞尾調錯誤！！{0}'.format((聲, 韻, 調)))
             韻 = 韻[:-1]
         elif 韻.endswith('p') or 韻.endswith('t') or 韻.endswith('k'):
             try:
                 調 = cls.入聲變調規則[調]
-            except:
+            except KeyError:
                 raise 解析錯誤('入尾調錯誤！！{0}'.format((聲, 韻, 調)))
         else:
             if 調 in cls.變調規則:
