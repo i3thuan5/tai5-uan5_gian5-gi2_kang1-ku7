@@ -42,7 +42,7 @@ class 程式腳本:
             錯誤輸出 = '錯誤資訊：{0}\n'.format(錯誤輸出資訊.decode('utf-8'))
         else:
             錯誤輸出 = ''
-        raise RuntimeError(
+        raise OSError(
             '指令走到一半發生問題！！指令：{0}\n{1}{2}'
             .format(指令, 輸出, 錯誤輸出)
         )
