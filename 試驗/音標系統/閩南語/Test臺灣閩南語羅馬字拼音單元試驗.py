@@ -176,6 +176,9 @@ class 臺灣閩南語羅馬字拼音單元試驗(TestCase):
         self.assertEqual(臺灣閩南語羅馬字拼音('gio2').轉通用拼音(), 'ghior4')
         self.assertEqual(臺灣閩南語羅馬字拼音('hiunnh8').轉通用拼音(), 'hiunnh6')
 
+    def test_輕聲轉會過通用拼音(self):
+        臺灣閩南語羅馬字拼音('bo0').轉通用拼音()
+
     def test_全部攏會轉通用拼音(self):
         for 母 in 臺灣閩南語羅馬字拼音聲母表:
             self.assertIn(母, 臺羅對通用聲對照表)

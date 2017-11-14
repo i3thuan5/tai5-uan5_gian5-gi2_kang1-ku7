@@ -38,7 +38,8 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
 }
 臺灣閩南語羅馬字拼音次方言韻母表 = {
     'er', 'erh', 'erm', 'ere', 'ereh',  # 泉　鍋
-    'ee', 'eeh', 'eng', 'uee',  # 漳　家
+    'ee', 'eeh', 'uee',  # 漳　家
+    'eng',
     'ir', 'irh', 'irp', 'irt', 'irk', 'irm', 'irn', 'irng', 'irinn',
     'ie',  # 鹿港偏泉腔
     'or', 'orh', 'ior', 'iorh',  # 蚵
@@ -113,15 +114,18 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
     'un': 'un',
     # 下跤是次方言
     'or': 'or', 'orh': 'orh', 'ior': 'ior', 'iorh': 'iorh',
-    'ee': 'e', 'eeh': 'eh', 'eng': 'ing', 'uee': 'ue',
-    'ir': 'i', 'irh': 'ih', 'irp': 'ip', 'irt': 'it', 'irk': 'ik',
-    'irm': 'im', 'irn': 'in', 'irng': 'ing', 'irinn': 'inn',  # 無確定
-    'er': 'or', 'erh': 'orh', 'erm': 'orm', 'erm': 'orm', 'ere': 'er', 'ereh': 'erh',
+    'eng': 'ing',
+    'ee': 'e', 'eeh': 'eh', 'uee': 'ue',  # 有問題
+    'ir': 'i', 'irh': 'ih', 'irp': 'ip', 'irt': 'it', 'irk': 'ik',  # 有問題
+    'irm': 'im', 'irn': 'in', 'irng': 'ing', 'irinn': 'inn',  # 有問題
+    'er': 'or', 'erh': 'orh', 'erm': 'orm', 'erm': 'orm',
+    'ere': 'er', 'ereh': 'erh',
     'ie': 'ie', 'uang': 'uang',
 }
 臺羅對通用調對照表 = {
     '1': '1', '7': '2', '3': '3', '2': '4', '5': '5',
-    '8': '6', '4': '7', '10': '8', '9': '9', '6': '7'
+    '8': '6', '4': '7', '10': '8', '9': '9',
+    '6': '4', '0': '3',
 }
 
 
@@ -170,12 +174,11 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
     def 轉通用拼音(self):
         if self.音標 is None:
             return None
-        if self.聲 not in self.對通用聲對照表 or self.韻 not in self.對通用韻對照表 or self.調 not in self.對通用調對照表:
-            raise RuntimeError(
-                '轉通用拼音時對照表有問題！！{0}、{1}、{2}、{3}、{4}、{5}'
-                .format(self.聲, self.韻, self.調,
-                        self.韻 in self.對通用韻對照表, self.調 in self.對通用調對照表))
-        return self.對通用聲對照表[self.聲] + self.對通用韻對照表[self.韻] + self.對通用調對照表[self.調]
+        return (
+            self.對通用聲對照表[self.聲] +
+            self.對通用韻對照表[self.韻] +
+            self.對通用調對照表[self.調]
+        )
 
     def 產生吳守禮方音物件(self):
         return 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組(self.聲, self.韻, self.調, self.輕)
