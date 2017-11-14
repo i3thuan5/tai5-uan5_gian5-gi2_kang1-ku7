@@ -27,7 +27,7 @@ class 程式腳本:
                 if 回傳值 != 0:
                     cls._走指令錯誤(指令, 輸出資訊, 錯誤輸出資訊)
         except FileNotFoundError:
-            raise RuntimeError(
+            raise FileNotFoundError(
                 '檔案無存在，抑是指令參數愛用陣列的形式！！指令：{0}'
                 .format(指令)
             )
