@@ -47,15 +47,22 @@ class KenLM語言模型訓練(程式腳本):
 # 			)
         with open(目標語言全部語料檔名, 'r') as 目標語言全部語料:
             with open(語言模型檔, 'w') as 語言模型:
-                self._走指令(
-                    [
-                        self.訓練指令,
-                        '-o', str(連紲詞長度),
-                        '--discount_fallback',
-                        '-S', 使用記憶體量,
-                        '-T', '/tmp',
-                    ],
-                    stdin=目標語言全部語料,
-                    stdout=語言模型,
-                )
+                指令陣列 = [
+                    self.訓練指令,
+                    '-o', str(連紲詞長度),
+                    '-S', 使用記憶體量,
+                    '-T', '/tmp',
+                ]
+                try:
+                    self._走指令(
+                        指令陣列,
+                        stdin=目標語言全部語料,
+                        stdout=語言模型
+                    )
+                except OSError:
+                    self._走指令(
+                        指令陣列 + ['--discount_fallback'],
+                        stdin=目標語言全部語料,
+                        stdout=語言模型,
+                    )
         return 語言模型檔
