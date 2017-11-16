@@ -24,7 +24,10 @@ class KenLM語言模型訓練(程式腳本):
         elif isfile(moses訓練指令):
             self.訓練指令 = moses訓練指令
         if self.訓練指令 is None:
-            raise FileNotFoundError('佇{0}揣無KenLM執行檔！！'.format(self.訓練指令))
+            raise FileNotFoundError(
+                '揣無KenLM執行檔！！'
+                '請用「安裝KenLM訓練程式」抑是「安裝摩西翻譯佮相關程式」'
+            )
 
     def 訓練(self, 語料陣列,
            暫存資料夾,
