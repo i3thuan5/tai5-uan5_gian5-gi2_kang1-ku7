@@ -32,3 +32,21 @@ class 臺灣閩南語羅馬字拼音閏號單元試驗(TestCase):
     def test_無正確(self):
         拼音物件 = 臺灣閩南語羅馬字拼音('suii')
         self.assertEqual(拼音物件.轉閏號調(), None)
+
+    def test_優勢腔(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('ainn7').轉閏號調(), 'āinn')
+        self.assertEqual(臺灣閩南語羅馬字拼音('ang3').轉閏號調(), 'àng')
+        self.assertEqual(臺灣閩南語羅馬字拼音('au3').轉閏號調(), 'àu')
+        self.assertEqual(臺灣閩南語羅馬字拼音('mng5').轉閏號調(), 'mn̂g')
+        self.assertEqual(臺灣閩南語羅馬字拼音('gio2').轉閏號調(), 'gió')
+        self.assertEqual(臺灣閩南語羅馬字拼音('hiunnh8').轉閏號調(), 'hiu̍nnh')
+        self.assertEqual(臺灣閩南語羅馬字拼音('moo5').轉閏號調(), 'môo')
+
+    def test_方言韻(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('tere5').轉閏號調(), 'terê')
+        self.assertEqual(臺灣閩南語羅馬字拼音('tir5').轉閏號調(), 'tîr')
+
+    def test_外來語佮輕聲(self):
+        # 符號予別的工具處理
+        self.assertEqual(臺灣閩南語羅馬字拼音('0tir5').轉閏號調(), '0tîr')
+        self.assertEqual(臺灣閩南語羅馬字拼音('1tir5').轉閏號調(), '1tîr')
