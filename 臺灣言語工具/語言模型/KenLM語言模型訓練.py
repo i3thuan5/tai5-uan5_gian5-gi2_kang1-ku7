@@ -24,7 +24,10 @@ class KenLM語言模型訓練(程式腳本):
         elif isfile(moses訓練指令):
             self.訓練指令 = moses訓練指令
         if self.訓練指令 is None:
-            raise FileNotFoundError('佇{0}揣無KenLM執行檔！！'.format(self.訓練指令))
+            raise FileNotFoundError(
+                '揣無KenLM執行檔！！'
+                '請用「安裝KenLM訓練程式」抑是「安裝摩西翻譯佮相關程式」'
+            )
 
     def 訓練(self, 語料陣列,
            暫存資料夾,
@@ -47,15 +50,22 @@ class KenLM語言模型訓練(程式腳本):
 # 			)
         with open(目標語言全部語料檔名, 'r') as 目標語言全部語料:
             with open(語言模型檔, 'w') as 語言模型:
-                self._走指令(
-                    [
-                        self.訓練指令,
-                        '-o', str(連紲詞長度),
-                        '--discount_fallback',
-                        '-S', 使用記憶體量,
-                        '-T', '/tmp',
-                    ],
-                    stdin=目標語言全部語料,
-                    stdout=語言模型,
-                )
+                指令陣列 = [
+                    self.訓練指令,
+                    '-o', str(連紲詞長度),
+                    '-S', 使用記憶體量,
+                    '-T', '/tmp',
+                ]
+                try:
+                    self._走指令(
+                        指令陣列,
+                        stdin=目標語言全部語料,
+                        stdout=語言模型
+                    )
+                except OSError:
+                    self._走指令(
+                        指令陣列 + ['--discount_fallback'],
+                        stdin=目標語言全部語料,
+                        stdout=語言模型,
+                    )
         return 語言模型檔

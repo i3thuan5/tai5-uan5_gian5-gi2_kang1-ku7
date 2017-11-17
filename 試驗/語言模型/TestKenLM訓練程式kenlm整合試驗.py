@@ -38,3 +38,17 @@ class KenLM訓練程式kenlm整合試驗(TestCase):
 
         # 刣掉訓練出來的模型
         rmtree(os.path.join(self.這馬目錄, '暫存資料夾'))
+
+    def test_訓練三連音模型(self):
+        self.模型訓練 = KenLM語言模型訓練()
+        模型檔 = self.模型訓練.訓練(
+            self.閩南語語料陣列,
+            os.path.join(self.這馬目錄, '暫存資料夾'),
+            連紲詞長度=3,
+            編碼器=無編碼器(),
+            使用記憶體量='20%',
+        )
+        self.assertTrue(os.path.isfile(模型檔))
+
+        # 刣掉訓練出來的模型
+        rmtree(os.path.join(self.這馬目錄, '暫存資料夾'))
