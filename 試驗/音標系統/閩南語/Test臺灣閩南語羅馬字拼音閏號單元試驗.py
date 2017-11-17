@@ -28,3 +28,7 @@ class 臺灣閩南語羅馬字拼音閏號單元試驗(TestCase):
     def test_小寫輕聲(self):
         拼音物件 = 臺灣閩南語羅馬字拼音('0suí')
         self.assertEqual(拼音物件.轉閏號調(), '0suí')
+
+    def test_無正確(self):
+        拼音物件 = 臺灣閩南語羅馬字拼音('suii')
+        self.assertEqual(拼音物件.轉閏號調(), None)
