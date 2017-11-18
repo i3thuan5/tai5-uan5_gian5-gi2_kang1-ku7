@@ -35,7 +35,7 @@ class 通用拼音音標單元試驗(TestCase):
     def test_轉forpa(self):
         通 = 'iorh6'
         forpa = 'ierh6'
-        self.assertEqual(通用拼音音標(通).轉ForPa(), forpa)
+        self.assertEqual(通用拼音音標(通).轉ForPA(), forpa)
 
     def test_違法音標(self):
         self.assertEqual(通用拼音音標('@@').音標, None)
