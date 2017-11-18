@@ -162,13 +162,11 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 
         for 符號 in ['a', 'oo', 'o', 'ee', 'ere', 'e', 'iri', 'ui', 'iu', 'u', 'i', 'ng', 'm']:
             if 符號 in self.音標:
-                try:
-                    韻 = self.韻.replace(符號, self.數字調轉閏號調表[(符號, self.調)])
-                except KeyError:  # 第一調、第四調，免符號
+                if self.調 in ['1', '4']:  # 第一調、第四調，免符號
                     韻 = self.韻
+                else:
+                    韻 = self.韻.replace(符號, self.數字調轉閏號調表[(符號, self.調)])
                 break
-        else:
-            韻 = self.韻
         聲韻 = self.聲 + 韻
         if self.原本音標.strip('01')[0].isupper():
             聲韻 = 聲韻[0].upper() + 聲韻[1:]
