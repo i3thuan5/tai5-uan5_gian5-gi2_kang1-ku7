@@ -21,7 +21,7 @@ class 程式腳本:
                 程序 = Popen(
                     指令,
                     stdin=stdin, stdout=stdout, stderr=stderr,
-                    *args, **kwargs,
+                    *args, **kwargs
                 )
                 輸出資訊, 錯誤輸出資訊 = 程序.communicate()
                 回傳值 = 程序.wait()
