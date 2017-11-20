@@ -4,11 +4,11 @@ from 臺灣言語工具.音標系統.Bunun.Bubukun import Bubukun
 
 class Bubukun轉音值單元試驗(TestCase):
 
-    @skip('長元音的性質猶未確定')
+    #     @skip('長元音的性質猶未確定')
     def test_單元音(self):
         self.assertEqual(
             Bubukun("baak").音值(),
-            [['b', 'aː', 'k']]
+            [['b', 'a', 'a', 'k']]
         )
 
     def test_雙元音(self):
@@ -23,11 +23,11 @@ class Bubukun轉音值單元試驗(TestCase):
             [['t', 'u'], ['ð', 'a']]
         )
 
-    @skip('長元音的性質猶未確定')
+#     @skip('長元音的性質猶未確定')
     def test_雙音節長元音(self):
         self.assertEqual(
             Bubukun("tuzaa").音值(),
-            [['t', 'u'], ['ð', 'aː']]
+            [['t', 'u'], ['ð', 'a', 'a']]
         )
 
     def test_補喉入聲(self):
@@ -42,13 +42,13 @@ class Bubukun轉音值單元試驗(TestCase):
             [['ʔ', 'a'], ['ʔ', 'a', 'p'], ['n', 'u', 'm']]
         )
 
-    @skip('長元音的性質猶未確定')
+#     @skip('長元音的性質猶未確定')
     def test_音節分開(self):
         self.assertEqual(
             Bubukun("cinus-uvaazan").音值(),
             [
                 ['ts', 'i'], ['n', 'u', 's'],
-                ['ʔ', 'u'], ['v', 'aː'], ['ð', 'a', 'n']
+                ['ʔ', 'u'], ['v', 'a', 'a'], ['ð', 'a', 'n']
             ]
         )
 

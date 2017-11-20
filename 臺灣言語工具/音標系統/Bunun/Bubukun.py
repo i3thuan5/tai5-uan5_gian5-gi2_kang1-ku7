@@ -43,7 +43,6 @@ class Bubukun:
             self.音標.replace('iy', 'y')
             .replace('ow', 'w')
         )
-        print(音素陣列[0])
         if 音素陣列[0] in self.元音:
             音素陣列 = ['-'] + 音素陣列
         是音節上尾一个 = []
