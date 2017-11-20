@@ -33,3 +33,8 @@ class 訓練HTSEngine模型整合試驗(TestCase):
             join(dirname(__file__), 'HTS訓練語料'), 44100, 顯示訓練過程=False
         )
         self.assertTrue(isfile(htsengine模型))
+
+    def test_閣裝一擺就是更新(self):
+        安裝HTS語音辨識程式.安裝sptk()
+        安裝HTS語音辨識程式.安裝hts()
+        安裝HTS語音辨識程式.掠htsDemoScript()

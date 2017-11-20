@@ -255,7 +255,7 @@ class 文章粗胚:
                     (敢是katakana(結果[-1]) and 敢是katakana(字))
                 ):
                     結果.append(分字符號)
-            except:
+            except IndexError:
                 pass
             結果.append(字)
         return ''.join(結果)

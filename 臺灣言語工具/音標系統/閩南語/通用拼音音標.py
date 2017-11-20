@@ -106,3 +106,13 @@ class 通用拼音音標(閩南語音標介面):
         調 = self.調類對照表[self.調]
         臺羅 = 臺灣閩南語羅馬字拼音(聲 + 韻 + 調)
         return 臺羅.音標
+
+    def 轉ForPA(self):
+        if self.音標 is None:
+            return None
+        return (
+            self.音標
+            .replace('v', 'bh')
+            .replace('q', 'gh')
+            .replace('or', 'er')
+        )

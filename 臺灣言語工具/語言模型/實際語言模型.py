@@ -32,7 +32,7 @@ class 實際語言模型(語言模型):
             分數 = self.條件(詞陣列[max(0, 所在 + 1 - self.上濟詞數()):所在 + 1])[-1]
             try:
                 分數 += 詞陣列[所在].屬性['機率']
-            except:
+            except (AttributeError, KeyError):
                 pass
             yield 分數
 

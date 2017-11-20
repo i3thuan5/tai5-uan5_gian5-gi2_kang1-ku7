@@ -31,7 +31,7 @@ class Bubukun:
             小寫音標 = 音標.lower()
             if self.寫法檢查.match(小寫音標).group(0) == 小寫音標:
                 self.音標 = 音標
-        except:
+        except AttributeError:
             pass
 
     def 預設音標(self):

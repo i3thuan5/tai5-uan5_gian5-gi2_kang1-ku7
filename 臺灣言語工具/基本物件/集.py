@@ -59,7 +59,7 @@ class 集(功能):
     def 綜合標音(self, 語言綜合標音):
         try:
             return self.內底組[0].綜合標音(語言綜合標音)
-        except:
+        except IndexError:
             return [{}]
 
     def 篩出字物件(self):
