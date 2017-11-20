@@ -40,6 +40,12 @@ class Bubukun轉音值單元試驗(TestCase):
             [['ʔ', 'a'], ['ʔ', 'a', 'p'], ['n', 'u', 'm']]
         )
 
+    def test_大寫(self):
+        self.assertEqual(
+            Bubukun("Mutmutanin").音值(),
+            [['m', 'u', 't'], ['m', 'u'], ['t', 'a'], ['n', 'i', 'n']]
+        )
+
     def test_音節分開(self):
         self.assertEqual(
             Bubukun("cinus-uvaazan").音值(),
