@@ -49,7 +49,7 @@ class Bubukun轉音值單元試驗(TestCase):
     def test_中央大寫(self):
         self.assertEqual(
             Bubukun("IsDahucia").音值(),
-            [['ʔ', 'i', 's'], ['d', 'a'], ['h', 'u'], ['c', 'i', 'a']]
+            [['ʔ', 'i', 's'], ['d', 'a'], ['h', 'u'], ['ts', 'i', 'a']]
         )
 
     def test_音節分開(self):

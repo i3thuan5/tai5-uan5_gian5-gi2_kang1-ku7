@@ -28,7 +28,8 @@ class Bubukun:
     def __init__(self, 音標):
         self.音標 = None
         try:
-            if self.寫法檢查.match(音標).group(0) == 音標:
+            小寫音標 = 音標.lower()
+            if self.寫法檢查.match(小寫音標).group(0) == 小寫音標:
                 self.音標 = 音標
         except:
             pass
@@ -40,7 +41,9 @@ class Bubukun:
         if self.音標 is None:
             return []
         音素陣列 = self.拆音節檢查.findall(
-            self.音標.replace('iy', 'y')
+            self.音標
+            .lower()
+            .replace('iy', 'y')
             .replace('ow', 'w')
         )
         if 音素陣列[0] in self.元音:
