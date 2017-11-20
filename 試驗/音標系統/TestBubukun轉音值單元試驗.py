@@ -39,14 +39,17 @@ class Bubukun轉音值單元試驗(TestCase):
     def test_元音分開(self):
         self.assertEqual(
             Bubukun("a-apnum").音值(),
-            [['ʔ', 'a'], ['a', 'p'], ['n', 'u', 'm']]
+            [['ʔ', 'a'], ['ʔ', 'a', 'p'], ['n', 'u', 'm']]
         )
 
     @skip('長元音的性質猶未確定')
     def test_音節分開(self):
         self.assertEqual(
             Bubukun("cinus-uvaazan").音值(),
-            [['ts', 'i'], ['n', 'u', 's'], ['u'], ['v', 'aː'], ['ð', 'a', 'n']]
+            [
+                ['ts', 'i'], ['n', 'u', 's'],
+                ['ʔ', 'u'], ['v', 'aː'], ['ð', 'a', 'n']
+            ]
         )
 
     def test_預設音標就是家己(self):
