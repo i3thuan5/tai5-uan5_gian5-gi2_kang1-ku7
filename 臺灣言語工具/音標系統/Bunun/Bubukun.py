@@ -13,7 +13,7 @@ _輔音 = {
     'l': 'l',
 }
 
-_國際音標對照表 = {'-': ''}
+_國際音標對照表 = {'-': 'ʔ'}
 _國際音標對照表.update(_元音)
 _國際音標對照表.update(_輔音)
 
@@ -28,7 +28,8 @@ class Bubukun:
     def __init__(self, 音標):
         self.音標 = None
         try:
-            if self.寫法檢查.match(音標).group(0) == 音標:
+            小寫音標 = 音標.lower()
+            if self.寫法檢查.match(小寫音標).group(0) == 小寫音標:
                 self.音標 = 音標
         except AttributeError:
             pass
@@ -40,9 +41,13 @@ class Bubukun:
         if self.音標 is None:
             return []
         音素陣列 = self.拆音節檢查.findall(
-            self.音標.replace('iy', 'y')
+            self.音標
+            .lower()
+            .replace('iy', 'y')
             .replace('ow', 'w')
         )
+        if 音素陣列[0] in self.元音:
+            音素陣列 = ['-'] + 音素陣列
         是音節上尾一个 = []
         有元音矣 = False
         for 音素 in 音素陣列[::-1]:
@@ -62,8 +67,7 @@ class Bubukun:
         for 音素, 音節上尾一个 in zip(音素陣列, 是音節上尾一个[::-1]):
             if 音節上尾一个:
                 結果.append([])
-            if 音素 != '-':
-                結果[-1].append(self.國際音標對照表[音素])
+            結果[-1].append(self.國際音標對照表[音素])
         if 結果[0] == []:
             return 結果[1:]
         return 結果
