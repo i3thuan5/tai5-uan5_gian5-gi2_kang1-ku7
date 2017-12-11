@@ -784,3 +784,11 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         音 = 'tshian1-kim1-sio2-tsia2'
         組物件 = 拆文分析器.對齊組物件(型, 音)
         self.assertEqual(組物件.篩出字物件()[-1].看分詞(), '姐｜tsia2')
+
+    def test_對齊攏是漢羅(self):
+        型 = '0mh4按怎'
+        音 = '0mh4按怎'
+        組物件 = 拆文分析器.對齊組物件(型, 音)
+        self.assertEqual(len(組物件.篩出字物件()), 3)
+        self.assertEqual(組物件.篩出字物件()[0].看分詞(), '0mh4｜0mh4')
+        self.assertEqual(組物件.篩出字物件()[-1].看分詞(), '怎｜怎')
