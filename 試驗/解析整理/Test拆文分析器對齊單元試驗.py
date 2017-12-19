@@ -3,6 +3,7 @@ import unittest
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
+from 臺灣言語工具.基本物件.字 import 字
 
 
 class 拆文分析器對齊單元試驗(unittest.TestCase):
@@ -343,6 +344,12 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         self.assertEqual(組物件.內底詞, [拆文分析器.對齊詞物件(型, 原來音)])
         組物件 = 拆文分析器.對齊組物件(空白型, 原來音)
         self.assertEqual(組物件.內底詞, [拆文分析器.對齊詞物件(型, 原來音)])
+
+    def test_對齊組換逝(self):
+        換逝 = '\n'
+        組物件 = 拆文分析器.對齊組物件(換逝, 換逝)
+        self.assertEqual(組物件.內底詞, [拆文分析器.對齊詞物件(換逝, 換逝)])
+        self.assertEqual(組物件.內底詞[0].內底字, [字(換逝, 換逝)])
 
     def test_對齊組大寫專有符號袂使拆開(self):
         型 = 'H1N1 新型 流感 包含 四種 病毒'

@@ -4,6 +4,7 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.基本物件.公用變數 import 無音
+from 臺灣言語工具.基本物件.字 import 字
 
 
 class 拆文分析器建立單元試驗(unittest.TestCase):
@@ -328,6 +329,12 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
             拆文分析器.建立句物件('豬跤箍仔焄爛爛，'),
             拆文分析器.建立句物件('枵鬼囡仔流水瀾。'),
         ])
+
+    def test_建立組換逝(self):
+        換逝 = '\n'
+        組物件 = 拆文分析器.建立組物件(換逝)
+        self.assertEqual(組物件.內底詞, [拆文分析器.建立詞物件(換逝)])
+        self.assertEqual(組物件.內底詞[0].內底字, [字(換逝, 無音)])
 
     def test__拆句做字(self):
         self.assertEqual(拆文分析器._拆句做字('腹肚枵'), ['腹', '肚', '枵'])

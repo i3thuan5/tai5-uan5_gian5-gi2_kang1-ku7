@@ -5,6 +5,7 @@ from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.基本物件.公用變數 import 無音
 from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
+from 臺灣言語工具.基本物件.字 import 字
 
 
 class 拆文分析器分詞單元試驗(unittest.TestCase):
@@ -259,6 +260,12 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         組物件 = 拆文分析器.分詞組物件(分詞)
         self.assertEqual(len(組物件.內底詞), 10)
         self.assertEqual(len(組物件.內底詞[0].內底字), 1)
+
+    def test_分詞組換逝(self):
+        換逝 = '\n'
+        組物件 = 拆文分析器.分詞組物件(換逝)
+        self.assertEqual(len(組物件.內底詞), 1)
+        self.assertEqual(組物件.內底詞[0].內底字, [字(換逝, 無音)])
 
     def test_分詞組集句章無半字(self):
         分詞 = ''
