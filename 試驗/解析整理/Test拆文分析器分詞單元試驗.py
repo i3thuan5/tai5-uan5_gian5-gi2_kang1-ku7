@@ -216,14 +216,15 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         分詞 = '  𪜶｜in1    兩｜nng7     个｜e5 \n'\
             '  生-做｜senn1-tso3 一-模-一-樣｜it4-boo5-it4-iunn7 。｜.    '
         組物件 = 拆文分析器.分詞組物件(分詞)
-        self.assertEqual(len(組物件.內底詞), 6)
-        self.assertEqual(組物件.內底詞[0], 拆文分析器.分詞詞物件('𪜶｜in1'))
-        self.assertEqual(組物件.內底詞[1], 拆文分析器.分詞詞物件('兩｜nng7'))
-        self.assertEqual(組物件.內底詞[2], 拆文分析器.分詞詞物件('个｜e5'))
-        self.assertEqual(組物件.內底詞[3], 拆文分析器.分詞詞物件('生-做｜senn1-tso3'))
-        self.assertEqual(
-            組物件.內底詞[4], 拆文分析器.分詞詞物件('一-模-一-樣｜it4-boo5-it4-iunn7'))
-        self.assertEqual(組物件.內底詞[5], 拆文分析器.分詞詞物件('。｜.'))
+        self.assertEqual(組物件.內底詞, [
+            拆文分析器.分詞詞物件('𪜶｜in1'),
+            拆文分析器.分詞詞物件('兩｜nng7'),
+            拆文分析器.分詞詞物件('个｜e5'),
+            拆文分析器.分詞詞物件('\n'),
+            拆文分析器.分詞詞物件('生-做｜senn1-tso3'),
+            拆文分析器.分詞詞物件('一-模-一-樣｜it4-boo5-it4-iunn7'),
+            拆文分析器.分詞詞物件('。｜.')
+        ])
         集物件 = 拆文分析器.分詞集物件(分詞)
         self.assertEqual(len(集物件.內底組), 1)
         self.assertEqual(集物件.內底組[0], 組物件)
@@ -260,6 +261,12 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         組物件 = 拆文分析器.分詞組物件(分詞)
         self.assertEqual(len(組物件.內底詞), 10)
         self.assertEqual(len(組物件.內底詞[0].內底字), 1)
+
+    def test_分詞組無型音符號(self):
+        換逝 = '丈-姆'
+        組物件 = 拆文分析器.分詞組物件(換逝)
+        self.assertEqual(len(組物件.內底詞), 1)
+        self.assertEqual(組物件.內底詞[0].內底字, [字('丈', 無音), 字('姆', 無音)])
 
     def test_分詞組換逝(self):
         換逝 = '\n'

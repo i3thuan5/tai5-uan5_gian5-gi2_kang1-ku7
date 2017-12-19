@@ -32,7 +32,7 @@ from 臺灣言語工具.基本物件.公用變數 import 敢是katakana
 
 
 class 拆文分析器:
-    _切組物件分詞 = re.compile('(([^ ｜]*.｜.[^ ｜]*) ?|\S+)')
+    _切組物件分詞 = re.compile('(([^ ｜]*.｜.[^ ｜]*) ?|[^ ]+)')
     _切章分詞 = re.compile('(\n｜.|.｜\n|\n)', re.DOTALL)
     _是空白 = re.compile('[ \t]+')
 
