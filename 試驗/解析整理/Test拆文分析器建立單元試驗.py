@@ -511,7 +511,7 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
 
     def test_漢字刪節號(self):
         組物件 = 拆文分析器.建立組物件('枋寮漁港……')
-        self.assertEqual(len(組物件.網出詞物件()), 5)
+        self.assertEqual(len(組物件.網出詞物件()), 2)
         self.assertEqual(組物件.篩出字物件()[-1], 拆文分析器.建立字物件('……'))
 
     def test_臺羅刪節詞(self):
