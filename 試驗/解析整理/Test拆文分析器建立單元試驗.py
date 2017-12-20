@@ -53,10 +53,10 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
             [拆文分析器.建立字物件('tsit8'), 拆文分析器.建立字物件('張')]
         )
 
-    def test_建立詞超過兩詞(self):
-        語句 = '椅仔！'
-        with self.assertRaises(解析錯誤):
-            拆文分析器.建立詞物件(語句)
+    def test_有連字符就認連字符(self):
+        組物件 = 拆文分析器.建立組物件('無-？-bo5-?')
+        self.assertEqual(len(組物件.內底詞), 1)
+        self.assertEqual(len(組物件.篩出字物件()), 4)
 
     def test_建立組聲調符號接音標(self):
         組物件 = 拆文分析器.建立組物件('suiˋ-suiˋ')
