@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import unittest
+from unittest.case import TestCase
 from unittest.mock import patch
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.基本物件.集 import 集
@@ -8,7 +8,7 @@ from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.字物件篩仔 import 字物件篩仔
 
 
-class 字物件篩仔單元試驗(unittest.TestCase):
+class 字物件篩仔單元試驗(TestCase):
 
     @patch('臺灣言語工具.基本物件.句.句.篩出字物件')
     def test_篩出字物件(self, 篩出字物件mock):
@@ -33,22 +33,25 @@ class 字物件篩仔單元試驗(unittest.TestCase):
         self.assertEqual(字物件篩仔.篩出字物件(詞物件), [])
 
     def test_篩詞濟字漢字(self):
-        語句 = '椅仔！'
+        語句 = '椅仔'
         self.assertEqual(
             字物件篩仔.篩出字物件(拆文分析器.建立詞物件(語句)),
-            [拆文分析器.建立字物件('椅'), 拆文分析器.建立字物件('仔'), 拆文分析器.建立字物件('！')])
+            [拆文分析器.建立字物件('椅'), 拆文分析器.建立字物件('仔')]
+        )
 
     def test_篩詞濟字音標(self):
-        語句 = 'tsit8-tiunn1 !'
+        語句 = 'tsit8-tiunn1'
         self.assertEqual(
             字物件篩仔.篩出字物件(拆文分析器.建立詞物件(語句)),
-            [拆文分析器.建立字物件('tsit8'), 拆文分析器.建立字物件('tiunn1'), 拆文分析器.建立字物件('!')])
+            [拆文分析器.建立字物件('tsit8'), 拆文分析器.建立字物件('tiunn1')]
+        )
 
     def test_篩詞濟字漢羅(self):
-        語句 = 'tsit8-張!'
+        語句 = 'tsit8-張'
         self.assertEqual(
             字物件篩仔.篩出字物件(拆文分析器.建立詞物件(語句)),
-            [拆文分析器.建立字物件('tsit8'), 拆文分析器.建立字物件('張'), 拆文分析器.建立字物件('!')])
+            [拆文分析器.建立字物件('tsit8'), 拆文分析器.建立字物件('張')]
+        )
 
     def test_篩組孤字(self):
         型 = '媠'
@@ -61,13 +64,13 @@ class 字物件篩仔單元試驗(unittest.TestCase):
         組物件 = 拆文分析器.建立組物件(型)
         self.assertEqual(字物件篩仔.篩出字物件(組物件), [])
 
-    def test_袂使是原本的陣列(self):
-        語句 = 'tsit8-張!'
+    def test_袂使是原本的字陣列(self):
+        語句 = 'tsit8-張'
         詞物件 = 拆文分析器.建立詞物件(語句)
         self.assertIsNot(字物件篩仔.篩出字物件(詞物件), 詞物件.內底字)
 
-    def test_愛是原本的物件(self):
-        語句 = 'tsit8-張!'
+    def test_愛是原本的字物件(self):
+        語句 = 'tsit8-張'
         詞物件 = 拆文分析器.建立詞物件(語句)
         for 原來, 網出 in zip(詞物件.內底字, 字物件篩仔.篩出字物件(詞物件)):
             self.assertIs(原來, 網出)
