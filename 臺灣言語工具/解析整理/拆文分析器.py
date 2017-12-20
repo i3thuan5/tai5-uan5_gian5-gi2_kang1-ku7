@@ -428,7 +428,7 @@ class 拆文分析器:
             型, 音 = 切開結果
             if 型 == '':
                 raise 解析錯誤('型是空的：{0}'.format(分詞))
-            if len(型)==1 and len(音)==1:
+            if len(型) == 1 and len(音) == 1:
                 return 詞([cls.對齊字物件(型, 音)])
             return cls.對齊詞物件(型, 音)
         if len(切開結果) == 1:
