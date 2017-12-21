@@ -5,6 +5,7 @@ from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.基本物件.公用變數 import 無音
 from 臺灣言語工具.基本物件.字 import 字
+from 臺灣言語工具.基本物件.詞 import 詞
 
 
 class 拆文分析器建立單元試驗(unittest.TestCase):
@@ -59,7 +60,7 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         self.assertEqual(len(組物件.篩出字物件()), 4)
 
     def test_建立組聲調符號接音標(self):
-        組物件 = 拆文分析器.建立組物件('suiˋ-suiˋ')
+        組物件 = 拆文分析器.建立組物件('suiˋsuiˋ')
         self.assertEqual(組物件.篩出字物件(), [
             拆文分析器.建立字物件('suiˋ'), 拆文分析器.建立字物件('suiˋ')
         ])
@@ -182,6 +183,18 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         切好語句 = ['伊', '18', ':', '30', '會來']
         組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
         self.assertEqual(詞陣列, 組物件.內底詞)
+
+    def test_建立組日文前臺羅(self):
+        語句 = 'si7げ'
+        self.assertEqual(拆文分析器.建立組物件(語句).內底詞, [
+            詞([字('si7'), ]), 詞([字('げ'), ])
+        ])
+
+    def test_建立組日文後數字(self):
+        語句 = '仕上げ714'
+        self.assertEqual(拆文分析器.建立組物件(語句).內底詞, [
+            詞([字('仕'), 字('上'), 字('げ')]), 詞([字('714'), ])
+        ])
 
     def test_建立組減號(self):
         with self.assertRaises(解析錯誤):
