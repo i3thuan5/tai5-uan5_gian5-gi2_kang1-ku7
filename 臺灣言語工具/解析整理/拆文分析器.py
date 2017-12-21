@@ -430,6 +430,13 @@ class 拆文分析器:
                 raise 解析錯誤('型是空的：{0}'.format(分詞))
             if len(型) == 1 and len(音) == 1:
                 return 詞([cls.對齊字物件(型, 音)])
+            型陣列 = 型.split(分字符號)
+            音陣列 = 音.split(分字符號)
+            if len(型陣列) > 1 and len(型陣列) == len(音陣列):
+                字陣列 = []
+                for 一型, 一音 in zip(型陣列, 音陣列):
+                    字陣列.append(cls.對齊字物件(一型, 一音))
+                return 詞(字陣列)
             return cls.對齊詞物件(型, 音)
         if len(切開結果) == 1:
             return cls.建立詞物件(分詞)
