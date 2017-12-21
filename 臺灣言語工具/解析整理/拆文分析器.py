@@ -117,23 +117,6 @@ class 拆文分析器:
             raise 解析錯誤('「{0}」、「{1}」超過一e5詞'.format(型, 音))
         return 組物件.內底詞[0]
 
-    @classmethod
-    def _拆好陣列對齊詞物件(cls, 型陣列, 音陣列):
-        if len(型陣列) < len(音陣列):
-            raise 解析錯誤('詞內底的型「{0}」比音「{1}」少！{2}：{3}'.format(
-                str(型陣列), str(音陣列), len(型陣列), len(音陣列)))
-        if len(型陣列) > len(音陣列):
-            raise 解析錯誤('詞內底的型「{0}」比音「{1}」濟！{2}：{3}'.format(
-                str(型陣列), str(音陣列), len(型陣列), len(音陣列)))
-        if 型陣列 == [] and 音陣列 == []:
-            return 詞()
-        長度 = len(型陣列)
-        詞物件 = 詞()
-        字陣列 = 詞物件.內底字
-        for 位置 in range(長度):
-            字陣列.append(cls.對齊字物件(型陣列[位置], 音陣列[位置]))
-        return 詞物件
-
     # 斷詞會照音來斷，型的連字符攏無算
     @classmethod
     def 對齊組物件(cls, 型, 音):
@@ -433,10 +416,7 @@ class 拆文分析器:
             型陣列 = 型.split(分字符號)
             音陣列 = 音.split(分字符號)
             if len(型陣列) > 1 and len(型陣列) == len(音陣列):
-                字陣列 = []
-                for 一型, 一音 in zip(型陣列, 音陣列):
-                    字陣列.append(cls.對齊字物件(一型, 一音))
-                return 詞(字陣列)
+                return cls._拆好陣列對齊詞物件(型陣列, 音陣列)
             return cls.對齊詞物件(型, 音)
         if len(切開結果) == 1:
             return cls.建立詞物件(分詞)
@@ -546,6 +526,23 @@ class 拆文分析器:
                     (字物件.音 == 無音 or 字物件.音 in 斷句標點符號):
                 return True, False
         return False, False
+
+    @classmethod
+    def _拆好陣列對齊詞物件(cls, 型陣列, 音陣列):
+        if len(型陣列) < len(音陣列):
+            raise 解析錯誤('詞內底的型「{0}」比音「{1}」少！{2}：{3}'.format(
+                str(型陣列), str(音陣列), len(型陣列), len(音陣列)))
+        if len(型陣列) > len(音陣列):
+            raise 解析錯誤('詞內底的型「{0}」比音「{1}」濟！{2}：{3}'.format(
+                str(型陣列), str(音陣列), len(型陣列), len(音陣列)))
+        if 型陣列 == [] and 音陣列 == []:
+            return 詞()
+        長度 = len(型陣列)
+        詞物件 = 詞()
+        字陣列 = 詞物件.內底字
+        for 位置 in range(長度):
+            字陣列.append(cls.對齊字物件(型陣列[位置], 音陣列[位置]))
+        return 詞物件
 
     @classmethod
     def _對齊型音處理刪節號(cls, 原始型陣列, 型所在, 原始音陣列, 音所在):
