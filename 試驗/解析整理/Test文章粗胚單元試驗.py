@@ -183,7 +183,7 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
 
     def test_建立物件語句前處理減號連字號NSN後(self):
         原來語句 = 'NSN--a2'
-        處理好語句 = 'NSN-0a2'
+        處理好語句 = 'NSN 0a2'
         self.assertEqual(
             文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句, 別的符號邊仔順紲加空白=False), 處理好語句
         )

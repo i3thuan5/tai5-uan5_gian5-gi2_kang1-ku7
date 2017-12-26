@@ -16,6 +16,7 @@ from 臺灣言語工具.基本物件.公用變數 import 聲調符號
 from 臺灣言語工具.基本物件.公用變數 import 敢是注音符號
 from 臺灣言語工具.基本物件.公用變數 import 敢是katakana
 from 臺灣言語工具.基本物件.公用變數 import 敢是hiragana
+from 臺灣言語工具.基本物件.公用變數 import 標點符號
 
 
 class 文章粗胚:
@@ -74,8 +75,7 @@ class 文章粗胚:
                     if cls._頭前有音標無(音標工具, 語句[位置 + 2:]):
                         if (
                             前回一開始狀態 == cls._組字 or
-                            (len(字元陣列) > 0 and unicodedata.category(字元陣列[-1][-1]) in 統一碼漢字佮組字式類) or
-                            cls._後壁有音標無(音標工具, 語句[:位置])
+                            (len(字元陣列) > 0 and 字元陣列[-1][-1] not in 標點符號)
                         ):
                             字元陣列.append(' 0')
                         else:
