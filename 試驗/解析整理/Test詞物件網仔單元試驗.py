@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import unittest
+from unittest.case import TestCase
 from unittest.mock import patch
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.基本物件.集 import 集
@@ -9,7 +9,7 @@ from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
 
 
-class 詞物件網仔單元試驗(unittest.TestCase):
+class 詞物件網仔單元試驗(TestCase):
 
     @patch('臺灣言語工具.基本物件.句.句.網出詞物件')
     def test_篩出字物件(self, 網出詞物件mock):
@@ -33,22 +33,25 @@ class 詞物件網仔單元試驗(unittest.TestCase):
         self.assertEqual(詞物件網仔.網出詞物件(詞物件), [詞物件])
 
     def test_網詞濟字漢字(self):
-        語句 = '椅仔！'
+        語句 = '椅仔'
         self.assertEqual(
             詞物件網仔.網出詞物件(拆文分析器.建立詞物件(語句)),
-            [拆文分析器.建立詞物件(語句)])
+            [拆文分析器.建立詞物件(語句)]
+        )
 
     def test_網詞濟字音標(self):
-        語句 = 'tsit8-tiunn1 !'
+        語句 = 'tsit8-tiunn1'
         self.assertEqual(
             詞物件網仔.網出詞物件(拆文分析器.建立詞物件(語句)),
-            [拆文分析器.建立詞物件(語句)])
+            [拆文分析器.建立詞物件(語句)]
+        )
 
     def test_網詞濟字漢羅(self):
-        語句 = 'tsit8-張!'
+        語句 = 'tsit8-張'
         self.assertEqual(
             詞物件網仔.網出詞物件(拆文分析器.建立詞物件(語句)),
-            [拆文分析器.建立詞物件(語句)])
+            [拆文分析器.建立詞物件(語句)]
+        )
 
     def test_網組孤字(self):
         語句 = '媠'
@@ -73,11 +76,6 @@ class 詞物件網仔單元試驗(unittest.TestCase):
     def test_網濟字輕聲(self):
         語句 = 'mi2-kiann7 boo5-0ki3 ah ! '
         切好語句 = ['mi2-kiann7', 'boo5-0ki3', 'ah', '!']
-        self.網組集句章看覓(語句, 切好語句)
-
-    def test_網濟連字佮符號(self):
-        語句 = '枋-寮漁-港「大-條-巷」。上-闊兩-公-尺'
-        切好語句 = ['枋寮', '漁港', '「', '大條巷', '」', '。', '上闊', '兩公尺']
         self.網組集句章看覓(語句, 切好語句)
 
     def test_袂使是原本的陣列(self):
