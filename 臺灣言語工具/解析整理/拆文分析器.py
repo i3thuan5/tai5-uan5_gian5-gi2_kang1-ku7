@@ -174,11 +174,11 @@ class 拆文分析器:
 
     @classmethod
     def _拆句做字(cls, 語句):
-        return cls._句解析(語句)[0]
+        return cls._句分析(語句)[0]
 
     @classmethod
     def _拆句做巢狀詞(cls, 語句):
-        字陣列, 佮後一个字是佇仝一个詞 = cls._句解析(語句)
+        字陣列, 佮後一个字是佇仝一个詞 = cls._句分析(語句)
         巢狀詞陣列 = []
         位置 = 0
         while 位置 < len(字陣列):
@@ -191,7 +191,7 @@ class 拆文分析器:
         return 巢狀詞陣列
 
     @classmethod
-    def _句解析(cls, 語句):
+    def _句分析(cls, 語句):
         if not isinstance(語句, str):
             raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
         if 語句 == 分詞符號 or cls._是空白.fullmatch(語句):
