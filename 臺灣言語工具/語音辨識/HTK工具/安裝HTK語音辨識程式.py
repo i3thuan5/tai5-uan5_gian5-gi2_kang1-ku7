@@ -12,7 +12,7 @@ class 安裝HTK語音辨識程式(安裝程式腳本):
     @classmethod
     def 安裝htk(cls, htk安裝路徑=外部程式.目錄()):
         makedirs(htk安裝路徑, exist_ok=True)
-        htk程式碼目錄 = join(htk安裝路徑, 'HTK')
+        htk程式碼目錄 = cls.htk程式碼目錄(htk安裝路徑)
         if not isdir(htk程式碼目錄):
             with cls._換目錄(htk安裝路徑):
                 cls._走指令([
@@ -28,10 +28,18 @@ class 安裝HTK語音辨識程式(安裝程式腳本):
         with cls._換目錄(htk程式碼目錄):
             try:
                 cls._走指令(['make', 'all', 'install'])
-            except:
+            except OSError:
                 cls._走指令(['chmod', 'u+x', 'configure'])
                 cls._走指令([
                     './configure',
                     '--prefix={}'.format(htk程式碼目錄)
                 ], 愛直接顯示輸出=True)
                 cls._走指令(['make', 'all', 'install'], 愛直接顯示輸出=True)
+
+    @classmethod
+    def htk程式碼目錄(cls, htk安裝路徑=外部程式.目錄()):
+        return join(htk安裝路徑, 'HTK')
+
+    @classmethod
+    def htk執行檔目錄(cls, htk安裝路徑=外部程式.目錄()):
+        return join(cls.htk程式碼目錄(htk安裝路徑), 'bin')

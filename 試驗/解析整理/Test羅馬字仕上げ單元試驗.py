@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import unittest
-from 臺灣言語工具.解析整理.羅馬音仕上げ import 羅馬音仕上げ
+from 臺灣言語工具.解析整理.羅馬字仕上げ import 羅馬字仕上げ
+from unittest.case import TestCase
 
 # 仕上げ
 # しあげ
@@ -8,15 +8,11 @@ from 臺灣言語工具.解析整理.羅馬音仕上げ import 羅馬音仕上�
 # 1si7_1a1_1geh4
 
 
-class 羅馬音仕上げ單元試驗(unittest.TestCase):
-
-    def setUp(self):
-        pass
+class 羅馬字仕上げ單元試驗(TestCase):
 
     def tearDown(self):
-        self.羅馬音仕上げ = 羅馬音仕上げ()
         self.assertEqual(
-            self.羅馬音仕上げ.しあげ(self.原來語句), self.處理好語句, self.原來語句
+            羅馬字仕上げ.しあげ(self.原來語句), self.處理好語句, self.原來語句
         )
 
     def test_轉大寫字(self):
@@ -28,13 +24,25 @@ class 羅馬音仕上げ單元試驗(unittest.TestCase):
         self.處理好語句 = '*ōo-*too-*bái-tiam3'
 
     def test_轉輕聲(self):
-        self.原來語句 = '0aih! bo5-0ki3 0ah4.'
-        self.處理好語句 = '--aih! bo5--ki3--ah4.'
+        self.原來語句 = 'Aih! bo5-0ki3 0ah4.'
+        self.處理好語句 = 'Aih! bo5--ki3--ah4.'
 
     def test_綜合(self):
         self.原來語句 = 'āu-piah ê 1ōo-1too-1bái-tiàm bô-khì-0ah!'
         self.處理好語句 = 'Āu-piah ê *ōo-*too-*bái-tiàm bô-khì--ah!'
 
-    def test_一般數字(self):
+    def test_一佮空開頭(self):
         self.原來語句 = '100 ê 000!'
         self.處理好語句 = '100 ê 000!'
+
+    def test_孤一佮孤空(self):
+        self.原來語句 = '1 ê 0 !'
+        self.處理好語句 = '1 ê 0 !'
+
+    def test_句首語助詞(self):
+        self.原來語句 = '0ah!'
+        self.處理好語句 = 'Ah!'
+
+    def test_攏是減號(self):
+        self.原來語句 = '------'
+        self.處理好語句 = '------'

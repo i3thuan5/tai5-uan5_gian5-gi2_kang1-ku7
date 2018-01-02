@@ -45,7 +45,7 @@ class 安裝HTS語音辨識程式(安裝HTK語音辨識程式):
         with cls._換目錄(sptk程式碼目錄):
             try:
                 cls._走指令(['make', 'all', 'install'])
-            except:
+            except OSError:
                 cls._走指令(['chmod', 'u+x', 'configure'])
                 cls._走指令([
                     './configure',
@@ -72,7 +72,7 @@ class 安裝HTS語音辨識程式(安裝HTK語音辨識程式):
         with cls._換目錄(hts程式碼目錄):
             try:
                 cls._走指令(['make', 'all', 'install'])
-            except:
+            except OSError:
                 cls._走指令(['chmod', 'u+x', 'configure'])
                 cls._走指令([
                     './configure',

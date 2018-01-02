@@ -88,8 +88,8 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
 
     def test_建立物件語句前處理減號輕聲連字號前羅後漢(self):
         原來語句 = '儂莫走boo5--去。'
-        處理好語句 = '儂莫走boo5-去。'
-        加空白後語句 = '儂莫走boo5-去 。 '
+        處理好語句 = '儂莫走boo5 去。'
+        加空白後語句 = '儂莫走boo5 去 。 '
         self.assertEqual(
             文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句, 別的符號邊仔順紲加空白=False), 處理好語句
         )
@@ -140,14 +140,19 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
         )
         self.assertEqual(文章粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
 
-    def test_建立物件語句前處理減號連字號漢字句中輕聲開頭(self):
-        原來語句 = '我 食 飯 --矣'
+    def test_建立物件語句前處理減號連字號漢字輕聲(self):
+        原來語句 = '我 食 飯--矣'
         處理好語句 = '我 食 飯 矣'
-        加空白後語句 = '我 食 飯 矣'
         self.assertEqual(
             文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句, 別的符號邊仔順紲加空白=False), 處理好語句
         )
-        self.assertEqual(文章粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
+
+    def test_建立物件語句前處理減號連字號漢字輕聲有空白(self):
+        原來語句 = '我 食 飯 --矣'
+        處理好語句 = '我 食 飯 矣'
+        self.assertEqual(
+            文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句, 別的符號邊仔順紲加空白=False), 處理好語句
+        )
 
     def test_建立物件語句前處理減號輕聲接符號(self):
         原來語句 = '從中thang講，--破錢、用憨錢'
@@ -175,6 +180,13 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
             文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句, 別的符號邊仔順紲加空白=False), 處理好語句
         )
         self.assertEqual(文章粗胚.符號邊仔加空白(處理好語句), 加空白後語句)
+
+    def test_建立物件語句前處理減號連字號NSN後(self):
+        原來語句 = 'NSN--a2'
+        處理好語句 = 'NSN 0a2'
+        self.assertEqual(
+            文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句, 別的符號邊仔順紲加空白=False), 處理好語句
+        )
 
     def test_建立物件語句前處理一个減號(self):
         原來音 = '-'
@@ -204,8 +216,8 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
     def test_建立物件語句前處理減號連字號前後漢字(self):
         # 這種測資嘛無法度
         原來語句 = '儂莫走無--去。'
-        處理好語句 = '儂莫走無-去。'
-        加空白後語句 = '儂莫走無-去 。 '
+        處理好語句 = '儂莫走無 去。'
+        加空白後語句 = '儂莫走無 去 。 '
         self.assertEqual(
             文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句, 別的符號邊仔順紲加空白=False), 處理好語句
         )
@@ -231,8 +243,8 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
 
     def test_建立物件語句前處理減號組字式(self):
         原來語句 = '⿰---⿰---⿱--,⿰-,⿱⿰-,---⿱--'
-        處理好語句 = '⿰---⿰---⿱--,⿰-,⿱⿰-,--⿱--'
-        加空白後語句 = '⿰---⿰---⿱-- , ⿰-,⿱⿰-,--⿱--'
+        處理好語句 = '⿰---⿰---⿱--,⿰-,⿱⿰-,- ⿱--'
+        加空白後語句 = '⿰---⿰---⿱-- , ⿰-,⿱⿰-,- ⿱--'
         self.assertEqual(
             文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句, 別的符號邊仔順紲加空白=False), 處理好語句
         )
@@ -311,7 +323,9 @@ class 文章粗胚處理減號單元試驗(unittest.TestCase):
     def test_分字符號一大堆(self):
         原來語句 = 'lai5 tsing2-phoo7 khia7-kua3----tsit8 kua3 u7 sann-tsiah gu5, kiong7 tioh8 tsiann5-tsap8 kua3.'
         處理好語句 = 'lai5 tsing2-phoo7 khia7-kua3 - - - - tsit8 kua3 u7 sann-tsiah gu5, kiong7 tioh8 tsiann5-tsap8 kua3.'
-        加空白後語句 = 'lai5 tsing2-phoo7 khia7-kua3 - - - - tsit8 kua3 u7 sann-tsiah gu5 , kiong7 tioh8 tsiann5-tsap8 kua3 . '
+        加空白後語句 = (
+            'lai5 tsing2-phoo7 khia7-kua3 - - - - tsit8 kua3 u7 sann-tsiah gu5 , kiong7 tioh8 tsiann5-tsap8 kua3 . '
+        )
         self.assertEqual(
             文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 原來語句, 別的符號邊仔順紲加空白=False), 處理好語句
         )

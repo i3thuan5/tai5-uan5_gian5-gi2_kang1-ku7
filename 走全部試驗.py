@@ -16,7 +16,7 @@ python 走全部試驗.py # 試驗全做
 python 走全部試驗.py 單元試驗 # 只做單元試驗
 python 走全部試驗.py 單元試驗 莫編譯程式 # 程式編譯過，需要快速走單元試驗
 python -m unittest 試驗.斷詞.Test拄好長度辭典揣詞單元試驗 # 走單一試驗檔案
-python 走全部試驗.py travis # travis無法度編了摩西程式，除了需要摩西檔案以外的試驗。會走中研院服務，毋過失敗袂影響程式結果
+python 走全部試驗.py travis # 會走中研院服務，毋過失敗袂影響程式結果
 '''
 
 if __name__ == '__main__':
@@ -31,8 +31,7 @@ if __name__ == '__main__':
     if not 莫編譯程式:
         安裝摩西翻譯佮相關程式.安裝gizapp()
         安裝摩西翻譯佮相關程式.安裝mgiza()  # 愛libboost
-        if not travis:
-            安裝摩西翻譯佮相關程式.安裝moses(編譯CPU數=4)
+        安裝摩西翻譯佮相關程式.安裝moses(編譯CPU數=4)
         安裝HTK語音辨識程式.安裝htk()
         安裝HTS語音辨識程式.安裝sptk()
         安裝HTS語音辨識程式.安裝hts()
@@ -53,14 +52,12 @@ if __name__ == '__main__':
                 )
             )
         else:
-            # travis無法度編摩西，中研院的服務嘛袂穩
-            # ./翻譯/Test摩西模型訓練佮翻譯整合試驗.py
+            # 中研院的服務嘛袂穩，莫影響試驗成功無成功
             # ./斷詞/Test中研院斷詞用戶端整合試驗.py
             # ./剖析/Test中研院剖析用戶端整合試驗.py
-            # ./語言模型/TestKenLM語言模型訓練整合試驗.py
             試驗包.addTest(
                 unittest.defaultTestLoader.discover(
-                    '.', pattern='Test[!摩中K]*整合試驗.py'
+                    '.', pattern='Test[!中]*整合試驗.py'
                 )
             )
     試驗結果 = unittest.TextTestRunner().run(試驗包)

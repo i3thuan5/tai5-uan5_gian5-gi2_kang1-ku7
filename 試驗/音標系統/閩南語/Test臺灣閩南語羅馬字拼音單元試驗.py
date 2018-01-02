@@ -158,23 +158,16 @@ class 臺灣閩南語羅馬字拼音單元試驗(TestCase):
         self.assertEqual(臺灣閩南語羅馬字拼音('a.').音標, None)
         self.assertEqual(臺灣閩南語羅馬字拼音('.').音標, None)
 
-    def test_轉閏號調(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('ainn7').轉閏號調(), 'āinn')
-        self.assertEqual(臺灣閩南語羅馬字拼音('ang3').轉閏號調(), 'àng')
-        self.assertEqual(臺灣閩南語羅馬字拼音('au3').轉閏號調(), 'àu')
-        self.assertEqual(臺灣閩南語羅馬字拼音('mng5').轉閏號調(), 'mn̂g')
-        self.assertEqual(臺灣閩南語羅馬字拼音('gio2').轉閏號調(), 'gió')
-        self.assertEqual(臺灣閩南語羅馬字拼音('hiunnh8').轉閏號調(), 'hiu̍nnh')
-        self.assertEqual(臺灣閩南語羅馬字拼音('moo5').轉閏號調(), 'môo')
-        self.assertEqual(臺灣閩南語羅馬字拼音('tere5').轉閏號調(), 'terê')
-        self.assertEqual(臺灣閩南語羅馬字拼音('tir5').轉閏號調(), 'tîr')
-        # 符號予別的工具處理
-        self.assertEqual(臺灣閩南語羅馬字拼音('0tir5').轉閏號調(), '0tîr')
-        self.assertEqual(臺灣閩南語羅馬字拼音('1tir5').轉閏號調(), '1tîr')
+    def test_無存在的聲調(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('no78').音標, None)
 
     def test_轉通用拼音(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('gio2').轉通用拼音(), 'ghior4')
         self.assertEqual(臺灣閩南語羅馬字拼音('hiunnh8').轉通用拼音(), 'hiunnh6')
+        self.assertEqual(臺灣閩南語羅馬字拼音('suii').轉通用拼音(), None)
+
+    def test_輕聲轉會過通用拼音(self):
+        臺灣閩南語羅馬字拼音('bo0').轉通用拼音()
 
     def test_全部攏會轉通用拼音(self):
         for 母 in 臺灣閩南語羅馬字拼音聲母表:

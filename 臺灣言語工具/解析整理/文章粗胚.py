@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+import re
+
 import unicodedata
-from 臺灣言語工具.基本物件.公用變數 import 標點符號
+
+
 from 臺灣言語工具.基本物件.公用變數 import 分字符號
 from 臺灣言語工具.基本物件.公用變數 import 分詞符號
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
@@ -9,7 +12,10 @@ from 臺灣言語工具.基本物件.公用變數 import 組字式符號
 from 臺灣言語工具.基本物件.公用變數 import 統一碼漢字佮組字式類
 from 臺灣言語工具.基本物件.公用變數 import 統一碼羅馬字類
 from 臺灣言語工具.基本物件.公用變數 import 聲調符號
-import re
+from 臺灣言語工具.基本物件.公用變數 import 敢是注音符號
+from 臺灣言語工具.基本物件.公用變數 import 敢是katakana
+from 臺灣言語工具.基本物件.公用變數 import 敢是hiragana
+from 臺灣言語工具.基本物件.公用變數 import 標點符號
 
 
 class 文章粗胚:
@@ -66,17 +72,20 @@ class 文章粗胚:
                     位置 -= 1
                 elif 語句[位置:].startswith(cls.雙分字符號):
                     if cls._頭前有音標無(音標工具, 語句[位置 + 2:]):
-                        if 前回一開始狀態 == cls._組字 or \
-                                len(字元陣列) > 0 and unicodedata.category(字元陣列[-1][-1]) in 統一碼漢字佮組字式類 or\
-                                cls._後壁有音標無(音標工具, 語句[:位置]):
+                        if (
+                            前回一開始狀態 == cls._組字 or
+                            (len(字元陣列) > 0 and 字元陣列[-1][-1] not in 標點符號)
+                        ):
                             字元陣列.append(' 0')
                         else:
                             字元陣列.append('0')
                     elif (位置 + 2 < len(語句) and unicodedata.category(語句[位置 + 2]) in 統一碼漢字佮組字式類):
-                        if 前回一開始狀態 == cls._組字 or \
-                                len(字元陣列) > 0 and unicodedata.category(字元陣列[-1][-1]) in 統一碼漢字佮組字式類 or\
-                                cls._後壁有音標無(音標工具, 語句[:位置]):
-                            字元陣列.append(分字符號)
+                        if (
+                            前回一開始狀態 == cls._組字 or
+                            len(字元陣列) > 0 and unicodedata.category(字元陣列[-1][-1]) in 統一碼漢字佮組字式類 or
+                            cls._後壁有音標無(音標工具, 語句[:位置])
+                        ):
+                            字元陣列.append(分詞符號)
                     else:
                         字元陣列.append(cls.兩分字符號代表字)
                     位置 += 1
@@ -228,6 +237,26 @@ class 文章粗胚:
                 結果.append(cls.數字英文中央全加分字符號(部份語句))
             else:
                 結果.append(部份語句)
+        return ''.join(結果)
+
+    @classmethod
+    def 漢字中央加分字符號(cls, 語句):
+        結果 = []
+        for 字 in 語句:
+            try:
+                if (
+                    (
+                        unicodedata.category(字) in 統一碼漢字佮組字式類 and
+                        unicodedata.category(結果[-1]) in 統一碼漢字佮組字式類 and
+                        (not 敢是注音符號(結果[-1]) or not 敢是注音符號(字))
+                    ) or
+                    (敢是hiragana(結果[-1]) and 敢是hiragana(字)) or
+                    (敢是katakana(結果[-1]) and 敢是katakana(字))
+                ):
+                    結果.append(分字符號)
+            except IndexError:
+                pass
+            結果.append(字)
         return ''.join(結果)
 
     @classmethod

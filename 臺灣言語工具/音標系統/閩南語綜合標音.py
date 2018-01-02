@@ -41,8 +41,5 @@ class 閩南語綜合標音:
             "吳守禮方音": self.吳守禮方音,
         }]
 
-    def __repr__(self):
-        return self.轉json格式()
-
     def __str__(self):
         return self.轉json格式()

@@ -24,8 +24,5 @@ class 官話綜合標音:
     def 轉json格式(self):
         return [{"漢字": self.漢字, "注音符號": self.注音符號}]
 
-    def __repr__(self):
-        return self.轉json格式()
-
     def __str__(self):
         return self.轉json格式()

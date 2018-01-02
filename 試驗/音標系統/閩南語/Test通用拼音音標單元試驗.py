@@ -32,6 +32,11 @@ class 通用拼音音標單元試驗(TestCase):
             self.assertEqual(字音對照.音標, 通)
             self.assertEqual(字音對照.轉換到臺灣閩南語羅馬字拼音(), 臺)
 
+    def test_轉forpa(self):
+        通 = 'iorh6'
+        forpa = 'ierh6'
+        self.assertEqual(通用拼音音標(通).轉ForPA(), forpa)
+
     def test_違法音標(self):
         self.assertEqual(通用拼音音標('@@').音標, None)
         self.assertEqual(通用拼音音標('pe̍m').音標, None)

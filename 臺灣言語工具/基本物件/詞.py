@@ -18,7 +18,8 @@ class 詞(功能):
             for 字物件 in 字陣列:
                 if not isinstance(字物件, 字):
                     raise 型態錯誤(
-                        '字陣列內底有毋是字的：字陣列＝{0}，字物件＝{1}'.format(str(字陣列), str(字物件)))
+                        '字陣列內底有毋是字的：字陣列＝{0}，字物件＝{1}'.format(str(字陣列), str(字物件))
+                    )
                 self.內底字.append(字(字物件.型, 字物件.音))
         except TypeError as 問題:
             raise 型態錯誤('傳入來的字陣列毋法度疊代：{0}，問題：{1}'
@@ -84,7 +85,7 @@ class 詞(功能):
             for 欄位, 內容 in 一字.綜合標音(語言綜合標音)[0].items():
                 try:
                     詞組綜合標音[欄位].append(內容)
-                except:
+                except KeyError:
                     詞組綜合標音[欄位] = [內容]
         結果 = {}
         for 欄位, 內容 in 詞組綜合標音.items():
@@ -97,7 +98,7 @@ class 詞(功能):
         return [結果]
 
     def 篩出字物件(self):
-        return self.內底字
+        return list(self.內底字)
 
     def 網出詞物件(self):
         return [self]

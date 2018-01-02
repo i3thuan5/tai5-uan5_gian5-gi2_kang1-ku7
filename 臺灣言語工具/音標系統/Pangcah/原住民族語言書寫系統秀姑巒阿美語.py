@@ -24,7 +24,7 @@ _輔音 = {
 def 正規表示法(對應表):
     一个 = []
     兩个以上 = []
-    for 書寫 in sorted(書寫系統國際音標對應表.keys(), key=lambda 素: (-len(素), 素)):
+    for 書寫 in sorted(對應表.keys(), key=lambda 素: (-len(素), 素)):
         if len(書寫) == 1:
             一个.append(書寫)
         else:
@@ -38,6 +38,8 @@ def 正規表示法(對應表):
 class 原住民族語言書寫系統秀姑巒阿美語:
     寫法檢查 = re.compile(r'{}+\Z'.format(正規表示法(書寫系統國際音標對應表)))
     拆音節檢查 = re.compile(正規表示法(書寫系統國際音標對應表))
+    元音音值 = set(_元音.values())
+    簡寫塞音 = 'ʔ'
 
     def __init__(self, 音標):
         super(原住民族語言書寫系統秀姑巒阿美語, self).__init__()
@@ -95,4 +97,8 @@ class 原住民族語言書寫系統秀姑巒阿美語:
             結果[-1].append(書寫系統國際音標對應表[音素])
             if 音節上尾一个:
                 結果.append([])
+        if 結果[0][0] in self.元音音值:
+            結果[0].insert(0, self.簡寫塞音)
+        if 結果[-1][-1] in self.元音音值:
+            結果[-1].append(self.簡寫塞音)
         return 結果

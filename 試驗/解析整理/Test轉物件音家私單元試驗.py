@@ -20,8 +20,40 @@ class 轉物件音家私單元試驗(unittest.TestCase):
     @patch('臺灣言語工具.基本物件.句.句.轉音')
     def test_轉音有參數(self, 轉音mock):
         物件 = 拆文分析器.分詞句物件('頭-家｜thau5-ke1 員-工｜uan5-kang1')
-        轉物件音家私.轉音(臺灣閩南語羅馬字拼音, 物件)
+        轉物件音家私.轉音(臺灣閩南語羅馬字拼音, 物件, 函式='預設音標')
         轉音mock.assert_called_once_with(音標工具=臺灣閩南語羅馬字拼音, 函式='預設音標')
+
+    def test_音標毋著(self):
+        物件 = 拆文分析器.分詞句物件('頭-家｜thau5-ke1 員-工｜uan5-kang4')
+        self.assertEqual(
+            轉物件音家私.轉音(臺灣閩南語羅馬字拼音, 物件),
+            拆文分析器.分詞句物件('頭-家｜thau5-ke1 員-工｜uan5-kang4')
+        )
+
+    @patch('臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音.臺灣閩南語羅馬字拼音.轉換到臺灣閩南語羅馬字拼音')
+    def test_音標轉袂過(self, 轉音mock):
+        轉音mock.return_value = None
+        物件 = 拆文分析器.分詞句物件('頭-家｜thau5-ke1 員-工｜uan5-kang')
+        self.assertEqual(
+            轉物件音家私.轉音(臺灣閩南語羅馬字拼音, 物件),
+            拆文分析器.分詞句物件('頭-家｜thau5-ke1 員-工｜uan5-kang')
+        )
+
+    @patch('臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音.臺灣閩南語羅馬字拼音.轉換到臺灣閩南語羅馬字拼音')
+    def test_全半型標點轉袂過(self, 轉音mock):
+        轉音mock.return_value = (None,)
+        物件 = 拆文分析器.分詞字物件('。｜.')
+        轉音物件 = 轉物件音家私.轉音(臺灣閩南語羅馬字拼音, 物件)
+        self.assertEqual(轉音物件.型, '。')
+        self.assertEqual(轉音物件.音, (None,))
+
+    @patch('臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音.臺灣閩南語羅馬字拼音.轉換到臺灣閩南語羅馬字拼音')
+    def test_仝款標點轉袂過(self, 轉音mock):
+        轉音mock.return_value = (None,)
+        物件 = 拆文分析器.分詞字物件('.｜.')
+        轉音物件 = 轉物件音家私.轉音(臺灣閩南語羅馬字拼音, 物件)
+        self.assertEqual(轉音物件.型, '.')
+        self.assertEqual(轉音物件.音, (None,))
 
     def 處理語句(self, 音標工具, 語句):
         減號了 = 文章粗胚.建立物件語句前處理減號(音標工具, 語句)
