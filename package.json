@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "臺灣言語工具上傳文件",
   "scripts": {
-    "build": ". venv/bin/activate && rm -rf 文件/_build && cd 文件 && make html && touch _build/html/.nojekyll",
-    "deploy": "npm run build && gh-pages -t -d 文件/_build/html"
+    "build": ". venv/bin/activate && pip install sphinx sphinx-autobuild recommonmark sphinx_rtd_theme && cd 文件 && make html && touch _build/html/.nojekyll",
+    "deploy": "rm -rf 文件/_build && npm run build && gh-pages -t -d 文件/_build/html"
   },
   "repository": {
     "type": "git",
