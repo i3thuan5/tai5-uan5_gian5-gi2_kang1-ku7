@@ -12,33 +12,44 @@ class 多元書寫單元試驗(TestCase):
 
     def test_檢查分詞(self):
         多元書寫 = self.物件拍無去矣()
-        self.assertEqual(多元書寫['分詞'], 多元書寫)
+        self.assertEqual(
+            多元書寫['分詞'],
+            '啊｜0ah4 ！｜! 瓜-仔-鬚｜kue1-a2-tshiu1 拍-無-去｜phah4-bo5-0khi3 矣｜0ah4 。｜.'
+        )
 
     def test_檢查漢字(self):
         多元書寫 = self.物件拍無去矣()
-        self.assertEqual(多元書寫['漢字'], 多元書寫)
+        self.assertEqual(多元書寫['漢字'], '啊 ！ 瓜仔鬚 拍無去 矣 。')
 
     def test_檢查臺羅(self):
         多元書寫 = self.物件拍無去矣()
-        self.assertEqual(多元書寫['臺羅'], 多元書寫)
+        self.assertEqual(多元書寫['臺羅'], 'Ah! Kue-á-tshiu phah-bô--khì--ah.')
 
     @skip('白話字轉換猶未做')
     def test_檢查白話字(self):
         多元書寫 = self.物件拍無去矣()
-        self.assertEqual(多元書寫['白話字'], 多元書寫)
+        self.assertEqual(
+            多元書寫['白話字'],  '--ah ! Koe-á-chhiu phah-bô--khì --ah .')
 
     def test_臺羅照詞分開(self):
         多元書寫 = self.物件拍無去矣()
-        self.assertEqual(多元書寫['臺羅斷詞'], 多元書寫)
+        self.assertEqual(
+            多元書寫['臺羅斷詞'], '--ah ! kue-á-tshiu phah-bô--khì --ah .')
 
     @skip('7.0愛共這項提掉')
     def test_臺羅閏號調愛提掉(self):
         多元書寫 = self.物件拍無去矣()
         self.assertNotIn('臺羅閏號調', 多元書寫)
 
+    def test_檢查臺羅閏號調愛提掉(self):
+        多元書寫 = self.物件拍無去矣()
+        self.assertEqual(多元書寫['臺羅閏號調'], 多元書寫['臺羅斷詞'])
+
     def test_混合連詞多元書寫(self):
         多元書寫 = self.物件拍無去矣()
-        self.assertEqual(多元書寫['臺羅數字調'], 多元書寫)
+        self.assertEqual(
+            多元書寫['臺羅數字調'], '0ah4 ! kue1-a2-tshiu1 phah4-bo5-0khi3 0ah4'
+        )
         self.assertEqual(多元書寫['通用數字調'], 多元書寫)
         self.assertEqual(多元書寫['吳守禮方音'], 多元書寫)
 
@@ -87,5 +98,6 @@ class 多元書寫單元試驗(TestCase):
         self.assertEqual(台語多元書寫.書寫章(拆文分析器.建立章物件('')), [])
 
     def 物件拍無去矣(self):
-        句物件 = 拆文分析器.對齊句物件('物件拍無去矣', 'mih8-kiann7 phah4-bo5-0khi3 0ah4')
+        句物件 = 拆文分析器.對齊句物件(
+            '啊！瓜仔鬚拍無去矣。', '0ah4 ! kue-a2-tshiu phah4-bo5-0khi3 0ah.')
         return 台語多元書寫.書寫句(句物件)

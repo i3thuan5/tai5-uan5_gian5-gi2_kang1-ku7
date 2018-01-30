@@ -36,12 +36,20 @@ class 羅馬字仕上げ單元試驗(TestCase):
         self.處理好語句 = '100 ê 000!'
 
     def test_孤一佮孤空(self):
-        self.原來語句 = '1 ê 0 !'
-        self.處理好語句 = '1 ê 0 !'
+        self.原來語句 = '1 ê 0'
+        self.處理好語句 = '1 ê 0'
 
     def test_句首語助詞(self):
         self.原來語句 = '0ah!'
         self.處理好語句 = 'Ah!'
+
+    def test_標點符號頭前免空白(self):
+        self.原來語句 = 'Hannh ? Sī--ooh .'
+        self.處理好語句 = 'Hannh? Sī--ooh.'
+
+    def test_第二句頭前愛閬格(self):
+        self.原來語句 = 'Tsi̍t-tshing . 0hannh ?'
+        self.處理好語句 = 'Tsi̍t-tshing. Hannh?'
 
     def test_攏是減號(self):
         self.原來語句 = '------'
