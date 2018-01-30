@@ -45,13 +45,23 @@ class 多元書寫單元試驗(TestCase):
         多元書寫 = self.物件拍無去矣()
         self.assertEqual(多元書寫['臺羅閏號調'], 多元書寫['臺羅斷詞'])
 
-    def test_混合連詞多元書寫(self):
+    def test_檢查臺羅數字調(self):
         多元書寫 = self.物件拍無去矣()
         self.assertEqual(
-            多元書寫['臺羅數字調'], '0ah4 ! kue1-a2-tshiu1 phah4-bo5-0khi3 0ah4'
+            多元書寫['臺羅數字調'], '0ah4 ! kue1-a2-tshiu1 phah4-bo5-0khi3 0ah4 .'
         )
-        self.assertEqual(多元書寫['通用數字調'], 多元書寫)
-        self.assertEqual(多元書寫['吳守禮方音'], 多元書寫)
+
+    def test_檢查通用數字調(self):
+        多元書寫 = self.物件拍無去矣()
+        self.assertEqual(
+            多元書寫['通用數字調'], 'ah7 ! gue1-a4-ciu1 pah7-bhor5-ki3 ah7 .'
+        )
+
+    def test_檢查吳守禮方音(self):
+        多元書寫 = self.物件拍無去矣()
+        self.assertEqual(
+            多元書寫['吳守禮方音'], '˙ㄚㆷ ! ㄍㄨㆤ ㄚˋ ㄑㄧㄨ ㄆㄚㆷ ㆠㄜˊ ˙ㄎㄧ ˙ㄚㆷ .'
+        )
 
     def test_干焦漢字多元書寫(self):
         多元書寫 = 台語多元書寫.書寫句(拆文分析器.對齊句物件('我', 無音))
