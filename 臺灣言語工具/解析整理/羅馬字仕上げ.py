@@ -17,7 +17,7 @@ class 羅馬字仕上げ:
     外來語標記 = re.compile('(\W|\A)1([^\b0-9\W\s])')
     句中輕聲 = re.compile('\w --')
     標點前有空白 = re.compile(r' ({})'.format(_斷句標點))
-    標點後有輕聲 = re.compile(r'({}) --(\w)'.format(_斷句標點))
+    標點後有輕聲 = re.compile(r'({}) (--)?(\w)'.format(_斷句標點))
     輕聲開頭 = re.compile('--[^\b0-9\W\s]')
 
     @classmethod
@@ -31,7 +31,7 @@ class 羅馬字仕上げ:
         )
         標點後輕聲提掉 = cls.標點後有輕聲.sub(
             lambda tiam2: '{} {}'.format(
-                tiam2.group(1), tiam2.group(2).upper()
+                tiam2.group(1), tiam2.group(3).upper()
             ),
             標點前空白提掉
         )
