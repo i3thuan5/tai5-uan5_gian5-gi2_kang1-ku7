@@ -24,10 +24,17 @@ class 羅馬字仕上げ:
     def しあげ(cls, 原來語句):
         斷詞句 = cls.輕聲佮外來語(原來語句)
         句中輕聲莫閬格 = cls.句中輕聲.sub(
-            lambda khing: khing.group(0).replace(' ', ''), 斷詞句)
-        標點前空白提掉 = cls.標點前有空白.sub(lambda tiam2: tiam2.group(1), 句中輕聲莫閬格)
-        標點後輕聲提掉 = cls.標點後有輕聲.sub(lambda tiam2: '{} {}'.format(
-            tiam2.group(1),tiam2.group(2).upper()), 標點前空白提掉)
+            lambda khing: khing.group(0).replace(' ', ''), 斷詞句
+        )
+        標點前空白提掉 = cls.標點前有空白.sub(
+            lambda tiam2: tiam2.group(1), 句中輕聲莫閬格
+        )
+        標點後輕聲提掉 = cls.標點後有輕聲.sub(
+            lambda tiam2: '{} {}'.format(
+                tiam2.group(1), tiam2.group(2).upper()
+            ),
+            標點前空白提掉
+        )
         if cls.輕聲開頭.match(標點後輕聲提掉):
             return cls.頭一字大寫(標點後輕聲提掉[2:])
         return cls.頭一字大寫(標點後輕聲提掉)
