@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase, skip
 from unittest.mock import patch
-from 臺灣言語工具.基本物件.公用變數 import 無音
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.基本物件.集 import 集
 from 臺灣言語工具.基本物件.句 import 句
 from 臺灣言語工具.音標系統.台語.多元書寫 import 台語多元書寫
+from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 
 
 class 多元書寫單元試驗(TestCase):
@@ -64,27 +64,26 @@ class 多元書寫單元試驗(TestCase):
         )
 
     def test_干焦漢字多元書寫(self):
-        多元書寫 = 台語多元書寫.書寫句(拆文分析器.對齊句物件('我', 無音))
+        多元書寫 = 台語多元書寫.書寫句(拆文分析器.建立句物件('我'))
         self.assertEqual(多元書寫['臺羅'], '我')
 
     def test_干焦臺羅多元書寫(self):
-        多元書寫 = 台語多元書寫.書寫句(拆文分析器.對齊句物件('gua2', 無音))
+        多元書寫 = 台語多元書寫.書寫句(拆文分析器.建立句物件('gua2'))
         self.assertEqual(多元書寫['漢字'], 'guá')
 
     def test_無合法音就照伊彼音(self):
         多元書寫 = 台語多元書寫.書寫句(拆文分析器.對齊句物件('豬',  'Pigu'))
         self.assertEqual(多元書寫['臺羅'],  'Pigu')
 
-    def test_多元書寫集內底組濟個嘛袂例外(self):
-        # 因為攏用佇輸出，愛檢查就佇程式別位檢查
+    def test_多元書寫集內底組濟个就例外_因為程式有問題(self):
         我 = 拆文分析器.對齊集物件('我', 'gua2')
         愛 = 拆文分析器.對齊集物件('愛', 'ai3')
         媠某 = 拆文分析器.對齊組物件('美女', 'sui2-boo2')
         美女 = 拆文分析器.對齊組物件('美女', 'mi2-lu2')
         莉 = 集([媠某, 美女])
         句物件 = 句([我, 愛, 莉])
-
-        台語多元書寫.書寫句(句物件)
+        with self.assertRaises(解析錯誤):
+            台語多元書寫.書寫句(句物件)
 
     def test_空句多元書寫袂例外(self):
         # 因為攏用佇輸出，愛檢查就佇程式別位檢查
@@ -95,7 +94,7 @@ class 多元書寫單元試驗(TestCase):
         self.assertIn('吳守禮方音', 多元書寫)
         self.assertIn('分詞', 多元書寫)
 
-    @patch('臺灣言語工具.基本物件.句.句.多元書寫')
+    @patch('臺灣言語工具.音標系統.台語.多元書寫.台語多元書寫.書寫句')
     def test_多元書寫用句的來鬥(self, 句多元書寫mock):
         章物件 = 拆文分析器.對齊章物件('點仔膠，黏著跤，', 'tiam2-a2-ka1, liam5-tioh8 kha1,')
         self.assertEqual(台語多元書寫.書寫章(章物件), [

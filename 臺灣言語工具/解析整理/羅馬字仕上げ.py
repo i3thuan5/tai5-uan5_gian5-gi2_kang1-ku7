@@ -47,7 +47,10 @@ class 羅馬字仕上げ:
 
     @classmethod
     def 頭一字大寫(cls, 原來語句):
-        return 原來語句[0].upper() + 原來語句[1:]
+        try:
+            return 原來語句[0].upper() + 原來語句[1:]
+        except IndexError:
+            return ''
 
     @classmethod
     def 換輕聲(cls, 配對):

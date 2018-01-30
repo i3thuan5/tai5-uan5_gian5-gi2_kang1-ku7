@@ -174,7 +174,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
         return self.輕 + self.外來語 + 聲韻
 
     def 轉閏號調(self):
-        print('佇7.0版會提掉', file=stderr)
+        print('「轉閏號調」會佇7.0版會提掉，請改用「轉調符」', file=stderr)
         return self.轉調符()
 
     def 轉通用拼音(self):
