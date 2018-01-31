@@ -45,7 +45,7 @@ class 羅馬字仕上げ單元試驗(TestCase):
 
     def test_句頭攏愛大寫(self):
         self.原來語句 = 'sī . sī .'
-        self.處理好語句 ='Sī. Sī.'
+        self.處理好語句 = 'Sī. Sī.'
 
     def test_標點符號頭前免空白(self):
         self.原來語句 = 'Hannh ? Sī--ooh .'

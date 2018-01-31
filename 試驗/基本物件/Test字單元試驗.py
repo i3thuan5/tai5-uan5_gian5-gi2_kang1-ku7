@@ -42,4 +42,3 @@ class 字單元試驗(TestCase):
         self.assertEqual(字物件.看型(), '媠')
         self.assertEqual(字物件.看音(), '')
         self.assertEqual(字物件.看分詞(), '媠')
-
