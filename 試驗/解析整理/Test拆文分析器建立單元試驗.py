@@ -363,7 +363,6 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
 
     def test__拆句做字(self):
         self.assertEqual(拆文分析器._拆句做字('腹肚枵'), ['腹', '肚', '枵'])
-        self.assertRaises(型態錯誤, 拆文分析器._拆句做字, None)
 
     def test__拆句做字標點符號(self):
         self.assertEqual(拆文分析器._拆句做字('腹肚枵。'), ['腹', '肚', '枵', '。'])

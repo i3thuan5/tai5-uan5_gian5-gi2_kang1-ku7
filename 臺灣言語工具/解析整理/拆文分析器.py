@@ -43,7 +43,7 @@ class 拆文分析器:
         return 字(語句, 別種書寫)
 
     @classmethod
-    def 建立詞物件(cls, 語句,別種書寫=None):
+    def 建立詞物件(cls, 語句, 別種書寫=None):
         if 別種書寫 is not None:
             return cls.對齊詞物件(語句, 別種書寫)
         if 語句 == '':
@@ -54,7 +54,7 @@ class 拆文分析器:
         return 對齊詞物件
 
     @classmethod
-    def 建立組物件(cls, 語句,別種書寫=None):
+    def 建立組物件(cls, 語句, 別種書寫=None):
         if 別種書寫 is not None:
             return cls.對齊組物件(語句, 別種書寫)
         if 語句 == '':
@@ -65,7 +65,7 @@ class 拆文分析器:
         return 對齊組物件
 
     @classmethod
-    def 建立集物件(cls, 語句,別種書寫=None):
+    def 建立集物件(cls, 語句, 別種書寫=None):
         if 別種書寫 is not None:
             return cls.對齊集物件(語句, 別種書寫)
         if 語句 == '':
@@ -75,7 +75,7 @@ class 拆文分析器:
         return 集物件
 
     @classmethod
-    def 建立句物件(cls, 語句,別種書寫=None):
+    def 建立句物件(cls, 語句, 別種書寫=None):
         if 別種書寫 is not None:
             return cls.對齊句物件(語句, 別種書寫)
         if 語句 == '':
@@ -85,7 +85,7 @@ class 拆文分析器:
         return 句物件
 
     @classmethod
-    def 建立章物件(cls, 語句,別種書寫=None):
+    def 建立章物件(cls, 語句, 別種書寫=None):
         if 別種書寫 is not None:
             return cls.對齊章物件(語句, 別種書寫)
         if 語句 == '':
@@ -96,14 +96,6 @@ class 拆文分析器:
 
     @classmethod
     def 對齊字物件(cls, 型, 音):
-        if not isinstance(型, str):
-            raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
-        if not isinstance(音, str):
-            raise 型態錯誤('傳入來的音毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
-        if 型 == '':
-            raise 解析錯誤('傳入來的型是空的！')
-        if 音 != 無音 and (型 in 標點符號) ^ (音 in 標點符號):
-            raise 解析錯誤('型佮音干焦一个是標點符號！「{}」佮「{}」'.format(型, 音))
         return 字(型, 音)
 
     @classmethod
@@ -136,10 +128,6 @@ class 拆文分析器:
 
     @classmethod
     def 對齊集物件(cls, 型, 音):
-        if not isinstance(型, str):
-            raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
-        if not isinstance(音, str):
-            raise 型態錯誤('傳入來的音毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
         if 型 == '' and 音 == 無音:
             return 集()
         集物件 = 集()
@@ -148,10 +136,6 @@ class 拆文分析器:
 
     @classmethod
     def 對齊句物件(cls, 型, 音):
-        if not isinstance(型, str):
-            raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
-        if not isinstance(音, str):
-            raise 型態錯誤('傳入來的音毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
         if 型 == '' and 音 == 無音:
             return 句()
         句物件 = 句()
@@ -160,10 +144,6 @@ class 拆文分析器:
 
     @classmethod
     def 對齊章物件(cls, 型, 音):
-        if not isinstance(型, str):
-            raise 型態錯誤('傳入來的型毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
-        if not isinstance(音, str):
-            raise 型態錯誤('傳入來的音毋是字串：型＝{0}，音＝{1}'.format(str(型), str(音)))
         if 型 == '' and 音 == 無音:
             return 章()
 
@@ -218,8 +198,6 @@ class 拆文分析器:
 
     @classmethod
     def _句分析(cls, 語句):
-        if not isinstance(語句, str):
-            raise 型態錯誤('傳入來的語句毋是字串：{0}'.format(str(語句)))
         if 語句 == 分詞符號 or cls._是空白.fullmatch(語句):
             return ([], [])
         狀態 = cls._分析狀態()
