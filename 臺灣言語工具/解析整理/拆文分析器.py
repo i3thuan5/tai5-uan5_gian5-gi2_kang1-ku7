@@ -38,61 +38,37 @@ class 拆文分析器:
 
     @classmethod
     def 建立字物件(cls, 語句, 別種書寫=無音):
-        if 語句 == '':
-            raise 解析錯誤('傳入來的語句是空的！')
         return 字(語句, 別種書寫)
 
     @classmethod
     def 建立詞物件(cls, 語句, 別種書寫=None):
-        if 別種書寫 is not None:
-            return cls.對齊詞物件(語句, 別種書寫)
-        if 語句 == '':
-            return 詞()
-        對齊詞物件 = cls.對齊詞物件(語句, 語句)
-        for 字物件 in 對齊詞物件.篩出字物件():
-            字物件.音 = 無音
-        return 對齊詞物件
+        if 別種書寫 is None:
+            return cls._物件的音攏提掉(cls.對齊詞物件(語句, 語句))
+        return cls.對齊詞物件(語句, 別種書寫)
 
     @classmethod
     def 建立組物件(cls, 語句, 別種書寫=None):
-        if 別種書寫 is not None:
-            return cls.對齊組物件(語句, 別種書寫)
-        if 語句 == '':
-            return 組()
-        對齊組物件 = cls.對齊組物件(語句, 語句)
-        for 字物件 in 對齊組物件.篩出字物件():
-            字物件.音 = 無音
-        return 對齊組物件
+        if 別種書寫 is None:
+            return cls._物件的音攏提掉(cls.對齊組物件(語句, 語句))
+        return cls.對齊組物件(語句, 別種書寫)
 
     @classmethod
     def 建立集物件(cls, 語句, 別種書寫=None):
-        if 別種書寫 is not None:
-            return cls.對齊集物件(語句, 別種書寫)
-        if 語句 == '':
-            return 集()
-        集物件 = 集()
-        集物件.內底組 = [cls.建立組物件(語句)]
-        return 集物件
+        if 別種書寫 is None:
+            return cls._物件的音攏提掉(cls.對齊集物件(語句, 語句))
+        return cls.對齊集物件(語句, 別種書寫)
 
     @classmethod
     def 建立句物件(cls, 語句, 別種書寫=None):
-        if 別種書寫 is not None:
-            return cls.對齊句物件(語句, 別種書寫)
-        if 語句 == '':
-            return 句()
-        句物件 = 句()
-        句物件.內底集 = [cls.建立集物件(語句)]
-        return 句物件
+        if 別種書寫 is None:
+            return cls._物件的音攏提掉(cls.對齊句物件(語句, 語句))
+        return cls.對齊句物件(語句, 別種書寫)
 
     @classmethod
     def 建立章物件(cls, 語句, 別種書寫=None):
-        if 別種書寫 is not None:
-            return cls.對齊章物件(語句, 別種書寫)
-        if 語句 == '':
-            return 章()
-
-        斷句詞陣列 = cls._詞陣列分一句一句(cls.建立句物件(語句).網出詞物件())
-        return cls._斷句詞陣列轉章物件(斷句詞陣列)
+        if 別種書寫 is None:
+            return cls._物件的音攏提掉(cls.對齊章物件(語句, 語句))
+        return cls.對齊章物件(語句, 別種書寫)
 
     @classmethod
     def 對齊字物件(cls, 型, 音):
@@ -515,3 +491,9 @@ class 拆文分析器:
         if 第幾字 < len(全部型陣列):
             raise 解析錯誤('詞組內底的型「{{}}」比音「{{}}」濟！配對結果：{}'.format(str(詞陣列)))
         return 詞陣列
+
+    @classmethod
+    def _物件的音攏提掉(cls, 對齊物件):
+        for 字物件 in 對齊物件.篩出字物件():
+            字物件.音 = 無音
+        return 對齊物件
