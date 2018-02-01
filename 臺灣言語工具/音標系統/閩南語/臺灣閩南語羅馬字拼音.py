@@ -2,6 +2,7 @@
 from 臺灣言語工具.音標系統.閩南語.教會系羅馬音標 import 教會系羅馬音標
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組 import 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉音值模組 import 臺灣閩南語羅馬字拼音轉音值模組
+from sys import stderr
 
 臺灣閩南語羅馬字拼音聲母表 = {
     'p', 'ph', 'm', 'b',
@@ -156,7 +157,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
     def 轉換到臺灣閩南語羅馬字拼音(self):
         return self.音標
 
-    def 轉閏號調(self):
+    def 轉調符(self):
         if self.音標 is None:
             return None
 
@@ -172,6 +173,10 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
             聲韻 = 聲韻[0].upper() + 聲韻[1:]
         return self.輕 + self.外來語 + 聲韻
 
+    def 轉閏號調(self):
+        print('「轉閏號調」會佇7.0版會提掉，請改用「轉調符」', file=stderr)
+        return self.轉調符()
+
     def 轉通用拼音(self):
         if self.音標 is None:
             return None
@@ -180,6 +185,9 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
             self.對通用韻對照表[self.韻] +
             self.對通用調對照表[self.調]
         )
+
+    def 轉吳守禮方音(self):
+        return 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組(self.聲, self.韻, self.調, self.輕).音標
 
     def 產生吳守禮方音物件(self):
         return 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組(self.聲, self.韻, self.調, self.輕)
