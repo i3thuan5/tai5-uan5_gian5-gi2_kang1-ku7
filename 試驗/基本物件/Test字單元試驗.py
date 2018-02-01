@@ -20,6 +20,13 @@ class 字單元試驗(TestCase):
         self.assertEqual(字物件.型, 型)
         self.assertEqual(字物件.音, 無音)
 
+    def test_合成的tuple(self):
+        型 = '媠'
+        音 = ('s', 'ui', '2')
+        字物件 = 字(型, 音)
+        self.assertEqual(字物件.型, 型)
+        self.assertEqual(字物件.音, 音)
+
     def test_字烏白傳(self):
         型 = '媠'
         音 = 'ㄙㄨㄧˋ'
