@@ -12,17 +12,13 @@ from 臺灣言語工具.基本物件.功能 import 功能
 class 字(功能):
 
     def __init__(self, 型, 音=無音):
-        # 愛產生新的物件
-        try:
-            音.__iter__
-        except AttributeError:
-            raise 解析錯誤('傳入來的音毋是字串佮字串對：型＝{0}，音＝{1}'.format(str(型), str(音)))
         if 型 == '':
             raise 解析錯誤('傳入來的型是空的！')
         try:
+            音.__iter__
             型是標點 = (型 in 標點符號)
             音是標點 = (音 in 標點符號)
-        except TypeError:
+        except (AttributeError, TypeError):
             raise 型態錯誤('型音一定愛是string抑是tuple！「{}」佮「{}」'.format(型, 音))
         else:
             if (
