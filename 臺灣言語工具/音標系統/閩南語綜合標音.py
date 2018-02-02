@@ -3,6 +3,10 @@ from 臺灣言語工具.基本物件.公用變數 import 無音
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 臺灣言語工具.基本物件.字 import 字
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
+from sys import stderr
+
+
+print('綜合標音deprecated，0.7版會提掉', file=stderr)
 
 
 class 閩南語綜合標音:

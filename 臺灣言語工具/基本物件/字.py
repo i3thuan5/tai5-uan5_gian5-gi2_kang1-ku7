@@ -23,6 +23,14 @@ class 字(功能):
             raise 型態錯誤('傳入來的音毋是字串佮字串對：型＝{0}，音＝{1}'.format(str(型), str(音)))
         if 型 == '':
             raise 解析錯誤('傳入來的型是空的！')
+        try:
+            型是標點 = (型 in 標點符號)
+            音是標點 = (音 in 標點符號)
+        except TypeError:
+            pass
+        else:
+            if 音 not in [無音, (None,)] and (型是標點 ^ 音是標點):
+                raise 解析錯誤('型佮音干焦一个是標點符號！「{}」佮「{}」'.format(型, 音))
         self.型 = 型
         self.音 = 音
 
