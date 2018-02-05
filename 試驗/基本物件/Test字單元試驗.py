@@ -41,8 +41,11 @@ class 字單元試驗(TestCase):
         self.assertEqual(字物件.看音(), '')
         self.assertEqual(字物件.看分詞(), '媠')
 
-    def test_語音合成字(self):
+    def test_漢語語音合成字(self):
         字('媠', ('s', 'ui', '2'))
+
+    def test_南島語語音合成字(self):
+        字("Nga'ay", [['ŋ', 'a'], ['ʡ', 'a', 'j']])
 
     def test_語音合成無音(self):
         字('，', (None,))
