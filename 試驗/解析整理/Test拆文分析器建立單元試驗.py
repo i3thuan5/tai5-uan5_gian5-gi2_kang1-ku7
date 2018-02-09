@@ -577,6 +577,10 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         self.assertEqual(len(組物件.網出詞物件()), 0)
         self.assertEqual(len(組物件.篩出字物件()), 0)
 
+
+    def test_建立組字符號(self):
+        組物件 = 拆文分析器.建立組物件('高⿰⺼爭鞋')
+        self.assertEqual(len(組物件.篩出字物件()), 3)
     def test_兩參數就當做是對齊字(self):
         字物件 = 拆文分析器.建立字物件('媠', 'Suí')
         self.assertEqual(字物件.型, '媠')
