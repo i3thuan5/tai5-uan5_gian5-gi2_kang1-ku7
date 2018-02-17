@@ -33,7 +33,7 @@ class 拆文分析器對齊輕聲單元試驗(TestCase):
         ])
 
     def test_看有黏做伙決定斷詞(self):
-        音 = 'Mi̍h-kiānn phah-bô--khì --ah '
+        音 = 'Mi̍h-kiānn phah-bô--khì --ah'
         組物件 = 拆文分析器.建立組物件(音)
         self.assertEqual(len(組物件.網出詞物件()), 3)
 
@@ -54,3 +54,8 @@ class 拆文分析器對齊輕聲單元試驗(TestCase):
         音 = 'āu-ji̍t'
         組物件 = 拆文分析器.對齊組物件(型, 音)
         self.assertFalse(組物件.篩出字物件()[-1].敢是輕聲())
+
+    def test_漢字知影有輕聲猶原一個詞(self):
+        音 = '害--矣--啦'
+        組物件 = 拆文分析器.建立組物件(音)
+        self.assertEqual(len(組物件.網出詞物件()), 1)
