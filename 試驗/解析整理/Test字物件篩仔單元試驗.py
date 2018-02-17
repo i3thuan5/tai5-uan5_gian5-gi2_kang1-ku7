@@ -13,6 +13,7 @@ class 字物件篩仔單元試驗(TestCase):
     @patch('臺灣言語工具.基本物件.句.句.篩出字物件')
     def test_篩出字物件(self, 篩出字物件mock):
         物件 = 拆文分析器.分詞句物件('頭-家｜thau5-ke1 員-工｜uan5-kang1')
+        篩出字物件mock.reset_mock()
         字物件篩仔.篩出字物件(物件)
         篩出字物件mock.assert_called_once_with()
 

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
+from unittest.mock import patch
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
@@ -362,7 +363,6 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
 
     def test__拆句做字(self):
         self.assertEqual(拆文分析器._拆句做字('腹肚枵'), ['腹', '肚', '枵'])
-        self.assertRaises(型態錯誤, 拆文分析器._拆句做字, None)
 
     def test__拆句做字標點符號(self):
         self.assertEqual(拆文分析器._拆句做字('腹肚枵。'), ['腹', '肚', '枵', '。'])
@@ -576,3 +576,53 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         組物件 = 拆文分析器.建立組物件('\t\t')
         self.assertEqual(len(組物件.網出詞物件()), 0)
         self.assertEqual(len(組物件.篩出字物件()), 0)
+
+    def test_兩參數就當做是對齊字(self):
+        字物件 = 拆文分析器.建立字物件('媠', 'Suí')
+        self.assertEqual(字物件.型, '媠')
+        self.assertEqual(字物件.音, 'Suí')
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊詞物件')
+    def test_兩參數就當做是對齊詞(self, 對齊mock):
+        拆文分析器.建立詞物件('媠', 'Suí')
+        對齊mock.assert_called_once_with('媠', 'Suí')
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊詞物件')
+    def test_兩參數的結果佮對齊詞仝款(self, 對齊mock):
+        self.assertEqual(拆文分析器.建立詞物件('媠', 'Suí'), 對齊mock.return_value)
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊組物件')
+    def test_兩參數就當做是對齊組(self, 對齊mock):
+        拆文分析器.建立組物件('媠', 'Suí')
+        對齊mock.assert_called_once_with('媠', 'Suí')
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊組物件')
+    def test_兩參數的結果佮對齊組仝款(self, 對齊mock):
+        self.assertEqual(拆文分析器.建立組物件('媠', 'Suí'), 對齊mock.return_value)
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊集物件')
+    def test_兩參數就當做是對齊集(self, 對齊mock):
+        拆文分析器.建立集物件('媠', 'Suí')
+        對齊mock.assert_called_once_with('媠', 'Suí')
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊集物件')
+    def test_兩參數的結果佮對齊集仝款(self, 對齊mock):
+        self.assertEqual(拆文分析器.建立集物件('媠', 'Suí'), 對齊mock.return_value)
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊句物件')
+    def test_兩參數就當做是對齊句(self, 對齊mock):
+        拆文分析器.建立句物件('媠', 'Suí')
+        對齊mock.assert_called_once_with('媠', 'Suí')
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊句物件')
+    def test_兩參數的結果佮對齊句仝款(self, 對齊mock):
+        self.assertEqual(拆文分析器.建立句物件('媠', 'Suí'), 對齊mock.return_value)
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊章物件')
+    def test_兩參數就當做是對齊章(self, 對齊mock):
+        拆文分析器.建立章物件('媠', 'Suí')
+        對齊mock.assert_called_once_with('媠', 'Suí')
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊章物件')
+    def test_兩參數的結果佮對齊章仝款(self, 對齊mock):
+        self.assertEqual(拆文分析器.建立章物件('媠', 'Suí'), 對齊mock.return_value)
