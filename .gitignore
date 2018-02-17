@@ -10,3 +10,5 @@ __pycache__/
 /node_modules
 /.tox
 /.coverage
+/.project
+/.pydevproject
