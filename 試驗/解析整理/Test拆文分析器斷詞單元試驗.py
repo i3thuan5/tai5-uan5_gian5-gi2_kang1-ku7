@@ -88,7 +88,7 @@ class 拆文分析器斷詞單元試驗(TestCase):
 
     def test_濟字連字號尾(self):
         self.語句 = ' tsio1-sian3 - '
-        self.詞數 = len(['tsio1', 'sian3', '-'])
+        self.詞數 = len(['tsio1-sian3', '-'])
 
     def test_臺羅刪節號(self):
         self.語句 = 'Pang-liau5 hi5-kang2...'
