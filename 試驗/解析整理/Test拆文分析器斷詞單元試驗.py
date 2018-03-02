@@ -91,11 +91,11 @@ class 拆文分析器斷詞單元試驗(TestCase):
         self.詞數 = len(['tsio1', 'sian3', '-'])
 
     def test_臺羅刪節號(self):
-        self.語句 = 拆文分析器.建立組物件('Pang-liau5 hi5-kang2...')
+        self.語句 = 'Pang-liau5 hi5-kang2...'
         self.詞數 = len(['Pang-liau5', 'hi5-kang2', '...'])
 
     def test_漢字刪節號(self):
-        self.語句 = 拆文分析器.建立組物件('枋寮漁港……')
+        self.語句 = '枋寮漁港……'
         self.詞數 = len(['枋寮漁港', '……'])
 
     def test_tab當做空白(self):
