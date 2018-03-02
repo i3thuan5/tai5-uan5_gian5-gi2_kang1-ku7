@@ -6,7 +6,6 @@ from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.基本物件.公用變數 import 無音
 from 臺灣言語工具.基本物件.字 import 字
-from 臺灣言語工具.基本物件.詞 import 詞
 
 
 class 拆文分析器建立單元試驗(unittest.TestCase):
@@ -54,12 +53,6 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
             拆文分析器.建立詞物件(語句).內底字,
             [拆文分析器.建立字物件('tsit8'), 拆文分析器.建立字物件('張')]
         )
-
-    def test_建立組聲調符號接音標(self):
-        組物件 = 拆文分析器.建立組物件('suiˋsuiˋ')
-        self.assertEqual(組物件.篩出字物件(), [
-            拆文分析器.建立字物件('suiˋ'), 拆文分析器.建立字物件('suiˋ')
-        ])
 
     def test_建立組孤字(self):
         型 = '媠'
@@ -125,73 +118,11 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         組物件, 詞陣列 = self.建立組的切字檢查(原來語句, 切好語句)
         self.assertEqual(詞陣列, 組物件.內底詞)
 
-    def test_建立組的注音摻漢字(self):
-        原來語句 = 'ㄙㄨㄧˋ 姑 ㄋㄧㄨˊ'
-        切好語句 = ['ㄙㄨㄧˋ', '姑', 'ㄋㄧㄨˊ']
-        組物件, 詞陣列 = self.建立組的切字檢查(原來語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
     def test_建立組的注音摻英文數字(self):
         原來語句 = 'three ㄙㄨㄧˋ 3 姑 ㄋㄧㄨˊ'
         切好語句 = ['three', 'ㄙㄨㄧˋ', '3', '姑', 'ㄋㄧㄨˊ']
         組物件, 詞陣列 = self.建立組的切字檢查(原來語句, 切好語句)
         self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組的方言注音(self):
-        原來語句 = 'ㆣㄨㄚˋ ㄍㆰˊ ㄗㄨㆪˋ'
-        切好語句 = ['ㆣㄨㄚˋ', 'ㄍㆰˊ', 'ㄗㄨㆪˋ']
-        組物件, 詞陣列 = self.建立組的切字檢查(原來語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組濟連字佮符號(self):
-        原來語句 = '枋寮漁港「大-條-巷」上-闊兩-公-尺。'
-        切好語句 = ['枋寮漁港', '「', '大條巷', '」', '上闊兩公尺', '。']
-        組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組音標佮符號(self):
-        加空白後語句 = 'Pang-liau5 hi5-kang2 「 Tua7-tiau5-hang7 」 siang7-khoah nng7-kong-tshioh . '
-        切好語句 = ['Pang-liau5', 'hi5-kang2', '「', 'Tua7-tiau5-hang7', '」',
-                'siang7-khoah', 'nng7-kong-tshioh', '.']
-        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組濟字漢羅連字(self):
-        加空白後語句 = 'gua有tsit8-tiunn1椅仔 ！ '
-        切好語句 = ['gua', '有', 'tsit8-tiunn1', '椅仔', '！']
-        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組濟字漢羅空白(self):
-        原來語句 = 'gua u一張椅仔！'
-        切好語句 = ['gua', 'u', '一張椅仔', '！']
-        組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組濟字算式(self):
-        加空白後語句 = '所以是5 - 3 = 2 ! ! '
-        切好語句 = ['所以是', '5', '-', '3', '=', '2', '!', '!']
-        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組濟字其他符號(self):
-        原來語句 = '伊18:30會來'
-        切好語句 = ['伊', '18', ':', '30', '會來']
-        組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組日文前臺羅(self):
-        語句 = 'si7げ'
-        self.assertEqual(拆文分析器.建立組物件(語句).內底詞, [
-            詞([字('si7'), ]), 詞([字('げ'), ])
-        ])
-
-    def test_建立組日文後數字(self):
-        語句 = '仕上げ714'
-        self.assertEqual(拆文分析器.建立組物件(語句).內底詞, [
-            詞([字('仕'), 字('上'), 字('げ')]), 詞([字('714'), ])
-        ])
-
     def test_建立組減號(self):
         with self.assertRaises(解析錯誤):
             拆文分析器.建立組物件('--')
@@ -200,25 +131,6 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         原來語句 = 'gua51 ai51 li51'
         切好語句 = ['gua51', 'ai51', 'li51']
         組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組濟字算式佮連字號(self):
-        加空白後語句 = '食-0tsit8-kua5才來 ， 阮hak8-hau7佇大學路1001 - 1號 ， 儂莫走boo5-0ki3 。 '
-        切好語句 = [
-            '食-0tsit8-kua5', '才來', '，',
-            '阮', 'hak8-hau7', '佇大學路', '1001', '-', '1', '號', '，',
-            '儂莫走', 'boo5-0ki3', '。'
-        ]
-        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組濟字連字號尾(self):
-        加空白後語句 = 'king2-tshat4 tsioh4-ue7 tsio1 sian3 - '
-        切好語句 = [
-            'king2-tshat4', 'tsioh4-ue7',
-            'tsio1', 'sian3', '-'
-        ]
-        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
         self.assertEqual(詞陣列, 組物件.內底詞)
 
     def test_無空白分開的閩南語音標(self):
