@@ -133,28 +133,6 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         self.assertEqual(詞物件.內底字[0], 拆文分析器.對齊字物件(型一, 音一))
         self.assertEqual(詞物件.內底字[1], 拆文分析器.對齊字物件(型二, 音二))
 
-    def test__拆好陣列對齊詞物件濟字(self):
-        詞型 = '媠姑娘'
-        詞音 = 'sui2-koo1-niu5'
-        詞 = 拆文分析器.對齊詞物件(詞型, 詞音)
-        型一 = '媠'
-        型二 = '姑'
-        型三 = '娘'
-        音一 = 'sui2'
-        音二 = 'koo1'
-        音三 = 'niu5'
-        拆好陣列詞 = 拆文分析器._拆好陣列對齊詞物件([型一, 型二, 型三], [音一, 音二, 音三])
-        self.assertEqual(詞.內底字[0].型, 型一)
-        self.assertEqual(詞.內底字[0].音, 音一)
-        self.assertEqual(詞.內底字[1].型, 型二)
-        self.assertEqual(詞.內底字[1].音, 音二)
-        self.assertEqual(詞.內底字[2].型, 型三)
-        self.assertEqual(詞.內底字[2].音, 音三)
-        self.assertEqual(詞.內底字[0], 拆文分析器.對齊字物件(型一, 音一))
-        self.assertEqual(詞.內底字[1], 拆文分析器.對齊字物件(型二, 音二))
-        self.assertEqual(詞.內底字[2], 拆文分析器.對齊字物件(型三, 音三))
-        self.assertEqual(詞, 拆好陣列詞)
-
     def test_對齊組濟字(self):
         型 = '我有一張椅仔！'
         音 = 'gua2 u7 tsit8-tiunn1 i2-a2 !'
@@ -530,18 +508,6 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
             拆文分析器.對齊句物件(' 恁老母ti3佗位 ！', ' lin1 lau3 bu2 ti3 to1 ui7 !'),
         ])
 
-    def test__拆好陣列對齊詞物件傳無仝濟字(self):
-        型一 = '媠'
-        型二 = '姑'
-        型三 = '娘'
-        音一 = 'ㄙㄨㄧˋ'
-        音二 = 'ㄍㆦ'
-        音三 = 'ㄋㄧㄨˊ'
-        self.assertRaises(解析錯誤, 拆文分析器._拆好陣列對齊詞物件, [型一, 型二, 型三], [音一, 音二])
-        self.assertRaises(解析錯誤, 拆文分析器._拆好陣列對齊詞物件, [型一, 型二], [音一, 音二, 音三])
-        self.assertRaises(解析錯誤, 拆文分析器._拆好陣列對齊詞物件, [型一, 型二, 型三], [])
-        self.assertRaises(解析錯誤, 拆文分析器._拆好陣列對齊詞物件, [], [音一, 音二, 音三])
-
     def test_對齊組型較濟(self):
         型 = '我有一張媠椅仔'
         音 = 'gua2 u7 tsit8-tiunn1 i2-a2'
@@ -587,10 +553,6 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         型 = ''
         音 = ''
         詞 = 拆文分析器.對齊詞物件(型, 音)
-        self.assertEqual(len(詞.內底字), 0)
-
-    def test__拆好陣列對齊詞物件無字(self):
-        詞 = 拆文分析器._拆好陣列對齊詞物件([], [])
         self.assertEqual(len(詞.內底字), 0)
 
     def test_對齊組無字(self):
