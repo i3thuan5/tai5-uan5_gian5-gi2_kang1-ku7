@@ -117,3 +117,15 @@ class 拆文分析器斷詞單元試驗(TestCase):
     def test_羅馬字日文(self):
         self.語句 = 'ta̍k kang ta̍h i ê #オートバイ# (oo-tóo-bái) khì Niau-khang suann-tíng tsìng tshài,'
         self.詞數 = 17
+
+    def test_注音符號(self):
+        self.語句 = 'ㄙㄨㄧˋ ㄍㆦ ㄋㄧㄨˊ'
+        self.詞數 = 3
+
+    def test_注音摻英文數字(self):
+        self.語句 = 'three ㄙㄨㄧˋ 3 姑 ㄋㄧㄨˊ'
+        self.詞數 = 5
+
+    def test_組字式注音(self):
+        self.語句 = '⿿⿿⿿ㄙㄨㄧˋ⿿ㄍㆦ⿿⿿⿿ㄋㄧㄨˊ'
+        self.詞數 = 1
