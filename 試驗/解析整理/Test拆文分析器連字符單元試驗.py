@@ -16,6 +16,26 @@ class 拆文分析器連字符單元試驗(TestCase):
                 self.句
             )
 
+    def test_一(self):
+        self.句 = '-'
+        self.錯誤 = False
+        self.字數 = 1
+
+    def test_一_(self):
+        self.句 = '- '
+        self.錯誤 = False
+        self.字數 = 1
+
+    def test__一(self):
+        self.句 = ' -'
+        self.錯誤 = False
+        self.字數 = 1
+
+    def test__一_(self):
+        self.句 = ' - '
+        self.錯誤 = False
+        self.字數 = 1
+
     def test_一sui2(self):
         self.句 = '-sui2'
         self.錯誤 = True
