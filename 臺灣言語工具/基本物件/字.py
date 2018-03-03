@@ -67,6 +67,9 @@ class 字(功能):
             self.看音(物件分字符號, 物件分詞符號)
         )
 
+    def 敢有輕聲標記(self):
+        return self.音.startswith('0')
+
     def 綜合標音(self, 語言綜合標音):
         return 語言綜合標音(self).轉json格式()
 
