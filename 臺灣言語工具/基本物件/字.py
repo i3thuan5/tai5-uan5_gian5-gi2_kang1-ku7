@@ -11,7 +11,7 @@ from 臺灣言語工具.基本物件.功能 import 功能
 
 class 字(功能):
 
-    def __init__(self, 型, 音=無音):
+    def __init__(self, 型, 音=無音,輕聲標記=False):
         if 型 == '':
             raise 解析錯誤('傳入來的型是空的！')
         try:
@@ -35,6 +35,7 @@ class 字(功能):
                 raise 解析錯誤('型佮音干焦一个是標點符號！「{}」佮「{}」'.format(型, 音))
         self.型 = 型
         self.音 = 音
+        self.輕聲標記=輕聲標記
 
     def 有音(self):
         return self.音 != 無音 and self.音 not in 標點符號
@@ -68,7 +69,7 @@ class 字(功能):
         )
 
     def 敢有輕聲標記(self):
-        return self.音.startswith('0')
+        return self.輕聲標記 or self.音.startswith('0')
 
     def 綜合標音(self, 語言綜合標音):
         return 語言綜合標音(self).轉json格式()
