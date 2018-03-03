@@ -7,12 +7,13 @@ from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 class 拆文分析器連字符單元試驗(TestCase):
     def tearDown(self):
         if self.錯誤:
-            with self.assertRaises(解析錯誤):
+            with self.assertRaises(解析錯誤, self.句):
                 拆文分析器.建立句物件(self.句)
         else:
             self.assertEqual(
                 len(拆文分析器.建立句物件(self.句).篩出字物件()),
-                self.字數
+                self.字數,
+                self.句
             )
 
     def test_一sui2(self):
