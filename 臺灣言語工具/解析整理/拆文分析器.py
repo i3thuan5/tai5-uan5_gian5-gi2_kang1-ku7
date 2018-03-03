@@ -313,11 +313,11 @@ class 拆文分析器:
                     (是hiragana and 頂一个是hiragana) or
                     (是katakana and 頂一个是katakana)
                 ):
+                    狀態.頂一字佮這馬的字仝詞()
                     狀態.字陣列直接加一字(字)
                 elif 是hiragana or 是katakana:
                     狀態.這馬字好矣清掉囥入去字陣列()
                     狀態.字陣列直接加一字(字)
-
                 elif 字 in 標點符號:
                     if 字 == '•' and 狀態.上尾敢是o結尾():
                         狀態.這馬字加一个字元(字)

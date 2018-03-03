@@ -101,3 +101,19 @@ class 拆文分析器斷詞單元試驗(TestCase):
     def test_tab當做空白(self):
         self.語句 = '\t千金小姐\ttshian1-kim1-sio2-tsia2\t'
         self.詞數 = 2
+
+    def test_純日文(self):
+        self.語句 = "オートバイ"
+        self.詞數 = 1
+
+    def test_漢字日文(self):
+        self.語句 = '逐工踏伊的#オートバイ#（oo-tóo-bái）去貓空山頂種菜，'
+        self.詞數 = len([
+            '逐工踏伊的',
+            '#', 'オートバイ', '#', '（', 'oo-tóo-bái', '）',
+            '去貓空山頂種菜', '，'
+        ])
+
+    def test_羅馬字日文(self):
+        self.語句 = 'ta̍k kang ta̍h i ê #オートバイ# (oo-tóo-bái) khì Niau-khang suann-tíng tsìng tshài,'
+        self.詞數 = 17

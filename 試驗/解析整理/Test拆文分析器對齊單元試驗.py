@@ -746,14 +746,7 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
     def test_純日文(self):
         日文 = "オートバイ"
         組物件 = 拆文分析器.對齊組物件(日文, 日文)
-        self.assertEqual(len(組物件.網出詞物件()), 1)
         self.assertEqual(len(組物件.篩出字物件()), 5)
-
-    def test_台語日文(self):
-        型 = '逐工踏伊的#オートバイ#（oo-tóo-bái）去貓空山頂種菜，'
-        音 = 'ta̍k kang ta̍h i ê #オートバイ# (oo-tóo-bái) khì Niau-khang suann-tíng tsìng tshài,'
-        組物件 = 拆文分析器.對齊組物件(型, 音)
-        self.assertEqual(len(組物件.網出詞物件()), 17)
 
     def test_台語前tab(self):
         型 = '千金小姐'
