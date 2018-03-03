@@ -132,12 +132,12 @@ class 拆文分析器:
 
     @classmethod
     def _拆句做巢狀詞(cls, 語句):
-        字陣列, 佮後一个字是佇仝一个詞 = cls._句分析(語句)
+        字陣列, 佮後一个字無仝一个詞 = cls._句分析(語句)
         巢狀詞陣列 = []
         位置 = 0
         while 位置 < len(字陣列):
             範圍 = 位置
-            while 範圍 < len(佮後一个字是佇仝一个詞) and 佮後一个字是佇仝一个詞[範圍] != False:
+            while 範圍 < len(佮後一个字無仝一个詞) and not 佮後一个字無仝一个詞[範圍]:
                 範圍 += 1
             範圍 += 1
             巢狀詞陣列.append(字陣列[位置:範圍])
@@ -146,11 +146,17 @@ class 拆文分析器:
 
     class _分析狀態:
         def __init__(self):
-            self.字陣列 = []
-            self.佮後一个字是佇仝一个詞 = []
+            self._字陣列 = []
+            self._佮後一个字無仝一个詞 = []
             self.變一般模式()
             # 組字式抑是數羅會超過一个字元
             self.這馬字 = ''
+
+        def 分析結果(self):
+            return self._字陣列, self._佮後一个字無仝一个詞
+
+        def 這馬敢有資料(self):
+            return len(self._字陣列) > 0
 
         def 變一般模式(self):
             self.模式 = '一般'
@@ -166,23 +172,27 @@ class 拆文分析器:
         def 是組字模式(self):
             return self.模式 == '組字'
 
+        def 字陣列直接加一字(self, 字):
+            self._字陣列.append(字)
+            self._佮後一个字無仝一个詞.append(True)
+
         def 這馬字好矣清掉囥入去字陣列(self):
             if self.這馬字 != '':
-                self.字陣列.append(self.這馬字)
-                self.佮後一个字是佇仝一个詞.append(None)
+                self._字陣列.append(self.這馬字)
+                self._佮後一个字無仝一个詞.append(None)
                 self.這馬字 = ''
 
         def 頂一字佮這馬的字仝詞(self):
             try:
-                self.佮後一个字是佇仝一个詞[-1] = True
-            except:
+                self._佮後一个字無仝一个詞[-1] = False
+            except IndexError:
                 pass
 
         def 頂一字佮這馬的字無仝詞(self):
             try:
-                if self.佮後一个字是佇仝一个詞[-1] is None:
-                    self.佮後一个字是佇仝一个詞[-1] = False
-            except:
+                if self._佮後一个字無仝一个詞[-1] is None:
+                    self._佮後一个字無仝一个詞[-1] = True
+            except IndexError:
                 pass
 
     @classmethod
@@ -192,6 +202,7 @@ class 拆文分析器:
         狀態 = cls._分析狀態()
         頂一个字 = None
         頂一个字種類 = None
+        頂一个是數字 = False
         頂一个是注音符號 = False
         頂一个是hiragana = False
         頂一个是katakana = False
@@ -215,10 +226,9 @@ class 拆文分析器:
                 if 字 in 分字符號:
                     狀態.這馬字好矣清掉囥入去字陣列()
                     if 語句[:位置].endswith(分詞符號) or 語句[位置 + 1:].startswith(分詞符號):
-                        狀態.字陣列.append(分字符號)
-                        狀態.佮後一个字是佇仝一个詞.append(False)
+                        狀態.字陣列直接加一字(分字符號)
                     else:
-                        if len(狀態.佮後一个字是佇仝一个詞) == 0:
+                        if not 狀態.這馬敢有資料():
                             if len(語句) > 1:
                                 raise 解析錯誤(
                                     '一開始的減號是代表啥物？請用「文章粗胚.建立物件語句前處理減號」。語句：「{0}」'.format(
@@ -226,8 +236,7 @@ class 拆文分析器:
                                     )
                                 )
                             else:
-                                狀態.字陣列.append(字)
-                                狀態.佮後一个字是佇仝一个詞.append(False)
+                                狀態.字陣列直接加一字(字)
                         else:
                             狀態.頂一字佮這馬的字仝詞()
                 elif 字 == 分詞符號 or cls._是空白.fullmatch(字):
@@ -271,12 +280,10 @@ class 拆文分析器:
                     (是hiragana and 頂一个是hiragana) or
                     (是katakana and 頂一个是katakana)
                 ):
-                    狀態.字陣列.append(字)
-                    狀態.佮後一个字是佇仝一个詞.append(False)
+                    狀態.字陣列直接加一字(字)
                 elif 是hiragana or 是katakana:
                     狀態.這馬字好矣清掉囥入去字陣列()
-                    狀態.字陣列.append(字)
-                    狀態.佮後一个字是佇仝一个詞.append(False)
+                    狀態.字陣列直接加一字(字)
 
                 elif 字 in 標點符號:
                     if 字 == '•' and 文章粗胚._o結尾(狀態.這馬字):
@@ -284,15 +291,11 @@ class 拆文分析器:
                     else:
                         狀態.這馬字好矣清掉囥入去字陣列()
                         狀態.頂一字佮這馬的字無仝詞()
-                        狀態.字陣列.append(字)
-                        狀態.佮後一个字是佇仝一个詞.append(False)
+                        狀態.字陣列直接加一字(字)
                 else:
                     狀態.這馬字好矣清掉囥入去字陣列()
-                    try:
-                        if 狀態.字陣列[-1].isdigit():
-                            狀態.頂一字佮這馬的字無仝詞()
-                    except IndexError:
-                        pass
+                    if 頂一个是數字:
+                        狀態.頂一字佮這馬的字無仝詞()
 
                     狀態.這馬字 += 字
                     if 字 in 組字式符號:
@@ -302,6 +305,7 @@ class 拆文分析器:
             位置 += 1
             頂一个字 = 字
             頂一个字種類 = 字種類
+            頂一个是數字 = 字.isdigit()
             頂一个是注音符號 = 是注音符號
             頂一个是hiragana = 是hiragana
             頂一个是katakana = 是katakana
@@ -310,7 +314,7 @@ class 拆文分析器:
                 狀態.這馬字好矣清掉囥入去字陣列()
             else:
                 raise 解析錯誤('語句組字式無完整，語句＝{0}'.format(str(語句)))
-        return (狀態.字陣列, 狀態.佮後一个字是佇仝一个詞)
+        return 狀態.分析結果()
 
     @classmethod
     def 分詞字物件(cls, 分詞):
