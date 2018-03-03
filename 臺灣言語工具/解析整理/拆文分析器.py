@@ -27,8 +27,6 @@ from 臺灣言語工具.基本物件.公用變數 import 統一碼注音聲調�
 from 臺灣言語工具.基本物件.公用變數 import 敢是拼音字元
 from 臺灣言語工具.基本物件.公用變數 import 敢是注音符號
 from 臺灣言語工具.基本物件.公用變數 import 統一碼數字類
-from 臺灣言語工具.基本物件.公用變數 import 敢是hiragana
-from 臺灣言語工具.基本物件.公用變數 import 敢是katakana
 
 
 class 拆文分析器:
@@ -166,6 +164,9 @@ class 拆文分析器:
         def 這馬字敢閣有物件(self):
             return self._這馬字 != ''
 
+        def 這馬字敢全部攏數字(self):
+            return self._這馬字.isdigit()
+
         def 變一般模式(self):
             self._模式 = '一般'
             self._組字長度 = 0
@@ -234,10 +235,7 @@ class 拆文分析器:
         頂一个是連字符 = False
         頂一个是空白 = False
         頂一个是輕聲符號 = False
-        頂一个是數字 = False
         頂一个是注音符號 = False
-        頂一个是hiragana = False
-        頂一个是katakana = False
         位置 = 0
         while 位置 < len(語句):
             字 = 語句[位置]
@@ -246,8 +244,6 @@ class 拆文分析器:
             是空白 = False
             是輕聲符號 = False
             是注音符號 = 敢是注音符號(字)
-            是hiragana = 敢是hiragana(字)
-            是katakana = 敢是katakana(字)
             if 狀態.是組字模式():
                 狀態.這馬字加一个字元(字)
                 狀態.組字模型加一个字元(字)
@@ -336,15 +332,6 @@ class 拆文分析器:
                 elif 字種類 in 統一碼注音聲調符號 and 頂一个是注音符號:
                     狀態.這馬字加一个字元(字)
 
-                elif (
-                    (是hiragana and 頂一个是hiragana) or
-                    (是katakana and 頂一个是katakana)
-                ):
-                    狀態.頂一字佮這馬的字仝詞()
-                    狀態.字陣列直接加一字(字)
-                elif 是hiragana or 是katakana:
-                    狀態.這馬字好矣清掉囥入去字陣列()
-                    狀態.字陣列直接加一字(字)
                 elif 字 in 標點符號:
                     if 字 == '•' and 狀態.上尾敢是o結尾():
                         狀態.這馬字加一个字元(字)
@@ -354,9 +341,11 @@ class 拆文分析器:
                         狀態.字陣列直接加一字(字)
                         狀態.頂一字佮這馬的字無仝詞()
                 else:
-                    狀態.這馬字好矣清掉囥入去字陣列()
-                    if 頂一个是數字:
+                    if 狀態.這馬字敢全部攏數字():
+                        狀態.這馬字好矣清掉囥入去字陣列()
                         狀態.頂一字佮這馬的字無仝詞()
+                    else:
+                        狀態.這馬字好矣清掉囥入去字陣列()
                     if 頂一个是輕聲符號:
                         狀態.這馬是輕聲字()
                     狀態.這馬字加一个字元(字)
@@ -370,10 +359,7 @@ class 拆文分析器:
             頂一个是空白 = 是空白
             頂一个是輕聲符號 = 是輕聲符號
             頂一个字種類 = 字種類
-            頂一个是數字 = 字.isdigit()
             頂一个是注音符號 = 是注音符號
-            頂一个是hiragana = 是hiragana
-            頂一个是katakana = 是katakana
         if 狀態.這馬字敢閣有物件():
             if 狀態.是一般模式():
                 狀態.這馬字好矣清掉囥入去字陣列()

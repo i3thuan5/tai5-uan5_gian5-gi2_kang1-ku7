@@ -38,12 +38,10 @@ class 拆文分析器斷詞單元試驗(TestCase):
 
     def test_組字當作漢字(self):
         self.語句 = '癩⿸疒哥人'
-
         self.詞數 = 1
 
     def test_漢羅做伙(self):
         self.語句 = '台文通訊Bóng報'
-
         self.詞數 = 1
 
     def test_漢羅輕聲(self):
