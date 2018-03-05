@@ -15,7 +15,6 @@ class 拆文分析器輕聲單元試驗(TestCase):
         型 = '後--日'
         音 = 'āu--ji̍t'
         組物件 = 拆文分析器.對齊組物件(型, 音)
-        self.assertEqual(len(組物件.網出詞物件()), 1)
         self.assertFalse(組物件.篩出字物件()[0].敢有輕聲標記())
         self.assertTrue(組物件.篩出字物件()[1].敢有輕聲標記())
 
