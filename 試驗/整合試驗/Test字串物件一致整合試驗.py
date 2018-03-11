@@ -23,3 +23,6 @@ class 物件轉字串整合試驗(TestCase):
 
     def test_羅馬字濟字輕聲(self):
         self.語句 = 'Kín--tshut-lâi'
+
+    def test_粗坯的輕聲(self):
+        self.語句 = 'Kin2-0tshut-lai5-0ah'
