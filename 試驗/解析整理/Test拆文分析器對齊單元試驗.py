@@ -379,6 +379,12 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         組物件 = 拆文分析器.對齊組物件(' ', '   ')
         self.assertEqual(組物件.內底詞, [])
 
+    def test_莫插全形空白(self):
+        漢字 = '意中人走佗藏'
+        羅馬字 = 'Ì-tiong-lâng tsáu tó tshàng　'
+        組物件 = 拆文分析器.對齊組物件(漢字, 羅馬字)
+        self.assertEqual(組物件.篩出字物件()[-1].音, 'tshàng')
+
     def test_對齊物件對空白(self):
         with self.assertRaises(解析錯誤):
             拆文分析器.對齊組物件('sui2', '   ')
