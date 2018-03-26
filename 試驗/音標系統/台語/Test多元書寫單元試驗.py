@@ -36,6 +36,10 @@ class 多元書寫單元試驗(TestCase):
         self.assertEqual(
             多元書寫['臺羅斷詞'], '--ah ! kue-á-tshiu phah-bô--khì --ah .')
 
+    def test_臺羅保持原本大寫(self):
+        多元書寫 = 台語多元書寫.書寫句(拆文分析器.對齊句物件('豬',  'Ti'))
+        self.assertEqual(多元書寫['臺羅斷詞'],  'Ti')
+
     def test_臺羅閏號調愛提掉(self):
         多元書寫 = self.物件拍無去矣()
         self.assertNotIn('臺羅閏號調', 多元書寫)
