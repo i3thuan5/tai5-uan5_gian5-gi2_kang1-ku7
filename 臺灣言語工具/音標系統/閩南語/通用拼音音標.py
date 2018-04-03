@@ -30,13 +30,16 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 im
     'ann': 'ann', 'annh': 'annh',
     'ai': 'ai', 'aih': 'aih', 'ainn': 'ainn', 'ainnh': 'ainnh',
     'au': 'au', 'auh': 'auh', 'aunn': 'aunn', 'aunnh': 'aunnh',
-    'e': 'e', 'eh': 'eh', 'en': 'ian', 'et': 'iat', 'enn': 'enn', 'ennh': 'ennh',
+    'e': 'e', 'eh': 'eh', 'en': 'ian', 'et': 'iat','ien': 'ian', 'iet': 'iat', 
+    'enn': 'enn', 'ennh': 'ennh',
     'er': 'o', 'erh': 'oh', 'ernn': 'onn',
+    'or': 'o', 'orh': 'oh', 'ornn': 'onn',
     'ia': 'ia', 'iah': 'iah', 'iap': 'iap', 'iak': 'iak',
     'iam': 'iam', 'iang': 'iang',
     'iann': 'iann', 'iannh': 'iannh',
     'iau': 'iau', 'iauh': 'iauh', 'iaunn': 'iaunn', 'iaunnh': 'iaunnh',
     'ier': 'io', 'ierh': 'ioh',
+    'ior': 'io', 'iorh': 'ioh',
     'i': 'i', 'ih': 'ih', 'ip': 'ip', 'it': 'it', 'ik': 'ik',
     'im': 'im', 'in': 'in', 'ing': 'ing',
     'inn': 'inn', 'innh': 'innh',
@@ -72,10 +75,14 @@ class 通用拼音音標(閩南語音標介面):
     調 = None
     音標 = None
 
-    def __init__(self, 音標):
-        self.聲母對照表 = 通用拼音佮臺灣羅馬聲母對照表
-        self.韻母對照表 = 通用拼音佮臺灣羅馬韻母對照表
-        self.調類對照表 = 通用拼音佮臺灣羅馬調類對照表
+    def __init__(self, 音標,
+                 聲母對照表=通用拼音佮臺灣羅馬聲母對照表,
+                 韻母對照表=通用拼音佮臺灣羅馬韻母對照表,
+                 調類對照表 = 通用拼音佮臺灣羅馬調類對照表
+                 ):
+        self.聲母對照表 = 聲母對照表
+        self.韻母對照表 = 韻母對照表
+        self.調類對照表 = 調類對照表
         self.音標 = None
         self.音標 = None
         if 音標[-1:] in self.調類對照表:
