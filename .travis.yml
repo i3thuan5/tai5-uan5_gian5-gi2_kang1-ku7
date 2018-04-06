@@ -2,7 +2,6 @@ sudo: true
 dist: trusty
 language: python
 python:
-- '3.4'
 - '3.5'
 env:
   matrix:
@@ -13,6 +12,7 @@ env:
   - TOX_ENV=KenLM整合試驗
   - TOX_ENV=Moses整合試驗
   - TOX_ENV=中研院整合試驗
+  - TOX_ENV=國教院整合試驗
   - TOX_ENV=flake8
 addons:
   apt:
@@ -62,7 +62,7 @@ deploy:
   on:
     tags: true
     repo: sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7
-    condition: $TRAVIS_PYTHON_VERSION == '3.4' && $TOX_ENV = 單元試驗
+    condition: $TRAVIS_PYTHON_VERSION == '3.5' && $TOX_ENV = 單元試驗
 - provider: pages
   skip_cleanup: true
   github_token:
@@ -70,4 +70,4 @@ deploy:
   local_dir: "文件/_build/html"
   on:
     branch: master
-    condition: $TRAVIS_PYTHON_VERSION == '3.4' && $TOX_ENV = flake8
+    condition: $TRAVIS_PYTHON_VERSION == '3.5' && $TOX_ENV = flake8
