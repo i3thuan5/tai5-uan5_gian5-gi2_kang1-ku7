@@ -1,20 +1,16 @@
 # -*- coding: utf-8 -*-
-import re
+from http.client import HTTPConnection
+import json
 
 
-from 臺灣言語工具.斷詞.中研院.用戶端連線 import 用戶端連線
 from 臺灣言語工具.基本物件.章 import 章
 from 臺灣言語工具.基本物件.句 import 句
-from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
-from 臺灣言語工具.解析整理.字物件篩仔 import 字物件篩仔
-from 臺灣言語工具.基本物件.詞 import 詞
 from 臺灣言語工具.基本物件.組 import 組
 from 臺灣言語工具.基本物件.集 import 集
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 
 
-class 國教院斷詞用戶端(用戶端連線):
-    分詞性 = re.compile('(.*)\((.*)\)')
+class 國教院斷詞用戶端:
 
     @classmethod
     def 斷詞(cls, 物件):
@@ -45,4 +41,13 @@ class 國教院斷詞用戶端(用戶端連線):
 
     @classmethod
     def 語句斷詞做陣列(cls, 語句):
-        return cls._語句做了嘛是語句(語句)
+        連線 = HTTPConnection('coct.naer.edu.tw')
+        資料 = json.dumps({'RawText': 語句})
+        連線.request(
+            "POST", "/Segmentor/Func/getSegResult/",
+            資料,
+            {'Content-Type': 'application/json'}
+        )
+        回應字串 = 連線.getresponse().read().decode('utf-8')
+        連線.close()
+        return json.loads(回應字串)['result']
