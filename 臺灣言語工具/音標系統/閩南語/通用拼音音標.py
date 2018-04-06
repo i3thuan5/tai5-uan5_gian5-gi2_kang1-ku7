@@ -30,7 +30,7 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 im
     'ann': 'ann', 'annh': 'annh',
     'ai': 'ai', 'aih': 'aih', 'ainn': 'ainn', 'ainnh': 'ainnh',
     'au': 'au', 'auh': 'auh', 'aunn': 'aunn', 'aunnh': 'aunnh',
-    'e': 'e', 'eh': 'eh', 'en': 'ian', 'et': 'iat','ien': 'ian', 'iet': 'iat', 
+    'e': 'e', 'eh': 'eh', 'en': 'ian', 'et': 'iat', 'ien': 'ian', 'iet': 'iat',
     'enn': 'enn', 'ennh': 'ennh',
     'er': 'o', 'erh': 'oh', 'ernn': 'onn',
     'or': 'o', 'orh': 'oh', 'ornn': 'onn',
@@ -78,7 +78,7 @@ class 通用拼音音標(閩南語音標介面):
     def __init__(self, 音標,
                  聲母對照表=通用拼音佮臺灣羅馬聲母對照表,
                  韻母對照表=通用拼音佮臺灣羅馬韻母對照表,
-                 調類對照表 = 通用拼音佮臺灣羅馬調類對照表
+                 調類對照表=通用拼音佮臺灣羅馬調類對照表
                  ):
         self.聲母對照表 = 聲母對照表
         self.韻母對照表 = 韻母對照表
