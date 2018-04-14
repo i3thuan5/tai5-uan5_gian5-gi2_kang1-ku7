@@ -7,7 +7,7 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 
 
-class 臺灣閩南語羅馬字拼音閏號整合試驗(TestCase):
+class 臺灣閩南語羅馬字拼音調符整合試驗(TestCase):
 
     def test_檢查佮教典有仝款無(self):
         詞條檔名 = join(dirname(__file__), '語料', '詞目總檔.csv')
@@ -17,4 +17,4 @@ class 臺灣閩南語羅馬字拼音閏號整合試驗(TestCase):
                 for 字物件 in 組物件.篩出字物件():
                     拼音物件 = 臺灣閩南語羅馬字拼音(字物件.型)
                     if 拼音物件.音標 is not None:
-                        self.assertEqual(拼音物件.轉閏號調(), 字物件.型, 一逝['音讀'])
+                        self.assertEqual(拼音物件.轉調符(), 字物件.型, 一逝['音讀'])
