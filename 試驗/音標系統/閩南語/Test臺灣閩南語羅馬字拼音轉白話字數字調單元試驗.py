@@ -54,7 +54,7 @@ class 臺羅轉白話字數字調單元試驗(unittest.TestCase):
         self.assertEqual(臺灣閩南語羅馬字拼音('gio2').轉白話字數字調(), 'gio2')
         self.assertEqual(臺灣閩南語羅馬字拼音('au3').轉白話字數字調(), 'au3')
         # ó͘, ō͘,
-        self.assertEqual(臺灣閩南語羅馬字拼音('hoo7').轉白話字數字調(), '')
+        self.assertEqual(臺灣閩南語羅馬字拼音('hoo7').轉白話字數字調(), 'ho͘7')
         self.assertEqual(臺灣閩南語羅馬字拼音('ainn7').轉白話字數字調(), 'aiⁿ7')
         self.assertEqual(臺灣閩南語羅馬字拼音('hah8').轉白話字數字調(), 'hah8')
 

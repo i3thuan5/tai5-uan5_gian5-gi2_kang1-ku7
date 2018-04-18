@@ -46,8 +46,8 @@ Created on 2018年4月12日
 
     # 寫法上不存在-ook, -oong, -oonn
     # 臺羅手冊：-ok, -ong, -onn的-o為-oo的簡寫，因為該音節不存在o和oo的差別
-    'ioo': '', 'iong': 'iong',
-    'iooh': '', 'iok': 'iok',
+    'ioo': 'io͘', 'iong': 'iong',
+    'iooh': 'io͘h', 'iok': 'iok',
     'ionn': 'ioⁿ',
 
     'iu': 'iu',
@@ -62,8 +62,8 @@ Created on 2018年4月12日
     'oh': 'oh', 'op': 'op',
 
     # TODO: 確認om是唸oo
-    'oo': '', 'om': 'om', 'ong': 'ong',
-    'ooh': '', 'ok': 'ok',
+    'oo': 'o͘', 'om': 'om', 'ong': 'ong',
+    'ooh': 'o͘h', 'ok': 'ok',
     'onn': 'oⁿ', 'onnh': 'ohⁿ',
 
     # TODO: 不會有oi
