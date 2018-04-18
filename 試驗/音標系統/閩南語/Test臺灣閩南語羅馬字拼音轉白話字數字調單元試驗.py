@@ -43,13 +43,17 @@ class 臺羅轉白話字數字調單元試驗(unittest.TestCase):
     def test_三母音iau(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('iau7').轉白話字數字調(), 'iau7')
 
-    def test_優勢腔(self):
-        # 鼻化音
+    def test_鼻化音(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('ainn1').轉白話字數字調(), 'aiⁿ1')
+    
+    def test_鼻化音_nnh(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('ainnh4').轉白話字數字調(), 'aihⁿ4')
+    
+    def test_優勢腔(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('gio2').轉白話字數字調(), 'gio2')
         self.assertEqual(臺灣閩南語羅馬字拼音('au3').轉白話字數字調(), 'au3')
         # ó͘, ō͘, 
-        self.assertEqual(臺灣閩南語羅馬字拼音('hoo7').轉白話字數字調(), 'hō͘')
+        self.assertEqual(臺灣閩南語羅馬字拼音('hoo7').轉白話字數字調(), '')
         self.assertEqual(臺灣閩南語羅馬字拼音('ainn7').轉白話字數字調(), 'aiⁿ7')
         self.assertEqual(臺灣閩南語羅馬字拼音('hah8').轉白話字數字調(), 'hah8')
         
