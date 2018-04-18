@@ -202,6 +202,15 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
             self.對白話字調對照表[self.調]
         )
 
+    def 轉白話字數字調(self):
+        if self.音標 is None:
+            return None
+        return (
+            self.對白話字聲對照表[self.聲] +
+            self.對白話字韻對照表[self.韻] +
+            self.對白話字調對照表[self.調]
+        )
+
     def 轉吳守禮方音(self):
         return 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組(self.聲, self.韻, self.調, self.輕).音標
 
