@@ -3,6 +3,7 @@ from 臺灣言語工具.音標系統.閩南語.教會系羅馬音標 import 教�
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組 import 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉音值模組 import 臺灣閩南語羅馬字拼音轉音值模組
 from sys import stderr
+from 臺灣言語工具.音標系統.閩南語.對照表 import 臺羅對白話字
 
 臺灣閩南語羅馬字拼音聲母表 = {
     'p', 'ph', 'm', 'b',
@@ -129,7 +130,8 @@ from sys import stderr
     '6': '4', '0': '3',
 }
 
-
+    
+    
 class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
     聲母表 = 臺灣閩南語羅馬字拼音聲母表
     韻母表 = 臺灣閩南語羅馬字拼音韻母表
@@ -140,6 +142,11 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
     對通用聲對照表 = 臺羅對通用聲對照表
     對通用韻對照表 = 臺羅對通用韻對照表
     對通用調對照表 = 臺羅對通用調對照表
+
+    對白話字聲對照表 = 臺羅對白話字.聲對照表
+    對白話字韻對照表 = 臺羅對白話字.韻對照表
+    對白話字調對照表 = 臺羅對白話字.調對照表
+
     轉音值模組 = 臺灣閩南語羅馬字拼音轉音值模組()
 
     def __init__(self, 音標):
@@ -184,6 +191,53 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
             self.對通用聲對照表[self.聲] +
             self.對通用韻對照表[self.韻] +
             self.對通用調對照表[self.調]
+        )
+
+    def 轉白話字(self):
+        if self.音標 is None:
+            return None
+        白話字聲 = self.轉白話字聲()
+        白話字韻 = self.轉白話字韻()
+        return (
+            白話字聲 +
+            白話字韻
+        )
+
+    def 轉白話字聲(self):
+        白話字聲 = None
+        if self.聲 == 'ts':
+            白話字聲 = 'ch'
+        elif self.聲 == 'tsh':
+            白話字聲 = 'chh'
+        else:
+            白話字聲 = self.聲
+        return 白話字聲
+        
+    def 轉白話字韻(self):
+        白話字韻 = None
+        # 母音
+        if 'oo' in self.韻:
+            白話字韻 = self.韻.replace('oo', 'o͘')
+        elif 'ua' in self.韻:
+            白話字韻 = self.韻.replace('ua', 'oa')
+        elif 'ue' in self.韻:
+            白話字韻 = self.韻.replace('ue', 'oe')
+        else:
+            白話字韻 = self.韻
+        # 鼻化音
+        if 'nnh' in self.韻:
+            白話字韻 = 白話字韻.replace('nnh', 'hⁿ')
+        elif 'nn' in self.韻:
+            白話字韻 = 白話字韻.replace('nn', 'ⁿ')
+        return 白話字韻
+    
+    def 轉白話字數字調(self):
+        if self.音標 is None:
+            return None
+        return (
+            self.對白話字聲對照表[self.聲] +
+            self.對白話字韻對照表[self.韻] +
+            self.對白話字調對照表[self.調]
         )
 
     def 轉吳守禮方音(self):
