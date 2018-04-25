@@ -57,6 +57,10 @@ class 臺羅轉白話字單元試驗(unittest.TestCase):
         # 標佇i以外的元音頂
         self.assertEqual(臺灣閩南語羅馬字拼音('ai5').轉白話字(), 'âi')
 
+    def test_雙元音有i_i在頭前(self):
+        # 標佇i以外的元音頂
+        self.assertEqual(臺灣閩南語羅馬字拼音('ia5').轉白話字(), 'iâ')
+
     def test_雙元音無i(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('oa5').轉白話字(), 'ôa')
 
@@ -70,7 +74,7 @@ class 臺羅轉白話字單元試驗(unittest.TestCase):
         self.assertEqual(臺灣閩南語羅馬字拼音('uang5').轉白話字(), 'oâng')
     
     def test_雙元音無i_nn無算字(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('ainn7').轉白話字(), 'āiⁿ')
+        self.assertEqual(臺灣閩南語羅馬字拼音('khuann3').轉白話字(), 'khoaⁿ')
     
     def test_鼻化元音(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('mng5').轉白話字(), 'mn̂g')
@@ -80,6 +84,11 @@ class 臺羅轉白話字單元試驗(unittest.TestCase):
     
     def test_三元音調符_oai(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('uai').轉白話字(), 'oâiⁿ')
+
+    def test_三元音調符_nnh(self):
+        # TODO: 跟薛確定位置
+        self.fail()
+        #self.assertEqual(臺灣閩南語羅馬字拼音('uainnh8').轉白話字(), 'ua̍ihⁿ')
 
     def test_韻對照表(self):
         for 臺羅韻, 白話字韻 in sorted(臺羅對白話字.韻對照表.items()):
