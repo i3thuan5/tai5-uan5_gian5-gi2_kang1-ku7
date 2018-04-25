@@ -38,27 +38,49 @@ class 臺羅轉白話字單元試驗(unittest.TestCase):
         拼音物件 = 臺灣閩南語羅馬字拼音('0tsuí')
         self.assertEqual(拼音物件.轉白話字(), '0chuí')
 
-    def test_單母音調符(self):
+    def test_韻化輔音m(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('m5').轉白話字(), 'm̂')
+
+    def test_韻化輔音ng(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('ng5').轉白話字(), 'n̂g')
+
+    def test_單元音(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('hoo7').轉白話字(), 'hō͘')
+
+    def test_單元音入聲(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('hah8').轉白話字(), 'ha̍h')
+    
+    def test_單元音入聲鼻音(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('hinnh8').轉白話字(), 'hı̍hⁿ')
 
-    @skip('愛參考Phah4 Tai5-gi2的規範')
-    def test_雙母音調符(self):
-        # o＞e＞a＞u＞i＞ng＞m，
-        self.assertEqual(臺灣閩南語羅馬字拼音('gio2').轉白話字(), 'gió')
-        self.assertEqual(臺灣閩南語羅馬字拼音('uan5').轉白話字(), 'ôan')
-        self.assertEqual(臺灣閩南語羅馬字拼音('ainn7').轉白話字(), 'āiⁿ')
+    def test_雙元音有i(self):
+        # 標佇i以外的元音頂
+        self.assertEqual(臺灣閩南語羅馬字拼音('ai5').轉白話字(), 'âi')
+
+    def test_雙元音無i(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('oa5').轉白話字(), 'ôa')
+
+    def test_雙元音無i_後面的u是u(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('au3').轉白話字(), 'àu')
-        
-    def test_鼻母音調符(self):
+
+    def test_雙元音無i_oan(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('uan5').轉白話字(), 'oân')
+    
+    def test_雙元音無i_oang(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('uang5').轉白話字(), 'oâng')
+    
+    def test_雙元音無i_nn無算字(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('ainn7').轉白話字(), 'āiⁿ')
+    
+    def test_鼻化元音(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('mng5').轉白話字(), 'mn̂g')
 
-    @skip('愛參考Phah4 Tai5-gi2的規範')
-    def test_三母音調符(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('kuai3').轉白話字(), 'kòai')
-        self.assertEqual(臺灣閩南語羅馬字拼音('iau7').轉白話字(), 'kòai')
-        
+    def test_三元音調符_iau(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('iau5').轉白話字(), 'iâu')
+    
+    def test_三元音調符_oai(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('uai').轉白話字(), 'oâiⁿ')
+
     def test_韻對照表(self):
         for 臺羅韻, 白話字韻 in sorted(臺羅對白話字.韻對照表.items()):
             self.assertEqual(臺灣閩南語羅馬字拼音(臺羅韻).轉白話字(), 白話字韻)
