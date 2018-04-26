@@ -37,13 +37,12 @@ class 臺羅轉白話字():
     def 轉白話字韻(cls, 韻):
         白話字韻 = None
         # 母音
-        if 'oo' in 韻:
-            白話字韻 = 韻.replace('oo', 'o͘')
-        elif 'ua' in 韻:
+        if 'ua' in 韻:
             白話字韻 = 韻.replace('ua', 'oa')
         elif 'ue' in 韻:
             白話字韻 = 韻.replace('ue', 'oe')
         else:
+            # oo, au, ia, ai
             白話字韻 = 韻
         # 鼻化音
         if 'nnh' in 韻:
@@ -56,9 +55,9 @@ class 臺羅轉白話字():
     def 白話字韻標傳統調(cls, 白話字韻無調, 調):
         結果 = ''
         # 單元音
-        if re.search('[aeiou]', 白話字韻無調):
-            pass
-        elif 'o͘' in 白話字韻無調:
+        if 'oo' in 白話字韻無調:
+            結果 = cls.加上白話字調符(白話字韻無調, 'oo', 調)
+        elif re.search('[aeiou]', 白話字韻無調):
             pass
         elif 'ng' in 白話字韻無調:
             結果 = cls.加上白話字調符(白話字韻無調, 'n', 調)
