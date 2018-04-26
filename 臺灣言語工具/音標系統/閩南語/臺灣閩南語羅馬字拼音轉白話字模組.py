@@ -54,10 +54,13 @@ class 臺羅轉白話字():
     @classmethod
     def 白話字韻標傳統調(cls, 白話字韻無調, 調):
         結果 = ''
-        # 單元音
         if 'oo' in 白話字韻無調:
             結果 = cls.加上白話字調符(白話字韻無調, 'oo', 調)
+        elif re.search('(iau)|(oai)', 白話字韻無調):
+            # 三元音攏標佇a面頂
+            結果 = cls.加上白話字調符(白話字韻無調, 'a', 調)
         elif re.search('[aeiou]', 白話字韻無調):
+            # 單元音、雙元音、三元音
             pass
         elif 'ng' in 白話字韻無調:
             結果 = cls.加上白話字調符(白話字韻無調, 'n', 調)
@@ -67,4 +70,6 @@ class 臺羅轉白話字():
 
     @classmethod
     def 加上白話字調符(cls, 白話字韻無調, 標調字母, 調):
+        if 調 == '1' or 調 == '4':
+            return 白話字韻無調
         return 白話字韻無調.replace(標調字母, cls.白話字韻母調符對照表[(標調字母, 調)])

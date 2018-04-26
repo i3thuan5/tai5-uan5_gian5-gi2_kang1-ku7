@@ -83,7 +83,7 @@ class 臺羅轉白話字單元試驗(unittest.TestCase):
         self.assertEqual(臺灣閩南語羅馬字拼音('iau5').轉白話字(), 'iâu')
     
     def test_三元音調符_oai(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('uai').轉白話字(), 'oâiⁿ')
+        self.assertEqual(臺灣閩南語羅馬字拼音('uai7').轉白話字(), 'oāi')
 
     def test_三元音調符_nnh(self):
         # TODO: 跟薛確定位置
