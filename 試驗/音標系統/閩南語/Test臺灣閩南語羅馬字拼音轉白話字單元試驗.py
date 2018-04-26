@@ -7,36 +7,35 @@ import unittest
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from unittest.case import skip
 from 臺灣言語工具.音標系統.閩南語.對照表 import 臺羅對白話字
-from _ast import Dict
 
 
 class 臺羅轉白話字單元試驗(unittest.TestCase):
 
     def test_大寫數字調(self):
         拼音物件 = 臺灣閩南語羅馬字拼音('Tsui2')
-        self.assertEqual(拼音物件.轉白話字(), 'Chuí')
+        self.assertEqual(拼音物件.轉白話字(), 'Chúi')
 
     def test_大寫傳統調(self):
         拼音物件 = 臺灣閩南語羅馬字拼音('Tsuí')
-        self.assertEqual(拼音物件.轉白話字(), 'Chuí')
+        self.assertEqual(拼音物件.轉白話字(), 'Chúi')
 
     @skip('TODO 待討論')
     def test_大寫輕聲(self):
         拼音物件 = 臺灣閩南語羅馬字拼音('0Tsuí')
-        self.assertEqual(拼音物件.轉白話字(), '0Chuí')
+        self.assertEqual(拼音物件.轉白話字(), '0Chúi')
 
     def test_小寫數字調(self):
         拼音物件 = 臺灣閩南語羅馬字拼音('tshui2')
-        self.assertEqual(拼音物件.轉白話字(), 'chhuí')
+        self.assertEqual(拼音物件.轉白話字(), 'chhúi')
 
     def test_小寫傳統調(self):
         拼音物件 = 臺灣閩南語羅馬字拼音('tshuí')
-        self.assertEqual(拼音物件.轉白話字(), 'chhuí')
+        self.assertEqual(拼音物件.轉白話字(), 'chhúi')
 
     @skip('TODO 待討論')
     def test_小寫輕聲(self):
         拼音物件 = 臺灣閩南語羅馬字拼音('0tsuí')
-        self.assertEqual(拼音物件.轉白話字(), '0chuí')
+        self.assertEqual(拼音物件.轉白話字(), '0chúi')
 
     def test_韻化輔音m(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('m5').轉白話字(), 'm̂')

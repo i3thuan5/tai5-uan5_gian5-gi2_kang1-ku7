@@ -197,7 +197,11 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
     def 轉白話字(self):
         if self.音標 is None:
             return None
-        return 臺羅轉白話字.轉白話字(self.聲, self.韻, self.調)
+        小寫的白話字 = 臺羅轉白話字.轉白話字(self.聲, self.韻, self.調)
+        結果 = 小寫的白話字
+        if self.原本音標[0].isupper():
+            結果 = 小寫的白話字[0].upper() + 小寫的白話字[1:]
+        return 結果
     
     def 轉白話字數字調(self):
         if self.音標 is None:
