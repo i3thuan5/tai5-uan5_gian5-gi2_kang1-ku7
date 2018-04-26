@@ -92,9 +92,7 @@ class 臺羅轉白話字單元試驗(unittest.TestCase):
         self.assertEqual(臺灣閩南語羅馬字拼音('uai7').轉白話字(), 'oāi')
 
     def test_三元音調符_nnh(self):
-        # TODO: 跟薛確定位置
-        self.fail()
-        #self.assertEqual(臺灣閩南語羅馬字拼音('uainnh8').轉白話字(), 'ua̍ihⁿ')
+        self.assertEqual(臺灣閩南語羅馬字拼音('uainnh8').轉白話字(), 'oa̍ihⁿ')
 
     def test_韻對照表(self):
         for 臺羅韻, 白話字韻 in sorted(臺羅對白話字.韻對照表.items()):
