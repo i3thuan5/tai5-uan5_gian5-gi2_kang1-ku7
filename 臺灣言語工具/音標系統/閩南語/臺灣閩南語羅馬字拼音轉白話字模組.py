@@ -61,7 +61,7 @@ class 臺羅轉白話字():
         elif 'o͘' in 白話字韻無調:
             pass
         elif 'ng' in 白話字韻無調:
-            結果 = 白話字韻無調.replace('ng', cls.白話字韻母調符對照表('ng', 調))
+            結果 = 白話字韻無調.replace('n', cls.白話字韻母調符對照表[('n', 調)])
         elif 'm' in 白話字韻無調:
-            結果 = 白話字韻無調.replace('m', cls.白話字韻母調符對照表('m', 調))
+            結果 = 白話字韻無調.replace('m', cls.白話字韻母調符對照表[('m', 調)])
         return 結果
