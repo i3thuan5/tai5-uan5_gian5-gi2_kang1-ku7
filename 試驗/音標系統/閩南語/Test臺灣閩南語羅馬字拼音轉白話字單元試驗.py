@@ -44,7 +44,10 @@ class 臺羅轉白話字單元試驗(unittest.TestCase):
     def test_韻化輔音ng(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('ng5').轉白話字(), 'n̂g')
 
-    def test_單元音(self):
+    def test_單元音oo1(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('hoo1').轉白話字(), 'ho͘')
+
+    def test_單元音oo7(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('hoo7').轉白話字(), 'hō͘')
 
     def test_單元音陰入聲(self):

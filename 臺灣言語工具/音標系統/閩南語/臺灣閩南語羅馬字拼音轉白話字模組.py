@@ -4,11 +4,16 @@ from 臺灣言語工具.音標系統.閩南語.教會系羅馬音標 import 教�
 
 def 取得白話字韻母調符對照表():
     結果 = {}
-    for key, val in 教會系羅馬音標聲調符號表.items():
-        if key == 'ı̍':
+    for 白話字傳統調, 臺羅組 in 教會系羅馬音標聲調符號表.items():
+        if 白話字傳統調 == 'ı̍':
             # i8有兩種unicode，踢掉跟教典不同的。
             continue
-        結果.update({val: key})
+        
+        臺羅, 數字調 = 臺羅組
+        新鍵值 = 臺羅組
+        if 臺羅 == 'oo':
+            新鍵值 = ('o͘', 數字調)
+        結果.update({新鍵值: 白話字傳統調})
     return 結果
 
 
@@ -40,7 +45,9 @@ class 臺羅轉白話字():
     def 轉白話字韻(cls, 韻):
         白話字韻 = None
         # 母音
-        if 'ua' in 韻:
+        if 'oo' in 韻:
+            白話字韻 = 韻.replace('oo', 'o͘')
+        elif 'ua' in 韻:
             白話字韻 = 韻.replace('ua', 'oa')
         elif 'ue' in 韻:
             白話字韻 = 韻.replace('ue', 'oe')
@@ -57,8 +64,8 @@ class 臺羅轉白話字():
     @classmethod
     def 白話字韻標傳統調(cls, 白話字韻無調, 調):
         該標調的字 = ''
-        if 'oo' in 白話字韻無調:
-            該標調的字 = 'oo'
+        if 'o͘' in 白話字韻無調:
+            該標調的字 = 'o͘'
         elif re.search('(iau)|(oai)', 白話字韻無調):
             # 三元音 攏標佇a面頂
             該標調的字 = 'a'
