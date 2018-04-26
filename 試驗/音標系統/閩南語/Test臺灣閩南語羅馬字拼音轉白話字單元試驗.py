@@ -54,7 +54,7 @@ class 臺羅轉白話字單元試驗(unittest.TestCase):
         self.assertEqual(臺灣閩南語羅馬字拼音('hak8').轉白話字(), 'ha̍k')
     
     def test_單元音入聲鼻音(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('hinnh8').轉白話字(), 'hı̍hⁿ')
+        self.assertEqual(臺灣閩南語羅馬字拼音('hinnh8').轉白話字(), 'hi̍hⁿ')
 
     def test_雙元音有i(self):
         # 標佇i以外的元音頂
