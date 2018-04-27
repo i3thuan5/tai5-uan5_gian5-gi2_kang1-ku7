@@ -34,7 +34,7 @@ class 安裝HTS語音辨識程式(安裝HTK語音辨識程式):
             with cls._換目錄(sptk安裝路徑):
                 cls._走指令([
                     'git', 'clone',
-                    'https://git.code.sf.net/p/sp-tk/SPTK',
+                    'git://git.code.sf.net/p/sp-tk/SPTK',
                 ])
         else:
             with cls._換目錄(sptk程式碼目錄):
