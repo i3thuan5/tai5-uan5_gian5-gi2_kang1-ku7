@@ -51,12 +51,12 @@ class 臺羅轉白話字單元試驗(unittest.TestCase):
 
     def test_單元音陰入聲(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('hak4').轉白話字(), 'hak')
-    
+
     def test_單元音陽入聲(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('hak8').轉白話字(), 'ha̍k')
-    
+
     def test_單元音入聲鼻音(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('hinnh8').轉白話字(), 'hi̍hⁿ')
+        self.assertEqual(臺灣閩南語羅馬字拼音('hinnh8').轉白話字(), 'hi̍ⁿh')
 
     def test_雙元音有i(self):
         # 標佇i以外的元音頂
@@ -74,27 +74,27 @@ class 臺羅轉白話字單元試驗(unittest.TestCase):
 
     def test_雙元音無i_有韻尾_oan(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('uan5').轉白話字(), 'oân')
-    
+
     def test_雙元音無i_有韻尾_oang(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('uang5').轉白話字(), 'oâng')
-    
+
     def test_雙元音無i_有韻尾_nn無算字(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('khuann3').轉白話字(), 'khòaⁿ')
-    
+
     def test_雙元音入聲鼻音(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('huannh8').轉白話字(), 'hoa̍hⁿ')
+        self.assertEqual(臺灣閩南語羅馬字拼音('huannh8').轉白話字(), 'hoa̍ⁿh')
 
     def test_鼻化元音(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('mng5').轉白話字(), 'mn̂g')
 
     def test_三元音調符_iau(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('iau5').轉白話字(), 'iâu')
-    
+
     def test_三元音調符_oai(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('uai7').轉白話字(), 'oāi')
 
     def test_三元音調符_nnh(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('uainnh8').轉白話字(), 'oa̍ihⁿ')
+        self.assertEqual(臺灣閩南語羅馬字拼音('uainnh8').轉白話字(), 'oa̍iⁿh')
 
     def test_韻對照表(self):
         for 臺羅韻, 白話字韻 in sorted(臺羅對白話字.韻對照表.items()):

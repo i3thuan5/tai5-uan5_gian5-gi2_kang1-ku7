@@ -16,30 +16,30 @@ Created on 2018年4月12日
 韻對照表 = {
     'a': 'a', 'am': 'am', 'an': 'an', 'ang': 'ang',
     'ah': 'ah', 'ap': 'ap', 'at': 'at', 'ak': 'ak',
-    'ann': 'aⁿ', 'annh': 'ahⁿ',
+    'ann': 'aⁿ', 'annh': 'aⁿh',
 
     'ai': 'ai',
     'aih': 'aih',
-    'ainn': 'aiⁿ', 'ainnh': 'aihⁿ',
+    'ainn': 'aiⁿ', 'ainnh': 'aiⁿh',
 
     'au': 'au',
-    'auh': 'auh', 'aunn': 'auⁿ', 'aunnh': 'auhⁿ',
+    'auh': 'auh', 'aunn': 'auⁿ', 'aunnh': 'auⁿh',
 
     'e': 'e',
     'eh': 'eh',
-    'enn': 'eⁿ', 'ennh': 'ehⁿ',
+    'enn': 'eⁿ', 'ennh': 'eⁿh',
 
     'ia': 'ia', 'iam': 'iam', 'ian': 'ian', 'iang': 'iang',
     'iah': 'iah', 'iap': 'iap', 'iat': 'iat', 'iak': 'iak',
-    'iann': 'iaⁿ', 'iannh': 'iahⁿ',
+    'iann': 'iaⁿ', 'iannh': 'iaⁿh',
 
     'iau': 'iau',
     'iauh': 'iauh',
-    'iaunn': 'iauⁿ', 'iaunnh': 'iauhⁿ',
+    'iaunn': 'iauⁿ', 'iaunnh': 'iauⁿh',
 
     'i': 'i', 'im': 'im', 'in': 'in', 'ing': 'ing',
     'ih': 'ih', 'ip': 'ip', 'it': 'it', 'ik': 'ik',
-    'inn': 'iⁿ', 'innh': 'ihⁿ',
+    'inn': 'iⁿ', 'innh': 'iⁿh',
 
     'io': 'io',
     'ioh': 'ioh',
@@ -53,7 +53,7 @@ Created on 2018年4月12日
     'iu': 'iu',
     # TODO: 不會有iut
     'iuh': 'iuh',  # 'iut': 'iut',
-    'iunn': 'iuⁿ', 'iunnh': 'iuhⁿ',
+    'iunn': 'iuⁿ', 'iuⁿh': 'iuⁿh',
 
     'm': 'm', 'ng': 'ng',
     'mh': 'mh', 'ngh': 'ngh',
@@ -64,7 +64,7 @@ Created on 2018年4月12日
     # TODO: 確認om是唸oo
     'oo': 'o͘', 'om': 'om', 'ong': 'ong',
     'ooh': 'o͘h', 'ok': 'ok',
-    'onn': 'oⁿ', 'onnh': 'ohⁿ',
+    'onn': 'oⁿ', 'onnh': 'oⁿh',
 
     # TODO: 不會有oi
     #     'oi': '', 'oih': '',
@@ -72,19 +72,19 @@ Created on 2018年4月12日
     'ua': 'oa', 'uan': 'oan',
     # TODO: 不會有oak、oap
     'uah': 'oah', 'uat': 'oat',  # 'uak': 'oak',
-    'uann': 'oaⁿ', 'uannh': 'oahⁿ',
+    'uann': 'oaⁿ', 'uannh': 'oaⁿh',
 
     'uai': 'oai',
     'uaih': 'oaih',
-    'uainn': 'oaiⁿ', 'uainnh': 'oaihⁿ',
+    'uainn': 'oaiⁿ', 'uainnh': 'oaiⁿh',
 
     'ue': 'oe',
     'ueh': 'oeh',
-    'uenn': 'oeⁿ', 'uennh': 'oehⁿ',
+    'uenn': 'oeⁿ', 'uennh': 'oeⁿh',
 
     'ui': 'ui',
     'uih': 'uih',
-    'uinn': 'uiⁿ', 'uinnh': 'uihⁿ',
+    'uinn': 'uiⁿ', 'uinnh': 'uiⁿh',
 
     'u': 'u', 'un': 'un',
     'uh': 'uh', 'ut': 'ut',

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from unittest.case import TestCase
+from unittest.case import TestCase, skip
 from unittest.mock import patch
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.基本物件.集 import 集
@@ -25,6 +25,7 @@ class 多元書寫單元試驗(TestCase):
         多元書寫 = self.物件拍無去矣()
         self.assertEqual(多元書寫['臺羅'], 'Ah! Kue-á-tshiu phah-bô--khì--ah.')
 
+    @skip('白話字輕聲調猶未討論')
     def test_檢查白話字(self):
         多元書寫 = self.物件拍無去矣()
         self.assertEqual(

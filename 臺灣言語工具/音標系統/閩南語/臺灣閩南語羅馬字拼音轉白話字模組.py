@@ -8,7 +8,7 @@ def 取得白話字韻母調符對照表():
         if 白話字傳統調 == 'ı̍':
             # i8有兩種unicode，踢掉跟教典不同的。
             continue
-        
+
         臺羅, 數字調 = 臺羅組
         新鍵值 = 臺羅組
         if 臺羅 == 'oo':
@@ -56,7 +56,7 @@ class 臺羅轉白話字():
             白話字韻 = 韻
         # 鼻化音
         if 'nnh' in 韻:
-            白話字韻 = 白話字韻.replace('nnh', 'hⁿ')
+            白話字韻 = 白話字韻.replace('nnh', 'ⁿh')
         elif 'nn' in 韻:
             白話字韻 = 白話字韻.replace('nn', 'ⁿ')
         return 白話字韻
