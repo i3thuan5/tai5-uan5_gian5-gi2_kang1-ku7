@@ -5,7 +5,6 @@ Created on 2018年4月12日
 '''
 import unittest
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
-from unittest.case import skip
 from 臺灣言語工具.音標系統.閩南語.對照表 import 臺羅對白話字
 
 
@@ -19,7 +18,6 @@ class 臺羅轉白話字單元試驗(unittest.TestCase):
         拼音物件 = 臺灣閩南語羅馬字拼音('Tsuí')
         self.assertEqual(拼音物件.轉白話字(), 'Chúi')
 
-    @skip('TODO 待討論')
     def test_大寫輕聲(self):
         拼音物件 = 臺灣閩南語羅馬字拼音('0Tsuí')
         self.assertEqual(拼音物件.轉白話字(), '0Chúi')
@@ -32,7 +30,6 @@ class 臺羅轉白話字單元試驗(unittest.TestCase):
         拼音物件 = 臺灣閩南語羅馬字拼音('tshuí')
         self.assertEqual(拼音物件.轉白話字(), 'chhúi')
 
-    @skip('TODO 待討論')
     def test_小寫輕聲(self):
         拼音物件 = 臺灣閩南語羅馬字拼音('0tsuí')
         self.assertEqual(拼音物件.轉白話字(), '0chúi')
