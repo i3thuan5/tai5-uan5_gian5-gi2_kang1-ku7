@@ -153,24 +153,24 @@ class 臺灣閩南語羅馬字拼音單元試驗(TestCase):
         self.assertEqual(臺灣閩南語羅馬字拼音('a.').音標, None)
         self.assertEqual(臺灣閩南語羅馬字拼音('.').音標, None)
 
-    def test_違法音標_無em_m袂第八調(self):    
+    def test_違法音標_無em_m袂第八調(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('pe̍m').音標, None)
-    
-    def test_違法音標_無c(self): 
+
+    def test_違法音標_無c(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('cat8').音標, None)
-    
-    def test_違法音標_超過一個音節(self): 
+
+    def test_違法音標_超過一個音節(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('tsé--á').音標, None)
-    
-    def test_違法音標_無oonn(self): 
+
+    def test_違法音標_無oonn(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('óonn').音標, None)
-    
-    def test_違法音標_無ot(self): 
+
+    def test_違法音標_無ot(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('ot').音標, None)
-        
+
     def test_無存在的聲調(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('no78').音標, None)
-    
+
     def test_無正確_同母音袂出現兩擺(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('suii').音標, None)
 
