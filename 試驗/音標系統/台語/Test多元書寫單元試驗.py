@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from unittest.case import TestCase, skip
+from unittest.case import TestCase
 from unittest.mock import patch
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.基本物件.集 import 集
@@ -25,11 +25,10 @@ class 多元書寫單元試驗(TestCase):
         多元書寫 = self.物件拍無去矣()
         self.assertEqual(多元書寫['臺羅'], 'Ah! Kue-á-tshiu phah-bô--khì--ah.')
 
-    @skip('白話字轉換猶未做')
     def test_檢查白話字(self):
         多元書寫 = self.物件拍無去矣()
         self.assertEqual(
-            多元書寫['白話字'],  '--ah ! Koe-á-chhiu phah-bô--khì --ah .')
+            多元書寫['白話字'],  'Ah! Koe-á-chhiu phah-bô--khì--ah.')
 
     def test_臺羅照詞分開(self):
         多元書寫 = self.物件拍無去矣()
@@ -91,6 +90,7 @@ class 多元書寫單元試驗(TestCase):
         self.assertIn('臺羅數字調', 多元書寫)
         self.assertIn('通用數字調', 多元書寫)
         self.assertIn('吳守禮方音', 多元書寫)
+        self.assertIn('白話字', 多元書寫)
         self.assertIn('分詞', 多元書寫)
 
     @patch('臺灣言語工具.音標系統.台語.多元書寫.台語多元書寫.書寫句')
