@@ -4,7 +4,7 @@ MAINTAINER sih4sing5hong5
 RUN apt-get update -qq && \
   apt-get install -y locales \
     python3 python3-pip g++ python3-dev \ 
-    libxslt1-dev git subversion automake libtool zlib1g-dev libboost-all-dev libbz2-dev liblzma-dev libgoogle-perftools-dev libxmlrpc-c++.*-dev make
+    libxslt1-dev git subversion automake libtool zlib1g-dev libboost-all-dev libbz2-dev liblzma-dev libgoogle-perftools-dev libxmlrpc-c++.*-dev make \
     csh libc6-dev-i386 linux-libc-dev gcc-multilib libx11-dev # libx11-dev:i386
 
 RUN pip3 install --upgrade pip

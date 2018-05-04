@@ -58,7 +58,7 @@ target/
 
 /.settings
 
-venv
+/venv
 文件/_*
 MANIFEST
 /node_modules/
