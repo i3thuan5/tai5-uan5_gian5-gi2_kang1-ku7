@@ -67,3 +67,4 @@ MANIFEST
 /.git
 /Dockerfile
 /docker-compose.yml
+/外部程式
