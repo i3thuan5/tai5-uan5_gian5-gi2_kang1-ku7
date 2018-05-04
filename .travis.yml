@@ -61,7 +61,7 @@ deploy:
     secure: QRLD6yPZ92b//ylVExoFZO+BGlHGZ/6ktu8nYIcnZTdE3zJsHR5fAlEkvELpT1yCHr//LU4ovcZ5O/R28YY/+naj/8cRqv4K5yvV70Wq5Sbj+TtQBuaNkMb3Vnif7GlLro9PZK2l224mBJsqFvykg9OLm+TBcRUB0fJMeS4x4gMQiOvWWDPyWAq/toJ6qknQqO199r8sbwu5BJtC0wo6nly048a46RcpTb9bkOil/i6gcA/X8TNDMmc1ah7XHp1zBwnUA6TQ0BfBu+COanwLykIG1Q8CsCp2+bH7CdPDZDZk0qTKlMSZFT5wWD0a3ABnPbXKcynUeCORgKpIW2JrHzTbQT4RW1OfDJ4LKXK+IS9H6qEgECkPPXcbySYDJabpz0bAy6JkkMB9q8PuHTII8vluwwgKT3Ws2LyqseE/tY6lZbF+dQRylEfzCGYOV+ICWYHsA3Nx2tDaxmHJFTKpLkK8yTxpJd0o6NJffIsIFIBEMQehXPyBELRxkJ1OMVMK3wE5u5nb7hlMoOpzG4KgxhBQi79/Iz1V9scC2Jp1vrwFJF/zNZIID1aMWHYBWBkytfjo9GnaUV3jADPbXhCy+K6Igbn8QRVjRXhxDEow844KvPxQ7NzCU1JDP2nNup1+NKNcWCAExs5wSw0wYTyYxizi6BXhepvYeWzV4gMzAZQ=
   on:
     tags: true
-    repo: sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7
+    repo: i3thuan5/tai5-uan5_gian5-gi2_kang1-ku7
     condition: $TRAVIS_PYTHON_VERSION == '3.5' && $TOX_ENV = 單元試驗
 - provider: pages
   skip_cleanup: true
