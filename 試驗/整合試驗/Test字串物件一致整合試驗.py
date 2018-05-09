@@ -9,6 +9,9 @@ class 物件轉字串整合試驗(TestCase):
         物件 = 拆文分析器.建立句物件(self.語句)
         self.assertEqual(物件.看語句(), self.語句)
 
+    def test_全羅(self):
+        self.語句 = 'lia̍h suí-ti!'
+
     def test_漢羅(self):
         self.語句 = '欲lia̍h-ti!'
 
@@ -23,6 +26,9 @@ class 物件轉字串整合試驗(TestCase):
 
     def test_羅馬字濟字輕聲(self):
         self.語句 = 'Kín--tshut-lâi'
+
+    def test_輕聲前有輕聲(self):
+        self.語句 = 'Kín --tshut-lâi'
 
     def test_粗坯的輕聲(self):
         self.語句 = 'Kin2-0tshut-lai5-0ah'
