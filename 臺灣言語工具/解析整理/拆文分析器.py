@@ -32,7 +32,7 @@ from 臺灣言語工具.基本物件.公用變數 import 統一碼數字類
 class 拆文分析器:
     _切組物件分詞 = re.compile('(([^ ｜]*.｜.[^ ｜]*) ?|[^ ]+)')
     _切章分詞 = re.compile('(\n｜.|.｜\n|\n)', re.DOTALL)
-    _是空白 = re.compile('[ \t]+')
+    _是空白 = re.compile('[^\S\n]+')
     _是分字符號 = re.compile('{}+'.format(分字符號))
 
     @classmethod

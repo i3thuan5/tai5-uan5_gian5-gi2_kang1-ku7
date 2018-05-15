@@ -35,21 +35,25 @@ class 摩西用戶端單元試驗(TestCase):
             'hyp': '阮  欲  去  食  飯  。  ',
             'align': 翻譯對應關係,
             'totalScore': -21.66,
+            'word-align': [],
         }]}
         self.全漢全羅分詞翻譯結果 = {'nbest': [{
             'hyp': '阮｜gun2  欲｜beh4  去｜khi3  食｜tsiah8  飯｜png7  。｜.  ',
             'align': 翻譯對應關係,
             'totalScore': -21.66,
+            'word-align': [],
         }]}
         self.全漢全羅分詞含詞翻譯結果 = {'nbest': [{
             'hyp': '阮｜gun2  欲｜beh4  去｜khi3  食｜tsiah8  炒-飯｜tsha2-png7  。｜.  ',
             'align': 翻譯對應關係,
             'totalScore': -21.66,
+            'word-align': [],
         }]}
         self.翻譯結果有未知詞出來 = {'nbest': [{
             'hyp': '阮  要|UNK|UNK|UNK  去  食  飯  。  ',
             'align': 翻譯對應關係,
             'totalScore': -21.66,
+            'word-align': [],
         }]}
         self.翻譯結果先後有變化 = {'nbest': [{
             'hyp': '阮  食  飯  愛  去  。  ',
@@ -61,6 +65,7 @@ class 摩西用戶端單元試驗(TestCase):
                 {'tgt-start': 5, 'src-start': 6, 'src-end': 6},
             ],
             'totalScore': -21.66,
+            'word-align': [],
         }]}
 
     def tearDown(self):
