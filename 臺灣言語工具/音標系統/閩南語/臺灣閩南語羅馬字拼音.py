@@ -115,15 +115,6 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
     'ui': 'ui', 'uih': 'uih', 'uinn': 'uinn', 'uinnh': 'uinnh',
     'u': 'u', 'uh': 'uh', 'ut': 'ut',
     'un': 'un',
-    # 下跤是次方言
-    'or': 'or', 'orh': 'orh', 'ior': 'ior', 'iorh': 'iorh',
-    'eng': 'ing',
-    'ee': 'e', 'eeh': 'eh', 'uee': 'ue',  # 有問題
-    'ir': 'i', 'irh': 'ih', 'irp': 'ip', 'irt': 'it', 'irk': 'ik',  # 有問題
-    'irm': 'im', 'irn': 'in', 'irng': 'ing', 'irinn': 'inn',  # 有問題
-    'er': 'or', 'erh': 'orh', 'erm': 'orm', 'erm': 'orm',
-    'ere': 'er', 'ereh': 'erh',
-    'ie': 'ie', 'uang': 'uang',
 }
 臺羅對通用調對照表 = {
     '1': '1', '7': '2', '3': '3', '2': '4', '5': '5',
