@@ -10,6 +10,7 @@ RUN apt-get update -qq && \
 RUN pip3 install --upgrade pip
 
 RUN locale-gen zh_TW.UTF-8
+ENV LANG zh_TW.UTF-8
 ENV LC_ALL zh_TW.UTF-8
 
 RUN pip3 install tai5-uan5_gian5-gi2_kang1-ku7
