@@ -13,8 +13,11 @@ ENV LC_ALL zh_TW.UTF-8
 
 RUN pip3 install --upgrade pip tai5-uan5_gian5-gi2_kang1-ku7
 
+
+#安裝HTS語音辨識程式.安裝htk(); \
+#
+
 RUN echo 'from 臺灣言語工具.語音合成.HTS工具.安裝HTS語音辨識程式 import 安裝HTS語音辨識程式; \
-    安裝HTS語音辨識程式.安裝htk(); \
     安裝HTS語音辨識程式.安裝sptk(); \
     安裝HTS語音辨識程式.安裝hts(); \
     安裝HTS語音辨識程式.掠htsDemoScript(); \
