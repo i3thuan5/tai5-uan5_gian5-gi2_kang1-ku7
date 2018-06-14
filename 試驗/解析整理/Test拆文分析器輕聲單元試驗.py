@@ -77,8 +77,14 @@ class 拆文分析器輕聲單元試驗(TestCase):
         詞物件 = 拆文分析器.對齊詞物件(型, 音)
         self.assertTrue(詞物件.篩出字物件()[0].敢有輕聲標記())
     
-    def test_字輕聲(self):
+    def test_對齊字輕聲(self):
         型 = '--啊'
         音 = '--ah'
         字物件 = 拆文分析器.對齊字物件(型, 音)
+        self.assertTrue(字物件.敢有輕聲標記())
+
+    def test_建立字輕聲(self):
+        型 = '--啊'
+        音 = '--ah'
+        字物件 = 拆文分析器.建立字物件(型, 音)
         self.assertTrue(字物件.敢有輕聲標記())

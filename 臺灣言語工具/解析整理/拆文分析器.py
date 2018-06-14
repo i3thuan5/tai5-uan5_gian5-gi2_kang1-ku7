@@ -36,8 +36,8 @@ class 拆文分析器:
     _是分字符號 = re.compile('{}+'.format(分字符號))
 
     @classmethod
-    def 建立字物件(cls, 語句, 別種書寫=無音):
-        return 字(語句, 別種書寫)
+    def 建立字物件(cls, 語句, 別種書寫=無音, 輕聲標記=False):
+        return 字(語句, 別種書寫, 輕聲標記)
 
     @classmethod
     def 建立詞物件(cls, 語句, 別種書寫=None):
