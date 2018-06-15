@@ -72,11 +72,12 @@ class 拆文分析器:
     @classmethod
     def 對齊字物件(cls, 型, 音):
         輕聲標記 = 音.startswith('0') or 音.startswith('--')
-        return 字( 
-            型.strip('--'), 
-            音.strip('--'), 
-            輕聲標記
-        )
+        try:
+            本調型 = 型.strip('--')
+            本調音 = 音.strip('--') 
+        except AttributeError:
+            raise 型態錯誤('對齊字物件愛傳入字串，收到的是 {} {}'.format(型, 音)) 
+        return 字(本調型, 本調音, 輕聲標記)
 
     @classmethod
     def 對齊詞物件(cls, 型, 音):
