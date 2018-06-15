@@ -36,8 +36,8 @@ class 拆文分析器:
     _是分字符號 = re.compile('{}+'.format(分字符號))
 
     @classmethod
-    def 建立字物件(cls, 語句, 別種書寫=無音, 輕聲標記=False):
-        return 字(語句, 別種書寫, 輕聲標記)
+    def 建立字物件(cls, 語句, 別種書寫=無音):
+        return cls.對齊字物件(語句, 別種書寫)
 
     @classmethod
     def 建立詞物件(cls, 語句, 別種書寫=None):
@@ -71,7 +71,12 @@ class 拆文分析器:
 
     @classmethod
     def 對齊字物件(cls, 型, 音):
-        return 字(型, 音)
+        輕聲標記 = 音.startswith('0') or 音.startswith('--')
+        return 字( 
+            型.strip('--'), 
+            音.strip('--'), 
+            輕聲標記
+        )
 
     @classmethod
     def 對齊詞物件(cls, 型, 音):
