@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase, skip
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.基本物件.字 import 字
 
 
 class 拆文分析器輕聲單元試驗(TestCase):
@@ -76,7 +75,7 @@ class 拆文分析器輕聲單元試驗(TestCase):
         音 = '--ah'
         詞物件 = 拆文分析器.對齊詞物件(型, 音)
         self.assertTrue(詞物件.篩出字物件()[0].敢有輕聲標記())
-    
+
     def test_對齊字輕聲(self):
         型 = '--啊'
         音 = '--ah'
@@ -88,15 +87,27 @@ class 拆文分析器輕聲單元試驗(TestCase):
         音 = '--ah'
         字物件 = 拆文分析器.建立字物件(型, 音)
         self.assertTrue(字物件.敢有輕聲標記())
-    
+
     def test_字輕聲的字提掉輕聲符(self):
         型 = '--啊'
         音 = '--ah'
         字物件 = 拆文分析器.建立字物件(型, 音)
         self.assertEqual(字物件.型, '啊')
-        
+
     def test_字輕聲的音提掉輕聲符(self):
         型 = '--啊'
         音 = '--ah'
         字物件 = 拆文分析器.建立字物件(型, 音)
         self.assertEqual(字物件.音, 'ah')
+    
+    def test_字輕聲的音維持0(self):
+        型 = '啊'
+        音 = '0ah'
+        字物件 = 拆文分析器.對齊字物件(型, 音)
+        self.assertEqual(字物件.音, '0ah')
+    
+    def test_字輕聲有0就免輕聲標記(self):
+        型 = '啊'
+        音 = '0ah'
+        字物件 = 拆文分析器.對齊字物件(型, 音)
+        self.assertFalse(字物件.輕聲標記)
