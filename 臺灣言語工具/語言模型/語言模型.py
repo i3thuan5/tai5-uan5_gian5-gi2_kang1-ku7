@@ -34,6 +34,12 @@ class 語言模型(metaclass=ABCMeta):
         詞陣列 = [self.開始()] + 詞物件網仔.網出詞物件(物件) + [self.結束()]
         return self.評詞陣列分(詞陣列, 開始的所在=1)
 
+    def perplexity(self, 物件):
+        long_tsong = 0.0
+        for kui_e, hun_soo in enumerate(self.評分(物件)):
+            long_tsong += hun_soo
+        return long_tsong / (kui_e + 1)
+
     @abstractmethod
     def 評詞陣列分(self, 詞陣列, 開始的所在=0):
         pass
