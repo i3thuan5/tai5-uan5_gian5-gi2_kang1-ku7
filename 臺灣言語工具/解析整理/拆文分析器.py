@@ -75,12 +75,12 @@ class 拆文分析器:
         本調型 = 型
         本調音 = 音
         try:
-            if 型.startswith('--'): 
+            if 型.startswith('--'):
                 本調型 = 型[2:]
             if 輕聲標記:
-                本調音 = 音[2:] 
+                本調音 = 音[2:]
         except AttributeError:
-            raise 型態錯誤('對齊字物件愛傳入字串，收到的是 {} {}'.format(型, 音)) 
+            raise 型態錯誤('對齊字物件愛傳入字串，收到的是 {} {}'.format(型, 音))
         return 字(本調型, 本調音, 輕聲標記)
 
     @classmethod

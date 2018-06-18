@@ -38,7 +38,7 @@ class 字(功能):
         self.輕聲標記 = 輕聲標記
         self.型 = 型
         self.音 = 音
-        
+
     def 有音(self):
         return self.音 != 無音 and self.音 not in 標點符號
 
