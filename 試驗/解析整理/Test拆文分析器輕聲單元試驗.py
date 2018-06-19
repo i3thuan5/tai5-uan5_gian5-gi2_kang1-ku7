@@ -99,13 +99,13 @@ class 拆文分析器輕聲單元試驗(TestCase):
         音 = '--ah'
         字物件 = 拆文分析器.建立字物件(型, 音)
         self.assertEqual(字物件.音, 'ah')
-    
+
     def test_字輕聲的音維持0(self):
         型 = '啊'
         音 = '0ah'
         字物件 = 拆文分析器.對齊字物件(型, 音)
         self.assertEqual(字物件.音, '0ah')
-    
+
     def test_字輕聲有0就免輕聲標記(self):
         型 = '啊'
         音 = '0ah'
