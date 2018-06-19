@@ -38,7 +38,7 @@ class 語言模型(metaclass=ABCMeta):
         long_tsong = 0.0
         for kui_e, hun_soo in enumerate(self.評分(物件)):
             long_tsong += hun_soo
-        return long_tsong / (kui_e + 1)
+        return self.指數(-long_tsong / (kui_e + 1))
 
     @abstractmethod
     def 評詞陣列分(self, 詞陣列, 開始的所在=0):
