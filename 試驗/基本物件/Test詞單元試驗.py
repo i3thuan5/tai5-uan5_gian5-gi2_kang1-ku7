@@ -66,3 +66,11 @@ class 詞單元試驗(TestCase):
         ]
         鄉所分詞答案 = '鄉-公-所｜hiang1--soo2'
         self.assertEqual(鄉所詞物件.看分詞(), 鄉所分詞答案)
+
+    def test_輕聲詞(self):
+        詞物件 = 詞([
+            字('喔', 'ooh', 輕聲標記=True),
+        ])
+        self.assertTrue(
+            詞物件.篩出字物件()[0].敢有輕聲標記()
+        )

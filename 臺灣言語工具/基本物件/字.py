@@ -33,9 +33,11 @@ class 字(功能):
                 (型是標點 ^ 音是標點)
             ):
                 raise 解析錯誤('型佮音干焦一个是標點符號！「{}」佮「{}」'.format(型, 音))
+
+        # 判斷輕聲
+        self.輕聲標記 = 輕聲標記
         self.型 = 型
         self.音 = 音
-        self.輕聲標記 = 輕聲標記
 
     def 有音(self):
         return self.音 != 無音 and self.音 not in 標點符號
