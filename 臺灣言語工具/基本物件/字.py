@@ -73,6 +73,12 @@ class 字(功能):
     def 敢有輕聲標記(self):
         return self.輕聲標記 or self.音.startswith('0')
 
+    def 敢是標點符號(self):
+        return (
+            self.型 in 標點符號 and
+            (self.音 in 標點符號 or self.音 == 無音)
+        )
+
     def 綜合標音(self, 語言綜合標音):
         return 語言綜合標音(self).轉json格式()
 
@@ -108,7 +114,7 @@ class 字(功能):
         return 字(新型, 新音)
 
     def 音標敢著(self, 音標工具):
-        if self.型 in 標點符號 and self.音 in 標點符號:
+        if self.敢是標點符號():
             return True
         if self.音 == 無音:
             return True
