@@ -28,7 +28,8 @@ class 多元書寫單元試驗(TestCase):
     def test_檢查白話字(self):
         多元書寫 = self.物件拍無去矣()
         self.assertEqual(
-            多元書寫['白話字'],  'Ah! Koe-á-chhiu phah-bô--khì--ah.')
+            多元書寫['白話字'],  'Ah! Koe-á-chhiu phah-bô--khì--ah.'
+        )
 
     def test_臺羅照詞分開(self):
         多元書寫 = self.物件拍無去矣()
@@ -101,11 +102,32 @@ class 多元書寫單元試驗(TestCase):
             句多元書寫mock.return_value,
         ])
 
+    def test_白話字方言就莫轉換(self):
+        多元書寫 = self.方言音()
+        self.assertEqual(
+            多元書寫['白話字'],  'Khòaⁿ chir'
+        )
+
+    def test_白話字外來詞就莫振動(self):
+        多元書寫 = self.外來詞()
+        self.assertEqual(
+            多元書寫['白話字'],  'Pigu!'
+        )
+
     def test_空章多元書寫袂例外(self):
         # 因為攏用佇輸出，愛檢查就佇程式別位檢查
         self.assertEqual(台語多元書寫.書寫章(拆文分析器.建立章物件('')), [])
 
     def 物件拍無去矣(self):
         句物件 = 拆文分析器.對齊句物件(
-            '啊！瓜仔鬚拍無去矣。', '0ah4 ! kue-a2-tshiu phah4-bo5-0khi3 0ah.')
+            '啊！瓜仔鬚拍無去矣。', '0ah4 ! kue-a2-tshiu phah4-bo5-0khi3 0ah.'
+        )
+        return 台語多元書寫.書寫句(句物件)
+
+    def 方言音(self):
+        句物件 = 拆文分析器.對齊句物件('讀書', 'Khuann3 tsir1')
+        return 台語多元書寫.書寫句(句物件)
+
+    def 外來詞(self):
+        句物件 = 拆文分析器.建立句物件('Pigu!')
         return 台語多元書寫.書寫句(句物件)
