@@ -50,12 +50,6 @@ class 多元書寫單元試驗(TestCase):
             多元書寫['臺羅數字調'], '0ah4 ! kue1-a2-tshiu1 phah4-bo5-0khi3 0ah4 .'
         )
 
-    def test_檢查通用數字調(self):
-        多元書寫 = self.物件拍無去矣()
-        self.assertEqual(
-            多元書寫['通用數字調'], 'ah7 ! gue1-a4-ciu1 pah7-bhor5-ki3 ah7 .'
-        )
-
     def test_檢查吳守禮方音(self):
         多元書寫 = self.物件拍無去矣()
         self.assertEqual(
@@ -89,7 +83,6 @@ class 多元書寫單元試驗(TestCase):
         多元書寫 = 台語多元書寫.書寫句(句())
         self.assertIn('漢字', 多元書寫)
         self.assertIn('臺羅數字調', 多元書寫)
-        self.assertIn('通用數字調', 多元書寫)
         self.assertIn('吳守禮方音', 多元書寫)
         self.assertIn('白話字', 多元書寫)
         self.assertIn('分詞', 多元書寫)
