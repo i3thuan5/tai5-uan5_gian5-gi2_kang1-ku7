@@ -15,6 +15,9 @@ class 物件轉字串整合試驗(TestCase):
     def test_漢羅(self):
         self.語句 = '欲lia̍h-ti!'
 
+    def test_全型標點符號(self):
+        self.語句 = 'ti！'
+    
     def test_漢字輕聲(self):
         self.語句 = '--啊'
 
@@ -29,6 +32,12 @@ class 物件轉字串整合試驗(TestCase):
 
     def test_輕聲前有輕聲(self):
         self.語句 = 'Kín --tshut-lâi'
-
+    
+    def test_漢字連續輕聲(self):
+        self.語句 = '緊--出-來--啦'
+        
+    def test_羅馬字連續輕聲(self):
+        self.語句 = 'Kín --tshut-lâi --lah'
+        
     def test_粗坯的輕聲(self):
         self.語句 = 'Kin2-0tshut-lai5-0ah'
