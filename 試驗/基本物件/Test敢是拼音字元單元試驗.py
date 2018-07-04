@@ -19,3 +19,9 @@ class 敢是拼音字元單元試驗(TestCase):
 
     def test_羅漢(self):
         self.assertFalse(敢是拼音字元('sui媠'))
+
+    def test_None(self):
+        self.assertFalse(敢是拼音字元(None))
+
+    def test_khang(self):
+        self.assertFalse(敢是拼音字元(''))

@@ -47,14 +47,11 @@ import unicodedata
 _統一碼羅馬字類 = {'Ll', 'Lu', 'Mn'}
 
 
-def 敢是拼音字元(字元, 種類=None):
-    if 字元 is None:
+def 敢是拼音字元(字元):
+    try:
+        種類 = unicodedata.category(字元)
+    except TypeError:
         return False
-    if 種類 is None:
-        try:
-            種類 = unicodedata.category(字元)
-        except TypeError:
-            return False
     return 種類 in _統一碼羅馬字類 or 字元 in ['ⁿ', "'", '_', ]
 
 
