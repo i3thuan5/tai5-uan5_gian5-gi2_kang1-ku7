@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import re
-
 import unicodedata
 
 
@@ -10,12 +9,12 @@ from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.基本物件.公用變數 import 組字式符號
 from 臺灣言語工具.基本物件.公用變數 import 統一碼漢字佮組字式類
-from 臺灣言語工具.基本物件.公用變數 import 統一碼羅馬字類
 from 臺灣言語工具.基本物件.公用變數 import 聲調符號
 from 臺灣言語工具.基本物件.公用變數 import 敢是注音符號
 from 臺灣言語工具.基本物件.公用變數 import 敢是katakana
 from 臺灣言語工具.基本物件.公用變數 import 敢是hiragana
 from 臺灣言語工具.基本物件.公用變數 import 標點符號
+from 臺灣言語工具.基本物件.公用變數 import 敢是拼音字元
 
 
 class 文章粗胚:
@@ -140,7 +139,7 @@ class 文章粗胚:
                 組字式長度 += 1
             if 狀態 == cls._一般 and 組字式長度 == 1:
                 if 語句[位置] in 聲調符號 \
-                        and 位置 - 1 >= 0 and unicodedata.category(語句[位置 - 1]) in 統一碼羅馬字類:
+                        and 位置 - 1 >= 0 and 敢是拼音字元(語句[位置 - 1]):
                     pass
                 elif 語句[位置] == '•' and cls._o結尾(語句[:位置]):
                     pass
