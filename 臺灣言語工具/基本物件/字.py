@@ -33,9 +33,11 @@ class 字(功能):
                 (型是標點 ^ 音是標點)
             ):
                 raise 解析錯誤('型佮音干焦一个是標點符號！「{}」佮「{}」'.format(型, 音))
+
+        # 判斷輕聲
+        self.輕聲標記 = 輕聲標記
         self.型 = 型
         self.音 = 音
-        self.輕聲標記 = 輕聲標記
 
     def 有音(self):
         return self.音 != 無音 and self.音 not in 標點符號
@@ -70,6 +72,12 @@ class 字(功能):
 
     def 敢有輕聲標記(self):
         return self.輕聲標記 or self.音.startswith('0')
+
+    def 敢是標點符號(self):
+        return (
+            self.型 in 標點符號 and
+            (self.音 in 標點符號 or self.音 == 無音)
+        )
 
     def 綜合標音(self, 語言綜合標音):
         return 語言綜合標音(self).轉json格式()
@@ -106,7 +114,7 @@ class 字(功能):
         return 字(新型, 新音)
 
     def 音標敢著(self, 音標工具):
-        if self.型 in 標點符號 and self.音 in 標點符號:
+        if self.敢是標點符號():
             return True
         if self.音 == 無音:
             return True
