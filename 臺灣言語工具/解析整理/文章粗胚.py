@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import re
-
 import unicodedata
 
 
@@ -9,13 +8,29 @@ from 臺灣言語工具.基本物件.公用變數 import 分詞符號
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.基本物件.公用變數 import 組字式符號
-from 臺灣言語工具.基本物件.公用變數 import 統一碼漢字佮組字式類
-from 臺灣言語工具.基本物件.公用變數 import 統一碼羅馬字類
 from 臺灣言語工具.基本物件.公用變數 import 聲調符號
 from 臺灣言語工具.基本物件.公用變數 import 敢是注音符號
-from 臺灣言語工具.基本物件.公用變數 import 敢是katakana
-from 臺灣言語工具.基本物件.公用變數 import 敢是hiragana
 from 臺灣言語工具.基本物件.公用變數 import 標點符號
+from 臺灣言語工具.基本物件.公用變數 import 敢是拼音字元
+
+
+class _文字判斷:
+    # Ll　小寫， Lu　大寫， Md　數字， Mn　有調號英文，Lo　其他, So 組字式符號
+    _統一碼漢字佮組字式類 = {'Lo', 'So'}
+    _hiragana範圍 = re.compile(r'[ぁ-ゟ]\Z')
+    _katakana範圍 = re.compile(r'[゠-ヿ]\Z')
+
+    @classmethod
+    def 敢是漢字iahsi組字式(cls, 字元):
+        return unicodedata.category(字元) in cls._統一碼漢字佮組字式類
+
+    @classmethod
+    def 敢是hiragana(cls, 字元):
+        return cls._hiragana範圍.match(字元)
+
+    @classmethod
+    def 敢是katakana(cls, 字元):
+        return cls._katakana範圍.match(字元)
 
 
 class 文章粗胚:
@@ -45,7 +60,7 @@ class 文章粗胚:
         if 語句.startswith(分字符號 + 分字符號):
             if cls._頭前有音標無(音標工具, 語句[2:]):
                 語句 = '0' + 語句[2:]
-            elif(2 < len(語句) and unicodedata.category(語句[2]) in 統一碼漢字佮組字式類):
+            elif 2 < len(語句) and _文字判斷.敢是漢字iahsi組字式(語句[2]):
                 語句 = 語句[2:]
         位置 = 0
         狀態 = cls._一般
@@ -79,10 +94,10 @@ class 文章粗胚:
                             字元陣列.append(' 0')
                         else:
                             字元陣列.append('0')
-                    elif (位置 + 2 < len(語句) and unicodedata.category(語句[位置 + 2]) in 統一碼漢字佮組字式類):
+                    elif 位置 + 2 < len(語句) and _文字判斷.敢是漢字iahsi組字式(語句[位置 + 2]):
                         if (
                             前回一開始狀態 == cls._組字 or
-                            len(字元陣列) > 0 and unicodedata.category(字元陣列[-1][-1]) in 統一碼漢字佮組字式類 or
+                            len(字元陣列) > 0 and _文字判斷.敢是漢字iahsi組字式(字元陣列[-1][-1]) or
                             cls._後壁有音標無(音標工具, 語句[:位置])
                         ):
                             字元陣列.append(分詞符號)
@@ -94,9 +109,11 @@ class 文章粗胚:
                     頭節 = cls._後壁有音標無(音標工具, 語句[:位置])
                     後節 = cls._頭前有音標無(音標工具, 語句[位置 + 1:])
                     頭前漢字抑是組字式 = (
-                        位置 - 1 >= 0 and unicodedata.category(語句[位置 - 1]) in 統一碼漢字佮組字式類)
+                        位置 - 1 >= 0 and _文字判斷.敢是漢字iahsi組字式(語句[位置 - 1])
+                    )
                     後壁漢字抑是組字式 = (
-                        位置 + 1 < len(語句) and unicodedata.category(語句[位置 + 1]) in 統一碼漢字佮組字式類)
+                        位置 + 1 < len(語句) and _文字判斷.敢是漢字iahsi組字式(語句[位置 + 1])
+                    )
                     頭前閣是組字式 = (前回一開始狀態 == cls._組字)
 # 					print(頭節 , 頭前漢字抑是組字式 , 頭前閣是組字式,後節 , 後壁漢字抑是組字式)
                     if (頭節 or 頭前漢字抑是組字式 or 頭前閣是組字式) and (後節 or 後壁漢字抑是組字式):
@@ -140,7 +157,7 @@ class 文章粗胚:
                 組字式長度 += 1
             if 狀態 == cls._一般 and 組字式長度 == 1:
                 if 語句[位置] in 聲調符號 \
-                        and 位置 - 1 >= 0 and unicodedata.category(語句[位置 - 1]) in 統一碼羅馬字類:
+                        and 位置 - 1 >= 0 and 敢是拼音字元(語句[位置 - 1]):
                     pass
                 elif 語句[位置] == '•' and cls._o結尾(語句[:位置]):
                     pass
@@ -246,12 +263,12 @@ class 文章粗胚:
             try:
                 if (
                     (
-                        unicodedata.category(字) in 統一碼漢字佮組字式類 and
-                        unicodedata.category(結果[-1]) in 統一碼漢字佮組字式類 and
+                        _文字判斷.敢是漢字iahsi組字式(字) and
+                        _文字判斷.敢是漢字iahsi組字式(結果[-1]) and
                         (not 敢是注音符號(結果[-1]) or not 敢是注音符號(字))
                     ) or
-                    (敢是hiragana(結果[-1]) and 敢是hiragana(字)) or
-                    (敢是katakana(結果[-1]) and 敢是katakana(字))
+                    (_文字判斷.敢是hiragana(結果[-1]) and _文字判斷.敢是hiragana(字)) or
+                    (_文字判斷.敢是katakana(結果[-1]) and _文字判斷.敢是katakana(字))
                 ):
                     結果.append(分字符號)
             except IndexError:
