@@ -8,13 +8,25 @@ from 臺灣言語工具.基本物件.公用變數 import 分詞符號
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.基本物件.公用變數 import 組字式符號
-from 臺灣言語工具.基本物件.公用變數 import 統一碼漢字佮組字式類
 from 臺灣言語工具.基本物件.公用變數 import 聲調符號
 from 臺灣言語工具.基本物件.公用變數 import 敢是注音符號
-from 臺灣言語工具.基本物件.公用變數 import 敢是katakana
-from 臺灣言語工具.基本物件.公用變數 import 敢是hiragana
 from 臺灣言語工具.基本物件.公用變數 import 標點符號
 from 臺灣言語工具.基本物件.公用變數 import 敢是拼音字元
+
+
+# Ll　小寫， Lu　大寫， Md　數字， Mn　有調號英文，Lo　其他, So 組字式符號
+統一碼漢字佮組字式類 = {'Lo', 'So'}
+
+_hiragana範圍 = re.compile(r'[ぁ-ゟ]\Z')
+_katakana範圍 = re.compile(r'[゠-ヿ]\Z')
+
+
+def 敢是hiragana(字元):
+    return _hiragana範圍.match(字元)
+
+
+def 敢是katakana(字元):
+    return _katakana範圍.match(字元)
 
 
 class 文章粗胚:
