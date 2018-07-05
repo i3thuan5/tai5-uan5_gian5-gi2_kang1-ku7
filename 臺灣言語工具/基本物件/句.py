@@ -43,11 +43,11 @@ class 句(功能):
     def __repr__(self):
         return self.__str__()
 
-    def 看語句(self, 物件分字符號='', 物件分詞符號=' ', 物件分句符號=''):
+    def 看語句(self):
         集的型 = []
         for 一集 in self.內底集:
-            集的型.append(一集.看語句(物件分字符號, 物件分詞符號))
-        return 物件分詞符號.join(集的型)
+            集的型.append(一集.看語句())
+        return 分詞符號.join(集的型)
 
     def 看型(self, 物件分字符號='', 物件分詞符號='', 物件分句符號=''):
         集的型 = []
