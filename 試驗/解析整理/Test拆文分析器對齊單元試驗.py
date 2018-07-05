@@ -747,3 +747,9 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         self.assertEqual(len(組物件.篩出字物件()), 3)
         self.assertEqual(組物件.篩出字物件()[0].看分詞(), '0mh4｜0mh4')
         self.assertEqual(組物件.篩出字物件()[-1].看分詞(), '怎｜怎')
+
+    def test_標點連做伙(self):
+        漢 = '「Haih！喔～」'
+        羅 = '“Haih! Ooh~”'
+        組物件 = 拆文分析器.對齊組物件(漢, 羅)
+        self.assertEqual(len(組物件.篩出字物件()), 6)
