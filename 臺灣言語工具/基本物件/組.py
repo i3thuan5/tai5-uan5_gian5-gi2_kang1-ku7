@@ -43,24 +43,30 @@ class 組(功能):
     def 看語句(self):
         詞的型陣列 = []
         print('self.內底詞=', self.內底詞)
+        頂一e詞 = None
         for 一詞 in self.內底詞:
             詞型 = 一詞.看語句()
             print('該詞型=', 詞型)
             if 詞型 in 標點符號:
                 print('原本陣列=', 詞的型陣列)
-                del 詞的型陣列[-1]
-                詞的型陣列.append(詞型)
-                print('新陣列=', 詞的型陣列)
-            elif 詞型[:2] == 輕聲符號:
+                # 標點符號、輕聲詞
+                # 先提掉頭前一般詞後壁的分詞符號（空白）
+                # 才接入去
                 try:
                     del 詞的型陣列[-1]
                 except IndexError:
                     pass
                 詞的型陣列.append(詞型)
-            else:
+                print('新陣列=', 詞的型陣列)
+            elif 一詞.內底字[0].敢有輕聲標記():
                 詞的型陣列.append(詞型)
                 詞的型陣列.append(分詞符號)
-
+            else:
+                # 一般詞 'sui2' => 'sui2 '
+                詞的型陣列.append(詞型)
+                詞的型陣列.append(分詞符號)
+            頂一e詞 = 一詞
+        # 共尾仔ke--khng3的分詞符號提掉
         if 詞的型陣列[-1] == 分詞符號:
             del 詞的型陣列[-1]
         return ''.join(詞的型陣列)

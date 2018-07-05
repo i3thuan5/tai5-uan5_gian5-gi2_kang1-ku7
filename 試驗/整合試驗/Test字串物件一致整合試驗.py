@@ -13,13 +13,22 @@ class 物件轉字串整合試驗(TestCase):
     def test_全羅(self):
         self.語句 = 'Lia̍h suí-ti'
 
-    def test_全羅輕聲(self):
+    def test_全羅句頭輕聲詞(self):
+        self.語句 = 'Ah'
+
+    def test_全羅句頭輕聲(self):
+        self.語句 = '--Ah'
+
+    def test_全羅句頭無大寫輕聲(self):
         self.語句 = '--ah'
 
     def test_全羅濟字輕聲(self):
         self.語句 = 'Kín--tshut-lâi'
 
-    def test_全羅輕聲前有輕聲(self):
+    def test_全羅輕聲後壁接詞(self):
+        self.語句 = 'Kín--tshut-lâi lia̍h'
+
+    def test_全羅輕聲前有空白(self):
         self.語句 = 'Kín --tshut-lâi'
 
     def test_全羅連續輕聲(self):
