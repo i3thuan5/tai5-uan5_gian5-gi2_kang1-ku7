@@ -6,9 +6,7 @@ from 臺灣言語工具.基本物件.公用變數 import 分詞符號
 from 臺灣言語工具.基本物件.公用變數 import 無音
 from 臺灣言語工具.基本物件.公用變數 import 分型音符號
 from 臺灣言語工具.基本物件.功能 import 功能
-from 臺灣言語工具.基本物件.公用變數 import 句中標點符號
 from 臺灣言語工具.基本物件.公用變數 import 標點符號
-from 臺灣言語工具.基本物件.公用變數 import 輕聲符號
 
 
 class 組(功能):

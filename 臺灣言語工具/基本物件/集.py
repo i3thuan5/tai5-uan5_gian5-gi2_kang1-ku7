@@ -33,7 +33,7 @@ class 集(功能):
 
     def __repr__(self):
         return self.__str__()
-    
+
     def 看語句(self):
         if len(self.內底組) == 0:
             raise 解析錯誤('內底組是空的！！')
