@@ -22,3 +22,5 @@ RUN echo 'from 臺灣言語工具.語音合成.HTS工具.安裝HTS語音辨識�
     安裝摩西翻譯佮相關程式.安裝gizapp();' | python3
 
 COPY --from=sih4sing5hong5/mosesdecoder:docker /usr/local/mosesserver /usr/local/lib/python3.5/dist-packages/外部程式/mosesdecoder
+
+CMD python3
