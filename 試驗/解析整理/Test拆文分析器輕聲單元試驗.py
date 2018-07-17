@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from unittest.case import TestCase, skip
+from unittest.case import TestCase
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 
 
@@ -25,23 +25,23 @@ class 拆文分析器輕聲單元試驗(TestCase):
         self.assertFalse(組物件.篩出字物件()[1].敢有輕聲標記())
         self.assertTrue(組物件.篩出字物件()[-1].敢有輕聲標記())
 
-    def test_有處理減號的輕聲(self):
+    def test_有先用文章粗坯處理減號的輕聲(self):
         型 = '後日'
         音 = 'āu-0ji̍t'
         組物件 = 拆文分析器.對齊組物件(型, 音)
         self.assertTrue(組物件.篩出字物件()[-1].敢有輕聲標記())
 
-    def test_輕聲以音為主_音有(self):
+    def test_型音其中一个有輕聲_音有(self):
         型 = '後日'
         音 = 'āu--ji̍t'
         組物件 = 拆文分析器.對齊組物件(型, 音)
         self.assertTrue(組物件.篩出字物件()[-1].敢有輕聲標記())
 
-    def test_輕聲以音為主_音無(self):
+    def test_型音其中一个有輕聲_型有(self):
         型 = '後--日'
         音 = 'āu-ji̍t'
         組物件 = 拆文分析器.對齊組物件(型, 音)
-        self.assertFalse(組物件.篩出字物件()[-1].敢有輕聲標記())
+        self.assertTrue(組物件.篩出字物件()[-1].敢有輕聲標記())
 
     def test_兩字詞一半輕聲(self):
         漢 = '講會出--來'
@@ -63,8 +63,9 @@ class 拆文分析器輕聲單元試驗(TestCase):
         self.assertTrue(組物件.篩出字物件()[1].敢有輕聲標記())
         self.assertTrue(組物件.篩出字物件()[2].敢有輕聲標記())
 
-    @skip('猶未想清楚欲按怎存狀態')
-    def test_輕聲的音愛加0無(self):
+    def test_輕聲的音免加0(self):
+        # 以前用 0ah 標示這是輕聲字
+        # 這馬用 敢有輕聲標記()
         型 = '--啊'
         音 = '--ah'
         組物件 = 拆文分析器.對齊組物件(型, 音)

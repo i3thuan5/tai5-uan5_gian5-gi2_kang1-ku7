@@ -6,6 +6,7 @@ from 臺灣言語工具.基本物件.公用變數 import 分詞符號
 from 臺灣言語工具.基本物件.公用變數 import 無音
 from 臺灣言語工具.基本物件.公用變數 import 分型音符號
 from 臺灣言語工具.基本物件.功能 import 功能
+from 臺灣言語工具.基本物件.公用變數 import 標點符號
 
 
 class 組(功能):
@@ -36,6 +37,28 @@ class 組(功能):
 
     def __repr__(self):
         return self.__str__()
+
+    def 看語句(self):
+        詞的型陣列 = []
+        for 一詞 in self.內底詞:
+            詞型 = 一詞.看語句()
+            if 詞型 in 標點符號:
+                # 標點符號
+                # 先提掉頭前詞後壁的分詞符號（空白）才接入去
+                try:
+                    del 詞的型陣列[-1]
+                except IndexError:
+                    pass
+                詞的型陣列.append(詞型)
+            else:
+                # 輕聲詞 '--sui2' => '--sui2 '
+                # 一般詞 'sui2' => 'sui2 '
+                詞的型陣列.append(詞型)
+                詞的型陣列.append(分詞符號)
+        # 共尾仔ke--khng3的分詞符號提掉
+        if 詞的型陣列[-1] == 分詞符號:
+            del 詞的型陣列[-1]
+        return ''.join(詞的型陣列)
 
     def 看型(self, 物件分字符號='', 物件分詞符號='', 物件分句符號=''):
         詞的型 = []
