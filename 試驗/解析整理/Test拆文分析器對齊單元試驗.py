@@ -753,3 +753,9 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         羅 = '“Haih! Ooh~”'
         組物件 = 拆文分析器.對齊組物件(漢, 羅)
         self.assertEqual(len(組物件.篩出字物件()), 6)
+
+    def test_有大括對袂濟愛一般解析錯誤(self):
+        漢 = '{Haih}'
+        羅 = '{Haih'
+        with self.assertRaises(解析錯誤):
+            拆文分析器.對齊組物件(漢, 羅)
