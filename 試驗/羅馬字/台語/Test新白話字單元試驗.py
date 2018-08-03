@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase
-from 臺灣言語工具.音標系統.台語 import 新白話字
+from 臺灣言語工具.羅馬字.台語 import 新白話字
 
 
 class 新白話字單元試驗(TestCase):
