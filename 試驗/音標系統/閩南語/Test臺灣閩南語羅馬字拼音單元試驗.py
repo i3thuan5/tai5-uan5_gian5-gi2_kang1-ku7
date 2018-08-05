@@ -105,9 +105,8 @@ class 臺灣閩南語羅馬字拼音單元試驗(TestCase):
         self.assertEqual(臺灣閩南語羅馬字拼音('tsňg').音標, 'tsng6')
         self.assertEqual(臺灣閩南語羅馬字拼音('pňg').音標, 'png6')
 
-    def test_鼻化ㆦ(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('mo5').音標, 'moo5')
-        self.assertEqual(臺灣閩南語羅馬字拼音('ngoo5').音標, 'ngoo5')
+    def test_鼻化ㆦ愛oo(self):
+        self.assertIsNone(臺灣閩南語羅馬字拼音('ngo').音標)
 
     def test_次方言音標(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('tor').音標, 'tor1')
