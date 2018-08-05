@@ -17,9 +17,6 @@ class 臺灣閩南語羅馬字拼音相容教會羅馬字音標(教會系羅馬�
             .replace('ou', 'oo')
             .replace('ooN', 'onn').replace('oonn', 'onn')
         )
-        if self.聲 == 'm' or self.聲 == 'n' or self.聲 == 'ng':
-            if self.韻 == 'o':
-                self.音標 = None
 
     def 轉換到臺灣閩南語羅馬字拼音(self):
         if self.音標 is None:

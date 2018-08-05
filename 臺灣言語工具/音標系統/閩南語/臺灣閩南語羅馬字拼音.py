@@ -144,10 +144,6 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
     def __init__(self, 音標):
         super(臺灣閩南語羅馬字拼音, self).__init__()
         self.分析聲韻調(音標)
-        if self.聲 == 'm' or self.聲 == 'n' or self.聲 == 'ng':
-            if self.韻 == 'o':
-                self.韻 = 'oo'
-                self.做音標()
         if self.調 not in self.對通用調對照表:
             self.調 = None
             self.音標 = None

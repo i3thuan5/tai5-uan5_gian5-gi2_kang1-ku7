@@ -87,7 +87,9 @@ class 教會系羅馬音標(閩南語音標介面):
         if self.聲 in ['m', 'n', 'ng']:
             if self.韻 not in ['ng', 'ngh'] and ('n' in self.韻 or 'm' in self.韻):
                 音標是著的 = False
-            if self.韻[-1] in ['p', 't', 'k']:
+            elif self.韻[-1] in ['p', 't', 'k']:
+                音標是著的 = False
+            elif self.韻 == 'o':
                 音標是著的 = False
         if self.聲 in ['b', 'l', 'g']:
             if 'nn' in self.韻:
