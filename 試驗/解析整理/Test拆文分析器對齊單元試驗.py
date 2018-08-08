@@ -753,3 +753,23 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         羅 = '“Haih! Ooh~”'
         組物件 = 拆文分析器.對齊組物件(漢, 羅)
         self.assertEqual(len(組物件.篩出字物件()), 6)
+
+    def test_有大括對袂濟愛一般解析錯誤(self):
+        漢 = '{Haih}'
+        羅 = '{Haih'
+        with self.assertRaises(解析錯誤):
+            拆文分析器.對齊組物件(漢, 羅)
+
+    def test_字對著標點_頭前的對齊嘛是愛顯示佇錯誤資訊(self):
+        漢 = 'Ti-a--neh'
+        羅 = 'Ti-a.'
+        with self.assertRaises(解析錯誤) as tshogoo:
+            拆文分析器.對齊組物件(漢, 羅)
+        self.assertIn('Ti', tshogoo.exception.args[0])
+
+    def test_字對著標點_標點對袂齊嘛是愛顯示佇錯誤資訊(self):
+        漢 = 'Ti-a--neh'
+        羅 = 'Ti-a.'
+        with self.assertRaises(解析錯誤) as tshogoo:
+            拆文分析器.對齊組物件(漢, 羅)
+        self.assertIn('neh', tshogoo.exception.args[0])

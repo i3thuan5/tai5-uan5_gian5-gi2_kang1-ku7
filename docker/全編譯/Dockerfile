@@ -5,7 +5,7 @@ RUN apt-get update -qq && \
   apt-get install -y locales \
     python3 python3-pip g++ python3-dev \ 
     libxslt1-dev git subversion automake libtool zlib1g-dev libboost-all-dev libbz2-dev liblzma-dev libgoogle-perftools-dev libxmlrpc-c++.*-dev make \
-    csh libc6-dev-i386 linux-libc-dev gcc-multilib libx11-dev # libx11-dev:i386
+    csh libc6-dev-i386 linux-libc-dev gcc-multilib libx11-dev
 
 RUN locale-gen zh_TW.UTF-8
 ENV LANG zh_TW.UTF-8

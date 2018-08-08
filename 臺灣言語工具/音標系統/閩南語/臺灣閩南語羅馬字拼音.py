@@ -23,7 +23,6 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
     'im', 'in', 'ing',
     'o', 'oh',
     'oo', 'ooh', 'op', 'ok', 'om', 'ong', 'onn', 'onnh',
-    'oi', 'oih',  # 硩⿰落去
     'u', 'uh', 'ut', 'un',
     'ai', 'aih', 'ainn', 'ainnh',
     'au', 'auh', 'aunn', 'aunnh',
@@ -37,7 +36,7 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
     'iau', 'iauh', 'iaunn', 'iaunnh',
     'uai', 'uaih', 'uainn', 'uainnh',
     'm', 'mh', 'ng', 'ngh',
-    'ioo', 'iooh',  # 諾 0hioo 0hiooh
+    'ioo', 'iooh',  # 諾 0hioo 0hiooh, 詞目總檔.csv:khan35 jioo51
 }
 臺灣閩南語羅馬字拼音次方言韻母表 = {
     'er', 'erh', 'erm', 'ere', 'ereh',  # 泉　鍋
@@ -47,6 +46,7 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
     'ie',  # 鹿港偏泉腔
     'or', 'orh', 'ior', 'iorh',  # 蚵
     'uang',  # 金門偏泉腔　　風　huang1
+    'oi', 'oih',  # 詞彙方言差.csv:硩⿰落去
 }
 臺灣閩南語羅馬字拼音韻母表 = 臺灣閩南語羅馬字拼音通行韻母表 | 臺灣閩南語羅馬字拼音次方言韻母表
 
@@ -144,10 +144,6 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
     def __init__(self, 音標):
         super(臺灣閩南語羅馬字拼音, self).__init__()
         self.分析聲韻調(音標)
-        if self.聲 == 'm' or self.聲 == 'n' or self.聲 == 'ng':
-            if self.韻 == 'o':
-                self.韻 = 'oo'
-                self.做音標()
         if self.調 not in self.對通用調對照表:
             self.調 = None
             self.音標 = None
