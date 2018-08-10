@@ -25,6 +25,7 @@ import unicodedata
 class 教會系羅馬音標(閩南語音標介面):
     # 0 tsh iaunnh 10
     音標上長長度 = 1 + 3 + 6 + 2
+    聲調符號表 = 教會系羅馬音標聲調符號表
 
     def __init__(self):
         self.聲 = None
@@ -35,8 +36,6 @@ class 教會系羅馬音標(閩南語音標介面):
         self.音標 = None
 
     def 分析聲韻調(self, 音標):
-        self.聲調符號表 = 教會系羅馬音標聲調符號表
-# 		self.音標 = ''
         音標 = self.正規法(音標)
         if 音標.startswith('0'):
             self.輕 = '0'
