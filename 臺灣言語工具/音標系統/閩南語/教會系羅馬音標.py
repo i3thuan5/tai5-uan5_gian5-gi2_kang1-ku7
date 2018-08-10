@@ -21,14 +21,6 @@ import unicodedata
     'ń': ('n', '2'), 'ǹ': ('n', '3'), 'n̂': ('n', '5'), 'ň': ('n', '6'),
     'n̄': ('n', '7'), 'n̍': ('n', '8'), 'n̋': ('n', '9'), 'ň': ('n', '6'),
 }
-實際調值對應調號 = {
-    '11': '3',
-    '33': '7',
-    '55': '1',
-    '51': '2',
-    '35': '5',
-}
-
 
 class 教會系羅馬音標(閩南語音標介面):
     # 0 tsh iaunnh 10
@@ -60,26 +52,13 @@ class 教會系羅馬音標(閩南語音標介面):
         elif self.韻[-1] in ['p', 't', 'k', 'h']:
             if self.調 is None:
                 self.調 = '4'
-            elif self.調 in {'4', '8', '10', '0'}:  # 中高低調入聲、輕聲
-                pass
-            elif self.調 in {'1', '3', '5'}:
-                self.外來語 = '1'
-                if self.調 == '1':
-                    self.調 = '10'
-                elif self.調 == '3':
-                    self.調 = '4'
-                else:
-                    self.調 = '8'
-            else:
+            elif self.調 not in {'4', '8', '10', '0'}:  # 中高低調入聲、輕聲
                 音標是著的 = False
         else:
             if self.調 is None:
                 self.調 = '1'
             elif self.調 in {'4', '8', '10'}:
                 音標是著的 = False
-            elif self.調 in 實際調值對應調號:
-                self.外來語 = '1'
-                self.調 = 實際調值對應調號[self.調]
             elif len(self.調) == 1:
                 pass
             else:
