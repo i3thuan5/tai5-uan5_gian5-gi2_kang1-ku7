@@ -126,20 +126,11 @@ class 臺灣閩南語羅馬字拼音單元試驗(TestCase):
         self.assertEqual(臺灣閩南語羅馬字拼音('hō͘').音標, 'hoo7')
         self.assertEqual(臺灣閩南語羅馬字拼音('hó͘ⁿ').音標, None)
 
-    def test_外來語アルミ的ア(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('a33').音標, '1a7')
+    def test_附錄外來語先莫收_用另外的格式來(self):
+        self.assertIsNone(臺灣閩南語羅馬字拼音('a33').音標)
 
-    def test_外來語アルミ的ル(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('lu55').音標, '1lu1')
-
-    def test_外來語アルミ的ミ(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('mih3').音標, '1mih4')
-
-    def test_外來語拉鍊的拉(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('la55').音標, '1la1')
-
-    def test_外來語拉鍊的鍊(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('lian51').音標, '1lian2')
+    def test_無合法的調符愛擋咧(self):
+        self.assertIsNone(臺灣閩南語羅馬字拼音('tsiòk').音標)
 
     def test_用著入聲調音標(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('ha8').音標, None)
@@ -168,7 +159,7 @@ class 臺灣閩南語羅馬字拼音單元試驗(TestCase):
         self.assertEqual(臺灣閩南語羅馬字拼音('ot').音標, None)
 
     def test_無存在的聲調(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('no78').音標, None)
+        self.assertEqual(臺灣閩南語羅馬字拼音('bo78').音標, None)
 
     def test_無正確_同母音袂出現兩擺(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('suii').音標, None)
