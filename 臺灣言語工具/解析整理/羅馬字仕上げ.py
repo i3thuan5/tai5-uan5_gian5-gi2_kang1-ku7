@@ -13,12 +13,12 @@ class 羅馬字仕上げ:
         .replace('.', '\\.')
         .replace('?', '\\?')
     )
-    輕聲標記 = re.compile('([- ]|\A)0([^\b0-9\W\s])')
-    外來語標記 = re.compile('(\W|\A)1([^\b0-9\W\s])')
-    句中輕聲 = re.compile('\w --')
+    輕聲標記 = re.compile(r'([- ]|\A)0([^\b0-9\W\s])')
+    外來語標記 = re.compile(r'(\W|\A)1([^\b0-9\W\s])')
+    句中輕聲 = re.compile(r'\w --')
     標點前有空白 = re.compile(r' ({})'.format(_斷句標點))
     標點後有輕聲 = re.compile(r'({}) (--)?(\w)'.format(_斷句標點))
-    輕聲開頭 = re.compile('--[^\b0-9\W\s]')
+    輕聲開頭 = re.compile(r'--[^\b0-9\W\s]')
 
     @classmethod
     def しあげ(cls, 原來語句):
