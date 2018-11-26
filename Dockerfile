@@ -11,9 +11,9 @@ MAINTAINER sih4sing5hong5
 RUN apt-get update -qq && \
   apt-get install -y locales
 
-RUN locale-gen zh_TW.UTF-8
-ENV LANG zh_TW.UTF-8
-ENV LC_ALL zh_TW.UTF-8
+RUN locale-gen C.UTF-8
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
 
 RUN pip install tai5-uan5_gian5-gi2_kang1-ku7
 
