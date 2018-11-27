@@ -11,7 +11,7 @@ class 用戶端連線:
     檢查結果 = re.compile('<result>(.*)</result>')
     檢查空結果 = re.compile('<result/>')
     分句 = re.compile('<sentence>(.*?)</sentence>')
-    回傳狀況 = re.compile('<processstatus code="\d">(.*?)</processstatus>')
+    回傳狀況 = re.compile(r'<processstatus code="\d">(.*?)</processstatus>')
     傳去格式 = '''
 <?xml version="1.0" ?>
 <wordsegmentation version="0.1" charsetcode='{}' >
