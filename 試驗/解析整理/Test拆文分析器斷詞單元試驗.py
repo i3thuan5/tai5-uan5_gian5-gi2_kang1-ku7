@@ -127,3 +127,7 @@ class 拆文分析器斷詞單元試驗(TestCase):
     def test_組字式注音(self):
         self.語句 = '⿿⿿⿿ㄙㄨㄧˋ⿿ㄍㆦ⿿⿿⿿ㄋㄧㄨˊ'
         self.詞數 = 1
+
+    def test_半形大括號(self):
+        self.語句 = '你{共人}看'
+        self.詞數 = 5
