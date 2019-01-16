@@ -51,6 +51,8 @@ class 臺羅轉白話字():
             白話字韻 = 韻.replace('ua', 'oa')
         elif 'ue' in 韻:
             白話字韻 = 韻.replace('ue', 'oe')
+        elif 'ing' in 韻 or 'ik' in 韻:
+            白話字韻 = 韻.replace('i', 'e')
         else:
             # oo, au, ia, ai
             白話字韻 = 韻
