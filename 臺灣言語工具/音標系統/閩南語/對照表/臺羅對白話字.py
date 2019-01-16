@@ -37,8 +37,8 @@ Created on 2018年4月12日
     'iauh': 'iauh',
     'iaunn': 'iauⁿ', 'iaunnh': 'iauⁿh',
 
-    'i': 'i', 'im': 'im', 'in': 'in', 'ing': 'ing',
-    'ih': 'ih', 'ip': 'ip', 'it': 'it', 'ik': 'ik',
+    'i': 'i', 'im': 'im', 'in': 'in', 'ing': 'eng',
+    'ih': 'ih', 'ip': 'ip', 'it': 'it', 'ik': 'ek',
     'inn': 'iⁿ', 'innh': 'iⁿh',
 
     'io': 'io',
