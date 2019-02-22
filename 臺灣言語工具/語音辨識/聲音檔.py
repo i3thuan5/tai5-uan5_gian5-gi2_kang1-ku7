@@ -23,7 +23,9 @@ class 聲音檔:
                 音物件.setframerate(一秒幾點)
                 音物件.setnchannels(幾个聲道)
                 音物件.writeframesraw(原始資料)
-            return cls.對資料轉(音檔.getvalue())
+            音檔.seek(0)
+            with wave.open(音檔, 'rb') as wave音檔:
+                return cls(wave音檔)
 
     def __init__(self, wave音檔):
         self.一點幾位元組 = wave音檔.getsampwidth()
