@@ -431,6 +431,10 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
             拆文分析器.建立字物件('…'),
         ])
 
+    def test_破折號(self):
+        詞物件 = 拆文分析器.建立詞物件('──')
+        self.assertEqual(詞物件.篩出字物件(), [拆文分析器.建立字物件('──')])
+
     def test_tab當做空白(self):
         組物件 = 拆文分析器.建立組物件('\t千金小姐\ttshian1-kim1-sio2-tsia2\t')
         self.assertEqual(

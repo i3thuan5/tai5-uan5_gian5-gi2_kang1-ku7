@@ -1,5 +1,6 @@
 from os.path import dirname, abspath, join
 from unittest.case import TestCase
+import wave
 from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
 
 
@@ -10,6 +11,8 @@ class 聲音檔單元試驗(TestCase):
         音檔目錄 = join(這馬所在, '音檔')
         self.音檔所在 = join(音檔目錄, '我.wav')
         self.原始檔所在 = join(音檔目錄, '我.raw')
+        'http://wavefilegem.com/how_wave_files_work.html'
+        self.format65534所在 = join(音檔目錄, 'format65534.wav')
 
     def test_讀檔(self):
         聲音檔.對檔案讀(self.音檔所在)
@@ -86,3 +89,10 @@ class 聲音檔單元試驗(TestCase):
         音檔 = 聲音檔.對參數轉(2, 16000, 1, b'0' * 1600 + b'1' * 1600)
         wav音值資料 = 音檔.照秒數切出音檔(0.025, 0.075).wav音值資料()
         self.assertEqual(wav音值資料, b'0' * 800 + b'1' * 800)
+
+    def test_讀WAVE_FORMAT_EXTENSIBLE檔(self):
+        聲音檔.對檔案讀(self.format65534所在)
+
+    def test_讀別種檔案(self):
+        with self.assertRaises(wave.Error):
+            聲音檔.對資料轉(b'im.read()')
