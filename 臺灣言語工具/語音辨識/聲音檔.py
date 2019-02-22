@@ -1,6 +1,6 @@
 import io
-import wave
 from math import floor
+import wave
 
 
 class 聲音檔:
@@ -8,8 +8,25 @@ class 聲音檔:
 
     @classmethod
     def 對檔案讀(cls, 音檔所在):
-        with wave.open(音檔所在, 'rb') as wave音檔:
-            return cls(wave音檔)
+        try:
+            with wave.open(音檔所在, 'rb') as wave音檔:
+                一點幾位元組 = wave音檔.getsampwidth()
+                一秒幾點 = wave音檔.getframerate()
+                幾个聲道 = wave音檔.getnchannels()
+                原始資料 = wave音檔.readframes(wave音檔.getnframes())
+        except wave.Error as 錯誤:
+            if 錯誤.args[0] != 'unknown format: 65534':
+                raise
+
+            '## Khn̄g tsia khah bē 有警告'
+            "RuntimeWarning: Couldn't find ffmpeg or avconv"
+            from pydub.audio_segment import AudioSegment
+            pydub_wave = AudioSegment.from_wav(音檔所在)
+            一點幾位元組 = pydub_wave.sample_width
+            一秒幾點 = pydub_wave.frame_rate
+            幾个聲道 = pydub_wave.channels
+            原始資料 = pydub_wave.raw_data
+        return cls.對參數轉(一點幾位元組, 一秒幾點, 幾个聲道, 原始資料)
 
     @classmethod
     def 對資料轉(cls, 音檔資料):
@@ -17,21 +34,13 @@ class 聲音檔:
 
     @classmethod
     def 對參數轉(cls, 一點幾位元組, 一秒幾點, 幾个聲道, 原始資料):
-        with io.BytesIO() as 音檔:
-            with wave.open(音檔, mode='wb') as 音物件:
-                音物件.setsampwidth(一點幾位元組)
-                音物件.setframerate(一秒幾點)
-                音物件.setnchannels(幾个聲道)
-                音物件.writeframesraw(原始資料)
-            音檔.seek(0)
-            with wave.open(音檔, 'rb') as wave音檔:
-                return cls(wave音檔)
+        return cls(一點幾位元組, 一秒幾點, 幾个聲道, 原始資料)
 
-    def __init__(self, wave音檔):
-        self.一點幾位元組 = wave音檔.getsampwidth()
-        self.一秒幾點 = wave音檔.getframerate()
-        self.幾个聲道 = wave音檔.getnchannels()
-        self._資料 = wave音檔.readframes(wave音檔.getnframes())
+    def __init__(self, 一點幾位元組, 一秒幾點, 幾个聲道, 原始資料):
+        self.一點幾位元組 = 一點幾位元組
+        self.一秒幾點 = 一秒幾點
+        self.幾个聲道 = 幾个聲道
+        self._資料 = 原始資料
 
     def wav音值資料(self):
         return self._資料

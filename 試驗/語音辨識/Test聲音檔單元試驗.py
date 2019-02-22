@@ -1,5 +1,6 @@
 from os.path import dirname, abspath, join
 from unittest.case import TestCase
+import wave
 from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
 
 
@@ -91,3 +92,7 @@ class 聲音檔單元試驗(TestCase):
 
     def test_讀WAVE_FORMAT_EXTENSIBLE檔(self):
         聲音檔.對檔案讀(self.format65534所在)
+
+    def test_讀別種檔案(self):
+        with self.assertRaises(wave.Error):
+            聲音檔.對資料轉(b'im.read()')
