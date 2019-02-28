@@ -10,3 +10,6 @@ class 白話字單元試驗(TestCase):
 
     def test_違法(self):
         self.assertIsNone(白話字('cō͘').音標)
+
+    def test_音值(self):
+        self.assertIsNotNone(白話字('chō͘').音值(),('ts','o','7'))
