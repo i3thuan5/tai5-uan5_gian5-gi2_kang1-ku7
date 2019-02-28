@@ -74,4 +74,6 @@ class 白話字(教會系羅馬音標):
     # 聲 介 韻 調，韻含元音跟韻尾
 
     def 音值(self):
+        if self.音標 is None:
+            return None
         return 臺灣閩南語羅馬字拼音(self.轉換到臺灣閩南語羅馬字拼音()).音值()

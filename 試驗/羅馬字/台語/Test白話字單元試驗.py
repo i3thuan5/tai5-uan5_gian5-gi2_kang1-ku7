@@ -12,4 +12,7 @@ class 白話字單元試驗(TestCase):
         self.assertIsNone(白話字('cō͘').音標)
 
     def test_音值(self):
-        self.assertIsNotNone(白話字('chō͘').音值(),('ts','o','7'))
+        self.assertEqual(白話字('chō͘').音值(), ('ts', 'o', '7'))
+
+    def test_無這音音值(self):
+        self.assertIsNone(白話字('cō͘').音值())
