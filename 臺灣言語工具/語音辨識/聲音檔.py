@@ -30,7 +30,8 @@ class 聲音檔:
 
     @classmethod
     def 對資料轉(cls, 音檔資料):
-        return cls.對檔案讀(io.BytesIO(音檔資料))
+        with io.BytesIO(音檔資料) as tong:
+            return cls.對檔案讀(tong)
 
     @classmethod
     def 對參數轉(cls, 一點幾位元組, 一秒幾點, 幾个聲道, 原始資料):
