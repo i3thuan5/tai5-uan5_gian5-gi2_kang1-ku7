@@ -70,7 +70,7 @@ class 白話字(教會系羅馬音標):
             韻母 = 'ing'
         else:
             韻母 = self.韻
-        return 聲母 + 韻母 + str(self.調)
+        return self.輕 + self.外來語 + 聲母 + 韻母 + str(self.調)
     # 聲 介 韻 調，韻含元音跟韻尾
 
     def 音值(self):
