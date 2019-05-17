@@ -42,18 +42,18 @@ class 音韻規則單元試驗(TestCase):
             ('s', 'ui', '1'), ('s', 'ui', '2')
         ]
 
-    def test_第8調變調(self):
+    def test_欲毋是再變調(self):
         self.漢字 = '欲望'
         self.臺羅 = 'iok8-bong7'
         self.答案 = [
-            ('ʔ', 'iok', '10'),  ('b', 'ui', '7')
+            ('ʔ', 'iok', '10'),  ('b', 'oŋ', '7')
         ]
 
-    def test_第9調變調(self):
+    def test_第9調仔前變調(self):
         self.漢字 = '小khua9仔'
         self.臺羅 = 'sio2-khua9-a2'
         self.答案 = [
-            ('s', 'io', '1'),  ('k', 'ua', '9'), ('ʔ', 'a', '2'),
+            ('s', 'iə', '1'),  ('kʰ', 'ua', '9'), ('ʔ', 'a', '2'),
         ]
 
 
