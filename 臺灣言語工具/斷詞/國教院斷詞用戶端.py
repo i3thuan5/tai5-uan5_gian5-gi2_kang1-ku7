@@ -11,6 +11,7 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 
 
 class 國教院斷詞用戶端:
+    網頁 = 'https://coct.naer.edu.tw/Segmentor/'
 
     @classmethod
     def 斷詞(cls, 物件):
