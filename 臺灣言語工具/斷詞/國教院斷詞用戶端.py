@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from http.client import HTTPConnection
+from http.client import HTTPSConnection
 import json
 
 
@@ -43,7 +43,7 @@ class 國教院斷詞用戶端:
 
     @classmethod
     def 語句斷詞做陣列(cls, 語句):
-        連線 = HTTPConnection('coct.naer.edu.tw')
+        連線 = HTTPSConnection('coct.naer.edu.tw')
         資料 = json.dumps({'RawText': 語句})
         連線.request(
             "POST", "/Segmentor/Func/getSegResult/",
