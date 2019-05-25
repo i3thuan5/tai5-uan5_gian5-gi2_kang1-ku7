@@ -27,3 +27,13 @@ class 變調規則表:
             else:
                 raise 解析錯誤('非入調錯誤！！{0}'.format((聲, 韻, 調)))
         return (聲, 韻, 調)
+
+
+class 免變:
+
+    def __init__(self, 名):
+        self.名 = 名
+
+    @classmethod
+    def 變調(cls, 音):
+        return 音
