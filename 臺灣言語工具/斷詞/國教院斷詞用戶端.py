@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from http.client import HTTPConnection
+from http.client import HTTPSConnection
 import json
 
 
@@ -11,6 +11,7 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 
 
 class 國教院斷詞用戶端:
+    網頁 = 'https://coct.naer.edu.tw/Segmentor/'
 
     @classmethod
     def 斷詞(cls, 物件):
@@ -43,7 +44,7 @@ class 國教院斷詞用戶端:
 
     @classmethod
     def 語句斷詞做陣列(cls, 語句):
-        連線 = HTTPConnection('coct.naer.edu.tw')
+        連線 = HTTPSConnection('coct.naer.edu.tw')
         資料 = json.dumps({'RawText': 語句})
         連線.request(
             "POST", "/Segmentor/Func/getSegResult/",
