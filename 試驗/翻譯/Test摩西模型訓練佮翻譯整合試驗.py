@@ -154,7 +154,7 @@ class 摩西模型訓練佮翻譯整合試驗(TestCase):
         服務 = 摩西服務端(moses模型資料夾路徑, 埠=8503)
         服務.走()
 
-        sleep(1)
+        sleep(10)
 
         self.assertIsNotNone(服務.狀態())
 
