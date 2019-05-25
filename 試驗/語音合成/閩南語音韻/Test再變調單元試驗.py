@@ -16,6 +16,9 @@ class 再變調單元試驗(TestCase):
         變調了 = ('b', 'e', '1')
         self.assertEqual(再變調.變調(原本), 變調了)
 
+    def test_有顯示名(self):
+        self.assertEqual(str(再變調), '再變調$')
+
     def test_無合法的音標愛錯誤(self):
         with self.assertRaises(解析錯誤):
             再變調.變調(('g', 'ua', '0'))

@@ -29,3 +29,6 @@ class 隨前變調單元試驗(TestCase):
         原本 = ('t', 'ik', '8')
         變調了 = ('t', 'ik', '10')
         self.assertEqual(隨前變調('2').變調(原本), 變調了)
+
+    def test_有顯示名(self):
+        self.assertEqual(str(隨前變調('2')), '隨前變調@')

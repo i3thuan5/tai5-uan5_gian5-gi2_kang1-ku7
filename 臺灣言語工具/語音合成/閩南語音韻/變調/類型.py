@@ -8,6 +8,9 @@ class 變調規則表:
         self.入聲變調規則 = 入聲變調規則
         self.變調規則 = 變調規則
 
+    def __str__(self):
+        return self.名
+
     def 變調(self, 音):
         聲, 韻, 調 = 音
         if 韻.endswith('ʔ') or 韻.endswith('h'):
@@ -33,6 +36,9 @@ class 免變:
 
     def __init__(self, 名):
         self.名 = 名
+
+    def __str__(self):
+        return self.名
 
     @classmethod
     def 變調(cls, 音):
