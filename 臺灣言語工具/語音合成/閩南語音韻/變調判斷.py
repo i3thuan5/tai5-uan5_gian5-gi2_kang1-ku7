@@ -132,7 +132,9 @@ class 變調判斷:
 
     @classmethod
     def 是再變調(cls, 字物件):
-        if 字物件.型 in ['欲', '去', '咧', ]:
+        if 字物件.型 in ['去', '咧', ]:
+            return True
+        if 字物件.型 == '欲' and 字物件.音[0] == 'b':
             return True
         return False
 
