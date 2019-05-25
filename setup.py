@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from distutils.core import setup
+from setuptools import setup
 import os
 import sys
 from 版本 import 版本
