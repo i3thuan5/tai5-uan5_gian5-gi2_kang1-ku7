@@ -21,6 +21,11 @@ class 三連音變調單元試驗(TestCase):
         變調了 = ('t', 'it', '9')
         self.assertEqual(三連音變調.變調(原本), 變調了)
 
+    def test_第9調_揣無例_先假設(self):
+        原本 = ('ts', 'aŋ', '9')
+        變調了 = ('ts', 'aŋ', '9')
+        self.assertEqual(三連音變調.變調(原本), 變調了)
+
     def test_無合法的音標愛錯誤(self):
         with self.assertRaises(解析錯誤):
             三連音變調.變調(('g', 'ua', '0'))

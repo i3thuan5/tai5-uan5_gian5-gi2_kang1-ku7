@@ -21,6 +21,11 @@ class 仔前變調單元試驗(TestCase):
         變調了 = ('g', 'iap', '4')
         self.assertEqual(仔前變調.變調(原本), 變調了)
 
+    def test_sió_khua̋_á(self):
+        原本 = ('kh', 'ua', '9')
+        變調了 = ('kh', 'ua', '9')
+        self.assertEqual(仔前變調.變調(原本), 變調了)
+
     def test_無合法的音標愛錯誤(self):
         with self.assertRaises(解析錯誤):
             仔前變調.變調(('g', 'ua', '0'))
