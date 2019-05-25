@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase
-from 臺灣言語工具.語音合成.閩南語音韻.變調.輕聲 import 輕聲
+from 臺灣言語工具.語音合成.閩南語音韻.變調 import 輕聲
 
 
 class 輕聲單元試驗(TestCase):

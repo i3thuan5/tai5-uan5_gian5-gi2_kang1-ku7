@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
-from 臺灣言語工具.語音合成.閩南語音韻.變調.再變調 import 再變調
+from 臺灣言語工具.語音合成.閩南語音韻.變調 import 再變調
 
 
 class 再變調單元試驗(TestCase):
