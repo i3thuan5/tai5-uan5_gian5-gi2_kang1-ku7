@@ -787,10 +787,10 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         self.assertEqual(len(組物件.篩出字物件()), 4)
 
     def test_孤引號邊仔有字就是詞ê一部份(self):
-        漢 = "有教著 'a'adopen 這ê詞"
-        羅 = "Ū kàu-tio̍h 'a'adopen tsit ê sû"
+        漢 = "有教著 'a'adopen kah ngala' 遮ê詞"
+        羅 = "Ū kàu-tio̍h 'a'adopen kah ngala' tsia ê sû"
         組物件 = 拆文分析器.對齊組物件(漢, 羅)
-        self.assertEqual(len(組物件.篩出字物件()), 7)
+        self.assertEqual(len(組物件.篩出字物件()), 9)
 
     def test_孤引號佇句中(self):
         漢 = '是『風颱天』啦！'
