@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
-from 臺灣言語工具.語音合成.閩南語音韻.變調.規則變調 import 規則變調
+from 臺灣言語工具.語音合成.閩南語音韻.變調 import 規則變調
 
 
 class 規則變調單元試驗(TestCase):
@@ -25,6 +25,9 @@ class 規則變調單元試驗(TestCase):
         原本 = ('ts', 'aŋ', '9')
         變調了 = ('ts', 'aŋ', '9')
         self.assertEqual(規則變調.變調(原本), 變調了)
+
+    def test_有顯示名(self):
+        self.assertEqual(str(規則變調), '規則變調')
 
     def test_無合法的音標愛錯誤(self):
         with self.assertRaises(解析錯誤):

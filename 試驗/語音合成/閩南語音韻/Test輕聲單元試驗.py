@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase
-from 臺灣言語工具.語音合成.閩南語音韻.變調.輕聲 import 輕聲
+from 臺灣言語工具.語音合成.閩南語音韻.變調 import 輕聲
 
 
 class 輕聲單元試驗(TestCase):
@@ -33,4 +33,9 @@ class 輕聲單元試驗(TestCase):
     def test_ptk入聲無調(self):
         原本 = ('tsh', 'it', '0')
         變調了 = ('tsh', 'it', '10')
+        self.assertEqual(輕聲.變調(原本), 變調了)
+
+    def test_第9調_揣無例_先假設(self):
+        原本 = ('s', 'i', '9')
+        變調了 = ('s', 'i', '3')
         self.assertEqual(輕聲.變調(原本), 變調了)
