@@ -11,19 +11,6 @@ class 阿拉伯數字單元試驗(TestCase):
     def tearDown(self):
         pass
 
-    def test_判斷是數字無(self):
-        self.assertEqual(self.數字.是數字無(''), False)
-        self.assertEqual(self.數字.是數字無('0'), True)
-        self.assertEqual(self.數字.是數字無('12312'), True)
-        self.assertEqual(self.數字.是數字無('13３2312'), True)
-        self.assertEqual(self.數字.是數字無('6'), True)
-        self.assertEqual(self.數字.是數字無('013３2312三'), False)
-        self.assertEqual(self.數字.是數字無('００13３27890'), True)
-        self.assertEqual(self.數字.是數字無('000'), True)
-        # 小數本來就會使拆開唸，予別的模組合起來
-        self.assertEqual(self.數字.是數字無('00.30'), False)
-        self.assertEqual(self.數字.是數字無('197.080'), False)
-        self.assertEqual(self.數字.是數字無('197.08.0'), False)
 
     def test_轉號碼(self):
         問答 = [

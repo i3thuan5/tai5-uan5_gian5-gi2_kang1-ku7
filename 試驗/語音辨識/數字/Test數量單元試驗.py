@@ -3,27 +3,77 @@ from unittest.case import TestCase
 from 臺灣言語工具.正規.阿拉伯數字 import 阿拉伯數字
 
 
-class 阿拉伯數字單元試驗(TestCase):
+class 數量單元試驗(TestCase):
+    def tearDown(self):
+        self.assertEqual(阿拉伯數字().轉數量('空', self.題目), self.答案)
+
+    def test_10(self):
+        self.題目 = '10'
+        self.答案 = '十'
+
+    def test_15(self):
+        self.題目 = '15'
+        self.答案 = '十五'
+
+    def test_單位詞kah數量(self):
+        self.題目 = '120'
+        self.答案 = '百二'
+
+    def test_數量kah單位詞kah數量(self):
+        self.題目 = '2300'
+        self.答案 = '兩千三'
+
+    def test_一萬以下無0(self):
+        self.題目 = '4512'
+        self.答案 = '四千五百一十二'
+
+    def test_百空(self):
+        self.題目 = '602'
+        self.答案 = '六百空二'
+
+    def test_大數字(self):
+        self.題目 = '1230567890980654'
+        self.答案 = '一千兩百三十兆五千六百七十八億九千空九十八萬空六百五十四'
+
+    def test_2ê(self):
+        self.題目 = '2'
+        self.答案 = '兩'
+
+    def test_20ê(self):
+        self.題目 = '20'
+        self.答案 = '二十'
+
+    def test_大單位(self):
+        self.題目 = '2000000000000'
+        self.答案 = '兩兆'
+
+    def st_xx(self):
+        問答 = [
+            ('23', '二十三'),
+            ('1001', '一千空一'),
+            ('1020', '一千空二十'),
+            ('1300', '一千三百'),  # 千三 一千三
+            ('4512', '四千五百一十二'),
+            ('5004', '五千空四'),
+            ('6070', '六千空七十'),
+            ('9800', '九千八百'),  # 九千八
+            ('10800', '一萬空八百'),
+            ('400000800', '四億空八百'),
+            ('1230567890980654', '一千兩百三十兆五千六百七十八億九千空九十八萬空六百五十四'),
+            ('1300130013', '十三億空一十三萬空一十三'),
+            ('2000000022222', '兩兆空二萬兩千兩百二十二'),
+            ('7900000000', '七十九億'),
+            ('10000000000000000', None),
+            ('0830', None),
+        ]
+
+class 阿拉伯數字單元試驗():
     def setUp(self):
         self.數字 = 阿拉伯數字()
         pass
 
     def tearDown(self):
         pass
-
-#     def test_判斷是數字無(self):
-#         self.assertEqual(self.數字.是數字無(''), False)
-#         self.assertEqual(self.數字.是數字無('0'), True)
-#         self.assertEqual(self.數字.是數字無('12312'), True)
-#         self.assertEqual(self.數字.是數字無('13３2312'), True)
-#         self.assertEqual(self.數字.是數字無('6'), True)
-#         self.assertEqual(self.數字.是數字無('013３2312三'), False)
-#         self.assertEqual(self.數字.是數字無('００13３27890'), True)
-#         self.assertEqual(self.數字.是數字無('000'), True)
-#         # 小數本來就會使拆開唸，予別的模組合起來
-#         self.assertEqual(self.數字.是數字無('00.30'), False)
-#         self.assertEqual(self.數字.是數字無('197.080'), False)
-#         self.assertEqual(self.數字.是數字無('197.08.0'), False)
 
     def test_轉數量(self):
         問答 = [
