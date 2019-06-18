@@ -80,7 +80,7 @@ class 數量單元試驗(TestCase):
 
     def test_x11x(self):
         self.題目 = 1110
-        self.答案 = None
+        self.答案 = '一千一百十'
 
     def test_xx1x(self):
         self.題目 = 1310
