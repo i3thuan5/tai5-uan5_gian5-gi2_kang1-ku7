@@ -1,0 +1,16 @@
+from unittest.case import TestCase
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+
+
+class 看語句單元試驗(TestCase):
+
+    def test_接受無音的詞(self):
+        組物件 = 拆文分析器.建立組物件('')
+        組物件.內底詞 = [
+            拆文分析器.建立詞物件('梅山'),
+            拆文分析器.建立詞物件('猴災'),
+            拆文分析器.建立詞物件('hiong-kong-sóo'),
+            拆文分析器.建立詞物件('tshiann2-lang5'),
+        ]
+        分詞答案 = '梅山猴災hiong-kong-sóo tshiann2-lang5'
+        self.assertEqual(組物件.看語句(), 分詞答案)
