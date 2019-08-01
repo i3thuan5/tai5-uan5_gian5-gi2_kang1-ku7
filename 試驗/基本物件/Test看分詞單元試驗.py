@@ -45,3 +45,15 @@ class 看分詞單元試驗(TestCase):
             拆文分析器.建立句物件(書寫).看分詞(),
             'ti-á suí'
         )
+    def test_一種書寫ê輕聲(self):
+        書寫 = 'ti-á suí --lah'
+        self.assertEqual(
+            拆文分析器.建立句物件(書寫).看分詞(),
+            'ti-á suí --lah'
+        )
+    def test_字物件嘛輕聲(self):
+        書寫 = '--lah'
+        self.assertEqual(
+            拆文分析器.建立字物件(書寫).看分詞(),
+            '--lah'
+        )

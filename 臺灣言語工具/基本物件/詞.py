@@ -79,40 +79,32 @@ class 詞(功能):
         return 物件分字符號.join(字的型)
 
     def 看音(self, 物件分字符號=分字符號, 物件分詞符號=分詞符號, 物件分句符號=分詞符號):
-        字的音 = self._提著詞物件的字物件音陣列(物件分字符號, 物件分詞符號)
-        攏有音 = []
-        for 音標 in 字的音:
-            if 音標 != 無音:
-                攏有音.append(音標)
-        return 物件分字符號.join(攏有音)
+        if 物件分詞符號 == 分詞符號:
+            return self.看羅馬字()
+        susia = []
+        for 一字 in enumerate(self.內底字):
+            susia.append(一字.音)
+        return 物件分字符號.join(susia)
 
-    def _提著詞物件的字物件音陣列(self, 物件分字符號, 物件分詞符號):
-        字的音 = []
-        for 一字 in self.內底字:
-            音標 = 一字.看音(物件分字符號, 物件分詞符號)
-            字的音.append(音標)
-        return 字的音
+    def 看羅馬字(self,欄位='音'):
+        羅馬字 = []
+        for kui, 一字 in enumerate(self.內底字):
+            if 一字.敢有輕聲標記():
+                羅馬字.append('--')
+            elif kui != 0:
+                羅馬字.append('-')
+            羅馬字.append(getattr(一字,欄位))
+        return ''.join(羅馬字)
 
     def 看分詞(self, 物件分型音符號=分型音符號,
             物件分字符號=分字符號, 物件分詞符號=分詞符號, 物件分句符號=分詞符號):
-        字的音 = self._提著詞物件的字物件音陣列(物件分字符號, 物件分詞符號)
-        無音數量 = 0
-        for 音 in 字的音:
-            if 音 == 無音:
-                無音數量 += 1
-        if 無音數量 == len(字的音):
-            return self.看型(物件分字符號, 物件分詞符號)
-        if 無音數量 == 0:
+        if self.敢有2種書寫():
             return (
-                self.看型(物件分字符號, 物件分詞符號) +
+                self.看羅馬字('型')+
                 物件分型音符號 +
-                self.看音(物件分字符號, 物件分詞符號)
+                self.看羅馬字()
             )
-        return (
-            self.看型(物件分字符號, 物件分詞符號) +
-            物件分型音符號 +
-            物件分字符號.join(self._提著詞物件的字物件音陣列(物件分字符號, 物件分詞符號))
-        )
+        return self.看羅馬字('型')
 
     def 綜合標音(self, 語言綜合標音):
         詞組綜合標音 = {}
@@ -144,3 +136,9 @@ class 詞(功能):
         for 字物件 in self.內底字:
             新詞物件.內底字.append(字物件.轉音(音標工具, 函式))
         return 新詞物件
+
+    def 敢有2種書寫(self):
+        for 字物件 in self.內底字:
+            if 字物件.音 != 無音:
+                return True
+        return False
