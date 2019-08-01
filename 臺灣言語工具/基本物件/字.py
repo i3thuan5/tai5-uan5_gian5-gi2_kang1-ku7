@@ -82,7 +82,9 @@ class 字(功能):
         return [self]
 
     def 網出詞物件(self):
-        raise 解析錯誤('字物件無法度網出詞物件！！')
+        詞物件 = 詞()
+        詞物件.內底字.append(self)
+        return [詞物件]
 
     def 轉音(self, 音標工具, 函式='預設音標'):
         # 逐个函式攏愛產生新的物件
