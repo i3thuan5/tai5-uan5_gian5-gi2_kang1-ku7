@@ -94,12 +94,11 @@ class 詞(功能):
             羅馬字.append(getattr(一字, 欄位))
         return ''.join(羅馬字)
 
-    def 看分詞(self, 物件分型音符號=分型音符號,
-            物件分字符號=分字符號, 物件分詞符號=分詞符號, 物件分句符號=分詞符號):
+    def 看分詞(self):
         if self.敢有2種書寫():
             return (
                 self.看羅馬字('型') +
-                物件分型音符號 +
+                分型音符號 +
                 self.看羅馬字()
             )
         return self.看羅馬字('型')
