@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
-from 臺灣言語工具.基本物件.字 import 字
 from 臺灣言語工具.基本物件.公用變數 import 分字符號
 from 臺灣言語工具.基本物件.公用變數 import 分詞符號
 from 臺灣言語工具.基本物件.公用變數 import 無音
@@ -18,13 +17,12 @@ class 詞(功能):
         try:
             self.內底字 = []
             for 字物件 in 字陣列:
-                if not isinstance(字物件, 字):
+                try:
+                    self.內底字.append(字物件.khóopih字())
+                except AttributeError:
                     raise 型態錯誤(
                         '字陣列內底有毋是字的：字陣列＝{0}，字物件＝{1}'.format(str(字陣列), str(字物件))
                     )
-                self.內底字.append(
-                    字(字物件.型, 字物件.音, 字物件.輕聲標記)
-                )
         except TypeError as 問題:
             raise 型態錯誤('傳入來的字陣列毋法度疊代：{0}，問題：{1}'
                        .format(str(字陣列), 問題))
@@ -86,21 +84,21 @@ class 詞(功能):
             susia.append(一字.音)
         return 物件分字符號.join(susia)
 
-    def 看羅馬字(self,欄位='音'):
+    def 看羅馬字(self, 欄位='音'):
         羅馬字 = []
         for kui, 一字 in enumerate(self.內底字):
             if 一字.敢有輕聲標記():
                 羅馬字.append('--')
             elif kui != 0:
                 羅馬字.append('-')
-            羅馬字.append(getattr(一字,欄位))
+            羅馬字.append(getattr(一字, 欄位))
         return ''.join(羅馬字)
 
     def 看分詞(self, 物件分型音符號=分型音符號,
             物件分字符號=分字符號, 物件分詞符號=分詞符號, 物件分句符號=分詞符號):
         if self.敢有2種書寫():
             return (
-                self.看羅馬字('型')+
+                self.看羅馬字('型') +
                 物件分型音符號 +
                 self.看羅馬字()
             )

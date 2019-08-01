@@ -125,3 +125,6 @@ class 字(功能):
         if 新音物件.音標 is None:
             return False
         return True
+
+    def khóopih字(self):
+        return self.__class__(self.型, self.音, self.輕聲標記)
