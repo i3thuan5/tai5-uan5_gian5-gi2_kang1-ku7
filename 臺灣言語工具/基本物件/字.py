@@ -7,6 +7,7 @@ from 臺灣言語工具.基本物件.公用變數 import 分字符號
 from 臺灣言語工具.基本物件.公用變數 import 分詞符號
 from 臺灣言語工具.基本物件.公用變數 import 分型音符號
 from 臺灣言語工具.基本物件.功能 import 功能
+from 臺灣言語工具.基本物件.詞 import 詞
 
 
 class 字(功能):
@@ -65,13 +66,7 @@ class 字(功能):
 
     def 看分詞(self, 物件分型音符號=分型音符號,
             物件分字符號=分字符號, 物件分詞符號=分詞符號, 物件分句符號=分詞符號):
-        if self.音 == 無音:
-            return self.看型(物件分字符號, 物件分詞符號)
-        return (
-            self.看型(物件分字符號, 物件分詞符號) +
-            物件分型音符號 +
-            self.看音(物件分字符號, 物件分詞符號)
-        )
+        return 詞([self]).看分詞()
 
     def 敢有輕聲標記(self):
         return self.輕聲標記 or self.音.startswith('0')

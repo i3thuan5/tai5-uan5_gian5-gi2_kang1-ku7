@@ -68,7 +68,10 @@ class 拆文分析器:
 
     @classmethod
     def 對齊字物件(cls, 型, 音):
-        輕聲標記 = 音.startswith('--')
+        輕聲標記 = (
+            音.startswith('--')
+            or (音 == 無音 and 型.startswith('--'))
+        )
         本調型 = 型
         本調音 = 音
         try:
