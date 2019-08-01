@@ -87,7 +87,7 @@ class 詞(功能):
     def 看羅馬字(self, 欄位='音'):
         羅馬字 = []
         for kui, 一字 in enumerate(self.內底字):
-            if 一字.敢有輕聲標記():
+            if 一字.輕聲標記:
                 羅馬字.append('--')
             elif kui != 0:
                 羅馬字.append('-')
