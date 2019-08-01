@@ -405,14 +405,6 @@ class 拆文分析器:
         切開結果 = 分詞.split(分型音符號)
         if len(切開結果) == 2:
             型, 音 = 切開結果
-            if 型 == '':
-                raise 解析錯誤('型是空的：{0}'.format(分詞))
-            if len(型) == 1 and len(音) == 1:
-                return 詞([cls.對齊字物件(型, 音)])
-            型陣列 = 型.split(分字符號)
-            音陣列 = 音.split(分字符號)
-            if len(型陣列) > 1 and len(型陣列) == len(音陣列):
-                return cls._拆好陣列對齊詞物件(型陣列, 音陣列, [False] * len(音陣列))
             return cls.對齊詞物件(型, 音)
         return cls._分詞字詞處理(分詞, 切開結果, cls.建立詞物件)
 

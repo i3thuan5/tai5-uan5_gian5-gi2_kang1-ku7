@@ -15,3 +15,6 @@ class 物件轉分詞整合試驗(TestCase):
 
     def test_漢羅對照(self):
         self.物件 = 拆文分析器.建立句物件('緊出來啦', 'Kín--tshut-lâi --lah')
+
+    def test_分詞ê符號(self):
+        self.物件 = 拆文分析器.建立句物件('Kín!｜｜｜好~')
