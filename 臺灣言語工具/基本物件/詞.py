@@ -77,10 +77,10 @@ class 詞(功能):
         return 物件分字符號.join(字的型)
 
     def 看音(self, 物件分字符號=分字符號, 物件分詞符號=分詞符號, 物件分句符號=分詞符號):
-        if 物件分詞符號 == 分詞符號:
+        if 物件分字符號 == 分字符號:
             return self.看羅馬字()
         susia = []
-        for 一字 in enumerate(self.內底字):
+        for 一字 in self.內底字:
             susia.append(一字.音)
         return 物件分字符號.join(susia)
 

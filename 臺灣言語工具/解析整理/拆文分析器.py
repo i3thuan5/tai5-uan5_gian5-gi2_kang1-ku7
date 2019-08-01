@@ -68,17 +68,19 @@ class 拆文分析器:
 
     @classmethod
     def 對齊字物件(cls, 型, 音):
-        輕聲標記 = (
-            音.startswith('--')
-            or (音 == 無音 and 型.startswith('--'))
-        )
-        本調型 = 型
-        本調音 = 音
         try:
+            輕聲標記 = (
+                音.startswith('--')
+                or (音 == 無音 and 型.startswith('--'))
+            )
             if 型.startswith('--'):
                 本調型 = 型[2:]
-            if 輕聲標記:
+            else:
+                本調型 = 型
+            if 音.startswith('--'):
                 本調音 = 音[2:]
+            else:
+                本調音 = 音
         except AttributeError:
             raise 型態錯誤('對齊字物件愛傳入字串，收到的是 {} {}'.format(型, 音))
         return 字(本調型, 本調音, 輕聲標記)
