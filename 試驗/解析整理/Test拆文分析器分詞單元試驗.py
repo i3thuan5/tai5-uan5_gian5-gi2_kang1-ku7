@@ -127,12 +127,10 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
 
     def test_分詞詞空白(self):
         分詞 = ' ｜ '
-        型 = ' '
-        音 = ' '
         詞物件 = 拆文分析器.分詞詞物件(分詞)
         self.assertEqual(len(詞物件.內底字), 1)
-        self.assertEqual(詞物件.內底字[0].型, 型)
-        self.assertEqual(詞物件.內底字[0].音, 音)
+        self.assertEqual(詞物件.內底字[0].型, '｜')
+        self.assertEqual(詞物件.內底字[0].音, 無音)
 
     def test_分詞全是分詞符號(self):
         詞物件 = 拆文分析器.分詞詞物件('｜｜｜')
@@ -420,7 +418,7 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         組物件 = 拆文分析器.分詞組物件(分詞)
         self.assertEqual(len(組物件.內底詞), 6)
         self.assertEqual(len(組物件.內底詞[2].內底字), 1)
-        字物件 = 拆文分析器.對齊字物件(' ', ' ')
+        字物件 = 拆文分析器.建立字物件('｜')
         self.assertEqual(組物件.內底詞[2].內底字[0], 字物件)
 
     def test_空白邊仔有空白(self):
@@ -428,7 +426,7 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         組物件 = 拆文分析器.分詞組物件(分詞)
         self.assertEqual(len(組物件.內底詞), 6)
         self.assertEqual(len(組物件.內底詞[2].內底字), 1)
-        字物件 = 拆文分析器.對齊字物件(' ', ' ')
+        字物件 = 拆文分析器.建立字物件('｜')
         self.assertEqual(組物件.內底詞[2].內底字[0], 字物件)
 
     def test_全形空白(self):
