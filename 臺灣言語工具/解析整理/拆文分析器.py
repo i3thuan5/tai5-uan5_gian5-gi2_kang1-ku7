@@ -26,7 +26,7 @@ from 臺灣言語工具.基本物件.公用變數 import 聲調符號
 
 
 class 拆文分析器:
-    _切組物件分詞 = re.compile('(([^ ｜]*.｜.[^ ｜]*) ?|[^ ]+)')
+    _切組物件分詞 = re.compile('(([^ ｜]*[^ ]｜[^ ][^ ｜]*) ?|[^ ]+)')
     _切章分詞 = re.compile('(\n｜.|.｜\n|\n)', re.DOTALL)
     _是空白 = re.compile(r'[^\S\n]+')
     _是分字符號 = re.compile('{}+'.format(分字符號))
@@ -68,14 +68,19 @@ class 拆文分析器:
 
     @classmethod
     def 對齊字物件(cls, 型, 音):
-        輕聲標記 = 音.startswith('--')
-        本調型 = 型
-        本調音 = 音
         try:
+            輕聲標記 = (
+                音.startswith('--')
+                or (音 == 無音 and 型.startswith('--'))
+            )
             if 型.startswith('--'):
                 本調型 = 型[2:]
-            if 輕聲標記:
+            else:
+                本調型 = 型
+            if 音.startswith('--'):
                 本調音 = 音[2:]
+            else:
+                本調音 = 音
         except AttributeError:
             raise 型態錯誤('對齊字物件愛傳入字串，收到的是 {} {}'.format(型, 音))
         return 字(本調型, 本調音, 輕聲標記)
@@ -395,19 +400,12 @@ class 拆文分析器:
     @classmethod
     def 分詞詞物件(cls, 分詞):
         程式掠漏.毋是字串都毋著(分詞)
-        if 分詞 == '':
+        分詞 = 分詞.strip(' 　')
+        if 分詞 == '' or 分詞 == 分型音符號:
             return cls.建立詞物件(分詞)
         切開結果 = 分詞.split(分型音符號)
         if len(切開結果) == 2:
             型, 音 = 切開結果
-            if 型 == '':
-                raise 解析錯誤('型是空的：{0}'.format(分詞))
-            if len(型) == 1 and len(音) == 1:
-                return 詞([cls.對齊字物件(型, 音)])
-            型陣列 = 型.split(分字符號)
-            音陣列 = 音.split(分字符號)
-            if len(型陣列) > 1 and len(型陣列) == len(音陣列):
-                return cls._拆好陣列對齊詞物件(型陣列, 音陣列, [False] * len(音陣列))
             return cls.對齊詞物件(型, 音)
         return cls._分詞字詞處理(分詞, 切開結果, cls.建立詞物件)
 
