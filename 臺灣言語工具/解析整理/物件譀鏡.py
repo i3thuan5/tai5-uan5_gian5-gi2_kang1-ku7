@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from 臺灣言語工具.基本物件.公用變數 import 分字符號
 from 臺灣言語工具.基本物件.公用變數 import 分詞符號
-from 臺灣言語工具.基本物件.公用變數 import 分型音符號
 from 臺灣言語工具.解析整理.程式掠漏 import 程式掠漏
 
 

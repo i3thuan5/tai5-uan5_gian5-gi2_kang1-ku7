@@ -437,6 +437,11 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         字物件 = 拆文分析器.建立字物件('｜')
         self.assertEqual(組物件.內底詞[2].內底字[0], 字物件)
 
+    def test_連續符號(self):
+        分詞 = '去｜khi3 飛翔 ｜ ｜ ｜ 走｜tsau2 遍｜pian3 世-界｜se3-kai3'
+        組物件 = 拆文分析器.分詞組物件(分詞)
+        self.assertEqual(len(組物件.內底詞), 8)
+
     def test_袂當用全形空白隔開(self):
         分詞 = '去｜khi3\u3000飛-翔｜pue1-siong5'
         with self.assertRaises(解析錯誤):

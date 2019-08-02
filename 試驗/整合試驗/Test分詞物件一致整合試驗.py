@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from unittest.case import TestCase, skip
+from unittest.case import TestCase
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 
 
@@ -8,6 +8,7 @@ class 物件轉分詞整合試驗(TestCase):
 
     def tearDown(self):
         分詞 = self.物件.看分詞()
+        print(分詞)
         self.assertEqual(拆文分析器.分詞句物件(分詞), self.物件, 分詞)
 
     def test_全羅(self):
