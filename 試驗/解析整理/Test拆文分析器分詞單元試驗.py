@@ -434,7 +434,7 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         組物件 = 拆文分析器.分詞組物件(分詞)
         self.assertEqual(len(組物件.內底詞), 6)
         self.assertEqual(len(組物件.內底詞[2].內底字), 1)
-        字物件 = 拆文分析器.對齊字物件('　', '　')
+        字物件 = 拆文分析器.建立字物件('｜')
         self.assertEqual(組物件.內底詞[2].內底字[0], 字物件)
 
     def test_袂當用全形空白隔開(self):
