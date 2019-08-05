@@ -57,12 +57,12 @@ class 物件轉字串整合試驗(TestCase):
     @skip('分析器閣有問題')
     def test_漢字濟字輕聲混合201802p13(self):
         # = 緊--出-來,好--無
-        self.語句 = '想--起-來就ê驚'
+        self.語句 = '想--起-來就ē驚'
 
     @skip('分析器閣有問題')
     def test_漢字濟字輕聲混合201802p13無空白(self):
         # = 緊--出-來,好--無
-        self.語句 = '想--起-來就 ê 驚'
+        self.語句 = '想--起-來就 ē 驚'
 
     @skip('分析器閣有問題')
     def test_bongpo_201804p25(self):
@@ -77,6 +77,10 @@ class 物件轉字串整合試驗(TestCase):
 
     def test_漢羅無空白(self):
         self.語句 = '欲lia̍h-ti'
+
+    @skip('無法度表現當初時有連字符--bô')
+    def test_漢羅連字符(self):
+        self.語句 = '欲-lia̍h-ti'
 
     def test_漢羅無空白無連字符(self):
         self.語句 = '欲lia̍h豬'
