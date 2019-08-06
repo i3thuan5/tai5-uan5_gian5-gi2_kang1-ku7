@@ -4,7 +4,6 @@ from 臺灣言語工具.基本物件.集 import 集
 from 臺灣言語工具.基本物件.公用變數 import 分字符號
 from 臺灣言語工具.基本物件.公用變數 import 分詞符號
 from 臺灣言語工具.基本物件.公用變數 import 無音
-from 臺灣言語工具.基本物件.公用變數 import 分型音符號
 from 臺灣言語工具.基本物件.功能 import 功能
 from sys import stderr
 try:
@@ -63,14 +62,13 @@ class 句(功能):
                 集的音.append(音標)
         return 物件分詞符號.join(集的音)
 
-    def 看分詞(self, 物件分型音符號=分型音符號,
-            物件分字符號=分字符號, 物件分詞符號=分詞符號, 物件分句符號=分詞符號):
+    def 看分詞(self):
         集的音 = []
         for 一集 in self.內底集:
-            音標 = 一集.看分詞(物件分型音符號, 物件分字符號, 物件分詞符號)
+            音標 = 一集.看分詞()
             if 音標 != 無音:
                 集的音.append(音標)
-        return 物件分詞符號.join(集的音)
+        return 分詞符號.join(集的音)
 
     def 綜合標音(self, 語言綜合標音):
         集綜合標音 = {}

@@ -35,18 +35,9 @@ class 物件譀鏡單元試驗(unittest.TestCase):
     @patch('臺灣言語工具.基本物件.句.句.看分詞')
     def test_看分詞(self, 看分詞mock):
         物件譀鏡.看分詞(self.物件)
-        看分詞mock.assert_called_once_with(
-            物件分型音符號='｜', 物件分字符號='-', 物件分詞符號=' ', 物件分句符號=' ',
-        )
-
-    @patch('臺灣言語工具.基本物件.句.句.看分詞')
-    def test_看分詞有參數(self, 看分詞mock):
-        物件譀鏡.看分詞(self.物件, 物件分字符號='_', 物件分詞符號='|', 物件分句符號='^')
-        看分詞mock.assert_called_once_with(
-            物件分型音符號='｜', 物件分字符號='_', 物件分詞符號='|', 物件分句符號='^'
-        )
+        看分詞mock.assert_called_once_with()
 
     def test_參數烏白傳(self):
         self.assertRaises(型態錯誤, 物件譀鏡.看型, 790830)
         self.assertRaises(型態錯誤, 物件譀鏡.看音, None)
-        self.assertRaises(型態錯誤, 物件譀鏡.看分詞, '｜', '｜')
+        self.assertRaises(型態錯誤, 物件譀鏡.看分詞, '｜')
