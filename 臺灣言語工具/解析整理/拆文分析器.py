@@ -173,6 +173,8 @@ class 拆文分析器:
             # 組字式抑是數羅會超過一个字元
             self._這馬字 = ''
             self._這馬是輕聲字 = False
+            self._這陣是輕聲詞 = False
+            self._這陣是輕聲詞_而且是輕聲詞ê一部份 = False
 
         def 分析結果(self):
             return self._字陣列, self._輕聲陣列, self._佮後一个字無仝一个詞
@@ -215,6 +217,14 @@ class 拆文分析器:
         def 這馬是輕聲字(self):
             self._這馬是輕聲字 = True
 
+        def 這陣是輕聲詞(self):
+            self._這陣是輕聲詞 = True
+            self._這陣是輕聲詞_而且是輕聲詞ê一部份 = True
+
+        def 有連字符(self):
+            if self._這陣是輕聲詞:
+                self._這陣是輕聲詞_而且是輕聲詞ê一部份 = True
+
         def 字陣列直接加一字(self, 字):
             self._字陣列.append(字)
             self._輕聲陣列.append(False)
@@ -222,6 +232,11 @@ class 拆文分析器:
 
         def 這馬字好矣清掉囥入去字陣列(self):
             if self._這馬字 != '':
+                if self._這陣是輕聲詞:
+                    if not self._這陣是輕聲詞_而且是輕聲詞ê一部份:
+                        self.頂一字佮這馬的字無仝詞()
+                        self._這陣是輕聲詞 = False
+                    self._這陣是輕聲詞_而且是輕聲詞ê一部份 = False
                 self._字陣列.append(self._這馬字)
                 self._輕聲陣列.append(self._這馬是輕聲字)
                 self._佮後一个字無仝一个詞.append(None)
@@ -295,9 +310,11 @@ class 拆文分析器:
                                     )
                                 狀態.頂一字佮這馬的字仝詞()
                             是連字符 = True
+                            狀態.有連字符()
                     elif 分字長度 == 2:
                         狀態.這馬字好矣清掉囥入去字陣列()
                         是輕聲符號 = True
+                        狀態.這陣是輕聲詞()
                         位置 += 1
                     else:
                         raise 解析錯誤(

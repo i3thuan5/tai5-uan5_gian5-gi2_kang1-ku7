@@ -16,6 +16,14 @@ class 拆文分析器斷詞單元試驗(TestCase):
         self.語句 = 'Mi̍h-kiānn phah-bô--khì --ah'
         self.詞數 = 3
 
+    def test_漢羅黏做伙kāng詞(self):
+        self.語句 = '媠koo-niû'
+        self.詞數 = 1
+
+    def test_漢羅分開2詞(self):
+        self.語句 = '媠 koo-niû'
+        self.詞數 = 2
+
     def test_漢字看有黏做伙無決定斷詞(self):
         self.語句 = '媠 姑娘'
         self.詞數 = 2
@@ -24,9 +32,33 @@ class 拆文分析器斷詞單元試驗(TestCase):
         self.語句 = '好 --矣'
         self.詞數 = 2
 
+    def test_輕聲詞中央可能有重音詞(self):
+        self.語句 = '有--ê-無--ê'
+        self.詞數 = 1
+
+    def test_輕聲符無(self):
+        self.語句 = '有--ê無--ê'
+        self.詞數 = 2
+
     def test_漢字知影有輕聲猶原一個詞(self):
         self.語句 = '害--矣--啦'
         self.詞數 = 1
+
+    def test_全漢連續輕聲(self):
+        self.語句 = '緊--出-來--啦'
+        self.詞數 = 1
+
+    def test_漢字濟字輕聲混合201802p13(self):
+        self.語句 = '想--起-來就'
+        self.詞數 = len(['想--起-來', '就'])
+
+    def test_漢字濟字輕聲混合201802p13接羅馬字(self):
+        self.語句 = '想--起-來tō ē'
+        self.詞數 = len(['想--起-來', 'tō', 'ē'])
+
+    def test_漢字濟字輕聲混合201802p13句尾(self):
+        self.語句 = '想--起-來tō'
+        self.詞數 = len(['想--起-來', 'tō'])
 
     def test_句中輕聲無連做伙嘛會使(self):
         self.語句 = '講會出--來'

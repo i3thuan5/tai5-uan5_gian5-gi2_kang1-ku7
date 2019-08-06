@@ -109,7 +109,7 @@ class 字(功能):
             新型 = 新型預設音標
         else:
             新型 = self.型
-        return 字(新型, 新音)
+        return 字(新型, 新音, self.輕聲標記)
 
     def 音標敢著(self, 音標工具):
         if self.敢是標點符號():
