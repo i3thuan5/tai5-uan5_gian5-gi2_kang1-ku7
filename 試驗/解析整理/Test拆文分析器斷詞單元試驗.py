@@ -77,7 +77,7 @@ class 拆文分析器斷詞單元試驗(TestCase):
         self.詞數 = 1
 
     def test_漢羅輕聲(self):
-        self.語句 = '阿菊姨--a7'
+        self.語句 = '阿菊姨--ā'
         self.詞數 = 1
 
     def test_標點愛分開(self):
