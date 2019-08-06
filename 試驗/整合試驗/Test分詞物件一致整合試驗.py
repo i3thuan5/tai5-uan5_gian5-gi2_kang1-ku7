@@ -8,7 +8,6 @@ class 物件轉分詞整合試驗(TestCase):
 
     def tearDown(self):
         分詞 = self.物件.看分詞()
-        print(分詞)
         self.assertEqual(拆文分析器.分詞句物件(分詞), self.物件, 分詞)
 
     def test_全羅(self):
