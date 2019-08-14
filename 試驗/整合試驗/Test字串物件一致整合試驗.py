@@ -88,5 +88,8 @@ class 物件轉字串整合試驗(TestCase):
     def test_全形標點符號(self):
         self.語句 = 'ti！'
 
+    def test_漢字接標點符號(self):
+        self.語句 = '好！'
+
     def test_空ê(self):
         self.語句 = ''

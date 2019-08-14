@@ -14,12 +14,16 @@ class 多元書寫單元試驗(TestCase):
         多元書寫 = self.物件拍無去矣()
         self.assertEqual(
             多元書寫['分詞'],
-            '啊｜0ah4 ！｜! 瓜-仔-鬚｜kue1-a2-tshiu1 拍-無-去｜phah4-bo5-0khi3 矣｜0ah4 。｜.'
+            '啊｜0ah4 ！｜! kue1-a2-鬚｜kue1-a2-tshiu1 拍-無-去｜phah4-bo5-0khi3 矣｜0ah4 。｜.'
         )
 
     def test_檢查漢字(self):
         多元書寫 = self.物件拍無去矣()
-        self.assertEqual(多元書寫['漢字'], '啊 ！ 瓜仔鬚 拍無去 矣 。')
+        self.assertEqual(多元書寫['漢字'], '啊！Kue-á鬚拍無--去--矣。')
+
+    def test_檢查漢字斷詞(self):
+        多元書寫 = self.物件拍無去矣()
+        self.assertEqual(多元書寫['漢字斷詞'], '--啊 ！ kue-á鬚 拍無--去 --矣 。')
 
     def test_檢查臺羅(self):
         多元書寫 = self.物件拍無去矣()
@@ -62,7 +66,7 @@ class 多元書寫單元試驗(TestCase):
 
     def test_干焦臺羅多元書寫(self):
         多元書寫 = 台語多元書寫.書寫句(拆文分析器.建立句物件('gua2'))
-        self.assertEqual(多元書寫['漢字'], 'guá')
+        self.assertEqual(多元書寫['漢字'], 'Guá')
 
     def test_無合法音就照伊彼音(self):
         多元書寫 = 台語多元書寫.書寫句(拆文分析器.對齊句物件('豬',  'Pigu'))
@@ -113,7 +117,7 @@ class 多元書寫單元試驗(TestCase):
 
     def 物件拍無去矣(self):
         句物件 = 拆文分析器.對齊句物件(
-            '啊！瓜仔鬚拍無去矣。', '0ah4 ! kue-a2-tshiu phah4-bo5-0khi3 0ah.'
+            '啊！kue1-a2鬚拍無去矣。', '0ah4 ! kue-a2-tshiu phah4-bo5-0khi3 0ah.'
         )
         return 台語多元書寫.書寫句(句物件)
 
