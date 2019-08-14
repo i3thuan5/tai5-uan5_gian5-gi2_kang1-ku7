@@ -43,7 +43,11 @@ class 字(功能):
         return self.音 != 無音 and self.音 not in 標點符號
 
     def __eq__(self, 別个):
-        return isinstance(別个, 字) and self.型 == 別个.型 and self.音 == 別个.音
+        return (
+            isinstance(別个, 字)
+            and self.型 == 別个.型 and self.音 == 別个.音
+            and self.輕聲標記 == 別个.輕聲標記
+        )
 
     def __hash__(self):
         return hash((self.型, self.音))
