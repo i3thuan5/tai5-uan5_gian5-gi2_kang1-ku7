@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
 from 臺灣言語工具.辭典.文字辭典 import 文字辭典
 from 臺灣言語工具.基本物件.公用變數 import 無音
-from 臺灣言語工具.辭典.型音點 import 型音點
 from 臺灣言語工具.基本物件.詞 import 詞
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 
+class 型音點:
+
+    def __init__(self):
+        self.表 = {}
+        self.條 = set()
 
 class 型音辭典(文字辭典):
-    表 = None
 
     def __init__(self, 上濟字數):
         if 上濟字數 <= 0:
@@ -58,7 +61,6 @@ class 型音辭典(文字辭典):
             這馬答案.append(點.條)
         if 第幾字 == len(詞物件.內底字):
             return 這馬答案
-# 		答案 = [這馬答案]
         字物件 = 詞物件.內底字[第幾字]
         if 字物件.音 != 無音:
             if 字物件 in 點.表:
