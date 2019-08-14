@@ -118,3 +118,26 @@ class 辭典單元試驗:
                 call陣列.append(call(詞物件))
             加詞mock.assert_has_calls(call陣列)
         remove(檔名)
+
+    def test_輕聲就揣著輕聲(self):
+        輕聲 = 拆文分析器.建立詞物件('--啊', '--ah')
+        self.字典.加詞(輕聲)
+        self.assertEqual(self.字典.查詞(輕聲), [{輕聲}])
+
+    def test_輕聲揣無重音(self):
+        輕聲 = 拆文分析器.建立詞物件('--啊', '--ah')
+        重音 = 拆文分析器.建立詞物件('啊', 'ah')
+        self.字典.加詞(重音)
+        self.assertEqual(self.字典.查詞(輕聲), [set()])
+
+    def test_漢字輕聲揣無重音(self):
+        輕聲 = 拆文分析器.建立詞物件('--啊')
+        重音 = 拆文分析器.建立詞物件('啊', 'ah')
+        self.字典.加詞(重音)
+        self.assertEqual(self.字典.查詞(輕聲), [set()])
+
+    def test_重音揣無輕聲(self):
+        輕聲 = 拆文分析器.建立詞物件('--啊', '--ah')
+        重音 = 拆文分析器.建立詞物件('啊', 'ah')
+        self.字典.加詞(輕聲)
+        self.assertEqual(self.字典.查詞(重音), [set()])
