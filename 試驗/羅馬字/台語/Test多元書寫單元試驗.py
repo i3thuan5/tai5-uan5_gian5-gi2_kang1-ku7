@@ -23,7 +23,7 @@ class 多元書寫單元試驗(TestCase):
 
     def test_檢查漢字斷詞(self):
         多元書寫 = self.物件拍無去矣()
-        self.assertEqual(多元書寫['漢字斷詞'], '啊 ！ Kue-á鬚 拍無去 矣 。')
+        self.assertEqual(多元書寫['漢字斷詞'], '--啊 ！ kue-á鬚 拍無--去 --矣 。')
 
     def test_檢查臺羅(self):
         多元書寫 = self.物件拍無去矣()
