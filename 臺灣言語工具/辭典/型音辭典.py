@@ -6,11 +6,13 @@ from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 
+
 class 型音點:
 
     def __init__(self):
         self.表 = {}
         self.條 = set()
+
 
 class 型音辭典(文字辭典):
 
@@ -27,15 +29,13 @@ class 型音辭典(文字辭典):
             raise 解析錯誤('傳入來的詞物件是空的：{0}'.format(str(詞物件)))
         if len(詞物件.內底字) <= self.上濟字數():
             self.加詞佇點(詞物件, 0, self.表)
-        return
 
     def 查詞(self, 詞物件):
         if not isinstance(詞物件, 詞):
             raise 型態錯誤('傳入來的毋是詞物件：{0}'.format(str(詞物件)))
         結果 = self.查詞佇點(詞物件, 0, self.表)
-        for 幾个 in range(len(結果), len(詞物件.內底字)):
+        for _ in range(len(結果), len(詞物件.內底字)):
             結果.append(set())
-            幾个 = 幾个
         return 結果
 
     def 加詞佇點(self, 詞物件, 第幾字, 點):
@@ -53,7 +53,6 @@ class 型音辭典(文字辭典):
             if 字物件 not in 點.表:
                 點.表[字物件] = 型音點()
             self.加詞佇點(詞物件, 第幾字 + 1, 點.表[字物件])
-        return
 
     def 查詞佇點(self, 詞物件, 第幾字, 點):
         這馬答案 = []
@@ -67,5 +66,4 @@ class 型音辭典(文字辭典):
                 這馬答案.extend(self.查詞佇點(詞物件, 第幾字 + 1, 點.表[字物件]))
         elif (字物件.型, 字物件.輕聲標記) in 點.表:
             這馬答案.extend(self.查詞佇點(詞物件, 第幾字 + 1, 點.表[字物件.型, 字物件.輕聲標記]))
-
         return 這馬答案
