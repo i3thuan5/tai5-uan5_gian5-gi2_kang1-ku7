@@ -96,3 +96,6 @@ class 物件轉字串整合試驗(TestCase):
 
     def test_電話(self):
         self.語句 = 'Khà 1-pái 0912-345-678'
+
+    def test_數字(self):
+        self.語句 = 'Ké-siáu 10,000.0'
