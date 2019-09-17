@@ -38,11 +38,11 @@ class 拆文分析器連字符單元試驗(TestCase):
 
     def test_一sui2(self):
         self.句 = '-sui2'
-        self.錯誤 = True
+        self.字數 = 2
 
     def test_sui2一(self):
         self.句 = 'sui2-'
-        self.錯誤 = True
+        self.字數 = 2
 
     def test_一_sui2(self):
         self.句 = '- sui2'
@@ -61,7 +61,7 @@ class 拆文分析器連字符單元試驗(TestCase):
 
     def test_sui2一_sui2(self):
         self.句 = 'sui2- sui2'
-        self.錯誤 = True
+        self.字數 = 1 + 1 + 1
 
     def test_sui2_一_sui2(self):
         self.句 = 'sui2 - sui2'
@@ -70,7 +70,7 @@ class 拆文分析器連字符單元試驗(TestCase):
 
     def test_sui2_一sui2(self):
         self.句 = 'sui2 -sui2'
-        self.錯誤 = True
+        self.字數 = 1 + 1 + 1
 
     def test_一一sui2(self):
         self.句 = '--sui2'
@@ -79,15 +79,15 @@ class 拆文分析器連字符單元試驗(TestCase):
 
     def test_一一_sui2(self):
         self.句 = '-- sui2'
-        self.錯誤 = True
+        self.字數 = 2 + 1
 
     def test_一_一sui2(self):
         self.句 = '- -sui2'
-        self.錯誤 = True
+        self.字數 = 1 + 1 + 1
 
     def test_sui2一一(self):
         self.句 = 'sui2--'
-        self.錯誤 = True
+        self.字數 = 1 + 2
 
     def test_sui2一一sui2(self):
         self.句 = 'sui2--sui2'
@@ -96,11 +96,11 @@ class 拆文分析器連字符單元試驗(TestCase):
 
     def test_sui2一一_sui2(self):
         self.句 = 'sui2-- sui2'
-        self.錯誤 = True
+        self.字數 = 1 + 2 + 1
 
     def test_sui2_一一_sui2(self):
         self.句 = 'sui2 -- sui2'
-        self.錯誤 = True
+        self.字數 = 1 + 2 + 1
 
     def test_sui2_一一sui2(self):
         self.句 = 'sui2 --sui2'
@@ -109,15 +109,15 @@ class 拆文分析器連字符單元試驗(TestCase):
 
     def test_sui2一_一sui2(self):
         self.句 = 'sui2- -sui2'
-        self.錯誤 = True
+        self.字數 = 1 + 1 + 1 + 1
 
     def test_一一一_sui2(self):
         self.句 = '--- sui2'
-        self.錯誤 = True
+        self.字數 = 3 + 1
 
     def test_一一一sui2(self):
         self.句 = '---sui2'
-        self.錯誤 = True
+        self.字數 = 3 + 1
 
     def test_一_一一sui2(self):
         self.句 = '- --sui2'
@@ -126,18 +126,16 @@ class 拆文分析器連字符單元試驗(TestCase):
 
     def test_一一_一sui2(self):
         self.句 = '-- -sui2'
-        self.錯誤 = True
+        self.字數 = 2 + 1 + 1
 
     def test_sui2一一一sui2(self):
         self.句 = 'sui2---sui2'
-        self.錯誤 = True
+        self.字數 = 1 + 3 + 1
 
-    def test_9_一_3_二_6(self):
-        self.句 = '9 - 3 = 6'
-        self.錯誤 = False
-        self.字數 = 5
+    def test_1一pái(self):
+        self.句 = '1-pái'
+        self.字數 = 2
 
-    @skip('歹實作，先閬過')
     def test_3_一_9_二_一6(self):
         self.句 = '3 - 9 = -6'
         self.錯誤 = False
