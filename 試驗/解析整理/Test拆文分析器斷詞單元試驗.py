@@ -163,3 +163,7 @@ class 拆文分析器斷詞單元試驗(TestCase):
     def test_半形大括號(self):
         self.語句 = '你{共人}看'
         self.詞數 = 5
+
+    def test_錯誤ê連字符(self):
+        self.語句 = '----你'
+        self.詞數 = 5
