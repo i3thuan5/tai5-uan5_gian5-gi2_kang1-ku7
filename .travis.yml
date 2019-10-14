@@ -1,8 +1,8 @@
 sudo: true
-dist: trusty
+dist: bionic
 language: python
 python:
-- '3.5'
+- '3.7'
 env:
   matrix:
   - TOX_ENV=單元試驗
@@ -22,8 +22,8 @@ addons:
     sources:
     - ubuntu-toolchain-r-test
     packages:
-    - gcc-4.9
-    - g++-4.9
+    - gcc
+    - g++
     - python3-dev
     - libc6-dev-i386
     - linux-libc-dev
@@ -41,9 +41,8 @@ addons:
     - cmake
     - csh
 install:
-- sudo dpkg --add-architecture i386
 - sudo apt-get update
-- sudo apt-get install libx11-dev libx11-dev:i386
+- sudo apt-get install libx11-dev
 - pip install tox
 - pip install python-coveralls
 branches:
