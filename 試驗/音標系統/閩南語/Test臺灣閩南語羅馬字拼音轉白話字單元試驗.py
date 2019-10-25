@@ -108,3 +108,15 @@ class 臺羅轉白話字單元試驗(unittest.TestCase):
 #         # 符號予別的工具處理
 #         self.assertEqual(臺灣閩南語羅馬字拼音('0tir5').轉白話字(), '0tîr')
 #         self.assertEqual(臺灣閩南語羅馬字拼音('1tir5').轉白話字(), '1tîr')
+
+    def test_第9調_TL分POJ分(self):
+        # kan-na取代分離的調號，e m n
+        self.assertEqual(臺灣閩南語羅馬字拼音('m̋').轉白話字(), 'm̆')
+
+    def test_第9調_TL分POJ組(self):
+        # a i
+        self.assertEqual(臺灣閩南語羅馬字拼音('a̋').轉白話字(), 'ă')
+
+    def test_第9調_TL組POJ分(self):
+        # o
+        self.assertEqual(臺灣閩南語羅馬字拼音('őo').轉白話字(), 'ŏ͘')
