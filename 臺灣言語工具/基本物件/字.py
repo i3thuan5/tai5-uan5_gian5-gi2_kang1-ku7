@@ -14,25 +14,6 @@ class 字(功能):
     def __init__(self, 型, 音=無音, 輕聲標記=False):
         if 型 == '':
             raise 解析錯誤('傳入來的型是空的！')
-        try:
-            型是標點 = (型 in 標點符號)
-        except TypeError:
-            raise 型態錯誤('型音一定愛是string抑是tuple！「{}」佮「{}」'.format(型, 音))
-        try:
-            音.__iter__
-        except AttributeError:
-            raise 型態錯誤('音一定愛是iterative！「{}」佮「{}」'.format(型, 音))
-        try:
-            音是標點 = (音 in 標點符號)
-        except TypeError:
-            pass
-        else:
-            if (
-                not isinstance(型, tuple) and
-                音 not in [無音, (None,)] and
-                (型是標點 ^ 音是標點)
-            ):
-                raise 解析錯誤('型佮音干焦一个是標點符號！「{}」佮「{}」'.format(型, 音))
 
         # 判斷輕聲
         self.輕聲標記 = 輕聲標記
