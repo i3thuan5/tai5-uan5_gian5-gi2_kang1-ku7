@@ -72,4 +72,4 @@ deploy:
   local_dir: "文件/_build/html"
   on:
     branch: master
-    condition: $TRAVIS_PYTHON_VERSION == '3.5' && $TOX_ENV = flake8
+    condition: $TOX_ENV = flake8
