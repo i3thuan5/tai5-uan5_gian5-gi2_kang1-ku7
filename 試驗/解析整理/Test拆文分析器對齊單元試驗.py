@@ -270,11 +270,6 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
             拆文分析器.對齊詞物件('。', '.'),
         ])
 
-    def test_對齊組濟字標點錯(self):
-        詞型 = '枋寮漁港「大條巷」上闊兩。公尺'
-        加空白後詞音 = 'Pang-liau5 hi5-kang2 「 Tua7-tiau5-hang7 」 siang7-khoah nng7-kong-tshioh . '
-        self.assertRaises(解析錯誤, 拆文分析器.對齊組物件, 詞型, 加空白後詞音)
-
     def test_對齊組連字號漢羅(self):
         型 = 'gua有tsit8-tiunn1椅仔！'
         加空白後詞音 = 'gua2 u7 tsit8-tiunn1 i2-a2 ! '
@@ -759,20 +754,6 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         羅 = '{Haih'
         with self.assertRaises(解析錯誤):
             拆文分析器.對齊組物件(漢, 羅)
-
-    def test_字對著標點_頭前的對齊嘛是愛顯示佇錯誤資訊(self):
-        漢 = 'Ti-a--neh'
-        羅 = 'Ti-a.'
-        with self.assertRaises(解析錯誤) as tshogoo:
-            拆文分析器.對齊組物件(漢, 羅)
-        self.assertIn('Ti', tshogoo.exception.args[0])
-
-    def test_字對著標點_標點對袂齊嘛是愛顯示佇錯誤資訊(self):
-        漢 = 'Ti-a--neh'
-        羅 = 'Ti-a.'
-        with self.assertRaises(解析錯誤) as tshogoo:
-            拆文分析器.對齊組物件(漢, 羅)
-        self.assertIn('neh', tshogoo.exception.args[0])
 
     def test_孤引號一ê(self):
         漢 = '『'
