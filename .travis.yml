@@ -64,7 +64,7 @@ deploy:
   on:
     tags: true
     repo: i3thuan5/tai5-uan5_gian5-gi2_kang1-ku7
-    condition: $TRAVIS_PYTHON_VERSION == '3.5' && $TOX_ENV = 單元試驗
+    condition: $TOX_ENV = 單元試驗
 - provider: pages
   skip_cleanup: true
   github_token:
