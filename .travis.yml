@@ -10,7 +10,7 @@ env:
   - TOX_ENV=HTS整合試驗
   - TOX_ENV=HTK整合試驗
   - TOX_ENV=KenLM整合試驗
-  - TOX_ENV=Moses整合試驗
+#  - TOX_ENV=Moses整合試驗
   - TOX_ENV=中研院整合試驗
   - TOX_ENV=國教院整合試驗
   - TOX_ENV=flake8
