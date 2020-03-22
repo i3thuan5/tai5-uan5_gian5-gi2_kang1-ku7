@@ -69,7 +69,7 @@ class 拆文分析器輕聲單元試驗(TestCase):
         型 = '--啊'
         音 = '--ah'
         組物件 = 拆文分析器.對齊組物件(型, 音)
-        self.assertEqual(組物件.篩出字物件()[0].音, 'ah')
+        self.assertEqual(組物件.篩出字物件()[0].音, '--ah')
 
     def test_詞頭輕聲(self):
         型 = '--啊'
@@ -94,17 +94,17 @@ class 拆文分析器輕聲單元試驗(TestCase):
         字物件 = 拆文分析器.建立字物件(書寫)
         self.assertTrue(字物件.敢有輕聲標記())
 
-    def test_字輕聲的字提掉輕聲符(self):
+    def test_字輕聲的字留輕聲符(self):
         型 = '--啊'
         音 = '--ah'
         字物件 = 拆文分析器.建立字物件(型, 音)
-        self.assertEqual(字物件.型, '啊')
+        self.assertEqual(字物件.型, '--啊')
 
-    def test_字輕聲的音提掉輕聲符(self):
+    def test_字輕聲的音留輕聲符(self):
         型 = '--啊'
         音 = '--ah'
         字物件 = 拆文分析器.建立字物件(型, 音)
-        self.assertEqual(字物件.音, 'ah')
+        self.assertEqual(字物件.音, '--ah')
 
     def test_字輕聲的音維持0(self):
         型 = '啊'
