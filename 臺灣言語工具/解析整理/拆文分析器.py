@@ -23,6 +23,8 @@ from 臺灣言語工具.解析整理.程式掠漏 import 程式掠漏
 from 臺灣言語工具.基本物件.公用變數 import 敢是拼音字元
 from 臺灣言語工具.基本物件.公用變數 import 敢是注音符號
 from 臺灣言語工具.基本物件.公用變數 import 聲調符號
+from kesi import Ku
+from kesi.butkian.ku import TuiBeTse
 
 
 class 拆文分析器:
@@ -105,19 +107,16 @@ class 拆文分析器:
         if 型 == '' and 音 == 無音:
             return 組()
 
-#         全部型陣列 = cls._拆句做字(型.strip(分詞符號))
-        # 將型、音分別拆作一个一个詞，順suah將輕聲符提掉、khng3佇敢有輕聲標記()
-        # 後日 今日 => [[後,日], [今,日]]
-        # āu--ji̍t => [[āu, ji̍t]]
-        全部型陣列, 型巢狀輕聲陣列 = cls._拆句做巢狀詞(型)
-        全部音陣列, 音巢狀輕聲陣列 = cls._拆句做巢狀詞(音)
-        組物件 = 組()
-        # 對齊拆開的型、音
-        組物件.內底詞 = cls._對齊型音處理刪節號(
-            全部型陣列, 全部音陣列,
-            型巢狀輕聲陣列, 音巢狀輕聲陣列,
-            型, 音,
-        )
+        try:
+            組物件 = 組()
+            for su in Ku(型, 音):
+                詞物件 = 詞()
+                for ji in su:
+                    詞物件.內底字.append(字.tuìKeSi(ji))
+                組物件.內底詞.append(詞物件)
+        except TuiBeTse:
+            raise 解析錯誤('詞內底的型、音bô平長')
+
         return 組物件
 
     @classmethod
