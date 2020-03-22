@@ -91,7 +91,7 @@ class 詞(功能):
         羅馬字 = []
         for kui, 一字 in enumerate(self.內底字):
             if 一字.輕聲標記:
-                羅馬字.append('--')
+                pass
             elif kui != 0:
                 羅馬字.append('-')
             羅馬字.append(getattr(一字, 欄位))
