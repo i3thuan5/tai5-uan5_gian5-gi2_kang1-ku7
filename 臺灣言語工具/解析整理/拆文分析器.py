@@ -35,7 +35,9 @@ class 拆文分析器:
     _是數字 = set('0123456789')
 
     @classmethod
-    def 建立字物件(cls, 語句, 別種書寫=無音):
+    def 建立字物件(cls, 語句, 別種書寫=None):
+        if 別種書寫 is None:
+            return cls._物件的音攏提掉(cls.對齊字物件(語句, 語句))
         return cls.對齊字物件(語句, 別種書寫)
 
     @classmethod
@@ -70,22 +72,15 @@ class 拆文分析器:
 
     @classmethod
     def 對齊字物件(cls, 型, 音):
-        try:
-            輕聲標記 = (
-                音.startswith('--')
-                or (音 == 無音 and 型.startswith('--'))
-            )
-            if 型.startswith('--'):
-                本調型 = 型[2:]
-            else:
-                本調型 = 型
-            if 音.startswith('--'):
-                本調音 = 音[2:]
-            else:
-                本調音 = 音
-        except AttributeError:
-            raise 型態錯誤('對齊字物件愛傳入字串，收到的是 {} {}'.format(型, 音))
-        return 字(本調型, 本調音, 輕聲標記)
+        if 型 in ['<s>', '</s>'] and 型 == 音:
+            return 字(型)
+        組物件 = cls.對齊組物件(型, 音)
+        tsuan = 組物件.篩出字物件()
+        if len(tsuan) == 1:
+            return tsuan[0]
+        if len(tsuan) == 0:
+            raise 解析錯誤('型bô物件'.format(型, 音))
+        raise 解析錯誤('「{0}」、「{1}」超過一e字'.format(型, 音))
 
     @classmethod
     def 對齊詞物件(cls, 型, 音):
