@@ -5,14 +5,14 @@ python:
 - '3.7'
 env:
   matrix:
-  - TOX_ENV=單元試驗
-  - TOX_ENV=文本整合試驗
-  - TOX_ENV=HTS整合試驗
-  - TOX_ENV=HTK整合試驗
-  - TOX_ENV=KenLM整合試驗
-#  - TOX_ENV=Moses整合試驗
-  - TOX_ENV=中研院整合試驗
-  - TOX_ENV=國教院整合試驗
+  - TOX_ENV=tanguan
+  - TOX_ENV=bunpun
+  - TOX_ENV=HTS
+  - TOX_ENV=HTK
+  - TOX_ENV=KenLM
+#  - TOX_ENV=Moses
+  - TOX_ENV=ckip
+  - TOX_ENV=naer
   - TOX_ENV=flake8
   - TOX_ENV=docker
 services:
@@ -64,7 +64,7 @@ deploy:
   on:
     tags: true
     repo: i3thuan5/tai5-uan5_gian5-gi2_kang1-ku7
-    condition: $TOX_ENV = 單元試驗
+    condition: $TOX_ENV = tanguan
 - provider: pages
   skip_cleanup: true
   github_token:
