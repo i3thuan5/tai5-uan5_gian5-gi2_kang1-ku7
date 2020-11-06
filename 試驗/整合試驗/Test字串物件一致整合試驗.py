@@ -99,3 +99,6 @@ class 物件轉字串整合試驗(TestCase):
 
     def test_數字(self):
         self.語句 = 'Ké-siáu 10,000.0'
+
+    def test_減號(self):
+        self.語句 = 'Kín - 好~'

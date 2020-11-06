@@ -57,7 +57,9 @@ class 字(功能):
         return 詞([self]).看分詞()
 
     def 敢有輕聲標記(self):
-        return self.輕聲標記 or self.音.startswith('0')
+        return self.輕聲標記 or (
+            not self.音.isnumeric() and self.音.startswith('0')
+        )
 
     def 敢是標點符號(self):
         return (

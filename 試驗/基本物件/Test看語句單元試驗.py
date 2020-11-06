@@ -14,6 +14,10 @@ class 看語句單元試驗(TestCase):
         分詞答案 = '梅山猴災hiong-kong-sóo tshiann2-lang5'
         self.assertEqual(組物件.看語句(), 分詞答案)
 
+    def test_數字(self):
+        詞物件 = 拆文分析器.分詞詞物件('0800｜0800')
+        self.assertEqual(詞物件.看語句(), '0800')
+
     def test_空ê(self):
         詞物件 = 拆文分析器.建立詞物件('')
         self.assertEqual(詞物件.看語句(), '')
