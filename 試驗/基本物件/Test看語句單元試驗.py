@@ -18,6 +18,10 @@ class 看語句單元試驗(TestCase):
         詞物件 = 拆文分析器.分詞詞物件('0800｜0800')
         self.assertEqual(詞物件.看語句(), '0800')
 
+    def test_漢字數字(self):
+        詞物件 = 拆文分析器.分詞詞物件('二-十-六｜lī-tsa̍p-la̍k')
+        self.assertEqual(詞物件.看語句(), '二十六')
+
     def test_空ê(self):
         詞物件 = 拆文分析器.建立詞物件('')
         self.assertEqual(詞物件.看語句(), '')
