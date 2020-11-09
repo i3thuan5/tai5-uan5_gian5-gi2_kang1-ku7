@@ -11,7 +11,7 @@ import re
 
 
 class 詞(功能):
-    _sooji = re.compile('\d')
+    _sooji = re.compile(r'\d')
 
     def __init__(self, 字陣列=[]):
         # 愛產生新的物件
