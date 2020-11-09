@@ -10,7 +10,7 @@ import re
 
 
 class 字(功能):
-    _sooji = re.compile('\d+\Z')
+    _sooji = re.compile(r'\d+\Z')
 
     def __init__(self, 型, 音=無音, 輕聲標記=False):
         if 型 == '':
