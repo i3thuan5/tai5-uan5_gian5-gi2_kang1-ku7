@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
+from kesi.susia.POJ import tsuanPOJ
 from 臺灣言語工具.音標系統.閩南語.教會系羅馬音標 import 教會系羅馬音標
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組 import 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉音值模組 import 臺灣閩南語羅馬字拼音轉音值模組
 from sys import stderr
 from 臺灣言語工具.音標系統.閩南語.對照表 import 臺羅對白話字
-from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉白話字模組 import 臺羅轉白話字
 
 臺灣閩南語羅馬字拼音聲母表 = {
     'p', 'ph', 'm', 'b',
@@ -155,7 +155,10 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
         if self.音標 is None:
             return None
 
-        for 符號 in ['a', 'oo', 'o', 'ee', 'ere', 'e', 'iri', 'ui', 'iu', 'u', 'i', 'ng', 'm']:
+        for 符號 in [
+                'a', 'oo', 'o', 'ee', 'ere', 'e', 'iri', 'ui', 'iu', 'u', 'i',
+                'ng', 'm',
+        ]:
             if 符號 in self.音標:
                 if self.調 in ['1', '4']:  # 第一調、第四調，免符號
                     韻 = self.韻
@@ -183,14 +186,18 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
     def 轉白話字(self):
         if self.音標 is None:
             return None
-        小寫的白話字 = 臺羅轉白話字.轉白話字(self.聲, self.韻, self.調)
-        結果 = 小寫的白話字
-        # 保留頭字大小寫 Tsai2 0Tsai2
-        if self.原本音標[0].isupper() or (
-            self.原本音標[0] == '0' and self.原本音標[1].isupper()
-        ):
-            結果 = 小寫的白話字[0].upper() + 小寫的白話字[1:]
-        return self.輕 + 結果
+        if self.原本音標[0] == '0':
+            return '0' + tsuanPOJ(self.原本音標[1:])
+        return tsuanPOJ(self.原本音標)
+        # 臺羅轉白話字
+        # 小寫的白話字 = 臺羅轉白話字.轉白話字(self.聲, self.韻, self.調)
+        # 結果 = 小寫的白話字
+        # # 保留頭字大小寫 Tsai2 0Tsai2
+        # if self.原本音標[0].isupper() or (
+        #     self.原本音標[0] == '0' and self.原本音標[1].isupper()
+        # ):
+        #     結果 = 小寫的白話字[0].upper() + 小寫的白話字[1:]
+        # return self.輕 + 結果
 
     def 轉白話字數字調(self):
         if self.音標 is None:
