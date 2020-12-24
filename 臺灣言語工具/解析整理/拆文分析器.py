@@ -107,7 +107,8 @@ class 拆文分析器:
             for su in Ku(型, 音):
                 詞物件 = 詞()
                 for ji in su:
-                    詞物件.內底字.append(字.tuìKeSi(ji))
+                    jie = 字.tuìKeSi(ji)
+                    詞物件.內底字.append(jie)
                 組物件.內底詞.append(詞物件)
         except TuiBeTse:
             raise 解析錯誤('詞內底的型、音bô平長')

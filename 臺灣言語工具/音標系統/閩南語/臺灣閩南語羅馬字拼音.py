@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from kesi.susia.POJ import tsuanPOJ
+from kesi.susia.TL import tsuanTL
 from 臺灣言語工具.音標系統.閩南語.教會系羅馬音標 import 教會系羅馬音標
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組 import 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉音值模組 import 臺灣閩南語羅馬字拼音轉音值模組
@@ -142,6 +143,7 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 
     def __init__(self, 音標):
         super(臺灣閩南語羅馬字拼音, self).__init__()
+        print('KIP init音標=', 音標)
         self.分析聲韻調(音標)
         if self.調 not in self.對通用調對照表:
             self.調 = None
@@ -152,23 +154,25 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
         return self.音標
 
     def 轉調符(self):
+        print('轉調符音標=', self.音標)
         if self.音標 is None:
             return None
-
-        for 符號 in [
-                'a', 'oo', 'o', 'ee', 'ere', 'e', 'iri', 'ui', 'iu', 'u', 'i',
-                'ng', 'm',
-        ]:
-            if 符號 in self.音標:
-                if self.調 in ['1', '4']:  # 第一調、第四調，免符號
-                    韻 = self.韻
-                else:
-                    韻 = self.韻.replace(符號, self.數字調轉閏號調表[(符號, self.調)])
-                break
-        聲韻 = self.聲 + 韻
-        if self.原本音標.strip('01')[0].isupper():
-            聲韻 = 聲韻[0].upper() + 聲韻[1:]
-        return self.輕 + self.外來語 + 聲韻
+        print('tsuanTL(self.音標)=', tsuanTL(self.音標), self.音標)
+        return tsuanTL(self.音標)
+        # for 符號 in [
+        #         'a', 'oo', 'o', 'ee', 'ere', 'e', 'iri', 'ui', 'iu', 'u', 'i',
+        #         'ng', 'm',
+        # ]:
+        #     if 符號 in self.音標:
+        #         if self.調 in ['1', '4']:  # 第一調、第四調，免符號
+        #             韻 = self.韻
+        #         else:
+        #             韻 = self.韻.replace(符號, self.數字調轉閏號調表[(符號, self.調)])
+        #         break
+        # 聲韻 = self.聲 + 韻
+        # if self.原本音標.strip('01')[0].isupper():
+        #     聲韻 = 聲韻[0].upper() + 聲韻[1:]
+        # return self.輕 + self.外來語 + 聲韻
 
     def 轉閏號調(self):
         print('「轉閏號調」會佇7.0版會提掉，請改用「轉調符」', file=stderr)

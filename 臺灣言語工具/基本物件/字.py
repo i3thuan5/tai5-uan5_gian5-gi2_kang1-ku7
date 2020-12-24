@@ -19,9 +19,12 @@ class 字(功能):
 
     @classmethod
     def tuìKeSi(cls, ji):
+        print('ji hanlo=', ji.hanlo, 'lomaji=', ji.lomaji)
+        hanlo = ji.hanlo.replace('--', '')
+        lomaji = ji.lomaji.replace('--', '')
         return cls(
-            ji.hanlo,
-            ji.lomaji,
+            hanlo,
+            lomaji,
             ji.si_khinsiann
         )
 
@@ -90,8 +93,10 @@ class 字(功能):
                     新音 = self.音
         else:
             新音 = 無音
+        print('型=', self.型)
         新型物件 = 音標工具(self.型)
         新型預設音標 = getattr(新型物件, 函式)()
+        print('新型預設音標=', 新型預設音標)
         if self.音.startswith(self.型) and isinstance(新音, str):
             新型 = 新音
         elif (
