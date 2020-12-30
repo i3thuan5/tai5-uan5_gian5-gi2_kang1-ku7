@@ -14,7 +14,7 @@ class 多元書寫單元試驗(TestCase):
         多元書寫 = self.物件拍無去矣()
         self.assertEqual(
             多元書寫['分詞'],
-            '啊｜0ah4 ！｜! kue1-a2-鬚｜kue1-a2-tshiu1 拍-無-去｜phah4-bo5-0khi3 矣｜0ah4 。｜.'
+            '--啊｜--ah ！｜! kue-á-鬚｜kue-á-tshiu 拍-無--去｜phah-bô--khì --矣｜--ah 。｜.'
         )
 
     def test_檢查漢字(self):
@@ -51,7 +51,7 @@ class 多元書寫單元試驗(TestCase):
     def test_檢查臺羅數字調(self):
         多元書寫 = self.物件拍無去矣()
         self.assertEqual(
-            多元書寫['臺羅數字調'], '0ah4 ! kue1-a2-tshiu1 phah4-bo5-0khi3 0ah4 .'
+            多元書寫['臺羅數字調'], '--ah4 ! kue1-a2-tshiu1 phah4-bo5--khi3 --ah4 .'
         )
 
     def test_檢查吳守禮方音(self):
@@ -117,9 +117,8 @@ class 多元書寫單元試驗(TestCase):
 
     def 物件拍無去矣(self):
         句物件 = 拆文分析器.對齊句物件(
-            '啊！kue1-a2鬚拍無去矣。', '0ah4 ! kue-a2-tshiu phah4-bo5-0khi3 0ah.'
+            '啊！kue1-a2鬚拍無去矣。', '--ah4 ! kue-a2-tshiu phah4-bo5--khi3 --ah.'
         )
-        print('物件拍無去矣 句物件=', 句物件.看分詞())
         return 台語多元書寫.書寫句(句物件)
 
     def 方言音(self):

@@ -43,7 +43,7 @@ class 教會系羅馬音標(閩南語音標介面):
             self.輕 = '0'
             音標 = 音標[1:]
         elif 音標.startswith('--'):
-            self.輕 = '0'
+            self.輕 = '--'
             音標 = 音標[2:]
         elif 音標.startswith('1'):
             self.外來語 = '1'

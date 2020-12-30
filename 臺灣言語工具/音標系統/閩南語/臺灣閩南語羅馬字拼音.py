@@ -143,13 +143,15 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 
     def __init__(self, 音標):
         super(臺灣閩南語羅馬字拼音, self).__init__()
-        print('KIP init音標 before=', 音標)
+        print('KIP init A=', 音標)
         self.分析聲韻調(音標)
-        print('KIP init音標 after=', self.音標)
+        print('KIP init B=', self.音標)
         if self.調 not in self.對通用調對照表:
             self.調 = None
             self.音標 = None
         self.原本音標 = 音標
+        print('KIP init C')
+        print()
 
     def 轉換到臺灣閩南語羅馬字拼音(self):
         return self.音標

@@ -99,7 +99,6 @@ class 詞(功能):
         return ''.join(羅馬字)
 
     def 看分詞(self):
-        print('敢有2種書寫=', self.敢有2種書寫())
         if self.敢有2種書寫():
             return (
                 self.看羅馬字('型') +
