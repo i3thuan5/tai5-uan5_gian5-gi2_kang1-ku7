@@ -119,6 +119,7 @@ class 多元書寫單元試驗(TestCase):
         句物件 = 拆文分析器.對齊句物件(
             '啊！kue1-a2鬚拍無去矣。', '0ah4 ! kue-a2-tshiu phah4-bo5-0khi3 0ah.'
         )
+        print('物件拍無去矣 句物件=', 句物件.看分詞())
         return 台語多元書寫.書寫句(句物件)
 
     def 方言音(self):

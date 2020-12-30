@@ -143,8 +143,9 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
 
     def __init__(self, 音標):
         super(臺灣閩南語羅馬字拼音, self).__init__()
-        print('KIP init音標=', 音標)
+        print('KIP init音標 before=', 音標)
         self.分析聲韻調(音標)
+        print('KIP init音標 after=', self.音標)
         if self.調 not in self.對通用調對照表:
             self.調 = None
             self.音標 = None
@@ -154,11 +155,11 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
         return self.音標
 
     def 轉調符(self):
-        print('轉調符音標=', self.音標)
+        print('轉調符音標 before=', self.音標)
         if self.音標 is None:
             return None
-        print('tsuanTL(self.音標)=', tsuanTL(self.音標), self.音標)
-        return tsuanTL(self.音標)
+        print('tsuanTL(self.音標)=', tsuanTL(self.原本音標), self.音標)
+        return tsuanTL(self.原本音標)
         # for 符號 in [
         #         'a', 'oo', 'o', 'ee', 'ere', 'e', 'iri', 'ui', 'iu', 'u', 'i',
         #         'ng', 'm',
