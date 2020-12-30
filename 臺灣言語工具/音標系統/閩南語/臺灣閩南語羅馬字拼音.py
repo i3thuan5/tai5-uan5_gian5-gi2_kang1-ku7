@@ -159,6 +159,8 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
         if self.音標 is None:
             return None
         print('tsuanTL(self.音標)=', tsuanTL(self.原本音標), self.音標)
+        if self.原本音標[0] == '0':
+            return '0' + tsuanTL(self.原本音標[1:])
         return tsuanTL(self.原本音標)
         # for 符號 in [
         #         'a', 'oo', 'o', 'ee', 'ere', 'e', 'iri', 'ui', 'iu', 'u', 'i',
