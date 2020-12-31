@@ -6,9 +6,11 @@ from 臺灣言語工具.基本物件.公用變數 import 分字符號
 from 臺灣言語工具.基本物件.公用變數 import 分詞符號
 from 臺灣言語工具.基本物件.功能 import 功能
 from 臺灣言語工具.基本物件.詞 import 詞
+import re
 
 
 class 字(功能):
+    _sooji = re.compile(r'\d+\Z')
 
     def __init__(self, 型, 音=無音, 輕聲標記=False):
         if 型 == '':
@@ -58,7 +60,7 @@ class 字(功能):
 
     def 敢有輕聲標記(self):
         return self.輕聲標記 or (
-            not self.音.isnumeric() and self.音.startswith('0')
+            not self._sooji.match(self.音) and self.音.startswith('0')
         )
 
     def 敢是標點符號(self):

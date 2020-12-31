@@ -6,10 +6,11 @@ from 臺灣言語工具.基本物件.公用變數 import 無音
 from 臺灣言語工具.基本物件.公用變數 import 分型音符號
 from 臺灣言語工具.基本物件.功能 import 功能
 from 臺灣言語工具.基本物件.公用變數 import 敢是拼音字元
+import re
 
 
 class 詞(功能):
-    內底字 = None
+    _sooji = re.compile(r'\d')
 
     def __init__(self, 字陣列=[]):
         # 愛產生新的物件
@@ -55,7 +56,7 @@ class 詞(功能):
                 字型陣列.append(分字符號)
             # 接連字符（羅-羅）
             elif (
-                敢是拼音字元(字串[0]) or 字串[0].isnumeric()
+                敢是拼音字元(字串[0]) or self._sooji.match(字串[0])
                 or (字串[0] == '0' and 敢是拼音字元(字串[1]))
             ):
                 if 頂字是羅馬字:
