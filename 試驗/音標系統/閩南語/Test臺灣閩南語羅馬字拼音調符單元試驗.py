@@ -49,4 +49,3 @@ class 臺灣閩南語羅馬字拼音調符單元試驗(TestCase):
     def test_外來語佮輕聲(self):
         # 符號予別的工具處理
         self.assertEqual(臺灣閩南語羅馬字拼音('0tir5').轉調符(), '0tîr')
-        # self.assertEqual(臺灣閩南語羅馬字拼音('1tir5').轉調符(), '1tîr')

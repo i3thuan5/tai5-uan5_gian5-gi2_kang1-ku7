@@ -51,30 +51,6 @@ class 白話字(教會系羅馬音標):
 
     def 轉換到臺灣閩南語羅馬字拼音(self):
         return 臺灣閩南語羅馬字拼音(tsuanTL(self.音標)).音標
-        # if self.音標 is None:
-        #     return None
-        # 聲母 = None
-        # if self.聲 == 'ch':
-        #     聲母 = 'ts'
-        # elif self.聲 == 'chh':
-        #     聲母 = 'tsh'
-        # else:
-        #     聲母 = self.聲
-        # 韻母 = None
-        # if self.韻[:2] == 'oa':
-        #     韻母 = 'ua' + self.韻[2:]
-        # elif self.韻[:2] == 'oe':
-        #     韻母 = 'ue' + self.韻[2:]
-        # elif self.韻[:2] == 'ou':
-        #     韻母 = 'oo' + self.韻[2:]
-        # elif self.韻 == 'ek':
-        #     韻母 = 'ik'
-        # elif self.韻 == 'eng':
-        #     韻母 = 'ing'
-        # else:
-        #     韻母 = self.韻
-        # return self.輕 + self.外來語 + 聲母 + 韻母 + str(self.調)
-    # 聲 介 韻 調，韻含元音跟韻尾
 
     def 音值(self):
         if self.音標 is None:

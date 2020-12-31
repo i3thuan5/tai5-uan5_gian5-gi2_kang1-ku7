@@ -50,7 +50,6 @@ class 詞(功能):
             # 接輕聲符（輕聲漢字、輕聲羅馬字）
             是輕聲字 = 一字.敢有輕聲標記()
             if 是輕聲字:
-                # 字型陣列.append(輕聲符號)
                 bat輕聲 = True
             elif bat輕聲:
                 字型陣列.append(分字符號)
@@ -90,7 +89,6 @@ class 詞(功能):
         羅馬字 = []
         for kui, 一字 in enumerate(self.內底字):
             if 一字.輕聲標記:
-                # 羅馬字.append('--')
                 pass
             elif kui != 0:
                 羅馬字.append('-')
