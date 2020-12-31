@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from unittest.case import TestCase
+from unittest.case import TestCase, skip
 from 臺灣言語工具.音標系統.閩南語.教會羅馬字音標 import 教會羅馬字音標
 
 
 class 教會羅馬字音標單元試驗(TestCase):
 
+    @skip('舊設計，暫時留--leh')
     def test_零聲母聲韻調輕(self):
         教羅音標 = 教會羅馬字音標('ainn7')
         self.assertEqual(教羅音標.音標, 'ainn7')
@@ -13,6 +14,7 @@ class 教會羅馬字音標單元試驗(TestCase):
         self.assertEqual(教羅音標.調, '7')
         self.assertEqual(教羅音標.輕, '')
 
+    @skip('舊設計，暫時留--leh')
     def test_完整聲韻調輕(self):
         教羅音標 = 教會羅馬字音標('sih')
         self.assertEqual(教羅音標.音標, 'sih4')
@@ -21,6 +23,7 @@ class 教會羅馬字音標單元試驗(TestCase):
         self.assertEqual(教羅音標.調, '4')
         self.assertEqual(教羅音標.輕, '')
 
+    @skip('舊設計，暫時留--leh')
     def test_韻化輔音聲韻調輕(self):
         教羅音標 = 教會羅馬字音標('ng5')
         self.assertEqual(教羅音標.音標, 'ng5')
@@ -29,6 +32,7 @@ class 教會羅馬字音標單元試驗(TestCase):
         self.assertEqual(教羅音標.調, '5')
         self.assertEqual(教羅音標.輕, '')
 
+    @skip('舊設計，暫時留--leh')
     def test_語法輕聲聲韻調輕(self):
         教羅音標 = 教會羅馬字音標('0e5')
         self.assertEqual(教羅音標.音標, '0e5')

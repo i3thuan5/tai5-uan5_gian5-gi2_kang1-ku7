@@ -7,7 +7,8 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 im
 class 字串物件轉音一致整合試驗(TestCase):
 
     def tearDown(self):
-        物件 = 拆文分析器.建立句物件(self.語句).轉音(臺灣閩南語羅馬字拼音, '轉調符')
+        ku = 拆文分析器.建立句物件(self.語句)
+        物件 = ku.轉音(臺灣閩南語羅馬字拼音, '轉調符')
         self.assertEqual(物件.看語句(), self.答案)
 
     def test_羅馬字(self):

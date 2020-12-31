@@ -41,6 +41,9 @@ class 教會系羅馬音標(閩南語音標介面):
         if 音標.startswith('0'):
             self.輕 = '0'
             音標 = 音標[1:]
+        elif 音標.startswith('--'):
+            self.輕 = '--'
+            音標 = 音標[2:]
         elif 音標.startswith('1'):
             self.外來語 = '1'
             音標 = 音標[1:]
@@ -73,7 +76,6 @@ class 教會系羅馬音標(閩南語音標介面):
         if self.聲 in ['b', 'l', 'g']:
             if 'nn' in self.韻:
                 音標是著的 = False
-
         if 音標是著的:
             self.做音標()
         else:

@@ -150,11 +150,3 @@ class 臺灣閩南語羅馬字拼音相容臺灣閩南語羅馬字拼音相容�
         self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('tsik4').音標, 'tsik4')
         self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('uan2').音標, 'uan2')
         self.assertEqual(臺灣閩南語羅馬字拼音相容教會羅馬字音標('tshue1').音標, 'tshue1')
-
-    def test_轉輕聲外來語(self):
-        self.assertEqual(
-            臺灣閩南語羅馬字拼音相容教會羅馬字音標('0tsoe1').轉換到臺灣閩南語羅馬字拼音(), '0tsue1'
-        )
-        self.assertEqual(
-            臺灣閩南語羅馬字拼音相容教會羅馬字音標('1tsoe1').轉換到臺灣閩南語羅馬字拼音(), '1tsue1'
-        )
