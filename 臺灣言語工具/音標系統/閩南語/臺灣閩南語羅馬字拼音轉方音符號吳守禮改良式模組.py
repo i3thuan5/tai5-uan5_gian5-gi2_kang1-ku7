@@ -64,7 +64,7 @@ class 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組():
             return
         if 韻.startswith('i') and (聲 == 'ts' or 聲 == 'tsh' or 聲 == 's' or 聲 == 'j'):
             聲 += 'i'
-        if 輕 == '0':
+        if 輕 == '0' or 輕 == '--':
             調 = '0'
         self.聲 = self.聲母表[聲]
         self.韻 = self.韻母表[韻]

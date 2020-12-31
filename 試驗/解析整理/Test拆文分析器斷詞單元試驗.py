@@ -4,6 +4,7 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 
 
 class 拆文分析器斷詞單元試驗(TestCase):
+
     def tearDown(self):
         句物件 = 拆文分析器.建立句物件(self.語句)
         self.assertEqual(len(句物件.網出詞物件()), self.詞數, self.語句)
@@ -16,8 +17,12 @@ class 拆文分析器斷詞單元試驗(TestCase):
         self.語句 = 'Mi̍h-kiānn phah-bô--khì --ah'
         self.詞數 = 3
 
-    def test_漢羅黏做伙kāng詞(self):
-        self.語句 = '媠koo-niû'
+    def test_漢羅寫做伙ài斷詞(self):
+        self.語句 = '台文通訊Bóng報'
+        self.詞數 = 3
+
+    def test_漢羅輕聲(self):
+        self.語句 = '阿菊姨--ā'
         self.詞數 = 1
 
     def test_漢羅分開2詞(self):
@@ -72,14 +77,6 @@ class 拆文分析器斷詞單元試驗(TestCase):
         self.語句 = '癩⿸疒哥人'
         self.詞數 = 1
 
-    def test_漢羅做伙(self):
-        self.語句 = '台文通訊Bóng報'
-        self.詞數 = 1
-
-    def test_漢羅輕聲(self):
-        self.語句 = '阿菊姨--ā'
-        self.詞數 = 1
-
     def test_標點愛分開(self):
         self.語句 = '我愛「白話字」！'
         self.詞數 = 5
@@ -88,13 +85,9 @@ class 拆文分析器斷詞單元試驗(TestCase):
         self.語句 = '無-？-bo5-?'
         self.詞數 = 1
 
-    def test_聲調符號接音標(self):
-        self.語句 = 'suiˋsuiˋ'
-        self.詞數 = 1
-
     def test_連寫的客話音標(self):
         self.語句 = 'ngaiˇ dong+ho^'
-        self.詞數 = 2
+        self.詞數 = 3
 
     def test_有連字符的客話音標(self):
         self.語句 = 'ngaiˇ dong+-ho^'

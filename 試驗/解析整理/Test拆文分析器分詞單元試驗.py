@@ -21,11 +21,8 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
     # 分詞字無檢查有對齊無，這應該是轉物件音的空課
     def test_分詞字無對齊(self):
         分詞 = '美-麗｜sui2'
-        型 = '美-麗'
-        音 = 'sui2'
-        字物件 = 拆文分析器.分詞字物件(分詞)
-        self.assertEqual(字物件.型, 型)
-        self.assertEqual(字物件.音, 音)
+        with self.assertRaises(解析錯誤):
+            拆文分析器.分詞字物件(分詞)
 
     def test_分詞字有兩字(self):
         分詞 = '兩｜nng7 个｜e5'
@@ -49,14 +46,6 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         分詞 = '-｜-'
         型 = '-'
         音 = '-'
-        字物件 = 拆文分析器.分詞字物件(分詞)
-        self.assertEqual(字物件.型, 型)
-        self.assertEqual(字物件.音, 音)
-
-    def test_分詞字空白(self):
-        分詞 = ' ｜ '
-        型 = ' '
-        音 = ' '
         字物件 = 拆文分析器.分詞字物件(分詞)
         self.assertEqual(字物件.型, 型)
         self.assertEqual(字物件.音, 音)

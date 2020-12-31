@@ -17,6 +17,14 @@ class 字(功能):
         self.型 = 型
         self.音 = 音
 
+    @classmethod
+    def tuìKeSi(cls, ji):
+        return cls(
+            ji.hanlo,
+            ji.lomaji,
+            ji.si_khinsiann
+        )
+
     def 有音(self):
         return self.音 != 無音 and self.音 not in 標點符號
 
