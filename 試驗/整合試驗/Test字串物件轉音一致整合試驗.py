@@ -8,7 +8,6 @@ class 字串物件轉音一致整合試驗(TestCase):
 
     def tearDown(self):
         ku = 拆文分析器.建立句物件(self.語句)
-        print('ku.lmj = ', ku.看語句())
         物件 = ku.轉音(臺灣閩南語羅馬字拼音, '轉調符')
         self.assertEqual(物件.看語句(), self.答案)
 

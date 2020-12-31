@@ -38,7 +38,6 @@ class 教會系羅馬音標(閩南語音標介面):
 
     def 分析聲韻調(self, 音標):
         音標 = self.正規法(音標)
-        print('分析A 音標=', 音標)
         if 音標.startswith('0'):
             self.輕 = '0'
             音標 = 音標[1:]
@@ -49,7 +48,6 @@ class 教會系羅馬音標(閩南語音標介面):
             self.外來語 = '1'
             音標 = 音標[1:]
         self.音標 = self._轉教羅韻符號(音標)
-        print('分析B self.音標=', self.音標)
         音標是著的, 無調號音標 = self._分離閏號聲調(self.音標)
         聲韻符合, self.聲, self.韻 = self._揣聲韻(無調號音標)
         if not 聲韻符合:
@@ -78,7 +76,6 @@ class 教會系羅馬音標(閩南語音標介面):
         if self.聲 in ['b', 'l', 'g']:
             if 'nn' in self.韻:
                 音標是著的 = False
-        print('分析C 音標=', self.音標)
         if 音標是著的:
             self.做音標()
         else:
