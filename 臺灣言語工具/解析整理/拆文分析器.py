@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from 臺灣言語工具.基本物件.公用變數 import 分字符號
-from 臺灣言語工具.基本物件.公用變數 import 分詞符號
 from 臺灣言語工具.基本物件.字 import 字
 from 臺灣言語工具.基本物件.詞 import 詞
 from 臺灣言語工具.基本物件.組 import 組
@@ -8,23 +7,14 @@ from 臺灣言語工具.基本物件.集 import 集
 from 臺灣言語工具.基本物件.句 import 句
 from 臺灣言語工具.基本物件.章 import 章
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
-from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
-from 臺灣言語工具.基本物件.公用變數 import 無音
-from 臺灣言語工具.基本物件.公用變數 import 組字式符號
-from 臺灣言語工具.基本物件.公用變數 import 斷句標點符號
-from 臺灣言語工具.基本物件.公用變數 import 標點符號
 from itertools import chain
 import re
-
-
-from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
+from kesi import Ku, TuiBeTse
+from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
+from 臺灣言語工具.基本物件.公用變數 import 無音
+from 臺灣言語工具.基本物件.公用變數 import 斷句標點符號
 from 臺灣言語工具.基本物件.公用變數 import 分型音符號
 from 臺灣言語工具.解析整理.程式掠漏 import 程式掠漏
-from 臺灣言語工具.基本物件.公用變數 import 敢是拼音字元
-from 臺灣言語工具.基本物件.公用變數 import 敢是注音符號
-from 臺灣言語工具.基本物件.公用變數 import 聲調符號
-from kesi import Ku
-from kesi.butkian.ku import TuiBeTse
 
 
 class 拆文分析器:
@@ -79,7 +69,7 @@ class 拆文分析器:
         if len(tsuan) == 1:
             return tsuan[0]
         if len(tsuan) == 0:
-            raise 解析錯誤('型bô物件'.format(型, 音))
+            raise 解析錯誤('「{0}」、「{1}」bô字'.format(型, 音))
         raise 解析錯誤('「{0}」、「{1}」超過一e字'.format(型, 音))
 
     @classmethod

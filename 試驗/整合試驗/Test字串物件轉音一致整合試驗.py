@@ -18,5 +18,3 @@ class 字串物件轉音一致整合試驗(TestCase):
     def test_大寫羅馬字(self):
         self.語句 = 'Kin2--tshut4-lai5'
         self.答案 = 'Kín--tshut-lâi'
-        # self.語句 = 'Kin2'
-        # self.答案 = 'Kín'
