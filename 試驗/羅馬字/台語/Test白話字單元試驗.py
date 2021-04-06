@@ -12,7 +12,7 @@ class 白話字單元試驗(TestCase):
         self.assertIsNone(白話字('cō͘').音標)
 
     def test_違法轉教育部就mài改(self):
-        self.assertEqual(白話字('cō͘').轉換到臺灣閩南語羅馬字拼音(), 'cō͘')
+        self.assertIsNone(白話字('cō͘').轉換到臺灣閩南語羅馬字拼音())
 
     def test_音值(self):
         self.assertEqual(白話字('chō͘').音值(), ('ts', 'o', '7'))
