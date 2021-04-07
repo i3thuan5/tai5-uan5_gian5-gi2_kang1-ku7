@@ -50,6 +50,8 @@ class 白話字(教會系羅馬音標):
         )
 
     def 轉換到臺灣閩南語羅馬字拼音(self):
+        if self.音標 is None:
+            return self.音標
         return 臺灣閩南語羅馬字拼音(tsuanTL(self.音標)).音標
 
     def 音值(self):
