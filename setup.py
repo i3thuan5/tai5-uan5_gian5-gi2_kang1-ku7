@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from distutils.core import setup
+from setuptools import setup
 import os
 import sys
 from 版本 import 版本
@@ -31,9 +31,9 @@ setup(
     description='臺灣語言資訊系統（Toolkit for Languages in Taiwan）',
     long_description='臺灣語言資訊系統函式庫，支援語音辨識、合成、翻譯、…等技術',
     author='薛丞宏',
-    author_email='ihcaoe@gmail.com',
-    url='https://xn--v0qr21b.xn--kpry57d/',
-    download_url='https://github.com/sih4sing5hong5/tai5_uan5_gian5_gi2_kang1_ku7',
+    author_email='ithuan@ithuan.tw',
+    url='https://ithuan.tw/',
+    download_url='https://github.com/i3thuan5/tai5_uan5_gian5_gi2_kang1_ku7',
     keywords=[
         '臺灣', '臺語', '客家話', '自然語言', '語料庫',
         '語音合成', '語音辨識', '機器翻譯', '斷詞',
@@ -53,8 +53,10 @@ setup(
         'Topic :: Text Processing :: Linguistic',
     ],
     install_requires=[
+        'kesi',
         'htsengine',
         'pypi-kenlm',
         'pypi-bleualign',
+        'pydub',
     ],
 )

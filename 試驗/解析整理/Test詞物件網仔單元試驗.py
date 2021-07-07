@@ -12,46 +12,25 @@ from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
 class 詞物件網仔單元試驗(TestCase):
 
     @patch('臺灣言語工具.基本物件.句.句.網出詞物件')
-    def test_篩出字物件(self, 網出詞物件mock):
+    def test_詞物件網仔(self, 網出詞物件mock):
         物件 = 拆文分析器.分詞句物件('頭-家｜thau5-ke1 員-工｜uan5-kang1')
         詞物件網仔.網出詞物件(物件)
         網出詞物件mock.assert_called_once_with()
+
+    def test_網詞kāng物件(self):
+        型 = '媠'
+        詞物件 = 拆文分析器.建立詞物件(型)
+        self.assertIs(詞物件網仔.網出詞物件(詞物件)[0], 詞物件)
 
     def test_網字(self):
         型 = '媠'
         字物件 = 拆文分析器.建立字物件(型)
         self.assertEqual(詞物件網仔.網出詞物件(字物件), [拆文分析器.建立詞物件(型)])
 
-    def test_網詞(self):
+    def test_網字kāng物件(self):
         型 = '媠'
-        詞物件 = 拆文分析器.建立詞物件(型)
-        self.assertEqual(詞物件網仔.網出詞物件(詞物件), [詞物件])
-
-    def test_網詞無字(self):
-        型 = ''
-        詞物件 = 拆文分析器.建立詞物件(型)
-        self.assertEqual(詞物件網仔.網出詞物件(詞物件), [詞物件])
-
-    def test_網詞濟字漢字(self):
-        語句 = '椅仔'
-        self.assertEqual(
-            詞物件網仔.網出詞物件(拆文分析器.建立詞物件(語句)),
-            [拆文分析器.建立詞物件(語句)]
-        )
-
-    def test_網詞濟字音標(self):
-        語句 = 'tsit8-tiunn1'
-        self.assertEqual(
-            詞物件網仔.網出詞物件(拆文分析器.建立詞物件(語句)),
-            [拆文分析器.建立詞物件(語句)]
-        )
-
-    def test_網詞濟字漢羅(self):
-        語句 = 'tsit8-張'
-        self.assertEqual(
-            詞物件網仔.網出詞物件(拆文分析器.建立詞物件(語句)),
-            [拆文分析器.建立詞物件(語句)]
-        )
+        字物件 = 拆文分析器.建立字物件(型)
+        self.assertIs(詞物件網仔.網出詞物件(字物件)[0].篩出字物件()[0], 字物件)
 
     def test_網組孤字(self):
         語句 = '媠'

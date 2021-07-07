@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from unittest.case import TestCase
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
-from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音聲母表
-from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音韻母表
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺羅對通用聲對照表
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺羅對通用韻對照表
 from 臺灣言語工具.音標系統.閩南語.通用拼音音標 import 通用拼音佮臺灣羅馬聲母對照表
 from 臺灣言語工具.音標系統.閩南語.通用拼音音標 import 通用拼音佮臺灣羅馬韻母對照表
+from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音聲母表
+from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音韻母表
 
 
 class 臺灣閩南語羅馬字拼音單元試驗(TestCase):
@@ -105,9 +105,8 @@ class 臺灣閩南語羅馬字拼音單元試驗(TestCase):
         self.assertEqual(臺灣閩南語羅馬字拼音('tsňg').音標, 'tsng6')
         self.assertEqual(臺灣閩南語羅馬字拼音('pňg').音標, 'png6')
 
-    def test_鼻化ㆦ(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('mo5').音標, 'moo5')
-        self.assertEqual(臺灣閩南語羅馬字拼音('ngoo5').音標, 'ngoo5')
+    def test_鼻化ㆦ愛oo(self):
+        self.assertIsNone(臺灣閩南語羅馬字拼音('ngo').音標)
 
     def test_次方言音標(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('tor').音標, 'tor1')
@@ -127,20 +126,11 @@ class 臺灣閩南語羅馬字拼音單元試驗(TestCase):
         self.assertEqual(臺灣閩南語羅馬字拼音('hō͘').音標, 'hoo7')
         self.assertEqual(臺灣閩南語羅馬字拼音('hó͘ⁿ').音標, None)
 
-    def test_外來語アルミ的ア(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('a33').音標, '1a7')
+    def test_附錄外來語先莫收_用另外的格式來(self):
+        self.assertIsNone(臺灣閩南語羅馬字拼音('a33').音標)
 
-    def test_外來語アルミ的ル(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('lu55').音標, '1lu1')
-
-    def test_外來語アルミ的ミ(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('mih3').音標, '1mih4')
-
-    def test_外來語拉鍊的拉(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('la55').音標, '1la1')
-
-    def test_外來語拉鍊的鍊(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('lian51').音標, '1lian2')
+    def test_無合法的調符愛擋咧(self):
+        self.assertIsNone(臺灣閩南語羅馬字拼音('tsiòk').音標)
 
     def test_用著入聲調音標(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('ha8').音標, None)
@@ -148,18 +138,37 @@ class 臺灣閩南語羅馬字拼音單元試驗(TestCase):
     def test_入聲調用著其他調音標(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('hak7').音標, None)
 
-    def test_違法音標(self):
+    def test_違法音標_出現符號(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('@@').音標, None)
-        self.assertEqual(臺灣閩南語羅馬字拼音('pe̍m').音標, None)
-        self.assertEqual(臺灣閩南語羅馬字拼音('cat8').音標, None)
-        self.assertEqual(臺灣閩南語羅馬字拼音('tsé--á').音標, None)
-        self.assertEqual(臺灣閩南語羅馬字拼音('óonn').音標, None)
-        self.assertEqual(臺灣閩南語羅馬字拼音('ot').音標, None)
         self.assertEqual(臺灣閩南語羅馬字拼音('a.').音標, None)
         self.assertEqual(臺灣閩南語羅馬字拼音('.').音標, None)
 
+    def test_違法音標_無em_m袂第八調(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('pe̍m').音標, None)
+
+    def test_違法音標_無c(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('cat8').音標, None)
+
+    def test_違法音標_超過一個音節(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('tsé--á').音標, None)
+
+    def test_違法音標_無oonn(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('óonn').音標, None)
+
+    def test_違法音標_無ot(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('ot').音標, None)
+
     def test_無存在的聲調(self):
-        self.assertEqual(臺灣閩南語羅馬字拼音('no78').音標, None)
+        self.assertEqual(臺灣閩南語羅馬字拼音('bo78').音標, None)
+
+    def test_無正確_同母音袂出現兩擺(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('suii').音標, None)
+
+    def test_無正確_鼻化音袂出現兩擺(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('ngan').音標, None)
+
+    def test_無正確_干焦tkh會出現兩擺(self):
+        self.assertEqual(臺灣閩南語羅馬字拼音('sas').音標, None)
 
     def test_轉通用拼音(self):
         self.assertEqual(臺灣閩南語羅馬字拼音('gio2').轉通用拼音(), 'ghior4')
@@ -170,11 +179,9 @@ class 臺灣閩南語羅馬字拼音單元試驗(TestCase):
         臺灣閩南語羅馬字拼音('bo0').轉通用拼音()
 
     def test_全部攏會轉通用拼音(self):
-        for 母 in 臺灣閩南語羅馬字拼音聲母表:
-            self.assertIn(母, 臺羅對通用聲對照表)
-        for 母 in 臺灣閩南語羅馬字拼音韻母表:
-            self.assertIn(母, 臺羅對通用韻對照表)
-        for _, 通 in 臺羅對通用聲對照表.items():
+        for 臺, 通 in 臺羅對通用聲對照表.items():
+            self.assertIn(臺, 臺灣閩南語羅馬字拼音聲母表)
             self.assertIn(通, 通用拼音佮臺灣羅馬聲母對照表)
-        for _, 通 in 臺羅對通用韻對照表.items():
+        for 臺, 通 in 臺羅對通用韻對照表.items():
+            self.assertIn(臺, 臺灣閩南語羅馬字拼音韻母表)
             self.assertIn(通, 通用拼音佮臺灣羅馬韻母對照表)

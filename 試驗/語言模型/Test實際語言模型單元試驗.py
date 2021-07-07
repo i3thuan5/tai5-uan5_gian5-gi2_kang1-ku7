@@ -145,7 +145,7 @@ class 實際語言模型單元試驗(TestCase):
                          [log10(5 / 32), log10(4 / 5), ])
 
     def test_媠媠巧靚(self):
-        '''
+        r'''
         srilm的結果
         原本檔案sui2：
         sui2 sui2 khiau2 tsiang5

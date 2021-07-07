@@ -10,3 +10,6 @@ __pycache__/
 /node_modules
 /.tox
 /.coverage
+/.project
+/.pydevproject
+tai5_uan5_gian5_gi2_kang1_ku7.egg-info/
