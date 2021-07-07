@@ -159,10 +159,6 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
             return '0' + tsuanTL(self.原本音標[1:])
         return tsuanTL(self.原本音標)
 
-    def 轉閏號調(self):
-        print('「轉閏號調」會佇7.0版會提掉，請改用「轉調符」', file=stderr)
-        return self.轉調符()
-
     def 轉通用拼音(self):
         if self.音標 is None:
             return None
