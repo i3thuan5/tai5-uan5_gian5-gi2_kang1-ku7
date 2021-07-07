@@ -9,7 +9,6 @@ from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.基本物件.公用變數 import 組字式符號
 from 臺灣言語工具.基本物件.公用變數 import 聲調符號
-from 臺灣言語工具.基本物件.公用變數 import 敢是注音符號
 from 臺灣言語工具.基本物件.公用變數 import 標點符號
 from 臺灣言語工具.基本物件.公用變數 import 敢是拼音字元
 
