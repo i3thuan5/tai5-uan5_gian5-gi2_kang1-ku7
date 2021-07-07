@@ -16,8 +16,12 @@ class KenLM語言模型訓練(程式腳本):
                  kenlm安裝路徑=外部程式.目錄(),
                  moses安裝路徑=外部程式.目錄()
                  ):
-        kenlm訓練指令 = join(安裝KenLM訓練程式.kenlm資料夾路徑(kenlm安裝路徑), 'bin', 'lmplz')
-        moses訓練指令 = join(安裝摩西翻譯佮相關程式.moses程式碼目錄(moses安裝路徑), 'bin', 'lmplz')
+        kenlm訓練指令 = join(
+            安裝KenLM訓練程式.kenlm資料夾路徑(kenlm安裝路徑), 'build', 'bin', 'lmplz'
+        )
+        moses訓練指令 = join(
+            安裝摩西翻譯佮相關程式.moses程式碼目錄(moses安裝路徑), 'bin', 'lmplz'
+        )
         self.訓練指令 = None
         if isfile(kenlm訓練指令):
             self.訓練指令 = kenlm訓練指令

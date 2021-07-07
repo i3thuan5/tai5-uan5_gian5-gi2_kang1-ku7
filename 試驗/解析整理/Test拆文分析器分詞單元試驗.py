@@ -21,11 +21,8 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
     # 分詞字無檢查有對齊無，這應該是轉物件音的空課
     def test_分詞字無對齊(self):
         分詞 = '美-麗｜sui2'
-        型 = '美-麗'
-        音 = 'sui2'
-        字物件 = 拆文分析器.分詞字物件(分詞)
-        self.assertEqual(字物件.型, 型)
-        self.assertEqual(字物件.音, 音)
+        with self.assertRaises(解析錯誤):
+            拆文分析器.分詞字物件(分詞)
 
     def test_分詞字有兩字(self):
         分詞 = '兩｜nng7 个｜e5'
@@ -49,14 +46,6 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         分詞 = '-｜-'
         型 = '-'
         音 = '-'
-        字物件 = 拆文分析器.分詞字物件(分詞)
-        self.assertEqual(字物件.型, 型)
-        self.assertEqual(字物件.音, 音)
-
-    def test_分詞字空白(self):
-        分詞 = ' ｜ '
-        型 = ' '
-        音 = ' '
         字物件 = 拆文分析器.分詞字物件(分詞)
         self.assertEqual(字物件.型, 型)
         self.assertEqual(字物件.音, 音)
@@ -109,9 +98,12 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         詞物件 = 拆文分析器.分詞詞物件(分詞)
         self.assertEqual(len(詞物件.內底字), 0)
 
-    def test_分詞詞有分詞無半字(self):
+    def test_分詞詞是分詞ê符號(self):
         分詞 = '｜'
-        self.assertRaises(解析錯誤, 拆文分析器.分詞詞物件, 分詞)
+        詞物件 = 拆文分析器.分詞詞物件(分詞)
+        self.assertEqual(len(詞物件.內底字), 1)
+        self.assertEqual(詞物件.內底字[0].型, '｜')
+        self.assertEqual(詞物件.內底字[0].音, 無音)
 
     def test_分詞詞無分型音(self):
         分詞 = '美麗'
@@ -124,18 +116,21 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
 
     def test_分詞詞空白(self):
         分詞 = ' ｜ '
-        型 = ' '
-        音 = ' '
         詞物件 = 拆文分析器.分詞詞物件(分詞)
         self.assertEqual(len(詞物件.內底字), 1)
-        self.assertEqual(詞物件.內底字[0].型, 型)
-        self.assertEqual(詞物件.內底字[0].音, 音)
+        self.assertEqual(詞物件.內底字[0].型, '｜')
+        self.assertEqual(詞物件.內底字[0].音, 無音)
 
     def test_分詞全是分詞符號(self):
         詞物件 = 拆文分析器.分詞詞物件('｜｜｜')
         self.assertEqual(len(詞物件.內底字), 1)
         self.assertEqual(詞物件.內底字[0].型, '｜')
         self.assertEqual(詞物件.內底字[0].音, '｜')
+
+    def test_分詞字全是分詞符號_行為愛kah分詞詞仝款(self):
+        字物件 = 拆文分析器.分詞字物件('｜｜｜')
+        self.assertEqual(字物件.型, '｜')
+        self.assertEqual(字物件.音, '｜')
 
     def test_分詞型是分詞符號(self):
         詞物件 = 拆文分析器.分詞詞物件('｜｜=')
@@ -412,7 +407,7 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         組物件 = 拆文分析器.分詞組物件(分詞)
         self.assertEqual(len(組物件.內底詞), 6)
         self.assertEqual(len(組物件.內底詞[2].內底字), 1)
-        字物件 = 拆文分析器.對齊字物件(' ', ' ')
+        字物件 = 拆文分析器.建立字物件('｜')
         self.assertEqual(組物件.內底詞[2].內底字[0], 字物件)
 
     def test_空白邊仔有空白(self):
@@ -420,7 +415,7 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         組物件 = 拆文分析器.分詞組物件(分詞)
         self.assertEqual(len(組物件.內底詞), 6)
         self.assertEqual(len(組物件.內底詞[2].內底字), 1)
-        字物件 = 拆文分析器.對齊字物件(' ', ' ')
+        字物件 = 拆文分析器.建立字物件('｜')
         self.assertEqual(組物件.內底詞[2].內底字[0], 字物件)
 
     def test_全形空白(self):
@@ -428,8 +423,18 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         組物件 = 拆文分析器.分詞組物件(分詞)
         self.assertEqual(len(組物件.內底詞), 6)
         self.assertEqual(len(組物件.內底詞[2].內底字), 1)
-        字物件 = 拆文分析器.對齊字物件('　', '　')
+        字物件 = 拆文分析器.建立字物件('｜')
         self.assertEqual(組物件.內底詞[2].內底字[0], 字物件)
+
+    def test_連續符號(self):
+        分詞 = '去｜khi3 飛翔 ｜ ｜ ｜ 走｜tsau2 遍｜pian3 世-界｜se3-kai3'
+        組物件 = 拆文分析器.分詞組物件(分詞)
+        self.assertEqual(len(組物件.內底詞), 8)
+
+    def test_袂當用全形空白隔開(self):
+        分詞 = '去｜khi3\u3000飛-翔｜pue1-siong5'
+        with self.assertRaises(解析錯誤):
+            拆文分析器.分詞組物件(分詞)
 
     def test_接受無音的詞(self):
         分詞 = '梅山 猴-災 鄉-公所｜hiong1-kong1-soo2 tshiann2-lang5 趕-走｜kuann2-tsau2 猴山｜kau5-san1'
@@ -444,36 +449,10 @@ class 拆文分析器分詞單元試驗(unittest.TestCase):
         ]
         self.assertEqual(組物件.內底詞, 答案詞陣列)
 
-    def test_接受詞內底無一定全部攏愛有音(self):
-        分詞 = '梅-山｜mui5- 鄉-公-所｜-kong1- tshiann2-lang5 梅-山｜-san1 鄉-公-所｜hiang1--soo2 猴山｜kau5-san1'
-        梅詞物件 = 拆文分析器.建立詞物件('')
-        梅詞物件.內底字 = [
-            拆文分析器.對齊字物件('梅', 'mui5'),
-            拆文分析器.建立字物件('山'),
-        ]
-        山詞物件 = 拆文分析器.建立詞物件('')
-        山詞物件.內底字 = [
-            拆文分析器.建立字物件('梅'),
-            拆文分析器.對齊字物件('山', 'san1'),
-        ]
-        公詞物件 = 拆文分析器.建立詞物件('')
-        公詞物件.內底字 = [
-            拆文分析器.建立字物件('鄉'),
-            拆文分析器.對齊字物件('公', 'kong1'),
-            拆文分析器.建立字物件('所'),
-        ]
-        鄉所詞物件 = 拆文分析器.建立詞物件('')
-        鄉所詞物件.內底字 = [
-            拆文分析器.對齊字物件('鄉', 'hiang1'),
-            拆文分析器.建立字物件('公'),
-            拆文分析器.對齊字物件('所', 'soo2'),
-        ]
-        組物件 = 拆文分析器.分詞組物件(分詞)
-        答案詞陣列 = [
-            梅詞物件, 公詞物件, 拆文分析器.建立詞物件('tshiann2-lang5'),
-            山詞物件, 鄉所詞物件, 拆文分析器.對齊詞物件('猴山', 'kau5-san1'),
-        ]
-        self.assertEqual(組物件.內底詞, 答案詞陣列)
+    def test_讀輕聲(self):
+        分詞 = '--ê｜--ê'
+        答案 = 拆文分析器.建立句物件('--ê', '--ê')
+        self.assertEqual(拆文分析器.分詞句物件(分詞), 答案)
 
     def test_標準刪節號(self):
         組物件 = 拆文分析器.分詞組物件('枋寮｜Pang-liau5 漁港｜hi5-kang2 ……｜...')

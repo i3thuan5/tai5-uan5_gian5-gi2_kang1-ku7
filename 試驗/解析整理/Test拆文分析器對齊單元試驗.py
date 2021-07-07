@@ -133,28 +133,6 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         self.assertEqual(詞物件.內底字[0], 拆文分析器.對齊字物件(型一, 音一))
         self.assertEqual(詞物件.內底字[1], 拆文分析器.對齊字物件(型二, 音二))
 
-    def test__拆好陣列對齊詞物件濟字(self):
-        詞型 = '媠姑娘'
-        詞音 = 'sui2-koo1-niu5'
-        詞 = 拆文分析器.對齊詞物件(詞型, 詞音)
-        型一 = '媠'
-        型二 = '姑'
-        型三 = '娘'
-        音一 = 'sui2'
-        音二 = 'koo1'
-        音三 = 'niu5'
-        拆好陣列詞 = 拆文分析器._拆好陣列對齊詞物件([型一, 型二, 型三], [音一, 音二, 音三])
-        self.assertEqual(詞.內底字[0].型, 型一)
-        self.assertEqual(詞.內底字[0].音, 音一)
-        self.assertEqual(詞.內底字[1].型, 型二)
-        self.assertEqual(詞.內底字[1].音, 音二)
-        self.assertEqual(詞.內底字[2].型, 型三)
-        self.assertEqual(詞.內底字[2].音, 音三)
-        self.assertEqual(詞.內底字[0], 拆文分析器.對齊字物件(型一, 音一))
-        self.assertEqual(詞.內底字[1], 拆文分析器.對齊字物件(型二, 音二))
-        self.assertEqual(詞.內底字[2], 拆文分析器.對齊字物件(型三, 音三))
-        self.assertEqual(詞, 拆好陣列詞)
-
     def test_對齊組濟字(self):
         型 = '我有一張椅仔！'
         音 = 'gua2 u7 tsit8-tiunn1 i2-a2 !'
@@ -292,11 +270,6 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
             拆文分析器.對齊詞物件('。', '.'),
         ])
 
-    def test_對齊組濟字標點錯(self):
-        詞型 = '枋寮漁港「大條巷」上闊兩。公尺'
-        加空白後詞音 = 'Pang-liau5 hi5-kang2 「 Tua7-tiau5-hang7 」 siang7-khoah nng7-kong-tshioh . '
-        self.assertRaises(解析錯誤, 拆文分析器.對齊組物件, 詞型, 加空白後詞音)
-
     def test_對齊組連字號漢羅(self):
         型 = 'gua有tsit8-tiunn1椅仔！'
         加空白後詞音 = 'gua2 u7 tsit8-tiunn1 i2-a2 ! '
@@ -400,6 +373,12 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
     def test_對齊無仝數量空白(self):
         組物件 = 拆文分析器.對齊組物件(' ', '   ')
         self.assertEqual(組物件.內底詞, [])
+
+    def test_莫插全形空白(self):
+        漢字 = '意中人走佗藏'
+        羅馬字 = 'Ì-tiong-lâng tsáu tó tshàng　'
+        組物件 = 拆文分析器.對齊組物件(漢字, 羅馬字)
+        self.assertEqual(組物件.篩出字物件()[-1].音, 'tshàng')
 
     def test_對齊物件對空白(self):
         with self.assertRaises(解析錯誤):
@@ -530,18 +509,6 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
             拆文分析器.對齊句物件(' 恁老母ti3佗位 ！', ' lin1 lau3 bu2 ti3 to1 ui7 !'),
         ])
 
-    def test__拆好陣列對齊詞物件傳無仝濟字(self):
-        型一 = '媠'
-        型二 = '姑'
-        型三 = '娘'
-        音一 = 'ㄙㄨㄧˋ'
-        音二 = 'ㄍㆦ'
-        音三 = 'ㄋㄧㄨˊ'
-        self.assertRaises(解析錯誤, 拆文分析器._拆好陣列對齊詞物件, [型一, 型二, 型三], [音一, 音二])
-        self.assertRaises(解析錯誤, 拆文分析器._拆好陣列對齊詞物件, [型一, 型二], [音一, 音二, 音三])
-        self.assertRaises(解析錯誤, 拆文分析器._拆好陣列對齊詞物件, [型一, 型二, 型三], [])
-        self.assertRaises(解析錯誤, 拆文分析器._拆好陣列對齊詞物件, [], [音一, 音二, 音三])
-
     def test_對齊組型較濟(self):
         型 = '我有一張媠椅仔'
         音 = 'gua2 u7 tsit8-tiunn1 i2-a2'
@@ -587,10 +554,6 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         型 = ''
         音 = ''
         詞 = 拆文分析器.對齊詞物件(型, 音)
-        self.assertEqual(len(詞.內底字), 0)
-
-    def test__拆好陣列對齊詞物件無字(self):
-        詞 = 拆文分析器._拆好陣列對齊詞物件([], [])
         self.assertEqual(len(詞.內底字), 0)
 
     def test_對齊組無字(self):
@@ -694,24 +657,6 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         組物件 = 拆文分析器.對齊組物件(型, 音)
         self.assertEqual(len(組物件.內底詞), 11)
 
-    def test_字物件參數毋是字串(self):
-        with self.assertRaises(型態錯誤):
-            拆文分析器.對齊字物件('konn', ['k', 'o', 'n', 'n'])
-        with self.assertRaises(型態錯誤):
-            拆文分析器.對齊字物件(['k', 'o', 'n', 'n'], 'konn')
-
-    def test_詞物件參數毋是字串(self):
-        with self.assertRaises(型態錯誤):
-            拆文分析器.對齊詞物件('konn', ['k', 'o', 'n', 'n'])
-        with self.assertRaises(型態錯誤):
-            拆文分析器.對齊詞物件(['k', 'o', 'n', 'n'], 'konn')
-
-    def test_組物件參數毋是字串(self):
-        with self.assertRaises(型態錯誤):
-            拆文分析器.對齊組物件('konn', ['k', 'o', 'n', 'n'])
-        with self.assertRaises(型態錯誤):
-            拆文分析器.對齊組物件(['k', 'o', 'n', 'n'], 'konn')
-
     def test_客話聲調(self):
         組物件 = 拆文分析器.對齊組物件('𠊎當好！', 'ngaiˇ dong+-ho^ ！')
         self.assertEqual(len(組物件.篩出字物件()), 4)
@@ -731,13 +676,11 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         self.assertEqual(組物件.篩出字物件()[-2], 拆文分析器.對齊字物件('……', '...'))
         self.assertEqual(組物件.篩出字物件()[-1], 拆文分析器.對齊字物件('。', '.'))
 
-    def test_刪節號減一點就直接對齊(self):
+    def test_刪節號減一點就對袂齊(self):
         型 = '枋寮漁港……'
         音 = 'Pang-liau5 hi5-kang2..'
-        組物件 = 拆文分析器.對齊組物件(型, 音)
-        self.assertEqual(len(組物件.網出詞物件()), 4)
-        self.assertEqual(組物件.篩出字物件()[-2], 拆文分析器.對齊字物件('…', '.'))
-        self.assertEqual(組物件.篩出字物件()[-1], 拆文分析器.對齊字物件('…', '.'))
+        with self.assertRaises(解析錯誤):
+            拆文分析器.對齊組物件(型, 音)
 
     def test_刪節號濟標點(self):
         型 = '針對講稿的內容、聲調、動作、表情、眼神……，'
@@ -764,14 +707,7 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
     def test_純日文(self):
         日文 = "オートバイ"
         組物件 = 拆文分析器.對齊組物件(日文, 日文)
-        self.assertEqual(len(組物件.網出詞物件()), 1)
         self.assertEqual(len(組物件.篩出字物件()), 5)
-
-    def test_台語日文(self):
-        型 = '逐工踏伊的#オートバイ#（oo-tóo-bái）去貓空山頂種菜，'
-        音 = 'ta̍k kang ta̍h i ê #オートバイ# (oo-tóo-bái) khì Niau-khang suann-tíng tsìng tshài,'
-        組物件 = 拆文分析器.對齊組物件(型, 音)
-        self.assertEqual(len(組物件.網出詞物件()), 17)
 
     def test_台語前tab(self):
         型 = '千金小姐'
@@ -804,3 +740,39 @@ class 拆文分析器對齊單元試驗(unittest.TestCase):
         self.assertEqual(len(組物件.篩出字物件()), 3)
         self.assertEqual(組物件.篩出字物件()[0].看分詞(), '0mh4｜0mh4')
         self.assertEqual(組物件.篩出字物件()[-1].看分詞(), '怎｜怎')
+
+    def test_標點連做伙(self):
+        漢 = '「Haih！喔～」'
+        羅 = '“Haih! Ooh~”'
+        組物件 = 拆文分析器.對齊組物件(漢, 羅)
+        self.assertEqual(len(組物件.篩出字物件()), 6)
+
+    def test_有大括對袂濟愛一般解析錯誤(self):
+        漢 = '{Haih}'
+        羅 = '{Haih'
+        with self.assertRaises(解析錯誤):
+            拆文分析器.對齊組物件(漢, 羅)
+
+    def test_孤引號一ê(self):
+        漢 = '『'
+        羅 = "'"
+        組物件 = 拆文分析器.對齊組物件(漢, 羅)
+        self.assertEqual(len(組物件.篩出字物件()), 1)
+
+    def test_孤引號tī詞內就是詞ê一部份(self):
+        漢 = "學講 nga'ay ho"
+        羅 = "O̍h kóng nga'ay ho"
+        組物件 = 拆文分析器.對齊組物件(漢, 羅)
+        self.assertEqual(len(組物件.篩出字物件()), 4)
+
+    def test_孤引號邊仔有字就是詞ê一部份(self):
+        漢 = "有教著 'a'adopen kah ngala' 遮ê詞"
+        羅 = "Ū kàu-tio̍h 'a'adopen kah ngala' tsia ê sû"
+        組物件 = 拆文分析器.對齊組物件(漢, 羅)
+        self.assertEqual(len(組物件.篩出字物件()), 9)
+
+    def test_孤引號佇句中(self):
+        漢 = '是『風颱天』啦！'
+        羅 = "Sī ' hong-thai-thinn ' lah!"
+        組物件 = 拆文分析器.對齊組物件(漢, 羅)
+        self.assertEqual(len(組物件.篩出字物件()), 8)

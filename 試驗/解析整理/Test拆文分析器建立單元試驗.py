@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import unittest
+from unittest.mock import patch
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.基本物件.公用變數 import 無音
 from 臺灣言語工具.基本物件.字 import 字
-from 臺灣言語工具.基本物件.詞 import 詞
 
 
 class 拆文分析器建立單元試驗(unittest.TestCase):
@@ -54,16 +54,12 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
             [拆文分析器.建立字物件('tsit8'), 拆文分析器.建立字物件('張')]
         )
 
-    def test_有連字符就認連字符(self):
-        組物件 = 拆文分析器.建立組物件('無-？-bo5-?')
-        self.assertEqual(len(組物件.內底詞), 1)
-        self.assertEqual(len(組物件.篩出字物件()), 4)
-
-    def test_建立組聲調符號接音標(self):
-        組物件 = 拆文分析器.建立組物件('suiˋsuiˋ')
-        self.assertEqual(組物件.篩出字物件(), [
-            拆文分析器.建立字物件('suiˋ'), 拆文分析器.建立字物件('suiˋ')
-        ])
+    def test_建立詞底線嘛算是詞的一部份V_2(self):
+        語句 = 'V_2'
+        self.assertEqual(
+            拆文分析器.建立詞物件(語句).內底字,
+            [拆文分析器.建立字物件(語句)]
+        )
 
     def test_建立組孤字(self):
         型 = '媠'
@@ -117,112 +113,10 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
         self.assertEqual(詞陣列, 組物件.內底詞)
 
-    def test_建立組的組字式注音(self):
-        原來語句 = '⿿⿿⿿ㄙㄨㄧˋ⿿ㄍㆦ⿿⿿⿿ㄋㄧㄨˊ'
-        切好語句 = ['⿿⿿⿿ㄙㄨㄧˋ', '⿿ㄍㆦ', '⿿⿿⿿ㄋㄧㄨˊ']
-        組物件, 詞陣列 = self.建立組的切字檢查(原來語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組的注音符號(self):
-        原來語句 = 'ㄙㄨㄧˋ ㄍㆦ ㄋㄧㄨˊ'
-        切好語句 = ['ㄙㄨㄧˋ', 'ㄍㆦ', 'ㄋㄧㄨˊ']
-        組物件, 詞陣列 = self.建立組的切字檢查(原來語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組的注音摻漢字(self):
-        原來語句 = 'ㄙㄨㄧˋ 姑 ㄋㄧㄨˊ'
-        切好語句 = ['ㄙㄨㄧˋ', '姑', 'ㄋㄧㄨˊ']
-        組物件, 詞陣列 = self.建立組的切字檢查(原來語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組的注音摻英文數字(self):
-        原來語句 = 'three ㄙㄨㄧˋ 3 姑 ㄋㄧㄨˊ'
-        切好語句 = ['three', 'ㄙㄨㄧˋ', '3', '姑', 'ㄋㄧㄨˊ']
-        組物件, 詞陣列 = self.建立組的切字檢查(原來語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組的方言注音(self):
-        原來語句 = 'ㆣㄨㄚˋ ㄍㆰˊ ㄗㄨㆪˋ'
-        切好語句 = ['ㆣㄨㄚˋ', 'ㄍㆰˊ', 'ㄗㄨㆪˋ']
-        組物件, 詞陣列 = self.建立組的切字檢查(原來語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組濟連字佮符號(self):
-        原來語句 = '枋寮漁港「大-條-巷」上-闊兩-公-尺。'
-        切好語句 = ['枋寮漁港', '「', '大條巷', '」', '上闊兩公尺', '。']
-        組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組音標佮符號(self):
-        加空白後語句 = 'Pang-liau5 hi5-kang2 「 Tua7-tiau5-hang7 」 siang7-khoah nng7-kong-tshioh . '
-        切好語句 = ['Pang-liau5', 'hi5-kang2', '「', 'Tua7-tiau5-hang7', '」',
-                'siang7-khoah', 'nng7-kong-tshioh', '.']
-        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組濟字漢羅連字(self):
-        加空白後語句 = 'gua有tsit8-tiunn1椅仔 ！ '
-        切好語句 = ['gua', '有', 'tsit8-tiunn1', '椅仔', '！']
-        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組濟字漢羅空白(self):
-        原來語句 = 'gua u一張椅仔！'
-        切好語句 = ['gua', 'u', '一張椅仔', '！']
-        組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組濟字算式(self):
-        加空白後語句 = '所以是5 - 3 = 2 ! ! '
-        切好語句 = ['所以是', '5', '-', '3', '=', '2', '!', '!']
-        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組濟字其他符號(self):
-        原來語句 = '伊18:30會來'
-        切好語句 = ['伊', '18', ':', '30', '會來']
-        組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組日文前臺羅(self):
-        語句 = 'si7げ'
-        self.assertEqual(拆文分析器.建立組物件(語句).內底詞, [
-            詞([字('si7'), ]), 詞([字('げ'), ])
-        ])
-
-    def test_建立組日文後數字(self):
-        語句 = '仕上げ714'
-        self.assertEqual(拆文分析器.建立組物件(語句).內底詞, [
-            詞([字('仕'), 字('上'), 字('げ')]), 詞([字('714'), ])
-        ])
-
-    def test_建立組減號(self):
-        with self.assertRaises(解析錯誤):
-            拆文分析器.建立組物件('--')
-
     def test_雙數字音標(self):
         原來語句 = 'gua51 ai51 li51'
         切好語句 = ['gua51', 'ai51', 'li51']
         組物件, 詞陣列 = self.建立組檢查(原來語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組濟字算式佮連字號(self):
-        加空白後語句 = '食-0tsit8-kua5才來 ， 阮hak8-hau7佇大學路1001 - 1號 ， 儂莫走boo5-0ki3 。 '
-        切好語句 = [
-            '食-0tsit8-kua5', '才來', '，',
-            '阮', 'hak8-hau7', '佇大學路', '1001', '-', '1', '號', '，',
-            '儂莫走', 'boo5-0ki3', '。'
-        ]
-        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
-        self.assertEqual(詞陣列, 組物件.內底詞)
-
-    def test_建立組濟字連字號尾(self):
-        加空白後語句 = 'king2-tshat4 tsioh4-ue7 tsio1 sian3 - '
-        切好語句 = [
-            'king2-tshat4', 'tsioh4-ue7',
-            'tsio1', 'sian3', '-'
-        ]
-        組物件, 詞陣列 = self.建立組檢查(加空白後語句, 切好語句)
         self.assertEqual(詞陣列, 組物件.內底詞)
 
     def test_無空白分開的閩南語音標(self):
@@ -360,70 +254,6 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         self.assertEqual(組物件.內底詞, [拆文分析器.建立詞物件(換逝)])
         self.assertEqual(組物件.內底詞[0].內底字, [字(換逝, 無音)])
 
-    def test__拆句做字(self):
-        self.assertEqual(拆文分析器._拆句做字('腹肚枵'), ['腹', '肚', '枵'])
-        self.assertRaises(型態錯誤, 拆文分析器._拆句做字, None)
-
-    def test__拆句做字標點符號(self):
-        self.assertEqual(拆文分析器._拆句做字('腹肚枵。'), ['腹', '肚', '枵', '。'])
-        self.assertEqual(
-            拆文分析器._拆句做字('！！。。，。'), ['！', '！', '。', '。', '，', '。'])
-        self.assertEqual(
-            拆文分析器._拆句做字('!!..,.'), ['!', '!', '.', '.', ',', '.'])
-
-    def test__拆句做字無愛空白(self):
-        self.assertEqual(拆文分析器._拆句做字('腹 肚枵矣'), ['腹', '肚', '枵', '矣'])
-        self.assertEqual(拆文分析器._拆句做字('  腹 肚枵矣  '), ['腹', '肚', '枵', '矣'])
-
-    def test__拆句做字摻組字式(self):
-        self.assertEqual(拆文分析器._拆句做字('⿰因腹肚枵'), ['⿰因', '腹', '肚', '枵'])
-        self.assertEqual(
-            拆文分析器._拆句做字('你同⿰厓去睡目。'), ['你', '同', '⿰厓', '去', '睡', '目', '。'])
-        self.assertEqual(拆文分析器._拆句做字('⿰22腹肚枵'), ['⿰2', '2', '腹', '肚', '枵'])
-        self.assertRaises(解析錯誤, 拆文分析器._拆句做字, '腹肚枵⿰')
-        self.assertRaises(解析錯誤, 拆文分析器._拆句做字, '腹肚枵⿰⿰')
-        self.assertEqual(拆文分析器._拆句做字('腹肚枵⿰⿰因'), ['腹', '肚', '枵', '⿰⿰因'])
-
-    def test__拆句做字摻漢羅佮數字(self):
-        self.assertEqual(拆文分析器._拆句做字('腹肚枵ah'), ['腹', '肚', '枵', 'ah'])
-        self.assertEqual(
-            拆文分析器._拆句做字('我e腹肚枵ah'), ['我', 'e', '腹', '肚', '枵', 'ah'])
-        self.assertEqual(
-            拆文分析器._拆句做字('我ê腹肚枵ah'), ['我', 'ê', '腹', '肚', '枵', 'ah'])
-        self.assertEqual(
-            拆文分析器._拆句做字('我ê pak tóo枵ah'), ['我', 'ê', 'pak', 'tóo', '枵', 'ah'])
-        self.assertEqual(
-            拆文分析器._拆句做字('我ê pak-tóo枵ah'), ['我', 'ê', 'pak', 'tóo', '枵', 'ah'])
-        self.assertEqual(
-            拆文分析器._拆句做字('我ê pak - tóo枵ah'), ['我', 'ê', 'pak', '-', 'tóo', '枵', 'ah'])
-        self.assertEqual(
-            拆文分析器._拆句做字('我ê pak-tóo枵ah.'), ['我', 'ê', 'pak', 'tóo', '枵', 'ah', '.'])
-        self.assertEqual(
-            拆文分析器._拆句做字('我ê pak-tóo枵ah,.'), ['我', 'ê', 'pak', 'tóo', '枵', 'ah', ',', '.'])
-        self.assertEqual(拆文分析器._拆句做字('我有100箍'), ['我', '有', '100', '箍', ])
-        self.assertEqual(
-            拆文分析器._拆句做字('這馬時間12:20，'), ['這', '馬', '時', '間', '12', ':', '20', '，'])
-        self.assertEqual(
-            拆文分析器._拆句做字('物件tsin1 ho2食。'), ['物', '件', 'tsin1', 'ho2', '食', '。'])
-
-    def test__拆句做巢狀詞摻漢羅佮數字(self):
-        self.assertEqual(
-            拆文分析器._拆句做巢狀詞('腹肚枵ah'), [['腹'], ['肚'], ['枵'], ['ah']])
-        self.assertEqual(
-            拆文分析器._拆句做巢狀詞('我ê腹肚枵ah'), [['我'], ['ê'], ['腹'], ['肚'], ['枵'], ['ah']])
-        self.assertEqual(拆文分析器._拆句做巢狀詞('我ê pak tóo枵ah'),
-                         [['我'], ['ê'], ['pak'], ['tóo'], ['枵'], ['ah']])
-        self.assertEqual(
-            拆文分析器._拆句做巢狀詞('我ê pak-tóo枵ah'), [['我'], ['ê'], ['pak', 'tóo'], ['枵'], ['ah']])
-        self.assertEqual(拆文分析器._拆句做巢狀詞(
-            '我ê pak - tóo枵ah'), [['我'], ['ê'], ['pak'], ['-'], ['tóo'], ['枵'], ['ah']])
-
-    def test__拆句做巢狀詞摻組字式(self):
-        原本語句 = '⿰---⿰-- - ⿱--,⿰-,⿱⿰-,--⿱--'
-        斷詞後巢狀陣列 = [['⿰--', '⿰--'], ['-'], ['⿱--'],
-                   [','], ['⿰-,'], ['⿱⿰-,-', '⿱--']]
-        self.assertEqual(拆文分析器._拆句做巢狀詞(原本語句), 斷詞後巢狀陣列)
-
     def test__拆章做句(self):
         self._拆章做句('我腹肚枵，欲來去食飯。', ['我腹肚枵，', '欲來去食飯。'])
         self._拆章做句('伊講：我腹肚枵，欲來去食飯。', ['伊講：我腹肚枵，', '欲來去食飯。'])
@@ -556,6 +386,10 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
             拆文分析器.建立字物件('…'),
         ])
 
+    def test_破折號(self):
+        詞物件 = 拆文分析器.建立詞物件('──')
+        self.assertEqual(詞物件.篩出字物件(), [拆文分析器.建立字物件('──')])
+
     def test_tab當做空白(self):
         組物件 = 拆文分析器.建立組物件('\t千金小姐\ttshian1-kim1-sio2-tsia2\t')
         self.assertEqual(
@@ -576,3 +410,53 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
         組物件 = 拆文分析器.建立組物件('\t\t')
         self.assertEqual(len(組物件.網出詞物件()), 0)
         self.assertEqual(len(組物件.篩出字物件()), 0)
+
+    def test_兩參數就當做是對齊字(self):
+        字物件 = 拆文分析器.建立字物件('媠', 'Suí')
+        self.assertEqual(字物件.型, '媠')
+        self.assertEqual(字物件.音, 'Suí')
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊詞物件')
+    def test_兩參數就當做是對齊詞(self, 對齊mock):
+        拆文分析器.建立詞物件('媠', 'Suí')
+        對齊mock.assert_called_once_with('媠', 'Suí')
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊詞物件')
+    def test_兩參數的結果佮對齊詞仝款(self, 對齊mock):
+        self.assertEqual(拆文分析器.建立詞物件('媠', 'Suí'), 對齊mock.return_value)
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊組物件')
+    def test_兩參數就當做是對齊組(self, 對齊mock):
+        拆文分析器.建立組物件('媠', 'Suí')
+        對齊mock.assert_called_once_with('媠', 'Suí')
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊組物件')
+    def test_兩參數的結果佮對齊組仝款(self, 對齊mock):
+        self.assertEqual(拆文分析器.建立組物件('媠', 'Suí'), 對齊mock.return_value)
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊集物件')
+    def test_兩參數就當做是對齊集(self, 對齊mock):
+        拆文分析器.建立集物件('媠', 'Suí')
+        對齊mock.assert_called_once_with('媠', 'Suí')
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊集物件')
+    def test_兩參數的結果佮對齊集仝款(self, 對齊mock):
+        self.assertEqual(拆文分析器.建立集物件('媠', 'Suí'), 對齊mock.return_value)
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊句物件')
+    def test_兩參數就當做是對齊句(self, 對齊mock):
+        拆文分析器.建立句物件('媠', 'Suí')
+        對齊mock.assert_called_once_with('媠', 'Suí')
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊句物件')
+    def test_兩參數的結果佮對齊句仝款(self, 對齊mock):
+        self.assertEqual(拆文分析器.建立句物件('媠', 'Suí'), 對齊mock.return_value)
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊章物件')
+    def test_兩參數就當做是對齊章(self, 對齊mock):
+        拆文分析器.建立章物件('媠', 'Suí')
+        對齊mock.assert_called_once_with('媠', 'Suí')
+
+    @patch('臺灣言語工具.解析整理.拆文分析器.拆文分析器.對齊章物件')
+    def test_兩參數的結果佮對齊章仝款(self, 對齊mock):
+        self.assertEqual(拆文分析器.建立章物件('媠', 'Suí'), 對齊mock.return_value)

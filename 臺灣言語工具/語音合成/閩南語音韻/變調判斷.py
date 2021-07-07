@@ -2,14 +2,14 @@
 from 臺灣言語工具.基本物件.公用變數 import 本調符號
 from 臺灣言語工具.基本物件.句 import 句
 from 臺灣言語工具.基本物件.章 import 章
-from 臺灣言語工具.語音合成.閩南語音韻.變調.規則變調 import 規則變調
-from 臺灣言語工具.語音合成.閩南語音韻.變調.維持本調 import 維持本調
-from 臺灣言語工具.語音合成.閩南語音韻.變調.無調符號 import 無調符號
-from 臺灣言語工具.語音合成.閩南語音韻.變調.輕聲 import 輕聲
-from 臺灣言語工具.語音合成.閩南語音韻.變調.三連音變調 import 三連音變調
-from 臺灣言語工具.語音合成.閩南語音韻.變調.仔前變調 import 仔前變調
-from 臺灣言語工具.語音合成.閩南語音韻.變調.隨前變調 import 隨前變調
-from 臺灣言語工具.語音合成.閩南語音韻.變調.再變調 import 再變調
+from 臺灣言語工具.語音合成.閩南語音韻.變調 import 規則變調
+from 臺灣言語工具.語音合成.閩南語音韻.變調 import 維持本調
+from 臺灣言語工具.語音合成.閩南語音韻.變調 import 無調符號
+from 臺灣言語工具.語音合成.閩南語音韻.變調 import 輕聲
+from 臺灣言語工具.語音合成.閩南語音韻.變調 import 三連音變調
+from 臺灣言語工具.語音合成.閩南語音韻.變調 import 仔前變調
+from 臺灣言語工具.語音合成.閩南語音韻.變調 import 隨前變調
+from 臺灣言語工具.語音合成.閩南語音韻.變調 import 再變調
 
 
 class 變調判斷:
@@ -67,6 +67,7 @@ class 變調判斷:
                 紲落來是本調 = True
             elif len(字物件.音) != 3:
                 尾結果.append(無調符號)
+                紲落來是本調 = True
             else:
                 _聲, _韻, 調 = 字物件.音
                 if len(尾結果) > 0 and 尾結果[-1] == 隨前變調:
@@ -132,7 +133,9 @@ class 變調判斷:
 
     @classmethod
     def 是再變調(cls, 字物件):
-        if 字物件.型 in ['欲', '去']:
+        if 字物件.型 in ['去', '咧', ]:
+            return True
+        if 字物件.型 == '欲' and 字物件.音[0] == 'b':
             return True
         return False
 

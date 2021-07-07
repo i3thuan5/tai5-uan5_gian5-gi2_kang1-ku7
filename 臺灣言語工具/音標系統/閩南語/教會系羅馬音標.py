@@ -21,18 +21,12 @@ import unicodedata
     'ń': ('n', '2'), 'ǹ': ('n', '3'), 'n̂': ('n', '5'), 'ň': ('n', '6'),
     'n̄': ('n', '7'), 'n̍': ('n', '8'), 'n̋': ('n', '9'), 'ň': ('n', '6'),
 }
-實際調值對應調號 = {
-    '11': '3',
-    '33': '7',
-    '55': '1',
-    '51': '2',
-    '35': '5',
-}
 
 
 class 教會系羅馬音標(閩南語音標介面):
     # 0 tsh iaunnh 10
     音標上長長度 = 1 + 3 + 6 + 2
+    聲調符號表 = 教會系羅馬音標聲調符號表
 
     def __init__(self):
         self.聲 = None
@@ -43,12 +37,13 @@ class 教會系羅馬音標(閩南語音標介面):
         self.音標 = None
 
     def 分析聲韻調(self, 音標):
-        self.聲調符號表 = 教會系羅馬音標聲調符號表
-# 		self.音標 = ''
         音標 = self.正規法(音標)
         if 音標.startswith('0'):
             self.輕 = '0'
             音標 = 音標[1:]
+        elif 音標.startswith('--'):
+            self.輕 = '--'
+            音標 = 音標[2:]
         elif 音標.startswith('1'):
             self.外來語 = '1'
             音標 = 音標[1:]
@@ -60,34 +55,27 @@ class 教會系羅馬音標(閩南語音標介面):
         elif self.韻[-1] in ['p', 't', 'k', 'h']:
             if self.調 is None:
                 self.調 = '4'
-            elif self.調 in {'4', '8', '10', '0'}:  # 中高低調入聲、輕聲
-                pass
-            elif self.調 in {'1', '3', '5'}:
-                self.外來語 = '1'
-                if self.調 == '1':
-                    self.調 = '10'
-                elif self.調 == '3':
-                    self.調 = '4'
-                else:
-                    self.調 = '8'
-            else:
+            elif self.調 not in {'4', '8', '10', '0'}:  # 中高低調入聲、輕聲
                 音標是著的 = False
         else:
             if self.調 is None:
                 self.調 = '1'
             elif self.調 in {'4', '8', '10'}:
                 音標是著的 = False
-            elif self.調 in 實際調值對應調號:
-                self.外來語 = '1'
-                self.調 = 實際調值對應調號[self.調]
             elif len(self.調) == 1:
                 pass
             else:
                 音標是著的 = False
-        if self.聲 == 'm' or self.聲 == 'ng':
-            if self.韻 != 'ng' and self.韻 != 'ngh' and ('n' in self.韻 or 'm' in self.韻):
+        if self.聲 in ['m', 'n', 'ng']:
+            if self.韻 not in ['ng', 'ngh'] and ('n' in self.韻 or 'm' in self.韻):
                 音標是著的 = False
-
+            elif self.韻[-1] in ['p', 't', 'k']:
+                音標是著的 = False
+            elif self.韻 == 'o':
+                音標是著的 = False
+        if self.聲 in ['b', 'l', 'g']:
+            if 'nn' in self.韻:
+                音標是著的 = False
         if 音標是著的:
             self.做音標()
         else:

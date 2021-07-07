@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
+from kesi.susia.POJ import tsuanPOJ
+from kesi.susia.TL import tsuanTL
 from 臺灣言語工具.音標系統.閩南語.教會系羅馬音標 import 教會系羅馬音標
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組 import 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉音值模組 import 臺灣閩南語羅馬字拼音轉音值模組
+from sys import stderr
+from 臺灣言語工具.音標系統.閩南語.對照表 import 臺羅對白話字
 
 臺灣閩南語羅馬字拼音聲母表 = {
     'p', 'ph', 'm', 'b',
@@ -20,7 +24,6 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
     'im', 'in', 'ing',
     'o', 'oh',
     'oo', 'ooh', 'op', 'ok', 'om', 'ong', 'onn', 'onnh',
-    'oi', 'oih',  # 硩⿰落去
     'u', 'uh', 'ut', 'un',
     'ai', 'aih', 'ainn', 'ainnh',
     'au', 'auh', 'aunn', 'aunnh',
@@ -34,7 +37,7 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
     'iau', 'iauh', 'iaunn', 'iaunnh',
     'uai', 'uaih', 'uainn', 'uainnh',
     'm', 'mh', 'ng', 'ngh',
-    'ioo', 'iooh',  # 諾 0hioo 0hiooh
+    'ioo', 'iooh',  # 諾 0hioo 0hiooh, 詞目總檔.csv:khan35 jioo51
 }
 臺灣閩南語羅馬字拼音次方言韻母表 = {
     'er', 'erh', 'erm', 'ere', 'ereh',  # 泉　鍋
@@ -44,6 +47,7 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
     'ie',  # 鹿港偏泉腔
     'or', 'orh', 'ior', 'iorh',  # 蚵
     'uang',  # 金門偏泉腔　　風　huang1
+    'oi', 'oih',  # 詞彙方言差.csv:硩⿰落去
 }
 臺灣閩南語羅馬字拼音韻母表 = 臺灣閩南語羅馬字拼音通行韻母表 | 臺灣閩南語羅馬字拼音次方言韻母表
 
@@ -112,15 +116,7 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
     'ui': 'ui', 'uih': 'uih', 'uinn': 'uinn', 'uinnh': 'uinnh',
     'u': 'u', 'uh': 'uh', 'ut': 'ut',
     'un': 'un',
-    # 下跤是次方言
-    'or': 'or', 'orh': 'orh', 'ior': 'ior', 'iorh': 'iorh',
-    'eng': 'ing',
-    'ee': 'e', 'eeh': 'eh', 'uee': 'ue',  # 有問題
-    'ir': 'i', 'irh': 'ih', 'irp': 'ip', 'irt': 'it', 'irk': 'ik',  # 有問題
-    'irm': 'im', 'irn': 'in', 'irng': 'ing', 'irinn': 'inn',  # 有問題
-    'er': 'or', 'erh': 'orh', 'erm': 'orm', 'erm': 'orm',
-    'ere': 'er', 'ereh': 'erh',
-    'ie': 'ie', 'uang': 'uang',
+    'uang': 'uang',
 }
 臺羅對通用調對照表 = {
     '1': '1', '7': '2', '3': '3', '2': '4', '5': '5',
@@ -132,22 +128,22 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉
 class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
     聲母表 = 臺灣閩南語羅馬字拼音聲母表
     韻母表 = 臺灣閩南語羅馬字拼音韻母表
-    聲調符號表 = None
 
     數字調轉閏號調表 = 臺灣閩南語羅馬字拼音數字調轉閏號調表
 
     對通用聲對照表 = 臺羅對通用聲對照表
     對通用韻對照表 = 臺羅對通用韻對照表
     對通用調對照表 = 臺羅對通用調對照表
+
+    對白話字聲對照表 = 臺羅對白話字.聲對照表
+    對白話字韻對照表 = 臺羅對白話字.韻對照表
+    對白話字調對照表 = 臺羅對白話字.調對照表
+
     轉音值模組 = 臺灣閩南語羅馬字拼音轉音值模組()
 
     def __init__(self, 音標):
         super(臺灣閩南語羅馬字拼音, self).__init__()
         self.分析聲韻調(音標)
-        if self.聲 == 'm' or self.聲 == 'n' or self.聲 == 'ng':
-            if self.韻 == 'o':
-                self.韻 = 'oo'
-                self.做音標()
         if self.調 not in self.對通用調對照表:
             self.調 = None
             self.音標 = None
@@ -156,21 +152,16 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
     def 轉換到臺灣閩南語羅馬字拼音(self):
         return self.音標
 
-    def 轉閏號調(self):
+    def 轉調符(self):
         if self.音標 is None:
             return None
+        if self.原本音標[0] == '0':
+            return '0' + tsuanTL(self.原本音標[1:])
+        return tsuanTL(self.原本音標)
 
-        for 符號 in ['a', 'oo', 'o', 'ee', 'ere', 'e', 'iri', 'ui', 'iu', 'u', 'i', 'ng', 'm']:
-            if 符號 in self.音標:
-                if self.調 in ['1', '4']:  # 第一調、第四調，免符號
-                    韻 = self.韻
-                else:
-                    韻 = self.韻.replace(符號, self.數字調轉閏號調表[(符號, self.調)])
-                break
-        聲韻 = self.聲 + 韻
-        if self.原本音標.strip('01')[0].isupper():
-            聲韻 = 聲韻[0].upper() + 聲韻[1:]
-        return self.輕 + self.外來語 + 聲韻
+    def 轉閏號調(self):
+        print('「轉閏號調」會佇7.0版會提掉，請改用「轉調符」', file=stderr)
+        return self.轉調符()
 
     def 轉通用拼音(self):
         if self.音標 is None:
@@ -180,6 +171,25 @@ class 臺灣閩南語羅馬字拼音(教會系羅馬音標):
             self.對通用韻對照表[self.韻] +
             self.對通用調對照表[self.調]
         )
+
+    def 轉白話字(self):
+        if self.音標 is None:
+            return None
+        if self.原本音標[0] == '0':
+            return '0' + tsuanPOJ(self.原本音標[1:])
+        return tsuanPOJ(self.原本音標)
+
+    def 轉白話字數字調(self):
+        if self.音標 is None:
+            return None
+        return (
+            self.對白話字聲對照表[self.聲] +
+            self.對白話字韻對照表[self.韻] +
+            self.對白話字調對照表[self.調]
+        )
+
+    def 轉吳守禮方音(self):
+        return 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組(self.聲, self.韻, self.調, self.輕).音標
 
     def 產生吳守禮方音物件(self):
         return 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組(self.聲, self.韻, self.調, self.輕)

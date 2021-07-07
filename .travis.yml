@@ -1,61 +1,78 @@
 sudo: true
-dist: trusty
+dist: bionic
 language: python
 python:
-- '3.4'
-- '3.5'
+- '3.7'
 env:
-- TOX_ENV=單元試驗
-- TOX_ENV=文本整合試驗
-- TOX_ENV=HTS整合試驗
-- TOX_ENV=HTK整合試驗
-- TOX_ENV=KenLM整合試驗
-- TOX_ENV=Moses整合試驗
-- TOX_ENV=中研院整合試驗
-- TOX_ENV=flake8
+  matrix:
+  - TOX_ENV=tanguan
+  - TOX_ENV=bunpun
+  - TOX_ENV=HTS
+  - TOX_ENV=HTK
+  - TOX_ENV=KenLM
+#  - TOX_ENV=Moses
+  - TOX_ENV=ckip
+  - TOX_ENV=naer
+  - TOX_ENV=flake8
+  - TOX_ENV=docker
+services:
+- docker
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
     packages:
-      - gcc-4.9
-      - g++-4.9
-      - python3-dev
-      - libc6-dev-i386
-      - linux-libc-dev
-      - gcc-multilib
-      - git
-      - subversion
-      - automake
-      - libtool
-      - zlib1g-dev
-      - libbz2-dev
-      - liblzma-dev
-      - libboost-all-dev
-      - libgoogle-perftools-dev
-      - libxmlrpc-c++.*-dev
-      - cmake
-      - csh
+    - gcc
+    - g++
+    - python3-dev
+    - libc6-dev-i386
+    - linux-libc-dev
+    - gcc-multilib
+    - git
+    - subversion
+    - automake
+    - libtool
+    - zlib1g-dev
+    - libbz2-dev
+    - liblzma-dev
+    - libboost-all-dev
+    - libgoogle-perftools-dev
+    - libxmlrpc-c++.*-dev
+    - cmake
+    - csh
 install:
-- sudo dpkg --add-architecture i386
 - sudo apt-get update
-- sudo apt-get install libx11-dev libx11-dev:i386
+- sudo apt-get install libx11-dev
 - pip install tox
 - pip install python-coveralls
 branches:
   only:
   - master
-  - /\d+\.\d+\.\d+/
+  - "/^\\d+\\.\\d+\\.\\d+$/"
 script:
 - tox -e $TOX_ENV
 after_success:
 - coverage report
 - coveralls
-deploy:
-  provider: pypi
-  user: sih4sing5hong5
-  password:
-    secure: QRLD6yPZ92b//ylVExoFZO+BGlHGZ/6ktu8nYIcnZTdE3zJsHR5fAlEkvELpT1yCHr//LU4ovcZ5O/R28YY/+naj/8cRqv4K5yvV70Wq5Sbj+TtQBuaNkMb3Vnif7GlLro9PZK2l224mBJsqFvykg9OLm+TBcRUB0fJMeS4x4gMQiOvWWDPyWAq/toJ6qknQqO199r8sbwu5BJtC0wo6nly048a46RcpTb9bkOil/i6gcA/X8TNDMmc1ah7XHp1zBwnUA6TQ0BfBu+COanwLykIG1Q8CsCp2+bH7CdPDZDZk0qTKlMSZFT5wWD0a3ABnPbXKcynUeCORgKpIW2JrHzTbQT4RW1OfDJ4LKXK+IS9H6qEgECkPPXcbySYDJabpz0bAy6JkkMB9q8PuHTII8vluwwgKT3Ws2LyqseE/tY6lZbF+dQRylEfzCGYOV+ICWYHsA3Nx2tDaxmHJFTKpLkK8yTxpJd0o6NJffIsIFIBEMQehXPyBELRxkJ1OMVMK3wE5u5nb7hlMoOpzG4KgxhBQi79/Iz1V9scC2Jp1vrwFJF/zNZIID1aMWHYBWBkytfjo9GnaUV3jADPbXhCy+K6Igbn8QRVjRXhxDEow844KvPxQ7NzCU1JDP2nNup1+NKNcWCAExs5wSw0wYTyYxizi6BXhepvYeWzV4gMzAZQ=
-  on:
-    tags: true
-    repo: sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7
+
+jobs:
+  include:
+    - stage: deploy
+      script: skip
+      deploy:
+        provider: pypi
+        user: sih4sing5hong5
+        password:
+          secure: QRLD6yPZ92b//ylVExoFZO+BGlHGZ/6ktu8nYIcnZTdE3zJsHR5fAlEkvELpT1yCHr//LU4ovcZ5O/R28YY/+naj/8cRqv4K5yvV70Wq5Sbj+TtQBuaNkMb3Vnif7GlLro9PZK2l224mBJsqFvykg9OLm+TBcRUB0fJMeS4x4gMQiOvWWDPyWAq/toJ6qknQqO199r8sbwu5BJtC0wo6nly048a46RcpTb9bkOil/i6gcA/X8TNDMmc1ah7XHp1zBwnUA6TQ0BfBu+COanwLykIG1Q8CsCp2+bH7CdPDZDZk0qTKlMSZFT5wWD0a3ABnPbXKcynUeCORgKpIW2JrHzTbQT4RW1OfDJ4LKXK+IS9H6qEgECkPPXcbySYDJabpz0bAy6JkkMB9q8PuHTII8vluwwgKT3Ws2LyqseE/tY6lZbF+dQRylEfzCGYOV+ICWYHsA3Nx2tDaxmHJFTKpLkK8yTxpJd0o6NJffIsIFIBEMQehXPyBELRxkJ1OMVMK3wE5u5nb7hlMoOpzG4KgxhBQi79/Iz1V9scC2Jp1vrwFJF/zNZIID1aMWHYBWBkytfjo9GnaUV3jADPbXhCy+K6Igbn8QRVjRXhxDEow844KvPxQ7NzCU1JDP2nNup1+NKNcWCAExs5wSw0wYTyYxizi6BXhepvYeWzV4gMzAZQ=
+        on:
+          tags: true
+    - script: skip
+      before_deploy:
+      - npm run build
+      - provider: pages
+        skip_cleanup: true
+        github_token:
+          secure: 0Ln1L7/PQ55Hz5wAq5OglgvJCYKUKtRokYFNUqRrLBDoq4g+xT8TafjqCGJ+rr+OVvpzCAwQr0MBCesc7THtPVoNiSiXBYnMf4YCE0MfDwuN+8OW4PNjgalaxPVJ4BS4c7hBDHWHljmQncx1rsjjNfaXAPUtR6Nr77aVYiWLtDp+VH9oKb+CvhOAY1FG48hceqrO8OjkkBwNeoyVWWQdf8yyWEzEakLe7/D30h+bLhoLyGmrR9R2km4xCZYUw7+TxD6aerFJgz7PPT60ERAKN/83d/WvEHMqmiXlprGYQ1NETBV+TAiLetdW7v01U+RSIr8DE92/3nJSn5ucH91GbjgYmR2IG5laate2340bvaC3j2mxTmfx4ncCgvnet0YIzBOgJk0TNifKBlGfuc7J1DQm0lZ1yAZz/khJTGi9UyF2xtmi70ud8dRzIQmsr31kfoQ1e5pak0jfTY7D3Mlt64nTEezzLuOvTm0muLdMhtrfrLF/TN1qg3nNJbnUvG5MdT0qolA1OKc+JbvXy2YT7f4I70p4iRp2DL5FIXA8l595e0PO5FmyZDdyihjcr+Tl/PqrkhsgFZIPUdlyn4PFAdcYQIBww7wnmNH+lTf5C+XwYRKwZWdkjaN/AfTxIhVwmj9z2aJV631BTLBjnYzo2RsI42li3ySoZFDEvM6FoZQ=
+        local_dir: "文件/_build/html"
+        on:
+          branch: master
