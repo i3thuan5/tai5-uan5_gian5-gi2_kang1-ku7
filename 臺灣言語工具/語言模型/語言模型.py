@@ -5,7 +5,6 @@ from abc import ABCMeta
 from abc import abstractmethod
 from 臺灣言語工具.基本物件.詞 import 詞
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
 
 
 class 語言模型(metaclass=ABCMeta):
@@ -31,7 +30,7 @@ class 語言模型(metaclass=ABCMeta):
         pass
 
     def 評分(self, 物件):
-        詞陣列 = [self.開始()] + 詞物件網仔.網出詞物件(物件) + [self.結束()]
+        詞陣列 = [self.開始()] + 物件.網出詞物件() + [self.結束()]
         return self.評詞陣列分(詞陣列, 開始的所在=1)
 
     def perplexity(self, 物件):

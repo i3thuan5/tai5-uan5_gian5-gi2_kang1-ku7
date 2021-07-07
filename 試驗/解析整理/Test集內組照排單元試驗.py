@@ -5,7 +5,6 @@ from 臺灣言語工具.基本物件.集 import 集
 from 臺灣言語工具.基本物件.句 import 句
 from 臺灣言語工具.基本物件.章 import 章
 from 臺灣言語工具.解析整理.集內組照排 import 集內組照排
-from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from timeit import itertools
 
 
@@ -22,10 +21,9 @@ class 集內組照排單元試驗(TestCase):
         答案集 = 集()
         答案集.內底組 = [空, 一]
         顛倒集.物件 = '6'
-        譀鏡 = 物件譀鏡()
 
         def 排法(組物件):
-            return 譀鏡.看型(組物件)
+            return 組物件.看型()
         self.assertEqual(集內組照排.排(排法, 顛倒集), 答案集)
         self.assertEqual(集內組照排.排(排法, 答案集), 答案集)
         self.assertEqual(集內組照排.排(排法, 顛倒集).內底組[0].屬性, 空.屬性)
