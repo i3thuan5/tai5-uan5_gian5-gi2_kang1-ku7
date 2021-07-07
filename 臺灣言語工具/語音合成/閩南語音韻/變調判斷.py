@@ -119,7 +119,7 @@ class 變調判斷:
 
     @classmethod
     def 是代名詞無(cls, 字物件):
-        if 字物件.型 in ['我', '你', '伊', '咱', '阮', '恁', '𪜶', ]:
+        if 字物件.型.lstrip('-') in ['我', '你', '伊', '咱', '阮', '恁', '𪜶', ]:
             return True
         return False
 
