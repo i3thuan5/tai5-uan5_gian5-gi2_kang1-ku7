@@ -4,7 +4,6 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 im
 from os.path import join, dirname
 from csv import DictReader
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
-from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
 
 
 class 臺灣閩南語羅馬字拼音調符整合試驗(TestCase):
@@ -13,7 +12,7 @@ class 臺灣閩南語羅馬字拼音調符整合試驗(TestCase):
         詞條檔名 = join(dirname(__file__), '語料', '詞目總檔.csv')
         with open(詞條檔名) as 檔案:
             for 一逝 in DictReader(檔案):
-                組物件 = 拆文分析器.建立組物件(文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 一逝['音讀']))
+                組物件 = 拆文分析器.建立組物件(一逝['音讀'])
                 for 字物件 in 組物件.篩出字物件():
                     拼音物件 = 臺灣閩南語羅馬字拼音(字物件.型)
                     if 拼音物件.音標 is not None:
