@@ -9,7 +9,6 @@ from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.基本物件.公用變數 import 組字式符號
 from 臺灣言語工具.基本物件.公用變數 import 聲調符號
-from 臺灣言語工具.基本物件.公用變數 import 敢是注音符號
 from 臺灣言語工具.基本物件.公用變數 import 標點符號
 from 臺灣言語工具.基本物件.公用變數 import 敢是拼音字元
 
@@ -23,14 +22,6 @@ class _文字判斷:
     @classmethod
     def 敢是漢字iahsi組字式(cls, 字元):
         return unicodedata.category(字元) in cls._統一碼漢字佮組字式類
-
-    @classmethod
-    def 敢是hiragana(cls, 字元):
-        return cls._hiragana範圍.match(字元)
-
-    @classmethod
-    def 敢是katakana(cls, 字元):
-        return cls._katakana範圍.match(字元)
 
 
 class 文章粗胚:
@@ -254,26 +245,6 @@ class 文章粗胚:
                 結果.append(cls.數字英文中央全加分字符號(部份語句))
             else:
                 結果.append(部份語句)
-        return ''.join(結果)
-
-    @classmethod
-    def 漢字中央加分字符號(cls, 語句):
-        結果 = []
-        for 字 in 語句:
-            try:
-                if (
-                    (
-                        _文字判斷.敢是漢字iahsi組字式(字) and
-                        _文字判斷.敢是漢字iahsi組字式(結果[-1]) and
-                        (not 敢是注音符號(結果[-1]) or not 敢是注音符號(字))
-                    ) or
-                    (_文字判斷.敢是hiragana(結果[-1]) and _文字判斷.敢是hiragana(字)) or
-                    (_文字判斷.敢是katakana(結果[-1]) and _文字判斷.敢是katakana(字))
-                ):
-                    結果.append(分字符號)
-            except IndexError:
-                pass
-            結果.append(字)
         return ''.join(結果)
 
     @classmethod
