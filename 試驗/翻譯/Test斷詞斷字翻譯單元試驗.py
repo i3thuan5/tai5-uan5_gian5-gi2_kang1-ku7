@@ -6,7 +6,6 @@ from unittest.mock import patch, call
 from 臺灣言語工具.翻譯.摩西工具.摩西用戶端 import 摩西用戶端
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.基本物件.章 import 章
-from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.基本物件.句 import 句
 from 臺灣言語工具.基本物件.組 import 組
 from 臺灣言語工具.基本物件.集 import 集
@@ -229,7 +228,7 @@ class 斷詞斷字翻譯單元試驗(TestCase):
             self.斷詞孤字未知詞譯孤字, self.斷字孤字未知詞譯袂出來
         ]
         結果句物件, _, _ = self.翻譯工具.翻譯分析(self.華語句物件)
-        self.assertEqual(物件譀鏡.看型(結果句物件.內底集[1].內底組[0]), '要')
+        self.assertEqual(結果句物件.內底集[1].內底組[0].看型(), '要')
         self.assertTrue(結果句物件.內底集[1].內底組[0].屬性['未知詞'])
 
     def test_斷字毋是未知詞的詞袂使記錄(self):
@@ -237,7 +236,7 @@ class 斷詞斷字翻譯單元試驗(TestCase):
             self.斷詞孤字未知詞譯孤字, self.斷字孤字未知詞譯袂出來
         ]
         結果句物件, _, _ = self.翻譯工具.翻譯分析(self.華語句物件)
-        self.assertEqual(物件譀鏡.看型(結果句物件.內底集[0].內底組[0]), '阮')
+        self.assertEqual(結果句物件.內底集[0].內底組[0].看型(), '阮')
         self.assertFalse(結果句物件.內底集[0].內底組[0].屬性['未知詞'])
 
     def test_斷詞雙字未知詞譯孤字(self):
@@ -259,7 +258,7 @@ class 斷詞斷字翻譯單元試驗(TestCase):
             self.斷詞雙字未知詞譯雙字, self.斷字雙字未知詞譯袂出來
         ]
         結果句物件, _, _ = self.翻譯工具.翻譯分析(self.華語句物件)
-        self.assertEqual(物件譀鏡.看分詞(結果句物件.內底集[3]), '吃-飯')
+        self.assertEqual(結果句物件.內底集[3].看分詞(), '吃-飯')
 
     def test_斷字雙字未知詞譯袂出來閩南語未知詞紀錄(self):
         self.xmlrpcMock.return_value.translate.side_effect = [
@@ -375,7 +374,7 @@ class 斷詞斷字翻譯單元試驗(TestCase):
         ]
         _, 華語新結構句物件, _ = self.翻譯工具.翻譯分析(self.華語句物件)
         self.assertEqual(
-            物件譀鏡.看型(華語新結構句物件, 物件分詞符號=' '),
+            華語新結構句物件.看型(物件分詞符號=' '),
             '我們 要 去吃飯 。'
         )
 

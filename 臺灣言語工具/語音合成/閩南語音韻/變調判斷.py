@@ -34,18 +34,24 @@ class 變調判斷:
         for 詞物件 in 結果句物件.網出詞物件():
             一詞的字陣列 = 詞物件.篩出字物件()
             try:
-                if 一詞的字陣列[0].音[2] == '0':
-                    for 字物件 in 一詞的字陣列[1:]:
+                後壁攏輕聲 = False
+                for 字物件 in 一詞的字陣列[1:]:
+                    if 字物件.音[2] == '0':
+                        後壁攏輕聲 = True
+                    if 後壁攏輕聲 and len(字物件.音) == 3:
                         字物件.音 = 字物件.音[:2] + ('0',)
             except IndexError:
                 pass
             if len(一詞的字陣列) == 3 and len(set(一詞的字陣列)) == 1:
                 一詞的字陣列[0].是三連音 = True
-            有仔 = False
-            for 字物件 in 一詞的字陣列:
-                有仔 = 有仔 or cls.是仔無(字物件)
-            if 有仔:
-                一詞的字陣列[-1].有仔 = True
+            for sootsai in range(len(一詞的字陣列)):
+                if cls.是仔無(一詞的字陣列[sootsai]):
+                    phiau_puntiau = sootsai
+                    for tshue in range(sootsai, len(一詞的字陣列)):
+                        if 一詞的字陣列[tshue].音[2] == '0':
+                            break
+                        phiau_puntiau = tshue
+                    一詞的字陣列[phiau_puntiau].有仔是名詞 = True
         字陣列 = 結果句物件.篩出字物件()
         尾結果 = []
         紲落來是本調 = True
@@ -58,16 +64,16 @@ class 變調判斷:
                 尾結果.append(三連音變調)
                 紲落來是本調 = False
                 這个是斷詞點 = True
-            elif hasattr(字物件, '有仔'):
-                delattr(字物件, '有仔')
-                尾結果.append(維持本調)
-                紲落來是本調 = False
             elif cls.是井號無(字物件):
                 尾結果.append(cls.愛提掉的)
                 紲落來是本調 = True
             elif len(字物件.音) != 3:
                 尾結果.append(無調符號)
                 紲落來是本調 = True
+            elif hasattr(字物件, '有仔是名詞'):
+                delattr(字物件, '有仔是名詞')
+                尾結果.append(維持本調)
+                紲落來是本調 = False
             else:
                 _聲, _韻, 調 = 字物件.音
                 if len(尾結果) > 0 and 尾結果[-1] == 隨前變調:
@@ -119,7 +125,7 @@ class 變調判斷:
 
     @classmethod
     def 是代名詞無(cls, 字物件):
-        if 字物件.型 in ['我', '你', '伊', '咱', '阮', '恁', '𪜶', ]:
+        if 字物件.型.lstrip('-') in ['我', '你', '伊', '咱', '阮', '恁', '𪜶', ]:
             return True
         return False
 
@@ -127,7 +133,7 @@ class 變調判斷:
     def 輕聲是隨前變調無(cls, 字物件):
         if cls.是代名詞無(字物件):
             return True
-        if 字物件.型 in ['的', '仔', '裡', ]:
+        if 字物件.型 in ['--的', '--仔', '--裡', ]:
             return True
         return False
 

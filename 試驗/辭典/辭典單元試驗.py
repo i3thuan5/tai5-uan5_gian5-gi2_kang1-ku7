@@ -3,7 +3,6 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.基本物件.詞 import 詞
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
-from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from os import remove
 from unittest.mock import patch, call
 
@@ -110,7 +109,7 @@ class 辭典單元試驗:
         詞陣列 = [self.對齊詞, self.詞音標]
         with open(檔名, 'w') as 檔案:
             for 詞物件 in 詞陣列:
-                print(物件譀鏡.看分詞(詞物件), file=檔案)
+                print(詞物件.看分詞(), file=檔案)
         with patch('臺灣言語工具.辭典.{0}.{0}.加詞'.format(self.辭典型態.__name__)) as 加詞mock:
             self.字典.加檔案的詞(檔名)
             call陣列 = []

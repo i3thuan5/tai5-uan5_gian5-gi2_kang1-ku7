@@ -6,7 +6,6 @@ from unittest.mock import patch, call
 from 臺灣言語工具.翻譯.摩西工具.摩西用戶端 import 摩西用戶端
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.基本物件.章 import 章
-from 臺灣言語工具.解析整理.物件譀鏡 import 物件譀鏡
 from 臺灣言語工具.基本物件.句 import 句
 from 臺灣言語工具.基本物件.集 import 集
 from 臺灣言語工具.翻譯.摩西工具.語句編碼器 import 語句編碼器
@@ -70,12 +69,6 @@ class 摩西用戶端單元試驗(TestCase):
 
     def tearDown(self):
         self.xmlrpcPatcher.stop()
-
-    @patch('臺灣言語工具.解析整理.物件譀鏡.物件譀鏡.看分詞')
-    def test_用看分詞(self, 分詞mock):
-        self.xmlrpcMock.return_value.translate.return_value = self.全漢翻譯結果
-        self.用戶端.翻譯分析(self.華語句物件)
-        分詞mock.assert_called_once_with(self.華語句物件)
 
     @patch('臺灣言語工具.翻譯.摩西工具.無編碼器.無編碼器.編碼')
     def test_有編碼(self, 編碼mock):
@@ -185,20 +178,20 @@ class 摩西用戶端單元試驗(TestCase):
     def test_未知詞的詞愛記錄(self):
         self.xmlrpcMock.return_value.translate.return_value = self.翻譯結果有未知詞出來
         結果句物件, _, _ = self.用戶端.翻譯分析(self.華語句物件)
-        self.assertEqual(物件譀鏡.看型(結果句物件.內底集[1].內底組[0]), '要')
+        self.assertEqual(結果句物件.內底集[1].內底組[0].看型(), '要')
         self.assertTrue(結果句物件.內底集[1].內底組[0].屬性['未知詞'])
 
     def test_毋是未知詞的詞袂使記錄(self):
         self.xmlrpcMock.return_value.translate.return_value = self.翻譯結果有未知詞出來
         結果句物件, _, _ = self.用戶端.翻譯分析(self.華語句物件)
-        self.assertEqual(物件譀鏡.看型(結果句物件.內底集[0].內底組[0]), '阮')
+        self.assertEqual(結果句物件.內底集[0].內底組[0].看型(), '阮')
         self.assertFalse(結果句物件.內底集[0].內底組[0].屬性['未知詞'])
 
     def test_翻譯結果先後有變化(self):
         self.xmlrpcMock.return_value.translate.return_value = self.翻譯結果先後有變化
         結果句物件, _, _ = self.用戶端.翻譯分析(self.華語句物件)
-        self.assertEqual(物件譀鏡.看型(結果句物件.內底集[1].內底組[0]), '食飯')
-        self.assertEqual(物件譀鏡.看型(結果句物件.內底集[1].內底組[0].翻譯來源組物件), '吃飯')
+        self.assertEqual(結果句物件.內底集[1].內底組[0].看型(), '食飯')
+        self.assertEqual(結果句物件.內底集[1].內底組[0].翻譯來源組物件.看型(), '吃飯')
 
     @patch('臺灣言語工具.翻譯.摩西工具.摩西用戶端.摩西用戶端._翻譯句物件')
     def test_章物件的結果是章物件(self, 翻譯句物件mock):

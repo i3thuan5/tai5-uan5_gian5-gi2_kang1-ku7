@@ -6,7 +6,6 @@ from math import pow
 
 
 from 臺灣言語工具.語言模型.語言模型 import 語言模型
-from 臺灣言語工具.解析整理.詞物件網仔 import 詞物件網仔
 '''
 甲乙丙
 數量=C(丙), C(乙丙), C(甲乙丙)
@@ -80,7 +79,7 @@ class 實際語言模型(語言模型):
         if isinstance(物件, 章):
             self.看章物件(物件)
             return
-        詞陣列 = [self.開始()] + 詞物件網仔.網出詞物件(物件) + [self.結束()]
+        詞陣列 = [self.開始()] + 物件.網出詞物件() + [self.結束()]
         for 長度 in range(1, self.上濟詞數() + 1):
             for 所在 in range(len(詞陣列) - 長度 + 1):
                 self.總數表[長度 - 1] += 1
