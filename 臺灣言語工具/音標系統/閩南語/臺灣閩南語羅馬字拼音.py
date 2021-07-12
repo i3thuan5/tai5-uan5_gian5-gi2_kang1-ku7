@@ -4,7 +4,6 @@ from kesi.susia.TL import tsuanTL
 from 臺灣言語工具.音標系統.閩南語.教會系羅馬音標 import 教會系羅馬音標
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組 import 臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音轉音值模組 import 臺灣閩南語羅馬字拼音轉音值模組
-from sys import stderr
 from 臺灣言語工具.音標系統.閩南語.對照表 import 臺羅對白話字
 
 臺灣閩南語羅馬字拼音聲母表 = {
