@@ -10,7 +10,7 @@
 
 目前支援臺語/閩南語、客話，南島語需要大家的幫忙！！
 
-用法請看[說明文件](http://sih4sing5hong5.github.io/tai5-uan5_gian5-gi2_kang1-ku7)
+用法請看[說明文件](https://i3thuan5.github.io/tai5-uan5_gian5-gi2_kang1-ku7/)
 
 
 ## 快速安裝
