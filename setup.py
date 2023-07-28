@@ -56,7 +56,6 @@ setup(
         'kesi',
         'htsengine',
         'pypi-kenlm',
-        'pypi-bleualign',
         'pydub',
     ],
 )
