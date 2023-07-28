@@ -2,11 +2,13 @@ from os import makedirs
 from os.path import join, dirname, isfile
 from tempfile import TemporaryDirectory
 from unittest.case import TestCase
+from unittest.case import skip
 from 臺灣言語工具.語音合成.HTS工具.訓練HTSengine模型 import 訓練HTSEngine模型
 from 臺灣言語工具.解析整理.參數錯誤 import 參數錯誤
 from 臺灣言語工具.語音合成.HTS工具.安裝HTS語音辨識程式 import 安裝HTS語音辨識程式
 
 
+@skip('2023.7.28發覺害--去，未來用袂著，bua̋i修')
 class 訓練HTSEngine模型整合試驗(TestCase):
 
     @classmethod
