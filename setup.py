@@ -54,8 +54,6 @@ setup(
     ],
     install_requires=[
         'kesi',
-        'htsengine',
-        'pypi-kenlm',
         'pydub',
     ],
 )
