@@ -13,7 +13,6 @@ env:
   - TOX_ENV=ckip
   - TOX_ENV=naer
   - TOX_ENV=flake8
-  - TOX_ENV=docker
 services:
 - docker
 addons:
