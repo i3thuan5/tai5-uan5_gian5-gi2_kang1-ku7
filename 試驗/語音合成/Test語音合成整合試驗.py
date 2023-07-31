@@ -16,7 +16,7 @@ from 臺灣言語工具.語音合成.閩南語音韻規則 import 閩南語音�
 
 
 class 語音合成整合試驗(TestCase):
-    模型網址 = 'http://sih4sing5hong5.github.io/hts_engine_python/example/Taiwanese.htsvoice'
+    模型網址 = 'https://i3thuan5.github.io/hts_engine_python/example/Taiwanese.htsvoice'
     閩南語模型 = 'Taiwanese.htsvoice'
 
     @classmethod

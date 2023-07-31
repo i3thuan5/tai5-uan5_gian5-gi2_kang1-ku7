@@ -15,9 +15,14 @@
 
 ## 快速安裝
 ```bash
-sudo apt-get install -y python3 python-virtualenv g++ python3-dev zlib1g-dev libbz2-dev liblzma-dev libboost-all-dev # Ubuntu/Mint 安裝指令
-virtualenv --python=python3 venv; . venv/bin/activate; pip install --upgrade pip # 設置環境檔
 pip install tai5-uan5_gian5-gi2_kang1-ku7 # 安裝臺灣言語工具
+```
+### 安裝其他套件
+若需要HTS抑是KenLM，請另外安裝：
+```bash
+sudo apt-get install -y python3 python-virtualenv g++ python3-dev zlib1g-dev libbz2-dev liblzma-dev libboost-all-dev # Ubuntu/Mint 安裝指令
+pip install htsengine
+pip install pypi-kenlm
 ```
 
 ## 相關專案
