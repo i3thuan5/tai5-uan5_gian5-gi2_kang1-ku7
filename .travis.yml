@@ -1,4 +1,4 @@
-dist: jammy
+dist: focal
 language: python
 python:
 - '3.8'
@@ -47,6 +47,7 @@ branches:
   only:
   - master
   - "/^\\d+\\.\\d+\\.\\d+$/"
+  - siu-ghpage
 script:
 - tox -e $TOX_ENV
 after_success:
@@ -70,8 +71,7 @@ jobs:
       deploy:
         provider: pages
         skip_cleanup: true
-        github_token:
-          secure: 0Ln1L7/PQ55Hz5wAq5OglgvJCYKUKtRokYFNUqRrLBDoq4g+xT8TafjqCGJ+rr+OVvpzCAwQr0MBCesc7THtPVoNiSiXBYnMf4YCE0MfDwuN+8OW4PNjgalaxPVJ4BS4c7hBDHWHljmQncx1rsjjNfaXAPUtR6Nr77aVYiWLtDp+VH9oKb+CvhOAY1FG48hceqrO8OjkkBwNeoyVWWQdf8yyWEzEakLe7/D30h+bLhoLyGmrR9R2km4xCZYUw7+TxD6aerFJgz7PPT60ERAKN/83d/WvEHMqmiXlprGYQ1NETBV+TAiLetdW7v01U+RSIr8DE92/3nJSn5ucH91GbjgYmR2IG5laate2340bvaC3j2mxTmfx4ncCgvnet0YIzBOgJk0TNifKBlGfuc7J1DQm0lZ1yAZz/khJTGi9UyF2xtmi70ud8dRzIQmsr31kfoQ1e5pak0jfTY7D3Mlt64nTEezzLuOvTm0muLdMhtrfrLF/TN1qg3nNJbnUvG5MdT0qolA1OKc+JbvXy2YT7f4I70p4iRp2DL5FIXA8l595e0PO5FmyZDdyihjcr+Tl/PqrkhsgFZIPUdlyn4PFAdcYQIBww7wnmNH+lTf5C+XwYRKwZWdkjaN/AfTxIhVwmj9z2aJV631BTLBjnYzo2RsI42li3ySoZFDEvM6FoZQ=
+        github_token: ${GITHUB_TOKEN}
         local_dir: "文件/_build/html"
         on:
-          branch: master
+          branch: siu-ghpage
