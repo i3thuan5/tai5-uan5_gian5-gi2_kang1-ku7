@@ -57,6 +57,7 @@ after_success:
 jobs:
   include:
     - stage: deploy
+      name: pypi
       if: branch ~= /\d+\.\d+\.\d+/
       script: skip
       deploy:
@@ -65,9 +66,9 @@ jobs:
         password: ${PYPI_PASSWORD}
         on:
           tags: true
-    - script: skip
-      before_deploy:
-      - npm run build
+    - name: gh-page bunkiann
+      script:
+      - tox -e bunkiann
       deploy:
         provider: pages
         skip_cleanup: true
