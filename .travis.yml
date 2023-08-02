@@ -47,7 +47,6 @@ branches:
   only:
   - master
   - "/^\\d+\\.\\d+\\.\\d+$/"
-  - siu-ghpage
 script:
 - tox -e $TOX_ENV
 after_success:
@@ -67,6 +66,7 @@ jobs:
         on:
           tags: true
     - name: gh-page bunkiann
+      if: branch == master
       script:
       - tox -e bunkiann
       deploy:
@@ -75,4 +75,4 @@ jobs:
         github_token: ${GITHUB_TOKEN}
         local_dir: "html"
         on:
-          branch: siu-ghpage
+          branch: master
