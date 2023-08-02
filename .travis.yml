@@ -73,6 +73,6 @@ jobs:
         provider: pages
         skip_cleanup: true
         github_token: ${GITHUB_TOKEN}
-        local_dir: "文件/_build/html"
+        local_dir: "html"
         on:
           branch: siu-ghpage
