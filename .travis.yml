@@ -9,7 +9,6 @@ env:
   - TOX_ENV=HTS
   - TOX_ENV=HTK
   - TOX_ENV=KenLM
-  - TOX_ENV=naer
   - TOX_ENV=flake8
 services:
 - docker
