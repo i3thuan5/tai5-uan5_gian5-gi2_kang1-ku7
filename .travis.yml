@@ -20,24 +20,7 @@ addons:
     - gcc
     - g++
     - python3-dev
-    - libc6-dev-i386
-    - linux-libc-dev
-    - gcc-multilib
-    - git
-    - subversion
-    - automake
-    - libtool
-    - zlib1g-dev
-    - libbz2-dev
-    - liblzma-dev
-    - libboost-all-dev
-    - libgoogle-perftools-dev
-    - libxmlrpc-c++.*-dev
-    - cmake
-    - csh
 install:
-- sudo apt-get update
-- sudo apt-get install libx11-dev
 - pip install tox
 - pip install python-coveralls
 branches:
