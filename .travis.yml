@@ -7,7 +7,6 @@ env:
   - TOX_ENV=tanguan
   - TOX_ENV=bunpun
   - TOX_ENV=HTS
-  - TOX_ENV=HTK
   - TOX_ENV=KenLM
   - TOX_ENV=flake8
 services:
@@ -46,7 +45,7 @@ jobs:
         on:
           tags: true
     - name: gh-page bunkiann
-      if: branch == master
+      if: type == push AND branch == master
       script:
       - tox -e bunkiann
       deploy:
