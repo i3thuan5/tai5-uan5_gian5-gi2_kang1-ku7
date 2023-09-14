@@ -269,7 +269,7 @@ class 拆文分析器建立單元試驗(unittest.TestCase):
 
     def _拆章做句(self, 語句, 答案):
         self.assertEqual(
-            [句物件.看型() for 句物件 in 拆文分析器.建立章物件(語句).內底句],
+            [句物件.看語句() for 句物件 in 拆文分析器.建立章物件(語句).內底句],
             答案
         )
 

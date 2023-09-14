@@ -16,7 +16,7 @@ class 集單元試驗(TestCase):
         型 = '恁老母ti3佗位'
         音 = 'lin1 lau3 bu2 ti3 to1 ui7'
         集物件 = 拆文分析器.對齊集物件(型, 音)
-        self.assertEqual(集物件.看型(), 型)
+        self.assertEqual(集物件.看語句(), 型)
         self.assertEqual(集物件.看音(), 音)
         分詞 = '恁｜lin1 老｜lau3 母｜bu2 ti3｜ti3 佗｜to1 位｜ui7'
         self.assertEqual(集物件.看分詞(), 分詞)
@@ -25,6 +25,6 @@ class 集單元試驗(TestCase):
         型 = '恁老母ti3佗位'
         音 = 'lin1 lau3 bu2 ti3 to1 ui7'
         集物件 = 集([拆文分析器.對齊組物件(型, 音), 拆文分析器.對齊組物件(型, 音)])
-        self.assertRaises(解析錯誤, 集物件.看型)
+        self.assertRaises(解析錯誤, 集物件.看語句)
         self.assertRaises(解析錯誤, 集物件.看音)
         self.assertRaises(解析錯誤, 集物件.看分詞)

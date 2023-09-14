@@ -23,7 +23,7 @@ class 集內組照排單元試驗(TestCase):
         顛倒集.物件 = '6'
 
         def 排法(組物件):
-            return 組物件.看型()
+            return 組物件.看語句()
         self.assertEqual(集內組照排.排(排法, 顛倒集), 答案集)
         self.assertEqual(集內組照排.排(排法, 答案集), 答案集)
         self.assertEqual(集內組照排.排(排法, 顛倒集).內底組[0].屬性, 空.屬性)

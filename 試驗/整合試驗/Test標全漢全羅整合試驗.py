@@ -29,4 +29,4 @@ class 標全漢全羅整合試驗(TestCase):
             .揀(語言模型揀集內組, 閩南語語言模型)
         )
         self.assertEqual(章物件.看音(), 'gua2 ai3 a1-sui2')
-        self.assertEqual(章物件.看型(), '我愛阿媠')
+        self.assertEqual(章物件.看語句(), '我愛阿媠')
