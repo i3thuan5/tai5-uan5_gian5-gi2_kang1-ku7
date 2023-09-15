@@ -16,7 +16,7 @@ class 章單元試驗(TestCase):
         型 = '恁老母ti3佗位！恁老母ti3佗位！'
         音 = 'lin1 lau3 bu2 ti3 to1 ui7 ! lin1 lau3 bu2 ti3 to1 ui7 !'
         章物件 = 拆文分析器.對齊章物件(型, 音)
-        self.assertEqual(章物件.看語句(), 型)
+        self.assertEqual(章物件.看語句(物件分句符號=''), 型)
         self.assertEqual(章物件.看音(), 音)
         分詞 = '恁｜lin1 老｜lau3 母｜bu2 ti3｜ti3 佗｜to1 位｜ui7 ！｜! 恁｜lin1 老｜lau3 母｜bu2 ti3｜ti3 佗｜to1 位｜ui7 ！｜!'
         self.assertEqual(章物件.看分詞(), 分詞)
@@ -25,7 +25,7 @@ class 章單元試驗(TestCase):
         型 = '恁老母ti3佗位！恁lau3-bu2-ti3佗位！'
         音 = 'lin1 lau3-bu2 ti3 to1 ui7 ! lin1 lau3-bu2-ti3 to1-ui7 !'
         章物件 = 拆文分析器.對齊章物件(型, 音)
-        self.assertEqual(章物件.看語句(), 型)
+        self.assertEqual(章物件.看語句(物件分句符號=''), 型)
         self.assertEqual(章物件.看音(), 音)
         分詞 = '恁｜lin1 老-母｜lau3-bu2 ti3｜ti3 佗｜to1 位｜ui7 ！｜! 恁｜lin1 lau3-bu2-ti3｜lau3-bu2-ti3 佗-位｜to1-ui7 ！｜!'
         self.assertEqual(章物件.看分詞(), 分詞)
@@ -33,7 +33,7 @@ class 章單元試驗(TestCase):
     def test_預設分句符號(self):
         原本語句 = '食-飽｜tsiah8-pa2 未｜0bue7 ？｜? 食-飽｜tsiah8-pa2 矣｜0ah4 ！｜!'
         章物件 = 拆文分析器.分詞章物件(原本語句)
-        self.assertEqual(章物件.看語句(),
+        self.assertEqual(章物件.看語句(物件分句符號=''),
                          '食飽未？食飽矣！')
         self.assertEqual(章物件.看音(),
                          'tsiah8-pa2 0bue7 ? tsiah8-pa2 0ah4 !')
