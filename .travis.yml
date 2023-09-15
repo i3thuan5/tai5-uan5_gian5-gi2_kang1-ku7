@@ -36,14 +36,6 @@ jobs:
         - coverage report
         - coveralls
     - name: KenLM
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - gcc
-            - g++
-            - python3-dev
       install:
         - pip install tox
       script:
