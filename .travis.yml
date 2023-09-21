@@ -55,7 +55,12 @@ jobs:
           organization: "ithuan"
           token: ${SONAR_TOKEN}
       script:
-        - sonar-scanner
+        - |
+          sonar-scanner
+            -Dsonar.organization=ithuan
+            -Dsonar.projectKey=ithuan_tai5-uan5_gian5-gi2_kang1-ku7
+            -Dsonar.sources=.
+            -Dsonar.host.url=https://sonarcloud.io
     - stage: deploy
       name: pypi
       if: branch ~= /\d+\.\d+\.\d+/
