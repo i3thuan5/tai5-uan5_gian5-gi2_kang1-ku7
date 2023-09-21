@@ -42,17 +42,6 @@ jobs:
       after_success:
         - sonar-scanner
     - name: KenLM
-      install:
-        - pip install tox
-      script:
-        - tox -e KenLM
-    - name: flake8
-      install:
-        - pip install tox
-      script:
-        - tox -e flake8
-    - stage: sonarcloud
-      name: coverage
       addons:
         sonarcloud:
           organization: "ithuan"
@@ -60,8 +49,14 @@ jobs:
       install:
         - pip install tox
       script:
-        - tox -e coverage
+        - tox -e KenLM
+      after_success:
         - sonar-scanner
+    - name: flake8
+      install:
+        - pip install tox
+      script:
+        - tox -e flake8
     - stage: deploy
       name: pypi
       if: branch ~= /\d+\.\d+\.\d+/
