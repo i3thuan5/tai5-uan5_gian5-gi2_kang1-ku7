@@ -43,6 +43,7 @@ jobs:
         - tox -e flake8
     - stage: sonarcloud
       name: coverage
+      language: java
       jdk: openjdk17
       addons:
         sonarcloud:
