@@ -9,16 +9,13 @@ branches:
 jobs:
   include:
     - name: tanguan
-      addons:
-        sonarcloud:
-          organization: "ithuan"
-          token: ${SONAR_TOKEN}
       install:
         - pip install tox
       script:
         - tox -e tanguan
       after_success:
-        - sonar-scanner
+        - pip install awscli
+        - aws s3 cp coverage.xml s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/coverage-tanguan.xml
     - name: bunpun
       addons:
         sonarcloud:
@@ -42,10 +39,6 @@ jobs:
       after_success:
         - sonar-scanner
     - name: KenLM
-      addons:
-        sonarcloud:
-          organization: "ithuan"
-          token: ${SONAR_TOKEN}
       install:
         - pip install tox
       script:
@@ -57,6 +50,18 @@ jobs:
         - pip install tox
       script:
         - tox -e flake8
+    - stage: sonarcloud
+      addons:
+        sonarcloud:
+          organization: "ithuan"
+          token: ${SONAR_TOKEN}
+      name: coverage
+      install: skip
+      before_script:
+        - pip install awscli
+        - aws s3 sync s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/ .coverage-reports/
+      script:
+        - sonar-scanner
     - stage: deploy
       name: pypi
       if: branch ~= /\d+\.\d+\.\d+/
