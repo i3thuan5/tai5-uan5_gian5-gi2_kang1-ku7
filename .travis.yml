@@ -11,34 +11,30 @@ jobs:
     - name: tanguan
       install:
         - pip install tox
+        - pip install awscli
       script:
         - tox -e tanguan
-      after_success:
-        - pip install awscli
         - aws s3 cp --endpoint-url ${AWS_S3_ENDPOINT_URL} coverage.xml s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/coverage-tanguan.xml
     - name: bunpun
       install:
         - pip install tox
+        - pip install awscli
       script:
         - tox -e bunpun
-      after_success:
-        - pip install awscli
         - aws s3 cp --endpoint-url ${AWS_S3_ENDPOINT_URL} coverage.xml s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/coverage-bunpun.xml
     - name: HTS
       install:
         - pip install tox
+        - pip install awscli
       script:
         - tox -e HTS
-      after_success:
-        - pip install awscli
         - aws s3 cp --endpoint-url ${AWS_S3_ENDPOINT_URL} coverage.xml s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/coverage-HTS.xml
     - name: KenLM
       install:
         - pip install tox
+        - pip install awscli
       script:
         - tox -e KenLM
-      after_success:
-        - pip install awscli
         - aws s3 cp --endpoint-url ${AWS_S3_ENDPOINT_URL} coverage.xml s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/coverage-KenLM.xml
     - name: flake8
       install:
