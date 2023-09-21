@@ -9,14 +9,16 @@ branches:
 jobs:
   include:
     - name: tanguan
+      addons:
+        sonarcloud:
+          organization: "ithuan"
+          token: ${SONAR_TOKEN}
       install:
         - pip install tox
       script:
         - tox -e tanguan
       after_success:
-        - pip install python-coveralls
-        - coverage report
-        - coveralls
+        - sonar-scanner
     - name: bunpun
       install:
         - pip install tox
@@ -55,12 +57,7 @@ jobs:
           organization: "ithuan"
           token: ${SONAR_TOKEN}
       script:
-        - |
-          sonar-scanner \
-            -Dsonar.organization=ithuan \
-            -Dsonar.projectKey=ithuan_tai5-uan5_gian5-gi2_kang1-ku7 \
-            -Dsonar.sources=. \
-            -Dsonar.host.url=https://sonarcloud.io
+        - sonar-scanner
     - stage: deploy
       name: pypi
       if: branch ~= /\d+\.\d+\.\d+/
