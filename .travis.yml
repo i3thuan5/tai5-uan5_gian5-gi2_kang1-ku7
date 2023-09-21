@@ -20,44 +20,43 @@ jobs:
       after_success:
         - sonar-scanner
     - name: bunpun
+      addons:
+        sonarcloud:
+          organization: "ithuan"
+          token: ${SONAR_TOKEN}
       install:
         - pip install tox
       script:
         - tox -e bunpun
       after_success:
-        - pip install python-coveralls
-        - coverage report
-        - coveralls
+        - sonar-scanner
     - name: HTS
+      addons:
+        sonarcloud:
+          organization: "ithuan"
+          token: ${SONAR_TOKEN}
       install:
         - pip install tox
       script:
         - tox -e HTS
       after_success:
-        - pip install python-coveralls
-        - coverage report
-        - coveralls
+        - sonar-scanner
     - name: KenLM
+      addons:
+        sonarcloud:
+          organization: "ithuan"
+          token: ${SONAR_TOKEN}
       install:
         - pip install tox
       script:
         - tox -e KenLM
       after_success:
-        - pip install python-coveralls
-        - coverage report
-        - coveralls
+        - sonar-scanner
     - name: flake8
       install:
         - pip install tox
       script:
         - tox -e flake8
-    - name: sonarcloud
-      addons:
-        sonarcloud:
-          organization: "ithuan"
-          token: ${SONAR_TOKEN}
-      script:
-        - sonar-scanner
     - stage: deploy
       name: pypi
       if: branch ~= /\d+\.\d+\.\d+/
