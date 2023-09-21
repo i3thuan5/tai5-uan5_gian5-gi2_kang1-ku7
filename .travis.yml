@@ -49,6 +49,13 @@ jobs:
         - pip install tox
       script:
         - tox -e flake8
+    - name: sonarcloud
+      addons:
+        sonarcloud:
+          organization: "ithuan"
+          token: ${SONAR_TOKEN}
+      script:
+        - sonar-scanner
     - stage: deploy
       name: pypi
       if: branch ~= /\d+\.\d+\.\d+/
