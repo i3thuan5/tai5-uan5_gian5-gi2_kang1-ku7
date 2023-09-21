@@ -42,11 +42,12 @@ jobs:
       script:
         - tox -e flake8
     - stage: sonarcloud
+      name: coverage
+      jdk: openjdk17
       addons:
         sonarcloud:
           organization: "ithuan"
           token: ${SONAR_TOKEN}
-      name: coverage
       install: skip
       before_script:
         - pip install awscli
