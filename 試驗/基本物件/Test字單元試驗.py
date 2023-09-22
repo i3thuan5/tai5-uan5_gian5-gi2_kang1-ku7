@@ -29,13 +29,13 @@ class 字單元試驗(TestCase):
         型 = '我'
         音 = 'gua2'
         字物件 = 字(型, 音)
-        self.assertEqual(字物件.看型(), 型)
+        self.assertEqual(字物件.看語句(), 型)
         self.assertEqual(字物件.看音(), 音)
         self.assertEqual(字物件.看分詞(), 型 + '｜' + 音)
 
     def test_看字無音(self):
         字物件 = 字('媠')
-        self.assertEqual(字物件.看型(), '媠')
+        self.assertEqual(字物件.看語句(), '媠')
         self.assertEqual(字物件.看音(), '')
         self.assertEqual(字物件.看分詞(), '媠')
 

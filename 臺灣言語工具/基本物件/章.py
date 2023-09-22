@@ -33,11 +33,11 @@ class 章(功能):
     def __repr__(self):
         return self.__str__()
 
-    def 看型(self, 物件分字符號='', 物件分詞符號='', 物件分句符號=''):
-        句的型 = []
-        for 一句 in self.內底句:
-            句的型.append(一句.看型(物件分字符號, 物件分詞符號))
-        return 物件分句符號.join(句的型)
+    def 看語句(self, 物件分句符號='\n'):
+        ku = []
+        for tsua in self.內底句:
+            ku.append(tsua.看語句())
+        return 物件分句符號.join(ku)
 
     def 看音(self, 物件分字符號=分字符號, 物件分詞符號=分詞符號, 物件分句符號=分詞符號):
         句的音 = []

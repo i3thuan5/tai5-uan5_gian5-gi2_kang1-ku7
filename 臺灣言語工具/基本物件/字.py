@@ -49,9 +49,6 @@ class 字(功能):
     def 看語句(self):
         return self.型
 
-    def 看型(self, 物件分字符號='', 物件分詞符號='', 物件分句符號=''):
-        return self.型
-
     def 看音(self, 物件分字符號=分字符號, 物件分詞符號=分詞符號, 物件分句符號=分詞符號):
         return self.音
 

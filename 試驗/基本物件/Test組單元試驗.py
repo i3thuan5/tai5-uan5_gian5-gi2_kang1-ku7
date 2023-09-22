@@ -15,7 +15,7 @@ class 組單元試驗(TestCase):
         型 = '恁老母ti3佗位！'
         音 = 'lin1 lau3 bu2 ti3 to1 ui7 !'
         組物件 = 拆文分析器.對齊組物件(型, 音)
-        self.assertEqual(組物件.看型(), 型)
+        self.assertEqual(組物件.看語句(), 型)
         self.assertEqual(組物件.看音(), 音)
         分詞 = '恁｜lin1 老｜lau3 母｜bu2 ti3｜ti3 佗｜to1 位｜ui7 ！｜!'
         self.assertEqual(組物件.看分詞(), 分詞)
@@ -24,7 +24,7 @@ class 組單元試驗(TestCase):
         型 = '恁老母ti3佗位！'
         音 = 'lin1 lau3-bu2 ti3 to1-ui7 !'
         組物件 = 拆文分析器.對齊組物件(型, 音)
-        self.assertEqual(組物件.看型(), 型)
+        self.assertEqual(組物件.看語句(), 型)
         self.assertEqual(組物件.看音(), 音)
         分詞 = '恁｜lin1 老-母｜lau3-bu2 ti3｜ti3 佗-位｜to1-ui7 ！｜!'
         self.assertEqual(組物件.看分詞(), 分詞)

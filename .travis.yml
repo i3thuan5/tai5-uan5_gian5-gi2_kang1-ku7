@@ -2,59 +2,53 @@ dist: focal
 language: python
 python:
 - '3.8'
-env:
-  jobs:
-  - TOX_ENV=tanguan
-  - TOX_ENV=bunpun
-  - TOX_ENV=HTS
-  - TOX_ENV=HTK
-  - TOX_ENV=KenLM
-#  - TOX_ENV=Moses
-  - TOX_ENV=ckip
-  - TOX_ENV=naer
-  - TOX_ENV=flake8
-services:
-- docker
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - gcc
-    - g++
-    - python3-dev
-    - libc6-dev-i386
-    - linux-libc-dev
-    - gcc-multilib
-    - git
-    - subversion
-    - automake
-    - libtool
-    - zlib1g-dev
-    - libbz2-dev
-    - liblzma-dev
-    - libboost-all-dev
-    - libgoogle-perftools-dev
-    - libxmlrpc-c++.*-dev
-    - cmake
-    - csh
-install:
-- sudo apt-get update
-- sudo apt-get install libx11-dev
-- pip install tox
-- pip install python-coveralls
 branches:
   only:
   - master
   - "/^\\d+\\.\\d+\\.\\d+$/"
-script:
-- tox -e $TOX_ENV
-after_success:
-- coverage report
-- coveralls
-
 jobs:
   include:
+    - name: tanguan
+      install:
+        - pip install tox
+      script:
+        - tox -e tanguan
+      after_success:
+        - pip install python-coveralls
+        - coverage report
+        - coveralls
+    - name: bunpun
+      install:
+        - pip install tox
+      script:
+        - tox -e bunpun
+      after_success:
+        - pip install python-coveralls
+        - coverage report
+        - coveralls
+    - name: HTS
+      install:
+        - pip install tox
+      script:
+        - tox -e HTS
+      after_success:
+        - pip install python-coveralls
+        - coverage report
+        - coveralls
+    - name: KenLM
+      install:
+        - pip install tox
+      script:
+        - tox -e KenLM
+      after_success:
+        - pip install python-coveralls
+        - coverage report
+        - coveralls
+    - name: flake8
+      install:
+        - pip install tox
+      script:
+        - tox -e flake8
     - stage: deploy
       name: pypi
       if: branch ~= /\d+\.\d+\.\d+/
@@ -66,9 +60,11 @@ jobs:
         on:
           tags: true
     - name: gh-page bunkiann
-      if: branch == master
+      if: type == push AND branch == master
+      install:
+        - pip install tox
       script:
-      - tox -e bunkiann
+       - tox -e bunkiann
       deploy:
         provider: pages
         skip_cleanup: true

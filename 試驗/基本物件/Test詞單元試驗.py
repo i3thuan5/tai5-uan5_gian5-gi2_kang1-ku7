@@ -22,7 +22,7 @@ class 詞單元試驗(TestCase):
         音 = 'koo1-niu5'
         詞物件 = 拆文分析器.對齊詞物件(型, 音)
         無分字型 = 型.replace(分字符號, '')
-        self.assertEqual(詞物件.看型(), 無分字型)
+        self.assertEqual(詞物件.看語句(), 無分字型)
         self.assertEqual(詞物件.看音(), 音)
         分詞 = 型 + '｜' + 音
         self.assertEqual(詞物件.看分詞(), 分詞)
