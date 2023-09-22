@@ -1,0 +1,11 @@
+# 語音辨識（Speech Recognition）
+語音辨識就是共語音轉做文字，
+會當用佇語音指令佮問答系統（親像蘋果公司的Siri）。
+
+這方面的開源工具有`Kaldi`佮`HTK`
+
+## Kaldi
+Bô提供Kaldi相關script，kaldi資料請參考[hackmd](https://hackmd.io/c/rynyewdXG/)。
+   
+## HTK
+臺灣言語工具2.0.0版後，bô koh提供[HTK](http://htk.eng.cam.ac.uk/)功能--ah。

@@ -1,0 +1,11 @@
+# 詞性標記（POS Tagging）
+* 輸入
+  * 斷詞的母語語句
+* 輸出
+  * 每個詞的詞性
+  
+## 華語詞性
+### 中研院斷詞
+
+### 結巴中文
+[github文件](https://github.com/fxsjy/jieba#4-%E8%AF%8D%E6%80%A7%E6%A0%87%E6%B3%A8)
