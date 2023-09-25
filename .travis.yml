@@ -9,6 +9,9 @@ branches:
 jobs:
   include:
     - stage: sonarcloud
+      language: 
+        - python
+        - java
       name: coverage
       jdk: openjdk17
       addons:
