@@ -11,6 +11,7 @@ jobs:
         - java --version
     - name: python
       language: python
+      python: '3.10'
       jdk: openjdk17
       script:
         - java --version
