@@ -53,7 +53,7 @@ setup(
         'Topic :: Text Processing :: Linguistic',
     ],
     install_requires=[
-        'kesi',
-        'pydub',
+        'kesi>=1,<2',
+        'pydub~=0.25.1',
     ],
 )
