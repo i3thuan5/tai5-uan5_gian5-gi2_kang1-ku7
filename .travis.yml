@@ -8,73 +8,15 @@ branches:
   - "/^\\d+\\.\\d+\\.\\d+$/"
 jobs:
   include:
-    - name: tanguan
-      install:
-        - pip install tox
-        - pip install awscli
-      script:
-        - tox -e tanguan
-        - aws s3 cp --endpoint-url ${AWS_S3_ENDPOINT_URL} coverage.xml s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/coverage-tanguan.xml
-    - name: bunpun
-      install:
-        - pip install tox
-        - pip install awscli
-      script:
-        - tox -e bunpun
-        - aws s3 cp --endpoint-url ${AWS_S3_ENDPOINT_URL} coverage.xml s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/coverage-bunpun.xml
-    - name: HTS
-      install:
-        - pip install tox
-        - pip install awscli
-      script:
-        - tox -e HTS
-        - aws s3 cp --endpoint-url ${AWS_S3_ENDPOINT_URL} coverage.xml s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/coverage-HTS.xml
-    - name: KenLM
-      install:
-        - pip install tox
-        - pip install awscli
-      script:
-        - tox -e KenLM
-        - aws s3 cp --endpoint-url ${AWS_S3_ENDPOINT_URL} coverage.xml s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/coverage-KenLM.xml
-    - name: flake8
-      install:
-        - pip install tox
-      script:
-        - tox -e flake8
     - stage: sonarcloud
       name: coverage
-      language: java
       jdk: openjdk17
       addons:
         sonarcloud:
           organization: "ithuan"
           token: ${SONAR_TOKEN}
-      install: skip
       before_script:
         - pip install awscli
         - aws s3 sync --endpoint-url ${AWS_S3_ENDPOINT_URL} s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/ .coverage-reports/
       script:
         - sonar-scanner
-    - stage: deploy
-      name: pypi
-      if: branch ~= /\d+\.\d+\.\d+/
-      script: skip
-      deploy:
-        provider: pypi
-        username: __token__
-        password: ${PYPI_PASSWORD}
-        on:
-          tags: true
-    - name: gh-page bunkiann
-      if: type == push AND branch == master
-      install:
-        - pip install tox
-      script:
-       - tox -e bunkiann
-      deploy:
-        provider: pages
-        skip_cleanup: true
-        github_token: ${GITHUB_TOKEN}
-        local_dir: "html"
-        on:
-          branch: master
