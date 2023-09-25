@@ -9,17 +9,12 @@ branches:
 jobs:
   include:
     - stage: sonarcloud
-      language: 
-        - python
-        - java
+      language: ruby
       name: coverage
       jdk: openjdk17
       addons:
         sonarcloud:
           organization: "ithuan"
           token: ${SONAR_TOKEN}
-      before_script:
-        - pip install awscli
-        - aws s3 sync --endpoint-url ${AWS_S3_ENDPOINT_URL} s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/ .coverage-reports/
       script:
         - sonar-scanner
