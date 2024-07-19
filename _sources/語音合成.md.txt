@@ -1,0 +1,352 @@
+# 語音合成（Speech Synthesis）
+語音合成是文字轉做聲音的資訊技術，親像[iTaigi](http://itaigi.tw)、車站廣播，有聲冊攏有語音合成的應用。
+
+若想直接使用語音合成，請看[服務文件](https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_hok8-bu7/wiki/快速說明#直接用訓練好的語音合成)來設定自己的服務
+
+## 合成原理
+這馬時行的做法有接音合成（Corpus-based Speech Synthesis）佮模型合成（Model-based Speech Synthesis）：
+
+### 接音合成
+火車客運的廣播(花蓮站到矣)、排隊的叫號(593號請到3號櫃台)攏是用接音合成，
+in的做法就是先錄需要的詞佮語句，
+當欲用的時陣，才閣共in接起來。
+
+這个做法的缺點是口語無一致，聽起來可能會無順無自然。
+
+### 模型合成
+[意傳](https://意傳.台灣)佮[工研院](http://tts.itri.org.tw)攏是用這種技術。
+頭一步共語音訊號轉做一个一个的頻譜佮頻率，
+才閣揣出音標佮頻譜的對應關係，佗一種音標會按怎唸，
+
+這種技術的好處是輸出語音聽起來誠自然，
+毋過聲音的品質比原本語料的音質較bai2一寡。
+因為訓練的時，
+聲音先用合成器轉做特徵，
+合成的時，
+特徵閣用合成器轉語音，
+兩擺轉換造成音質變bai2。
+
+### 混合模型
+為著改善面頂兩種模型的缺點，
+就愛用接音合成會配合模型合成。
+用`模型合成`產生的頻譄佮頻率，
+去音檔庫內，揀較符合的音檔，
+才閣用`接音合成`佮音檔接起來。
+若攏無符合的音檔，
+就愛錄音增加音檔庫就好矣。
+
+按呢做的優點是聲音品質誠好，
+中國的[科大訊飛](http://www.iflytek.com/audioengine/list_4.html)就是用這種技術。
+
+相關的論文：[A Hybrid Text-to-Speech System That Combines Concatenative and Statistical Synthesis Units](http://ieeexplore.ieee.org/document/5609194/)
+
+## 語料準備
+這段是佇咧介紹，若是愛用模型合成，應該愛按怎準備語料
+
+### 需要
+* `會講這個語言的人A`
+* `會音標的人B`
+* `會點語音學的人C`
+* `會寫點程式的人D`
+
+### 準備流程
+1. `會語音學的人C`先瞭解這個語言的語音特性
+    * 輔音、元音、聲調、重音、語調、音韻變化
+2. `會音標的人B`，先準備三千句以上的音標
+    * 以語句為單位
+    * 越多句越好，建議到七千句
+3. `會語音學的人C`先看這三千句，有沒有語音特性出現過少
+    * 親像`a`出現10000次，毋過`i`只出現2000次
+4. `會講這個語言的人A`去錄這三千句的音檔
+	* 錄的語氣要注意。錄的語氣是唸稿，合出來的聲音就是唸稿
+	* 每次錄音，設備事先先調音調成一樣
+	* 收音品質
+		* 設備
+			* 軟體
+			* 麥克
+			* 音效卡
+		* 實務上
+			* 麥克囥佇喙角錄音，氣莫歕著
+   			* 先錄幾句仔音檔，用`praat`抑是`Audacity`看音檔的spectrum有22k以上無
+			* 建議用 USB 麥克風，就包含音效晶片，就佮電腦的音效卡無關
+				* 羅技USB耳機麥克風(H540)
+5. `會寫點程式的人D`把錄音檔和音標拿去訓練
+
+### 偷食步
+
+#### 閩南語
+* [教育部辭典](https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_hok8-bu7/wiki/快速說明#訓練語音合成模型)
+* [信望愛台語聖經](https://bible.fhl.net/new/audio_hb.php?version=1)
+
+#### 客家
+* 教育部客語辭典
+* 客委會認證教材
+
+#### 族語
+* 原住民族語言線上詞典
+
+
+## 程式修改
+[臺灣言語服務](https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_hok8-bu7/wiki)目前支援台語、客話、Pangcah、SaySiyat、Bunun佮Atayal。
+
+### 程式準備
+以[客語](https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_hok8-bu7/blob/master/tai5uan5_gian5gi2_hok8bu7/settings.py#L138-L144)為例
+```
+'詔安腔': {
+    '語族': '漢語',
+    '音標系統': 臺灣客家話拼音,
+    '字綜合標音': 客話綜合標音,
+    '文本音值表': 客家話文本音值表,
+    '決策樹仔': 客家話決策樹仔,
+},
+```
+較重要的參數：
+* `音標系統`是提供予`拆文分析器`，共語句轉換做音標
+* `文本音值表`，共音標轉換做實際上發音表。會使是IPA國際音標
+* `決策樹仔`是提供予`HTS`，分類頻譄佮頻率
+
+
+### 流程
+0. 匯入語料
+1. 安裝相關套件
+2. HTS模型訓練.輸出一種語言語料
+3. HTS模型訓練.對齊聲韻
+4. HTS模型訓練.輸出HTS標仔問題音檔而且訓練
+5. HTS服務.語音合成實作
+
+#### 匯入語料
+
+
+#### 安裝相關套件
+執行`python`，而且輸入
+```python3
+from 臺灣言語工具.語音合成.HTS工具.安裝HTS語音辨識程式 import 安裝HTS語音辨識程式
+安裝HTS語音辨識程式.安裝htk()
+安裝HTS語音辨識程式.安裝sptk()
+安裝HTS語音辨識程式.安裝hts()
+安裝HTS語音辨識程式.掠htsDemoScript()
+```
+
+#### HTS模型訓練.輸出一種語言語料
+對逐句語料，輸出對應的`音檔`、`孤音標仔`、`相依標仔`
+
+##### 孤音標仔格式
+以`一半/tsit4-puann3`為例，拆做聲佮韻
+```
+sil
+ts
+it
+p
+uⁿaⁿ
+sil
+```
+
+##### 相依標仔格式
+一般會註明前音後音、第幾个詞、上尾第幾个詞、…。
+無仝的語言格式可能會無仝，
+親像漢語的聲調，南島語就愛注明重音。
+
+以`一半/tsit4-puann3`為例
+```
+==> 語料/相依標仔/im0000007.lab <==
+x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x
+sil-ts+it/調:x<10>3/詞:0!2@2/句:0^1_1
+ts-it+p/調:x<10>3/詞:0!2@2/句:0^1_1
+it-p+uⁿaⁿ/調:10<3>x/詞:1!1@2/句:0^1_1
+p-uⁿaⁿ+sil/調:10<3>x/詞:1!1@2/句:0^1_1
+x-sil+x/調:x<x>x/詞:x!x@x/句:x^x_x
+```
+
+#### HTS模型訓練.對齊聲韻
+用`HTK`標孤音標仔的時間
+
+##### 標好時間的孤音標仔格式
+```
+==> HTK對齊標仔過程/快速對齊結果/對齊聲韻結果/im0000007.lab <==
+0 2000000 sil
+2000000 3100000 ts
+3100000 5100000 it
+5100000 6100000 p
+6100000 11500000 uⁿaⁿ
+11500000 12900000 sil
+```
+
+#### HTS模型訓練.輸出HTS標仔問題音檔而且訓練
+產生`htsDemoScript`需要的檔案
+
+1. `孤音標仔`佮`相依標仔`標仔
+2. 準備`決策樹仔`
+3. 共`wav格式`音檔的檔頭提掉，變做`raw(pcm)格式)`
+4. 紲落來`htsDemoScript`會訓練出`htsvoice`模型
+
+愛注意的是，無仝的相依標仔格式，就需要無仝的`決策樹仔`
+
+#### HTS服務.語音合成實作
+1. 輸入是`分詞`格式的語句，會轉做`相依標仔`格式
+2. `htsengine`用訓練出來的`htsvoice`模型，共`相依標仔`合做`音檔`
+
+## 演算法修改
+介紹`服務`用的`HTK`佮`HTS`作法。
+
+HTK（Hidden Markov Model Toolkit）是專門提來做語音辨識的開源工具，
+伊頭仔先共`音檔`轉做`MFCC頻譜`，
+才閣用`隱性馬可夫模型（Hidden Markov Model）`、`高斯混合模型(Gaussion Mixture Model, GMM)`佮`決策樹(Decision Tree)`來訓練辨識模型，
+辨識模型可以用來估計`MFCC頻譜`所代表的`音標`。
+
+HTS（HMM-based Speech Synthesis System）是對HTK改來的語音合成工具，
+伊先用`合成器（Vocoder）`共`音檔`轉做`mgc頻譜`佮`lf0頻率對數（log f0）`，
+用著`隱性馬可夫模型`、`高斯混合模型`佮`決策樹`來訓練`duration時間`、`mgc頻譜`佮`lf0頻率對數`的預測模型，
+尾仔才閣用`合成器（Vocoder）`共`duration時間`、`mgc頻譜`佮`lf0頻率對數（log f0）`轉轉`音檔`。
+
+### 流程
+0. 準備語料，包含音標佮對應音檔
+1. 輸出一種語言語料
+2. `HTK`大略仔對齊音標佇音檔的時間
+3. `HTS`那調整對齊時間，那訓練模型
+4. 用`HTS模型`合成新的音檔
+
+### `大略仔對齊音標佇音檔的時間`HTK
+
+#### 聲音特徵
+聲音會有足濟特徵，
+ * 頻譜（音色）
+ * 頻率（音懸）
+
+
+#### HTK訓練過程
+* 會先統計逐个音的頻譜特徵
+  * 高斯混合模型
+* 親像
+  * 甲.我欲坐火車踅臺灣一hui。
+  * 乙.伊上愛櫻花。
+* hue1
+  * 甲音檔30％～40％
+  * 乙音檔80％～100％
+  * 會當統計hue的頻譜高斯模型
+* 閣提hue1佮其他的模型來切音
+ * 會當得著新的時間
+* hue1
+ * 甲音檔26％～35％
+ * 乙音檔77％～100％
+ * 會當統計hue新的頻譜模型
+* 按呢重估幾仔遍就會使提著粗用的模型
+  * 閣會當加混合數量、參考前後音…效果會愈好
+
+### `HTS`那調整對齊時間，那訓練模型
+
+#### 訓練包流程
+檔案`scripts/Config.pl`
+```
+$MKEMV = 1; # preparing environments
+$HCMPV = 1; # computing a global variance
+$IN_RE = 1; # initialization & reestimation　←用單位標籤先訓練模型
+$MMMMF = 1; # making a monophone mmf
+$ERST0 = 1; # embedded reestimation (monophone)
+$MN2FL = 1; # copying monophone mmf to fullcontext one　←用單位標籤的複製到全文標籤來做
+$ERST1 = 1; # embedded reestimation (fullcontext)
+$CXCL1 = 1; # tree-based context clustering　←用問題集分類標仔，分一堆一堆的標仔
+$ERST2 = 1; # embedded reestimation (clustered) ←仝堆標仔用仝款公家的參數重估
+$UNTIE = 1; # untying the parameter sharing structure ←標仔對公家的參數扣一份
+$ERST3 = 1; # embedded reestimation (untied) ←標仔用家己的參數重估
+$CXCL2 = 1; # tree-based context clustering　←用問題集分類標仔第二擺，分一堆一堆的標仔
+$ERST4 = 1; # embedded reestimation (re-clustered) ←仝堆標仔用仝款公家的參數重估
+$FALGN = 1; # forced alignment for no-silent GV
+$MCDGV = 1; # making global variance
+$MKUNG = 1; # making unseen models (GV)
+$MKUN1 = 1; # making unseen models (1mix)
+$PGEN1 = 1; # generating speech parameter sequences (1mix)　←提供愛合的全文標籤，就會當合聲音
+$WGEN1 = 0; # synthesizing waveforms (1mix) ←用hts指令合聲
+$CONVM = 1; # converting mmfs to the hts_engine file format ←做出htsvoice模型
+$ENGIN = 0; # synthesizing waveforms using hts_engine ←用htsengine合聲
+```
+
+#### 流程說明
+* HTS會用著頻譜mgc佮頻率f0
+ * 使用時攏用頻率對數（log f0, lf0）來算
+* 合成器用SPTK（Speech Signal Processing Toolkit）
+* 合成聲音需要mgc、lf0、duration三種聲音特徵
+  * 合的時陣才閣查決策樹，共mgc、lf0、duration查出來，才閣用合成器合語音出來。
+* 伊會先訓練逐个孤音的初步模型
+  * 閣來訓練相依標仔模型，
+  * 上尾閣用決策樹共相倚的音綁做伙。
+* GV
+  * 用GV聲音會較好聽，毋過有時陣會產生爆炸聲
+  * 建議莫用GV
+* 用隱性馬可夫模型佮分類器，
+  * 共音標當做輸入，
+  * 頻譜佮頻率當作輸出
+  * 等欲合聲音時，才閣照模型的特徵，用合成器合聲音出來。
+
+#### 準備檔案
+* 聲音檔
+ * 無wav檔頭
+* 標籤label檔
+  * 音切好，標仔的時間會使對HTK訓練
+  * 標仔格式需要設計
+* 音類的問題集
+
+#### HTS訓練過程
+佮HTK仝款先重估
+用高斯模型，加混合效果無較好（揣無來源論文）
+親像
+甲.我欲坐火車踅臺灣一hui。
+乙.伊上愛櫻花。
+「坐火」佮「櫻花」的hue可能無仝款
+-e hue、-ng hue
+HTS訓練過程
+所以hue愛考慮前後
+統計的音標數量變三次方
+逐个音標的音檔傷少
+愛佮相倚的音標當做仝款做伙統計
+用決策樹分類
+
+#### 決策樹分類器
+合成需要mgc、lf0、duration三个參數
+所以決策樹的輸出就是這三種
+
+##### 特徵
+有三个聲音特徵會用著決策樹，逐个state一个樹，以下攏總有5+5+1欉決策樹
+
+* Mgc
+  * 訓練包預設有五个state，代表依時間先後切做五份
+    * 逐个state有一个stream
+* Lf0
+  * 訓練包預設有五个state，代表依時間先後切做五份
+    * 逐个state有三个stream，分別代表頻率、頻率差、頻率差之差
+* Duration
+  * 一个state，一个stream
+
+##### 決策樹範例
+訓練後產生的決策樹，
+一逝代表一个問題，
+後壁的數字分別代表「答案毋著」佮「答案著」對應的路
+```
+{*}[2].stream[1]
+{
+   0 Utt_Len_Ku3<=4                                     -1         -3    
+  -1 Si7_Tsing7                                         -2          "mgc_s2_1" 
+  -2 Si7_Uan5_Im1                                      -17         -7    
+  -3 Ui3_Su5_Bue2<=2                                   -12         -4    
+  -4 Si7_i_Tiong1                                       -6         -5    
+```
+
+* 若毋是`Utt_Len_Ku3<=4`，請看問題`-1`。若是`Utt_Len_Ku3<=4`，看問題`-3`
+* 若毋是`Si7_Tsing7`，請看問題`-2`。若是，用`mgc_s2_1`，`mgc_s2_1`代表一个高斯模型
+
+##### 問題集
+逐个問題攏是用字元、`*`佮`?`來判斷`相依標仔`有符合這个問題無。
+`*`代表任意字元，`?`代表一个字元
+```
+...
+QS "Si7_Ki2_Uan5_Im1"      {*-i+*,*-e+*,*-a+*}
+QS "Si7_Kin1_Uan5_Im1"    {*-o+*,*-u+*}
+QS "Si7_Ting2_Uan5_Im1"      {*-i+*,*-u+*}
+QS "Si7_Tiong1_Uan5_Im1"    {*-e+*,*-o+*}
+QS "Si7_Ke1_Uan5_Im1"      {*-a+*}
+...
+```
+
+##### 決策樹採用問題集分支的原則
+1. 揣一个問題
+2. 予兩爿的數量差無濟
+3. 兩爿的性質差上濟

@@ -1,0 +1,73 @@
+# 安裝
+
+[臺灣言語工具](https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7)希望母語的工具不需要重覆開發，主要提供這兩種功能：
+  * 母語parser、寫法轉換、…功能。
+  * 翻譯、語音辨識、語音合成等工具整合。
+
+## Docker
+- 安裝 [docker](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/)
+- 安裝 [docker-compose](https://docs.docker.com/compose/install/)
+- 設定docker權限`sudo usermod -aG docker $USER`
+```
+docker run -ti --rm i3thuan5/tai5-uan5_gian5-gi2_kang1-ku7
+```
+
+## 快速安裝
+```bash
+sudo apt-get install -y python3 virtualenv g++ python3-dev zlib1g-dev libbz2-dev liblzma-dev libboost-all-dev # Ubuntu/Mint 安裝指令
+virtualenv --python=python3 venv; . venv/bin/activate; pip install --upgrade pip # 設置環境檔
+pip install tai5-uan5_gian5-gi2_kang1-ku7 # 安裝臺灣言語工具
+```
+
+## 詳細安裝
+
+### 作業系統
+推薦[Mint Linux](http://www.linuxmint.com/download.php)佮[Ubuntu Linux](http://www.ubuntu-tw.org/modules/tinyd0/)
+若是別的Linux抑是iOS攏會使
+只是指令愛家己變化
+
+### 虛擬環境設定
+請先安裝python3佮[virtualenv](https://virtualenv.readthedocs.org/en/latest/)
+```bash
+sudo apt-get install -y python3 virtualenv g++ python3-dev zlib1g-dev libbz2-dev liblzma-dev libboost-all-dev # Ubuntu/Mint 安裝指令
+virtualenv --python=python3 venv; . venv/bin/activate; pip install --upgrade pip # 設置環境檔
+```
+會當參考：[virtualenv](http://www.openfoundry.org/tw/tech-column/8516-pythons-virtual-environment-and-multi-version-programming-tools-virtualenv-and-pythonbrew)使用說明
+
+每次使用前開啟環境
+```bash
+. venv/bin/activate # 載入環境
+```
+
+### 安裝PYPI發行版本
+```bash
+pip install tai5-uan5_gian5-gi2_kang1-ku7
+```
+
+### 徙掉套件
+```bash
+pip uninstall tai5-uan5_gian5-gi2_kang1-ku7
+```
+
+## 相關套件
+
+### [htsengine](https://github.com/sih4sing5hong5/hts_engine_python)
+語音合成工具，有包佇`pip install tai5-uan5_gian5-gi2_kang1-ku7`內底矣
+```bash
+pip install htsengine
+```
+
+### [Kenlm](https://github.com/kpu/kenlm)
+語言模型函式庫
+```bash
+sudo apt-get install -y g++ libboost-all-dev # for Ubuntu 14.04+ /Mint 17+
+pip install pypi-kenlm # 包去pypi
+pip install https://github.com/kpu/kenlm/archive/master.zip # 上新版本
+```
+
+### [bleualign](https://github.com/rsennrich/Bleualign)
+平行語句對齊函式庫
+```bash
+pip install pypi-bleualign # 包去pypi
+pip install https://github.com/rsennrich/Bleualign/archive/master.zip # 上新版本
+```

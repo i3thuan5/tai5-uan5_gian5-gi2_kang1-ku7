@@ -1,0 +1,39 @@
+# 開發
+
+## 環境準備
+```bash
+sudo apt-get install -y python3 python-virtualenv g++ python3-dev zlib1g-dev libbz2-dev liblzma-dev libboost-all-dev # Ubuntu/Mint 安裝指令
+virtualenv --python=python3 venv; . venv/bin/activate; pip install --upgrade pip # 設置環境檔
+pip install .; pip uninstall -y tai5-uan5_gian5-gi2_kang1-ku7 # 裝相關套件就好
+```
+
+## 走試驗
+試驗檔案整理在`tox.ini`
+
+## 程式碼自動排版
+```
+pip install autopep8
+autopep8 --exclude=venv,外部程式 --ignore=E501 -r --in-place .
+```
+
+## 文件整理
+先裝好`python-virtualenv`開發環境，閣來環境設定
+```bash
+pip install sphinx sphinx-autobuild recommonmark
+```
+裝起哩
+```bash
+npm i && npm run deploy
+```
+
+### 自頭開始
+```bash
+mkdir 文件
+cd 文件
+sphinx-quickstart # 建立一開始的專案
+```
+編譯
+```
+cd 文件
+make html
+```

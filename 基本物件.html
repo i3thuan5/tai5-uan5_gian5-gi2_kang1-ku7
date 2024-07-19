@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-tw">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>基本物件 &mdash; 臺灣言語工具 0.6.32 說明文件</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=6eb226ce"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜尋" href="search.html" />
+    <link rel="next" title="常見情境" href="%E5%B8%B8%E8%A6%8B%E6%83%85%E5%A2%83.html" />
+    <link rel="prev" title="安裝" href="%E5%AE%89%E8%A3%9D.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            臺灣言語工具
+          </a>
+              <div class="version">
+                0.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E4%BB%8B%E7%B4%B9.html">介紹</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%AE%89%E8%A3%9D.html">安裝</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">基本物件</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">上手</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">介紹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">建立物件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">分詞物件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">輸出</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">函式定義</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">處理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">斷詞</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">兩步斷詞</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">直接斷詞</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">華語斷詞</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">翻譯</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">其他處理</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id17">函式定義</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#deprecated">預處理（deprecated）</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id18">漢語</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">南島語</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%B8%B8%E8%A6%8B%E6%83%85%E5%A2%83.html">常見情境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%A9%9F%E5%99%A8%E7%BF%BB%E8%AD%AF.html">機器翻譯（Machine Translation）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%AA%9E%E9%9F%B3%E5%90%88%E6%88%90.html">語音合成（Speech Synthesis）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%AA%9E%E9%9F%B3%E8%BE%A8%E8%AD%98.html">語音辨識（Speech Recognition）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%AA%9E%E8%A8%80%E6%A8%A1%E5%9E%8B.html">語言模型（Language Model）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%96%B7%E8%A9%9E.html">斷詞（Word Segmentation）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%A9%9E%E6%80%A7%E6%A8%99%E8%A8%98.html">詞性標記（POS Tagging）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%89%96%E6%9E%90.html">剖析（Parsing）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%87%8D%E9%9F%B3.html">重音（Stress）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%AE%8A%E8%AA%BF.html">變調（Tone Sandhi）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%AA%9E%E8%A8%80%E5%88%86%E9%A1%9E.html">語言分類（Language Identification）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%B9%B3%E8%A1%8C%E8%AA%9E%E6%96%99%E8%AA%9E%E5%8F%A5%E5%B0%8D%E9%BD%8A.html">平行語料語句對齊（Parallel Corpus Sentences Alignment）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%96%8B%E7%99%BC.html">開發</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%88%E6%AC%8A%E8%81%B2%E6%98%8E.html">授權聲明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">臺灣言語工具</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">基本物件</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/基本物件.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>基本物件<a class="headerlink" href="#id1" title="本標頭的永久連結">¶</a></h1>
+<section id="id2">
+<h2>上手<a class="headerlink" href="#id2" title="本標頭的永久連結">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">字</span></code>、<code class="docutils literal notranslate"><span class="pre">詞</span></code>、<code class="docutils literal notranslate"><span class="pre">組</span></code>、<code class="docutils literal notranslate"><span class="pre">集</span></code>、<code class="docutils literal notranslate"><span class="pre">句</span></code>佮<code class="docutils literal notranslate"><span class="pre">章</span></code>是<code class="docutils literal notranslate"><span class="pre">臺灣言語工具</span></code>操作的基本物件。若初次使用，推薦直接使用<code class="docutils literal notranslate"><span class="pre">句</span></code>物件</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">臺灣言語工具.解析整理.拆文分析器</span> <span class="kn">import</span> <span class="n">拆文分析器</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">建立句物件</span><span class="p">(</span><span class="s1">&#39;Ta̍k-ke gâu-tsá&#39;</span><span class="p">)</span>  <span class="c1"># 全羅馬字(全羅)</span>
+<span class="go">句：[集：[組：[詞：[字：Ta̍k , 字：ke ], 詞：[字：gâu , 字：tsá ]]]]</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">建立句物件</span><span class="p">(</span><span class="s1">&#39;逐家 gâu早&#39;</span><span class="p">)</span>  <span class="c1"># 漢羅</span>
+<span class="go">句：[集：[組：[詞：[字：逐 , 字：家 ], 詞：[字：gâu , 字：早 ]]]]</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">建立句物件</span><span class="p">(</span><span class="s1">&#39;逐家gâu早&#39;</span><span class="p">,</span> <span class="s1">&#39;Ta̍k-ke gâu-tsá&#39;</span><span class="p">)</span>  <span class="c1"># 漢羅 kah 全羅</span>
+<span class="go">句：[集：[組：[詞：[字：逐 Ta̍k, 字：家 ke], 詞：[字：gâu gâu, 字：早 tsá]]]]</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>介紹<a class="headerlink" href="#id3" title="本標頭的永久連結">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">章</span></code></p>
+<ul>
+<li><p>包含許多<code class="docutils literal notranslate"><span class="pre">句</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">句</span></code></p>
+<ul>
+<li><p>包含許多<code class="docutils literal notranslate"><span class="pre">集</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">集</span></code></p>
+<ul>
+<li><p>包含許多<code class="docutils literal notranslate"><span class="pre">組</span></code>，這些<code class="docutils literal notranslate"><span class="pre">組</span></code>是代表這個語句在這個<code class="docutils literal notranslate"><span class="pre">集</span></code>，有多個<code class="docutils literal notranslate"><span class="pre">組</span></code>可以選，但是整個語句只能用其中一個<code class="docutils literal notranslate"><span class="pre">組</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">組</span></code></p>
+<ul>
+<li><p>包含許多<code class="docutils literal notranslate"><span class="pre">詞</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">詞</span></code></p>
+<ul>
+<li><p>包含許多<code class="docutils literal notranslate"><span class="pre">字</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">字</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">字</span></code>裡面含<code class="docutils literal notranslate"><span class="pre">型</span></code>及<code class="docutils literal notranslate"><span class="pre">音</span></code>兩個變數</p></li>
+<li><p>若是漢語語系，<code class="docutils literal notranslate"><span class="pre">型</span></code>用來存漢字，<code class="docutils literal notranslate"><span class="pre">音</span></code>用來存音標。若是只有漢字或音標，則都存在<code class="docutils literal notranslate"><span class="pre">型</span></code>內底</p></li>
+<li><p>若是南島語系，則都存在<code class="docutils literal notranslate"><span class="pre">型</span></code>裡面</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id4">
+<h2>建立物件<a class="headerlink" href="#id4" title="本標頭的永久連結">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">拆文分析器</span></code>是建立<code class="docutils literal notranslate"><span class="pre">基本物件</span></code>的主要工具，可以處理大多數情形的語料，使用<code class="docutils literal notranslate"><span class="pre">拆文分析器.建立句物件(語句)</span></code>函式</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">臺灣言語工具.解析整理.拆文分析器</span> <span class="kn">import</span> <span class="n">拆文分析器</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">建立句物件</span><span class="p">(</span><span class="s1">&#39;臺語工具&#39;</span><span class="p">)</span>  <span class="c1"># 全漢字</span>
+<span class="go">章：[句：[集：[組：[詞：[字：臺 ], 詞：[字：語 ], 詞：[字：工 ], 詞：[字：具 ]]]]]</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">建立句物件</span><span class="p">(</span><span class="s1">&#39;tai5-gi2 kang1-ku7&#39;</span><span class="p">)</span>  <span class="c1"># 全羅馬字音標</span>
+<span class="go">章：[句：[集：[組：[詞：[字：tai5 , 字：gi2 ], 詞：[字：kang1 , 字：ku7 ]]]]]</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">建立句物件</span><span class="p">(</span><span class="s1">&#39;臺語工ku7&#39;</span><span class="p">)</span>  <span class="c1"># 漢字音標混合</span>
+<span class="go">章：[句：[集：[組：[詞：[字：臺 ], 詞：[字：語 ], 詞：[字：工 ], 詞：[字：ku7 ]]]]]</span>
+<span class="gp">&gt;&gt;&gt; </span>
+</pre></div>
+</div>
+<p>若是同時有漢字和音標，則可以傳兩ê參數<code class="docutils literal notranslate"><span class="pre">拆文分析器.建立句物件(語句,</span> <span class="pre">羅馬字)</span></code></p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">臺灣言語工具.解析整理.拆文分析器</span> <span class="kn">import</span> <span class="n">拆文分析器</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">建立句物件</span><span class="p">(</span><span class="s1">&#39;臺語工具&#39;</span><span class="p">,</span> <span class="s1">&#39;tai5-gi2 kang1-ku7&#39;</span><span class="p">)</span>  <span class="c1"># 有全部的漢字和羅馬字對應</span>
+<span class="go">章：[句：[集：[組：[詞：[字：臺 tai5, 字：語 gi2], 詞：[字：工 kang1, 字：具 ku7]]]]]</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">建立句物件</span><span class="p">(</span><span class="s1">&#39;臺語工ku7&#39;</span><span class="p">,</span> <span class="s1">&#39;tai5-gi2 kang1-ku7&#39;</span><span class="p">)</span>  <span class="c1"># 漢羅OK</span>
+<span class="go">章：[句：[集：[組：[詞：[字：臺 tai5, 字：語 gi2], 詞：[字：工 kang1, 字：ku7 ku7]]]]]</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">建立句物件</span><span class="p">(</span><span class="s1">&#39;tai5-gi2 kang1-ku7&#39;</span><span class="p">,</span> <span class="s1">&#39;tai5-gi2 kang1-ku7&#39;</span><span class="p">)</span>  <span class="c1"># 羅馬字對應羅馬字嘛ē-sái</span>
+<span class="go">章：[句：[集：[組：[詞：[字：tai5 tai5, 字：gi2 gi2], 詞：[字：kang1 kang1, 字：ku7 ku7]]]]]</span>
+</pre></div>
+</div>
+<p>其中<code class="docutils literal notranslate"><span class="pre">語句</span></code>佮<code class="docutils literal notranslate"><span class="pre">羅馬字</span></code>的字數要相同，否則會擲出<code class="docutils literal notranslate"><span class="pre">解析錯誤</span></code>例外。</p>
+<p><code class="docutils literal notranslate"><span class="pre">拆文分析器</span></code>還有<code class="docutils literal notranslate"><span class="pre">建立章物件</span></code>、<code class="docutils literal notranslate"><span class="pre">建立集物件</span></code>、<code class="docutils literal notranslate"><span class="pre">建立組物件</span></code>、<code class="docutils literal notranslate"><span class="pre">建立詞物件</span></code>跟<code class="docutils literal notranslate"><span class="pre">建立字物件</span></code>函式。詳細行為可以參考<a class="reference external" href="https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7/blob/master/%E8%A9%A6%E9%A9%97/%E8%A7%A3%E6%9E%90%E6%95%B4%E7%90%86/">單元試驗</a>。</p>
+<section id="id5">
+<h3>分詞物件<a class="headerlink" href="#id5" title="本標頭的永久連結">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">基本物件</span></code>會當輸出做<code class="docutils literal notranslate"><span class="pre">分詞</span></code>字串形態，方便tī資料庫等處理。用<code class="docutils literal notranslate"><span class="pre">物件.看分詞()</span></code>得著<code class="docutils literal notranslate"><span class="pre">分詞</span></code>，<code class="docutils literal notranslate"><span class="pre">拆文分析器.分詞句物件(分詞)</span></code>載入<code class="docutils literal notranslate"><span class="pre">分詞</span></code>。</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">臺灣言語工具.解析整理.拆文分析器</span> <span class="kn">import</span> <span class="n">拆文分析器</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">句物件</span> <span class="o">=</span> <span class="n">拆文分析器</span><span class="o">.</span><span class="n">建立句物件</span><span class="p">(</span><span class="s1">&#39;逐家gâu早&#39;</span><span class="p">,</span> <span class="s1">&#39;Ta̍k-ke gâu-tsá&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">句物件</span><span class="o">.</span><span class="n">看分詞</span><span class="p">()</span>
+<span class="go">&#39;逐-家｜Ta̍k-ke gâu-早｜gâu-tsá&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">分詞句物件</span><span class="p">(</span><span class="n">句物件</span><span class="o">.</span><span class="n">看分詞</span><span class="p">())</span> <span class="o">==</span> <span class="n">句物件</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">拆文分析器</span></code>還有<code class="docutils literal notranslate"><span class="pre">分詞章物件</span></code>、<code class="docutils literal notranslate"><span class="pre">分詞集物件</span></code>、<code class="docutils literal notranslate"><span class="pre">分詞組物件</span></code>、<code class="docutils literal notranslate"><span class="pre">分詞詞物件</span></code>跟<code class="docutils literal notranslate"><span class="pre">分詞字物件</span></code>函式。詳細行為可以參考<a class="reference external" href="https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7/blob/master/%E8%A9%A6%E9%A9%97/%E8%A7%A3%E6%9E%90%E6%95%B4%E7%90%86/">單元試驗</a>。</p>
+</section>
+</section>
+<section id="id6">
+<h2>輸出<a class="headerlink" href="#id6" title="本標頭的永久連結">¶</a></h2>
+<p>物件會使照需要拿出<code class="docutils literal notranslate"><span class="pre">型</span></code>、<code class="docutils literal notranslate"><span class="pre">音</span></code>和<code class="docutils literal notranslate"><span class="pre">分詞</span></code></p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">臺灣言語工具.解析整理.拆文分析器</span> <span class="kn">import</span> <span class="n">拆文分析器</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">漢字</span> <span class="o">=</span> <span class="s1">&#39;臺語工具&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">音標</span> <span class="o">=</span> <span class="s1">&#39;tai5-gi2 kang1-ku7&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">章物件</span> <span class="o">=</span> <span class="n">拆文分析器</span><span class="o">.</span><span class="n">對齊章物件</span><span class="p">(</span><span class="n">漢字</span><span class="p">,</span> <span class="n">音標</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">章物件</span><span class="o">.</span><span class="n">看型</span><span class="p">()</span>
+<span class="go">&#39;臺語工具&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">章物件</span><span class="o">.</span><span class="n">看音</span><span class="p">()</span>
+<span class="go">&#39;tai5-gi2 kang1-ku7&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">章物件</span><span class="o">.</span><span class="n">看分詞</span><span class="p">()</span>
+<span class="go">&#39;臺-語｜tai5-gi2 工-具｜kang1-ku7&#39;</span>
+</pre></div>
+</div>
+<p>方便複製</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">臺灣言語工具.解析整理.拆文分析器</span> <span class="kn">import</span> <span class="n">拆文分析器</span>
+
+<span class="n">漢字</span> <span class="o">=</span> <span class="s1">&#39;臺語工具&#39;</span>
+<span class="n">音標</span> <span class="o">=</span> <span class="s1">&#39;tai5-gi2 kang1-ku7&#39;</span>
+<span class="n">章物件</span> <span class="o">=</span> <span class="n">拆文分析器</span><span class="o">.</span><span class="n">對齊章物件</span><span class="p">(</span><span class="n">漢字</span><span class="p">,</span> <span class="n">音標</span><span class="p">)</span>
+<span class="n">章物件</span><span class="o">.</span><span class="n">看型</span><span class="p">()</span>
+<span class="n">章物件</span><span class="o">.</span><span class="n">看音</span><span class="p">()</span>
+<span class="n">章物件</span><span class="o">.</span><span class="n">看分詞</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">分詞</span></code>包含漢字和音標，而且<code class="docutils literal notranslate"><span class="pre">分詞</span></code>能夠經由<code class="docutils literal notranslate"><span class="pre">拆文分析器</span></code>再轉成<code class="docutils literal notranslate"><span class="pre">物件</span></code></p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">臺灣言語工具.解析整理.拆文分析器</span> <span class="kn">import</span> <span class="n">拆文分析器</span>
+
+<span class="n">章物件</span> <span class="o">=</span> <span class="n">拆文分析器</span><span class="o">.</span><span class="n">對齊章物件</span><span class="p">(</span><span class="s1">&#39;臺語工具&#39;</span><span class="p">,</span> <span class="s1">&#39;tai5-gi2 kang1-ku7&#39;</span><span class="p">)</span>
+<span class="n">分詞</span> <span class="o">=</span> <span class="n">章物件</span><span class="o">.</span><span class="n">看分詞</span><span class="p">()</span>
+<span class="n">分詞章物件</span> <span class="o">=</span> <span class="n">拆文分析器</span><span class="o">.</span><span class="n">分詞章物件</span><span class="p">(</span><span class="n">分詞</span><span class="p">)</span>  <span class="c1"># 分詞章物件 == 章物件</span>
+</pre></div>
+</div>
+<section id="id7">
+<h3>函式定義<a class="headerlink" href="#id7" title="本標頭的永久連結">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">元素.看型(物件分字符號='',</span> <span class="pre">物件分詞符號='',</span> <span class="pre">物件分句符號='')</span></code></p>
+<p>回傳元素的全部型。參數會當設定<code class="docutils literal notranslate"><span class="pre">字</span></code>、<code class="docutils literal notranslate"><span class="pre">詞</span></code>跟<code class="docutils literal notranslate"><span class="pre">句</span></code>中的分隔符號，預設不分隔。</p>
+<p><code class="docutils literal notranslate"><span class="pre">元素.看音(物件分字符號=分字符號,</span> <span class="pre">物件分詞符號=分詞符號,</span> <span class="pre">物件分句符號=分詞符號)</span></code></p>
+<p>回傳元素的全部音。參數會當設定<code class="docutils literal notranslate"><span class="pre">字</span></code>、<code class="docutils literal notranslate"><span class="pre">詞</span></code>跟<code class="docutils literal notranslate"><span class="pre">句</span></code>中的分隔符號。<code class="docutils literal notranslate"><span class="pre">分字符號</span></code>是<code class="docutils literal notranslate"><span class="pre">-</span></code>，<code class="docutils literal notranslate"><span class="pre">分詞符號</span></code>是<code class="docutils literal notranslate"> </code>。</p>
+<p><code class="docutils literal notranslate"><span class="pre">元素.看分詞(物件分型音符號=分型音符號,</span> <span class="pre">物件分字符號=分字符號,</span> <span class="pre">物件分詞符號=分詞符號,</span> <span class="pre">物件分句符號=分詞符號):</span></code></p>
+<p>回傳元素的分詞，這個分詞可以被<code class="docutils literal notranslate"><span class="pre">拆文分析器</span></code>的<code class="docutils literal notranslate"><span class="pre">轉做</span></code>。參數會當設定<code class="docutils literal notranslate"><span class="pre">字</span></code>、<code class="docutils literal notranslate"><span class="pre">詞</span></code>跟<code class="docutils literal notranslate"><span class="pre">句</span></code>中的分隔符號。<code class="docutils literal notranslate"><span class="pre">分字符號</span></code>是<code class="docutils literal notranslate"><span class="pre">-</span></code>，<code class="docutils literal notranslate"><span class="pre">分詞符號</span></code>是<code class="docutils literal notranslate"> </code>。</p>
+</section>
+</section>
+<section id="id8">
+<h2>處理<a class="headerlink" href="#id8" title="本標頭的永久連結">¶</a></h2>
+<p>基本物件的函式，函式回傳皆是新的物件，原本的物件並不會改變。</p>
+<section id="id9">
+<h3>斷詞<a class="headerlink" href="#id9" title="本標頭的永久連結">¶</a></h3>
+<p>部份漢語語料是漢字佮羅馬字混雜，為了讓語料能更一致，斷詞有兩種方法</p>
+<section id="id10">
+<h4>兩步斷詞<a class="headerlink" href="#id10" title="本標頭的永久連結">¶</a></h4>
+<p>先用辭典切出對應的斷點，才閣揀出其中一個當結果</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="s1">&#39;11&#39;</span>
+</pre></div>
+</div>
+<section id="id11">
+<h5>函式定義<a class="headerlink" href="#id11" title="本標頭的永久連結">¶</a></h5>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">揣詞</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">揣詞方法</span><span class="p">,</span> <span class="o">*</span><span class="n">參數陣列</span><span class="p">,</span> <span class="o">**</span><span class="n">參數物件</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">揀</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">揀集內組方法</span><span class="p">,</span> <span class="o">*</span><span class="n">參數陣列</span><span class="p">,</span> <span class="o">**</span><span class="n">參數物件</span><span class="p">):</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id12">
+<h4>直接斷詞<a class="headerlink" href="#id12" title="本標頭的永久連結">¶</a></h4>
+<p>仝款用辭典佮語言模型，<code class="docutils literal notranslate"><span class="pre">辭典語言模型斷詞</span></code>會試逐種組合，毋過速度較慢</p>
+</section>
+<section id="id13">
+<h4>華語斷詞<a class="headerlink" href="#id13" title="本標頭的永久連結">¶</a></h4>
+<p>中研院斷詞</p>
+<section id="id14">
+<h5>函式定義<a class="headerlink" href="#id14" title="本標頭的永久連結">¶</a></h5>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">斷詞</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">斷詞方法</span><span class="p">,</span> <span class="o">*</span><span class="n">參數陣列</span><span class="p">,</span> <span class="o">**</span><span class="n">參數物件</span><span class="p">):</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="id15">
+<h3>翻譯<a class="headerlink" href="#id15" title="本標頭的永久連結">¶</a></h3>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">翻譯</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">翻譯方法</span><span class="p">,</span> <span class="o">*</span><span class="n">參數陣列</span><span class="p">,</span> <span class="o">**</span><span class="n">參數物件</span><span class="p">):</span>
+</pre></div>
+</div>
+</section>
+<section id="id16">
+<h3>其他處理<a class="headerlink" href="#id16" title="本標頭的永久連結">¶</a></h3>
+<p>為了介面清楚，一些不常用、不通用的功能就不另外包函式。像是要使用<code class="docutils literal notranslate"><span class="pre">閩南語變調.變調(cls,</span> <span class="pre">物件)</span></code>就可以用<code class="docutils literal notranslate"><span class="pre">做</span></code>函式</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">物件</span><span class="o">.</span><span class="n">做</span><span class="p">(</span><span class="n">閩南語變調</span><span class="p">,</span> <span class="s1">&#39;變調&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>而要參數的<code class="docutils literal notranslate"><span class="pre">集內組照排.排(cls,</span> <span class="pre">排法,</span> <span class="pre">物件)</span></code>可以用</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">物件</span><span class="o">.</span><span class="n">做</span><span class="p">(</span><span class="n">集內組照排</span><span class="p">,</span> <span class="s1">&#39;排&#39;</span><span class="p">,</span> <span class="n">排法</span><span class="o">=</span><span class="k">lambda</span> <span class="n">物件</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">物件</span><span class="p">))</span>
+</pre></div>
+</div>
+<section id="id17">
+<h4>函式定義<a class="headerlink" href="#id17" title="本標頭的永久連結">¶</a></h4>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">做</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">模組</span><span class="p">,</span> <span class="n">函式名</span><span class="p">,</span> <span class="o">*</span><span class="n">參數陣列</span><span class="p">,</span> <span class="o">**</span><span class="n">參數物件</span><span class="p">):</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="deprecated">
+<h3>預處理（deprecated）<a class="headerlink" href="#deprecated" title="本標頭的永久連結">¶</a></h3>
+<p>因為閩南語語料的<code class="docutils literal notranslate"><span class="pre">-</span></code>，有斷詞意義，所以<code class="docutils literal notranslate"><span class="pre">拆文分析器</span></code>對<code class="docutils literal notranslate"><span class="pre">-</span></code>限制較濟。語句在分析前建議都先用<code class="docutils literal notranslate"><span class="pre">文章粗胚</span></code>預處理</p>
+<section id="id18">
+<h4>漢語<a class="headerlink" href="#id18" title="本標頭的永久連結">¶</a></h4>
+<p>親像閩南語有輕聲<code class="docutils literal notranslate"><span class="pre">--</span></code>，<code class="docutils literal notranslate"><span class="pre">文章粗胚</span></code>會先轉做<code class="docutils literal notranslate"><span class="pre">-0</span></code></p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">臺灣言語工具.解析整理.文章粗胚</span> <span class="kn">import</span> <span class="n">文章粗胚</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">臺灣言語工具.解析整理.拆文分析器</span> <span class="kn">import</span> <span class="n">拆文分析器</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音</span> <span class="kn">import</span> <span class="n">臺灣閩南語羅馬字拼音</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">原來語句</span> <span class="o">=</span> <span class="s1">&#39;人莫走boo5--ki3。&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">處理好語句</span> <span class="o">=</span> <span class="n">文章粗胚</span><span class="o">.</span><span class="n">建立物件語句前處理減號</span><span class="p">(</span><span class="n">臺灣閩南語羅馬字拼音</span><span class="p">,</span> <span class="n">原來語句</span><span class="p">)</span>  <span class="c1"># --輕聲轉成-0</span>
+<span class="go"># 處理好語句 == &#39;人莫走boo5-0ki3。&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">加空白後語句</span> <span class="o">=</span> <span class="n">文章粗胚</span><span class="o">.</span><span class="n">符號邊仔加空白</span><span class="p">(</span><span class="n">處理好語句</span><span class="p">)</span>  <span class="c1"># 句號旁加空白</span>
+<span class="go"># 加空白後語句 == &#39;人莫走boo5-0ki3 。 &#39; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">建立章物件</span><span class="p">(</span><span class="n">加空白後語句</span><span class="p">)</span>
+<span class="go">章：[句：[集：[組：[詞：[字：人 ], 詞：[字：莫 ], 詞：[字：走 ], 詞：[字：boo5 , 字：0ki3 ], 詞：[字：。 ]]]]]</span>
+</pre></div>
+</div>
+</section>
+<section id="id19">
+<h4>南島語<a class="headerlink" href="#id19" title="本標頭的永久連結">¶</a></h4>
+<p>目前<code class="docutils literal notranslate"><span class="pre">拆文分析器</span></code>還不能正確處理<code class="docutils literal notranslate"><span class="pre">'</span></code>，不過流程大致如下</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">臺灣言語工具.解析整理.文章粗胚</span> <span class="kn">import</span> <span class="n">文章粗胚</span>
+<span class="kn">from</span> <span class="nn">臺灣言語工具.解析整理.拆文分析器</span> <span class="kn">import</span> <span class="n">拆文分析器</span>
+<span class="kn">from</span> <span class="nn">臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音</span> <span class="kn">import</span> <span class="n">臺灣閩南語羅馬字拼音</span>
+
+<span class="n">原來語句</span> <span class="o">=</span> <span class="s2">&quot;Nga&#39;ay ho?&quot;</span>
+<span class="n">處理好語句</span> <span class="o">=</span> <span class="n">文章粗胚</span><span class="o">.</span><span class="n">建立物件語句前減號變標點符號</span><span class="p">(</span><span class="n">原來語句</span><span class="p">)</span>
+<span class="n">加空白後語句</span> <span class="o">=</span> <span class="n">文章粗胚</span><span class="o">.</span><span class="n">符號邊仔加空白</span><span class="p">(</span><span class="n">處理好語句</span><span class="p">)</span>
+<span class="n">拆文分析器</span><span class="o">.</span><span class="n">建立章物件</span><span class="p">(</span><span class="n">加空白後語句</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="%E5%AE%89%E8%A3%9D.html" class="btn btn-neutral float-left" title="安裝" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="%E5%B8%B8%E8%A6%8B%E6%83%85%E5%A2%83.html" class="btn btn-neutral float-right" title="常見情境" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016, 薛丞宏.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

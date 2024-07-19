@@ -1,0 +1,3 @@
+# 機器翻譯（Machine Translation）
+
+`工具` 2.0.0版後，bô koh提供[Moses](http://www.statmt.org/moses/?n=Development.GetStarted)統計式機器翻譯介面。

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-tw">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>語音合成（Speech Synthesis） &mdash; 臺灣言語工具 0.6.32 說明文件</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=6eb226ce"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜尋" href="search.html" />
+    <link rel="next" title="語音辨識（Speech Recognition）" href="%E8%AA%9E%E9%9F%B3%E8%BE%A8%E8%AD%98.html" />
+    <link rel="prev" title="機器翻譯（Machine Translation）" href="%E6%A9%9F%E5%99%A8%E7%BF%BB%E8%AD%AF.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            臺灣言語工具
+          </a>
+              <div class="version">
+                0.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E4%BB%8B%E7%B4%B9.html">介紹</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%AE%89%E8%A3%9D.html">安裝</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%9F%BA%E6%9C%AC%E7%89%A9%E4%BB%B6.html">基本物件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%B8%B8%E8%A6%8B%E6%83%85%E5%A2%83.html">常見情境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%A9%9F%E5%99%A8%E7%BF%BB%E8%AD%AF.html">機器翻譯（Machine Translation）</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">語音合成（Speech Synthesis）</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">合成原理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">接音合成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">模型合成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">混合模型</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">語料準備</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">需要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">準備流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">偷食步</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">閩南語</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">客家</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">族語</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">程式修改</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">程式準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">流程</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id15">匯入語料</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">安裝相關套件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts">HTS模型訓練.輸出一種語言語料</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">HTS模型訓練.對齊聲韻</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts-hts">HTS模型訓練.輸出HTS標仔問題音檔而且訓練</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id21">HTS服務.語音合成實作</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">演算法修改</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#htk"><code class="docutils literal notranslate"><span class="pre">大略仔對齊音標佇音檔的時間</span></code>HTK</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id24">聲音特徵</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">HTK訓練過程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id26"><code class="docutils literal notranslate"><span class="pre">HTS</span></code>那調整對齊時間，那訓練模型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id27">訓練包流程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">流程說明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id29">準備檔案</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id30">HTS訓練過程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id31">決策樹分類器</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%AA%9E%E9%9F%B3%E8%BE%A8%E8%AD%98.html">語音辨識（Speech Recognition）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%AA%9E%E8%A8%80%E6%A8%A1%E5%9E%8B.html">語言模型（Language Model）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%96%B7%E8%A9%9E.html">斷詞（Word Segmentation）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%A9%9E%E6%80%A7%E6%A8%99%E8%A8%98.html">詞性標記（POS Tagging）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%89%96%E6%9E%90.html">剖析（Parsing）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%87%8D%E9%9F%B3.html">重音（Stress）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%AE%8A%E8%AA%BF.html">變調（Tone Sandhi）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%AA%9E%E8%A8%80%E5%88%86%E9%A1%9E.html">語言分類（Language Identification）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%B9%B3%E8%A1%8C%E8%AA%9E%E6%96%99%E8%AA%9E%E5%8F%A5%E5%B0%8D%E9%BD%8A.html">平行語料語句對齊（Parallel Corpus Sentences Alignment）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%96%8B%E7%99%BC.html">開發</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%8E%88%E6%AC%8A%E8%81%B2%E6%98%8E.html">授權聲明</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">臺灣言語工具</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">語音合成（Speech Synthesis）</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/語音合成.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="speech-synthesis">
+<h1>語音合成（Speech Synthesis）<a class="headerlink" href="#speech-synthesis" title="本標頭的永久連結">¶</a></h1>
+<p>語音合成是文字轉做聲音的資訊技術，親像<a class="reference external" href="http://itaigi.tw">iTaigi</a>、車站廣播，有聲冊攏有語音合成的應用。</p>
+<p>若想直接使用語音合成，請看<a class="reference external" href="https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_hok8-bu7/wiki/%E5%BF%AB%E9%80%9F%E8%AA%AA%E6%98%8E#%E7%9B%B4%E6%8E%A5%E7%94%A8%E8%A8%93%E7%B7%B4%E5%A5%BD%E7%9A%84%E8%AA%9E%E9%9F%B3%E5%90%88%E6%88%90">服務文件</a>來設定自己的服務</p>
+<section id="id1">
+<h2>合成原理<a class="headerlink" href="#id1" title="本標頭的永久連結">¶</a></h2>
+<p>這馬時行的做法有接音合成（Corpus-based Speech Synthesis）佮模型合成（Model-based Speech Synthesis）：</p>
+<section id="id2">
+<h3>接音合成<a class="headerlink" href="#id2" title="本標頭的永久連結">¶</a></h3>
+<p>火車客運的廣播(花蓮站到矣)、排隊的叫號(593號請到3號櫃台)攏是用接音合成，
+in的做法就是先錄需要的詞佮語句，
+當欲用的時陣，才閣共in接起來。</p>
+<p>這个做法的缺點是口語無一致，聽起來可能會無順無自然。</p>
+</section>
+<section id="id3">
+<h3>模型合成<a class="headerlink" href="#id3" title="本標頭的永久連結">¶</a></h3>
+<p><a class="reference external" href="https://xn--v0qr21b.xn--kpry57d">意傳</a>佮<a class="reference external" href="http://tts.itri.org.tw">工研院</a>攏是用這種技術。
+頭一步共語音訊號轉做一个一个的頻譜佮頻率，
+才閣揣出音標佮頻譜的對應關係，佗一種音標會按怎唸，</p>
+<p>這種技術的好處是輸出語音聽起來誠自然，
+毋過聲音的品質比原本語料的音質較bai2一寡。
+因為訓練的時，
+聲音先用合成器轉做特徵，
+合成的時，
+特徵閣用合成器轉語音，
+兩擺轉換造成音質變bai2。</p>
+</section>
+<section id="id4">
+<h3>混合模型<a class="headerlink" href="#id4" title="本標頭的永久連結">¶</a></h3>
+<p>為著改善面頂兩種模型的缺點，
+就愛用接音合成會配合模型合成。
+用<code class="docutils literal notranslate"><span class="pre">模型合成</span></code>產生的頻譄佮頻率，
+去音檔庫內，揀較符合的音檔，
+才閣用<code class="docutils literal notranslate"><span class="pre">接音合成</span></code>佮音檔接起來。
+若攏無符合的音檔，
+就愛錄音增加音檔庫就好矣。</p>
+<p>按呢做的優點是聲音品質誠好，
+中國的<a class="reference external" href="http://www.iflytek.com/audioengine/list_4.html">科大訊飛</a>就是用這種技術。</p>
+<p>相關的論文：<a class="reference external" href="http://ieeexplore.ieee.org/document/5609194/">A Hybrid Text-to-Speech System That Combines Concatenative and Statistical Synthesis Units</a></p>
+</section>
+</section>
+<section id="id5">
+<h2>語料準備<a class="headerlink" href="#id5" title="本標頭的永久連結">¶</a></h2>
+<p>這段是佇咧介紹，若是愛用模型合成，應該愛按怎準備語料</p>
+<section id="id6">
+<h3>需要<a class="headerlink" href="#id6" title="本標頭的永久連結">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">會講這個語言的人A</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">會音標的人B</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">會點語音學的人C</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">會寫點程式的人D</span></code></p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>準備流程<a class="headerlink" href="#id7" title="本標頭的永久連結">¶</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">會語音學的人C</span></code>先瞭解這個語言的語音特性</p>
+<ul class="simple">
+<li><p>輔音、元音、聲調、重音、語調、音韻變化</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">會音標的人B</span></code>，先準備三千句以上的音標</p>
+<ul class="simple">
+<li><p>以語句為單位</p></li>
+<li><p>越多句越好，建議到七千句</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">會語音學的人C</span></code>先看這三千句，有沒有語音特性出現過少</p>
+<ul class="simple">
+<li><p>親像<code class="docutils literal notranslate"><span class="pre">a</span></code>出現10000次，毋過<code class="docutils literal notranslate"><span class="pre">i</span></code>只出現2000次</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">會講這個語言的人A</span></code>去錄這三千句的音檔</p>
+<ul class="simple">
+<li><p>錄的語氣要注意。錄的語氣是唸稿，合出來的聲音就是唸稿</p></li>
+<li><p>每次錄音，設備事先先調音調成一樣</p></li>
+<li><p>收音品質</p>
+<ul>
+<li><p>設備</p>
+<ul>
+<li><p>軟體</p></li>
+<li><p>麥克</p></li>
+<li><p>音效卡</p></li>
+</ul>
+</li>
+<li><p>實務上</p>
+<ul>
+<li><p>麥克囥佇喙角錄音，氣莫歕著</p></li>
+<li><p>先錄幾句仔音檔，用<code class="docutils literal notranslate"><span class="pre">praat</span></code>抑是<code class="docutils literal notranslate"><span class="pre">Audacity</span></code>看音檔的spectrum有22k以上無</p></li>
+<li><p>建議用 USB 麥克風，就包含音效晶片，就佮電腦的音效卡無關</p>
+<ul>
+<li><p>羅技USB耳機麥克風(H540)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">會寫點程式的人D</span></code>把錄音檔和音標拿去訓練</p></li>
+</ol>
+</section>
+<section id="id8">
+<h3>偷食步<a class="headerlink" href="#id8" title="本標頭的永久連結">¶</a></h3>
+<section id="id9">
+<h4>閩南語<a class="headerlink" href="#id9" title="本標頭的永久連結">¶</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_hok8-bu7/wiki/%E5%BF%AB%E9%80%9F%E8%AA%AA%E6%98%8E#%E8%A8%93%E7%B7%B4%E8%AA%9E%E9%9F%B3%E5%90%88%E6%88%90%E6%A8%A1%E5%9E%8B">教育部辭典</a></p></li>
+<li><p><a class="reference external" href="https://bible.fhl.net/new/audio_hb.php?version=1">信望愛台語聖經</a></p></li>
+</ul>
+</section>
+<section id="id10">
+<h4>客家<a class="headerlink" href="#id10" title="本標頭的永久連結">¶</a></h4>
+<ul class="simple">
+<li><p>教育部客語辭典</p></li>
+<li><p>客委會認證教材</p></li>
+</ul>
+</section>
+<section id="id11">
+<h4>族語<a class="headerlink" href="#id11" title="本標頭的永久連結">¶</a></h4>
+<ul class="simple">
+<li><p>原住民族語言線上詞典</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="id12">
+<h2>程式修改<a class="headerlink" href="#id12" title="本標頭的永久連結">¶</a></h2>
+<p><a class="reference external" href="https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_hok8-bu7/wiki">臺灣言語服務</a>目前支援台語、客話、Pangcah、SaySiyat、Bunun佮Atayal。</p>
+<section id="id13">
+<h3>程式準備<a class="headerlink" href="#id13" title="本標頭的永久連結">¶</a></h3>
+<p>以<a class="reference external" href="https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_hok8-bu7/blob/master/tai5uan5_gian5gi2_hok8bu7/settings.py#L138-L144">客語</a>為例</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;詔安腔&#39;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">&#39;語族&#39;</span><span class="p">:</span> <span class="s1">&#39;漢語&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;音標系統&#39;</span><span class="p">:</span> <span class="n">臺灣客家話拼音</span><span class="p">,</span>
+    <span class="s1">&#39;字綜合標音&#39;</span><span class="p">:</span> <span class="n">客話綜合標音</span><span class="p">,</span>
+    <span class="s1">&#39;文本音值表&#39;</span><span class="p">:</span> <span class="n">客家話文本音值表</span><span class="p">,</span>
+    <span class="s1">&#39;決策樹仔&#39;</span><span class="p">:</span> <span class="n">客家話決策樹仔</span><span class="p">,</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<p>較重要的參數：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">音標系統</span></code>是提供予<code class="docutils literal notranslate"><span class="pre">拆文分析器</span></code>，共語句轉換做音標</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">文本音值表</span></code>，共音標轉換做實際上發音表。會使是IPA國際音標</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">決策樹仔</span></code>是提供予<code class="docutils literal notranslate"><span class="pre">HTS</span></code>，分類頻譄佮頻率</p></li>
+</ul>
+</section>
+<section id="id14">
+<h3>流程<a class="headerlink" href="#id14" title="本標頭的永久連結">¶</a></h3>
+<ol class="arabic simple" start="0">
+<li><p>匯入語料</p></li>
+<li><p>安裝相關套件</p></li>
+<li><p>HTS模型訓練.輸出一種語言語料</p></li>
+<li><p>HTS模型訓練.對齊聲韻</p></li>
+<li><p>HTS模型訓練.輸出HTS標仔問題音檔而且訓練</p></li>
+<li><p>HTS服務.語音合成實作</p></li>
+</ol>
+<section id="id15">
+<h4>匯入語料<a class="headerlink" href="#id15" title="本標頭的永久連結">¶</a></h4>
+</section>
+<section id="id16">
+<h4>安裝相關套件<a class="headerlink" href="#id16" title="本標頭的永久連結">¶</a></h4>
+<p>執行<code class="docutils literal notranslate"><span class="pre">python</span></code>，而且輸入</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">臺灣言語工具.語音合成.HTS工具.安裝HTS語音辨識程式</span> <span class="kn">import</span> <span class="n">安裝HTS語音辨識程式</span>
+<span class="n">安裝HTS語音辨識程式</span><span class="o">.</span><span class="n">安裝htk</span><span class="p">()</span>
+<span class="n">安裝HTS語音辨識程式</span><span class="o">.</span><span class="n">安裝sptk</span><span class="p">()</span>
+<span class="n">安裝HTS語音辨識程式</span><span class="o">.</span><span class="n">安裝hts</span><span class="p">()</span>
+<span class="n">安裝HTS語音辨識程式</span><span class="o">.</span><span class="n">掠htsDemoScript</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="hts">
+<h4>HTS模型訓練.輸出一種語言語料<a class="headerlink" href="#hts" title="本標頭的永久連結">¶</a></h4>
+<p>對逐句語料，輸出對應的<code class="docutils literal notranslate"><span class="pre">音檔</span></code>、<code class="docutils literal notranslate"><span class="pre">孤音標仔</span></code>、<code class="docutils literal notranslate"><span class="pre">相依標仔</span></code></p>
+<section id="id17">
+<h5>孤音標仔格式<a class="headerlink" href="#id17" title="本標頭的永久連結">¶</a></h5>
+<p>以<code class="docutils literal notranslate"><span class="pre">一半/tsit4-puann3</span></code>為例，拆做聲佮韻</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sil</span>
+<span class="n">ts</span>
+<span class="n">it</span>
+<span class="n">p</span>
+<span class="n">uⁿaⁿ</span>
+<span class="n">sil</span>
+</pre></div>
+</div>
+</section>
+<section id="id18">
+<h5>相依標仔格式<a class="headerlink" href="#id18" title="本標頭的永久連結">¶</a></h5>
+<p>一般會註明前音後音、第幾个詞、上尾第幾个詞、…。
+無仝的語言格式可能會無仝，
+親像漢語的聲調，南島語就愛注明重音。</p>
+<p>以<code class="docutils literal notranslate"><span class="pre">一半/tsit4-puann3</span></code>為例</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>==&gt; 語料/相依標仔/im0000007.lab &lt;==
+x-sil+x/調:x&lt;x&gt;x/詞:x!x@x/句:x^x_x
+sil-ts+it/調:x&lt;10&gt;3/詞:0!2@2/句:0^1_1
+ts-it+p/調:x&lt;10&gt;3/詞:0!2@2/句:0^1_1
+it-p+uⁿaⁿ/調:10&lt;3&gt;x/詞:1!1@2/句:0^1_1
+p-uⁿaⁿ+sil/調:10&lt;3&gt;x/詞:1!1@2/句:0^1_1
+x-sil+x/調:x&lt;x&gt;x/詞:x!x@x/句:x^x_x
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id19">
+<h4>HTS模型訓練.對齊聲韻<a class="headerlink" href="#id19" title="本標頭的永久連結">¶</a></h4>
+<p>用<code class="docutils literal notranslate"><span class="pre">HTK</span></code>標孤音標仔的時間</p>
+<section id="id20">
+<h5>標好時間的孤音標仔格式<a class="headerlink" href="#id20" title="本標頭的永久連結">¶</a></h5>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">==&gt;</span> <span class="n">HTK對齊標仔過程</span><span class="o">/</span><span class="n">快速對齊結果</span><span class="o">/</span><span class="n">對齊聲韻結果</span><span class="o">/</span><span class="n">im0000007</span><span class="o">.</span><span class="n">lab</span> <span class="o">&lt;==</span>
+<span class="mi">0</span> <span class="mi">2000000</span> <span class="n">sil</span>
+<span class="mi">2000000</span> <span class="mi">3100000</span> <span class="n">ts</span>
+<span class="mi">3100000</span> <span class="mi">5100000</span> <span class="n">it</span>
+<span class="mi">5100000</span> <span class="mi">6100000</span> <span class="n">p</span>
+<span class="mi">6100000</span> <span class="mi">11500000</span> <span class="n">uⁿaⁿ</span>
+<span class="mi">11500000</span> <span class="mi">12900000</span> <span class="n">sil</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="hts-hts">
+<h4>HTS模型訓練.輸出HTS標仔問題音檔而且訓練<a class="headerlink" href="#hts-hts" title="本標頭的永久連結">¶</a></h4>
+<p>產生<code class="docutils literal notranslate"><span class="pre">htsDemoScript</span></code>需要的檔案</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">孤音標仔</span></code>佮<code class="docutils literal notranslate"><span class="pre">相依標仔</span></code>標仔</p></li>
+<li><p>準備<code class="docutils literal notranslate"><span class="pre">決策樹仔</span></code></p></li>
+<li><p>共<code class="docutils literal notranslate"><span class="pre">wav格式</span></code>音檔的檔頭提掉，變做<code class="docutils literal notranslate"><span class="pre">raw(pcm)格式)</span></code></p></li>
+<li><p>紲落來<code class="docutils literal notranslate"><span class="pre">htsDemoScript</span></code>會訓練出<code class="docutils literal notranslate"><span class="pre">htsvoice</span></code>模型</p></li>
+</ol>
+<p>愛注意的是，無仝的相依標仔格式，就需要無仝的<code class="docutils literal notranslate"><span class="pre">決策樹仔</span></code></p>
+</section>
+<section id="id21">
+<h4>HTS服務.語音合成實作<a class="headerlink" href="#id21" title="本標頭的永久連結">¶</a></h4>
+<ol class="arabic simple">
+<li><p>輸入是<code class="docutils literal notranslate"><span class="pre">分詞</span></code>格式的語句，會轉做<code class="docutils literal notranslate"><span class="pre">相依標仔</span></code>格式</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">htsengine</span></code>用訓練出來的<code class="docutils literal notranslate"><span class="pre">htsvoice</span></code>模型，共<code class="docutils literal notranslate"><span class="pre">相依標仔</span></code>合做<code class="docutils literal notranslate"><span class="pre">音檔</span></code></p></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="id22">
+<h2>演算法修改<a class="headerlink" href="#id22" title="本標頭的永久連結">¶</a></h2>
+<p>介紹<code class="docutils literal notranslate"><span class="pre">服務</span></code>用的<code class="docutils literal notranslate"><span class="pre">HTK</span></code>佮<code class="docutils literal notranslate"><span class="pre">HTS</span></code>作法。</p>
+<p>HTK（Hidden Markov Model Toolkit）是專門提來做語音辨識的開源工具，
+伊頭仔先共<code class="docutils literal notranslate"><span class="pre">音檔</span></code>轉做<code class="docutils literal notranslate"><span class="pre">MFCC頻譜</span></code>，
+才閣用<code class="docutils literal notranslate"><span class="pre">隱性馬可夫模型（Hidden</span> <span class="pre">Markov</span> <span class="pre">Model）</span></code>、<code class="docutils literal notranslate"><span class="pre">高斯混合模型(Gaussion</span> <span class="pre">Mixture</span> <span class="pre">Model,</span> <span class="pre">GMM)</span></code>佮<code class="docutils literal notranslate"><span class="pre">決策樹(Decision</span> <span class="pre">Tree)</span></code>來訓練辨識模型，
+辨識模型可以用來估計<code class="docutils literal notranslate"><span class="pre">MFCC頻譜</span></code>所代表的<code class="docutils literal notranslate"><span class="pre">音標</span></code>。</p>
+<p>HTS（HMM-based Speech Synthesis System）是對HTK改來的語音合成工具，
+伊先用<code class="docutils literal notranslate"><span class="pre">合成器（Vocoder）</span></code>共<code class="docutils literal notranslate"><span class="pre">音檔</span></code>轉做<code class="docutils literal notranslate"><span class="pre">mgc頻譜</span></code>佮<code class="docutils literal notranslate"><span class="pre">lf0頻率對數（log</span> <span class="pre">f0）</span></code>，
+用著<code class="docutils literal notranslate"><span class="pre">隱性馬可夫模型</span></code>、<code class="docutils literal notranslate"><span class="pre">高斯混合模型</span></code>佮<code class="docutils literal notranslate"><span class="pre">決策樹</span></code>來訓練<code class="docutils literal notranslate"><span class="pre">duration時間</span></code>、<code class="docutils literal notranslate"><span class="pre">mgc頻譜</span></code>佮<code class="docutils literal notranslate"><span class="pre">lf0頻率對數</span></code>的預測模型，
+尾仔才閣用<code class="docutils literal notranslate"><span class="pre">合成器（Vocoder）</span></code>共<code class="docutils literal notranslate"><span class="pre">duration時間</span></code>、<code class="docutils literal notranslate"><span class="pre">mgc頻譜</span></code>佮<code class="docutils literal notranslate"><span class="pre">lf0頻率對數（log</span> <span class="pre">f0）</span></code>轉轉<code class="docutils literal notranslate"><span class="pre">音檔</span></code>。</p>
+<section id="id23">
+<h3>流程<a class="headerlink" href="#id23" title="本標頭的永久連結">¶</a></h3>
+<ol class="arabic simple" start="0">
+<li><p>準備語料，包含音標佮對應音檔</p></li>
+<li><p>輸出一種語言語料</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HTK</span></code>大略仔對齊音標佇音檔的時間</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HTS</span></code>那調整對齊時間，那訓練模型</p></li>
+<li><p>用<code class="docutils literal notranslate"><span class="pre">HTS模型</span></code>合成新的音檔</p></li>
+</ol>
+</section>
+<section id="htk">
+<h3><code class="docutils literal notranslate"><span class="pre">大略仔對齊音標佇音檔的時間</span></code>HTK<a class="headerlink" href="#htk" title="本標頭的永久連結">¶</a></h3>
+<section id="id24">
+<h4>聲音特徵<a class="headerlink" href="#id24" title="本標頭的永久連結">¶</a></h4>
+<p>聲音會有足濟特徵，</p>
+<ul class="simple">
+<li><p>頻譜（音色）</p></li>
+<li><p>頻率（音懸）</p></li>
+</ul>
+</section>
+<section id="id25">
+<h4>HTK訓練過程<a class="headerlink" href="#id25" title="本標頭的永久連結">¶</a></h4>
+<ul class="simple">
+<li><p>會先統計逐个音的頻譜特徵</p>
+<ul>
+<li><p>高斯混合模型</p></li>
+</ul>
+</li>
+<li><p>親像</p>
+<ul>
+<li><p>甲.我欲坐火車踅臺灣一hui。</p></li>
+<li><p>乙.伊上愛櫻花。</p></li>
+</ul>
+</li>
+<li><p>hue1</p>
+<ul>
+<li><p>甲音檔30％～40％</p></li>
+<li><p>乙音檔80％～100％</p></li>
+<li><p>會當統計hue的頻譜高斯模型</p></li>
+</ul>
+</li>
+<li><p>閣提hue1佮其他的模型來切音</p></li>
+<li><p>會當得著新的時間</p></li>
+<li><p>hue1</p></li>
+<li><p>甲音檔26％～35％</p></li>
+<li><p>乙音檔77％～100％</p></li>
+<li><p>會當統計hue新的頻譜模型</p></li>
+<li><p>按呢重估幾仔遍就會使提著粗用的模型</p>
+<ul>
+<li><p>閣會當加混合數量、參考前後音…效果會愈好</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id26">
+<h3><code class="docutils literal notranslate"><span class="pre">HTS</span></code>那調整對齊時間，那訓練模型<a class="headerlink" href="#id26" title="本標頭的永久連結">¶</a></h3>
+<section id="id27">
+<h4>訓練包流程<a class="headerlink" href="#id27" title="本標頭的永久連結">¶</a></h4>
+<p>檔案<code class="docutils literal notranslate"><span class="pre">scripts/Config.pl</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$MKEMV = 1; # preparing environments
+$HCMPV = 1; # computing a global variance
+$IN_RE = 1; # initialization &amp; reestimation　←用單位標籤先訓練模型
+$MMMMF = 1; # making a monophone mmf
+$ERST0 = 1; # embedded reestimation (monophone)
+$MN2FL = 1; # copying monophone mmf to fullcontext one　←用單位標籤的複製到全文標籤來做
+$ERST1 = 1; # embedded reestimation (fullcontext)
+$CXCL1 = 1; # tree-based context clustering　←用問題集分類標仔，分一堆一堆的標仔
+$ERST2 = 1; # embedded reestimation (clustered) ←仝堆標仔用仝款公家的參數重估
+$UNTIE = 1; # untying the parameter sharing structure ←標仔對公家的參數扣一份
+$ERST3 = 1; # embedded reestimation (untied) ←標仔用家己的參數重估
+$CXCL2 = 1; # tree-based context clustering　←用問題集分類標仔第二擺，分一堆一堆的標仔
+$ERST4 = 1; # embedded reestimation (re-clustered) ←仝堆標仔用仝款公家的參數重估
+$FALGN = 1; # forced alignment for no-silent GV
+$MCDGV = 1; # making global variance
+$MKUNG = 1; # making unseen models (GV)
+$MKUN1 = 1; # making unseen models (1mix)
+$PGEN1 = 1; # generating speech parameter sequences (1mix)　←提供愛合的全文標籤，就會當合聲音
+$WGEN1 = 0; # synthesizing waveforms (1mix) ←用hts指令合聲
+$CONVM = 1; # converting mmfs to the hts_engine file format ←做出htsvoice模型
+$ENGIN = 0; # synthesizing waveforms using hts_engine ←用htsengine合聲
+</pre></div>
+</div>
+</section>
+<section id="id28">
+<h4>流程說明<a class="headerlink" href="#id28" title="本標頭的永久連結">¶</a></h4>
+<ul class="simple">
+<li><p>HTS會用著頻譜mgc佮頻率f0</p></li>
+<li><p>使用時攏用頻率對數（log f0, lf0）來算</p></li>
+<li><p>合成器用SPTK（Speech Signal Processing Toolkit）</p></li>
+<li><p>合成聲音需要mgc、lf0、duration三種聲音特徵</p>
+<ul>
+<li><p>合的時陣才閣查決策樹，共mgc、lf0、duration查出來，才閣用合成器合語音出來。</p></li>
+</ul>
+</li>
+<li><p>伊會先訓練逐个孤音的初步模型</p>
+<ul>
+<li><p>閣來訓練相依標仔模型，</p></li>
+<li><p>上尾閣用決策樹共相倚的音綁做伙。</p></li>
+</ul>
+</li>
+<li><p>GV</p>
+<ul>
+<li><p>用GV聲音會較好聽，毋過有時陣會產生爆炸聲</p></li>
+<li><p>建議莫用GV</p></li>
+</ul>
+</li>
+<li><p>用隱性馬可夫模型佮分類器，</p>
+<ul>
+<li><p>共音標當做輸入，</p></li>
+<li><p>頻譜佮頻率當作輸出</p></li>
+<li><p>等欲合聲音時，才閣照模型的特徵，用合成器合聲音出來。</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id29">
+<h4>準備檔案<a class="headerlink" href="#id29" title="本標頭的永久連結">¶</a></h4>
+<ul class="simple">
+<li><p>聲音檔</p></li>
+<li><p>無wav檔頭</p></li>
+<li><p>標籤label檔</p>
+<ul>
+<li><p>音切好，標仔的時間會使對HTK訓練</p></li>
+<li><p>標仔格式需要設計</p></li>
+</ul>
+</li>
+<li><p>音類的問題集</p></li>
+</ul>
+</section>
+<section id="id30">
+<h4>HTS訓練過程<a class="headerlink" href="#id30" title="本標頭的永久連結">¶</a></h4>
+<p>佮HTK仝款先重估
+用高斯模型，加混合效果無較好（揣無來源論文）
+親像
+甲.我欲坐火車踅臺灣一hui。
+乙.伊上愛櫻花。
+「坐火」佮「櫻花」的hue可能無仝款
+-e hue、-ng hue
+HTS訓練過程
+所以hue愛考慮前後
+統計的音標數量變三次方
+逐个音標的音檔傷少
+愛佮相倚的音標當做仝款做伙統計
+用決策樹分類</p>
+</section>
+<section id="id31">
+<h4>決策樹分類器<a class="headerlink" href="#id31" title="本標頭的永久連結">¶</a></h4>
+<p>合成需要mgc、lf0、duration三个參數
+所以決策樹的輸出就是這三種</p>
+<section id="id32">
+<h5>特徵<a class="headerlink" href="#id32" title="本標頭的永久連結">¶</a></h5>
+<p>有三个聲音特徵會用著決策樹，逐个state一个樹，以下攏總有5+5+1欉決策樹</p>
+<ul class="simple">
+<li><p>Mgc</p>
+<ul>
+<li><p>訓練包預設有五个state，代表依時間先後切做五份</p>
+<ul>
+<li><p>逐个state有一个stream</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Lf0</p>
+<ul>
+<li><p>訓練包預設有五个state，代表依時間先後切做五份</p>
+<ul>
+<li><p>逐个state有三个stream，分別代表頻率、頻率差、頻率差之差</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Duration</p>
+<ul>
+<li><p>一个state，一个stream</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id33">
+<h5>決策樹範例<a class="headerlink" href="#id33" title="本標頭的永久連結">¶</a></h5>
+<p>訓練後產生的決策樹，
+一逝代表一个問題，
+後壁的數字分別代表「答案毋著」佮「答案著」對應的路</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">*</span><span class="p">}[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">stream</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">{</span>
+   <span class="mi">0</span> <span class="n">Utt_Len_Ku3</span><span class="o">&lt;=</span><span class="mi">4</span>                                     <span class="o">-</span><span class="mi">1</span>         <span class="o">-</span><span class="mi">3</span>    
+  <span class="o">-</span><span class="mi">1</span> <span class="n">Si7_Tsing7</span>                                         <span class="o">-</span><span class="mi">2</span>          <span class="s2">&quot;mgc_s2_1&quot;</span> 
+  <span class="o">-</span><span class="mi">2</span> <span class="n">Si7_Uan5_Im1</span>                                      <span class="o">-</span><span class="mi">17</span>         <span class="o">-</span><span class="mi">7</span>    
+  <span class="o">-</span><span class="mi">3</span> <span class="n">Ui3_Su5_Bue2</span><span class="o">&lt;=</span><span class="mi">2</span>                                   <span class="o">-</span><span class="mi">12</span>         <span class="o">-</span><span class="mi">4</span>    
+  <span class="o">-</span><span class="mi">4</span> <span class="n">Si7_i_Tiong1</span>                                       <span class="o">-</span><span class="mi">6</span>         <span class="o">-</span><span class="mi">5</span>    
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>若毋是<code class="docutils literal notranslate"><span class="pre">Utt_Len_Ku3&lt;=4</span></code>，請看問題<code class="docutils literal notranslate"><span class="pre">-1</span></code>。若是<code class="docutils literal notranslate"><span class="pre">Utt_Len_Ku3&lt;=4</span></code>，看問題<code class="docutils literal notranslate"><span class="pre">-3</span></code></p></li>
+<li><p>若毋是<code class="docutils literal notranslate"><span class="pre">Si7_Tsing7</span></code>，請看問題<code class="docutils literal notranslate"><span class="pre">-2</span></code>。若是，用<code class="docutils literal notranslate"><span class="pre">mgc_s2_1</span></code>，<code class="docutils literal notranslate"><span class="pre">mgc_s2_1</span></code>代表一个高斯模型</p></li>
+</ul>
+</section>
+<section id="id34">
+<h5>問題集<a class="headerlink" href="#id34" title="本標頭的永久連結">¶</a></h5>
+<p>逐个問題攏是用字元、<code class="docutils literal notranslate"><span class="pre">*</span></code>佮<code class="docutils literal notranslate"><span class="pre">?</span></code>來判斷<code class="docutils literal notranslate"><span class="pre">相依標仔</span></code>有符合這个問題無。
+<code class="docutils literal notranslate"><span class="pre">*</span></code>代表任意字元，<code class="docutils literal notranslate"><span class="pre">?</span></code>代表一个字元</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="n">QS</span> <span class="s2">&quot;Si7_Ki2_Uan5_Im1&quot;</span>      <span class="p">{</span><span class="o">*-</span><span class="n">i</span><span class="o">+*</span><span class="p">,</span><span class="o">*-</span><span class="n">e</span><span class="o">+*</span><span class="p">,</span><span class="o">*-</span><span class="n">a</span><span class="o">+*</span><span class="p">}</span>
+<span class="n">QS</span> <span class="s2">&quot;Si7_Kin1_Uan5_Im1&quot;</span>    <span class="p">{</span><span class="o">*-</span><span class="n">o</span><span class="o">+*</span><span class="p">,</span><span class="o">*-</span><span class="n">u</span><span class="o">+*</span><span class="p">}</span>
+<span class="n">QS</span> <span class="s2">&quot;Si7_Ting2_Uan5_Im1&quot;</span>      <span class="p">{</span><span class="o">*-</span><span class="n">i</span><span class="o">+*</span><span class="p">,</span><span class="o">*-</span><span class="n">u</span><span class="o">+*</span><span class="p">}</span>
+<span class="n">QS</span> <span class="s2">&quot;Si7_Tiong1_Uan5_Im1&quot;</span>    <span class="p">{</span><span class="o">*-</span><span class="n">e</span><span class="o">+*</span><span class="p">,</span><span class="o">*-</span><span class="n">o</span><span class="o">+*</span><span class="p">}</span>
+<span class="n">QS</span> <span class="s2">&quot;Si7_Ke1_Uan5_Im1&quot;</span>      <span class="p">{</span><span class="o">*-</span><span class="n">a</span><span class="o">+*</span><span class="p">}</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="id35">
+<h5>決策樹採用問題集分支的原則<a class="headerlink" href="#id35" title="本標頭的永久連結">¶</a></h5>
+<ol class="arabic simple">
+<li><p>揣一个問題</p></li>
+<li><p>予兩爿的數量差無濟</p></li>
+<li><p>兩爿的性質差上濟</p></li>
+</ol>
+</section>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="%E6%A9%9F%E5%99%A8%E7%BF%BB%E8%AD%AF.html" class="btn btn-neutral float-left" title="機器翻譯（Machine Translation）" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="%E8%AA%9E%E9%9F%B3%E8%BE%A8%E8%AD%98.html" class="btn btn-neutral float-right" title="語音辨識（Speech Recognition）" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016, 薛丞宏.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
