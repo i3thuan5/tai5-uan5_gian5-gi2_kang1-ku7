@@ -33,7 +33,7 @@ setup(
     author='薛丞宏',
     author_email='ithuan@ithuan.tw',
     url='https://ithuan.tw/',
-    download_url='https://github.com/i3thuan5/tai5_uan5_gian5_gi2_kang1_ku7',
+    download_url='https://github.com/i3thuan5/tai5-uan5_gian5-gi2_kang1-ku7',
     keywords=[
         '臺灣', '臺語', '客家話', '自然語言', '語料庫',
         '語音合成', '語音辨識', '機器翻譯', '斷詞',
