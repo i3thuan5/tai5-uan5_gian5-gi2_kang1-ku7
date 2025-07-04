@@ -42,19 +42,24 @@ jobs:
       script:
         - tox -e flake8
     - stage: sonarcloud
-      name: coverage
-      language: java
-      jdk: openjdk17
+      name: Coverage
+      service:
+        - docker
       addons:
+        # For the `SONARQUBE_SCANNER_PARAMS` variable
         sonarcloud:
-          organization: "ithuan"
           token: ${SONAR_TOKEN}
       install: skip
       before_script:
         - pip install -r requirements_travisci.txt
         - aws s3 sync --endpoint-url ${AWS_S3_ENDPOINT_URL} s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/ .coverage-reports/
       script:
-        - sonar-scanner
+        - >
+          docker run --rm
+          -e SONARQUBE_SCANNER_PARAMS
+          -e SONAR_TOKEN="${SONAR_TOKEN}"
+          -v "`pwd`:/usr/src"
+          sonarsource/sonar-scanner-cli
     - stage: deploy
       name: pypi
       if: branch ~= /\d+\.\d+\.\d+/
