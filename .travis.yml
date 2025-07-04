@@ -11,28 +11,28 @@ jobs:
     - name: tanguan
       install:
         - pip install tox
-        - pip install awscli boto3~=1.35.0
+        - pip install -r requirements_travisci.txt
       script:
         - tox -e tanguan
         - aws s3 cp --endpoint-url ${AWS_S3_ENDPOINT_URL} coverage.xml s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/coverage-tanguan.xml
     - name: bunpun
       install:
         - pip install tox
-        - pip install awscli boto3~=1.35.0
+        - pip install -r requirements_travisci.txt
       script:
         - tox -e bunpun
         - aws s3 cp --endpoint-url ${AWS_S3_ENDPOINT_URL} coverage.xml s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/coverage-bunpun.xml
     - name: HTS
       install:
         - pip install tox
-        - pip install awscli boto3~=1.35.0
+        - pip install -r requirements_travisci.txt
       script:
         - tox -e HTS
         - aws s3 cp --endpoint-url ${AWS_S3_ENDPOINT_URL} coverage.xml s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/coverage-HTS.xml
     - name: KenLM
       install:
         - pip install tox
-        - pip install awscli boto3~=1.35.0
+        - pip install -r requirements_travisci.txt
       script:
         - tox -e KenLM
         - aws s3 cp --endpoint-url ${AWS_S3_ENDPOINT_URL} coverage.xml s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/coverage-KenLM.xml
@@ -51,7 +51,7 @@ jobs:
           token: ${SONAR_TOKEN}
       install: skip
       before_script:
-        - pip install awscli boto3~=1.35.0
+        - pip install -r requirements_travisci.txt
         - aws s3 sync --endpoint-url ${AWS_S3_ENDPOINT_URL} s3://${AWS_S3_BUCKET}/${TRAVIS_BUILD_NUMBER}/ .coverage-reports/
       script:
         - sonar-scanner
