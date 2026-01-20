@@ -1,21 +1,19 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="zh-tw">
+<html class="writer-html5" lang="zh-tw" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>斷詞（Word Segmentation） &mdash; 臺灣言語工具 0.6.32 說明文件</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=6eb226ce"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=b9a6cf06"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="搜尋" href="search.html" />
@@ -34,9 +32,6 @@
           <a href="index.html" class="icon icon-home">
             臺灣言語工具
           </a>
-              <div class="version">
-                0.6
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -100,7 +95,7 @@
            <div itemprop="articleBody">
              
   <section id="word-segmentation">
-<h1>斷詞（Word Segmentation）<a class="headerlink" href="#word-segmentation" title="本標頭的永久連結">¶</a></h1>
+<h1>斷詞（Word Segmentation）<a class="headerlink" href="#word-segmentation" title="連結到這個標頭">¶</a></h1>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">閩南語辭典</span> <span class="o">=</span> <span class="n">型音辭典</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">閩南語辭典</span><span class="o">.</span><span class="n">加詞</span><span class="p">(</span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">對齊詞物件</span><span class="p">(</span><span class="s1">&#39;阿媠&#39;</span><span class="p">,</span> <span class="s1">&#39;a1-sui2&#39;</span><span class="p">))</span>
 <span class="n">閩南語辭典</span><span class="o">.</span><span class="n">加詞</span><span class="p">(</span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">對齊詞物件</span><span class="p">(</span><span class="s1">&#39;愛 &#39;</span><span class="p">,</span> <span class="s1">&#39;ai3&#39;</span><span class="p">))</span>
@@ -148,24 +143,24 @@
 </li>
 </ul>
 <section id="id1">
-<h2>母語斷詞<a class="headerlink" href="#id1" title="本標頭的永久連結">¶</a></h2>
+<h2>母語斷詞<a class="headerlink" href="#id1" title="連結到這個標頭">¶</a></h2>
 <p>部份漢語語料是漢字佮羅馬字混雜，為了讓語料能更一致，斷詞有兩種方法</p>
 <section id="id2">
-<h3>兩步斷詞<a class="headerlink" href="#id2" title="本標頭的永久連結">¶</a></h3>
+<h3>兩步斷詞<a class="headerlink" href="#id2" title="連結到這個標頭">¶</a></h3>
 <p>先用辭典切出對應的斷點，才閣揀出其中一個當結果</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="s1">&#39;11&#39;</span>
 </pre></div>
 </div>
 <section id="id3">
-<h4>函式定義<a class="headerlink" href="#id3" title="本標頭的永久連結">¶</a></h4>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">揣詞</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">揣詞方法</span><span class="p">,</span> <span class="o">*</span><span class="n">參數陣列</span><span class="p">,</span> <span class="o">**</span><span class="n">參數物件</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">揀</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">揀集內組方法</span><span class="p">,</span> <span class="o">*</span><span class="n">參數陣列</span><span class="p">,</span> <span class="o">**</span><span class="n">參數物件</span><span class="p">):</span>
+<h4>函式定義<a class="headerlink" href="#id3" title="連結到這個標頭">¶</a></h4>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="nf">揣詞</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">揣詞方法</span><span class="p">,</span> <span class="o">*</span><span class="n">參數陣列</span><span class="p">,</span> <span class="o">**</span><span class="n">參數物件</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">揀</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">揀集內組方法</span><span class="p">,</span> <span class="o">*</span><span class="n">參數陣列</span><span class="p">,</span> <span class="o">**</span><span class="n">參數物件</span><span class="p">):</span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="id4">
-<h3>直接斷詞<a class="headerlink" href="#id4" title="本標頭的永久連結">¶</a></h3>
+<h3>直接斷詞<a class="headerlink" href="#id4" title="連結到這個標頭">¶</a></h3>
 <p>仝款用辭典佮語言模型，<code class="docutils literal notranslate"><span class="pre">辭典語言模型斷詞</span></code>會試逐種組合，毋過速度較慢</p>
 </section>
 </section>

@@ -1,21 +1,19 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="zh-tw">
+<html class="writer-html5" lang="zh-tw" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>開發 &mdash; 臺灣言語工具 0.6.32 說明文件</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=6eb226ce"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=b9a6cf06"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="搜尋" href="search.html" />
@@ -34,9 +32,6 @@
           <a href="index.html" class="icon icon-home">
             臺灣言語工具
           </a>
-              <div class="version">
-                0.6
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -99,9 +94,9 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1>開發<a class="headerlink" href="#id1" title="本標頭的永久連結">¶</a></h1>
+<h1>開發<a class="headerlink" href="#id1" title="連結到這個標頭">¶</a></h1>
 <section id="id2">
-<h2>環境準備<a class="headerlink" href="#id2" title="本標頭的永久連結">¶</a></h2>
+<h2>環境準備<a class="headerlink" href="#id2" title="連結到這個標頭">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3<span class="w"> </span>python-virtualenv<span class="w"> </span>g++<span class="w"> </span>python3-dev<span class="w"> </span>zlib1g-dev<span class="w"> </span>libbz2-dev<span class="w"> </span>liblzma-dev<span class="w"> </span>libboost-all-dev<span class="w"> </span><span class="c1"># Ubuntu/Mint 安裝指令</span>
 virtualenv<span class="w"> </span>--python<span class="o">=</span>python3<span class="w"> </span>venv<span class="p">;</span><span class="w"> </span>.<span class="w"> </span>venv/bin/activate<span class="p">;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span><span class="c1"># 設置環境檔</span>
 pip<span class="w"> </span>install<span class="w"> </span>.<span class="p">;</span><span class="w"> </span>pip<span class="w"> </span>uninstall<span class="w"> </span>-y<span class="w"> </span>tai5-uan5_gian5-gi2_kang1-ku7<span class="w"> </span><span class="c1"># 裝相關套件就好</span>
@@ -109,18 +104,18 @@ pip<span class="w"> </span>install<span class="w"> </span>.<span class="p">;</sp
 </div>
 </section>
 <section id="id3">
-<h2>走試驗<a class="headerlink" href="#id3" title="本標頭的永久連結">¶</a></h2>
+<h2>走試驗<a class="headerlink" href="#id3" title="連結到這個標頭">¶</a></h2>
 <p>試驗檔案整理在<code class="docutils literal notranslate"><span class="pre">tox.ini</span></code></p>
 </section>
 <section id="id4">
-<h2>程式碼自動排版<a class="headerlink" href="#id4" title="本標頭的永久連結">¶</a></h2>
+<h2>程式碼自動排版<a class="headerlink" href="#id4" title="連結到這個標頭">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">autopep8</span>
 <span class="n">autopep8</span> <span class="o">--</span><span class="n">exclude</span><span class="o">=</span><span class="n">venv</span><span class="p">,</span><span class="n">外部程式</span> <span class="o">--</span><span class="n">ignore</span><span class="o">=</span><span class="n">E501</span> <span class="o">-</span><span class="n">r</span> <span class="o">--</span><span class="ow">in</span><span class="o">-</span><span class="n">place</span> <span class="o">.</span>
 </pre></div>
 </div>
 </section>
 <section id="id5">
-<h2>文件整理<a class="headerlink" href="#id5" title="本標頭的永久連結">¶</a></h2>
+<h2>文件整理<a class="headerlink" href="#id5" title="連結到這個標頭">¶</a></h2>
 <p>先裝好<code class="docutils literal notranslate"><span class="pre">python-virtualenv</span></code>開發環境，閣來環境設定</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>sphinx<span class="w"> </span>sphinx-autobuild<span class="w"> </span>recommonmark
 </pre></div>
@@ -130,7 +125,7 @@ pip<span class="w"> </span>install<span class="w"> </span>.<span class="p">;</sp
 </pre></div>
 </div>
 <section id="id6">
-<h3>自頭開始<a class="headerlink" href="#id6" title="本標頭的永久連結">¶</a></h3>
+<h3>自頭開始<a class="headerlink" href="#id6" title="連結到這個標頭">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>文件
 <span class="nb">cd</span><span class="w"> </span>文件
 sphinx-quickstart<span class="w"> </span><span class="c1"># 建立一開始的專案</span>
