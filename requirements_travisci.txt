@@ -21,7 +21,7 @@ jmespath==1.0.1
     # via
     #   boto3
     #   botocore
-pyasn1==0.6.1
+pyasn1==0.6.2
     # via rsa
 python-dateutil==2.9.0.post0
     # via botocore
