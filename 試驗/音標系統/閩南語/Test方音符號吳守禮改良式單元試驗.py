@@ -40,6 +40,15 @@ class 方音符號吳守禮改良式單元試驗(unittest.TestCase):
         self.assertEqual(方音.調, '㆐')
         self.assertEqual(方音.輕, '')
         self.assertEqual(方音.轉換到臺灣閩南語羅馬字拼音(), 'sih8')
+ 
+    def test_陽入聲聲韻調_國臺對照Unicode13(self):
+        方音 = 方音符號吳守禮改良式('ㄒㄧㆻ̇')
+        self.assertEqual(方音.音標, 'ㄒㄧㆻ̇')
+        self.assertEqual(方音.聲, 'ㄒ')
+        self.assertEqual(方音.韻, 'ㄧㆻ')
+        self.assertEqual(方音.調, '㆐')
+        self.assertEqual(方音.輕, '')
+        self.assertEqual(方音.轉換到臺灣閩南語羅馬字拼音(), 'sik8')
 
     def test_韻化輔音聲韻調輕(self):
         方音 = 方音符號吳守禮改良式('ㆭˊ')
@@ -67,6 +76,15 @@ class 方音符號吳守禮改良式單元試驗(unittest.TestCase):
         self.assertEqual(方音.調, 'ˊ')
         self.assertEqual(方音.輕, '˙')
         self.assertEqual(方音.轉換到臺灣閩南語羅馬字拼音(), '0e5')
+
+    def test_橫書聲韻調(self):
+        方音 = 方音符號吳守禮改良式('ㄎㆳˊ')
+        self.assertEqual(方音.音標, 'ㄎㆳˊ')
+        self.assertEqual(方音.聲, 'ㄎ')
+        self.assertEqual(方音.韻, 'ㆳ')
+        self.assertEqual(方音.調, 'ˊ')
+        self.assertEqual(方音.輕, '')
+        self.assertEqual(方音.轉換到臺灣閩南語羅馬字拼音(), 'khinn5')
 
     def test_違法音標(self):
         方音 = 方音符號吳守禮改良式('˙ㆤㄨ')
